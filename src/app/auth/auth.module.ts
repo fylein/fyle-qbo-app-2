@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FyleCallbackComponent } from './fyle-callback/fyle-callback.component';
-import { QboCallbackComponent } from './qbo-callback/qbo-callback.component';
-
+import { AuthComponent } from './auth.component';
+import { AuthRoutingModule } from './auth-routing.module';
 
 
 @NgModule({
@@ -12,10 +12,11 @@ import { QboCallbackComponent } from './qbo-callback/qbo-callback.component';
     LoginComponent,
     LogoutComponent,
     FyleCallbackComponent,
-    QboCallbackComponent
+    AuthComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AuthRoutingModule
   ]
 })
 export class AuthModule { }

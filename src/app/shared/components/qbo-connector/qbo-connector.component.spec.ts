@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConnectQboComponent } from './connect-qbo.component';
+import { QboConnectorComponent } from './qbo-connector.component';
 
-describe('ConnectQboComponent', () => {
-  let component: ConnectQboComponent;
-  let fixture: ComponentFixture<ConnectQboComponent>;
+describe('QboConnectorComponent', () => {
+  let component: QboConnectorComponent;
+  let fixture: ComponentFixture<QboConnectorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConnectQboComponent ]
+      declarations: [ QboConnectorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConnectQboComponent);
+    fixture = TestBed.createComponent(QboConnectorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
