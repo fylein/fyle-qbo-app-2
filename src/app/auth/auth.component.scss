@@ -1,0 +1,19 @@
+$fy-violet-background: rgba(34, 0, 51, 0.941);
+$fy-white: #fff;
+
+.auth {
+  background-color: $fy-violet-background;
+  overflow-y: hidden;
+  .auth-header {
+    padding: 16px;
+    &--logo {
+      max-width: 40px;
+      max-height: 40px;
+    }
+
+    &--name {
+      color: $fy-white;
+      margin: 0 16px;
+    }
+  }
+}
