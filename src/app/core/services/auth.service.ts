@@ -5,7 +5,7 @@ import { ApiService } from './api.service';
 import { StorageService } from './storage.service';
 import { WindowService } from './window.service';
 import { Token } from '../models/token.model';
-import { MinimalUser } from '../models/user';
+import { MinimalUser } from '../models/user.model';
 import { UserService } from './user.service';
 
 

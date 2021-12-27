@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MinimalUser } from '../models/user';
+import { MinimalUser } from '../models/user.model';
 import { ApiService } from './api.service';
 import { StorageService } from './storage.service';
 

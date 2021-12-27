@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { WindowService } from 'src/app/core/services/window.service';
 
 @Component({
   selector: 'app-onboarding',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OnboardingComponent implements OnInit {
 
-  constructor() { }
+  windowReference: Window;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private windowService: WindowService
+  ) {
+    this.windowReference = this.windowService.nativeWindow;
+  }
+
+  redirectToOnboarding(workspaceId: number): void {
+    // handle all redirects based on settings here
+    // Added landing by default for now
+    const pathName = this.windowReference.location.pathname;
+    if (pathName.split('/onboarding')[1] === '') {
+      this.router.navigate([`/workspaces/${workspaceId}/onboarding/landing`]);
+    }
+  }
 
   ngOnInit(): void {
+    const workspaceId = this.route.snapshot.params.workspace_id;
+    this.redirectToOnboarding(workspaceId);
   }
 
 }

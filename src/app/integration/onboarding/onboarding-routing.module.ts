@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from 'src/app/core/guard/auth.guard';
 import { OnboardingAdvancedSettingsComponent } from './onboarding-advanced-settings/onboarding-advanced-settings.component';
 import { OnboardingDoneComponent } from './onboarding-done/onboarding-done.component';
 import { OnboardingEmployeeSettingsComponent } from './onboarding-employee-settings/onboarding-employee-settings.component';
@@ -12,13 +13,13 @@ import { OnboardingComponent } from './onboarding.component';
 
 const routes: Routes = [
   {
+    path: 'landing',
+    component: OnboardingLandingComponent
+  },
+  {
     path: '',
     component: OnboardingComponent,
     children: [
-      {
-        path: 'landing',
-        component: OnboardingLandingComponent
-      },
       {
         path: 'export_settings',
         component: OnboardingExportSettingsComponent
