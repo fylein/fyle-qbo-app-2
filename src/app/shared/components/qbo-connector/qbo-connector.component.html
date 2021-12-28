@@ -1,3 +1,15 @@
-<app-onboarding-stepper></app-onboarding-stepper>
+<app-onboarding-stepper [currentStep]="'Connect to QBO'"></app-onboarding-stepper>
 
 Fyle QBO Connector code lies here
+<div fxLayout="column" fxLayoutAlign="space-around center">
+  <div>
+    Connect to Quickbooks Online
+  </div>
+  <button *ngIf="!isQboConnected" mat-button color="accent" (click)="connectQbo()">Connect to QBO</button>
+  <div *ngIf="isQboConnected">
+    Already connected to QBO
+    <div>
+      <button mat-flat-button color="accent" (click)="continueToNextStep()">Continue</button>
+    </div>
+  </div>
+</div>

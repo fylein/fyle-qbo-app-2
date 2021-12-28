@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   login(): void {
-    this.authService.redirectToLogin();
+    this.authService.redirectToFyleOAuth();
   }
 
   private redirectLoggedInUser(): void {

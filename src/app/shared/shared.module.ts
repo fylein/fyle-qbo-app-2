@@ -7,6 +7,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { EmployeeSettingsComponent } from './components/employee-settings/employee-settings.component';
 import { LoaderComponent } from './components/loader/loader.component';
@@ -27,6 +28,7 @@ import { OnboardingStepperComponent } from './components/onboarding-stepper/onbo
     ReactiveFormsModule,
     MatStepperModule,
     MatFormFieldModule,
+    MatSelectModule,
     CdkStepperModule
   ],
   exports: [

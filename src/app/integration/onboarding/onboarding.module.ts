@@ -6,6 +6,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OnboardingExportSettingsComponent } from './onboarding-export-settings/onboarding-export-settings.component';
 import { OnboardingImportSettingsComponent } from './onboarding-import-settings/onboarding-import-settings.component';
 import { OnboardingAdvancedSettingsComponent } from './onboarding-advanced-settings/onboarding-advanced-settings.component';
@@ -19,6 +21,7 @@ import { LoaderComponent } from 'src/app/shared/components/loader/loader.compone
 import { OnboardingHeaderComponent } from 'src/app/shared/components/onboarding-header/onboarding-header.component';
 import { QboConnectorComponent } from 'src/app/shared/components/qbo-connector/qbo-connector.component';
 import { OnboardingStepperComponent } from 'src/app/shared/components/onboarding-stepper/onboarding-stepper.component';
+import { EmployeeSettingsComponent } from 'src/app/shared/components/employee-settings/employee-settings.component';
 
 
 @NgModule({
@@ -34,7 +37,8 @@ import { OnboardingStepperComponent } from 'src/app/shared/components/onboarding
     LoaderComponent,
     OnboardingHeaderComponent,
     QboConnectorComponent,
-    OnboardingStepperComponent
+    OnboardingStepperComponent,
+    EmployeeSettingsComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +48,10 @@ import { OnboardingStepperComponent } from 'src/app/shared/components/onboarding
     MatIconModule,
     FlexLayoutModule,
     MatButtonModule,
-    MatStepperModule
+    MatStepperModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class OnboardingModule { }

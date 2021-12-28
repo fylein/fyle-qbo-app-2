@@ -15,7 +15,7 @@ export class WorkspaceService {
     private storageService: StorageService
   ) { }
 
-  getWorkspaceId(): string | null {
+  getWorkspaceId(): string {
     return this.storageService.get('workspaceId');
   }
 

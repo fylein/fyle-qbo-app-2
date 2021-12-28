@@ -5,48 +5,8 @@
 
 
   <div>
-    <mat-stepper [disableRipple]="true" [linear]="true"
-      #stepper>
-      <mat-step [completed]="false">
-        <ng-template matStepLabel>
-          <div>
-            Connect to QBO
-          </div>
-        </ng-template>
-      </mat-step>
-
-      <mat-step [completed]="false">
-        <ng-template matStepLabel>
-          <div>
-            Map Employees
-          </div>
-        </ng-template>
-      </mat-step>
-
-      <mat-step [completed]="false">
-        <ng-template matStepLabel>
-          <div>
-            Export Settings
-          </div>
-        </ng-template>
-      </mat-step>
-
-      <mat-step [completed]="false">
-        <ng-template matStepLabel>
-          <div>
-            Import Settings
-          </div>
-        </ng-template>
-      </mat-step>
-
-      <mat-step [completed]="false">
-        <ng-template matStepLabel>
-          <div>
-            Advanced
-          </div>
-        </ng-template>
-      </mat-step>
-
+    <mat-stepper [disableRipple]="true" [linear]="true">
+      <mat-step *ngFor="let onboardingStep of onboardingSteps" [ngSwitch]="onboardingStep" [completed]="onboardingStep.completed" [label]="onboardingStep.step"></mat-step>
     </mat-stepper>
   </div>
 

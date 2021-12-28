@@ -26,7 +26,11 @@ export class AuthService {
   private windowReference: Window;
 
 
-  redirectToLogin(): void {
+  redirectToQboOAuth(workspaceId: string): void {
+    this.windowReference.location.href = `${environment.qbo_authorize_uri}?client_id=${environment.qbo_client_id}&scope=${environment.qbo_scope}&response_type=code&redirect_uri=${environment.app_url}/qbo_callback&state=${workspaceId}`;
+  }
+
+  redirectToFyleOAuth(): void {
     this.windowReference.location.href = `${environment.fyle_url}/app/developers/#/oauth/authorize?client_id=${environment.fyle_client_id}&redirect_uri=${environment.callback_uri}&response_type=code`;
   }
 
