@@ -5,7 +5,7 @@ import { QboConnector, QBOCredentials } from '../models/qbo-connector.model';
 import { ApiService } from './api.service';
 import { WorkspaceService } from './workspace.service';
 
-const qboCredentialsCache = new Subject<void>();
+const qboCredentialsCache$ = new Subject<void>();
 
 
 @Injectable({
@@ -19,7 +19,7 @@ export class QboConnectorService {
   ) { }
 
   @CacheBuster({
-    cacheBusterNotifier: qboCredentialsCache
+    cacheBusterNotifier: qboCredentialsCache$
   })
   connectQBO(qboConnector: QboConnector): Observable<QBOCredentials> {
     const workspaceId = this.workspaceService.getWorkspaceId();
@@ -28,7 +28,7 @@ export class QboConnectorService {
   }
 
   @Cacheable({
-    cacheBusterObserver: qboCredentialsCache
+    cacheBusterObserver: qboCredentialsCache$
   })
   getQBOCredentials(): Observable<QBOCredentials> {
     const workspaceId = this.workspaceService.getWorkspaceId();

@@ -12,9 +12,6 @@ import { ZeroStateComponent } from './shared/components/zero-state/zero-state.co
 import { MandatoryFieldComponent } from './shared/components/mandatory-field/mandatory-field.component';
 import { MandatoryErrorMessageComponent } from './shared/components/mandatory-error-message/mandatory-error-message.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
-import { ExportSettingsComponent } from './shared/components/export-settings/export-settings.component';
-import { ImportSettingsComponent } from './shared/components/import-settings/import-settings.component';
-import { AdvancedSettingsComponent } from './shared/components/advanced-settings/advanced-settings.component';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 
 @NgModule({
@@ -23,10 +20,7 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
     ZeroStateComponent,
     MandatoryFieldComponent,
     MandatoryErrorMessageComponent,
-    FooterComponent,
-    ExportSettingsComponent,
-    ImportSettingsComponent,
-    AdvancedSettingsComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,

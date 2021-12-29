@@ -1,1 +1,36 @@
-<p>export-settings works!</p>
+<app-onboarding-stepper [currentStep]="'Export Settings'"></app-onboarding-stepper>
+
+<div *ngIf="!isLoading" fxLayout="column" fxLayoutAlign="space-around center">
+  <div>
+    Export Settings
+  </div>
+  <div>
+    <form [formGroup]="exportSettingsForm">
+      At which state should the expenses be ready to export from Fyle?
+      <mat-select placeholder="Select expense state" formControlName="expenseState">
+        <mat-option *ngFor="let option of expenseStateOptions" [value]="option.value">
+          {{option.label}}
+        </mat-option>
+      </mat-select>
+
+      <mat-slide-toggle color="accent" formControlName="reimbursableExpense">
+        Export Reimbursable Expenses
+      </mat-slide-toggle>
+
+      <div *ngIf="exportSettingsForm.value.reimbursableExpense">
+        How should the expenses be exported?
+        <mat-select placeholder="Select expense export type" formControlName="reimbursableExportType">
+          <mat-option *ngFor="let option of reimbursableExportTypes" [value]="option.value">
+            {{option.label}}
+          </mat-option>
+        </mat-select>
+      </div>
+
+      <div>
+        <button [disabled]="!exportSettingsForm.valid" color="accent" mat-flat-button (click)="save()">
+          Save & Continue ->
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

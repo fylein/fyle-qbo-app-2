@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EmployeeSettingFormOptions, EmployeeSettingModel } from 'src/app/core/models/employee-setting.model';
+import { EmployeeSetting, EmployeeSettingFormOption, EmployeeSettingModel } from 'src/app/core/models/employee-setting.model';
 import { AutoMapEmployee, EmployeeFieldMapping } from 'src/app/core/models/enum.model';
-import { WorkspaceGeneralSettings } from 'src/app/core/models/workspace-general-setting.model';
+import { EmployeeSettingService } from 'src/app/core/services/employee-setting.service';
 import { WorkspaceService } from 'src/app/core/services/workspace.service';
 
 @Component({
@@ -14,9 +14,8 @@ import { WorkspaceService } from 'src/app/core/services/workspace.service';
 export class EmployeeSettingsComponent implements OnInit {
 
   employeeSettingsForm: FormGroup;
-  workspaceGeneralSettings: WorkspaceGeneralSettings;
-  isLoading: boolean;
-  employeeMappingOptions: EmployeeSettingFormOptions[] = [
+  isLoading: boolean = true;
+  employeeMappingOptions: EmployeeSettingFormOption[] = [
     {
       value: EmployeeFieldMapping.EMPLOYEE,
       label: 'Employee'
@@ -26,7 +25,7 @@ export class EmployeeSettingsComponent implements OnInit {
       label: 'Vendor'
     }
   ];
-  autoMapEmployeeOptions: EmployeeSettingFormOptions[] = [
+  autoMapEmployeeOptions: EmployeeSettingFormOption[] = [
     {
       value: AutoMapEmployee.NAME,
       label: 'Fyle Name to QBO Display name'
@@ -48,6 +47,7 @@ export class EmployeeSettingsComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private employeeSettingService: EmployeeSettingService,
     private workspaceService: WorkspaceService
   ) { }
 
@@ -55,15 +55,32 @@ export class EmployeeSettingsComponent implements OnInit {
     console.log('this.employeeSettingsForm',this.employeeSettingsForm)
     const employeeSettingPayload = EmployeeSettingModel.constructPayload(this.employeeSettingsForm);
     console.log('Employee setting payload: ', employeeSettingPayload);
-    this.router.navigate([`/workspaces/${this.workspaceService.getWorkspaceId()}/onboarding/import_settings`]);
+    this.isLoading = true;
+    this.employeeSettingService.postEmployeeSettings(employeeSettingPayload).subscribe(() => {
+      this.isLoading = false;
+      this.router.navigate([`/workspaces/${this.workspaceService.getWorkspaceId()}/onboarding/export_settings`]);
+    }, () => {
+      this.isLoading = false;
+      // TODO: handle error
+    });
   }
 
   setupForm(): void {
-    this.employeeSettingsForm = this.formBuilder.group({
-      employeeMapping: [this.workspaceGeneralSettings ? this.workspaceGeneralSettings.reimbursable_expenses_object : null, Validators.required],
-      autoMapEmployee: [this.workspaceGeneralSettings ? this.workspaceGeneralSettings.auto_map_employees : null, Validators.nullValidator]
+    this.employeeSettingService.getEmployeeSettings().subscribe((employeeSettings: EmployeeSetting) => {
+      console.log('succ', employeeSettings);
+      this.employeeSettingsForm = this.formBuilder.group({
+        employeeMapping: [employeeSettings.employee_field_mapping, Validators.required],
+        autoMapEmployee: [employeeSettings.auto_map_employees, Validators.nullValidator]
+      });
+      this.isLoading = false;
+    }, () => {
+      console.log('fail')
+      this.employeeSettingsForm = this.formBuilder.group({
+        employeeMapping: [null, Validators.required],
+        autoMapEmployee: [null, Validators.nullValidator]
+      });
+      this.isLoading = false;
     });
-    this.isLoading = false;
   }
 
   ngOnInit(): void {

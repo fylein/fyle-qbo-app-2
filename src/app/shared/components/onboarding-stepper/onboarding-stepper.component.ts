@@ -20,6 +20,10 @@ export class OnboardingStepperComponent implements OnInit {
     },
     {
       completed: false,
+      step: 'Export Settings',
+    },
+    {
+      completed: false,
       step: 'Import Settings'
     }
   ];

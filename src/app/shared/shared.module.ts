@@ -8,14 +8,19 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { EmployeeSettingsComponent } from './components/employee-settings/employee-settings.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { OnboardingStepperComponent } from './components/onboarding-stepper/onboarding-stepper.component';
+import { ImportSettingsComponent } from './components/import-settings/import-settings.component';
+import { ExportSettingsComponent } from './components/export-settings/export-settings.component';
 
 @NgModule({
   declarations: [
     EmployeeSettingsComponent,
+    ImportSettingsComponent,
+    ExportSettingsComponent,
     LoaderComponent,
     OnboardingStepperComponent
   ],
@@ -29,6 +34,7 @@ import { OnboardingStepperComponent } from './components/onboarding-stepper/onbo
     MatStepperModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatSlideToggleModule,
     CdkStepperModule
   ],
   exports: [
