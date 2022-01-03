@@ -1,6 +1,7 @@
-import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ReimbursableExpensesObject } from "./enum.model"
+import { EmployeeFieldMapping } from "./enum.model"
+import { ExportSettingWorkspace } from "./export-setting.model";
 
-export interface WorkspaceGeneralSetting extends WorkspaceGeneralSettingPost {
+export interface WorkspaceGeneralSetting extends ExportSettingWorkspace {
   id: number;
   import_projects: boolean;
   import_categories: boolean;
@@ -17,10 +18,4 @@ export interface WorkspaceGeneralSetting extends WorkspaceGeneralSettingPost {
   created_at: Date;
   updated_at: Date;
   workspace: number;
-}
-
-export type WorkspaceGeneralSettingPost = {
-  reimbursable_expenses_object: ReimbursableExpensesObject,
-  corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject,
-  map_merchant_to_vendor: boolean
 }

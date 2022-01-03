@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EmployeeSetting, EmployeeSettingFormOption, EmployeeSettingModel } from 'src/app/core/models/employee-setting.model';
+import { EmployeeSetting, EmployeeSettingFormOption, EmployeeSettingGet, EmployeeSettingModel } from 'src/app/core/models/employee-setting.model';
 import { AutoMapEmployee, EmployeeFieldMapping } from 'src/app/core/models/enum.model';
 import { EmployeeSettingService } from 'src/app/core/services/employee-setting.service';
 import { WorkspaceService } from 'src/app/core/services/workspace.service';
@@ -66,11 +66,11 @@ export class EmployeeSettingsComponent implements OnInit {
   }
 
   setupForm(): void {
-    this.employeeSettingService.getEmployeeSettings().subscribe((employeeSettings: EmployeeSetting) => {
+    this.employeeSettingService.getEmployeeSettings().subscribe((employeeSettings: EmployeeSettingGet) => {
       console.log('succ', employeeSettings);
       this.employeeSettingsForm = this.formBuilder.group({
-        employeeMapping: [employeeSettings.employee_field_mapping, Validators.required],
-        autoMapEmployee: [employeeSettings.auto_map_employees, Validators.nullValidator]
+        employeeMapping: [employeeSettings.workspace_general_settings.employee_field_mapping, Validators.required],
+        autoMapEmployee: [employeeSettings.workspace_general_settings.auto_map_employees, Validators.nullValidator]
       });
       this.isLoading = false;
     }, () => {

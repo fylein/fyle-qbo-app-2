@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeFieldMapping, ExpenseState, ReimbursableExpensesObject } from 'src/app/core/models/enum.model';
-import { ExportSetting, ExportSettingFormOption } from 'src/app/core/models/export-setting.model';
+import { ExportSettingGet, ExportSettingFormOption } from 'src/app/core/models/export-setting.model';
 import { ExportSettingService } from 'src/app/core/services/export-setting.service';
 
 @Component({
@@ -65,7 +65,7 @@ export class ExportSettingsComponent implements OnInit {
   ) { }
 
   setupForm(): void {
-    this.exportSettingService.getExportSettings().subscribe((exportSettings: ExportSetting) => {
+    this.exportSettingService.getExportSettings().subscribe((exportSettings: ExportSettingGet) => {
       this.reimbursableExportTypes = this.getReimbursableExportTypes(exportSettings.workspace_general_settings.employee_field_mapping);
       this.exportSettingsForm = this.formBuilder.group({
         expenseState: [exportSettings.expense_group_settings.expense_state, Validators.required],

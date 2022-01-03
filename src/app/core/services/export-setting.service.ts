@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Cacheable, CacheBuster } from 'ts-cacheable';
-import { ExportSetting, ExportSettingPost } from '../models/export-setting.model';
+import { ExportSettingGet, ExportSettingPost } from '../models/export-setting.model';
 import { ApiService } from './api.service';
 import { WorkspaceService } from './workspace.service';
 
@@ -21,14 +21,14 @@ export class ExportSettingService {
   @Cacheable({
     cacheBusterObserver: exportSettingsCache$
   })
-  getExportSettings(): Observable<ExportSetting> {
+  getExportSettings(): Observable<ExportSettingGet> {
     return this.apiService.get(`/workspaces/${this.workspaceService.getWorkspaceId()}/mock2/`, {});
   }
 
   @CacheBuster({
     cacheBusterNotifier: exportSettingsCache$
   })
-  postExportSettings(employeeSettingsPayload: ExportSettingPost): Observable<ExportSetting> {
+  postExportSettings(employeeSettingsPayload: ExportSettingPost): Observable<ExportSettingGet> {
     return this.apiService.post(`/workspaces/${this.workspaceService.getWorkspaceId()}/mock/`, employeeSettingsPayload);
   }
 }
