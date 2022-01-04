@@ -28,7 +28,7 @@ export class ExportSettingService {
   @CacheBuster({
     cacheBusterNotifier: exportSettingsCache$
   })
-  postExportSettings(employeeSettingsPayload: ExportSettingPost): Observable<ExportSettingGet> {
-    return this.apiService.post(`/workspaces/${this.workspaceService.getWorkspaceId()}/mock/`, employeeSettingsPayload);
+  postExportSettings(exportSettingsPayload: ExportSettingPost): Observable<ExportSettingGet> {
+    return this.apiService.post(`/workspaces/${this.workspaceService.getWorkspaceId()}/mock2/`, exportSettingsPayload);
   }
 }

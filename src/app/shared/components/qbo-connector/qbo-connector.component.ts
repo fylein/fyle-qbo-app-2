@@ -29,7 +29,7 @@ export class QboConnectorComponent implements OnInit {
     this.authService.redirectToQboOAuth(workspaceId);
   }
 
-  setupPage(): void {
+  private setupPage(): void {
     this.qboConnectorService.getQBOCredentials().subscribe(() => {
       this.isQboConnected = true;
     });

@@ -14,7 +14,7 @@ export enum ExpenseState {
   PAID = 'PAID'
 }
 
-export enum ReimbursableExportDateType {
+export enum ExportDateType {
   LAST_SPENT_AT = 'last_spent_at',
   SPENT_AT = 'spent_at',
   CURRENT_DATE = 'current_date',
@@ -47,4 +47,10 @@ export enum MappingDestinationField {
   CLASS = 'CLASS',
   DEPARTMENT = 'DEPARTMENT',
   TAX_CODE = 'TAX_CODE'
+}
+
+export enum ExpenseGroupingFieldOption {
+  CLAIM_NUMBER = 'claim_number',
+  SETTLEMENT_ID = 'settlement_id',
+  EXPENSE_ID = 'expense_id'
 }

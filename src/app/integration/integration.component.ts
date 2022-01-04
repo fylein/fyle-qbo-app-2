@@ -28,7 +28,7 @@ export class IntegrationComponent implements OnInit {
     this.windowReference = this.windowService.nativeWindow;
   }
 
-  navigate(): void {
+  private navigate(): void {
     const pathName = this.windowReference.location.pathname;
     this.storageService.set('workspaceId', this.workspace.id);
     if (pathName === '/workspaces') {
@@ -36,7 +36,7 @@ export class IntegrationComponent implements OnInit {
     }
   }
 
-  getOrCreateWorkspace(): Promise<Workspace> {
+  private getOrCreateWorkspace(): Promise<Workspace> {
     return this.workspaceService.getWorkspaces(this.user.org_id).toPromise().then(workspaces => {
       if (workspaces.length > 0) {
         return workspaces[0];
@@ -48,7 +48,7 @@ export class IntegrationComponent implements OnInit {
     });
   }
 
-  setupWorkspace(): void {
+  private setupWorkspace(): void {
     this.user = this.userService.getUserProfile();
     this.getOrCreateWorkspace().then((workspace: Workspace) => {
       this.workspace = workspace;

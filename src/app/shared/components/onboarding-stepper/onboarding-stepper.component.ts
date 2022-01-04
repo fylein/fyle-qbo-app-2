@@ -43,7 +43,6 @@ export class OnboardingStepperComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateActiveStepper();
-    console.log('Onboarding steps: ', this.onboardingSteps);
   }
 
 }

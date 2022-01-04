@@ -52,7 +52,6 @@ export class EmployeeSettingsComponent implements OnInit {
   ) { }
 
   save(): void {
-    console.log('this.employeeSettingsForm',this.employeeSettingsForm)
     const employeeSettingPayload = EmployeeSettingModel.constructPayload(this.employeeSettingsForm);
     console.log('Employee setting payload: ', employeeSettingPayload);
     this.isLoading = true;
@@ -65,16 +64,14 @@ export class EmployeeSettingsComponent implements OnInit {
     });
   }
 
-  setupForm(): void {
+  private setupForm(): void {
     this.employeeSettingService.getEmployeeSettings().subscribe((employeeSettings: EmployeeSettingGet) => {
-      console.log('succ', employeeSettings);
       this.employeeSettingsForm = this.formBuilder.group({
         employeeMapping: [employeeSettings.workspace_general_settings.employee_field_mapping, Validators.required],
         autoMapEmployee: [employeeSettings.workspace_general_settings.auto_map_employees, Validators.nullValidator]
       });
       this.isLoading = false;
     }, () => {
-      console.log('fail')
       this.employeeSettingsForm = this.formBuilder.group({
         employeeMapping: [null, Validators.required],
         autoMapEmployee: [null, Validators.nullValidator]
