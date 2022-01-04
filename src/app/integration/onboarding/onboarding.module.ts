@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OnboardingExportSettingsComponent } from './onboarding-export-settings/onboarding-export-settings.component';
 import { OnboardingImportSettingsComponent } from './onboarding-import-settings/onboarding-import-settings.component';
@@ -56,6 +57,7 @@ import { ExportSettingsComponent } from 'src/app/shared/components/export-settin
     MatStepperModule,
     MatSelectModule,
     MatSlideToggleModule,
+    MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule
   ]

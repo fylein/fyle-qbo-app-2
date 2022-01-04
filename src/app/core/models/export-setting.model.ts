@@ -7,11 +7,11 @@ import { WorkspaceGeneralSetting } from "./workspace-general-setting.model";
 
 export type ExportSettingPost = {
   expense_group_settings: ExpenseGroupSettingPost,
-  workspace_general_settings: ExportSettingWorkspace,
+  workspace_general_settings: ExportSettingWorkspaceGeneralSetting,
   general_mappings: ExportSettingGeneralMapping
 }
 
-export type ExportSettingWorkspace = {
+export type ExportSettingWorkspaceGeneralSetting = {
   reimbursable_expenses_object: ReimbursableExpensesObject | null,
   corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject | null
 }

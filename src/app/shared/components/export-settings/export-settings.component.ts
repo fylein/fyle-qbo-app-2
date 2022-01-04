@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DestinationAttribute, GroupedDestinationAttribute } from 'src/app/core/models/destination-attribute.model';
+import { forkJoin } from 'rxjs';
+import { DestinationAttribute } from 'src/app/core/models/destination-attribute.model';
 import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, ReimbursableExpensesObject } from 'src/app/core/models/enum.model';
 import { ExportSettingGet, ExportSettingFormOption, ExportSettingModel } from 'src/app/core/models/export-setting.model';
 import { ExportSettingService } from 'src/app/core/services/export-setting.service';
@@ -258,52 +259,46 @@ export class ExportSettingsComponent implements OnInit {
     return exportGroup ? exportGroup : 'expense_report';
   }
 
-  private getAttributesFilteredByConfig(): string[] {
-    const attributes = ['BANK_ACCOUNT', 'CREDIT_CARD_ACCOUNT', 'ACCOUNTS_PAYABLE', 'VENDOR'];
-
-    // TODO: check if this will be needed
-    return [...new Set(attributes)];
-  }
-
   private getSettingsAndSetupForm(): void {
-    this.exportSettingService.getExportSettings().subscribe((exportSettings: ExportSettingGet) => {
-      this.exportSettings = exportSettings;
-      this.reimbursableExportTypes = this.getReimbursableExportTypes(exportSettings.workspace_general_settings.employee_field_mapping);
-      const destinationAttributes = this.getAttributesFilteredByConfig();
+    const destinationAttributes = ['BANK_ACCOUNT', 'CREDIT_CARD_ACCOUNT', 'ACCOUNTS_PAYABLE', 'VENDOR'];
+    forkJoin([
+      this.exportSettingService.getExportSettings(),
+      this.mappingService.getGroupedQBODestinationAttributes(destinationAttributes)
+    ]).subscribe(response => {
+      this.exportSettings = response[0];
+      this.reimbursableExportTypes = this.getReimbursableExportTypes(this.exportSettings.workspace_general_settings.employee_field_mapping);
 
-      this.mappingService.getGroupedQBODestinationAttributes(destinationAttributes).subscribe((groupedDestinationAttribute: GroupedDestinationAttribute) => {
-        this.bankAccounts = groupedDestinationAttribute.BANK_ACCOUNT;
-        this.cccAccounts = groupedDestinationAttribute.CREDIT_CARD_ACCOUNT;
-        this.accountsPayables = groupedDestinationAttribute.ACCOUNTS_PAYABLE;
-        this.vendors = groupedDestinationAttribute.VENDOR;
-        this.expenseAccounts = this.bankAccounts.concat(this.cccAccounts);
+      this.bankAccounts = response[1].BANK_ACCOUNT;
+      this.cccAccounts = response[1].CREDIT_CARD_ACCOUNT;
+      this.accountsPayables = response[1].ACCOUNTS_PAYABLE;
+      this.vendors = response[1].VENDOR;
+      this.expenseAccounts = this.bankAccounts.concat(this.cccAccounts);
 
-        this.setupForm();
-      });
+      this.setupForm();
     });
   }
 
   private setupForm(): void {
-      this.exportSettingsForm = this.formBuilder.group({
-        expenseState: [this.exportSettings.expense_group_settings?.expense_state, Validators.required],
-        reimbursableExpense: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? true : false],
-        reimbursableExportType: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object],
-        reimbursableExportGroup: [this.getExportGroup(this.exportSettings.expense_group_settings?.reimbursable_expense_group_fields)],
-        reimbursableExportDate: [this.exportSettings.expense_group_settings?.reimbursable_export_date_type],
-        creditCardExpense: [this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object ? true : false],
-        creditCardExportType: [this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object],
-        creditCardExportGroup: [this.getExportGroup(this.exportSettings.expense_group_settings?.corporate_credit_card_expense_group_fields)],
-        creditCardExportDate: [this.exportSettings.expense_group_settings?.ccc_export_date_type],
-        bankAccount: [this.exportSettings.general_mappings.bank_account?.id],
-        defaultCCCAccount: [this.exportSettings.general_mappings.default_ccc_account?.id],
-        // TODO: handle accounts payable for bill payments in advanced settings
-        accountsPayable: [this.exportSettings.general_mappings.accounts_payable?.id],
-        defaultCreditCardVendor: [this.exportSettings.general_mappings.default_ccc_vendor?.id],
-        qboExpenseAccount: [this.exportSettings.general_mappings.qbo_expense_account?.id]
-      });
+    this.exportSettingsForm = this.formBuilder.group({
+      expenseState: [this.exportSettings.expense_group_settings?.expense_state, Validators.required],
+      reimbursableExpense: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? true : false],
+      reimbursableExportType: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object],
+      reimbursableExportGroup: [this.getExportGroup(this.exportSettings.expense_group_settings?.reimbursable_expense_group_fields)],
+      reimbursableExportDate: [this.exportSettings.expense_group_settings?.reimbursable_export_date_type],
+      creditCardExpense: [this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object ? true : false],
+      creditCardExportType: [this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object],
+      creditCardExportGroup: [this.getExportGroup(this.exportSettings.expense_group_settings?.corporate_credit_card_expense_group_fields)],
+      creditCardExportDate: [this.exportSettings.expense_group_settings?.ccc_export_date_type],
+      bankAccount: [this.exportSettings.general_mappings.bank_account?.id],
+      defaultCCCAccount: [this.exportSettings.general_mappings.default_ccc_account?.id],
+      // TODO: handle accounts payable for bill payments in advanced settings
+      accountsPayable: [this.exportSettings.general_mappings.accounts_payable?.id],
+      defaultCreditCardVendor: [this.exportSettings.general_mappings.default_ccc_vendor?.id],
+      qboExpenseAccount: [this.exportSettings.general_mappings.qbo_expense_account?.id]
+    });
 
-      this.setCustomValidators();
-      this.isLoading = false;
+    this.setCustomValidators();
+    this.isLoading = false;
   }
 
   save(): void {

@@ -1,1 +1,51 @@
 <app-onboarding-stepper [currentStep]="'Import Settings'"></app-onboarding-stepper>
+<div *ngIf="!isLoading" fxLayout="column" fxLayoutAlign="space-around center">
+  <div>
+    Import Settings
+  </div>
+  <div>
+    You can Enable all the data that you wish to import from Quickbooks Online. All the imported data from Quickbooks Online would be available in Fyle under Admin Setting > Organization. Learn More
+  </div>
+
+  <form [formGroup]="importSettingsForm">
+    Import Chart of Accounts from Quickbooks Online
+    <mat-slide-toggle color="accent" formControlName="chartOfAccount">
+    </mat-slide-toggle>
+
+    <div *ngIf="importSettingsForm.value.chartOfAccount">
+      Select the accounts from QBO to import as categories in Fyle
+      <div formArrayName="chartOfAccountTypes">
+        <p *ngFor="let chartOfAccountType of chartOfAccountTypes.controls; let i = index" [formGroupName]="i">
+          <mat-checkbox formControlName="enabled" [checked]="chartOfAccountType.value.enabled" [disabled]="chartOfAccountType.value.name === 'Expense'">
+            {{ chartOfAccountType.value.name }}
+          </mat-checkbox>
+        </p>
+      </div>
+    </div>
+
+    <div>
+      Import Classes from Quickbooks Online
+      <mat-slide-toggle color="accent" formControlName="class">
+      </mat-slide-toggle>
+    </div>
+
+    <div>
+      Import Department from Quickbooks Online
+      <mat-slide-toggle color="accent" formControlName="department">
+      </mat-slide-toggle>
+    </div>
+
+    <div>
+      Import Customer from Quickbooks Online
+      <mat-slide-toggle color="accent" formControlName="customer">
+      </mat-slide-toggle>
+    </div>
+  </form>
+
+  <div>
+    <button [disabled]="!importSettingsForm.valid" color="accent" mat-flat-button (click)="save()">
+      Continue ->
+    </button>
+  </div>
+
+</div>

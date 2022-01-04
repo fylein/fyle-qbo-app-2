@@ -1,11 +1,10 @@
 import { EmployeeFieldMapping } from "./enum.model"
-import { ExportSettingWorkspace } from "./export-setting.model";
+import { ExportSettingWorkspaceGeneralSetting } from "./export-setting.model";
+import { ImportSettingWorkspaceGeneralSetting } from "./import-setting.model";
 
-export interface WorkspaceGeneralSetting extends ExportSettingWorkspace {
+export interface WorkspaceGeneralSetting extends ExportSettingWorkspaceGeneralSetting, ImportSettingWorkspaceGeneralSetting {
   id: number;
   import_projects: boolean;
-  import_categories: boolean;
-  import_tax_codes: boolean;
   change_accounting_period: boolean;
   sync_fyle_to_qbo_payments: boolean;
   sync_qbo_to_fyle_payments: boolean;
@@ -13,7 +12,6 @@ export interface WorkspaceGeneralSetting extends ExportSettingWorkspace {
   auto_create_destination_entity: boolean;
   employee_field_mapping: EmployeeFieldMapping;
   je_single_credit_line: boolean;
-  charts_of_accounts: string[];
   memo_structure: string[];
   created_at: Date;
   updated_at: Date;

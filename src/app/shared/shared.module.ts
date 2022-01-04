@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { EmployeeSettingsComponent } from './components/employee-settings/employee-settings.component';
 import { LoaderComponent } from './components/loader/loader.component';
@@ -35,6 +36,7 @@ import { ExportSettingsComponent } from './components/export-settings/export-set
     MatFormFieldModule,
     MatSelectModule,
     MatSlideToggleModule,
+    MatCheckboxModule,
     CdkStepperModule
   ],
   exports: [
