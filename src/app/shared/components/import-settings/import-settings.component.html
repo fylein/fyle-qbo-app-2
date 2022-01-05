@@ -27,18 +27,67 @@
       Import Classes from Quickbooks Online
       <mat-slide-toggle color="accent" formControlName="class">
       </mat-slide-toggle>
+
+      <div *ngIf="importSettingsForm.value.class">
+        <input type="text" value="Classes in QBO" disabled="true" matInput>
+        <mat-select placeholder="Select a field from Fyle" formControlName="classMapping">
+          <mat-option *ngFor="let fyleExpenseField of fyleExpenseFields" [value]="fyleExpenseField">
+            {{ fyleExpenseField.source_field.split('_').join(' ') | titlecase }}
+          </mat-option>
+        </mat-select>
+        <div *ngIf="!importSettingsForm.value.classMapping">
+          or <button mat-button color="accent" (click)="createExpenseField('CLASS')">Create a new field in Fyle</button>
+        </div>
+      </div>
     </div>
 
     <div>
       Import Department from Quickbooks Online
       <mat-slide-toggle color="accent" formControlName="department">
       </mat-slide-toggle>
+      <div *ngIf="importSettingsForm.value.department">
+        <input type="text" value="Departments in QBO" disabled="true" matInput>
+        <mat-select placeholder="Select a field from Fyle" formControlName="departmentMapping">
+          <mat-option *ngFor="let fyleExpenseField of fyleExpenseFields" [value]="fyleExpenseField">
+            {{ fyleExpenseField.source_field.split('_').join(' ') | titlecase }}
+          </mat-option>
+        </mat-select>
+        <div *ngIf="!importSettingsForm.value.departmentMapping">
+          or <button mat-button color="accent" (click)="createExpenseField('DEPARTMENT')">Create a new field in Fyle</button>
+        </div>
+      </div>
     </div>
 
     <div>
       Import Customer from Quickbooks Online
       <mat-slide-toggle color="accent" formControlName="customer">
       </mat-slide-toggle>
+      <div *ngIf="importSettingsForm.value.customer">
+        <input type="text" value="Customers in QBO" disabled="true" matInput>
+        <mat-select placeholder="Select a field from Fyle" formControlName="customerMapping">
+          <mat-option *ngFor="let fyleExpenseField of fyleExpenseFields" [value]="fyleExpenseField">
+            {{ fyleExpenseField.source_field.split('_').join(' ') | titlecase }}
+          </mat-option>
+        </mat-select>
+        <div *ngIf="!importSettingsForm.value.customerMapping">
+          or <button mat-button color="accent" (click)="createExpenseField('CUSTOMER')">Create a new field in Fyle</button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      Import Tax Code from QBO
+      <mat-slide-toggle color="accent" formControlName="taxCode">
+      </mat-slide-toggle>
+
+      <div *ngIf="importSettingsForm.value.taxCode">
+        Select the default tax code
+        <mat-select placeholder="Select Default Tax Code" formControlName="defaultTaxCode">
+          <mat-option *ngFor="let option of taxCodes" [value]="{id: option.id, name: option.value}">
+            {{ option.value }}
+          </mat-option>
+        </mat-select>
+      </div>
     </div>
   </form>
 

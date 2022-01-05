@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 import { OnboardingExportSettingsComponent } from './onboarding-export-settings/onboarding-export-settings.component';
 import { OnboardingImportSettingsComponent } from './onboarding-import-settings/onboarding-import-settings.component';
 import { OnboardingAdvancedSettingsComponent } from './onboarding-advanced-settings/onboarding-advanced-settings.component';
@@ -26,6 +27,7 @@ import { OnboardingStepperComponent } from 'src/app/shared/components/onboarding
 import { EmployeeSettingsComponent } from 'src/app/shared/components/employee-settings/employee-settings.component';
 import { ImportSettingsComponent } from 'src/app/shared/components/import-settings/import-settings.component';
 import { ExportSettingsComponent } from 'src/app/shared/components/export-settings/export-settings.component';
+import { ExpenseFieldCreationDialogComponent } from 'src/app/shared/components/import-settings/expense-field-creation-dialog/expense-field-creation-dialog.component';
 
 
 @NgModule({
@@ -44,7 +46,11 @@ import { ExportSettingsComponent } from 'src/app/shared/components/export-settin
     OnboardingStepperComponent,
     EmployeeSettingsComponent,
     ImportSettingsComponent,
-    ExportSettingsComponent
+    ExportSettingsComponent,
+    ExpenseFieldCreationDialogComponent
+  ],
+  entryComponents: [
+    ExpenseFieldCreationDialogComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +65,8 @@ import { ExportSettingsComponent } from 'src/app/shared/components/export-settin
     MatSlideToggleModule,
     MatCheckboxModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ]
 })
 export class OnboardingModule { }

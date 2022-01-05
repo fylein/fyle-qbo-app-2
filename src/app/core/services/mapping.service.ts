@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
+import { Cacheable } from 'ts-cacheable';
 import { DestinationAttribute, GroupedDestinationAttribute } from '../models/destination-attribute.model';
+import { ExpenseField } from '../models/expense-field.model';
 import { ApiService } from './api.service';
 import { WorkspaceService } from './workspace.service';
 
@@ -14,7 +16,7 @@ export class MappingService {
     private workspaceService: WorkspaceService
   ) { }
 
-  private getQBODestinationAttributes(attributeTypes: string | string[]): Observable<DestinationAttribute[]> {
+  getQBODestinationAttributes(attributeTypes: string | string[]): Observable<DestinationAttribute[]> {
     const workspaceId = this.workspaceService.getWorkspaceId();
 
     return this.apiService.get(`/workspaces/${workspaceId}/qbo/destination_attributes/`, {
@@ -39,5 +41,12 @@ export class MappingService {
         TAX_CODE: []
       });
     }));
+  }
+
+  @Cacheable()
+  getFyleExpenseFields(): Observable<ExpenseField[]> {
+    const workspaceId = this.workspaceService.getWorkspaceId();
+
+    return this.apiService.get(`/workspaces/${workspaceId}/fyle/expense_fields/`, {});
   }
 }
