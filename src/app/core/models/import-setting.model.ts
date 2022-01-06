@@ -24,13 +24,16 @@ export type ImportSettingGeneralMapping = {
 
 export type ImportSettingMappingSetting = {
   source_field: MappingSourceField | string,
-  destination_field: MappingDestinationField | string,
+  destination_field: MappingDestinationField,
   import_to_fyle: boolean,
   is_custom: boolean
 }
 
-export interface ExpenseFieldsFormOption extends ImportSettingMappingSetting {
-  display_name: string;
+export type ExpenseFieldsFormOption = {
+  source_field: MappingSourceField | string,
+  destination_field: MappingDestinationField,
+  import_to_fyle: boolean,
+  disable_import_to_fyle: boolean
 }
 
 export type ImportSettingGet = {
@@ -43,56 +46,41 @@ export interface ImportSettingFormOption extends SelectFormOption {
   value: string;
 }
 
+function formatChartOfAccounts(chartOfAccounts: {enabled: boolean, name: string}[]): string[] {
+  console.log('chartOfAccounts',chartOfAccounts)
+  return chartOfAccounts.filter(chartOfAccount => chartOfAccount.enabled).map(chartOfAccount => chartOfAccount.name);
+}
+
+function formatMappingSettings(expenseFields: ExpenseFieldsFormOption[]): ImportSettingMappingSetting[] {
+  const mappingSettings: ImportSettingMappingSetting[] = [];
+  expenseFields.forEach((expenseField: ExpenseFieldsFormOption) => {
+    if (expenseField.source_field) {     
+      mappingSettings.push({
+        source_field: expenseField.source_field,
+        destination_field: expenseField.destination_field,
+        import_to_fyle: expenseField.import_to_fyle,
+        is_custom: expenseField.source_field === MappingSourceField.COST_CENTER || expenseField.source_field === MappingSourceField.PROJECT ? false : true,
+      });
+    }
+  });
+
+  return mappingSettings;
+}
+
 
 export class ImportSettingModel {
-  private formatChartOfAccounts(chartOfAccounts: {enabled: boolean, name: string}[]): string[] {
-    console.log('chartOfAccounts',chartOfAccounts)
-    return chartOfAccounts.filter(chartOfAccount => chartOfAccount.enabled).map(chartOfAccount => chartOfAccount.name);
-  }
-
-  private formatMappingSettings(importSettingsForm: FormGroup): ImportSettingMappingSetting[] {
-    const mappingSettings: ImportSettingMappingSetting[] = [];
-    if (importSettingsForm.get('classMapping')?.value) {
-      mappingSettings.push({
-        source_field: importSettingsForm.get('classMapping')?.value.source_field,
-        destination_field: MappingDestinationField.CLASS,
-        import_to_fyle: importSettingsForm.get('classMapping')?.value.import_to_fyle,
-        is_custom: importSettingsForm.get('classMapping')?.value.is_custom,
-      });
-    }
-
-    if (importSettingsForm.get('departmentMapping')?.value) {
-      mappingSettings.push({
-        source_field: importSettingsForm.get('departmentMapping')?.value.source_field,
-        destination_field: MappingDestinationField.DEPARTMENT,
-        import_to_fyle: importSettingsForm.get('departmentMapping')?.value.import_to_fyle,
-        is_custom: importSettingsForm.get('departmentMapping')?.value.is_custom,
-      });
-    }
-
-    if (importSettingsForm.get('customerMapping')?.value) {
-      mappingSettings.push({
-        source_field: importSettingsForm.get('customerMapping')?.value.source_field,
-        destination_field: MappingDestinationField.CUSTOMER,
-        import_to_fyle: importSettingsForm.get('customerMapping')?.value.import_to_fyle,
-        is_custom: importSettingsForm.get('customerMapping')?.value.is_custom,
-      });
-    }
-
-    return mappingSettings;
-  }
-
-  constructPayload(importSettingsForm: FormGroup): ImportSettingPost {
+  static constructPayload(importSettingsForm: FormGroup): ImportSettingPost {
+    const emptyDestinationAttribute = {id: null, name: null};
     const employeeSettingPayload: ImportSettingPost = {
       workspace_general_settings: {
         import_categories: importSettingsForm.get('chartOfAccount')?.value,
-        charts_of_accounts: this.formatChartOfAccounts(importSettingsForm.get('chartOfAccountTypes')?.value),
+        charts_of_accounts: formatChartOfAccounts(importSettingsForm.get('chartOfAccountTypes')?.value),
         import_tax_codes: importSettingsForm.get('taxCode')?.value
       },
       general_mappings: {
-        default_tax_code: importSettingsForm.get('defaultTaxCode')?.value
+        default_tax_code: importSettingsForm.get('defaultTaxCode')?.value ? importSettingsForm.get('defaultTaxCode')?.value : emptyDestinationAttribute
       },
-      mapping_settings: this.formatMappingSettings(importSettingsForm)
+      mapping_settings: formatMappingSettings(importSettingsForm.get('expenseFields')?.value)
     };
     return employeeSettingPayload;
   }

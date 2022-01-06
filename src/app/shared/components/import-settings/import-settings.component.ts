@@ -4,8 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/destination-attribute.model';
 import { MappingDestinationField, MappingSourceField } from 'src/app/core/models/enum.model';
-import { ExpenseField } from 'src/app/core/models/expense-field.model';
-import { ExpenseFieldsFormOption, ImportSettingGet, ImportSettingMappingSetting, ImportSettingModel } from 'src/app/core/models/import-setting.model';
+import { ExpenseFieldsFormOption, ImportSettingGet, ImportSettingModel } from 'src/app/core/models/import-setting.model';
 import { MappingSetting } from 'src/app/core/models/mapping-setting.model';
 import { ImportSettingService } from 'src/app/core/services/import-setting.service';
 import { MappingService } from 'src/app/core/services/mapping.service';
@@ -22,7 +21,8 @@ export class ImportSettingsComponent implements OnInit {
   importSettings: ImportSettingGet;
   importSettingsForm: FormGroup;
   taxCodes: DestinationAttribute[];
-  fyleExpenseFields: ExpenseFieldsFormOption[];
+  fyleExpenseFields: string[];
+  qboExpenseFields: ExpenseFieldsFormOption[];
   chartOfAccountTypesList: string[] = [
     'Expense', 'Other Expense', 'Fixed Assets', 'Cost of Goods Sold', 'Current Liability', 'Equity',
     'Other Current Asset', 'Other Current Liability', 'Long Term Liability', 'Current Asset'
@@ -46,6 +46,10 @@ export class ImportSettingsComponent implements OnInit {
     return this.importSettingsForm.get('chartOfAccountTypes') as FormArray;
   }
 
+  get expenseFields() {
+    return this.importSettingsForm.get('expenseFields') as FormArray;
+  }
+
   private createTaxCodeWatcher(): void {
     this.importSettingsForm.controls.taxCode.valueChanges.subscribe((isTaxCodeEnabled) => {
       if (isTaxCodeEnabled) {
@@ -58,23 +62,15 @@ export class ImportSettingsComponent implements OnInit {
   }
 
   private setupForm(): void {
-    // TODO: implement import to fyle toggle
     const chartOfAccountTypeFormArray = this.chartOfAccountTypesList.map((type) => this.createChartOfAccountField(type));
-    const classMapping = this.importSettings.mapping_settings.filter(setting => setting.destination_field === MappingDestinationField.CLASS);
-    const departmentMapping = this.importSettings.mapping_settings.filter(setting => setting.destination_field === MappingDestinationField.DEPARTMENT);
-    const customerMapping = this.importSettings.mapping_settings.filter(setting => setting.destination_field === MappingDestinationField.CUSTOMER);
+    const expenseFieldsFormArray = this.qboExpenseFields.map((field) => this.formBuilder.group(field));
 
     this.importSettingsForm = this.formBuilder.group({
       chartOfAccount: [this.importSettings.workspace_general_settings.import_categories],
       chartOfAccountTypes: this.formBuilder.array(chartOfAccountTypeFormArray),
-      class: [classMapping.length > 0],
-      classMapping: [classMapping.length > 0 ? classMapping[0] : null],
-      department: [departmentMapping.length > 0],
-      departmentMapping: [departmentMapping.length > 0 ? departmentMapping[0] : null],
-      customer: [customerMapping.length > 0],
-      customerMapping: [customerMapping.length > 0 ? customerMapping[0] : null],
+      expenseFields: this.formBuilder.array(expenseFieldsFormArray),
       taxCode: [this.importSettings.workspace_general_settings.import_tax_codes],
-      defaultTaxCode: [this.importSettings.general_mappings.default_tax_code]
+      defaultTaxCode: [this.importSettings.general_mappings.default_tax_code?.id]
     });
 
     this.createTaxCodeWatcher();
@@ -87,17 +83,18 @@ export class ImportSettingsComponent implements OnInit {
       this.mappingService.getFyleExpenseFields(),
       this.mappingService.getQBODestinationAttributes('TAX_CODE')
     ]).subscribe(response => {
-      console.log(response[0])
       this.importSettings = response[0];
+      const qboAttributes = [MappingDestinationField.CLASS, MappingDestinationField.DEPARTMENT, MappingDestinationField.CUSTOMER];
 
-      this.fyleExpenseFields = response[1].map(field => {
-        const mappingSetting = this.importSettings.mapping_settings.filter((mappingSetting: MappingSetting) => mappingSetting.source_field === field.attribute_type);
+      this.fyleExpenseFields = response[1].map(field => field.attribute_type);
+
+      this.qboExpenseFields = qboAttributes.map(attribute => {
+        const mappingSetting = this.importSettings.mapping_settings.filter((mappingSetting: MappingSetting) => mappingSetting.destination_field === attribute);
         return {
-          display_name: field.display_name,
-          source_field: field.attribute_type,
-          destination_field: '',
+          source_field: mappingSetting.length > 0 ? mappingSetting[0].source_field : '',
+          destination_field: attribute,
           import_to_fyle: mappingSetting.length > 0 ? mappingSetting[0].import_to_fyle : false,
-          is_custom: field.attribute_type !== MappingSourceField.COST_CENTER && field.attribute_type !== MappingSourceField.PROJECT ? true : false
+          disable_import_to_fyle: false
         }
       });
 
@@ -118,16 +115,13 @@ export class ImportSettingsComponent implements OnInit {
       if (expenseFieldName) {
         const attributeType = expenseFieldName.split(' ').join('_').toUpperCase();
         const expenseField = {
-          display_name: expenseFieldName,
           source_field: attributeType,
           destination_field: destinationType,
           import_to_fyle: true,
-          is_custom: true
+          disable_import_to_fyle: true
         };
-        this.fyleExpenseFields.push(expenseField);
-        destinationType === MappingDestinationField.CLASS ? this.importSettingsForm.get('classMapping')?.setValue(expenseField) : null;
-        destinationType === MappingDestinationField.DEPARTMENT ? this.importSettingsForm.get('departmentMapping')?.setValue(expenseField) : null;
-        destinationType === MappingDestinationField.CUSTOMER ? this.importSettingsForm.get('customerMapping')?.setValue(expenseField) : null;
+        this.fyleExpenseFields.push(attributeType);
+        this.expenseFields.controls.filter(field => field.value.destination_field === destinationType)[0].setValue(expenseField);
       }
     });
   }
@@ -135,7 +129,7 @@ export class ImportSettingsComponent implements OnInit {
   save() : void {
     console.log('this.importSettingsForm.value',this.importSettingsForm.value)
     // TODO: check ImportSettingModel class
-    const importSettingsPayload = new ImportSettingModel().constructPayload(this.importSettingsForm);
+    const importSettingsPayload = ImportSettingModel.constructPayload(this.importSettingsForm);
     console.log('importSettingPayload',importSettingsPayload);
   }
 
