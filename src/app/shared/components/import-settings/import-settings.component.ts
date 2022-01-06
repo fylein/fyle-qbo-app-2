@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/destination-attribute.model';
@@ -61,9 +61,64 @@ export class ImportSettingsComponent implements OnInit {
     });
   }
 
+  mandatorySourceFieldValidator(): ValidatorFn {
+    console.log('mandatorySourceFieldValidator');
+    // Validate mandatory source field if import to fyle is enabled
+    return (control: AbstractControl): { [key: string]: object } | null => {
+      let sourceFieldNotMapped = false;
+
+      if (this.importSettingsForm) {
+        console.log('control.parent?.value', control.parent?.value)
+        if (control.value && typeof control.value === 'boolean' && !control.parent?.value.source_field && !control.parent?.value.disable_import_to_fyle) {
+          sourceFieldNotMapped = true;
+        }
+      } else {
+        // return null if form isn't created
+        return null;
+      }
+
+      console.log('sourceFieldNotMapped',sourceFieldNotMapped)
+
+      if (sourceFieldNotMapped) {
+        return {
+          forbiddenOption: { value: control.value }
+        };
+      } else {
+        // clear errors
+        control.parent?.get('import_to_fyle')?.setErrors(null);
+        return null;
+      }
+    };
+  }
+
+  uniqueSourceMappingValidator(): ValidatorFn {
+    console.log('uniqueSourceMappingValidator');
+    return (control: AbstractControl): { [key: string]: object } | null => {
+      // Validate duplicate sources
+      if (this.importSettingsForm) {
+        const existingSources = this.expenseFields.controls.map(field => field.value.source_field);
+        if (control.value && existingSources.includes(control.value)) {
+          return { duplicateSource: { value: control.value } };
+        }
+      }
+
+      console.log(this.importSettingsForm ? this.importSettingsForm : '')
+
+      return null;
+    };
+  }
+
   private setupForm(): void {
     const chartOfAccountTypeFormArray = this.chartOfAccountTypesList.map((type) => this.createChartOfAccountField(type));
-    const expenseFieldsFormArray = this.qboExpenseFields.map((field) => this.formBuilder.group(field));
+    // TODO: unique validation
+    const expenseFieldsFormArray = this.qboExpenseFields.map((field) => {
+      return this.formBuilder.group({
+        source_field: [field.source_field, Validators.compose([this.mandatorySourceFieldValidator(), this.uniqueSourceMappingValidator()])],
+        destination_field: [field.destination_field],
+        import_to_fyle: [field.import_to_fyle, this.mandatorySourceFieldValidator()],
+        disable_import_to_fyle: [field.disable_import_to_fyle]
+      })
+    });
 
     this.importSettingsForm = this.formBuilder.group({
       chartOfAccount: [this.importSettings.workspace_general_settings.import_categories],
@@ -111,7 +166,9 @@ export class ImportSettingsComponent implements OnInit {
       data: existingFields
     });
 
+    console.log('opened dialog')
     dialogRef.afterClosed().subscribe((expenseFieldName) => {
+      console.log('dialog closed')
       if (expenseFieldName) {
         const attributeType = expenseFieldName.split(' ').join('_').toUpperCase();
         const expenseField = {
@@ -121,13 +178,15 @@ export class ImportSettingsComponent implements OnInit {
           disable_import_to_fyle: true
         };
         this.fyleExpenseFields.push(attributeType);
+        console.log('option pushed')
         this.expenseFields.controls.filter(field => field.value.destination_field === destinationType)[0].setValue(expenseField);
+        this.expenseFields.updateValueAndValidity();
+        console.log('updated expense field')
       }
     });
   }
 
   save() : void {
-    console.log('this.importSettingsForm.value',this.importSettingsForm.value)
     // TODO: check ImportSettingModel class
     const importSettingsPayload = ImportSettingModel.constructPayload(this.importSettingsForm);
     console.log('importSettingPayload',importSettingsPayload);
