@@ -65,7 +65,7 @@ export class ImportSettingsComponent implements OnInit {
     });
   }
 
-  mandatorySourceFieldValidator(): ValidatorFn {
+  private mandatorySourceFieldValidator(): ValidatorFn {
     // Validate mandatory source field if import to fyle is enabled
     return (control: AbstractControl): { [key: string]: object } | null => {
       let sourceFieldNotMapped = false;
@@ -91,12 +91,13 @@ export class ImportSettingsComponent implements OnInit {
     };
   }
 
-  uniqueSourceMappingValidator(): ValidatorFn {
+  private uniqueSourceMappingValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: object } | null => {
       // Validate duplicate sources
-      if (this.importSettingsForm) {
+      if (this.importSettingsForm && control.value && !control.pristine) {
         const existingSources = this.expenseFields.controls.map(field => field.value.source_field);
-        if (control.value && existingSources.includes(control.value)) {
+
+        if (existingSources.includes(control.value)) {
           return { duplicateSource: { value: control.value } };
         }
       }
