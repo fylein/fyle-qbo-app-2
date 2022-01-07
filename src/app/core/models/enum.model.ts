@@ -54,3 +54,8 @@ export enum ExpenseGroupingFieldOption {
   SETTLEMENT_ID = 'settlement_id',
   EXPENSE_ID = 'expense_id'
 }
+
+export enum PaymentSyncDirection {
+  FYLE_TO_QBO = 'fyle_to_qbo',
+  QBO_TO_FYLE = 'qbo_to_fyle'
+}

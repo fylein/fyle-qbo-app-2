@@ -25,7 +25,11 @@ export class OnboardingStepperComponent implements OnInit {
     {
       completed: false,
       step: 'Import Settings'
-    }
+    },
+    {
+      completed: false,
+      step: 'Advanced Settings'
+    },
   ];
 
   constructor() { }

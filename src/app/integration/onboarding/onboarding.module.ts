@@ -28,7 +28,7 @@ import { EmployeeSettingsComponent } from 'src/app/shared/components/employee-se
 import { ImportSettingsComponent } from 'src/app/shared/components/import-settings/import-settings.component';
 import { ExportSettingsComponent } from 'src/app/shared/components/export-settings/export-settings.component';
 import { ExpenseFieldCreationDialogComponent } from 'src/app/shared/components/import-settings/expense-field-creation-dialog/expense-field-creation-dialog.component';
-
+import { AdvancedSettingsComponent } from 'src/app/shared/components/advanced-settings/advanced-settings.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +47,8 @@ import { ExpenseFieldCreationDialogComponent } from 'src/app/shared/components/i
     EmployeeSettingsComponent,
     ImportSettingsComponent,
     ExportSettingsComponent,
-    ExpenseFieldCreationDialogComponent
+    ExpenseFieldCreationDialogComponent,
+    AdvancedSettingsComponent
   ],
   entryComponents: [
     ExpenseFieldCreationDialogComponent

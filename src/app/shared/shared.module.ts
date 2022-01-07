@@ -16,12 +16,14 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { OnboardingStepperComponent } from './components/onboarding-stepper/onboarding-stepper.component';
 import { ImportSettingsComponent } from './components/import-settings/import-settings.component';
 import { ExportSettingsComponent } from './components/export-settings/export-settings.component';
+import { AdvancedSettingsComponent } from './components/advanced-settings/advanced-settings.component';
 
 @NgModule({
   declarations: [
     EmployeeSettingsComponent,
     ImportSettingsComponent,
     ExportSettingsComponent,
+    AdvancedSettingsComponent,
     LoaderComponent,
     OnboardingStepperComponent
   ],

@@ -10,13 +10,13 @@
       How are Employees represented in Quickbooks Online?
       <mat-select placeholder="Select representation" formControlName="employeeMapping">
         <mat-option *ngFor="let option of employeeMappingOptions" [value]="option.value">
-          {{option.label}}
+          {{ option.label }}
         </mat-option>
       </mat-select>
       How should Employees in Fyle be mapped to Employees/Vendors in Quickbooks Online?
       <mat-select placeholder="Select representation" formControlName="autoMapEmployee">
         <mat-option *ngFor="let option of autoMapEmployeeOptions" [value]="option.value">
-          {{option.label}}
+          {{ option.label }}
         </mat-option>
       </mat-select>
 

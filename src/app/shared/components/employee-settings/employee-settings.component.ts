@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EmployeeSetting, EmployeeSettingFormOption, EmployeeSettingGet, EmployeeSettingModel } from 'src/app/core/models/employee-setting.model';
+import { EmployeeSettingFormOption, EmployeeSettingGet, EmployeeSettingModel } from 'src/app/core/models/employee-setting.model';
 import { AutoMapEmployee, EmployeeFieldMapping } from 'src/app/core/models/enum.model';
 import { EmployeeSettingService } from 'src/app/core/services/employee-setting.service';
 import { WorkspaceService } from 'src/app/core/services/workspace.service';

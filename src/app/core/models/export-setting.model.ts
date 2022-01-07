@@ -37,7 +37,7 @@ export interface ExportSettingFormOption extends SelectFormOption {
 export class ExportSettingModel {
   static constructPayload(exportSettingsForm: FormGroup): ExportSettingPost {
     const emptyDestinationAttribute = {id: null, name: null};
-    const employeeSettingPayload: ExportSettingPost = {
+    const exportSettingPayload: ExportSettingPost = {
       expense_group_settings: {
         expense_state: exportSettingsForm.get('expenseState')?.value,
         reimbursable_expense_group_fields: exportSettingsForm.get('reimbursableExportGroup')?.value,
@@ -57,6 +57,6 @@ export class ExportSettingModel {
         qbo_expense_account: exportSettingsForm.get('qboExpenseAccount')?.value ? exportSettingsForm.get('qboExpenseAccount')?.value : emptyDestinationAttribute
       }
     };
-    return employeeSettingPayload;
+    return exportSettingPayload;
   }
 }

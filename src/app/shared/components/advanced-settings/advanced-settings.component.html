@@ -1,1 +1,62 @@
-<p>advanced-settings works!</p>
+<app-onboarding-stepper [currentStep]="'Advanced Settings'"></app-onboarding-stepper>
+
+<div *ngIf="!isLoading" fxLayout="column" fxLayoutAlign="space-around center">
+  <div>
+    Advanced Settings
+  </div>
+  <div>
+    <form [formGroup]="advancedSettingsForm">
+      Auto-sync payment status
+      <mat-select placeholder="Select auto sync payment status" formControlName="paymentSync">
+        <mat-option *ngFor="let option of paymentSyncOptions" [value]="option.value">
+          {{ option.label }}
+        </mat-option>
+      </mat-select>
+
+      <div *ngIf="advancedSettingsForm.value.paymentSync && advancedSettingsForm.value.paymentSync === 'fyle_to_qbo'">
+        <mat-select placeholder="Select bill payment account" formControlName="billPaymentAccount">
+          <mat-option *ngFor="let option of billPaymentAccounts" [value]="{id: option.id, name: option.value}">
+            {{ option.value }}
+          </mat-option>
+        </mat-select>
+      </div>
+
+      <div>
+        Post entries in the next open accounting period
+        <mat-slide-toggle color="accent" formControlName="changeAccountingPeriod">
+        </mat-slide-toggle>
+      </div>
+
+      <div>
+        Create a single itemized offset credit entry for Journal
+        <mat-slide-toggle color="accent" formControlName="singleCreditLineJE">
+        </mat-slide-toggle>
+      </div>
+
+      <div>
+        Auto-Create Vendors
+        <mat-slide-toggle color="accent" formControlName="autoCreateVendors">
+        </mat-slide-toggle>
+      </div>
+
+      <div>
+        Schedule automatic import and export
+        <mat-select placeholder="Select frequency" formControlName="exportSchedule">
+          <mat-option>
+            None
+          </mat-option>
+          <mat-option *ngFor="let option of frequencyIntervals" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+      </div>
+
+      <div>
+        <button [disabled]="!advancedSettingsForm.valid" color="accent" mat-flat-button (click)="save()">
+          Complete Setup
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
