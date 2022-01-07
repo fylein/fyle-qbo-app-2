@@ -27,6 +27,6 @@ export class ImportSettingService {
     cacheBusterNotifier: importSettingsCache$
   })
   postImportSettings(exportSettingsPayload: ImportSettingPost): Observable<ImportSettingGet> {
-    return this.apiService.post(`/workspaces/${this.workspaceService.getWorkspaceId()}/mock2/`, exportSettingsPayload);
+    return this.apiService.post(`/workspaces/${this.workspaceService.getWorkspaceId()}/mock3/`, exportSettingsPayload);
   }
 }

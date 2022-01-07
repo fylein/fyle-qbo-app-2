@@ -47,7 +47,6 @@ export interface ImportSettingFormOption extends SelectFormOption {
 }
 
 function formatChartOfAccounts(chartOfAccounts: {enabled: boolean, name: string}[]): string[] {
-  console.log('chartOfAccounts',chartOfAccounts)
   return chartOfAccounts.filter(chartOfAccount => chartOfAccount.enabled).map(chartOfAccount => chartOfAccount.name);
 }
 

@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/destination-attribute.model';
-import { MappingDestinationField, MappingSourceField } from 'src/app/core/models/enum.model';
+import { MappingDestinationField } from 'src/app/core/models/enum.model';
 import { ExpenseFieldsFormOption, ImportSettingGet, ImportSettingModel } from 'src/app/core/models/import-setting.model';
 import { MappingSetting } from 'src/app/core/models/mapping-setting.model';
 import { ImportSettingService } from 'src/app/core/services/import-setting.service';
 import { MappingService } from 'src/app/core/services/mapping.service';
+import { WorkspaceService } from 'src/app/core/services/workspace.service';
 import { ExpenseFieldCreationDialogComponent } from './expense-field-creation-dialog/expense-field-creation-dialog.component';
 
 @Component({
@@ -32,7 +34,9 @@ export class ImportSettingsComponent implements OnInit {
     public dialog: MatDialog,
     private importSettingService: ImportSettingService,
     private formBuilder: FormBuilder,
-    private mappingService: MappingService
+    private router: Router,
+    private mappingService: MappingService,
+    private workspaceService: WorkspaceService
   ) { }
 
   createChartOfAccountField(type: string): FormGroup {
@@ -62,13 +66,11 @@ export class ImportSettingsComponent implements OnInit {
   }
 
   mandatorySourceFieldValidator(): ValidatorFn {
-    console.log('mandatorySourceFieldValidator');
     // Validate mandatory source field if import to fyle is enabled
     return (control: AbstractControl): { [key: string]: object } | null => {
       let sourceFieldNotMapped = false;
 
       if (this.importSettingsForm) {
-        console.log('control.parent?.value', control.parent?.value)
         if (control.value && typeof control.value === 'boolean' && !control.parent?.value.source_field && !control.parent?.value.disable_import_to_fyle) {
           sourceFieldNotMapped = true;
         }
@@ -76,8 +78,6 @@ export class ImportSettingsComponent implements OnInit {
         // return null if form isn't created
         return null;
       }
-
-      console.log('sourceFieldNotMapped',sourceFieldNotMapped)
 
       if (sourceFieldNotMapped) {
         return {
@@ -92,7 +92,6 @@ export class ImportSettingsComponent implements OnInit {
   }
 
   uniqueSourceMappingValidator(): ValidatorFn {
-    console.log('uniqueSourceMappingValidator');
     return (control: AbstractControl): { [key: string]: object } | null => {
       // Validate duplicate sources
       if (this.importSettingsForm) {
@@ -102,15 +101,12 @@ export class ImportSettingsComponent implements OnInit {
         }
       }
 
-      console.log(this.importSettingsForm ? this.importSettingsForm : '')
-
       return null;
     };
   }
 
   private setupForm(): void {
     const chartOfAccountTypeFormArray = this.chartOfAccountTypesList.map((type) => this.createChartOfAccountField(type));
-    // TODO: unique validation
     const expenseFieldsFormArray = this.qboExpenseFields.map((field) => {
       return this.formBuilder.group({
         source_field: [field.source_field, Validators.compose([this.mandatorySourceFieldValidator(), this.uniqueSourceMappingValidator()])],
@@ -159,6 +155,17 @@ export class ImportSettingsComponent implements OnInit {
     });
   }
 
+  private patchExpenseFieldValue(destinationType: string, sourceField: string = ''): void {
+    const expenseField = {
+      source_field: sourceField,
+      destination_field: destinationType,
+      import_to_fyle: true,
+      disable_import_to_fyle: true
+    };
+
+    this.expenseFields.controls.filter(field => field.value.destination_field === destinationType)[0].patchValue(expenseField);
+  }
+
   createExpenseField(destinationType: string): void {
     const existingFields = this.importSettings.mapping_settings.map(setting => setting.source_field.split('_').join(' '));
     const dialogRef = this.dialog.open(ExpenseFieldCreationDialogComponent, {
@@ -166,22 +173,13 @@ export class ImportSettingsComponent implements OnInit {
       data: existingFields
     });
 
-    console.log('opened dialog')
+    this.patchExpenseFieldValue(destinationType);
+
     dialogRef.afterClosed().subscribe((expenseFieldName) => {
-      console.log('dialog closed')
       if (expenseFieldName) {
-        const attributeType = expenseFieldName.split(' ').join('_').toUpperCase();
-        const expenseField = {
-          source_field: attributeType,
-          destination_field: destinationType,
-          import_to_fyle: true,
-          disable_import_to_fyle: true
-        };
-        this.fyleExpenseFields.push(attributeType);
-        console.log('option pushed')
-        this.expenseFields.controls.filter(field => field.value.destination_field === destinationType)[0].setValue(expenseField);
-        this.expenseFields.updateValueAndValidity();
-        console.log('updated expense field')
+        const sourceType = expenseFieldName.split(' ').join('_').toUpperCase();
+        this.fyleExpenseFields.push(sourceType);
+        this.patchExpenseFieldValue(destinationType, sourceType);
       }
     });
   }
@@ -190,6 +188,14 @@ export class ImportSettingsComponent implements OnInit {
     // TODO: check ImportSettingModel class
     const importSettingsPayload = ImportSettingModel.constructPayload(this.importSettingsForm);
     console.log('importSettingPayload',importSettingsPayload);
+    this.isLoading = true;
+    this.importSettingService.postImportSettings(importSettingsPayload).subscribe(() => {
+      this.isLoading = false;
+      this.router.navigate([`/workspaces/${this.workspaceService.getWorkspaceId()}/onboarding/advanced_settings`]);
+    }, () => {
+      this.isLoading = false;
+      // TODO: handle error
+    });
   }
 
   ngOnInit(): void {
