@@ -89,7 +89,6 @@ export class AdvancedSettingsComponent implements OnInit {
   }
 
   save(): void {
-    console.log(this.advancedSettingsForm.value);
     const advancedSettingPayload = AdvancedSettingModel.constructPayload(this.advancedSettingsForm);
     console.log('Advanced setting payload: ', advancedSettingPayload);
     this.isLoading = true;
