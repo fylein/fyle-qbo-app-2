@@ -1,1 +1,128 @@
-<p>export-settings works!</p>
+<app-onboarding-stepper [currentStep]="'Export Settings'"></app-onboarding-stepper>
+
+<div *ngIf="!isLoading" fxLayout="column" fxLayoutAlign="space-around center">
+  <div>
+    Export Settings
+  </div>
+  <div>
+    <form [formGroup]="exportSettingsForm">
+      At which state should the expenses be ready to export from Fyle?
+      <mat-select placeholder="Select expense state" formControlName="expenseState">
+        <mat-option *ngFor="let option of expenseStateOptions" [value]="option.value">
+          {{ option.label }}
+        </mat-option>
+      </mat-select>
+
+      <div>
+        <mat-slide-toggle color="accent" formControlName="reimbursableExpense">
+          Export Reimbursable Expenses
+        </mat-slide-toggle>
+
+        <div *ngIf="exportSettingsForm.value.reimbursableExpense">
+          How should the expenses be exported?
+          <mat-select placeholder="Select expense export type" formControlName="reimbursableExportType">
+            <mat-option *ngFor="let option of reimbursableExportTypes" [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+
+          <div *ngIf="showBankAccountField()">
+            To which Bank Account should the {{ exportSettingsForm.value.reimbursableExportType | titlecase }} be posted to?
+            <mat-select placeholder="Select Bank Account" formControlName="bankAccount">
+              <mat-option *ngFor="let option of bankAccounts" [value]="{id: option.id, name: option.value}">
+                {{ option.value }}
+              </mat-option>
+            </mat-select>
+          </div>
+
+          <div *ngIf="showExpenseAccountField()">
+            To which Expense Account should the {{ exportSettingsForm.value.reimbursableExportType | titlecase }} be posted to?
+            <mat-select placeholder="Select Expense Account" formControlName="qboExpenseAccount">
+              <mat-option *ngFor="let option of expenseAccounts" [value]="{id: option.id, name: option.value}">
+                {{ option.value }}
+              </mat-option>
+            </mat-select>
+          </div>
+
+          How should the expense in {{ exportSettingsForm.value.reimbursableExportType ? (exportSettingsForm.value.reimbursableExportType | titlecase) : 'QBO' }} be grouped?
+          <mat-select placeholder="Select expense group" formControlName="reimbursableExportGroup">
+            <mat-option *ngFor="let option of expenseGroupingFieldOptions" [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+
+          Set the {{ exportSettingsForm.value.reimbursableExportType ? (exportSettingsForm.value.reimbursableExportType | titlecase) : 'export' }} date as 
+          <mat-select placeholder="Select the {{ exportSettingsForm.value.reimbursableExportType ? (exportSettingsForm.value.reimbursableExportType | titlecase) : 'export' }} date" formControlName="reimbursableExportDate">
+            <mat-option *ngFor="let option of expenseGroupingDateOptions" [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+        </div>
+      </div>
+
+      <div>
+        <mat-slide-toggle color="accent" formControlName="creditCardExpense">
+          Export Credit Card Expenses
+        </mat-slide-toggle>
+
+        <div *ngIf="exportSettingsForm.value.creditCardExpense">
+          How should the expenses be exported?
+          <mat-select placeholder="Select expense export type" formControlName="creditCardExportType">
+            <mat-option *ngFor="let option of creditCardExportTypes" [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+
+          <div *ngIf="showCreditCardAccountField()">
+            To which Credit Card Account should the {{ exportSettingsForm.value.creditCardExportType | titlecase }} be posted to?
+            <mat-select placeholder="Select Credit Card Account" formControlName="defaultCCCAccount">
+              <mat-option *ngFor="let option of cccAccounts" [value]="{id: option.id, name: option.value}">
+                {{ option.value }}
+              </mat-option>
+            </mat-select>
+          </div>
+
+          <div *ngIf="showDefaultCreditCardVendorField()">
+            To which Vendor should the {{ exportSettingsForm.value.creditCardExportType | titlecase }} be posted to?
+            <mat-select placeholder="Select Default Credit Card Vendor" formControlName="defaultCreditCardVendor">
+              <mat-option *ngFor="let option of vendors" [value]="{id: option.id, name: option.value}">
+                {{ option.value }}
+              </mat-option>
+            </mat-select>
+          </div>
+
+          How should the expense in {{ exportSettingsForm.value.creditCardExportType ? (exportSettingsForm.value.creditCardExportType | titlecase) : 'QBO' }} be grouped?
+          <mat-select placeholder="Select expense group" formControlName="creditCardExportGroup">
+            <mat-option *ngFor="let option of expenseGroupingFieldOptions" [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+
+          Set the {{ exportSettingsForm.value.creditCardExportType ? (exportSettingsForm.value.creditCardExportType | titlecase) : 'export' }} date as 
+          <mat-select placeholder="Select the {{ exportSettingsForm.value.creditCardExportType ? (exportSettingsForm.value.creditCardExportType | titlecase) : 'export' }} date" formControlName="creditCardExportDate">
+            <mat-option *ngFor="let option of expenseGroupingDateOptions" [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+        </div>
+      </div>
+
+      <div>
+        <div *ngIf="showAccountsPayableField()">
+          To which Accounts Payable should the {{ getAccountsPayableLabel() | titlecase }} be posted to?
+          <mat-select placeholder="Select Accounts Payable" formControlName="accountsPayable">
+            <mat-option *ngFor="let option of accountsPayables" [value]="{id: option.id, name: option.value}">
+              {{ option.value }}
+            </mat-option>
+          </mat-select>
+        </div>
+      </div>
+
+      <div>
+        <button [disabled]="!exportSettingsForm.valid" color="accent" mat-flat-button (click)="save()">
+          Save & Continue ->
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

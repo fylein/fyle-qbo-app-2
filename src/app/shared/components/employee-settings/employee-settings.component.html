@@ -1,1 +1,28 @@
-<p>employee-settings works!</p>
+<app-onboarding-stepper [currentStep]="'Map Employees'"></app-onboarding-stepper>
+
+
+<div *ngIf="!isLoading" fxLayout="column" fxLayoutAlign="space-around center">
+  <div>
+    Map Employees
+  </div>
+  <div>
+    <form [formGroup]="employeeSettingsForm">
+      How are Employees represented in Quickbooks Online?
+      <mat-select placeholder="Select representation" formControlName="employeeMapping">
+        <mat-option *ngFor="let option of employeeMappingOptions" [value]="option.value">
+          {{ option.label }}
+        </mat-option>
+      </mat-select>
+      How should Employees in Fyle be mapped to Employees/Vendors in Quickbooks Online?
+      <mat-select placeholder="Select representation" formControlName="autoMapEmployee">
+        <mat-option *ngFor="let option of autoMapEmployeeOptions" [value]="option.value">
+          {{ option.label }}
+        </mat-option>
+      </mat-select>
+
+      <button [disabled]="!employeeSettingsForm.valid" color="accent" mat-flat-button (click)="save()">
+        Continue ->
+      </button>
+    </form>
+  </div>
+</div>

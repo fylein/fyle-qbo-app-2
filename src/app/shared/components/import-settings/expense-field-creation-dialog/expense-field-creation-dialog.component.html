@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>
+  Create new field in Fyle
+</h2>
+<form [formGroup]="expenseFieldsCreationForm">
+  <input type="text" formControlName="name" matInput>
+
+  <mat-dialog-actions align="end">
+    <button type="button" mat-flat-button mat-dialog-close>Cancel</button>
+    <button [disabled]="!expenseFieldsCreationForm.valid || existingFields.indexOf(expenseFieldsCreationForm.value.name.toLowerCase()) !== -1" mat-flat-button color="accent" (click)="save()">
+      Save
+    </button>
+  </mat-dialog-actions>
+</form>

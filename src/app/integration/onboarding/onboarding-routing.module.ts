@@ -12,13 +12,13 @@ import { OnboardingComponent } from './onboarding.component';
 
 const routes: Routes = [
   {
+    path: 'landing',
+    component: OnboardingLandingComponent
+  },
+  {
     path: '',
     component: OnboardingComponent,
     children: [
-      {
-        path: 'landing',
-        component: OnboardingLandingComponent
-      },
       {
         path: 'export_settings',
         component: OnboardingExportSettingsComponent

@@ -7,7 +7,7 @@ export interface User extends MinimalUser {
   staff: boolean;
 }
 
-export interface MinimalUser {
+export type MinimalUser = {
   email: string;
   access_token: string;
   refresh_token: string;

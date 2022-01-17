@@ -1,27 +1,68 @@
-# FyleQboApp2
+# fyle-qbo-app
+Frontend Repository for Fyle &lt;> Quickbooks Online Integration
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.4.
+### Setup
 
-## Development server
+* Download and install Docker desktop for Mac from [here.](https://www.docker.com/products/docker-desktop)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* If you're using a linux machine, please download docker according to the distrubution you're on.
 
-## Code scaffolding
+* Navigate into the root folder
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* Copy docker-compose.template.yml as docker-compose.yml and add environment variables
 
-## Build
+    ```
+    $ cp docker-compose.template.yml docker-compose.yml
+    ```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+* Setup environment variables in docker_compose.yml
 
-## Running unit tests
+    ```yaml
+    environment:
+      production: "False"
+      FYLE_URL: 
+      FYLE_CLIENT_ID: 
+      API_URL: http://localhost:8000/api
+      APP_URL: http://localhost:4200
+      CALLBACK_URI: http://localhost:4200/auth/fyle_callback
+      QBO_CLIENT_ID: 
+      QBO_SCOPE: 
+      QBO_AUTHORIZE_URL: 
+      QBO_APP_URL: 
+   ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* Build docker images
 
-## Running end-to-end tests
+    ```
+    docker-compose build
+    ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+* Run docker containers
 
-## Further help
+    ```
+    docker-compose up -d app
+    ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* To tail the logs a service you can do
+
+    ```
+    docker-compose logs -f app
+    ```
+
+* To stop the containers
+
+    ```
+    docker-compose stop app
+    ```
+
+* To restart any containers -
+
+    ```
+    docker-compose restart app
+    ```
+
+* To run bash inside any container for purpose of debugging or for creating new components, services etc
+
+    ```
+    docker-compose exec app /bin/bash
+    ```

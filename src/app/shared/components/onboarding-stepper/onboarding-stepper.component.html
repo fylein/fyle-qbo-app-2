@@ -1,1 +1,13 @@
-<p>onboarding-stepper works!</p>
+<div fxLayout="column" fxLayoutAlign="space-around center">
+  <div>
+    Complete the following steps to configure your Integration.
+  </div>
+
+
+  <div>
+    <mat-stepper [disableRipple]="true" [linear]="true">
+      <mat-step *ngFor="let onboardingStep of onboardingSteps" [ngSwitch]="onboardingStep" [completed]="onboardingStep.completed" [label]="onboardingStep.step"></mat-step>
+    </mat-stepper>
+  </div>
+
+</div>

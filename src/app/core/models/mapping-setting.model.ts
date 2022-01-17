@@ -1,8 +1,8 @@
-import { MappingDestinationField, MappingSourceField } from "./enum.model";
+import { ImportSettingMappingSetting } from "./import-setting.model";
 
-export type MappingSettingObject = {
-  source_field: MappingSourceField | string,
-  destination_field: MappingDestinationField,
-  import_to_fyle: boolean,
-  is_custom: boolean
+export interface MappingSetting extends ImportSettingMappingSetting {
+  id: number;
+  created_at: Date;
+  updated_at: Date;
+  workspace: number;
 }
