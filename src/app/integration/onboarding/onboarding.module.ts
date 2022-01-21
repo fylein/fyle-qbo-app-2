@@ -29,6 +29,7 @@ import { ImportSettingsComponent } from 'src/app/shared/components/import-settin
 import { ExportSettingsComponent } from 'src/app/shared/components/export-settings/export-settings.component';
 import { ExpenseFieldCreationDialogComponent } from 'src/app/shared/components/import-settings/expense-field-creation-dialog/expense-field-creation-dialog.component';
 import { AdvancedSettingsComponent } from 'src/app/shared/components/advanced-settings/advanced-settings.component';
+import { OnboardingFooterComponent } from 'src/app/shared/components/onboarding-footer/onboarding-footer.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AdvancedSettingsComponent } from 'src/app/shared/components/advanced-se
     OnboardingEmployeeSettingsComponent,
     LoaderComponent,
     OnboardingHeaderComponent,
+    OnboardingFooterComponent,
     QboConnectorComponent,
     OnboardingStepperComponent,
     EmployeeSettingsComponent,
