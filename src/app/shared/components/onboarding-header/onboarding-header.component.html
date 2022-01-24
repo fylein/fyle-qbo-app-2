@@ -22,15 +22,17 @@
     </div>
     <div fxLayout="row" style="padding-left: 32px;">
       <div style="background: #2C304E; border-radius: 48px; width: 37px; height: 37px;">
-        <p style="color: #FFFFFF; margin: 0; padding: 9px 13px 9px 13px;">A</p>
+        <p style="color: #FFFFFF; margin: 0; padding: 9px 13px 9px 13px;">
+          {{user.full_name[0]}}
+        </p>
       </div>
 
       <div style="padding: 1.5px 0px 1.5px 10px;">
         <div>
-          Ashwin
+          {{user.full_name}}
         </div>
         <div style="padding-top: 1px;">
-          Fyle
+          {{user.org_name}}
         </div>
       </div>
     </div>
