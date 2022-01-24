@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { WorkspaceService } from 'src/app/core/services/workspace.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-onboarding-landing',
@@ -10,13 +9,11 @@ import { WorkspaceService } from 'src/app/core/services/workspace.service';
 export class OnboardingLandingComponent implements OnInit {
 
   constructor(
-    private router: Router,
-    private workspaceService: WorkspaceService
+    private authService: AuthService
   ) { }
 
   connectQbo(): void {
-    const workspaceId = this.workspaceService.getWorkspaceId();
-    this.router.navigate([`/workspaces/${workspaceId}/onboarding/qbo_connector`]);
+    this.authService.redirectToQboOAuth();
   }
 
   ngOnInit(): void {
