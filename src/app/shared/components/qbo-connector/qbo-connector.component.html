@@ -1,6 +1,6 @@
 <app-onboarding-stepper [currentStep]="'Connect to QBO'"></app-onboarding-stepper>
 
-Fyle QBO Connector code lies here
+<!-- Fyle QBO Connector code lies here
 <div fxLayout="column" fxLayoutAlign="space-around center">
   <div>
     Connect to Quickbooks Online
@@ -12,17 +12,68 @@ Fyle QBO Connector code lies here
       <button mat-flat-button color="accent" (click)="continueToNextStep()">Continue</button>
     </div>
   </div>
-</div>
-
-<!-- <div style="height: 585px;">
-  <div style="background: #F5F5F5;
-  border: 1px solid #F5F5F5;
-  box-sizing: border-box;
-  height: 457px;
-  box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
-  border-radius: 8px;margin: -60px 0px; padding: 0px 171px 56px 171px;">
-    Hello
-  </div>
-  out
 </div> -->
 
+<div style="min-height: 585px;">
+  <div style="padding: 0px 171px 56px 171px;">
+    <div style="background: #FFFFFF;
+    border: 1px solid #F5F5F5;
+    box-sizing: border-box;
+    min-height: 457px;
+    box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
+    border-radius: 8px;margin: -60px 0px; ">
+      <div style="min-height: 135px; background: #FFFFFF;
+      border: 1px solid #F5F5F5;
+      box-sizing: border-box;
+      border-radius: 8px 8px 0px 0px;">
+        <div style="min-height: 71px;padding: 32px 32px 32px 32px;">
+          <p style="font-weight: 500;
+          font-size: 18px;
+          color: #161528;padding: 0px 778px 12px 0px; white-space: nowrap;">
+            Connect to Quickbooks Online
+          </p>
+          <p style="font-size: 14px;color: #5A5D72;">
+            Connect to the Quickbooks Online Company from which you would like to import and export data. The Fyle org
+            and Quickbooks Online company cannot be changed once the configuration steps are complete.
+          </p>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center" style="min-height: 240px;">
+        <div style="padding-top: 9px;">
+          <div style="padding: 56px 114px 0px 114px;">
+            <p style="font-size: 14px;color: #5A5D72; padding-bottom: 18px;text-align: center;">
+              FYLE
+            </p>
+            <p style="font-size: 18px;
+            text-align: center;
+            color: #161528;
+            ">
+              Kaushal fyle Testing Demo Org
+            </p>
+          </div>
+          <div style="padding: 16px 94.5px 56px 84.5px">
+            <div style="border-top: 1px dashed #F5F5F5;width: 302px;"></div>
+            <div style="padding-top: 8px;">
+              <div style="font-size: 14px;color: #5A5D72;width: 302px;">
+                Not the organization that you wish to connect?
+              </div>
+              <div (click)="connectQbo()" style="font-size: 14px;
+              align-items: center;
+              text-align: center;color: #FF3366; cursor: pointer; padding-top: 8px;
+              ">
+                Switch Organization
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="padding-top: 9px;">
+          2
+        </div>
+        <div style="padding-top: 9px;">
+          3
+        </div>
+      </div>
+    </div>
+  </div>
+  out
+</div>
