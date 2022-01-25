@@ -38,8 +38,5 @@ $fyle-qbo-app-theme: mat.define-light-theme((
 html, body { height: 100%; }
 body {
   margin: 0;
-  font-family: Aktiv Grotesk;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
+  font: 16px aktiv-grotesk,sans-serif;
 }
