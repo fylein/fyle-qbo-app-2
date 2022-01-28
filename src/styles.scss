@@ -39,4 +39,21 @@ html, body { height: 100%; }
 body {
   margin: 0;
   font: 16px aktiv-grotesk,sans-serif;
+  color: #161528;
+}
+
+h3, h4, h5 { font-weight: normal; }
+
+.bold { font-weight: bold; }
+
+.align-center {
+  text-align: center;
+}
+
+.sub-text-color {
+  color: #5A5D72;
+}
+
+.pointer {
+  cursor: pointer;
 }

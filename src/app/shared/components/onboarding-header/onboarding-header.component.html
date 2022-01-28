@@ -1,37 +1,37 @@
-<div fxLayout="row" fxLayoutAlign="space-between center" style="height: 72px; padding: 6px 16px 6px 16px;">
+<div fxLayout="row" fxLayoutAlign="space-between center" class="navbar">
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <!-- TODO: fix padding -->
-    <div style="padding-top: 15.5px; padding-bottom: 18.54px;">
+    <div class="navbar--fyle-logo">
       <img alt="Fyle" src="../../assets/images/fyle-logo.png" />
     </div>
-    <div style="padding: 22px 16px 22px 16px;">
+    <div class="navbar--plus">
       +
     </div>
-    <div style="padding: 6px 0px 6px 16px;">
+    <div class="navbar--qbo-logo">
       <img alt="Quickbooks Online" src="../../assets/images/qbo-logo.png" />
     </div>
   </div>
-  <div fxLayout="row" fxLayoutAlign="space-between center" style="padding: 14px 16px 14px 0px;">
-    <div fxLayout="row" style="padding-right: 32px">
-      <div style="padding: 12px 12px 12px 12px;">
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="navbar--profile-help">
+    <div fxLayout="row" class="navbar--help-section">
+      <div class="navbar--help-icon">
         <img src="assets/images/help.svg" />
       </div>
-      <div style="padding: 12px 0px 12px 11px; font-size: 14px; color: #2C304E;">
+      <div class="navbar--help-text navbar--small-text">
         Help
       </div>
     </div>
     <div fxLayout="row">
-      <div style="background: #2C304E; border-radius: 48px; width: 37px; height: 37px;">
-        <p style="color: #FFFFFF; margin: 0; padding: 9px 13px 9px 13px;">
+      <div class="navbar--avatar-section">
+        <p class="navbar--avatar-text">
           {{user.full_name[0]}}
         </p>
       </div>
 
-      <div style="padding: 1.5px 0px 1.5px 10px;">
-        <div style="font-weight: 400; color: #161528;">
+      <div class="navbar--profile-section">
+        <div>
           {{user.full_name}}
         </div>
-        <div style="padding-top: 1px; font-weight: 400; font-size: 14px; color: #5A5D72;">
+        <div class="navbar--user-org navbar--small-text sub-text-color">
           {{user.org_name}}
         </div>
       </div>

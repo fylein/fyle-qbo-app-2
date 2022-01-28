@@ -1,0 +1,72 @@
+.landing {
+  background: linear-gradient(97.33deg, #E1EEFF 26.8%, #FFE4FB 97.18%);
+  height: 956px;
+
+  &--welcome-section {
+    padding: 190px 320px 0px 320px;
+  }
+
+  &--welcome-text {
+    height: 119px;
+    padding-bottom: 52px;
+  }
+
+  &--welcome-text-header {
+    height: 45px;
+    padding-bottom: 24px;
+  }
+
+  &--qbo-connect-section {
+    padding-top: 42px;
+    width: 318px;
+    height: 48px;
+  }
+
+  &--qbo-connect-button {
+    background: #108000;
+    border-radius: 5px;
+    width: 318px;
+  }
+
+  &--qbo-connect-text {
+    padding: 10px 28px;
+    color: #FFFFFF;
+    white-space: nowrap;
+  }
+
+  &--guide-section {
+    padding-top: 110px;
+    height: 560px;
+  }
+
+  &--guide-text {
+    padding-bottom: 40px;
+  }
+
+  &--guide-text-header {
+    padding-bottom: 16px;
+  }
+
+  &--integration-data-flow-section {
+    padding: 407px 184px 177px 184px;
+    background: #F6FAFF;
+  }
+
+  &--integration-data-flow-text {
+    padding-left: 264.5px;
+    padding-right: 264.5px;
+  }
+
+  &--integration-data-flow-text-header {
+    padding-bottom: 16px;
+  }
+
+  &--integration-data-image-section {
+    padding-top: 70px;
+  }
+
+  &--integration-data-image {
+    margin: 0 auto;
+    display: block;
+  }
+}

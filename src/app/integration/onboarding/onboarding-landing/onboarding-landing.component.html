@@ -1,58 +1,35 @@
 <app-onboarding-header></app-onboarding-header>
 
-<!-- TODO: scroll bar appears on linear gradient, check -->
-<div style="background: linear-gradient(97.33deg, #E1EEFF 26.8%, #FFE4FB 97.18%); height: 956px;">
-  <div fxLayout="row" fxLayoutAlign="center center" style="padding: 190px 320px 0px 320px;">
+<div class="landing">
+  <div fxLayout="row" fxLayoutAlign="center center" class="landing--welcome-section">
     <div fxLayout="column" fxLayoutAlign="space-between center">
-      <div style="height: 119px; padding-bottom: 52px; height: 119px;">
-        <p style="
-        height: 45px;
-        font-weight: 700;
-        letter-spacing: -0.01em;
-        text-align: center;
-        font-size: 32px;
-        color: #161528;align-self: stretch;
-        padding-bottom: 24px;
-        ">
+      <div class="landing--welcome-text">
+        <h1 class="landing--welcome-text-header align-center">
           Welcome to Fyle + Quickbooks Online Integration
-        </p>
-        <p style="font-size: 18px; text-align: center;align-self: stretch;color: #5A5D72;">
+        </h1>
+        <h3 class="landing--welcome-text-caption align-center sub-text-color">
           Save time and effort by automating the seamless transfer of data between Fyle and Quickbooks Online for
           accurate accounting.
-        </p>
+        </h3>
       </div>
-      <div style="padding-top: 42px;width: 318px;
-      height: 48px;" (click)="connectQbo()">
-        <div style="background: #108000;
-        border-radius: 5px;
-        height: 48px;width: 318px;cursor: pointer;">
-          <p style="font-size: 18px;font-weight: 600;text-align: left; padding: 10px 28px 10px 28px;
-          color: #FFFFFF;text-align: center;  white-space: nowrap;">
+      <div class="landing--qbo-connect-section" (click)="connectQbo()">
+        <div class="landing--qbo-connect-button pointer">
+          <h3 class="landing--qbo-connect-text bold">
             Connect to Quickbooks Online
-          </p>
+          </h3>
         </div>
       </div>
     </div>
   </div>
-  <div fxLayout="column" fxLayoutAlign="space-between center" style="padding-top: 110px; height: 560px;">
-    <div style="padding-bottom: 40px; align-items: center;">
-        <p style="
-        font-size: 24px;
-        font-weight: 700;
-        text-align: center;
-        color: #161528;
-        padding-bottom: 16px;
-        ">
+  <div fxLayout="column" fxLayoutAlign="space-between center" class="landing--guide-section">
+    <div class="landing--guide-text">
+        <h2 class="landing--guide-text-header align-center">
           Guide to setup your Integrations
-        </p>
+        </h2>
       <div>
-        <p style="
-        font-size: 18px;
-        text-align: center;
-        color: #5A5D72;
-        ">
+        <h3 class="landing--guide-text-caption align-center sub-text-color">
           A quick video tour to help you set up your integration easily and fast.
-        </p>
+        </h3>
       </div>
     </div>
     <div>
@@ -66,26 +43,17 @@
 </div>
 
 
-<div style="padding: 407px 184px 177px 184px; background: #F6FAFF;">
-  <div style="padding-left: 264.5px; padding-right: 264.5px;">
-    <p style="font-weight: bold;
-      font-size: 24px;
-      text-align: center;
-      color: #161528;
-      padding-bottom: 16px;">
+<div class="landing--integration-data-flow-section">
+  <div class="landing--integration-data-flow-text">
+    <h2 class="landing--integration-data-flow-text-header align-center">
       How does the integration work?
-    </p>
-    <p style="font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    text-align: center;
-    color: #5A5D72;">
+    </h2>
+    <h3 class="landing--integration-data-flow-text-caption align-center sub-text-color">
       Export expenses from Fyle and import chart of accounts, projects, and other data from Quickbooks Online.
-    </p>
+    </h3>
   </div>
-  <div style="padding-top: 70px;">
-    <!-- TODO: get proper image from aish -->
-    <img src="assets/images/fyle-qbo-data-flow.svg" style="margin: 0 auto; display: block;"/>
+  <div class="landing--integration-data-image-section">
+    <img src="assets/images/fyle-qbo-data-flow.svg" class="landing--integration-data-image"/>
   </div>
 </div>
 
