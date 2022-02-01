@@ -14,62 +14,46 @@
   </div>
 </div> -->
 
-<div style="min-height: 585px;">
-  <div style="padding: 0px 171px 56px 171px;">
-    <div style="background: #FFFFFF;
-    border: 1px solid #F5F5F5;
-    box-sizing: border-box;
-    min-height: 457px;
-    box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
-    border-radius: 8px;margin: -60px 0px; ">
-      <div style="min-height: 135px; background: #FFFFFF;
-      border: 1px solid #F5F5F5;
-      box-sizing: border-box;
-      border-radius: 8px 8px 0px 0px;">
-        <div style="min-height: 71px;padding: 32px 32px 32px 32px;">
-          <p style="font-weight: 500;
-          font-size: 18px;
-          color: #161528;padding: 0px 778px 12px 0px; white-space: nowrap;">
+<div class="qbo-connector">
+  <div class="qbo-connector--section">
+    <div class="qbo-connector--contents">
+      <div class="qbo-connector--header-section">
+        <div class="qbo-connector--header-inner-section">
+          <h3 class="qbo-connector--header-text">
             Connect to Quickbooks Online
-          </p>
-          <p style="font-size: 14px;color: #5A5D72;">
+          </h3>
+          <h5 class="sub-text-color">
             Connect to the Quickbooks Online Company from which you would like to import and export data. The Fyle org
             and Quickbooks Online company cannot be changed once the configuration steps are complete.
-          </p>
+          </h5>
         </div>
       </div>
-      <div fxLayout="row" fxLayoutAlign="space-between center" style="min-height: 240px;">
-        <div style="padding-top: 9px;">
-          <div style="padding: 56px 114px 0px 114px;">
-            <p style="font-size: 14px;color: #5A5D72; padding-bottom: 18px;text-align: center;">
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="qbo-connector--connection-section">
+        <div class="qbo-connector--connection-blocks">
+          <div class="qbo-connector--fyle-org-section">
+            <h5 class="qbo-connector--fyle-section-text align-center sub-text-color">
               FYLE
-            </p>
-            <p style="font-size: 18px;
-            text-align: center;
-            color: #161528;
-            ">
+            </h5>
+            <h3 class="align-center">
               Kaushal fyle Testing Demo Org
-            </p>
+            </h3>
           </div>
-          <div style="padding: 16px 94.5px 56px 84.5px">
-            <div style="border-top: 1px dashed #F5F5F5;width: 302px;"></div>
-            <div style="padding-top: 8px;">
-              <div style="font-size: 14px;color: #5A5D72;width: 302px;">
+          <div class="qbo-connector--switch-org-section">
+            <div class="qbo-connector--org-switch-separator"></div>
+            <div class="qbo-connector--switch-org-inner-section">
+              <h5 class="qbo-connector--switch-org-info-text sub-text-color">
                 Not the organization that you wish to connect?
-              </div>
-              <div (click)="connectQbo()" style="font-size: 14px;
-              align-items: center;
-              text-align: center;color: #FF3366; cursor: pointer; padding-top: 8px;
-              ">
+              </h5>
+              <h5 (click)="connectQbo()" class="qbo-connector--switch-org-text align-center">
                 Switch Organization
-              </div>
+              </h5>
             </div>
           </div>
         </div>
-        <div style="padding-top: 9px;">
+        <div class="qbo-connector--connection-blocks">
           2
         </div>
-        <div style="padding-top: 9px;">
+        <div class="qbo-connector--connection-blocks">
           3
         </div>
       </div>
