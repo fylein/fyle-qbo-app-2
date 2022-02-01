@@ -30,7 +30,6 @@
   &--header-text {
     font-weight: 500;
     padding: 0px 778px 12px 0px;
-    white-space: nowrap;
   }
 
   &--connection-section {
@@ -50,7 +49,7 @@
   }
 
   &--switch-org-section {
-    padding: 16px 94.5px 56px 84.5px
+    padding: 16px 94.5px 56px 94.5px
   }
 
   &--org-switch-separator {
@@ -68,15 +67,48 @@
 
   &--switch-org-text {
     color: #FF3366;
-    cursor: pointer;
     padding-top: 8px;
   }
 
-  &-- {
-    
+  &--connection-top-block {
+    height: 88.62px;
+  }
+
+  &--connection-block-separator {
+    border-top: 1px dashed #F5F5F5;
+    transform: rotate(89.78deg);
+    padding: 0px 49.5px;
+  }
+
+  &--qbo-org-section {
+    padding: 55px 138.5px 0px 138.5px;
+  }
+
+  &--footer {
+    height: 82px;
+  }
+
+  &--footer-section {
+    padding: 20px 20px;
+  }
+
+  &--submit-btn {
+    background: linear-gradient(162.38deg, #FF3366 3.01%, #FE5196 111.5%);
+    border-radius: 4px;
+    width: 134px;
+    height: 42px;
+    color: #FFFFFF;
+  }
+
+  &--submit-btn-text {
+    padding: 12px 10.25px 12px 24px;
+  }
+
+  &--submit-btn-arrow-text {
+    padding: 15.37px 26.25px 15.38px 0px;
   }
 
   &-- {
-    
+
   }
 }

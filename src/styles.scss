@@ -42,7 +42,10 @@ body {
   color: #161528;
 }
 
-h3, h4, h5 { font-weight: normal; }
+h3, h4, h5 { 
+  font-weight: normal;
+  margin: 0;
+}
 
 .bold { font-weight: bold; }
 
@@ -56,4 +59,8 @@ h3, h4, h5 { font-weight: normal; }
 
 .pointer {
   cursor: pointer;
+}
+
+.single-line-text {
+  white-space: nowrap;
 }

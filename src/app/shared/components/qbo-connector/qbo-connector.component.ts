@@ -28,6 +28,10 @@ export class QboConnectorComponent implements OnInit {
     this.authService.redirectToQboOAuth();
   }
 
+  disconnectQbo(): void {
+    // TODO: Implement
+  }
+
   private setupPage(): void {
     this.qboConnectorService.getQBOCredentials().subscribe(() => {
       this.isQboConnected = true;
