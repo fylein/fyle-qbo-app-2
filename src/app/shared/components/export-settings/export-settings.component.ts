@@ -87,6 +87,14 @@ export class ExportSettingsComponent implements OnInit {
 
   reimbursableExportTypes: ExportSettingFormOption[];
 
+  constructor(
+    private formBuilder: FormBuilder,
+    private exportSettingService: ExportSettingService,
+    private mappingService: MappingService,
+    private router: Router,
+    private workspaceService: WorkspaceService
+  ) { }
+
   getReimbursableExportTypes(employeeFieldMapping: EmployeeFieldMapping): ExportSettingFormOption[] {
     return {
       EMPLOYEE: [
@@ -119,14 +127,6 @@ export class ExportSettingsComponent implements OnInit {
       ]
     }[employeeFieldMapping];
   }
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private exportSettingService: ExportSettingService,
-    private mappingService: MappingService,
-    private router: Router,
-    private workspaceService: WorkspaceService
-  ) { }
 
   private createReimbursableExpenseWatcher(): void {
     this.exportSettingsForm.controls.reimbursableExpense.valueChanges.subscribe((isReimbursableExpenseSelected) => {

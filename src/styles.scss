@@ -36,4 +36,31 @@ $fyle-qbo-app-theme: mat.define-light-theme((
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font: 16px aktiv-grotesk,sans-serif;
+  color: #161528;
+}
+
+h3, h4, h5 { 
+  font-weight: normal;
+  margin: 0;
+}
+
+.bold { font-weight: bold; }
+
+.align-center {
+  text-align: center;
+}
+
+.sub-text-color {
+  color: #5A5D72;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.single-line-text {
+  white-space: nowrap;
+}

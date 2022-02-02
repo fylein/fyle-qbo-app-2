@@ -1,15 +1,40 @@
-<header>
-  <mat-toolbar color="warning">
-    <img alt="Fyle" src="../../assets/images/fyle-logo.png" class="qbo-sidenav--logo" />
-    <span style="padding: 1%;">+</span>
-    <img alt="Quickbooks Online" src="../../assets/images/qbo-logo.png" class="qbo-sidenav--logo" />
+<div fxLayout="row" fxLayoutAlign="space-between center" class="navbar">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <!-- TODO: fix padding -->
+    <div class="navbar--fyle-logo">
+      <img alt="Fyle" src="../../assets/images/fyle-logo.png" />
+    </div>
+    <div class="navbar--plus">
+      +
+    </div>
+    <div class="navbar--qbo-logo">
+      <img alt="Quickbooks Online" src="../../assets/images/qbo-logo.png" />
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="navbar--profile-help">
+    <div fxLayout="row" class="navbar--help-section">
+      <div class="navbar--help-icon">
+        <img src="assets/images/help.svg" />
+      </div>
+      <div class="navbar--help-text navbar--small-text">
+        Help
+      </div>
+    </div>
+    <div fxLayout="row">
+      <div class="navbar--avatar-section">
+        <p class="navbar--avatar-text">
+          {{user.full_name[0]}}
+        </p>
+      </div>
 
-    <span style="flex: 1;
-        text-align: right;">
-      Help
-    </span>
-    <span style="flex: 0.1; text-align: right; padding: 1% 2%;">
-      Ashwin
-    </span>
-  </mat-toolbar>
-</header>
+      <div class="navbar--profile-section">
+        <div>
+          {{user.full_name}}
+        </div>
+        <div class="navbar--user-org navbar--small-text sub-text-color">
+          {{user.org_name}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

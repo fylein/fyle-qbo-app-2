@@ -7,6 +7,7 @@ import { WindowService } from './window.service';
 import { Token } from '../models/token.model';
 import { MinimalUser } from '../models/user.model';
 import { UserService } from './user.service';
+import { WorkspaceService } from './workspace.service';
 
 
 @Injectable({
@@ -18,7 +19,8 @@ export class AuthService {
     private apiService: ApiService,
     private storageService: StorageService,
     private userService: UserService,
-    private windowReferenceService: WindowService
+    private windowReferenceService: WindowService,
+    private workspaceService: WorkspaceService
   ) {
     this.windowReference = this.windowReferenceService.nativeWindow;
   }
@@ -26,8 +28,8 @@ export class AuthService {
   private windowReference: Window;
 
 
-  redirectToQboOAuth(workspaceId: string): void {
-    this.windowReference.location.href = `${environment.qbo_authorize_uri}?client_id=${environment.qbo_client_id}&scope=${environment.qbo_scope}&response_type=code&redirect_uri=${environment.app_url}/qbo_callback&state=${workspaceId}`;
+  redirectToQboOAuth(): void {
+    this.windowReference.location.href = `${environment.qbo_authorize_uri}?client_id=${environment.qbo_client_id}&scope=${environment.qbo_scope}&response_type=code&redirect_uri=${environment.app_url}/qbo_callback&state=${this.workspaceService.getWorkspaceId()}`;
   }
 
   redirectToFyleOAuth(): void {

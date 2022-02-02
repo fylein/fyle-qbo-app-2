@@ -17,6 +17,7 @@ import { OnboardingStepperComponent } from './components/onboarding-stepper/onbo
 import { ImportSettingsComponent } from './components/import-settings/import-settings.component';
 import { ExportSettingsComponent } from './components/export-settings/export-settings.component';
 import { AdvancedSettingsComponent } from './components/advanced-settings/advanced-settings.component';
+import { OnboardingFooterComponent } from './components/onboarding-footer/onboarding-footer.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AdvancedSettingsComponent } from './components/advanced-settings/advanc
     ExportSettingsComponent,
     AdvancedSettingsComponent,
     LoaderComponent,
-    OnboardingStepperComponent
+    OnboardingStepperComponent,
+    OnboardingFooterComponent
   ],
   imports: [
     CommonModule,

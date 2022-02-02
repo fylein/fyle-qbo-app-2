@@ -1,14 +1,60 @@
 <app-onboarding-header></app-onboarding-header>
 
-<div fxLayout="column" fxLayoutAlign="space-around center">
-  <div>
-    Welcome to Fyle + Quickbooks Online Integration
+<div class="landing">
+  <div fxLayout="row" fxLayoutAlign="center center" class="landing--welcome-section">
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+      <div class="landing--welcome-text">
+        <h1 class="landing--welcome-text-header align-center">
+          Welcome to Fyle + Quickbooks Online Integration
+        </h1>
+        <h3 class="landing--welcome-text-caption align-center sub-text-color">
+          Save time and effort by automating the seamless transfer of data between Fyle and Quickbooks Online for
+          accurate accounting.
+        </h3>
+      </div>
+      <div class="landing--qbo-connect-section" (click)="connectQbo()">
+        <div class="landing--qbo-connect-button pointer">
+          <h3 class="landing--qbo-connect-text bold single-line-text">
+            Connect to Quickbooks Online
+          </h3>
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-    Save time and effort by automating the seamless transfer of data between Fyle and Quickbooks Online for accurate accounting.
+  <div fxLayout="column" fxLayoutAlign="space-between center" class="landing--guide-section">
+    <div class="landing--guide-text">
+        <h2 class="landing--guide-text-header align-center">
+          Guide to setup your Integrations
+        </h2>
+      <div>
+        <h3 class="landing--guide-text-caption align-center sub-text-color">
+          A quick video tour to help you set up your integration easily and fast.
+        </h3>
+      </div>
+    </div>
+    <div>
+      <!-- TODO: add title -->
+      <iframe width="797" height="448" src="https://www.youtube.com/embed/K68EKwh6Jyw"
+        title="Fyle Quickbooks Integration" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
   </div>
 </div>
 
-<button mat-flat-button style="background-color: green; color: white;" (click)="connectQbo()" type="button">
-  Connect to Quickbooks Online
-</button>
+
+<div class="landing--integration-data-flow-section">
+  <div class="landing--integration-data-flow-text">
+    <h2 class="landing--integration-data-flow-text-header align-center">
+      How does the integration work?
+    </h2>
+    <h3 class="landing--integration-data-flow-text-caption align-center sub-text-color">
+      Export expenses from Fyle and import chart of accounts, projects, and other data from Quickbooks Online.
+    </h3>
+  </div>
+  <div class="landing--integration-data-image-section">
+    <img src="assets/images/fyle-qbo-data-flow.svg" class="landing--integration-data-image"/>
+  </div>
+</div>
+
+<app-onboarding-footer></app-onboarding-footer>

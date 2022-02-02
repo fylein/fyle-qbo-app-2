@@ -1,6 +1,6 @@
 <app-onboarding-stepper [currentStep]="'Connect to QBO'"></app-onboarding-stepper>
 
-Fyle QBO Connector code lies here
+<!-- Fyle QBO Connector code lies here
 <div fxLayout="column" fxLayoutAlign="space-around center">
   <div>
     Connect to Quickbooks Online
@@ -12,4 +12,92 @@ Fyle QBO Connector code lies here
       <button mat-flat-button color="accent" (click)="continueToNextStep()">Continue</button>
     </div>
   </div>
+</div> -->
+
+<div class="qbo-connector">
+  <div class="qbo-connector--section">
+    <div class="qbo-connector--contents">
+      <div class="qbo-connector--header-section">
+        <div class="qbo-connector--header-inner-section">
+          <h3 class="qbo-connector--header-text single-line-text">
+            Connect to Quickbooks Online
+          </h3>
+          <h5 class="sub-text-color">
+            Connect to the Quickbooks Online Company from which you would like to import and export data. The Fyle org
+            and Quickbooks Online company cannot be changed once the configuration steps are complete.
+          </h5>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="qbo-connector--connection-section">
+        <div class="qbo-connector--connection-blocks">
+          <div class="qbo-connector--qbo-org-section">
+            <h5 class="qbo-connector--fyle-section-text align-center sub-text-color bold">
+              FYLE
+            </h5>
+            <h3 class="align-center">
+              Kaushal fyle Testing Demo Org
+            </h3>
+          </div>
+          <div class="qbo-connector--switch-org-section">
+            <div class="qbo-connector--org-switch-separator"></div>
+            <div class="qbo-connector--switch-org-inner-section">
+              <h4 class="qbo-connector--switch-org-info-text sub-text-color single-line-text">
+                Not the organization that you wish to connect?
+              </h4>
+              <h4 (click)="connectQbo()" class="qbo-connector--switch-org-text align-center pointer">
+                Switch Organization
+              </h4>
+            </div>
+          </div>
+        </div>
+        <div class="qbo-connector--connection-blocks">
+          <div class="qbo-connector--connection-top-block">
+            <div class="qbo-connector--connection-block-separator"></div>
+            <div>
+              <!-- TODO: check if this is a gif/static img -->
+              <img src="assets/images/fyle-qbo-connection.svg" />
+            </div>
+            <div class="qbo-connector--connection-block-separator"></div>
+          </div>
+        </div>
+        <div class="qbo-connector--connection-blocks">
+          <div class="qbo-connector--fyle-org-section">
+            <h5 class="qbo-connector--fyle-section-text align-center sub-text-color bold">
+              QUICKBOOKS ONLINE COMPANY
+            </h5>
+            <h3 class="align-center">
+              Kaushal fyle Testing Demo Org
+            </h3>
+          </div>
+          <div class="qbo-connector--switch-org-section">
+            <div class="qbo-connector--org-switch-separator"></div>
+            <div class="qbo-connector--switch-org-inner-section">
+              <h4 class="qbo-connector--switch-org-info-text sub-text-color single-line-text">
+                Not the company that you wish to connect with?
+              </h4>
+              <h4 (click)="disconnectQbo()" class="qbo-connector--switch-org-text align-center pointer">
+                Disconnect
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="qbo-connector--footer">
+        <div class="qbo-connector--footer-section">
+          <div fxLayout="row" fxLayoutAlign="space-between center" >
+            <div fxLayout="row" fxLayoutAlign="space-between center"></div>
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="qbo-connector--submit-btn">
+              <h5 class="qbo-connector--submit-btn-text">
+                Continue
+              </h5>
+              <h5 class="qbo-connector--submit-btn-arrow-text">
+                <img src="assets/images/arrow-mark.svg" />
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<app-onboarding-footer></app-onboarding-footer>

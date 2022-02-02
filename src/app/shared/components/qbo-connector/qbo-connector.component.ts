@@ -25,8 +25,11 @@ export class QboConnectorComponent implements OnInit {
   }
 
   connectQbo(): void {
-    const workspaceId = this.workspaceService.getWorkspaceId();
-    this.authService.redirectToQboOAuth(workspaceId);
+    this.authService.redirectToQboOAuth();
+  }
+
+  disconnectQbo(): void {
+    // TODO: Implement
   }
 
   private setupPage(): void {

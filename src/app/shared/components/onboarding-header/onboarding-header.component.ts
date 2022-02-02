@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MinimalUser } from 'src/app/core/models/user.model';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-onboarding-header',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OnboardingHeaderComponent implements OnInit {
 
-  constructor() { }
+  user: MinimalUser;
+
+  constructor(
+    private userService: UserService
+  ) { }
+
+  private setupPage(): void {
+    this.user = this.userService.getUserProfile();
+  }
 
   ngOnInit(): void {
+    this.setupPage();
   }
 
 }

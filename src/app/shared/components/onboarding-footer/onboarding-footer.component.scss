@@ -1,0 +1,14 @@
+.footer {
+  height: 72px;
+  background: #FFFFFF;
+  box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(100px);
+
+  &--content {
+    padding: 26px 36px;
+  }
+
+  &--heart {
+    color: #000000;
+  }
+}
