@@ -65,6 +65,10 @@
     width: 302px;
   }
 
+  &--connection-in-progress-text {
+    width: 398px;
+  }
+
   &--switch-org-text {
     color: #FF3366;
     padding-top: 8px;
@@ -93,7 +97,6 @@
   }
 
   &--submit-btn {
-    background: linear-gradient(162.38deg, #FF3366 3.01%, #FE5196 111.5%);
     border-radius: 4px;
     width: 134px;
     height: 42px;
@@ -106,9 +109,5 @@
 
   &--submit-btn-arrow-text {
     padding: 15.37px 26.25px 15.38px 0px;
-  }
-
-  &-- {
-
   }
 }

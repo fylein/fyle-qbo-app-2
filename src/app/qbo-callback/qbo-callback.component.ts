@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { QboConnector } from '../core/models/qbo-connector.model';
-import { QboConnectorService } from '../core/services/qbo-connector.service';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-qbo-callback',
@@ -12,26 +10,17 @@ export class QboCallbackComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private qboConnectorService: QboConnectorService
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    const workspaceId: number = this.route.snapshot.queryParams.state;
-    const code: string = this.route.snapshot.queryParams.code;
-    const realmId: string = this.route.snapshot.queryParams.realmId;
-
-    const qboAuthResponse: QboConnector = {
-      code: code,
-      realm_id: realmId
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        code: this.route.snapshot.queryParams.code,
+        realmId: this.route.snapshot.queryParams.realmId
+      }
     };
 
-    this.qboConnectorService.connectQBO(qboAuthResponse).subscribe(() => {
-      // Do nothing
-      this.router.navigateByUrl(`workspaces/${workspaceId}/onboarding/qbo_connector`);
-    }, () => {
-      // TODO: Handle error
-    });
+    this.router.navigate([`workspaces/${this.route.snapshot.queryParams.state}/onboarding/qbo_connector`], navigationExtras);
   }
-
 }

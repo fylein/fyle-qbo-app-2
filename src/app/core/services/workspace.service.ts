@@ -29,4 +29,14 @@ export class WorkspaceService {
       org_id: orgId
     });
   }
+
+  @Cacheable()
+  syncFyleDimensions() {
+    return this.apiService.post(`/workspaces/${this.getWorkspaceId()}/fyle/sync_dimensions/`, {});
+  }
+
+  @Cacheable()
+  syncQBODimensions() {
+    return this.apiService.post(`/workspaces/${this.getWorkspaceId()}/qbo/sync_dimensions/`, {});
+  }
 }
