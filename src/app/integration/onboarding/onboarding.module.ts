@@ -30,6 +30,7 @@ import { ExportSettingsComponent } from 'src/app/shared/components/export-settin
 import { ExpenseFieldCreationDialogComponent } from 'src/app/shared/components/import-settings/expense-field-creation-dialog/expense-field-creation-dialog.component';
 import { AdvancedSettingsComponent } from 'src/app/shared/components/advanced-settings/advanced-settings.component';
 import { OnboardingFooterComponent } from 'src/app/shared/components/onboarding-footer/onboarding-footer.component';
+import { OnboardingStepHeaderSectionComponent } from 'src/app/shared/components/onboarding-step-header-section/onboarding-step-header-section.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { OnboardingFooterComponent } from 'src/app/shared/components/onboarding-
     ImportSettingsComponent,
     ExportSettingsComponent,
     ExpenseFieldCreationDialogComponent,
-    AdvancedSettingsComponent
+    AdvancedSettingsComponent,
+    OnboardingStepHeaderSectionComponent
   ],
   entryComponents: [
     ExpenseFieldCreationDialogComponent

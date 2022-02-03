@@ -15,6 +15,7 @@ export class EmployeeSettingsComponent implements OnInit {
 
   employeeSettingsForm: FormGroup;
   isLoading: boolean = true;
+  workspaceId: string = this.workspaceService.getWorkspaceId();
   employeeMappingOptions: EmployeeSettingFormOption[] = [
     {
       value: EmployeeFieldMapping.EMPLOYEE,
@@ -27,6 +28,10 @@ export class EmployeeSettingsComponent implements OnInit {
   ];
   autoMapEmployeeOptions: EmployeeSettingFormOption[] = [
     {
+      value: '',
+      label: 'None'
+    },
+    {
       value: AutoMapEmployee.NAME,
       label: 'Fyle Name to QBO Display name'
     },
@@ -37,10 +42,6 @@ export class EmployeeSettingsComponent implements OnInit {
     {
       value: AutoMapEmployee.EMPLOYEE_CODE,
       label: 'Fyle Employee Code to QBO dispay name'
-    },
-    {
-      value: '',
-      label: 'None'
     }
   ];
 
@@ -51,13 +52,17 @@ export class EmployeeSettingsComponent implements OnInit {
     private workspaceService: WorkspaceService
   ) { }
 
+  navigateToPreviousStep(): void {
+    this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/qbo_connector`]);
+  }
+
   save(): void {
     const employeeSettingPayload = EmployeeSettingModel.constructPayload(this.employeeSettingsForm);
     console.log('Employee setting payload: ', employeeSettingPayload);
     this.isLoading = true;
     this.employeeSettingService.postEmployeeSettings(employeeSettingPayload).subscribe(() => {
       this.isLoading = false;
-      this.router.navigate([`/workspaces/${this.workspaceService.getWorkspaceId()}/onboarding/export_settings`]);
+      this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/export_settings`]);
     }, () => {
       this.isLoading = false;
       // TODO: handle error
