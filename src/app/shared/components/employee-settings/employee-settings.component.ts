@@ -57,16 +57,18 @@ export class EmployeeSettingsComponent implements OnInit {
   }
 
   save(): void {
-    const employeeSettingPayload = EmployeeSettingModel.constructPayload(this.employeeSettingsForm);
-    console.log('Employee setting payload: ', employeeSettingPayload);
-    this.isLoading = true;
-    this.employeeSettingService.postEmployeeSettings(employeeSettingPayload).subscribe(() => {
-      this.isLoading = false;
-      this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/export_settings`]);
-    }, () => {
-      this.isLoading = false;
-      // TODO: handle error
-    });
+    if (this.employeeSettingsForm.valid) {
+      const employeeSettingPayload = EmployeeSettingModel.constructPayload(this.employeeSettingsForm);
+      console.log('Employee setting payload: ', employeeSettingPayload);
+      this.isLoading = true;
+      this.employeeSettingService.postEmployeeSettings(employeeSettingPayload).subscribe(() => {
+        this.isLoading = false;
+        this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/export_settings`]);
+      }, () => {
+        this.isLoading = false;
+        // TODO: handle error
+      });
+    }
   }
 
   private setupForm(): void {
