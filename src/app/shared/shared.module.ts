@@ -18,6 +18,8 @@ import { ImportSettingsComponent } from './components/import-settings/import-set
 import { ExportSettingsComponent } from './components/export-settings/export-settings.component';
 import { AdvancedSettingsComponent } from './components/advanced-settings/advanced-settings.component';
 import { OnboardingFooterComponent } from './components/onboarding-footer/onboarding-footer.component';
+import { ConfigurationStepHeaderSectionComponent } from './components/configuration-step-header-section/configuration-step-header-section.component';
+import { MandatoryFieldComponent } from './components/mandatory-field/mandatory-field.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { OnboardingFooterComponent } from './components/onboarding-footer/onboar
     AdvancedSettingsComponent,
     LoaderComponent,
     OnboardingStepperComponent,
-    OnboardingFooterComponent
+    OnboardingFooterComponent,
+    ConfigurationStepHeaderSectionComponent,
+    MandatoryFieldComponent
   ],
   imports: [
     CommonModule,

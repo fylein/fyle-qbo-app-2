@@ -8,19 +8,11 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ZeroStateComponent } from './shared/components/zero-state/zero-state.component';
-import { MandatoryFieldComponent } from './shared/components/mandatory-field/mandatory-field.component';
-import { MandatoryErrorMessageComponent } from './shared/components/mandatory-error-message/mandatory-error-message.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ZeroStateComponent,
-    MandatoryFieldComponent,
-    MandatoryErrorMessageComponent,
-    FooterComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
