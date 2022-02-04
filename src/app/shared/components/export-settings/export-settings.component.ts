@@ -24,6 +24,7 @@ export class ExportSettingsComponent implements OnInit {
   accountsPayables: DestinationAttribute[];
   vendors: DestinationAttribute[];
   expenseAccounts: DestinationAttribute[];
+  workspaceId: string = this.workspaceService.getWorkspaceId();
   expenseStateOptions: ExportSettingFormOption[] = [
     {
       value: ExpenseState.PAYMENT_PROCESSING,
@@ -301,18 +302,24 @@ export class ExportSettingsComponent implements OnInit {
     this.isLoading = false;
   }
 
+  navigateToPreviousStep(): void {
+    this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/employee_settings`]);
+  }
+
   save(): void {
     // TODO: handle reimburse and ccc toggles off case
-    const exportSettingPayload = ExportSettingModel.constructPayload(this.exportSettingsForm);
-    console.log('Export setting payload: ', exportSettingPayload);
-    this.isLoading = true;
-    this.exportSettingService.postExportSettings(exportSettingPayload).subscribe(() => {
-      this.isLoading = false;
-      this.router.navigate([`/workspaces/${this.workspaceService.getWorkspaceId()}/onboarding/import_settings`]);
-    }, () => {
-      this.isLoading = false;
-      // TODO: handle error
-    });
+    if (this.exportSettingsForm.valid) {
+      const exportSettingPayload = ExportSettingModel.constructPayload(this.exportSettingsForm);
+      console.log('Export setting payload: ', exportSettingPayload);
+      this.isLoading = true;
+      this.exportSettingService.postExportSettings(exportSettingPayload).subscribe(() => {
+        this.isLoading = false;
+        this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/import_settings`]);
+      }, () => {
+        this.isLoading = false;
+        // TODO: handle error
+      });
+    }
   }
 
   ngOnInit(): void {

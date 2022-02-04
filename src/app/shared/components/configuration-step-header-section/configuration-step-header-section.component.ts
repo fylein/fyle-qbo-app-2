@@ -25,7 +25,11 @@ export class ConfigurationStepHeaderSectionComponent implements OnInit {
         break;
       case 'employee_settings':
         this.headerText = 'Map Employees';
-        this.contentText = 'Choose appropriate representation of your Employees in Quickbooks Online. ';
+        this.contentText = 'Choose appropriate representation of your Employees in Quickbooks Online.';
+        break;
+      case 'export_settings':
+        this.headerText = 'Export Settings';
+        this.contentText = 'In this section, you will configure how and when expenses from Fyle can be exported to Quickbooks Online';
         break;
     }
   }
