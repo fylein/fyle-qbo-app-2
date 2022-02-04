@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-onboarding-step-header-section',
-  templateUrl: './onboarding-step-header-section.component.html',
-  styleUrls: ['./onboarding-step-header-section.component.scss']
+  selector: 'app-configuration-step-header-section',
+  templateUrl: './configuration-step-header-section.component.html',
+  styleUrls: ['./configuration-step-header-section.component.scss']
 })
-export class OnboardingStepHeaderSectionComponent implements OnInit {
+export class ConfigurationStepHeaderSectionComponent implements OnInit {
 
   headerText: string;
   contentText: string;
