@@ -1,5 +1,5 @@
 <app-onboarding-stepper [currentStep]="'Export Settings'"></app-onboarding-stepper>
-
+<!-- TODO: check content of all fields -->
 <!-- <div *ngIf="!isLoading" fxLayout="column" fxLayoutAlign="space-around center">
   <div>
     Export Settings
@@ -135,7 +135,7 @@
         <form [formGroup]="exportSettingsForm" class="export-settings--field">
           <div fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
             <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
-              <img src="assets/images/question-mark.svg" class="export-settings--employee-icon">
+              <img src="assets/images/question-mark.svg" class="export-settings--icon">
               <div>
                 <div class="export-settings--field-header">
                   At which state should the expenses be ready to export from Fyle?
@@ -181,7 +181,7 @@
           <div *ngIf="exportSettingsForm.value.reimbursableExpense">
             <div fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
-                <img src="assets/images/expense.svg" class="export-settings--employee-icon">
+                <img src="assets/images/expense.svg" class="export-settings--icon">
                 <!-- TODO: check this super weird behaviour -->
                 <div class="employee-settings--field-label-text-section" style="width: 552px;">
                   <div class="export-settings--field-header">
@@ -239,7 +239,7 @@
                     <app-mandatory-field></app-mandatory-field>
                   </div>
                   <h5 class="export-settings--field-label sub-text-color">
-                    All the offset entry in the Journal will be posted to the selected Bank account
+                    The expenses exported will be added to the selected Expense Payment Account
                   </h5>
                 </div>
               </div>
@@ -258,14 +258,14 @@
 
             <div fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
-                <img src="assets/images/tabs.svg" class="export-settings--employee-icon">
+                <img src="assets/images/tabs.svg" class="export-settings--icon">
                 <div>
                   <div class="export-settings--field-header">
                     How should the expense in {{ exportSettingsForm.value.reimbursableExportType ? (exportSettingsForm.value.reimbursableExportType | titlecase) : 'QBO' }} be grouped?
                     <app-mandatory-field></app-mandatory-field>
                   </div>
                   <h5 class="export-settings--field-label sub-text-color">
-                    Grouping reflects how the expense entries of a {{ exportSettingsForm.value.reimbursableExportType ? (exportSettingsForm.value.reimbursableExportType | titlecase) : 'QBO' }} are posted in QBO. For example, grouping by payment exports all expenses within a Fyle payment queue as one record. 
+                    Grouping reflects how the expense entries of a {{ exportSettingsForm.value.reimbursableExportType ? (exportSettingsForm.value.reimbursableExportType | titlecase) : 'QBO' }} are posted in QBO. For example, grouping by payment exports all expenses within a Fyle payment queue as one record.
                   </h5>
                 </div>
               </div>
@@ -282,7 +282,7 @@
 
             <div fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
-                <img src="assets/images/calendar.svg" class="export-settings--employee-icon">
+                <img src="assets/images/calendar.svg" class="export-settings--icon">
                 <div class="employee-settings--field-label-text-section" style="width: 552px;">
                   <div class="export-settings--field-header">
                     Set the {{ exportSettingsForm.value.reimbursableExportType ?
@@ -318,6 +318,139 @@
             </div>
             <div class="export-settings--input-toggle-section">
               <mat-slide-toggle class="export-settings--toggle-form-field" color="accent" formControlName="creditCardExpense"></mat-slide-toggle>
+            </div>
+          </div>
+
+          <div *ngIf="exportSettingsForm.value.creditCardExpense">
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
+              <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
+                <img src="assets/images/expense.svg" class="export-settings--icon">
+                <!-- TODO: check this super weird behaviour -->
+                <div class="employee-settings--field-label-text-section" style="width: 552px;">
+                  <div class="export-settings--field-header">
+                    How should the expenses be exported?
+                    <app-mandatory-field></app-mandatory-field>
+                  </div>
+                  <h5 class="export-settings--field-label sub-text-color">
+                    Choose the type of transaction in Quickbooks Online to export your corporate credit card expense from Fyle.
+                  </h5>
+                </div>
+              </div>
+              <div class="export-settings--input-section">
+                <mat-form-field floatLabel="always" appearance="outline" class="export-settings--form-field">
+                  <mat-select placeholder="Select expense export type" formControlName="creditCardExportType">
+                    <mat-option *ngFor="let option of creditCardExportTypes" [value]="option.value">
+                      {{ option.label }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div *ngIf="showCreditCardAccountField()" fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
+              <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
+                <!-- TODO: check padding-left: 40px; -->
+                <div class="employee-settings--field-label-text-section employee-settings--field-label-text-section-without-img" style="width: 552px; padding-left: 40px;">
+                  <div class="export-settings--field-header">
+                    Set Default Credit Card Account as
+                    <!-- To which Credit Card Account should the {{ exportSettingsForm.value.creditCardExportType | titlecase }} be posted to? -->
+                    <app-mandatory-field></app-mandatory-field>
+                  </div>
+                  <h5 class="export-settings--field-label sub-text-color">
+                    Post all your company credit card transactions to a default credit card account.
+                    <!-- TODO: Add note section -->
+                  </h5>
+                </div>
+              </div>
+              <div class="export-settings--input-section">
+                <mat-form-field floatLabel="always" appearance="outline" class="export-settings--form-field">
+                  <mat-select
+                    placeholder="Select Default Credit Card Vendor"
+                    formControlName="defaultCCCAccount">
+                    <mat-option *ngFor="let option of cccAccounts" [value]="{id: option.id, name: option.value}">
+                      {{ option.value }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div *ngIf="showDefaultCreditCardVendorField()" fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
+              <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
+                <!-- TODO: check padding-left: 40px; -->
+                <div class="employee-settings--field-label-text-section employee-settings--field-label-text-section-without-img" style="width: 552px; padding-left: 40px;">
+                  <div class="export-settings--field-header">
+                    Set default Credit Card Vendor as
+                    <!-- To which Vendor should the {{ exportSettingsForm.value.creditCardExportType | titlecase }} be posted to? -->
+                    <app-mandatory-field></app-mandatory-field>
+                  </div>
+                  <h5 class="export-settings--field-label sub-text-color">
+                    The default vendor will apply to all credit card transactions upon export.
+                  </h5>
+                </div>
+              </div>
+              <div class="export-settings--input-section">
+                <mat-form-field floatLabel="always" appearance="outline" class="export-settings--form-field">
+                  <mat-select
+                    placeholder="Select default credit card vendor"
+                    formControlName="defaultCreditCardVendor">
+                    <mat-option *ngFor="let option of vendors" [value]="{id: option.id, name: option.value}">
+                      {{ option.value }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
+              <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
+                <img src="assets/images/tabs.svg" class="export-settings--icon">
+                <div>
+                  <div class="export-settings--field-header">
+                    How should the expense in {{ exportSettingsForm.value.creditCardExportType ? (exportSettingsForm.value.creditCardExportType | titlecase) : 'QBO' }} be grouped?
+                    <app-mandatory-field></app-mandatory-field>
+                  </div>
+                  <h5 class="export-settings--field-label sub-text-color">
+                    Grouping reflects how the expense entries of a {{ exportSettingsForm.value.creditCardExportType ? (exportSettingsForm.value.creditCardExportType | titlecase) : 'QBO' }} are posted in QBO. For example, grouping by payment exports all expenses within a Fyle payment queue as one record.
+                  </h5>
+                </div>
+              </div>
+              <div class="export-settings--input-section">
+                <mat-form-field floatLabel="always" appearance="outline" class="export-settings--form-field">
+                  <mat-select placeholder="Select expense export type" formControlName="creditCardExportGroup">
+                    <mat-option *ngFor="let option of expenseGroupingFieldOptions" [value]="option.value">
+                      {{ option.label }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
+              <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
+                <img src="assets/images/calendar.svg" class="export-settings--icon">
+                <div class="employee-settings--field-label-text-section" style="width: 552px;">
+                  <div class="export-settings--field-header">
+                    Set the {{ exportSettingsForm.value.creditCardExportType ?
+                    (exportSettingsForm.value.creditCardExportType | titlecase) : 'export' }} date as
+                    <app-mandatory-field></app-mandatory-field>
+                  </div>
+                  <h5 class="export-settings--field-label sub-text-color">
+                    The selected date will reflect in the corporate credit card expenses exported to QBO.
+                  </h5>
+                </div>
+              </div>
+              <div class="export-settings--input-section">
+                <mat-form-field floatLabel="always" appearance="outline" class="export-settings--form-field">
+                  <mat-select
+                    placeholder="Select the {{ exportSettingsForm.value.reimbursableExportType ? (exportSettingsForm.value.reimbursableExportType | titlecase) : 'export' }} date"
+                    formControlName="creditCardExportDate">
+                    <mat-option *ngFor="let option of expenseGroupingDateOptions" [value]="option.value">
+                      {{ option.label }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
             </div>
           </div>
 
