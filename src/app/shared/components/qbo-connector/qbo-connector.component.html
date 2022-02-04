@@ -1,19 +1,5 @@
 <app-onboarding-stepper [currentStep]="'Connect to QBO'"></app-onboarding-stepper>
 
-<!-- Fyle QBO Connector code lies here
-<div fxLayout="column" fxLayoutAlign="space-around center">
-  <div>
-    Connect to Quickbooks Online
-  </div>
-  <button *ngIf="!isQboConnected" mat-button color="accent" (click)="connectQbo()">Connect to QBO</button>
-  <div *ngIf="isQboConnected">
-    Already connected to QBO
-    <div>
-      <button mat-flat-button color="accent" (click)="continueToNextStep()">Continue</button>
-    </div>
-  </div>
-</div> -->
-
 <div class="qbo-connector">
   <div class="qbo-connector--section">
     <div class="qbo-connector--contents">
@@ -35,7 +21,7 @@
               FYLE
             </h5>
             <h3 class="align-center">
-              Kaushal fyle Testing Demo Org
+              {{ fyleOrgName }}
             </h3>
           </div>
           <div class="qbo-connector--switch-org-section">
@@ -44,7 +30,7 @@
               <h4 class="qbo-connector--switch-org-info-text sub-text-color single-line-text">
                 Not the organization that you wish to connect?
               </h4>
-              <h4 (click)="connectQbo()" class="qbo-connector--switch-org-text align-center pointer">
+              <h4 (click)="switchFyleOrg()" class="qbo-connector--switch-org-text align-center pointer">
                 Switch Organization
               </h4>
             </div>
@@ -65,17 +51,29 @@
             <h5 class="qbo-connector--fyle-section-text align-center sub-text-color bold">
               QUICKBOOKS ONLINE COMPANY
             </h5>
-            <h3 class="align-center">
-              Kaushal fyle Testing Demo Org
+            <h3 *ngIf="!qboConnectionInProgress && qboCompanyName" class="align-center">
+              {{ qboCompanyName }}
             </h3>
+            <p class="align-center" *ngIf="qboConnectionInProgress">
+              O
+            </p>
           </div>
           <div class="qbo-connector--switch-org-section">
             <div class="qbo-connector--org-switch-separator"></div>
             <div class="qbo-connector--switch-org-inner-section">
-              <h4 class="qbo-connector--switch-org-info-text sub-text-color single-line-text">
+              <h4 *ngIf="!qboConnectionInProgress && !qboTokenExpired && showDisconnectQBO" class="qbo-connector--switch-org-info-text align-center sub-text-color single-line-text">
                 Not the company that you wish to connect with?
               </h4>
-              <h4 (click)="disconnectQbo()" class="qbo-connector--switch-org-text align-center pointer">
+              <h4 *ngIf="qboConnectionInProgress" class="qbo-connector--connection-in-progress-text align-center sub-text-color">
+                Please hold on; we are fetching data from your Quickbooks Online account, which may take a few seconds.
+              </h4>
+              <h4 *ngIf="qboTokenExpired && !qboConnectionInProgress" class="qbo-connector--connection-in-progress-text align-center sub-text-color">
+                Token expired
+              </h4>
+              <h4 *ngIf="!qboConnectionInProgress && qboTokenExpired" (click)="connectQbo()" class="qbo-connector--switch-org-text align-center pointer">
+                Re-Connect to QBO
+              </h4>
+              <h4 *ngIf="!qboConnectionInProgress && showDisconnectQBO" (click)="disconnectQbo()" class="qbo-connector--switch-org-text align-center pointer">
                 Disconnect
               </h4>
             </div>
@@ -86,7 +84,7 @@
         <div class="qbo-connector--footer-section">
           <div fxLayout="row" fxLayoutAlign="space-between center" >
             <div fxLayout="row" fxLayoutAlign="space-between center"></div>
-            <div fxLayout="row" fxLayoutAlign="space-between center" class="qbo-connector--submit-btn">
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="qbo-connector--submit-btn" [ngClass]="isContinueDisabled ? 'btn-disabled' : 'btn-enabled'" (click)="continueToNextStep()">
               <h5 class="qbo-connector--submit-btn-text">
                 Continue
               </h5>

@@ -11,15 +11,15 @@ import { WorkspaceService } from './workspace.service';
 })
 export class MappingService {
 
+  workspaceId: string = this.workspaceService.getWorkspaceId()
+
   constructor(
     private apiService: ApiService,
     private workspaceService: WorkspaceService
   ) { }
 
   getQBODestinationAttributes(attributeTypes: string | string[]): Observable<DestinationAttribute[]> {
-    const workspaceId = this.workspaceService.getWorkspaceId();
-
-    return this.apiService.get(`/workspaces/${workspaceId}/qbo/destination_attributes/`, {
+    return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/destination_attributes/`, {
       attribute_types: attributeTypes
     });
   }
@@ -45,8 +45,6 @@ export class MappingService {
 
   @Cacheable()
   getFyleExpenseFields(): Observable<ExpenseField[]> {
-    const workspaceId = this.workspaceService.getWorkspaceId();
-
-    return this.apiService.get(`/workspaces/${workspaceId}/fyle/expense_fields/`, {});
+    return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expense_fields/`, {});
   }
 }
