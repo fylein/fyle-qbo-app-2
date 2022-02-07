@@ -41,7 +41,7 @@ body {
   color: #161528;
 }
 
-h3, h4, h5 { 
+h3, h4, h5, h6 {
   font-weight: normal;
   margin: 0;
 }
@@ -72,4 +72,9 @@ h3, h4, h5 {
 .btn-disabled {
   background: #FFC2D6;
   cursor: no-drop;
+}
+
+.actionable-text {
+  color: #FF3366;
+  cursor: pointer;
 }

@@ -20,7 +20,7 @@
               <h4 class="qbo-connector--switch-org-info-text sub-text-color single-line-text">
                 Not the organization that you wish to connect?
               </h4>
-              <h4 (click)="switchFyleOrg()" class="qbo-connector--switch-org-text align-center pointer">
+              <h4 (click)="switchFyleOrg()" class="qbo-connector--switch-org-text actionable-text align-center">
                 Switch Organization
               </h4>
             </div>
@@ -60,10 +60,10 @@
               <h4 *ngIf="qboTokenExpired && !qboConnectionInProgress" class="qbo-connector--connection-in-progress-text align-center sub-text-color">
                 Token expired
               </h4>
-              <h4 *ngIf="!qboConnectionInProgress && qboTokenExpired" (click)="connectQbo()" class="qbo-connector--switch-org-text align-center pointer">
+              <h4 *ngIf="!qboConnectionInProgress && qboTokenExpired" (click)="connectQbo()" class="qbo-connector--switch-org-text actionable-text align-center">
                 Re-Connect to QBO
               </h4>
-              <h4 *ngIf="!qboConnectionInProgress && showDisconnectQBO" (click)="disconnectQbo()" class="qbo-connector--switch-org-text align-center pointer">
+              <h4 *ngIf="!qboConnectionInProgress && showDisconnectQBO" (click)="disconnectQbo()" class="qbo-connector--switch-org-text actionable-text align-center">
                 Disconnect
               </h4>
             </div>

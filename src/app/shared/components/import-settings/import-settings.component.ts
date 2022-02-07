@@ -25,6 +25,7 @@ export class ImportSettingsComponent implements OnInit {
   taxCodes: DestinationAttribute[];
   fyleExpenseFields: string[];
   qboExpenseFields: ExpenseFieldsFormOption[];
+  workspaceId: string = this.workspaceService.getWorkspaceId();
   chartOfAccountTypesList: string[] = [
     'Expense', 'Other Expense', 'Fixed Assets', 'Cost of Goods Sold', 'Current Liability', 'Equity',
     'Other Current Asset', 'Other Current Liability', 'Long Term Liability', 'Current Asset'
@@ -41,7 +42,7 @@ export class ImportSettingsComponent implements OnInit {
 
   createChartOfAccountField(type: string): FormGroup {
     return this.formBuilder.group({
-      enabled: [this.importSettings.workspace_general_settings.charts_of_accounts.includes(type) ? true : false],
+      enabled: [this.importSettings.workspace_general_settings.charts_of_accounts.includes(type) || type === 'Expense' ? true : false],
       name: [type]
     });
   }
@@ -185,14 +186,18 @@ export class ImportSettingsComponent implements OnInit {
     });
   }
 
-  save() : void {
+  navigateToPreviousStep(): void {
+    this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/export_settings`]);
+  }
+
+  save(): void {
     // TODO: check ImportSettingModel class
     const importSettingsPayload = ImportSettingModel.constructPayload(this.importSettingsForm);
-    console.log('importSettingPayload',importSettingsPayload);
+    console.log('importSettingPayload', importSettingsPayload);
     this.isLoading = true;
     this.importSettingService.postImportSettings(importSettingsPayload).subscribe(() => {
       this.isLoading = false;
-      this.router.navigate([`/workspaces/${this.workspaceService.getWorkspaceId()}/onboarding/advanced_settings`]);
+      this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/advanced_settings`]);
     }, () => {
       this.isLoading = false;
       // TODO: handle error
