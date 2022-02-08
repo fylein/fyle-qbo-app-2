@@ -147,8 +147,8 @@
                           </mat-option>
                         </mat-select>
                       </mat-form-field>
-                      <div class="sub-text-color">
-                        <h6>Click <span class="import-settings--preview-btn pointer">here</span> to Preivew on how it looks on Expense Form</h6>
+                      <div class="import-settings--preview-text sub-text-color">
+                        <h6>Click <span class="import-settings--preview-btn pointer" (click)="showFyleExpenseFormPreview()">here</span> to Preivew on how it looks on Expense Form</h6>
                       </div>
                     </div>
                   </div>
@@ -183,7 +183,7 @@
             </div>
           </div>
 
-          <div class="import-settings--default-tax-section sub-text-color">
+          <div *ngIf="importSettingsForm.value.taxCode" class="import-settings--default-tax-section sub-text-color">
             <div class="import-settings--default-tax-contents">
               <div class="import-settings--default-tax-field">
                 <h5>

@@ -10,6 +10,7 @@ import { MappingSetting } from 'src/app/core/models/mapping-setting.model';
 import { ImportSettingService } from 'src/app/core/services/import-setting.service';
 import { MappingService } from 'src/app/core/services/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace.service';
+import { ExpenseFormPreviewDialogComponent } from '../expense-form-preview-dialog/expense-form-preview-dialog.component';
 import { ExpenseFieldCreationDialogComponent } from './expense-field-creation-dialog/expense-field-creation-dialog.component';
 
 @Component({
@@ -166,6 +167,13 @@ export class ImportSettingsComponent implements OnInit {
     };
 
     this.expenseFields.controls.filter(field => field.value.destination_field === destinationType)[0].patchValue(expenseField);
+  }
+
+  showFyleExpenseFormPreview(): void {
+    this.dialog.open(ExpenseFormPreviewDialogComponent, {
+      width: '1173px',
+      height: '643px'
+    });
   }
 
   createExpenseField(destinationType: string): void {

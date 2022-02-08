@@ -85,6 +85,10 @@
     margin-top: -5px;
   }
 
+  &--preview-text {
+    padding-top: 16px;
+  }
+
   &--preview-btn {
     color: #0660F6;
   }
@@ -97,11 +101,10 @@
 
   &--or-text {
     padding: 8px 16px;
-    align-self: center;
   }
 
   &--create-custom-field {
-    align-self: center;
+    padding: 8px 0px;
   }
 
   &--tax-section {

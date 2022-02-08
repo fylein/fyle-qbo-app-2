@@ -32,6 +32,7 @@ import { AdvancedSettingsComponent } from 'src/app/shared/components/advanced-se
 import { OnboardingFooterComponent } from 'src/app/shared/components/onboarding-footer/onboarding-footer.component';
 import { ConfigurationStepHeaderSectionComponent } from 'src/app/shared/components/configuration-step-header-section/configuration-step-header-section.component';
 import { MandatoryFieldComponent } from 'src/app/shared/components/mandatory-field/mandatory-field.component';
+import { ExpenseFormPreviewDialogComponent } from 'src/app/shared/components/expense-form-preview-dialog/expense-form-preview-dialog.component';
 
 @NgModule({
   declarations: [
@@ -54,10 +55,12 @@ import { MandatoryFieldComponent } from 'src/app/shared/components/mandatory-fie
     ExpenseFieldCreationDialogComponent,
     AdvancedSettingsComponent,
     ConfigurationStepHeaderSectionComponent,
-    MandatoryFieldComponent
+    MandatoryFieldComponent,
+    ExpenseFormPreviewDialogComponent
   ],
   entryComponents: [
-    ExpenseFieldCreationDialogComponent
+    ExpenseFieldCreationDialogComponent,
+    ExpenseFormPreviewDialogComponent
   ],
   imports: [
     CommonModule,
