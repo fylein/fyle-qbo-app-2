@@ -1,1 +1,26 @@
-<p>onboarding-done works!</p>
+<div class="onboarding-done"></div>
+<div class="onboarding-done--section">
+  <div class="onboarding-done--contents">
+    <div class="onboarding-done--gif-section">
+      <!-- TODO: replace with a proper gif -->
+      <img src="assets/images/temp_image.png" class="onboarding-done--align-center" alt="Onboarding done" width="150px"
+        height="150px">
+    </div>
+    <div class="onboarding-done--header">
+      <h3 class="align-center">Congratulations! Your integration setup is now complete.</h3>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center" class="onboarding-done--launch-btn onboarding-done--align-center btn-enabled" (click)="navigateToDashboard()">
+      <h5 class="onboarding-done--launch-btn-text single-line-text">
+        Launch Integrations
+      </h5>
+    </div>
+    <div class="onboarding-done--caption">
+      <h5 class="sub-text-color align-center">
+        You can still re-configure your export settings at any point of time from the <span class="bold">Configuration</span> section of integration. For any manually created values in Fyle that you wish to be exported to QBO, the mapping can be setup in <span class="bold">Mappings</span> section of the integration.
+      </h5>
+    </div>
+  </div>
+</div>
+<div class="onboarding-done--footer">
+  <app-onboarding-footer></app-onboarding-footer>
+</div>

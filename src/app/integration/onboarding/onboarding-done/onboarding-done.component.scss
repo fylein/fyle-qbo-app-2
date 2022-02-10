@@ -1,0 +1,51 @@
+.onboarding-done {
+  height: 304px;
+  background: linear-gradient(97.33deg, #E1EEFF 26.8%, #FFE4FB 97.18%);
+
+  &--section {
+    padding: 24px 32px;
+    padding: 0px 172px 73px 169px;
+  }
+
+  &--contents {
+    margin: -207px 0px;
+    background: #FFFFFF;
+    border: 1px solid #F5F5F5;
+    box-sizing: border-box;
+    border-radius: 8px 8px 0px 0px;
+  }
+
+  &--gif-section {
+    padding-top: 33px;
+  }
+
+  &--align-center {
+    display: block;
+    margin: 0 auto;
+  }
+
+  &--header {
+    padding: 24px 32px 21px 44px;
+    font-weight: 500;
+  }
+
+  &--launch-btn {
+    border: none;
+    border-radius: 4px;
+    width: 181px;
+    height: 42px;
+    color: #FFFFFF;
+  }
+
+  &--launch-btn-text {
+    padding: 12px 24px;
+  }
+
+  &--caption {
+   padding: 52px 126px 35px 89px;
+  }
+
+  &--footer {
+    margin-top: 446px;
+  }
+}
