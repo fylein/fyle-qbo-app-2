@@ -59,7 +59,7 @@ export class AdvancedSettingModel {
       },
       workspace_schedules: {
         enabled: advancedSettingsForm.get('exportSchedule')?.value ? true : false,
-        interval_hours: advancedSettingsForm.get('exportSchedule')?.value ? advancedSettingsForm.get('exportSchedule')?.value : null
+        interval_hours: advancedSettingsForm.get('exportScheduleFrequency')?.value ? advancedSettingsForm.get('exportScheduleFrequency')?.value : null
       }
     };
     return advancedSettingPayload;

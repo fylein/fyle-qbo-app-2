@@ -10,6 +10,7 @@ export class ConfigurationStepHeaderSectionComponent implements OnInit {
 
   headerText: string;
   contentText: string;
+  isStepOptional: boolean;
 
   constructor(
     private router: Router
@@ -31,6 +32,11 @@ export class ConfigurationStepHeaderSectionComponent implements OnInit {
         this.headerText = 'Export Settings';
         this.contentText = 'In this section, you will configure how and when expenses from Fyle can be exported to Quickbooks Online';
         break;
+      case 'advanced_settings':
+        this.headerText = 'Advanced Settings';
+        this.isStepOptional = true;
+        // TODO: learn more link
+        this.contentText = 'This section contains settings to automate and customize your expense export. Learn More';
     }
   }
 

@@ -22,15 +22,16 @@ export class AdvancedSettingsComponent implements OnInit {
   advancedSettingsForm: FormGroup;
   paymentSyncOptions: AdvancedSettingFormOption[] = [
     {
-      label: 'Fyle to QBO',
+      label: 'Export Fyle ACH Payments to Quickbooks Online',
       value: PaymentSyncDirection.FYLE_TO_QBO
     },
     {
-      label: 'QBO to Fyle',
+      label: 'Import Quickbooks Payments into Fyle',
       value: PaymentSyncDirection.QBO_TO_FYLE
     }
   ];
   frequencyIntervals: number[] = [...Array(24).keys()].map(day => day + 1);
+  workspaceId: string = this.workspaceService.getWorkspaceId();
 
   constructor(
     private advancedSettingService: AdvancedSettingService,
@@ -51,8 +52,20 @@ export class AdvancedSettingsComponent implements OnInit {
     });
   }
 
+  private createScheduledWatcher(): void {
+    this.advancedSettingsForm.controls.exportSchedule.valueChanges.subscribe((isScheduledSelected) => {
+      if (isScheduledSelected) {
+        this.advancedSettingsForm.controls.exportScheduleFrequency.setValidators(Validators.required);
+      } else {
+        this.advancedSettingsForm.controls.exportScheduleFrequency.clearValidators();
+        this.advancedSettingsForm.controls.exportScheduleFrequency.setValue(null);
+      }
+    });
+  }
+
   private setCustomValidators(): void {
     this.createPaymentSyncWatcher();
+    this.createScheduledWatcher();
   }
 
   private setupForm(): void {
@@ -69,7 +82,8 @@ export class AdvancedSettingsComponent implements OnInit {
       changeAccountingPeriod: [this.advancedSettings.workspace_general_settings.change_accounting_period],
       singleCreditLineJE: [this.advancedSettings.workspace_general_settings.je_single_credit_line],
       autoCreateVendors: [this.advancedSettings.workspace_general_settings.auto_create_destination_entity],
-      exportSchedule: [this.advancedSettings.workspace_schedules.enabled ? this.advancedSettings.workspace_schedules.interval_hours : null]
+      exportSchedule: [this.advancedSettings.workspace_schedules.enabled ? this.advancedSettings.workspace_schedules.interval_hours : false],
+      exportScheduleFrequency: [this.advancedSettings.workspace_schedules.enabled ? this.advancedSettings.workspace_schedules.interval_hours : null]
     });
 
     this.setCustomValidators();
@@ -88,13 +102,17 @@ export class AdvancedSettingsComponent implements OnInit {
     });
   }
 
+  navigateToPreviousStep(): void {
+    this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/import_settings`]);
+  }
+
   save(): void {
     const advancedSettingPayload = AdvancedSettingModel.constructPayload(this.advancedSettingsForm);
     console.log('Advanced setting payload: ', advancedSettingPayload);
     this.isLoading = true;
     this.advancedSettingService.postImportSettings(advancedSettingPayload).subscribe(() => {
       this.isLoading = false;
-      this.router.navigate([`/workspaces/${this.workspaceService.getWorkspaceId()}/onboarding/done`]);
+      this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/done`]);
     }, () => {
       this.isLoading = false;
       // TODO: handle error
