@@ -10,6 +10,7 @@ import { MappingSetting } from 'src/app/core/models/mapping-setting.model';
 import { ImportSettingService } from 'src/app/core/services/import-setting.service';
 import { MappingService } from 'src/app/core/services/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace.service';
+import { ExpenseFormPreviewDialogComponent } from '../expense-form-preview-dialog/expense-form-preview-dialog.component';
 import { ExpenseFieldCreationDialogComponent } from './expense-field-creation-dialog/expense-field-creation-dialog.component';
 
 @Component({
@@ -25,6 +26,7 @@ export class ImportSettingsComponent implements OnInit {
   taxCodes: DestinationAttribute[];
   fyleExpenseFields: string[];
   qboExpenseFields: ExpenseFieldsFormOption[];
+  workspaceId: string = this.workspaceService.getWorkspaceId();
   chartOfAccountTypesList: string[] = [
     'Expense', 'Other Expense', 'Fixed Assets', 'Cost of Goods Sold', 'Current Liability', 'Equity',
     'Other Current Asset', 'Other Current Liability', 'Long Term Liability', 'Current Asset'
@@ -41,7 +43,7 @@ export class ImportSettingsComponent implements OnInit {
 
   createChartOfAccountField(type: string): FormGroup {
     return this.formBuilder.group({
-      enabled: [this.importSettings.workspace_general_settings.charts_of_accounts.includes(type) ? true : false],
+      enabled: [this.importSettings.workspace_general_settings.charts_of_accounts.includes(type) || type === 'Expense' ? true : false],
       name: [type]
     });
   }
@@ -167,6 +169,13 @@ export class ImportSettingsComponent implements OnInit {
     this.expenseFields.controls.filter(field => field.value.destination_field === destinationType)[0].patchValue(expenseField);
   }
 
+  showFyleExpenseFormPreview(): void {
+    this.dialog.open(ExpenseFormPreviewDialogComponent, {
+      width: '1173px',
+      height: '643px'
+    });
+  }
+
   createExpenseField(destinationType: string): void {
     const existingFields = this.importSettings.mapping_settings.map(setting => setting.source_field.split('_').join(' '));
     const dialogRef = this.dialog.open(ExpenseFieldCreationDialogComponent, {
@@ -185,14 +194,18 @@ export class ImportSettingsComponent implements OnInit {
     });
   }
 
-  save() : void {
+  navigateToPreviousStep(): void {
+    this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/export_settings`]);
+  }
+
+  save(): void {
     // TODO: check ImportSettingModel class
     const importSettingsPayload = ImportSettingModel.constructPayload(this.importSettingsForm);
-    console.log('importSettingPayload',importSettingsPayload);
+    console.log('importSettingPayload', importSettingsPayload);
     this.isLoading = true;
     this.importSettingService.postImportSettings(importSettingsPayload).subscribe(() => {
       this.isLoading = false;
-      this.router.navigate([`/workspaces/${this.workspaceService.getWorkspaceId()}/onboarding/advanced_settings`]);
+      this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/advanced_settings`]);
     }, () => {
       this.isLoading = false;
       // TODO: handle error

@@ -41,7 +41,7 @@ body {
   color: #161528;
 }
 
-h3, h4, h5 { 
+h3, h4, h5, h6 {
   font-weight: normal;
   margin: 0;
 }
@@ -76,4 +76,21 @@ h3, h4, h5 {
 
 .italic {
   font-style: italic;
+}
+
+.actionable-text {
+  color: #FF3366;
+  cursor: pointer;
+}
+
+.mat-form-field-type-mat-select .mat-form-field-flex {
+  height: 40px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding-top: 0px;
+}
+
+.mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+  transform: none !important;
 }
