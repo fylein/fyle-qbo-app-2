@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { WorkspaceService } from 'src/app/core/services/workspace.service';
 
 @Component({
   selector: 'app-onboarding-done',
@@ -7,7 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OnboardingDoneComponent implements OnInit {
 
-  constructor() { }
+  workspaceId: string = this.workspaceService.getWorkspaceId();
+
+  constructor(
+    private router: Router,
+    private workspaceService: WorkspaceService
+  ) { }
+
+  navigateToDashboard(): void {
+    this.router.navigate([`/workspaces/${this.workspaceId}/dashboard`]);
+  }
 
   ngOnInit(): void {
   }
