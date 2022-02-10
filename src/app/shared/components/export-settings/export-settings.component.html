@@ -128,7 +128,7 @@
 </div> -->
 
 <div *ngIf="!isLoading">
-  <div class="employee-settings">
+  <div class="export-settings">
     <div class="export-settings--section">
       <div class="export-settings--contents">
         <app-configuration-step-header-section></app-configuration-step-header-section>
@@ -183,7 +183,7 @@
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
                 <img src="assets/images/expense.svg" class="export-settings--icon">
                 <!-- TODO: check this super weird behaviour -->
-                <div class="employee-settings--field-label-text-section" style="width: 552px;">
+                <div class="export-settings--field-label-text-section" style="width: 552px;">
                   <div class="export-settings--field-header">
                     How should the expenses be exported?
                     <app-mandatory-field></app-mandatory-field>
@@ -207,7 +207,7 @@
             <div *ngIf="showBankAccountField()" fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
                 <!-- TODO: check padding-left: 40px; -->
-                <div class="employee-settings--field-label-text-section employee-settings--field-label-text-section-without-img" style="width: 552px; padding-left: 40px;">
+                <div class="export-settings--field-label-text-section export-settings--field-label-text-section-without-img" style="width: 552px; padding-left: 40px;">
                   <div class="export-settings--field-header">
                     To which Bank Account should the {{ exportSettingsForm.value.reimbursableExportType | titlecase }} be posted to?
                     <app-mandatory-field></app-mandatory-field>
@@ -233,7 +233,7 @@
             <div *ngIf="showExpenseAccountField()" fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
                 <!-- TODO: check padding-left: 40px; -->
-                <div class="employee-settings--field-label-text-section employee-settings--field-label-text-section-without-img" style="width: 552px; padding-left: 40px;">
+                <div class="export-settings--field-label-text-section export-settings--field-label-text-section-without-img" style="width: 552px; padding-left: 40px;">
                   <div class="export-settings--field-header">
                     To which Expense Account should the {{ exportSettingsForm.value.reimbursableExportType | titlecase }} be posted to?
                     <app-mandatory-field></app-mandatory-field>
@@ -283,7 +283,7 @@
             <div fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
                 <img src="assets/images/calendar.svg" class="export-settings--icon">
-                <div class="employee-settings--field-label-text-section" style="width: 552px;">
+                <div class="export-settings--field-label-text-section" style="width: 552px;">
                   <div class="export-settings--field-header">
                     Set the {{ exportSettingsForm.value.reimbursableExportType ?
                     (exportSettingsForm.value.reimbursableExportType | titlecase) : 'export' }} date as
@@ -326,7 +326,7 @@
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
                 <img src="assets/images/expense.svg" class="export-settings--icon">
                 <!-- TODO: check this super weird behaviour -->
-                <div class="employee-settings--field-label-text-section" style="width: 552px;">
+                <div class="export-settings--field-label-text-section" style="width: 552px;">
                   <div class="export-settings--field-header">
                     How should the expenses be exported?
                     <app-mandatory-field></app-mandatory-field>
@@ -350,7 +350,7 @@
             <div *ngIf="showCreditCardAccountField()" fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
                 <!-- TODO: check padding-left: 40px; -->
-                <div class="employee-settings--field-label-text-section employee-settings--field-label-text-section-without-img" style="width: 552px; padding-left: 40px;">
+                <div class="export-settings--field-label-text-section export-settings--field-label-text-section-without-img" style="width: 552px; padding-left: 40px;">
                   <div class="export-settings--field-header">
                     Set Default Credit Card Account as
                     <!-- To which Credit Card Account should the {{ exportSettingsForm.value.creditCardExportType | titlecase }} be posted to? -->
@@ -378,7 +378,7 @@
             <div *ngIf="showDefaultCreditCardVendorField()" fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
                 <!-- TODO: check padding-left: 40px; -->
-                <div class="employee-settings--field-label-text-section employee-settings--field-label-text-section-without-img" style="width: 552px; padding-left: 40px;">
+                <div class="export-settings--field-label-text-section export-settings--field-label-text-section-without-img" style="width: 552px; padding-left: 40px;">
                   <div class="export-settings--field-header">
                     Set default Credit Card Vendor as
                     <!-- To which Vendor should the {{ exportSettingsForm.value.creditCardExportType | titlecase }} be posted to? -->
@@ -429,7 +429,7 @@
             <div fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
                 <img src="assets/images/calendar.svg" class="export-settings--icon">
-                <div class="employee-settings--field-label-text-section" style="width: 552px;">
+                <div class="export-settings--field-label-text-section" style="width: 552px;">
                   <div class="export-settings--field-header">
                     Set the {{ exportSettingsForm.value.creditCardExportType ?
                     (exportSettingsForm.value.creditCardExportType | titlecase) : 'export' }} date as

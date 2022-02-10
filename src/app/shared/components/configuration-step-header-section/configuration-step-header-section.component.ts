@@ -10,6 +10,7 @@ export class ConfigurationStepHeaderSectionComponent implements OnInit {
 
   headerText: string;
   contentText: string;
+  isStepOptional: boolean;
 
   constructor(
     private router: Router
@@ -35,6 +36,13 @@ export class ConfigurationStepHeaderSectionComponent implements OnInit {
         this.headerText = 'Import Settings';
         // TODO: add Learn More link post kb article creation
         this.contentText = 'You can Enable all the data that you wish to import from Quickbooks Online. All the imported data from Quickbooks Online would be available in Fyle under Admin Setting > Organization.';
+        break;
+      case 'advanced_settings':
+        this.headerText = 'Advanced Settings';
+        this.isStepOptional = true;
+        // TODO: learn more link
+        this.contentText = 'This section contains settings to automate and customize your expense export. Learn More';
+        break;
     }
   }
 
