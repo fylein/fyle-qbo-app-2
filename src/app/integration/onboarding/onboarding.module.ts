@@ -5,7 +5,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -70,7 +69,6 @@ import { ExpenseFormPreviewDialogComponent } from 'src/app/shared/components/exp
     MatIconModule,
     FlexLayoutModule,
     MatButtonModule,
-    MatStepperModule,
     MatSelectModule,
     MatSlideToggleModule,
     MatCheckboxModule,

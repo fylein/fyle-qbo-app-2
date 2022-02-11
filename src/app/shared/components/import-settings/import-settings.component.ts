@@ -199,17 +199,19 @@ export class ImportSettingsComponent implements OnInit {
   }
 
   save(): void {
-    // TODO: check ImportSettingModel class
-    const importSettingsPayload = ImportSettingModel.constructPayload(this.importSettingsForm);
-    console.log('importSettingPayload', importSettingsPayload);
-    this.isLoading = true;
-    this.importSettingService.postImportSettings(importSettingsPayload).subscribe(() => {
-      this.isLoading = false;
-      this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/advanced_settings`]);
-    }, () => {
-      this.isLoading = false;
-      // TODO: handle error
-    });
+    if (this.importSettingsForm.valid) {
+      // TODO: check ImportSettingModel class
+      const importSettingsPayload = ImportSettingModel.constructPayload(this.importSettingsForm);
+      console.log('importSettingPayload', importSettingsPayload);
+      this.isLoading = true;
+      this.importSettingService.postImportSettings(importSettingsPayload).subscribe(() => {
+        this.isLoading = false;
+        this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/advanced_settings`]);
+      }, () => {
+        this.isLoading = false;
+        // TODO: handle error
+      });
+    }
   }
 
   ngOnInit(): void {

@@ -1,41 +1,25 @@
-<!-- <div fxLayout="column" fxLayoutAlign="space-around center">
-  <div>
-    Complete the following steps to configure your Integration.
-  </div>
-
-
-  <div>
-    <mat-stepper [disableRipple]="true" [linear]="true">
-      <mat-step *ngFor="let onboardingStep of onboardingSteps" [ngSwitch]="onboardingStep" [completed]="onboardingStep.completed" [label]="onboardingStep.step"></mat-step>
-    </mat-stepper>
-  </div>
-
-</div> -->
 <div class="stepper">
   <div class="stepper--header">
-    <h4 class="stepper--header-text align-center">
+    <p class="stepper--header-text align-center">
       Complete the following steps to configure your Integration.
-    </h4>
+    </p>
   </div>
+
   <div fxLayout="row" fxLayoutAlign="center center" class="stepper--steps">
-    <div class="stepper--step">
-      <img src="assets/images/qbo-connector.svg" class="stepper--icon">
-    </div>
-    <div class="stepper--horizontal-separator"></div>
-    <div class="stepper--step">
-      <img src="assets/images/employee-setting.svg" class="stepper--icon">
-    </div>
-    <div class="stepper--horizontal-separator"></div>
-    <div class="stepper--step">
-      <img src="assets/images/export-setting.svg" class="stepper--icon">
-    </div>
-    <div class="stepper--horizontal-separator"></div>
-    <div class="stepper--step">
-      <img src="assets/images/import-setting.svg" class="stepper--icon">
-    </div>
-    <div class="stepper--horizontal-separator"></div>
-    <div class="stepper--step">
-      <img src="assets/images/advanced-setting.svg" class="stepper--icon">
+    <div *ngFor="let onboardingStep of onboardingSteps">
+      <div fxLayout="column">
+        <div fxLayout="row">
+          <div class="stepper--step" (click)="navigate(onboardingStep.completed, onboardingStep.route)" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? 'stepper--step-completed pointer' : 'cursor-disabled', !onboardingStep.active && !onboardingStep.completed ? 'stepper--step-inactive cursor-disabled' : '']">
+            <img *ngIf="onboardingStep.active" src='{{ "assets/images/svgs/stepper/" + onboardingStep.icon + ".svg" }}' class="stepper--icon">
+            <img *ngIf="!onboardingStep.active && onboardingStep.completed" src="assets/images/tick.svg" class="stepper--icon">
+            <img *ngIf="!onboardingStep.active && !onboardingStep.completed" src='{{ "assets/images/svgs/stepper/" + onboardingStep.icon + "-inactive.svg" }}' class="stepper--icon">
+          </div>
+          <div *ngIf="onboardingStep.step !== 'Advanced Settings'" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? 'stepper--horizontal-separator-completed' : 'stepper--horizontal-separator', !onboardingStep.active && !onboardingStep.completed ? 'stepper--horizontal-separator' : '']"></div>
+        </div>
+        <div (click)="navigate(onboardingStep.completed, onboardingStep.route)" class="stepper--step-name" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? 'pointer' : 'sub-text-color cursor-disabled', !onboardingStep.active && !onboardingStep.completed ? 'sub-text-color cursor-disabled' : '']">
+          <h5>{{onboardingStep.step}}</h5>
+        </div>
+      </div>
     </div>
   </div>
 </div>
