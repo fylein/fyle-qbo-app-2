@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatStepperModule } from '@angular/material/stepper';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,9 +19,7 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    // TODO: remove stepper module if it's not used
-    MatStepperModule
+    ReactiveFormsModule
   ],
   providers: [
     {
