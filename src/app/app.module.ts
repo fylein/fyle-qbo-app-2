@@ -21,6 +21,7 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    // TODO: remove stepper module if it's not used
     MatStepperModule
   ],
   providers: [

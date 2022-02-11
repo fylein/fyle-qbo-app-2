@@ -23,6 +23,22 @@
     border-radius: 48px;
   }
 
+  &--step-completed {
+    background: #24A148;
+    border: 1.5px solid #24A148;
+  }
+
+  &--step-inactive {
+    background: #FFFFFF;
+    border: 1.5px solid #DFDFE2;
+  }
+
+  &--step-name {
+    padding-top: 15px;
+    margin-left: -15px;
+    white-space: nowrap;
+  }
+
   &--icon {
     width: 24px;
     height: 24px;
@@ -32,5 +48,6 @@
   &--horizontal-separator {
     border-top: 1.5px dashed #CCCDD7;
     width: 160px;
+    align-self: center;
   }
 }
