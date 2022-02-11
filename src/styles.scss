@@ -66,11 +66,15 @@ h3, h4, h5, h6 {
 
 .btn-enabled {
   background: linear-gradient(162.38deg, #FF3366 3.01%, #FE5196 111.5%);
-  cursor: pointer;
+  @extend .pointer;
 }
 
 .btn-disabled {
   background: #FFC2D6;
+  @extend .cursor-disabled
+}
+
+.cursor-disabled {
   cursor: no-drop;
 }
 
