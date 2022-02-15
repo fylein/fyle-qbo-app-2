@@ -179,7 +179,7 @@ export class ImportSettingsComponent implements OnInit {
   createExpenseField(destinationType: string): void {
     const existingFields = this.importSettings.mapping_settings.map(setting => setting.source_field.split('_').join(' '));
     const dialogRef = this.dialog.open(ExpenseFieldCreationDialogComponent, {
-      width: '450px',
+      width: '551px',
       data: existingFields
     });
 
@@ -215,6 +215,10 @@ export class ImportSettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dialog.open(ExpenseFieldCreationDialogComponent, {
+      width: '551px',
+      data: ['existingFields']
+    });
     this.getSettingsAndSetupForm();
   }
 

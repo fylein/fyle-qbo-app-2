@@ -22,7 +22,8 @@ export class ExpenseFieldCreationDialogComponent implements OnInit {
 
   private setupForm(): void {
     this.expenseFieldsCreationForm = this.formBuilder.group({
-      name: ['', Validators.required]
+      name: ['', Validators.required],
+      placeholder: ['']
     });
 
     this.existingFields = this.data.concat(SYSTEM_FIELDS);

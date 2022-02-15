@@ -1,0 +1,92 @@
+.expense-field-creation-dialog {
+  &--header-section {
+    background: #FFFFFF;
+    border-radius: 8px 8px 0px 0px;
+    height: 64px;
+  }
+
+  &--header-text {
+    padding: 24px 175px 24px 24px;
+    font-weight: 500;
+  }
+
+  &--close-icon {
+    width: 12px;
+    height: 12px;
+    padding: 26px 24px 27px 0px;
+  }
+
+  &--horizontal-separator {
+    border-top: 1px solid #F5F5F5;
+    width: 551px;
+    align-self: center;
+  }
+
+  &--error-section {
+    padding: 24px 24px;
+  }
+
+  &--error-contents {
+    background: rgba(218, 30, 40, 0.02);
+    border: 1px solid rgba(218, 30, 40, 0.04);
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 56px;
+  }
+
+  &--error-icon {
+    width: 20px;
+    height: 20px;
+    padding: 8px 12px 28px 12px;
+  }
+
+  &--error-text {
+    padding: 8px 8px 12px 0px;
+  }
+
+  &--name-text {
+    padding: 12px 0px 8px 16px;
+  }
+
+  &--form-field {
+    padding: 8px 16px 22px 16px;
+  }
+
+  &--form-input {
+    padding: 11px 0px 11px 14px;
+    width: 519px;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1px solid #DFDFE2;
+    box-sizing: border-box;
+  }
+
+  &--form-input-disabled {
+    @extend .expense-field-creation-dialog--form-input;
+    background: #F5F5F5;
+  }
+
+  &--label-section {
+    padding: 0px 16px 16px 16px;
+  }
+
+  &--label-content {
+    background: #F5F5F5;
+    border: 1px solid #DFDFE2;
+    box-sizing: border-box;
+    border-radius: 8px;
+    height: 100px;
+  }
+
+  &--label {
+    width: 487px;
+  }
+
+  &--btn-section {
+    padding: 16px 16px 16px 0px;
+  }
+
+  &--cancel-btn {
+    padding-right: 16px;
+  }
+}

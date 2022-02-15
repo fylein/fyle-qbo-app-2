@@ -1,13 +1,86 @@
-<h2 mat-dialog-title>
-  Create new field in Fyle
-</h2>
-<form [formGroup]="expenseFieldsCreationForm">
-  <input type="text" formControlName="name" matInput>
+<div>
+  <div fxLayout="row" class="expense-field-creation-dialog--header-section">
+    <h3 class="expense-field-creation-dialog--header-text single-line-text">
+      Create a new 'Select type' field in Fyle
+    </h3>
+    <img src="assets/images/svgs/actions/close.svg" mat-dialog-close
+      class="expense-field-creation-dialog--close-icon sub-text-color pointer" />
+  </div>
 
-  <mat-dialog-actions align="end">
-    <button type="button" mat-flat-button mat-dialog-close>Cancel</button>
-    <button [disabled]="!expenseFieldsCreationForm.valid || existingFields.indexOf(expenseFieldsCreationForm.value.name.toLowerCase()) !== -1" mat-flat-button color="accent" (click)="save()">
-      Save
-    </button>
-  </mat-dialog-actions>
-</form>
+  <div class="expense-field-creation-dialog--horizontal-separator"></div>
+
+  <form [formGroup]="expenseFieldsCreationForm">
+    <div *ngIf="existingFields.indexOf(expenseFieldsCreationForm.value.name.toLowerCase()) !== -1"
+      class="expense-field-creation-dialog--error-section">
+      <div fxLayout="row" class="expense-field-creation-dialog--error-contents">
+        <img src="assets/images/svgs/general/error.svg" class="expense-field-creation-dialog--error-icon" />
+        <h5 class="expense-field-creation-dialog--error-text sub-text-color">
+          Oops! It looks like another field with the same name already exists in your Fyle account. Would you please
+          give the field a different name?
+        </h5>
+      </div>
+    </div>
+
+    <div>
+      <h5 class="expense-field-creation-dialog--name-text sub-text-color">
+        Name
+        <app-mandatory-field></app-mandatory-field>
+      </h5>
+      <div class="expense-field-creation-dialog--form-field">
+        <input class="expense-field-creation-dialog--form-input" type="text" formControlName="name"
+          placeholder="Enter Name" matInput>
+      </div>
+
+    </div>
+
+    <div>
+      <h5 class="expense-field-creation-dialog--name-text sub-text-color">
+        Placeholder
+      </h5>
+      <div class="expense-field-creation-dialog--form-field">
+        <input class="expense-field-creation-dialog--form-input" type="text" formControlName="placeholder"
+          placeholder="Enter Placeholder" matInput>
+      </div>
+    </div>
+
+    <div>
+      <h5 class="expense-field-creation-dialog--name-text sub-text-color">
+        Field Type
+      </h5>
+      <div class="expense-field-creation-dialog--form-field">
+        <input class="expense-field-creation-dialog--form-input" type="text" placeholder="Select Field" disabled>
+      </div>
+    </div>
+
+    <div>
+      <h5 class="expense-field-creation-dialog--name-text sub-text-color">
+        Field Type
+      </h5>
+      <div class="expense-field-creation-dialog--form-field">
+        <input class="expense-field-creation-dialog--form-input-disabled" type="text" placeholder="Select Field"
+          disabled>
+      </div>
+    </div>
+
+    <div class="expense-field-creation-dialog--label-section">
+      <div class="expense-field-creation-dialog--label-content">
+        <h5 class="expense-field-creation-dialog--name-text sub-text-color">
+          Label
+        </h5>
+        <div class="expense-field-creation-dialog--form-field">
+          <input class="expense-field-creation-dialog--form-input expense-field-creation-dialog--label" type="text"
+            placeholder="Enter text">
+        </div>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end center" class="expense-field-creation-dialog--btn-section">
+      <div class="expense-field-creation-dialog--cancel-btn">
+        <a mat-stroked-button mat-dialog-close>Cancel</a>
+      </div>
+      <button
+        [disabled]="!expenseFieldsCreationForm.valid || existingFields.indexOf(expenseFieldsCreationForm.value.name.toLowerCase()) !== -1"
+        mat-flat-button color="accent" (click)="save()" mat-flat-button color="primary">Create & Save</button>
+    </div>
+  </form>
+</div>
