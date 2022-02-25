@@ -116,6 +116,44 @@
           <div class="advanced-settings--field-section">
             <div fxLayout="row" fxLayoutAlign="space-between start">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="advanced-settings--field-label-section">
+                <img src="assets/images/svgs/general/list.svg" class="advanced-settings--icon">
+                <div>
+                  <div class="advanced-settings--field-header">
+                    Set description field in Quick Book Office
+                  </div>
+                  <h5 class="advanced-settings--field-label sub-text-color">
+                    Customize the data set you would like to pass to the description field of QBO while exporting expenses from Fyle
+                  </h5>
+                </div>
+              </div>
+              <div class="advanced-settings--input-section">
+                <mat-form-field floatLabel="always" appearance="outline" class="advanced-settings--form-field">
+                  <mat-select placeholder="Select and reorder the memo fields" formControlName="memoStructure" multiple>
+                    <div cdkDropList (cdkDropListDropped)="drop($event)">
+                      <mat-option *ngFor="let option of defaultMemoFields" [value]="option" cdkDrag>
+                        {{ option | titlecase | snakeCaseToSpaceCase }}
+                      </mat-option>
+                    </div>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="advanced-settings--memo-preview-section">
+              <h5 class="advanced-settings--memo-preview-text sub-text-color">
+                Preview in QBO
+              </h5>
+              <div class="advanced-settings--memo-preview-area">
+                <h5 class="advanced-settings--memo-preview">
+                  {{ memoPreviewText }}
+                </h5>
+              </div>
+            </div>
+          </div>
+
+          <div class="advanced-settings--field-section">
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+              <div fxLayout="row" fxLayoutAlign="space-between start" class="advanced-settings--field-label-section">
                 <img src="assets/images/calendar.svg" class="advanced-settings--icon">
                 <div>
                   <div class="advanced-settings--field-header">

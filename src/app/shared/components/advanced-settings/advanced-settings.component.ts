@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { AdvancedSettingFormOption, AdvancedSettingGet, AdvancedSettingModel } from 'src/app/core/models/advanced-setting.model';
@@ -20,6 +21,9 @@ export class AdvancedSettingsComponent implements OnInit {
   advancedSettings: AdvancedSettingGet;
   billPaymentAccounts: DestinationAttribute[];
   advancedSettingsForm: FormGroup;
+  defaultMemoFields: string[] = ['employee_email', 'merchant', 'purpose', 'category', 'spent_on', 'report_number', 'expense_link'];
+  memoStructure: string[] = [];
+  memoPreviewText: string = '';
   paymentSyncOptions: AdvancedSettingFormOption[] = [
     {
       label: 'Export Fyle ACH Payments to Quickbooks Online',
@@ -63,9 +67,43 @@ export class AdvancedSettingsComponent implements OnInit {
     });
   }
 
+  private createMemoStructureWatcher(): void {
+    this.formatMemoPreview();
+    this.advancedSettingsForm.controls.memoStructure.valueChanges.subscribe((memoChanges) => {
+      this.memoStructure = memoChanges;
+      this.formatMemoPreview();
+    });
+  }
+
   private setCustomValidators(): void {
     this.createPaymentSyncWatcher();
     this.createScheduledWatcher();
+    this.createMemoStructureWatcher();
+  }
+
+  private formatMemoPreview(): void {
+    const time = Date.now();
+    const today = new Date(time);
+
+    const previewValues: {[key: string]: string} = {
+      employee_email: 'john.doe@acme.com',
+      category: 'Meals and Entertainment',
+      purpose: 'Client Meeting',
+      merchant: 'Pizza Hut',
+      report_number: 'C/2021/12/R/1',
+      spent_on: today.toLocaleDateString(),
+      expense_link: 'https://app.fylehq.com/app/main/#/enterprise/view_expense/'
+    };
+
+    this.memoPreviewText = '';
+    this.memoStructure.forEach((field, index) => {
+      if (field in previewValues) {
+        this.memoPreviewText += previewValues[field];
+        if (index + 1 !== this.memoStructure.length) {
+          this.memoPreviewText = this.memoPreviewText + ' - ';
+        }
+      }
+    });
   }
 
   private setupForm(): void {
@@ -76,6 +114,8 @@ export class AdvancedSettingsComponent implements OnInit {
       paymentSync = PaymentSyncDirection.QBO_TO_FYLE;
     }
 
+    this.memoStructure = this.advancedSettings.workspace_general_settings.memo_structure;
+
     this.advancedSettingsForm = this.formBuilder.group({
       paymentSync: [paymentSync],
       billPaymentAccount: [this.advancedSettings.general_mappings.bill_payment_account?.id],
@@ -83,7 +123,8 @@ export class AdvancedSettingsComponent implements OnInit {
       singleCreditLineJE: [this.advancedSettings.workspace_general_settings.je_single_credit_line],
       autoCreateVendors: [this.advancedSettings.workspace_general_settings.auto_create_destination_entity],
       exportSchedule: [this.advancedSettings.workspace_schedules.enabled ? this.advancedSettings.workspace_schedules.interval_hours : false],
-      exportScheduleFrequency: [this.advancedSettings.workspace_schedules.enabled ? this.advancedSettings.workspace_schedules.interval_hours : null]
+      exportScheduleFrequency: [this.advancedSettings.workspace_schedules.enabled ? this.advancedSettings.workspace_schedules.interval_hours : null],
+      memoStructure: [this.advancedSettings.workspace_general_settings.memo_structure]
     });
 
     this.setCustomValidators();
@@ -100,6 +141,15 @@ export class AdvancedSettingsComponent implements OnInit {
 
       this.setupForm();
     });
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    const that = this;
+    moveItemInArray(that.defaultMemoFields, event.previousIndex, event.currentIndex);
+    const selectedMemoFields = that.defaultMemoFields.filter(memoOption => this.advancedSettingsForm.value.memoStructure.indexOf(memoOption) !== -1);
+    const memoStructure = selectedMemoFields ? selectedMemoFields : that.defaultMemoFields;
+    this.memoStructure = memoStructure;
+    this.formatMemoPreview();
   }
 
   navigateToPreviousStep(): void {
