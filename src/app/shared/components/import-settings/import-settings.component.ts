@@ -115,7 +115,8 @@ export class ImportSettingsComponent implements OnInit {
         source_field: [field.source_field, Validators.compose([this.mandatorySourceFieldValidator(), this.uniqueSourceMappingValidator()])],
         destination_field: [field.destination_field],
         import_to_fyle: [field.import_to_fyle, this.mandatorySourceFieldValidator()],
-        disable_import_to_fyle: [field.disable_import_to_fyle]
+        disable_import_to_fyle: [field.disable_import_to_fyle],
+        placeholder: ''
       })
     });
 
@@ -148,7 +149,8 @@ export class ImportSettingsComponent implements OnInit {
           source_field: mappingSetting.length > 0 ? mappingSetting[0].source_field : '',
           destination_field: attribute,
           import_to_fyle: mappingSetting.length > 0 ? mappingSetting[0].import_to_fyle : false,
-          disable_import_to_fyle: false
+          disable_import_to_fyle: false,
+          placeholder: ''
         }
       });
 
@@ -158,12 +160,13 @@ export class ImportSettingsComponent implements OnInit {
     });
   }
 
-  private patchExpenseFieldValue(destinationType: string, sourceField: string = ''): void {
+  private patchExpenseFieldValue(destinationType: string, sourceField: string = '', placeholder: string = ''): void {
     const expenseField = {
       source_field: sourceField,
       destination_field: destinationType,
       import_to_fyle: true,
-      disable_import_to_fyle: true
+      disable_import_to_fyle: true,
+      placeholder: placeholder
     };
 
     this.expenseFields.controls.filter(field => field.value.destination_field === destinationType)[0].patchValue(expenseField);
@@ -179,17 +182,17 @@ export class ImportSettingsComponent implements OnInit {
   createExpenseField(destinationType: string): void {
     const existingFields = this.importSettings.mapping_settings.map(setting => setting.source_field.split('_').join(' '));
     const dialogRef = this.dialog.open(ExpenseFieldCreationDialogComponent, {
-      width: '450px',
+      width: '551px',
       data: existingFields
     });
 
     this.patchExpenseFieldValue(destinationType);
 
-    dialogRef.afterClosed().subscribe((expenseFieldName) => {
-      if (expenseFieldName) {
-        const sourceType = expenseFieldName.split(' ').join('_').toUpperCase();
+    dialogRef.afterClosed().subscribe((expenseField) => {
+      if (expenseField) {
+        const sourceType = expenseField.name.split(' ').join('_').toUpperCase();
         this.fyleExpenseFields.push(sourceType);
-        this.patchExpenseFieldValue(destinationType, sourceType);
+        this.patchExpenseFieldValue(destinationType, sourceType, expenseField.placeholder);
       }
     });
   }
