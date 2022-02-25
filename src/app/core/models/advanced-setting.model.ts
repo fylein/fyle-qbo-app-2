@@ -24,8 +24,7 @@ export type AdvancedSettingWorkspaceGeneralSetting = {
   auto_create_destination_entity: boolean,
   je_single_credit_line: boolean,
   change_accounting_period: boolean,
-  // TODO
-  // memo_structure: string[]
+  memo_structure: string[]
 }
 
 export type AdvancedSettingGeneralMapping = {
@@ -51,8 +50,7 @@ export class AdvancedSettingModel {
         auto_create_destination_entity: advancedSettingsForm.get('autoCreateVendors')?.value,
         je_single_credit_line: advancedSettingsForm.get('singleCreditLineJE')?.value,
         change_accounting_period: advancedSettingsForm.get('changeAccountingPeriod')?.value,
-        // TODO: impl memo_structure
-        // memo_structure: advancedSettingsForm.get('memoStructure')?.value
+        memo_structure: advancedSettingsForm.get('memoStructure')?.value
       },
       general_mappings: {
         bill_payment_account: advancedSettingsForm.get('billPaymentAccount')?.value ? advancedSettingsForm.get('billPaymentAccount')?.value : emptyDestinationAttribute

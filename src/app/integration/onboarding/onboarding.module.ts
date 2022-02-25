@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -32,6 +33,7 @@ import { OnboardingFooterComponent } from 'src/app/shared/components/onboarding-
 import { ConfigurationStepHeaderSectionComponent } from 'src/app/shared/components/configuration-step-header-section/configuration-step-header-section.component';
 import { MandatoryFieldComponent } from 'src/app/shared/components/mandatory-field/mandatory-field.component';
 import { ExpenseFormPreviewDialogComponent } from 'src/app/shared/components/expense-form-preview-dialog/expense-form-preview-dialog.component';
+import { SnakeCaseToSpaceCase } from 'src/app/shared/pipes/snake-case-to-space-case.pipe';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ import { ExpenseFormPreviewDialogComponent } from 'src/app/shared/components/exp
     AdvancedSettingsComponent,
     ConfigurationStepHeaderSectionComponent,
     MandatoryFieldComponent,
-    ExpenseFormPreviewDialogComponent
+    ExpenseFormPreviewDialogComponent,
+    SnakeCaseToSpaceCase
   ],
   entryComponents: [
     ExpenseFieldCreationDialogComponent,
@@ -74,7 +77,8 @@ import { ExpenseFormPreviewDialogComponent } from 'src/app/shared/components/exp
     MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    DragDropModule
   ]
 })
 export class OnboardingModule { }
