@@ -30,7 +30,6 @@
         <input class="expense-field-creation-dialog--form-input" type="text" formControlName="name"
           placeholder="Enter Name" matInput>
       </div>
-
     </div>
 
     <div>
@@ -39,16 +38,7 @@
       </h5>
       <div class="expense-field-creation-dialog--form-field">
         <input class="expense-field-creation-dialog--form-input" type="text" formControlName="placeholder"
-          placeholder="Enter Placeholder" matInput>
-      </div>
-    </div>
-
-    <div>
-      <h5 class="expense-field-creation-dialog--name-text sub-text-color">
-        Field Type
-      </h5>
-      <div class="expense-field-creation-dialog--form-field">
-        <input class="expense-field-creation-dialog--form-input" type="text" placeholder="Select Field" disabled>
+          [placeholder]="'Enter ' + (expenseFieldsCreationForm.value.name ? expenseFieldsCreationForm.value.name : 'Placeholder')" matInput>
       </div>
     </div>
 
@@ -65,11 +55,11 @@
     <div class="expense-field-creation-dialog--label-section">
       <div class="expense-field-creation-dialog--label-content">
         <h5 class="expense-field-creation-dialog--name-text sub-text-color">
-          Label
+          {{expenseFieldsCreationForm.value.name ? expenseFieldsCreationForm.value.name : 'Label'}}
         </h5>
         <div class="expense-field-creation-dialog--form-field">
           <input class="expense-field-creation-dialog--form-input expense-field-creation-dialog--label" type="text"
-            placeholder="Enter text">
+          [placeholder]="expenseFieldsCreationForm.value.placeholder ? expenseFieldsCreationForm.value.placeholder : 'Enter Text'">
         </div>
       </div>
     </div>

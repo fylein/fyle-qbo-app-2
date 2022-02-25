@@ -30,7 +30,11 @@ export class ExpenseFieldCreationDialogComponent implements OnInit {
   }
 
   save(): void {
-    this.dialogRef.close(this.expenseFieldsCreationForm.get('name')?.value);
+    const expenseField = {
+      name: this.expenseFieldsCreationForm.get('name')?.value,
+      placeholder: this.expenseFieldsCreationForm.get('placeholder')?.value
+    }
+    this.dialogRef.close(expenseField);
   }
 
   ngOnInit(): void {
