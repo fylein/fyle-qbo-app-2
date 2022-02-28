@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-simple-search-select',
@@ -8,29 +8,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class SimpleSearchSelectComponent implements OnInit {
 
-  simpleSearchForm: FormGroup;
-  @Output() filterOptions = new EventEmitter<string>();
+  @Input() form: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder
-  ) { }
-
-  private createSearchTextWatcher(): void {
-    this.simpleSearchForm.controls.searchText.valueChanges.subscribe((searchText: string) =>{
-      this.filterOptions.emit(searchText);
-    });
-  }
-
-  private setupForm(): void {
-    this.simpleSearchForm = this.formBuilder.group({
-      searchText: ['']
-    });
-
-    this.createSearchTextWatcher();
-  }
+  constructor() { }
 
   ngOnInit(): void {
-    this.setupForm();
   }
 
 }

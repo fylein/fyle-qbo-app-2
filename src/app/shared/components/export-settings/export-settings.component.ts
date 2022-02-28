@@ -6,6 +6,7 @@ import { DestinationAttribute } from 'src/app/core/models/destination-attribute.
 import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, ReimbursableExpensesObject } from 'src/app/core/models/enum.model';
 import { ExportSettingGet, ExportSettingFormOption, ExportSettingModel } from 'src/app/core/models/export-setting.model';
 import { ExportSettingService } from 'src/app/core/services/export-setting.service';
+import { HelperService } from 'src/app/core/services/helper.service';
 import { MappingService } from 'src/app/core/services/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace.service';
 
@@ -91,6 +92,7 @@ export class ExportSettingsComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private exportSettingService: ExportSettingService,
+    public helperService: HelperService,
     private mappingService: MappingService,
     private router: Router,
     private workspaceService: WorkspaceService
@@ -305,10 +307,6 @@ export class ExportSettingsComponent implements OnInit {
 
     this.setCustomValidators();
     this.isLoading = false;
-  }
-
-  filterOptions(searchText: string): void {
-    this.exportSettingsForm.controls.searchOption.patchValue(searchText);
   }
 
   navigateToPreviousStep(): void {
