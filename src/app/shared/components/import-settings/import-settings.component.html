@@ -193,7 +193,8 @@
                 <div>
                   <mat-form-field floatLabel="always" appearance="outline" class="import-settings--default-tax-input">
                     <mat-select placeholder="Select Default Tax Code" formControlName="defaultTaxCode">
-                      <mat-option *ngFor="let option of taxCodes" [value]="{id: option.id, name: option.value}">
+                      <app-simple-search-select [form]="importSettingsForm"></app-simple-search-select>
+                      <mat-option (click)="helperService.clearSearchText(importSettingsForm)" *ngFor="let option of taxCodes | search : importSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                         {{ option.value }}
                       </mat-option>
                     </mat-select>

@@ -105,7 +105,8 @@
             <div class="advanced-settings--input-section">
               <mat-form-field floatLabel="always" appearance="outline" class="advanced-settings--form-field">
                 <mat-select placeholder="Select a Payment Account" formControlName="billPaymentAccount">
-                  <mat-option *ngFor="let option of billPaymentAccounts" [value]="{id: option.id, name: option.value}">
+                  <app-simple-search-select [form]="advancedSettingsForm"></app-simple-search-select>
+                  <mat-option (click)="helperService.clearSearchText(advancedSettingsForm)" *ngFor="let option of billPaymentAccounts | search : advancedSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                     {{ option.value }}
                   </mat-option>
                 </mat-select>
