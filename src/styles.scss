@@ -102,3 +102,32 @@ h3, h4, h5, h6 {
 .mat-dialog-container {
   padding: 0 !important;
 }
+
+.mat-select-panel {
+  margin-top: 50px;
+}
+
+.search-inside-select-section {
+  background: #F5F5F5;
+
+  &--search-input {
+    padding: 12px 11px 12px 10px;
+  }
+
+  &--search-area {
+    background: #FFFFFF;border: 1px solid #DDD;
+  }
+
+  &--search-icon {
+    padding: 8px 10px 7px 10px;
+  }
+
+  &--input-field {
+    border-width: 0px;
+    padding: 8px 0px 6px 0px;
+  }
+}
+
+.mat-option.mat-active {
+  // background: red !important;
+}

@@ -255,6 +255,41 @@
               </div>
             </div>
 
+            <div *ngIf="showReimbursableAccountsPayableField()" fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
+              <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
+                <!-- TODO: check padding-left: 40px; -->
+                <div class="export-settings--field-label-text-section export-settings--field-label-text-section-without-img" style="width: 552px; padding-left: 40px;">
+                  <div class="export-settings--field-header">
+                    To which Accounts Payable account should the Bill be posted to?
+                    <app-mandatory-field></app-mandatory-field>
+                  </div>
+                  <h5 class="export-settings--field-label sub-text-color">
+                    The integration will post the offset credit entry in Bill to the selected Accounts Payable Account.
+                  </h5>
+                </div>
+              </div>
+              <div class="export-settings--input-section">
+                <mat-form-field floatLabel="always" appearance="outline" class="export-settings--form-field">
+                  <mat-select
+                    placeholder="Select accounts payable"
+                    formControlName="accountsPayable" (keydown)="$event.stopPropagation()">
+                    <div class="search-inside-select-section">
+                      <div class="search-inside-select-section--search-input">
+                        <div fxLayout="row" class="search-inside-select-section--search-area">
+                          <img class="search-inside-select-section--search-icon" src="assets/images/svgs/actions/search.svg">
+                          <!-- TODO: fix inline style -->
+                          <input class="search-inside-select-section--input-field" style="border-width: 0px; padding: 8px 0px 6px 0px;" placeholder="Search" class="export-settings--search" formControlName="searchOption" cdkFocusInitial type="text" matInput>
+                        </div>
+                      </div>
+                    </div>
+                    <mat-option *ngFor="let option of accountsPayables | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
+                      {{ option.value }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
             <div fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
                 <img src="assets/images/tabs.svg" class="export-settings--icon">
@@ -393,6 +428,32 @@
                     placeholder="Select default credit card vendor"
                     formControlName="defaultCreditCardVendor">
                     <mat-option *ngFor="let option of vendors" [value]="{id: option.id, name: option.value}">
+                      {{ option.value }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div *ngIf="showCCCAccountsPayableField() && !showReimbursableAccountsPayableField()" fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
+              <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
+                <!-- TODO: check padding-left: 40px; -->
+                <div class="export-settings--field-label-text-section export-settings--field-label-text-section-without-img" style="width: 552px; padding-left: 40px;">
+                  <div class="export-settings--field-header">
+                    To which Accounts Payable account should the Bill be posted to?
+                    <app-mandatory-field></app-mandatory-field>
+                  </div>
+                  <h5 class="export-settings--field-label sub-text-color">
+                    The integration will post the offset credit entry in Bill to the selected Accounts Payable Account.
+                  </h5>
+                </div>
+              </div>
+              <div class="export-settings--input-section">
+                <mat-form-field floatLabel="always" appearance="outline" class="export-settings--form-field">
+                  <mat-select
+                    placeholder="Select accounts payable"
+                    formControlName="accountsPayable">
+                    <mat-option *ngFor="let option of accountsPayables" [value]="{id: option.id, name: option.value}">
                       {{ option.value }}
                     </mat-option>
                   </mat-select>

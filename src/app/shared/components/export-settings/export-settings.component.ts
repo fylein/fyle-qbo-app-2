@@ -180,7 +180,7 @@ export class ExportSettingsComponent implements OnInit {
   }
 
   showBankAccountField(): boolean {
-    return this.exportSettings.workspace_general_settings.employee_field_mapping === EmployeeFieldMapping.EMPLOYEE && this.exportSettingsForm.controls.reimbursableExportType.value !== ReimbursableExpensesObject.EXPENSE;
+    return this.exportSettings.workspace_general_settings.employee_field_mapping === EmployeeFieldMapping.EMPLOYEE && this.exportSettingsForm.controls.reimbursableExportType.value && this.exportSettingsForm.controls.reimbursableExportType.value !== ReimbursableExpensesObject.EXPENSE;
   }
 
   showCreditCardAccountField(): boolean {
@@ -195,8 +195,12 @@ export class ExportSettingsComponent implements OnInit {
     return this.exportSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.EXPENSE;
   }
 
-  showAccountsPayableField(): boolean {
-    return (this.exportSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.BILL || this.exportSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.BILL) || (this.exportSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.JOURNAL_ENTRY && this.exportSettings.workspace_general_settings.employee_field_mapping === EmployeeFieldMapping.VENDOR);
+  showReimbursableAccountsPayableField(): boolean {
+    return (this.exportSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.BILL) || (this.exportSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.JOURNAL_ENTRY && this.exportSettings.workspace_general_settings.employee_field_mapping === EmployeeFieldMapping.VENDOR);
+  }
+
+  showCCCAccountsPayableField(): boolean {
+    return this.exportSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.BILL;
   }
 
   getAccountsPayableLabel(): string {
@@ -218,7 +222,7 @@ export class ExportSettingsComponent implements OnInit {
       this.exportSettingsForm.controls.defaultCCCAccount.updateValueAndValidity();
     }
 
-    if (this.showAccountsPayableField()) {
+    if (this.showReimbursableAccountsPayableField() || this.showCCCAccountsPayableField()) {
       this.exportSettingsForm.controls.accountsPayable.setValidators(Validators.required);
     } else {
       this.exportSettingsForm.controls.accountsPayable.clearValidators();
@@ -295,7 +299,8 @@ export class ExportSettingsComponent implements OnInit {
       // TODO: handle accounts payable for bill payments in advanced settings
       accountsPayable: [this.exportSettings.general_mappings.accounts_payable?.id],
       defaultCreditCardVendor: [this.exportSettings.general_mappings.default_ccc_vendor?.id],
-      qboExpenseAccount: [this.exportSettings.general_mappings.qbo_expense_account?.id]
+      qboExpenseAccount: [this.exportSettings.general_mappings.qbo_expense_account?.id],
+      searchOption: []
     });
 
     this.setCustomValidators();
