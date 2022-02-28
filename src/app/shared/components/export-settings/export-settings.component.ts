@@ -307,6 +307,10 @@ export class ExportSettingsComponent implements OnInit {
     this.isLoading = false;
   }
 
+  filterOptions(searchText: string): void {
+    this.exportSettingsForm.controls.searchOption.patchValue(searchText);
+  }
+
   navigateToPreviousStep(): void {
     this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/employee_settings`]);
   }

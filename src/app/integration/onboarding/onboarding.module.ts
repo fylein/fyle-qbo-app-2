@@ -35,6 +35,7 @@ import { MandatoryFieldComponent } from 'src/app/shared/components/mandatory-fie
 import { ExpenseFormPreviewDialogComponent } from 'src/app/shared/components/expense-form-preview-dialog/expense-form-preview-dialog.component';
 import { SnakeCaseToSpaceCase } from 'src/app/shared/pipes/snake-case-to-space-case.pipe';
 import { SearchPipe } from 'src/app/shared/pipes/search.pipe';
+import { SimpleSearchSelectComponent } from 'src/app/shared/components/simple-search-select/simple-search-select.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { SearchPipe } from 'src/app/shared/pipes/search.pipe';
     MandatoryFieldComponent,
     ExpenseFormPreviewDialogComponent,
     SnakeCaseToSpaceCase,
-    SearchPipe
+    SearchPipe,
+    SimpleSearchSelectComponent
   ],
   entryComponents: [
     ExpenseFieldCreationDialogComponent,

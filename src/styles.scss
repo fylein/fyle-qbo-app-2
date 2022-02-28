@@ -107,7 +107,7 @@ h3, h4, h5, h6 {
   margin-top: 50px;
 }
 
-.search-inside-select-section {
+.search-select {
   background: #F5F5F5;
 
   &--search-input {
@@ -129,5 +129,6 @@ h3, h4, h5, h6 {
 }
 
 .mat-option.mat-active {
+  // TODO:
   // background: red !important;
 }
