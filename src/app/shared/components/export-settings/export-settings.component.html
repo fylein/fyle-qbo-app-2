@@ -221,7 +221,8 @@
                   <mat-select
                     placeholder="Select Bank Account"
                     formControlName="bankAccount">
-                    <mat-option *ngFor="let option of bankAccounts" [value]="{id: option.id, name: option.value}">
+                    <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
+                    <mat-option (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of bankAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                       {{ option.value }}
                     </mat-option>
                   </mat-select>
@@ -247,7 +248,35 @@
                   <mat-select
                     placeholder="Select Expense Account"
                     formControlName="qboExpenseAccount">
-                    <mat-option *ngFor="let option of expenseAccounts" [value]="{id: option.id, name: option.value}">
+                    <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
+                    <mat-option (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of expenseAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
+                      {{ option.value }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div *ngIf="showReimbursableAccountsPayableField()" fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
+              <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
+                <!-- TODO: check padding-left: 40px; -->
+                <div class="export-settings--field-label-text-section export-settings--field-label-text-section-without-img" style="width: 552px; padding-left: 40px;">
+                  <div class="export-settings--field-header">
+                    To which Accounts Payable account should the Bill be posted to?
+                    <app-mandatory-field></app-mandatory-field>
+                  </div>
+                  <h5 class="export-settings--field-label sub-text-color">
+                    The integration will post the offset credit entry in Bill to the selected Accounts Payable Account.
+                  </h5>
+                </div>
+              </div>
+              <div class="export-settings--input-section">
+                <mat-form-field floatLabel="always" appearance="outline" class="export-settings--form-field">
+                  <mat-select
+                    placeholder="Select accounts payable"
+                    formControlName="accountsPayable" (keydown)="$event.stopPropagation()">
+                    <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
+                    <mat-option (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of accountsPayables | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                       {{ option.value }}
                     </mat-option>
                   </mat-select>
@@ -365,7 +394,8 @@
                   <mat-select
                     placeholder="Select Default Credit Card Vendor"
                     formControlName="defaultCCCAccount">
-                    <mat-option *ngFor="let option of cccAccounts" [value]="{id: option.id, name: option.value}">
+                    <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
+                    <mat-option (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of cccAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                       {{ option.value }}
                     </mat-option>
                   </mat-select>
@@ -392,7 +422,35 @@
                   <mat-select
                     placeholder="Select default credit card vendor"
                     formControlName="defaultCreditCardVendor">
-                    <mat-option *ngFor="let option of vendors" [value]="{id: option.id, name: option.value}">
+                    <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
+                    <mat-option (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of vendors | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
+                      {{ option.value }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div *ngIf="showCCCAccountsPayableField() && !showReimbursableAccountsPayableField()" fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
+              <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
+                <!-- TODO: check padding-left: 40px; -->
+                <div class="export-settings--field-label-text-section export-settings--field-label-text-section-without-img" style="width: 552px; padding-left: 40px;">
+                  <div class="export-settings--field-header">
+                    To which Accounts Payable account should the Bill be posted to?
+                    <app-mandatory-field></app-mandatory-field>
+                  </div>
+                  <h5 class="export-settings--field-label sub-text-color">
+                    The integration will post the offset credit entry in Bill to the selected Accounts Payable Account.
+                  </h5>
+                </div>
+              </div>
+              <div class="export-settings--input-section">
+                <mat-form-field floatLabel="always" appearance="outline" class="export-settings--form-field">
+                  <mat-select
+                    placeholder="Select accounts payable"
+                    formControlName="accountsPayable">
+                    <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
+                    <mat-option (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of accountsPayables | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                       {{ option.value }}
                     </mat-option>
                   </mat-select>

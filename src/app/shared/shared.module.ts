@@ -18,6 +18,7 @@ import { OnboardingFooterComponent } from './components/onboarding-footer/onboar
 import { ConfigurationStepHeaderSectionComponent } from './components/configuration-step-header-section/configuration-step-header-section.component';
 import { MandatoryFieldComponent } from './components/mandatory-field/mandatory-field.component';
 import { ExpenseFormPreviewDialogComponent } from './components/expense-form-preview-dialog/expense-form-preview-dialog.component';
+import { SimpleSearchSelectComponent } from './components/simple-search-select/simple-search-select.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ExpenseFormPreviewDialogComponent } from './components/expense-form-pre
     OnboardingFooterComponent,
     ConfigurationStepHeaderSectionComponent,
     MandatoryFieldComponent,
-    ExpenseFormPreviewDialogComponent
+    ExpenseFormPreviewDialogComponent,
+    SimpleSearchSelectComponent
   ],
   imports: [
     CommonModule,

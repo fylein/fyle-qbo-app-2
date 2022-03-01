@@ -7,6 +7,7 @@ import { DestinationAttribute } from 'src/app/core/models/destination-attribute.
 import { MappingDestinationField } from 'src/app/core/models/enum.model';
 import { ExpenseFieldsFormOption, ImportSettingGet, ImportSettingModel } from 'src/app/core/models/import-setting.model';
 import { MappingSetting } from 'src/app/core/models/mapping-setting.model';
+import { HelperService } from 'src/app/core/services/helper.service';
 import { ImportSettingService } from 'src/app/core/services/import-setting.service';
 import { MappingService } from 'src/app/core/services/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace.service';
@@ -36,6 +37,7 @@ export class ImportSettingsComponent implements OnInit {
     public dialog: MatDialog,
     private importSettingService: ImportSettingService,
     private formBuilder: FormBuilder,
+    public helperService: HelperService,
     private router: Router,
     private mappingService: MappingService,
     private workspaceService: WorkspaceService
@@ -125,7 +127,8 @@ export class ImportSettingsComponent implements OnInit {
       chartOfAccountTypes: this.formBuilder.array(chartOfAccountTypeFormArray),
       expenseFields: this.formBuilder.array(expenseFieldsFormArray),
       taxCode: [this.importSettings.workspace_general_settings.import_tax_codes],
-      defaultTaxCode: [this.importSettings.general_mappings.default_tax_code?.id]
+      defaultTaxCode: [this.importSettings.general_mappings.default_tax_code?.id],
+      searchOption: []
     });
 
     this.createTaxCodeWatcher();

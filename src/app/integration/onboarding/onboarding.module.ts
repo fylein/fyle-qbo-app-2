@@ -34,6 +34,8 @@ import { ConfigurationStepHeaderSectionComponent } from 'src/app/shared/componen
 import { MandatoryFieldComponent } from 'src/app/shared/components/mandatory-field/mandatory-field.component';
 import { ExpenseFormPreviewDialogComponent } from 'src/app/shared/components/expense-form-preview-dialog/expense-form-preview-dialog.component';
 import { SnakeCaseToSpaceCase } from 'src/app/shared/pipes/snake-case-to-space-case.pipe';
+import { SearchPipe } from 'src/app/shared/pipes/search.pipe';
+import { SimpleSearchSelectComponent } from 'src/app/shared/components/simple-search-select/simple-search-select.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { SnakeCaseToSpaceCase } from 'src/app/shared/pipes/snake-case-to-space-c
     ConfigurationStepHeaderSectionComponent,
     MandatoryFieldComponent,
     ExpenseFormPreviewDialogComponent,
-    SnakeCaseToSpaceCase
+    SnakeCaseToSpaceCase,
+    SearchPipe,
+    SimpleSearchSelectComponent
   ],
   entryComponents: [
     ExpenseFieldCreationDialogComponent,

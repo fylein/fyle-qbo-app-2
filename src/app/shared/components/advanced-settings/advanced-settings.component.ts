@@ -9,6 +9,7 @@ import { PaymentSyncDirection } from 'src/app/core/models/enum.model';
 import { AdvancedSettingService } from 'src/app/core/services/advanced-setting.service';
 import { MappingService } from 'src/app/core/services/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace.service';
+import { HelperService } from 'src/app/core/services/helper.service';
 
 @Component({
   selector: 'app-advanced-settings',
@@ -40,6 +41,7 @@ export class AdvancedSettingsComponent implements OnInit {
   constructor(
     private advancedSettingService: AdvancedSettingService,
     private formBuilder: FormBuilder,
+    public helperService: HelperService,
     private mappingService: MappingService,
     private router: Router,
     private workspaceService: WorkspaceService
@@ -124,7 +126,8 @@ export class AdvancedSettingsComponent implements OnInit {
       autoCreateVendors: [this.advancedSettings.workspace_general_settings.auto_create_destination_entity],
       exportSchedule: [this.advancedSettings.workspace_schedules.enabled ? this.advancedSettings.workspace_schedules.interval_hours : false],
       exportScheduleFrequency: [this.advancedSettings.workspace_schedules.enabled ? this.advancedSettings.workspace_schedules.interval_hours : null],
-      memoStructure: [this.advancedSettings.workspace_general_settings.memo_structure]
+      memoStructure: [this.advancedSettings.workspace_general_settings.memo_structure],
+      searchOption: []
     });
 
     this.setCustomValidators();
