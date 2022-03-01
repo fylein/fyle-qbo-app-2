@@ -173,6 +173,19 @@ export class ExportSettingsComponent implements OnInit {
     });
   }
 
+  private restrictExpenseGroupSetting(creditCardExportType: string) : void {
+    if (creditCardExportType === CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || creditCardExportType === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE) {
+      this.exportSettingsForm.controls.creditCardExportGroup.setValue(ExpenseGroupingFieldOption.EXPENSE_ID);
+      this.exportSettingsForm.controls.creditCardExportGroup.disable();
+
+      this.exportSettingsForm.controls.creditCardExportDate.setValue(ExportDateType.SPENT_AT);
+      this.exportSettingsForm.controls.creditCardExportDate.disable();
+    } else {
+      this.exportSettingsForm.controls.creditCardExportGroup.enable();
+      this.exportSettingsForm.controls.creditCardExportDate.enable();
+    }
+  }
+
   private createReimbursableExportTypeWatcher(): void {
     this.exportSettingsForm.controls.reimbursableExportType.valueChanges.subscribe(() => {
       this.setGeneralMappingsValidator();
@@ -180,8 +193,9 @@ export class ExportSettingsComponent implements OnInit {
   }
 
   private createCreditCardExportTypeWatcher(): void {
-    this.exportSettingsForm.controls.creditCardExportType.valueChanges.subscribe(() => {
+    this.exportSettingsForm.controls.creditCardExportType.valueChanges.subscribe((creditCardExportType: string) => {
       this.setGeneralMappingsValidator();
+      this.restrictExpenseGroupSetting(creditCardExportType);
     });
   }
 
@@ -261,7 +275,7 @@ export class ExportSettingsComponent implements OnInit {
     }
   }
 
-  private setCustomValidators(): void {
+  private setCustomValidatorsAndWatchers(): void {
     // Toggles
     this.createReimbursableExpenseWatcher();
     this.createCreditCardExpenseWatcher();
@@ -321,7 +335,7 @@ export class ExportSettingsComponent implements OnInit {
       searchOption: []
     });
 
-    this.setCustomValidators();
+    this.setCustomValidatorsAndWatchers();
     this.isLoading = false;
   }
 
