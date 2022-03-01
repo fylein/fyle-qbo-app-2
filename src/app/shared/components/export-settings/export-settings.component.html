@@ -135,7 +135,7 @@
         <form [formGroup]="exportSettingsForm" class="export-settings--field">
           <div fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
             <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
-              <img src="assets/images/question-mark.svg" class="export-settings--icon">
+              <img src="assets/images/svgs/actions/question-mark.svg" class="export-settings--icon">
               <div>
                 <div class="export-settings--field-header">
                   At which state should the expenses be ready to export from Fyle?
@@ -180,7 +180,7 @@
           <div *ngIf="exportSettingsForm.value.reimbursableExpense">
             <div fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
-                <img src="assets/images/expense.svg" class="export-settings--icon">
+                <img src="assets/images/svgs/general/expense.svg" class="export-settings--icon">
                 <!-- TODO: check this super weird behaviour -->
                 <div class="export-settings--field-label-text-section" style="width: 552px;">
                   <div class="export-settings--field-header">
@@ -286,7 +286,7 @@
 
             <div fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
-                <img src="assets/images/tabs.svg" class="export-settings--icon">
+                <img src="assets/images/svgs/general/tabs.svg" class="export-settings--icon">
                 <div>
                   <div class="export-settings--field-header">
                     How should the expense in {{ exportSettingsForm.value.reimbursableExportType ? (exportSettingsForm.value.reimbursableExportType | titlecase) : 'QBO' }} be grouped?
@@ -310,7 +310,7 @@
 
             <div fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
-                <img src="assets/images/calendar.svg" class="export-settings--icon">
+                <img src="assets/images/svgs/general/calendar.svg" class="export-settings--icon">
                 <div class="export-settings--field-label-text-section" style="width: 552px;">
                   <div class="export-settings--field-header">
                     Set the {{ exportSettingsForm.value.reimbursableExportType ?
@@ -351,7 +351,7 @@
           <div *ngIf="exportSettingsForm.value.creditCardExpense">
             <div fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
-                <img src="assets/images/expense.svg" class="export-settings--icon">
+                <img src="assets/images/svgs/general/expense.svg" class="export-settings--icon">
                 <!-- TODO: check this super weird behaviour -->
                 <div class="export-settings--field-label-text-section" style="width: 552px;">
                   <div class="export-settings--field-header">
@@ -488,7 +488,7 @@
 
             <div fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
-                <img src="assets/images/tabs.svg" class="export-settings--icon">
+                <img src="assets/images/svgs/general/tabs.svg" class="export-settings--icon">
                 <div>
                   <div class="export-settings--field-header">
                     How should the expense in {{ exportSettingsForm.value.creditCardExportType ? (exportSettingsForm.value.creditCardExportType | titlecase) : 'QBO' }} be grouped?
@@ -512,7 +512,7 @@
 
             <div fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
-                <img src="assets/images/calendar.svg" class="export-settings--icon">
+                <img src="assets/images/svgs/general/calendar.svg" class="export-settings--icon">
                 <div class="export-settings--field-label-text-section" style="width: 552px;">
                   <div class="export-settings--field-header">
                     Set the {{ exportSettingsForm.value.creditCardExportType ?
@@ -543,7 +543,7 @@
           <div fxLayout="row" fxLayoutAlign="space-between center"
             class="export-settings--field-section export-settings--footer-contents">
             <div fxLayout="row" class="export-settings--back-btn pointer" (click)="navigateToPreviousStep()">
-              <img src="assets/images/arrow-mark-left.svg" class="export-settings--img-arrow-left" />
+              <img src="assets/images/svgs/actions/arrow-mark-left.svg" class="export-settings--img-arrow-left" />
               <h5 class="export-settings--back-btn-text align-center">Back</h5>
             </div>
             <div fxLayout="row" class="export-settings--submit-btn pointer"
@@ -551,7 +551,7 @@
               <h5 class="export-settings--submit-btn-text single-line-text">
                 Save & Continue
               </h5>
-              <img src="assets/images/arrow-mark-right.svg" class="export-settings--submit-btn-arrow-text" />
+              <img src="assets/images/svgs/actions/arrow-mark-right.svg" class="export-settings--submit-btn-arrow-text" />
             </div>
           </div>
         </form>
