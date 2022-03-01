@@ -29,10 +29,10 @@
 
       <div class="navbar--profile-section">
         <div>
-          {{user.full_name}}
+          {{ user.full_name | trimCharacter: 20 }}
         </div>
         <div class="navbar--user-org navbar--small-text sub-text-color">
-          {{user.org_name}}
+          {{ user.org_name | trimCharacter: 26 }}
         </div>
       </div>
     </div>

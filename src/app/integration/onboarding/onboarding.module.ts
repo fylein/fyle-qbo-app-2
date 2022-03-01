@@ -37,6 +37,7 @@ import { ExpenseFormPreviewDialogComponent } from 'src/app/shared/components/exp
 import { SnakeCaseToSpaceCase } from 'src/app/shared/pipes/snake-case-to-space-case.pipe';
 import { SearchPipe } from 'src/app/shared/pipes/search.pipe';
 import { SimpleSearchSelectComponent } from 'src/app/shared/components/simple-search-select/simple-search-select.component';
+import { TrimCharacterPipe } from 'src/app/shared/pipes/trim-character.pipe';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { SimpleSearchSelectComponent } from 'src/app/shared/components/simple-se
     ExpenseFormPreviewDialogComponent,
     SnakeCaseToSpaceCase,
     SearchPipe,
-    SimpleSearchSelectComponent
+    SimpleSearchSelectComponent,
+    TrimCharacterPipe
   ],
   entryComponents: [
     ExpenseFieldCreationDialogComponent,
