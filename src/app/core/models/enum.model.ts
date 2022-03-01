@@ -33,7 +33,8 @@ export enum CorporateCreditCardExpensesObject {
   CREDIT_CARD_PURCHASE = 'CREDIT CARD PURCHASE',
   BILL = 'BILL',
   JOURNAL_ENTRY = 'JOURNAL ENTRY',
-  EXPENSE = 'EXPENSE'
+  EXPENSE = 'EXPENSE',
+  DEBIT_CARD_EXPENSE = 'DEBIT CARD EXPENSE'
 }
 
 export enum MappingSourceField {

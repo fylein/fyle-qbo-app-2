@@ -29,7 +29,7 @@ export class ImportSettingsComponent implements OnInit {
   qboExpenseFields: ExpenseFieldsFormOption[];
   workspaceId: string = this.workspaceService.getWorkspaceId();
   chartOfAccountTypesList: string[] = [
-    'Expense', 'Other Expense', 'Fixed Assets', 'Cost of Goods Sold', 'Current Liability', 'Equity',
+    'Expense', 'Other Expense', 'Fixed Asset', 'Cost of Goods Sold', 'Current Liability', 'Equity',
     'Other Current Asset', 'Other Current Liability', 'Long Term Liability', 'Current Asset'
   ];
 
