@@ -6,6 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -82,7 +83,8 @@ import { SimpleSearchSelectComponent } from 'src/app/shared/components/simple-se
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    DragDropModule
+    DragDropModule,
+    MatTooltipModule
   ]
 })
 export class OnboardingModule { }

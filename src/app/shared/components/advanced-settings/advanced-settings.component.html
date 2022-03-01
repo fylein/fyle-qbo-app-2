@@ -106,7 +106,7 @@
               <mat-form-field floatLabel="always" appearance="outline" class="advanced-settings--form-field">
                 <mat-select placeholder="Select a Payment Account" formControlName="billPaymentAccount">
                   <app-simple-search-select [form]="advancedSettingsForm"></app-simple-search-select>
-                  <mat-option (click)="helperService.clearSearchText(advancedSettingsForm)" *ngFor="let option of billPaymentAccounts | search : advancedSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
+                  <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(advancedSettingsForm)" *ngFor="let option of billPaymentAccounts | search : advancedSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                     {{ option.value }}
                   </mat-option>
                 </mat-select>

@@ -222,7 +222,7 @@
                     placeholder="Select Bank Account"
                     formControlName="bankAccount">
                     <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
-                    <mat-option (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of bankAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
+                    <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of bankAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                       {{ option.value }}
                     </mat-option>
                   </mat-select>
@@ -249,7 +249,7 @@
                     placeholder="Select Expense Account"
                     formControlName="qboExpenseAccount">
                     <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
-                    <mat-option (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of expenseAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
+                    <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of expenseAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                       {{ option.value }}
                     </mat-option>
                   </mat-select>
@@ -276,7 +276,7 @@
                     placeholder="Select accounts payable"
                     formControlName="accountsPayable" (keydown)="$event.stopPropagation()">
                     <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
-                    <mat-option (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of accountsPayables | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
+                    <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of accountsPayables | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                       {{ option.value }}
                     </mat-option>
                   </mat-select>
@@ -395,7 +395,7 @@
                     placeholder="Select Default Credit Card Vendor"
                     formControlName="defaultCCCAccount">
                     <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
-                    <mat-option (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of cccAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
+                    <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of cccAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                       {{ option.value }}
                     </mat-option>
                   </mat-select>
@@ -423,7 +423,7 @@
                     placeholder="Select default credit card vendor"
                     formControlName="defaultCreditCardVendor">
                     <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
-                    <mat-option (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of vendors | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
+                    <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of vendors | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                       {{ option.value }}
                     </mat-option>
                   </mat-select>
@@ -450,7 +450,7 @@
                     placeholder="Select accounts payable"
                     formControlName="accountsPayable">
                     <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
-                    <mat-option (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of accountsPayables | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
+                    <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of accountsPayables | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                       {{ option.value }}
                     </mat-option>
                   </mat-select>
