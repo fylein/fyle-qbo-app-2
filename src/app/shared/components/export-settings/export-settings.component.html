@@ -403,6 +403,34 @@
               </div>
             </div>
 
+            <div *ngIf="showDebitCardAccountField()" fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
+              <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
+                <!-- TODO: check padding-left: 40px; -->
+                <div class="export-settings--field-label-text-section export-settings--field-label-text-section-without-img" style="width: 552px; padding-left: 40px;">
+                  <div class="export-settings--field-header">
+                    Set Default Debit Card Account as
+                    <app-mandatory-field></app-mandatory-field>
+                  </div>
+                  <h5 class="export-settings--field-label sub-text-color">
+                    Post all your company debit card transactions to a default debit card account.
+                    <!-- TODO: Add note section -->
+                  </h5>
+                </div>
+              </div>
+              <div class="export-settings--input-section">
+                <mat-form-field floatLabel="always" appearance="outline" class="export-settings--form-field">
+                  <mat-select
+                    placeholder="Select Default Debit Card Account"
+                    formControlName="defaultDebitCardAccount">
+                    <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
+                    <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of bankAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
+                      {{ option.value }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
             <div *ngIf="showDefaultCreditCardVendorField()" fxLayout="row" fxLayoutAlign="space-between center" class="export-settings--field-section">
               <div fxLayout="row" fxLayoutAlign="space-between start" class="export-settings--field-label-section">
                 <!-- TODO: check padding-left: 40px; -->

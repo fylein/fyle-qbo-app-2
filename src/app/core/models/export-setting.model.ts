@@ -21,7 +21,8 @@ export type ExportSettingGeneralMapping = {
   default_ccc_account: DefaultDestinationAttribute,
   accounts_payable: DefaultDestinationAttribute,
   default_ccc_vendor: DefaultDestinationAttribute,
-  qbo_expense_account: DefaultDestinationAttribute
+  qbo_expense_account: DefaultDestinationAttribute,
+  default_debit_card_account: DefaultDestinationAttribute
 }
 
 export type ExportSettingGet = {
@@ -54,7 +55,8 @@ export class ExportSettingModel {
         default_ccc_account: exportSettingsForm.get('defaultCreditCardAccount')?.value ? exportSettingsForm.get('defaultCreditCardAccount')?.value : emptyDestinationAttribute,
         accounts_payable: exportSettingsForm.get('accountsPayable')?.value ? exportSettingsForm.get('accountsPayable')?.value : emptyDestinationAttribute,
         default_ccc_vendor: exportSettingsForm.get('defaultCreditCardVendor')?.value ? exportSettingsForm.get('defaultCreditCardVendor')?.value : emptyDestinationAttribute,
-        qbo_expense_account: exportSettingsForm.get('qboExpenseAccount')?.value ? exportSettingsForm.get('qboExpenseAccount')?.value : emptyDestinationAttribute
+        qbo_expense_account: exportSettingsForm.get('qboExpenseAccount')?.value ? exportSettingsForm.get('qboExpenseAccount')?.value : emptyDestinationAttribute,
+        default_debit_card_account: exportSettingsForm.get('defaultDebitCardAccount')?.value ? exportSettingsForm.get('defaultDebitCardAccount')?.value : emptyDestinationAttribute
       }
     };
     return exportSettingPayload;

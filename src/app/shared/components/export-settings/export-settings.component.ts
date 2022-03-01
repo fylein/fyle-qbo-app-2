@@ -84,6 +84,10 @@ export class ExportSettingsComponent implements OnInit {
     {
       label: 'Journal Entry',
       value: CorporateCreditCardExpensesObject.JOURNAL_ENTRY
+    },
+    {
+      label: 'Debit Card Expense',
+      value: CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE
     }
   ];
 
@@ -186,7 +190,11 @@ export class ExportSettingsComponent implements OnInit {
   }
 
   showCreditCardAccountField(): boolean {
-    return this.exportSettingsForm.controls.creditCardExportType.value && this.exportSettingsForm.controls.creditCardExportType.value !== CorporateCreditCardExpensesObject.BILL;
+    return this.exportSettingsForm.controls.creditCardExportType.value && this.exportSettingsForm.controls.creditCardExportType.value !== CorporateCreditCardExpensesObject.BILL && this.exportSettingsForm.controls.creditCardExportType.value !== CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE;
+  }
+
+  showDebitCardAccountField(): boolean {
+    return this.exportSettingsForm.controls.creditCardExportType.value && this.exportSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE;
   }
 
   showDefaultCreditCardVendorField(): boolean {
@@ -222,6 +230,13 @@ export class ExportSettingsComponent implements OnInit {
     } else {
       this.exportSettingsForm.controls.defaultCCCAccount.clearValidators();
       this.exportSettingsForm.controls.defaultCCCAccount.updateValueAndValidity();
+    }
+
+    if (this.showDebitCardAccountField()) {
+      this.exportSettingsForm.controls.defaultDebitCardAccount.setValidators(Validators.required);
+    } else {
+      this.exportSettingsForm.controls.defaultDebitCardAccount.clearValidators();
+      this.exportSettingsForm.controls.defaultDebitCardAccount.updateValueAndValidity();
     }
 
     if (this.showReimbursableAccountsPayableField() || this.showCCCAccountsPayableField()) {
@@ -302,6 +317,7 @@ export class ExportSettingsComponent implements OnInit {
       accountsPayable: [this.exportSettings.general_mappings.accounts_payable?.id],
       defaultCreditCardVendor: [this.exportSettings.general_mappings.default_ccc_vendor?.id],
       qboExpenseAccount: [this.exportSettings.general_mappings.qbo_expense_account?.id],
+      defaultDebitCardAccount: [this.exportSettings.general_mappings.default_debit_card_account?.id],
       searchOption: []
     });
 
