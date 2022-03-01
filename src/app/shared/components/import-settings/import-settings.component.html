@@ -194,7 +194,7 @@
                   <mat-form-field floatLabel="always" appearance="outline" class="import-settings--default-tax-input">
                     <mat-select placeholder="Select Default Tax Code" formControlName="defaultTaxCode">
                       <app-simple-search-select [form]="importSettingsForm"></app-simple-search-select>
-                      <mat-option (click)="helperService.clearSearchText(importSettingsForm)" *ngFor="let option of taxCodes | search : importSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
+                      <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(importSettingsForm)" *ngFor="let option of taxCodes | search : importSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                         {{ option.value }}
                       </mat-option>
                     </mat-select>
