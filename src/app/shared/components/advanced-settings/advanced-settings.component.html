@@ -67,6 +67,115 @@
       <div class="advanced-settings--contents">
         <app-configuration-step-header-section></app-configuration-step-header-section>
         <form [formGroup]="advancedSettingsForm" class="advanced-settings--field">
+          <div class="advanced-settings--field-section">
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+              <div fxLayout="row" fxLayoutAlign="space-between start" class="advanced-settings--field-label-section">
+                <img src="assets/images/calendar.svg" class="advanced-settings--icon">
+                <div>
+                  <div class="advanced-settings--field-header">
+                    Schedule automatic export
+                  </div>
+                  <h5 class="advanced-settings--field-label sub-text-color">
+                    Set up a schedule to frequently automate the export of expenses from Fyle to Quickbooks Online
+                  </h5>
+                </div>
+              </div>
+              <div class="advanced-settings--input-section">
+                <mat-slide-toggle class="advanced-settings--toggle-form-field" color="accent" formControlName="exportSchedule"></mat-slide-toggle>
+              </div>
+            </div>
+
+            <div *ngIf="advancedSettingsForm.value.exportSchedule" class="advanced-settings--schedule-frequency-section">
+              <mat-form-field floatLabel="always" appearance="outline" class="advanced-settings--form-field">
+                <mat-select placeholder="Select frequency" formControlName="exportScheduleFrequency">
+                  <mat-option *ngFor="let option of frequencyIntervals" [value]="option">
+                    {{ option }} {{ option === 1 ? 'Hour' : 'Hours' }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="advanced-settings--schedule-note-section" fxLayout="row" fxLayoutAlign="space-between start">
+              <div class="advanced-settings--schedule-note-content">
+                <h5 class="sub-text-color">
+                  NOTE: If you skip enabling the auto-schedule of export, you could still manually export the data from the <span class="bold">Dashboard</span>
+                </h5>
+              </div>
+            </div>
+          </div>
+
+          <div class="advanced-settings--field-section">
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+              <div fxLayout="row" fxLayoutAlign="space-between start" class="advanced-settings--field-label-section">
+                <img src="assets/images/svgs/general/list.svg" class="advanced-settings--icon">
+                <div>
+                  <div class="advanced-settings--field-header">
+                    Set description field in QuickBooks Online
+                  </div>
+                  <h5 class="advanced-settings--field-label sub-text-color">
+                    Customize the data set you would like to pass to the description field of QBO while exporting expenses from Fyle
+                  </h5>
+                </div>
+              </div>
+              <div class="advanced-settings--input-section">
+                <mat-form-field floatLabel="always" appearance="outline" class="advanced-settings--form-field">
+                  <mat-select placeholder="Select and reorder the memo fields" formControlName="memoStructure" multiple>
+                    <div cdkDropList (cdkDropListDropped)="drop($event)">
+                      <mat-option *ngFor="let option of defaultMemoFields" [value]="option" cdkDrag>
+                        {{ option | titlecase | snakeCaseToSpaceCase }}
+                      </mat-option>
+                    </div>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="advanced-settings--memo-preview-section">
+              <h5 class="advanced-settings--memo-preview-text sub-text-color">
+                Preview in QBO
+              </h5>
+              <div class="advanced-settings--memo-preview-area">
+                <h5 class="advanced-settings--memo-preview">
+                  {{ memoPreviewText }}
+                </h5>
+              </div>
+            </div>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="advanced-settings--field-section">
+            <div fxLayout="row" fxLayoutAlign="space-between start" class="advanced-settings--field-label-section">
+              <img src="assets/images/calendar.svg" class="advanced-settings--icon">
+              <div>
+                <div class="advanced-settings--field-header">
+                  Post entries in the next open accounting period
+                </div>
+                <h5 class="advanced-settings--field-label sub-text-color">
+                  If the accounting period in QBO is closed, the expenses from Fyle will be exported with a date stamp of the first day next open accounting period.
+                </h5>
+              </div>
+            </div>
+            <div class="advanced-settings--input-section">
+              <mat-slide-toggle class="advanced-settings--toggle-form-field" color="accent" formControlName="changeAccountingPeriod"></mat-slide-toggle>
+            </div>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="advanced-settings--field-section">
+            <div fxLayout="row" fxLayoutAlign="space-between start" class="advanced-settings--field-label-section">
+              <img src="assets/images/building.svg" class="advanced-settings--icon">
+              <div>
+                <div class="advanced-settings--field-header">
+                  Auto-Create Vendors
+                </div>
+                <h5 class="advanced-settings--field-label sub-text-color">
+                  While exporting reimbursable expenses from Fyle, the integration will automatically create a vendor if a match does not exist in QBO already.
+                </h5>
+              </div>
+            </div>
+            <div class="advanced-settings--input-section">
+              <mat-slide-toggle class="advanced-settings--toggle-form-field" color="accent" formControlName="autoCreateVendors"></mat-slide-toggle>
+            </div>
+          </div>
+
           <div fxLayout="row" fxLayoutAlign="space-between center" class="advanced-settings--field-section">
             <div fxLayout="row" fxLayoutAlign="space-between start" class="advanced-settings--field-label-section">
               <img src="assets/images/sync.svg" class="advanced-settings--icon">
@@ -114,98 +223,6 @@
             </div>
           </div>
 
-          <div class="advanced-settings--field-section">
-            <div fxLayout="row" fxLayoutAlign="space-between start">
-              <div fxLayout="row" fxLayoutAlign="space-between start" class="advanced-settings--field-label-section">
-                <img src="assets/images/svgs/general/list.svg" class="advanced-settings--icon">
-                <div>
-                  <div class="advanced-settings--field-header">
-                    Set description field in QuickBooks Online
-                  </div>
-                  <h5 class="advanced-settings--field-label sub-text-color">
-                    Customize the data set you would like to pass to the description field of QBO while exporting expenses from Fyle
-                  </h5>
-                </div>
-              </div>
-              <div class="advanced-settings--input-section">
-                <mat-form-field floatLabel="always" appearance="outline" class="advanced-settings--form-field">
-                  <mat-select placeholder="Select and reorder the memo fields" formControlName="memoStructure" multiple>
-                    <div cdkDropList (cdkDropListDropped)="drop($event)">
-                      <mat-option *ngFor="let option of defaultMemoFields" [value]="option" cdkDrag>
-                        {{ option | titlecase | snakeCaseToSpaceCase }}
-                      </mat-option>
-                    </div>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
-
-            <div class="advanced-settings--memo-preview-section">
-              <h5 class="advanced-settings--memo-preview-text sub-text-color">
-                Preview in QBO
-              </h5>
-              <div class="advanced-settings--memo-preview-area">
-                <h5 class="advanced-settings--memo-preview">
-                  {{ memoPreviewText }}
-                </h5>
-              </div>
-            </div>
-          </div>
-
-          <div class="advanced-settings--field-section">
-            <div fxLayout="row" fxLayoutAlign="space-between start">
-              <div fxLayout="row" fxLayoutAlign="space-between start" class="advanced-settings--field-label-section">
-                <img src="assets/images/calendar.svg" class="advanced-settings--icon">
-                <div>
-                  <div class="advanced-settings--field-header">
-                    Schedule automatic export
-                  </div>
-                  <h5 class="advanced-settings--field-label sub-text-color">
-                    Set up a schedule to frequently automate the export of expenses from Fyle to Quickbooks Online
-                  </h5>
-                </div>
-              </div>
-              <div class="advanced-settings--input-section">
-                <mat-slide-toggle class="advanced-settings--toggle-form-field" color="accent" formControlName="exportSchedule"></mat-slide-toggle>
-              </div>
-            </div>
-
-            <div *ngIf="advancedSettingsForm.value.exportSchedule" class="advanced-settings--schedule-frequency-section">
-              <mat-form-field floatLabel="always" appearance="outline" class="advanced-settings--form-field">
-                <mat-select placeholder="Select frequency" formControlName="exportScheduleFrequency">
-                  <mat-option *ngFor="let option of frequencyIntervals" [value]="option">
-                    {{ option }} {{ option === 1 ? 'Hour' : 'Hours' }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-
-            <div class="advanced-settings--schedule-note-section" fxLayout="row" fxLayoutAlign="space-between start">
-              <div class="advanced-settings--schedule-note-content">
-                <h5 class="sub-text-color">
-                  NOTE: If you skip enabling the auto-schedule of export, you could still manually export the data from the <span class="bold">Dashboard</span>
-                </h5>
-              </div>
-            </div>
-          </div>
-
-          <div fxLayout="row" fxLayoutAlign="space-between center" class="advanced-settings--field-section">
-            <div fxLayout="row" fxLayoutAlign="space-between start" class="advanced-settings--field-label-section">
-              <img src="assets/images/calendar.svg" class="advanced-settings--icon">
-              <div>
-                <div class="advanced-settings--field-header">
-                  Post entries in the next open accounting period
-                </div>
-                <h5 class="advanced-settings--field-label sub-text-color">
-                  If the accounting period in QBO is closed, the expenses from Fyle will be exported with a date stamp of the first day next open accounting period.
-                </h5>
-              </div>
-            </div>
-            <div class="advanced-settings--input-section">
-              <mat-slide-toggle class="advanced-settings--toggle-form-field" color="accent" formControlName="changeAccountingPeriod"></mat-slide-toggle>
-            </div>
-          </div>
-
           <div fxLayout="row" fxLayoutAlign="space-between center" class="advanced-settings--field-section">
             <div fxLayout="row" fxLayoutAlign="space-between start" class="advanced-settings--field-label-section">
               <img src="assets/images/expense.svg" class="advanced-settings--icon">
@@ -220,23 +237,6 @@
             </div>
             <div class="advanced-settings--input-section">
               <mat-slide-toggle class="advanced-settings--toggle-form-field" color="accent" formControlName="singleCreditLineJE"></mat-slide-toggle>
-            </div>
-          </div>
-
-          <div fxLayout="row" fxLayoutAlign="space-between center" class="advanced-settings--field-section">
-            <div fxLayout="row" fxLayoutAlign="space-between start" class="advanced-settings--field-label-section">
-              <img src="assets/images/building.svg" class="advanced-settings--icon">
-              <div>
-                <div class="advanced-settings--field-header">
-                  Auto-Create Vendors
-                </div>
-                <h5 class="advanced-settings--field-label sub-text-color">
-                  While exporting reimbursable expenses from Fyle, the integration will automatically create a vendor if a match does not exist in QBO already.
-                </h5>
-              </div>
-            </div>
-            <div class="advanced-settings--input-section">
-              <mat-slide-toggle class="advanced-settings--toggle-form-field" color="accent" formControlName="autoCreateVendors"></mat-slide-toggle>
             </div>
           </div>
 
