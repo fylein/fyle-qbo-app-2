@@ -204,4 +204,12 @@ h3, h4, h5, h6 {
   &--field-label-text-section-without-img {
     padding-left: 40px;
   }
+
+  &--field-toggle-section {
+    padding: 24px 8px 24px 32px;
+    min-height: 114px;
+    background: #FAFCFF;
+    border: 1px solid #F5F5F5;
+    box-sizing: border-box;
+  }
 }

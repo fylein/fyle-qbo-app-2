@@ -74,7 +74,7 @@
       <div class="configuration--contents">
         <app-configuration-step-header-section></app-configuration-step-header-section>
         <form [formGroup]="importSettingsForm" class="import-settings--field">
-          <div fxLayout="row" fxLayoutAlign="space-between center" class="import-settings--field-toggle-section">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-toggle-section">
             <div class="import-settings--field-label-section">
               Import Chart of Accounts from Quickbooks Online
               <h5 class="configuration--field-label sub-text-color">
@@ -114,7 +114,7 @@
             </div>
           </div>
 
-          <div formArrayName="expenseFields" class="import-settings--field-toggle-section">
+          <div formArrayName="expenseFields" class="configuration--field-toggle-section">
             <div *ngFor="let expenseField of expenseFields.controls; let i = index" [formGroupName]="i">
               <div fxLayout="row" fxLayoutAlign="space-between center">
                 <div class="import-settings--field-label-section">

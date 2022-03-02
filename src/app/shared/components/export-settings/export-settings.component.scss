@@ -1,16 +1,4 @@
 .export-settings {
-  // TODO: resuse common classes
-  min-height: 608px;
-  padding-bottom: 56px;
-
-  &--field-toggle-section {
-    padding: 24px 8px 24px 32px;
-    min-height: 114px;
-    background: #FAFCFF;
-    border: 1px solid #F5F5F5;
-    box-sizing: border-box;
-  }
-
   &--field-label-section {
     width: 592px;
     padding-right: 46px;
