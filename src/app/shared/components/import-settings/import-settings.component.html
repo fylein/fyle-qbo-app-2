@@ -75,7 +75,7 @@
         <app-configuration-step-header-section></app-configuration-step-header-section>
         <form [formGroup]="importSettingsForm" class="import-settings--field">
           <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-toggle-section">
-            <div class="import-settings--field-label-section">
+            <div class="configuration--field-label-section">
               Import Chart of Accounts from Quickbooks Online
               <h5 class="configuration--field-label sub-text-color">
                 Imported accounts will be available as Categories in Fyle.
@@ -117,7 +117,7 @@
           <div formArrayName="expenseFields" class="configuration--field-toggle-section">
             <div *ngFor="let expenseField of expenseFields.controls; let i = index" [formGroupName]="i">
               <div fxLayout="row" fxLayoutAlign="space-between center">
-                <div class="import-settings--field-label-section">
+                <div class="configuration--field-label-section">
                   Import {{ expenseField.value.destination_field | titlecase }} from Quickbooks Online
                   <h5 class="configuration--field-label sub-text-color">
                     The imported {{ expenseField.value.destination_field | titlecase }} from Quickbooks Online will be a
