@@ -1,10 +1,10 @@
 <app-onboarding-stepper [currentStep]="'Connect to QBO'"></app-onboarding-stepper>
 
 <div class="qbo-connector">
-  <div class="qbo-connector--section">
-    <div class="qbo-connector--contents">
+  <div class="configuration--section">
+    <div class="configuration--contents">
       <app-configuration-step-header-section></app-configuration-step-header-section>
-      <div fxLayout="row" fxLayoutAlign="space-between center" class="qbo-connector--connection-section">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
         <div class="qbo-connector--connection-blocks">
           <div class="qbo-connector--qbo-org-section">
             <h5 class="qbo-connector--fyle-section-text align-center sub-text-color bold">
@@ -69,18 +69,17 @@
           </div>
         </div>
       </div>
-      <div class="qbo-connector--footer">
-        <div class="qbo-connector--footer-section">
-          <div fxLayout="row" fxLayoutAlign="space-between center" >
-            <div fxLayout="row" fxLayoutAlign="space-between center"></div>
-            <div fxLayout="row" fxLayoutAlign="space-between center" class="qbo-connector--submit-btn" [ngClass]="isContinueDisabled ? 'btn-disabled' : 'btn-enabled'" (click)="continueToNextStep()">
-              <h5 class="qbo-connector--submit-btn-text">
-                Continue
-              </h5>
-              <h5 class="qbo-connector--submit-btn-arrow-text">
-                <img src="assets/images/svgs/actions/arrow-mark-right.svg" />
-              </h5>
-            </div>
+
+      <div class="configuration--footer-contents">
+        <div fxLayout="row" fxLayoutAlign="space-between center" >
+          <div fxLayout="row" fxLayoutAlign="space-between center"></div>
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="qbo-connector--submit-btn" [ngClass]="isContinueDisabled ? 'btn-disabled' : 'btn-enabled'" (click)="continueToNextStep()">
+            <h5 class="configuration--submit-btn-text">
+              Continue
+            </h5>
+            <h5 class="qbo-connector--submit-btn-arrow-text">
+              <img src="assets/images/svgs/actions/arrow-mark-right.svg" />
+            </h5>
           </div>
         </div>
       </div>
