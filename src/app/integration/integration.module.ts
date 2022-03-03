@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IntegrationComponent } from './integration.component';
 import { IntegrationRoutingModule } from './integration-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -11,7 +12,8 @@ import { IntegrationRoutingModule } from './integration-routing.module';
   ],
   imports: [
     CommonModule,
-    IntegrationRoutingModule
+    IntegrationRoutingModule,
+    SharedModule
   ]
 })
 export class IntegrationModule { }
