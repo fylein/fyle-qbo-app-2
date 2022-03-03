@@ -1,162 +1,161 @@
 <app-onboarding-stepper [currentStep]="'Import Settings'"></app-onboarding-stepper>
 
-<div *ngIf="!isLoading">
-  <div class="import-settings">
-    <div class="configuration--section">
-      <div class="configuration--contents">
-        <app-configuration-step-header-section></app-configuration-step-header-section>
-        <form [formGroup]="importSettingsForm" class="import-settings--field">
-          <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-toggle-section">
-            <div class="configuration--field-label-section">
-              Import Chart of Accounts from Quickbooks Online
-              <h5 class="configuration--field-label sub-text-color">
-                Imported accounts will be available as Categories in Fyle.
-              </h5>
-              <h5 class="import-settings--field-label-note sub-text-color">
-                NOTE: If you have already created categories in Fyle, you can skip this and map your categories to
-                corresponding QBO accounts after completing configuration in <span class="bold">Integration Dashboard >
-                  Mappings Section</span>
-              </h5>
-            </div>
-            <div class="configuration--input-toggle-section">
-              <mat-slide-toggle class="configuration--toggle-form-field" color="accent"
-                formControlName="chartOfAccount"></mat-slide-toggle>
-            </div>
+<div class="import-settings">
+  <div class="configuration--section">
+    <app-loader *ngIf="isLoading"></app-loader>
+    <div *ngIf="!isLoading" class="configuration--contents">
+      <app-configuration-step-header-section></app-configuration-step-header-section>
+      <form [formGroup]="importSettingsForm" class="import-settings--field">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-toggle-section">
+          <div class="configuration--field-label-section">
+            Import Chart of Accounts from Quickbooks Online
+            <h5 class="configuration--field-label sub-text-color">
+              Imported accounts will be available as Categories in Fyle.
+            </h5>
+            <h5 class="import-settings--field-label-note sub-text-color">
+              NOTE: If you have already created categories in Fyle, you can skip this and map your categories to
+              corresponding QBO accounts after completing configuration in <span class="bold">Integration Dashboard >
+                Mappings Section</span>
+            </h5>
           </div>
-          <div *ngIf="importSettingsForm.value.chartOfAccount" class="import-settings--field-checkbox-section">
-            <div class="import-settings--field-checkbox-contents">
-              <div class="import-settings--field-checkbox-inner-contents">
-                <div class="import-settings--chart-of-account-header">
-                  <h5 class="bold">
-                    Select the accounts from QBO to import as categories in Fyle
-                  </h5>
-                </div>
-                <div formArrayName="chartOfAccountTypes" class="import-settings--chart-of-account-list-section">
-                  <div fxLayout="row wrap">
-                    <div *ngFor="let chartOfAccountType of chartOfAccountTypes.controls; let i = index"
-                      [formGroupName]="i" fxFlex="33" class="import-settings--chart-of-account-list">
-                      <mat-checkbox formControlName="enabled" [checked]="chartOfAccountType.value.enabled"
-                        [disabled]="chartOfAccountType.value.name === 'Expense'">
-                        <h5>{{ chartOfAccountType.value.name }}</h5>
-                      </mat-checkbox>
-                    </div>
+          <div class="configuration--input-toggle-section">
+            <mat-slide-toggle class="configuration--toggle-form-field" color="accent"
+              formControlName="chartOfAccount"></mat-slide-toggle>
+          </div>
+        </div>
+        <div *ngIf="importSettingsForm.value.chartOfAccount" class="import-settings--field-checkbox-section">
+          <div class="import-settings--field-checkbox-contents">
+            <div class="import-settings--field-checkbox-inner-contents">
+              <div class="import-settings--chart-of-account-header">
+                <h5 class="bold">
+                  Select the accounts from QBO to import as categories in Fyle
+                </h5>
+              </div>
+              <div formArrayName="chartOfAccountTypes" class="import-settings--chart-of-account-list-section">
+                <div fxLayout="row wrap">
+                  <div *ngFor="let chartOfAccountType of chartOfAccountTypes.controls; let i = index"
+                    [formGroupName]="i" fxFlex="33" class="import-settings--chart-of-account-list">
+                    <mat-checkbox formControlName="enabled" [checked]="chartOfAccountType.value.enabled"
+                      [disabled]="chartOfAccountType.value.name === 'Expense'">
+                      <h5>{{ chartOfAccountType.value.name }}</h5>
+                    </mat-checkbox>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div formArrayName="expenseFields" class="configuration--field-toggle-section">
-            <div *ngFor="let expenseField of expenseFields.controls; let i = index" [formGroupName]="i">
-              <div fxLayout="row" fxLayoutAlign="space-between center">
-                <div class="configuration--field-label-section">
-                  Import {{ expenseField.value.destination_field | titlecase }} from Quickbooks Online
-                  <h5 class="configuration--field-label sub-text-color">
-                    The imported {{ expenseField.value.destination_field | titlecase }} from Quickbooks Online will be a
-                    selectable field while creating an expense.
-                  </h5>
-                </div>
-                <div class="configuration--input-toggle-section">
-                  <mat-slide-toggle color="accent" [disabled]="expenseField.value.disable_import_to_fyle"
-                    formControlName="import_to_fyle"></mat-slide-toggle>
-                </div>
-              </div>
-              <div fxLayout="row" fxLayoutAlign="space-between center" class="import-settings--mapping-section">
-                <div fxLayout="row" class="import-settings--field-checkbox-contents">
-                  <div fxLayout="row" class="import-settings--mapping-qbo-fyle-section">
-                    <div class="import-settings--qbo-field">
-                      <h5 class="import-settings--qbo-field-text single-line-text">
-                        {{ expenseField.value.destination_field | titlecase }} in QBO
-                      </h5>
-                    </div>
-                    <div class="import-settings--fields-separator"></div>
-                    <div>
-                      <mat-form-field floatLabel="always" appearance="outline" class="import-settings--fyle-field">
-                        <mat-select placeholder="Select a field from Fyle" formControlName="source_field">
-                          <mat-option *ngFor="let fyleExpenseField of fyleExpenseFields" [value]="fyleExpenseField">
-                            {{ fyleExpenseField.split('_').join(' ') | titlecase }}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                      <div class="import-settings--preview-text sub-text-color">
-                        <h6>Click <span class="import-settings--preview-btn pointer" (click)="showFyleExpenseFormPreview()">here</span> to Preivew on how it looks on Expense Form</h6>
-                      </div>
-                    </div>
-                  </div>
-                  <div fxLayout="row" *ngIf="!expenseField.value.source_field">
-                    <div class="import-settings--or-text">
-                      <h5>or</h5>
-                    </div>
-                    <div (click)="createExpenseField(expenseField.value.destination_field)"
-                      class="import-settings--create-custom-field actionable-text">
-                      Create a new field in Fyle
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="import-settings--tax-section">
-            <div fxLayout="row" fxLayoutAlign="space-between center" class="import-settings--tax-contents">
-              <div class="sub-text-color">
-                <div>
-                  Import Tax from QBO
-                </div>
-                <div class="import-settings--tax-sub-header">
-                  <h5>The imported Tax codes from Quickbooks will be set as Tax group in Fyle.</h5>
-                </div>
+        <div formArrayName="expenseFields" class="configuration--field-toggle-section">
+          <div *ngFor="let expenseField of expenseFields.controls; let i = index" [formGroupName]="i">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <div class="configuration--field-label-section">
+                Import {{ expenseField.value.destination_field | titlecase }} from Quickbooks Online
+                <h5 class="configuration--field-label sub-text-color">
+                  The imported {{ expenseField.value.destination_field | titlecase }} from Quickbooks Online will be a
+                  selectable field while creating an expense.
+                </h5>
               </div>
               <div class="configuration--input-toggle-section">
-                <mat-slide-toggle class="configuration--toggle-form-field" color="accent" formControlName="taxCode">
-                </mat-slide-toggle>
+                <mat-slide-toggle color="accent" [disabled]="expenseField.value.disable_import_to_fyle"
+                  formControlName="import_to_fyle"></mat-slide-toggle>
               </div>
             </div>
-          </div>
-
-          <div *ngIf="importSettingsForm.value.taxCode" class="import-settings--default-tax-section sub-text-color">
-            <div class="import-settings--default-tax-contents">
-              <div class="import-settings--default-tax-field">
-                <h5>
-                  Deafult Tax Code
-                  <app-mandatory-field></app-mandatory-field>
-                </h5>
-                <div>
-                  <mat-form-field floatLabel="always" appearance="outline" class="import-settings--default-tax-input">
-                    <mat-select placeholder="Select Default Tax Code" formControlName="defaultTaxCode">
-                      <app-simple-search-select [form]="importSettingsForm"></app-simple-search-select>
-                      <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(importSettingsForm)" *ngFor="let option of taxCodes | search : importSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
-                        {{ option.value }}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="import-settings--mapping-section">
+              <div fxLayout="row" class="import-settings--field-checkbox-contents">
+                <div fxLayout="row" class="import-settings--mapping-qbo-fyle-section">
+                  <div class="import-settings--qbo-field">
+                    <h5 class="import-settings--qbo-field-text single-line-text">
+                      {{ expenseField.value.destination_field | titlecase }} in QBO
+                    </h5>
+                  </div>
+                  <div class="import-settings--fields-separator"></div>
+                  <div>
+                    <mat-form-field floatLabel="always" appearance="outline" class="import-settings--fyle-field">
+                      <mat-select placeholder="Select a field from Fyle" formControlName="source_field">
+                        <mat-option *ngFor="let fyleExpenseField of fyleExpenseFields" [value]="fyleExpenseField">
+                          {{ fyleExpenseField.split('_').join(' ') | titlecase }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <div class="import-settings--preview-text sub-text-color">
+                      <h6>Click <span class="import-settings--preview-btn pointer" (click)="showFyleExpenseFormPreview()">here</span> to Preivew on how it looks on Expense Form</h6>
+                    </div>
+                  </div>
+                </div>
+                <div fxLayout="row" *ngIf="!expenseField.value.source_field">
+                  <div class="import-settings--or-text">
+                    <h5>or</h5>
+                  </div>
+                  <div (click)="createExpenseField(expenseField.value.destination_field)"
+                    class="import-settings--create-custom-field actionable-text">
+                    Create a new field in Fyle
+                  </div>
                 </div>
               </div>
-              <div class="import-settings--default-tax-note">
-                <h5>
-                  NOTE: If an expense from Fyle does not contain any tax group information during export, the default
-                  tax code will be used.
-                </h5>
-              </div>
             </div>
           </div>
-        </form>
-        <div fxLayout="row" fxLayoutAlign="space-between center"
-          class="configuration--field-section configuration--footer-contents">
-          <div fxLayout="row" class="configuration--back-btn pointer" (click)="navigateToPreviousStep()">
-            <img src="assets/images/svgs/actions/arrow-mark-left.svg" class="configuration--img-arrow-left" />
-            <h5 class="configuration--back-btn-text align-center">Back</h5>
+        </div>
+
+        <div class="import-settings--tax-section">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="import-settings--tax-contents">
+            <div class="sub-text-color">
+              <div>
+                Import Tax from QBO
+              </div>
+              <div class="import-settings--tax-sub-header">
+                <h5>The imported Tax codes from Quickbooks will be set as Tax group in Fyle.</h5>
+              </div>
+            </div>
+            <div class="configuration--input-toggle-section">
+              <mat-slide-toggle class="configuration--toggle-form-field" color="accent" formControlName="taxCode">
+              </mat-slide-toggle>
+            </div>
           </div>
-          <div fxLayout="row" class="configuration--submit-btn pointer"
-            [ngClass]="!importSettingsForm.valid ? 'btn-disabled' : 'btn-enabled'" (click)="save()">
-            <h5 class="configuration--submit-btn-text single-line-text">
-              Save & Continue
-            </h5>
-            <img src="assets/images/svgs/actions/arrow-mark-right.svg" class="configuration--submit-btn-arrow-text" />
+        </div>
+
+        <div *ngIf="importSettingsForm.value.taxCode" class="import-settings--default-tax-section sub-text-color">
+          <div class="import-settings--default-tax-contents">
+            <div class="import-settings--default-tax-field">
+              <h5>
+                Deafult Tax Code
+                <app-mandatory-field></app-mandatory-field>
+              </h5>
+              <div>
+                <mat-form-field floatLabel="always" appearance="outline" class="import-settings--default-tax-input">
+                  <mat-select placeholder="Select Default Tax Code" formControlName="defaultTaxCode">
+                    <app-simple-search-select [form]="importSettingsForm"></app-simple-search-select>
+                    <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(importSettingsForm)" *ngFor="let option of taxCodes | search : importSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
+                      {{ option.value }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="import-settings--default-tax-note">
+              <h5>
+                NOTE: If an expense from Fyle does not contain any tax group information during export, the default
+                tax code will be used.
+              </h5>
+            </div>
           </div>
+        </div>
+      </form>
+      <div fxLayout="row" fxLayoutAlign="space-between center"
+        class="configuration--field-section configuration--footer-contents">
+        <div fxLayout="row" class="configuration--back-btn pointer" (click)="navigateToPreviousStep()">
+          <img src="assets/images/svgs/actions/arrow-mark-left.svg" class="configuration--img-arrow-left" />
+          <h5 class="configuration--back-btn-text align-center">Back</h5>
+        </div>
+        <div fxLayout="row" class="configuration--submit-btn pointer"
+          [ngClass]="!importSettingsForm.valid || saveInProgress ? 'btn-disabled' : 'btn-enabled'" (click)="save()">
+          <h5 class="configuration--submit-btn-text single-line-text">
+            Save & Continue
+          </h5>
+          <img src="assets/images/svgs/actions/arrow-mark-right.svg" class="configuration--submit-btn-arrow-text" />
         </div>
       </div>
     </div>
-    <app-onboarding-footer></app-onboarding-footer>
   </div>
+  <app-onboarding-footer *ngIf="!isLoading"></app-onboarding-footer>
 </div>

@@ -2,7 +2,8 @@
 
 <div class="qbo-connector">
   <div class="configuration--section">
-    <div class="configuration--contents">
+    <app-loader *ngIf="isLoading"></app-loader>
+    <div *ngIf="!isLoading" class="configuration--contents">
       <app-configuration-step-header-section></app-configuration-step-header-section>
       <div fxLayout="row" fxLayoutAlign="space-between center">
         <div class="qbo-connector--connection-blocks">
@@ -44,6 +45,7 @@
               {{ qboCompanyName | trimCharacter: 26 }}
             </h3>
             <p class="align-center" *ngIf="qboConnectionInProgress">
+              <!-- TODO -->
               O
             </p>
           </div>
@@ -86,4 +88,4 @@
     </div>
   </div>
 </div>
-<app-onboarding-footer></app-onboarding-footer>
+<app-onboarding-footer *ngIf="!isLoading"></app-onboarding-footer>

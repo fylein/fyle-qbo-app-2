@@ -19,6 +19,7 @@ import { HelperService } from 'src/app/core/services/helper.service';
 export class AdvancedSettingsComponent implements OnInit {
 
   isLoading: boolean = true;
+  saveInProgress: boolean;
   advancedSettings: AdvancedSettingGet;
   billPaymentAccounts: DestinationAttribute[];
   advancedSettingsForm: FormGroup;
@@ -160,16 +161,18 @@ export class AdvancedSettingsComponent implements OnInit {
   }
 
   save(): void {
-    const advancedSettingPayload = AdvancedSettingModel.constructPayload(this.advancedSettingsForm);
-    console.log('Advanced setting payload: ', advancedSettingPayload);
-    this.isLoading = true;
-    this.advancedSettingService.postImportSettings(advancedSettingPayload).subscribe(() => {
-      this.isLoading = false;
-      this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/done`]);
-    }, () => {
-      this.isLoading = false;
-      // TODO: handle error
-    });
+    if (this.advancedSettingsForm.valid && !this.saveInProgress) {
+      const advancedSettingPayload = AdvancedSettingModel.constructPayload(this.advancedSettingsForm);
+      console.log('Advanced setting payload: ', advancedSettingPayload);
+      this.saveInProgress = true;
+      this.advancedSettingService.postImportSettings(advancedSettingPayload).subscribe(() => {
+        this.saveInProgress = false;
+        this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/done`]);
+      }, () => {
+        this.saveInProgress = false;
+        // TODO: handle error
+      });
+    }
   }
 
   ngOnInit(): void {

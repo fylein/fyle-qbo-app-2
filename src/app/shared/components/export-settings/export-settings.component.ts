@@ -18,6 +18,7 @@ import { WorkspaceService } from 'src/app/core/services/workspace.service';
 export class ExportSettingsComponent implements OnInit {
 
   isLoading: boolean = true;
+  saveInProgress: boolean;
   exportSettingsForm: FormGroup;
   exportSettings: ExportSettingGet;
   bankAccounts: DestinationAttribute[];
@@ -345,15 +346,15 @@ export class ExportSettingsComponent implements OnInit {
 
   save(): void {
     // TODO: handle reimburse and ccc toggles off case
-    if (this.exportSettingsForm.valid) {
+    if (this.exportSettingsForm.valid && !this.saveInProgress) {
       const exportSettingPayload = ExportSettingModel.constructPayload(this.exportSettingsForm);
       console.log('Export setting payload: ', exportSettingPayload);
-      this.isLoading = true;
+      this.saveInProgress = true;
       this.exportSettingService.postExportSettings(exportSettingPayload).subscribe(() => {
-        this.isLoading = false;
+        this.saveInProgress = false;
         this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/import_settings`]);
       }, () => {
-        this.isLoading = false;
+        this.saveInProgress = false;
         // TODO: handle error
       });
     }
