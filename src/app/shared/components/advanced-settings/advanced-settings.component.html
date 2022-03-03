@@ -1,201 +1,200 @@
 <app-onboarding-stepper [currentStep]="'Advanced Settings'"></app-onboarding-stepper>
 
-<div *ngIf="!isLoading">
-  <div class="configuration--section">
-    <div class="configuration--contents">
-      <app-configuration-step-header-section></app-configuration-step-header-section>
-      <form [formGroup]="advancedSettingsForm">
-        <div class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start">
-            <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-              <img src="assets/images/svgs/general/calendar.svg" class="configuration--icon">
-              <div>
-                <div class="configuration--field-header">
-                  Schedule automatic export
-                </div>
-                <h5 class="configuration--field-label sub-text-color">
-                  Set up a schedule to frequently automate the export of expenses from Fyle to Quickbooks Online
-                </h5>
-              </div>
-            </div>
-            <div class="configuration--input-section">
-              <mat-slide-toggle class="configuration--toggle-form-field" color="accent" formControlName="exportSchedule"></mat-slide-toggle>
-            </div>
-          </div>
-
-          <div *ngIf="advancedSettingsForm.value.exportSchedule" class="advanced-settings--schedule-frequency-section">
-            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-              <mat-select placeholder="Select frequency" formControlName="exportScheduleFrequency">
-                <mat-option *ngFor="let option of frequencyIntervals" [value]="option">
-                  {{ option }} {{ option === 1 ? 'Hour' : 'Hours' }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-
-          <div class="advanced-settings--schedule-note-section" fxLayout="row" fxLayoutAlign="space-between start">
-            <div class="advanced-settings--schedule-note-content">
-              <h5 class="sub-text-color">
-                NOTE: If you skip enabling the auto-schedule of export, you could still manually export the data from the <span class="bold">Dashboard</span>
-              </h5>
-            </div>
-          </div>
-        </div>
-
-        <div class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start">
-            <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-              <img src="assets/images/svgs/general/list.svg" class="configuration--icon">
-              <div>
-                <div class="configuration--field-header">
-                  Set description field in QuickBooks Online
-                </div>
-                <h5 class="configuration--field-label sub-text-color">
-                  Customize the data set you would like to pass to the description field of QBO while exporting expenses from Fyle
-                </h5>
-              </div>
-            </div>
-            <div class="configuration--input-section">
-              <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-                <mat-select placeholder="Select and reorder the memo fields" formControlName="memoStructure" multiple>
-                  <div cdkDropList (cdkDropListDropped)="drop($event)">
-                    <mat-option *ngFor="let option of defaultMemoFields" [value]="option" cdkDrag>
-                      {{ option | titlecase | snakeCaseToSpaceCase }}
-                    </mat-option>
-                  </div>
-                </mat-select>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="advanced-settings--memo-preview-section">
-            <h5 class="advanced-settings--memo-preview-text sub-text-color">
-              Preview in QBO
-            </h5>
-            <div class="advanced-settings--memo-preview-area">
-              <h5 class="advanced-settings--memo-preview">
-                {{ memoPreviewText }}
-              </h5>
-            </div>
-          </div>
-        </div>
-
-        <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
+<div class="configuration--section">
+  <app-loader *ngIf="isLoading"></app-loader>
+  <div *ngIf="!isLoading" class="configuration--contents">
+    <app-configuration-step-header-section></app-configuration-step-header-section>
+    <form [formGroup]="advancedSettingsForm">
+      <div class="configuration--field-section">
+        <div fxLayout="row" fxLayoutAlign="space-between start">
           <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
             <img src="assets/images/svgs/general/calendar.svg" class="configuration--icon">
             <div>
               <div class="configuration--field-header">
-                Post entries in the next open accounting period
+                Schedule automatic export
               </div>
               <h5 class="configuration--field-label sub-text-color">
-                If the accounting period in QBO is closed, the expenses from Fyle will be exported with a date stamp of the first day next open accounting period.
+                Set up a schedule to frequently automate the export of expenses from Fyle to Quickbooks Online
               </h5>
             </div>
           </div>
           <div class="configuration--input-section">
-            <mat-slide-toggle class="configuration--toggle-form-field" color="accent" formControlName="changeAccountingPeriod"></mat-slide-toggle>
+            <mat-slide-toggle class="configuration--toggle-form-field" color="accent" formControlName="exportSchedule"></mat-slide-toggle>
           </div>
         </div>
 
-        <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-            <img src="assets/images/svgs/general/building.svg" class="configuration--icon">
-            <div>
-              <div class="configuration--field-header">
-                Auto-Create Vendors
-              </div>
-              <h5 class="configuration--field-label sub-text-color">
-                While exporting reimbursable expenses from Fyle, the integration will automatically create a vendor if a match does not exist in QBO already.
-              </h5>
-            </div>
-          </div>
-          <div class="configuration--input-section">
-            <mat-slide-toggle class="configuration--toggle-form-field" color="accent" formControlName="autoCreateVendors"></mat-slide-toggle>
-          </div>
+        <div *ngIf="advancedSettingsForm.value.exportSchedule" class="advanced-settings--schedule-frequency-section">
+          <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
+            <mat-select placeholder="Select frequency" formControlName="exportScheduleFrequency">
+              <mat-option *ngFor="let option of frequencyIntervals" [value]="option">
+                {{ option }} {{ option === 1 ? 'Hour' : 'Hours' }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
 
-        <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-            <img src="assets/images/svgs/actions/sync.svg" class="configuration--icon">
-            <div>
-              <div class="configuration--field-header">
-                Auto- Sync payment status for reimbursable expenses
-              </div>
-              <h5 class="configuration--field-label sub-text-color">
-                When expense is marked paid in Fyle the transaction in QBO will be automatically be updated to Paid and vice versa.
-              </h5>
-            </div>
-          </div>
-          <div class="configuration--input-section">
-            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-              <mat-select placeholder="Select status for reimbursable expenses" formControlName="paymentSync">
-                <mat-option *ngFor="let option of paymentSyncOptions" [value]="option.value">
-                  {{ option.label }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-
-        <div *ngIf="advancedSettingsForm.value.paymentSync && advancedSettingsForm.value.paymentSync === 'fyle_to_qbo'" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-            <div class="configuration--field-label-text-section-without-img">
-              <div class="configuration--field-header">
-                To which Payment account should the payment entries be posted?
-                <app-mandatory-field></app-mandatory-field>
-              </div>
-              <h5 class="configuration--field-label sub-text-color">
-                Once the payment for the reimbursable expense is complete in Fyle, the payment entries will be posted to the selected Payment account in QBO.
-              </h5>
-            </div>
-          </div>
-          <div class="configuration--input-section">
-            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-              <mat-select placeholder="Select a Payment Account" formControlName="billPaymentAccount">
-                <app-simple-search-select [form]="advancedSettingsForm"></app-simple-search-select>
-                <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(advancedSettingsForm)" *ngFor="let option of billPaymentAccounts | search : advancedSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
-                  {{ option.value }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-
-        <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-            <img src="assets/images/svgs/general/expense.svg" class="configuration--icon">
-            <div class="configuration--field-label-text-section">
-              <div class="configuration--field-header">
-                Create a single itemized offset credit entry for Journal
-              </div>
-              <h5 class="configuration--field-label sub-text-color">
-                Merge all Credits in a Journal to create a single entry.
-              </h5>
-            </div>
-          </div>
-          <div class="configuration--input-section">
-            <mat-slide-toggle class="configuration--toggle-form-field" color="accent" formControlName="singleCreditLineJE"></mat-slide-toggle>
-          </div>
-        </div>
-
-        <div fxLayout="row" fxLayoutAlign="space-between center"
-          class="configuration--field-section configuration--footer-contents">
-          <div fxLayout="row" class="configuration--back-btn pointer" (click)="navigateToPreviousStep()">
-            <img src="assets/images/svgs/actions/arrow-mark-left.svg" class="configuration--img-arrow-left" />
-            <h5 class="configuration--back-btn-text align-center">Back</h5>
-          </div>
-          <div fxLayout="row" class="configuration--submit-btn pointer"
-            [ngClass]="!advancedSettingsForm.valid ? 'btn-disabled' : 'btn-enabled'" (click)="save()">
-            <h5 class="configuration--submit-btn-text single-line-text">
-              Save & Continue
+        <div class="advanced-settings--schedule-note-section" fxLayout="row" fxLayoutAlign="space-between start">
+          <div class="advanced-settings--schedule-note-content">
+            <h5 class="sub-text-color">
+              NOTE: If you skip enabling the auto-schedule of export, you could still manually export the data from the <span class="bold">Dashboard</span>
             </h5>
-            <img src="assets/images/svgs/actions/arrow-mark-right.svg" class="configuration--submit-btn-arrow-text" />
+          </div>
+        </div>
+      </div>
+
+      <div class="configuration--field-section">
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
+            <img src="assets/images/svgs/general/list.svg" class="configuration--icon">
+            <div>
+              <div class="configuration--field-header">
+                Set description field in QuickBooks Online
+              </div>
+              <h5 class="configuration--field-label sub-text-color">
+                Customize the data set you would like to pass to the description field of QBO while exporting expenses from Fyle
+              </h5>
+            </div>
+          </div>
+          <div class="configuration--input-section">
+            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
+              <mat-select placeholder="Select and reorder the memo fields" formControlName="memoStructure" multiple>
+                <div cdkDropList (cdkDropListDropped)="drop($event)">
+                  <mat-option *ngFor="let option of defaultMemoFields" [value]="option" cdkDrag>
+                    {{ option | titlecase | snakeCaseToSpaceCase }}
+                  </mat-option>
+                </div>
+              </mat-select>
+            </mat-form-field>
           </div>
         </div>
 
-      </form>
-    </div>
-  </div>
+        <div class="advanced-settings--memo-preview-section">
+          <h5 class="advanced-settings--memo-preview-text sub-text-color">
+            Preview in QBO
+          </h5>
+          <div class="advanced-settings--memo-preview-area">
+            <h5 class="advanced-settings--memo-preview">
+              {{ memoPreviewText }}
+            </h5>
+          </div>
+        </div>
+      </div>
 
-  <app-onboarding-footer></app-onboarding-footer>
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
+        <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
+          <img src="assets/images/svgs/general/calendar.svg" class="configuration--icon">
+          <div>
+            <div class="configuration--field-header">
+              Post entries in the next open accounting period
+            </div>
+            <h5 class="configuration--field-label sub-text-color">
+              If the accounting period in QBO is closed, the expenses from Fyle will be exported with a date stamp of the first day next open accounting period.
+            </h5>
+          </div>
+        </div>
+        <div class="configuration--input-section">
+          <mat-slide-toggle class="configuration--toggle-form-field" color="accent" formControlName="changeAccountingPeriod"></mat-slide-toggle>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
+        <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
+          <img src="assets/images/svgs/general/building.svg" class="configuration--icon">
+          <div>
+            <div class="configuration--field-header">
+              Auto-Create Vendors
+            </div>
+            <h5 class="configuration--field-label sub-text-color">
+              While exporting reimbursable expenses from Fyle, the integration will automatically create a vendor if a match does not exist in QBO already.
+            </h5>
+          </div>
+        </div>
+        <div class="configuration--input-section">
+          <mat-slide-toggle class="configuration--toggle-form-field" color="accent" formControlName="autoCreateVendors"></mat-slide-toggle>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
+        <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
+          <img src="assets/images/svgs/actions/sync.svg" class="configuration--icon">
+          <div>
+            <div class="configuration--field-header">
+              Auto- Sync payment status for reimbursable expenses
+            </div>
+            <h5 class="configuration--field-label sub-text-color">
+              When expense is marked paid in Fyle the transaction in QBO will be automatically be updated to Paid and vice versa.
+            </h5>
+          </div>
+        </div>
+        <div class="configuration--input-section">
+          <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
+            <mat-select placeholder="Select status for reimbursable expenses" formControlName="paymentSync">
+              <mat-option *ngFor="let option of paymentSyncOptions" [value]="option.value">
+                {{ option.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div *ngIf="advancedSettingsForm.value.paymentSync && advancedSettingsForm.value.paymentSync === 'fyle_to_qbo'" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
+        <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
+          <div class="configuration--field-label-text-section-without-img">
+            <div class="configuration--field-header">
+              To which Payment account should the payment entries be posted?
+              <app-mandatory-field></app-mandatory-field>
+            </div>
+            <h5 class="configuration--field-label sub-text-color">
+              Once the payment for the reimbursable expense is complete in Fyle, the payment entries will be posted to the selected Payment account in QBO.
+            </h5>
+          </div>
+        </div>
+        <div class="configuration--input-section">
+          <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
+            <mat-select placeholder="Select a Payment Account" formControlName="billPaymentAccount">
+              <app-simple-search-select [form]="advancedSettingsForm"></app-simple-search-select>
+              <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(advancedSettingsForm)" *ngFor="let option of billPaymentAccounts | search : advancedSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
+                {{ option.value }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
+        <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
+          <img src="assets/images/svgs/general/expense.svg" class="configuration--icon">
+          <div class="configuration--field-label-text-section">
+            <div class="configuration--field-header">
+              Create a single itemized offset credit entry for Journal
+            </div>
+            <h5 class="configuration--field-label sub-text-color">
+              Merge all Credits in a Journal to create a single entry.
+            </h5>
+          </div>
+        </div>
+        <div class="configuration--input-section">
+          <mat-slide-toggle class="configuration--toggle-form-field" color="accent" formControlName="singleCreditLineJE"></mat-slide-toggle>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center"
+        class="configuration--field-section configuration--footer-contents">
+        <div fxLayout="row" class="configuration--back-btn pointer" (click)="navigateToPreviousStep()">
+          <img src="assets/images/svgs/actions/arrow-mark-left.svg" class="configuration--img-arrow-left" />
+          <h5 class="configuration--back-btn-text align-center">Back</h5>
+        </div>
+        <div fxLayout="row" class="configuration--submit-btn pointer"
+          [ngClass]="!advancedSettingsForm.valid || saveInProgress ? 'btn-disabled' : 'btn-enabled'" (click)="save()">
+          <h5 class="configuration--submit-btn-text single-line-text">
+            Save & Continue
+          </h5>
+          <img src="assets/images/svgs/actions/arrow-mark-right.svg" class="configuration--submit-btn-arrow-text" />
+        </div>
+      </div>
+
+    </form>
+  </div>
 </div>
+
+<app-onboarding-footer *ngIf="!isLoading"></app-onboarding-footer>

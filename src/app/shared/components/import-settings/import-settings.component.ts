@@ -22,6 +22,7 @@ import { ExpenseFieldCreationDialogComponent } from './expense-field-creation-di
 export class ImportSettingsComponent implements OnInit {
 
   isLoading: boolean = true;
+  saveInProgress: boolean;
   importSettings: ImportSettingGet;
   importSettingsForm: FormGroup;
   taxCodes: DestinationAttribute[];
@@ -205,16 +206,16 @@ export class ImportSettingsComponent implements OnInit {
   }
 
   save(): void {
-    if (this.importSettingsForm.valid) {
+    if (this.importSettingsForm.valid && !this.saveInProgress) {
       // TODO: check ImportSettingModel class
       const importSettingsPayload = ImportSettingModel.constructPayload(this.importSettingsForm);
       console.log('importSettingPayload', importSettingsPayload);
-      this.isLoading = true;
+      this.saveInProgress = true;
       this.importSettingService.postImportSettings(importSettingsPayload).subscribe(() => {
-        this.isLoading = false;
+        this.saveInProgress = false;
         this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/advanced_settings`]);
       }, () => {
-        this.isLoading = false;
+        this.saveInProgress = false;
         // TODO: handle error
       });
     }

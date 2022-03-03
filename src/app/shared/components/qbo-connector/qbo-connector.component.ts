@@ -89,6 +89,7 @@ export class QboConnectorComponent implements OnInit {
     const code = this.route.snapshot.queryParams.code;
     const realmId = this.route.snapshot.queryParams.realmId;
     if (code && realmId) {
+      this.isLoading = false;
       this.qboConnectionInProgress = true;
       this.postQboCredentials(code, realmId);
     } else {

@@ -15,6 +15,7 @@ export class EmployeeSettingsComponent implements OnInit {
 
   employeeSettingsForm: FormGroup;
   isLoading: boolean = true;
+  saveInProgress: boolean;
   workspaceId: string = this.workspaceService.getWorkspaceId();
   employeeMappingOptions: EmployeeSettingFormOption[] = [
     {
@@ -57,15 +58,18 @@ export class EmployeeSettingsComponent implements OnInit {
   }
 
   save(): void {
-    if (this.employeeSettingsForm.valid) {
+    if (this.employeeSettingsForm.valid && !this.saveInProgress) {
       const employeeSettingPayload = EmployeeSettingModel.constructPayload(this.employeeSettingsForm);
       console.log('Employee setting payload: ', employeeSettingPayload);
-      this.isLoading = true;
+      // this.isLoading = true;
+      this.saveInProgress = true;
       this.employeeSettingService.postEmployeeSettings(employeeSettingPayload).subscribe(() => {
-        this.isLoading = false;
+        // this.isLoading = false;
+        this.saveInProgress = false;
         this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/export_settings`]);
       }, () => {
-        this.isLoading = false;
+        // this.isLoading = false;
+        this.saveInProgress = false;
         // TODO: handle error
       });
     }
