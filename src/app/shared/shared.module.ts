@@ -1,13 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
+// Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+// Components
 import { EmployeeSettingsComponent } from './components/employee-settings/employee-settings.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { OnboardingStepperComponent } from './components/onboarding-stepper/onboarding-stepper.component';
@@ -19,6 +26,13 @@ import { ConfigurationStepHeaderSectionComponent } from './components/configurat
 import { MandatoryFieldComponent } from './components/mandatory-field/mandatory-field.component';
 import { ExpenseFormPreviewDialogComponent } from './components/expense-form-preview-dialog/expense-form-preview-dialog.component';
 import { SimpleSearchSelectComponent } from './components/simple-search-select/simple-search-select.component';
+import { QboConnectorComponent } from './components/qbo-connector/qbo-connector.component';
+import { ExpenseFieldCreationDialogComponent } from './components/import-settings/expense-field-creation-dialog/expense-field-creation-dialog.component';
+
+// Pipes
+import { TrimCharacterPipe } from './pipes/trim-character.pipe';
+import { SearchPipe } from './pipes/search.pipe';
+import { SnakeCaseToSpaceCase } from './pipes/snake-case-to-space-case.pipe';
 
 @NgModule({
   declarations: [
@@ -32,23 +46,46 @@ import { SimpleSearchSelectComponent } from './components/simple-search-select/s
     ConfigurationStepHeaderSectionComponent,
     MandatoryFieldComponent,
     ExpenseFormPreviewDialogComponent,
-    SimpleSearchSelectComponent
+    SimpleSearchSelectComponent,
+    QboConnectorComponent,
+    TrimCharacterPipe,
+    SearchPipe,
+    SnakeCaseToSpaceCase,
+    ExpenseFieldCreationDialogComponent
   ],
   imports: [
     CommonModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatIconModule,
     FormsModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
+    DragDropModule,
     MatFormFieldModule,
     MatSelectModule,
     MatSlideToggleModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatTooltipModule
   ],
   exports: [
     LoaderComponent,
-    OnboardingStepperComponent
+    OnboardingStepperComponent,
+    QboConnectorComponent,
+    EmployeeSettingsComponent,
+    ImportSettingsComponent,
+    ExportSettingsComponent,
+    AdvancedSettingsComponent,
+    ConfigurationStepHeaderSectionComponent,
+    SimpleSearchSelectComponent,
+    MandatoryFieldComponent,
+    OnboardingFooterComponent,
+    TrimCharacterPipe,
+    SearchPipe,
+    SnakeCaseToSpaceCase
+  ],
+  entryComponents: [
+    ExpenseFormPreviewDialogComponent,
+    ExpenseFieldCreationDialogComponent
   ],
   providers: []
 })
