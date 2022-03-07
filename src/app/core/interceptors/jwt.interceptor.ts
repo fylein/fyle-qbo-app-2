@@ -11,8 +11,8 @@ import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError, filter, map, switchMap, take } from 'rxjs/operators';
 import { globalCacheBusterNotifier } from 'ts-cacheable';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { AuthService } from '../services/auth.service';
-import { Token } from '../models/token.model';
+import { Token } from '../models/misc/token.model';
+import { AuthService } from '../services/core/auth.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {

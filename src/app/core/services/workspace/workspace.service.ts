@@ -1,0 +1,42 @@
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Cacheable } from 'ts-cacheable';
+import { Workspace } from '../../models/db/workspace.model';
+import { ApiService } from '../core/api.service';
+import { StorageService } from '../core/storage.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class WorkspaceService {
+
+  constructor(
+    private apiService: ApiService,
+    private storageService: StorageService
+  ) { }
+
+  getWorkspaceId(): string {
+    return this.storageService.get('workspaceId');
+  }
+
+  createWorkspace(): Observable<Workspace> {
+    return this.apiService.post('/workspaces/', {});
+  }
+
+  @Cacheable()
+  getWorkspaces(orgId: string): Observable<Workspace[]> {
+    return this.apiService.get(`/workspaces/`, {
+      org_id: orgId
+    });
+  }
+
+  @Cacheable()
+  syncFyleDimensions() {
+    return this.apiService.post(`/workspaces/${this.getWorkspaceId()}/fyle/sync_dimensions/`, {});
+  }
+
+  @Cacheable()
+  syncQBODimensions() {
+    return this.apiService.post(`/workspaces/${this.getWorkspaceId()}/qbo/sync_dimensions/`, {});
+  }
+}

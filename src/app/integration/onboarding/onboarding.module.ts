@@ -23,7 +23,7 @@ import { OnboardingLandingComponent } from './onboarding-landing/onboarding-land
 import { OnboardingQboConnectorComponent } from './onboarding-qbo-connector/onboarding-qbo-connector.component';
 import { OnboardingEmployeeSettingsComponent } from './onboarding-employee-settings/onboarding-employee-settings.component';
 import { OnboardingRoutingModule } from './onboarding-routing.module';
-import { OnboardingHeaderComponent } from 'src/app/shared/components/onboarding-header/onboarding-header.component';
+import { OnboardingHeaderComponent } from 'src/app/shared/components/core/onboarding-header/onboarding-header.component';
 
 @NgModule({
   declarations: [
