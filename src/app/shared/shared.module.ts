@@ -15,19 +15,19 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 // Components
-import { EmployeeSettingsComponent } from './components/employee-settings/employee-settings.component';
-import { LoaderComponent } from './components/loader/loader.component';
-import { OnboardingStepperComponent } from './components/onboarding-stepper/onboarding-stepper.component';
-import { ImportSettingsComponent } from './components/import-settings/import-settings.component';
-import { ExportSettingsComponent } from './components/export-settings/export-settings.component';
-import { AdvancedSettingsComponent } from './components/advanced-settings/advanced-settings.component';
-import { OnboardingFooterComponent } from './components/onboarding-footer/onboarding-footer.component';
-import { ConfigurationStepHeaderSectionComponent } from './components/configuration-step-header-section/configuration-step-header-section.component';
-import { MandatoryFieldComponent } from './components/mandatory-field/mandatory-field.component';
-import { ExpenseFormPreviewDialogComponent } from './components/expense-form-preview-dialog/expense-form-preview-dialog.component';
-import { SimpleSearchSelectComponent } from './components/simple-search-select/simple-search-select.component';
-import { QboConnectorComponent } from './components/qbo-connector/qbo-connector.component';
-import { ExpenseFieldCreationDialogComponent } from './components/import-settings/expense-field-creation-dialog/expense-field-creation-dialog.component';
+import { EmployeeSettingsComponent } from './components/configuration/employee-settings/employee-settings.component';
+import { LoaderComponent } from './components/core/loader/loader.component';
+import { OnboardingStepperComponent } from './components/helpers/onboarding-stepper/onboarding-stepper.component';
+import { ImportSettingsComponent } from './components/configuration/import-settings/import-settings.component';
+import { ExportSettingsComponent } from './components/configuration/export-settings/export-settings.component';
+import { AdvancedSettingsComponent } from './components/configuration/advanced-settings/advanced-settings.component';
+import { OnboardingFooterComponent } from './components/core/onboarding-footer/onboarding-footer.component';
+import { ConfigurationStepHeaderSectionComponent } from './components/configuration/configuration-step-header-section/configuration-step-header-section.component';
+import { MandatoryFieldComponent } from './components/helpers/mandatory-field/mandatory-field.component';
+import { ExpenseFormPreviewDialogComponent } from './components/configuration/import-settings/expense-form-preview-dialog/expense-form-preview-dialog.component';
+import { SimpleSearchSelectComponent } from './components/helpers/simple-search-select/simple-search-select.component';
+import { QboConnectorComponent } from './components/configuration/qbo-connector/qbo-connector.component';
+import { ExpenseFieldCreationDialogComponent } from './components/configuration/import-settings/expense-field-creation-dialog/expense-field-creation-dialog.component';
 
 // Pipes
 import { TrimCharacterPipe } from './pipes/trim-character.pipe';

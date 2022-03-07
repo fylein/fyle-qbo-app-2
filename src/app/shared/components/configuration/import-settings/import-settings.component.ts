@@ -11,7 +11,7 @@ import { ImportSettingService } from 'src/app/core/services/configuration/import
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
-import { ExpenseFormPreviewDialogComponent } from '../expense-form-preview-dialog/expense-form-preview-dialog.component';
+import { ExpenseFormPreviewDialogComponent } from './expense-form-preview-dialog/expense-form-preview-dialog.component';
 import { ExpenseFieldCreationDialogComponent } from './expense-field-creation-dialog/expense-field-creation-dialog.component';
 
 @Component({
