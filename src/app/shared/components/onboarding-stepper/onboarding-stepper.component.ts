@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { OnboardingStepper } from 'src/app/core/models/onboarding-stepper.model';
-import { WorkspaceService } from 'src/app/core/services/workspace.service';
+import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 
 @Component({

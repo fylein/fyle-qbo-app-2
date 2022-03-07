@@ -5,10 +5,10 @@ import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/destination-attribute.model';
 import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, ReimbursableExpensesObject } from 'src/app/core/models/enum.model';
 import { ExportSettingGet, ExportSettingFormOption, ExportSettingModel } from 'src/app/core/models/export-setting.model';
-import { ExportSettingService } from 'src/app/core/services/export-setting.service';
-import { HelperService } from 'src/app/core/services/helper.service';
-import { MappingService } from 'src/app/core/services/mapping.service';
-import { WorkspaceService } from 'src/app/core/services/workspace.service';
+import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
+import { HelperService } from 'src/app/core/services/core/helper.service';
+import { MappingService } from 'src/app/core/services/misc/mapping.service';
+import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 @Component({
   selector: 'app-export-settings',

@@ -6,10 +6,10 @@ import { forkJoin } from 'rxjs';
 import { AdvancedSettingFormOption, AdvancedSettingGet, AdvancedSettingModel } from 'src/app/core/models/advanced-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/destination-attribute.model';
 import { PaymentSyncDirection } from 'src/app/core/models/enum.model';
-import { AdvancedSettingService } from 'src/app/core/services/advanced-setting.service';
-import { MappingService } from 'src/app/core/services/mapping.service';
-import { WorkspaceService } from 'src/app/core/services/workspace.service';
-import { HelperService } from 'src/app/core/services/helper.service';
+import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
+import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
+import { MappingService } from 'src/app/core/services/misc/mapping.service';
+import { HelperService } from 'src/app/core/services/core/helper.service';
 
 @Component({
   selector: 'app-advanced-settings',

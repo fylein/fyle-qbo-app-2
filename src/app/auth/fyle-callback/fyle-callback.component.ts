@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MinimalUser } from 'src/app/core/models/user.model';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { UserService } from 'src/app/core/services/user.service';
+import { AuthService } from 'src/app/core/services/core/auth.service';
+import { UserService } from 'src/app/core/services/misc/user.service';
 
 @Component({
   selector: 'app-fyle-callback',

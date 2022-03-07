@@ -7,10 +7,10 @@ import { DestinationAttribute } from 'src/app/core/models/destination-attribute.
 import { MappingDestinationField } from 'src/app/core/models/enum.model';
 import { ExpenseFieldsFormOption, ImportSettingGet, ImportSettingModel } from 'src/app/core/models/import-setting.model';
 import { MappingSetting } from 'src/app/core/models/mapping-setting.model';
-import { HelperService } from 'src/app/core/services/helper.service';
-import { ImportSettingService } from 'src/app/core/services/import-setting.service';
-import { MappingService } from 'src/app/core/services/mapping.service';
-import { WorkspaceService } from 'src/app/core/services/workspace.service';
+import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
+import { HelperService } from 'src/app/core/services/core/helper.service';
+import { MappingService } from 'src/app/core/services/misc/mapping.service';
+import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { ExpenseFormPreviewDialogComponent } from '../expense-form-preview-dialog/expense-form-preview-dialog.component';
 import { ExpenseFieldCreationDialogComponent } from './expense-field-creation-dialog/expense-field-creation-dialog.component';
 

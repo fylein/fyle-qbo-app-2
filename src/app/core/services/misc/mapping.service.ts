@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { Cacheable } from 'ts-cacheable';
-import { DestinationAttribute, GroupedDestinationAttribute } from '../models/destination-attribute.model';
-import { ExpenseField } from '../models/expense-field.model';
-import { ApiService } from './api.service';
-import { WorkspaceService } from './workspace.service';
+import { DestinationAttribute, GroupedDestinationAttribute } from '../../models/destination-attribute.model';
+import { ExpenseField } from '../../models/expense-field.model';
+import { ApiService } from '../core/api.service';
+import { WorkspaceService } from '../workspace/workspace.service';
 
 @Injectable({
   providedIn: 'root'

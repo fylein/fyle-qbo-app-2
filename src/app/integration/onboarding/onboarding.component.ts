@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { WindowService } from 'src/app/core/services/window.service';
+import { WindowService } from 'src/app/core/services/core/window.service';
 
 @Component({
   selector: 'app-onboarding',

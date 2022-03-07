@@ -4,10 +4,10 @@ import { environment } from 'src/environments/environment';
 import { ApiService } from './api.service';
 import { StorageService } from './storage.service';
 import { WindowService } from './window.service';
-import { Token } from '../models/token.model';
-import { MinimalUser } from '../models/user.model';
-import { UserService } from './user.service';
-import { WorkspaceService } from './workspace.service';
+import { Token } from '../../models/token.model';
+import { MinimalUser } from '../../models/user.model';
+import { UserService } from '../misc/user.service';
+import { WorkspaceService } from '../workspace/workspace.service';
 
 
 @Injectable({

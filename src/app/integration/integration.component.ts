@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MinimalUser } from '../core/models/user.model';
 import { Workspace } from '../core/models/workspace.model';
-import { StorageService } from '../core/services/storage.service';
-import { UserService } from '../core/services/user.service';
-import { WindowService } from '../core/services/window.service';
-import { WorkspaceService } from '../core/services/workspace.service';
+import { StorageService } from '../core/services/core/storage.service';
+import { WindowService } from '../core/services/core/window.service';
+import { UserService } from '../core/services/misc/user.service';
+import { WorkspaceService } from '../core/services/workspace/workspace.service';
 
 @Component({
   selector: 'app-integration',

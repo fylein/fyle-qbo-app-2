@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Cacheable, CacheBuster, globalCacheBusterNotifier } from 'ts-cacheable';
-import { QboConnector, QBOCredentials } from '../models/qbo-connector.model';
-import { ApiService } from './api.service';
-import { WorkspaceService } from './workspace.service';
+import { QboConnector, QBOCredentials } from '../../models/qbo-connector.model';
+import { ApiService } from '../core/api.service';
+import { WorkspaceService } from '../workspace/workspace.service';
 
 const qboCredentialsCache$ = new Subject<void>();
 

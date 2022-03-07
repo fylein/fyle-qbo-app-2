@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QboConnector, QBOCredentials } from 'src/app/core/models/qbo-connector.model';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { ImportSettingService } from 'src/app/core/services/import-setting.service';
-import { QboConnectorService } from 'src/app/core/services/qbo-connector.service';
-import { UserService } from 'src/app/core/services/user.service';
-import { WorkspaceService } from 'src/app/core/services/workspace.service';
+import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
+import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
+import { AuthService } from 'src/app/core/services/core/auth.service';
+import { UserService } from 'src/app/core/services/misc/user.service';
+import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 @Component({
   selector: 'app-qbo-connector',
