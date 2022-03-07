@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cacheable } from 'ts-cacheable';
-import { Workspace } from '../../models/workspace.model';
+import { Workspace } from '../../models/db/workspace.model';
 import { ApiService } from '../core/api.service';
 import { StorageService } from '../core/storage.service';
 

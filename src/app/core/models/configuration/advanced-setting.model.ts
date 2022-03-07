@@ -1,9 +1,9 @@
 import { FormGroup } from "@angular/forms";
-import { PaymentSyncDirection } from "./enum.model";
-import { DefaultDestinationAttribute, GeneralMapping } from "./general-mapping.model";
-import { SelectFormOption } from "./select-form-option.model";
-import { WorkspaceGeneralSetting } from "./workspace-general-setting.model";
-import { WorkspaceSchedule } from "./workspace-schedule.model";
+import { PaymentSyncDirection } from "../enum/enum.model";
+import { DefaultDestinationAttribute, GeneralMapping } from "../db/general-mapping.model";
+import { SelectFormOption } from "../misc/select-form-option.model";
+import { WorkspaceGeneralSetting } from "../db/workspace-general-setting.model";
+import { WorkspaceSchedule } from "../db/workspace-schedule.model";
 
 
 export type AdvancedSettingPost = {

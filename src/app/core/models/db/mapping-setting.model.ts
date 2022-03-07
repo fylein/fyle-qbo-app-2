@@ -1,4 +1,4 @@
-import { ImportSettingMappingSetting } from "./import-setting.model";
+import { ImportSettingMappingSetting } from "../configuration/import-setting.model";
 
 export interface MappingSetting extends ImportSettingMappingSetting {
   id: number;

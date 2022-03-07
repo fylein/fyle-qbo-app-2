@@ -1,4 +1,4 @@
-import { ExpenseState, ExportDateType } from "./enum.model";
+import { ExpenseState, ExportDateType } from "../enum/enum.model";
 
 export interface ExpenseGroupSetting extends ExpenseGroupSettingPost {
   id: number;

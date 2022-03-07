@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Cacheable, CacheBuster, globalCacheBusterNotifier } from 'ts-cacheable';
-import { QboConnector, QBOCredentials } from '../../models/qbo-connector.model';
+import { QboConnector, QBOCredentials } from '../../models/configuration/qbo-connector.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
 

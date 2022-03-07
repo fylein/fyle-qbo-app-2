@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MinimalUser } from '../core/models/user.model';
-import { Workspace } from '../core/models/workspace.model';
+import { MinimalUser } from '../core/models/db/user.model';
+import { Workspace } from '../core/models/db/workspace.model';
 import { StorageService } from '../core/services/core/storage.service';
 import { WindowService } from '../core/services/core/window.service';
 import { UserService } from '../core/services/misc/user.service';

@@ -1,6 +1,6 @@
-import { AdvancedSettingGeneralMapping } from "./advanced-setting.model";
-import { ExportSettingGeneralMapping } from "./export-setting.model";
-import { ImportSettingGeneralMapping } from "./import-setting.model";
+import { AdvancedSettingGeneralMapping } from "../configuration/advanced-setting.model";
+import { ExportSettingGeneralMapping } from "../configuration/export-setting.model";
+import { ImportSettingGeneralMapping } from "../configuration/import-setting.model";
 
 export type DefaultDestinationAttribute = {
   id: number;

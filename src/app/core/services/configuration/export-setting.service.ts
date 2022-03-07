@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Cacheable, CacheBuster } from 'ts-cacheable';
-import { ExportSettingGet, ExportSettingPost } from '../../models/export-setting.model';
+import { ExportSettingGet, ExportSettingPost } from '../../models/configuration/export-setting.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
 

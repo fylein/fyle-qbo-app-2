@@ -1,4 +1,4 @@
-import { User } from "./user.model";
+import { User } from "../db/user.model";
 
 export type Token = {
   access_token: string;

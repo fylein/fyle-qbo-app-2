@@ -3,10 +3,10 @@ import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Valida
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { DestinationAttribute } from 'src/app/core/models/destination-attribute.model';
-import { MappingDestinationField } from 'src/app/core/models/enum.model';
-import { ExpenseFieldsFormOption, ImportSettingGet, ImportSettingModel } from 'src/app/core/models/import-setting.model';
-import { MappingSetting } from 'src/app/core/models/mapping-setting.model';
+import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
+import { MappingDestinationField } from 'src/app/core/models/enum/enum.model';
+import { ExpenseFieldsFormOption, ImportSettingGet, ImportSettingModel } from 'src/app/core/models/configuration/import-setting.model';
+import { MappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';

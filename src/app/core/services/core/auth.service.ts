@@ -4,8 +4,8 @@ import { environment } from 'src/environments/environment';
 import { ApiService } from './api.service';
 import { StorageService } from './storage.service';
 import { WindowService } from './window.service';
-import { Token } from '../../models/token.model';
-import { MinimalUser } from '../../models/user.model';
+import { Token } from '../../models/misc/token.model';
+import { MinimalUser } from '../../models/db/user.model';
 import { UserService } from '../misc/user.service';
 import { WorkspaceService } from '../workspace/workspace.service';
 

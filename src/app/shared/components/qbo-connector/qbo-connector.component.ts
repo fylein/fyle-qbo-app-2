@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { QboConnector, QBOCredentials } from 'src/app/core/models/qbo-connector.model';
+import { QboConnector, QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
 import { AuthService } from 'src/app/core/services/core/auth.service';
