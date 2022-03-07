@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { EmployeeSettingFormOption, EmployeeSettingGet, EmployeeSettingModel } from 'src/app/core/models/configuration/employee-setting.model';
 import { AutoMapEmployee, EmployeeFieldMapping } from 'src/app/core/models/enum/enum.model';
@@ -50,6 +51,7 @@ export class EmployeeSettingsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private employeeSettingService: EmployeeSettingService,
+    private snackBar: MatSnackBar,
     private workspaceService: WorkspaceService
   ) { }
 
@@ -61,16 +63,13 @@ export class EmployeeSettingsComponent implements OnInit {
     if (this.employeeSettingsForm.valid && !this.saveInProgress) {
       const employeeSettingPayload = EmployeeSettingModel.constructPayload(this.employeeSettingsForm);
       console.log('Employee setting payload: ', employeeSettingPayload);
-      // this.isLoading = true;
       this.saveInProgress = true;
       this.employeeSettingService.postEmployeeSettings(employeeSettingPayload).subscribe(() => {
-        // this.isLoading = false;
         this.saveInProgress = false;
         this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/export_settings`]);
       }, () => {
-        // this.isLoading = false;
         this.saveInProgress = false;
-        // TODO: handle error
+        this.snackBar.open('Error saving employee settings, please try again later');
       });
     }
   }

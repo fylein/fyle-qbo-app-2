@@ -45,8 +45,7 @@
               {{ qboCompanyName | trimCharacter: 26 }}
             </h3>
             <p class="align-center" *ngIf="qboConnectionInProgress">
-              <!-- TODO -->
-              O
+              <app-loader [size]="'small'"></app-loader>
             </p>
           </div>
           <div class="qbo-connector--switch-org-section">

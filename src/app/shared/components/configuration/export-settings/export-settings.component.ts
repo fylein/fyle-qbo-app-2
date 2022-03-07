@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
@@ -9,6 +9,7 @@ import { ExportSettingService } from 'src/app/core/services/configuration/export
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-export-settings',
@@ -100,6 +101,7 @@ export class ExportSettingsComponent implements OnInit {
     public helperService: HelperService,
     private mappingService: MappingService,
     private router: Router,
+    private snackBar: MatSnackBar,
     private workspaceService: WorkspaceService
   ) { }
 
@@ -198,6 +200,36 @@ export class ExportSettingsComponent implements OnInit {
       this.setGeneralMappingsValidator();
       this.restrictExpenseGroupSetting(creditCardExportType);
     });
+  }
+
+  private exportSelectionValidator(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: object} | null => {
+      let forbidden = true;
+      if (this.exportSettingsForm && this.exportSettingsForm.value.expenseState) {
+        if (typeof control.value === 'boolean') {
+          if (control.value) {
+            forbidden = false;
+          } else {
+            if (control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value) {
+              forbidden = false;
+            }
+          }
+        }
+
+        if (!forbidden) {
+          control.parent?.get('expenseState')?.setErrors(null);
+          control.parent?.get('reimbursableExpense')?.setErrors(null);
+          control.parent?.get('creditCardExpense')?.setErrors(null);
+          return null;
+        }
+      }
+
+      return {
+        forbiddenOption: {
+          value: control.value
+        }
+      }
+    };
   }
 
   showBankAccountField(): boolean {
@@ -303,7 +335,7 @@ export class ExportSettingsComponent implements OnInit {
       this.mappingService.getGroupedQBODestinationAttributes(destinationAttributes)
     ]).subscribe(response => {
       this.exportSettings = response[0];
-      this.reimbursableExportTypes = this.getReimbursableExportTypes(this.exportSettings.workspace_general_settings.employee_field_mapping);
+      this.reimbursableExportTypes = this.getReimbursableExportTypes(this.exportSettings.workspace_general_settings.employee_field_mapping || EmployeeFieldMapping.EMPLOYEE);
 
       this.bankAccounts = response[1].BANK_ACCOUNT;
       this.cccAccounts = response[1].CREDIT_CARD_ACCOUNT;
@@ -317,12 +349,12 @@ export class ExportSettingsComponent implements OnInit {
 
   private setupForm(): void {
     this.exportSettingsForm = this.formBuilder.group({
-      expenseState: [this.exportSettings.expense_group_settings?.expense_state, Validators.required],
-      reimbursableExpense: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? true : false],
+      expenseState: [this.exportSettings.expense_group_settings?.expense_state, Validators.compose([Validators.required, this.exportSelectionValidator()])],
+      reimbursableExpense: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? true : false, this.exportSelectionValidator()],
       reimbursableExportType: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object],
       reimbursableExportGroup: [this.getExportGroup(this.exportSettings.expense_group_settings?.reimbursable_expense_group_fields)],
       reimbursableExportDate: [this.exportSettings.expense_group_settings?.reimbursable_export_date_type],
-      creditCardExpense: [this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object ? true : false],
+      creditCardExpense: [this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object ? true : false, this.exportSelectionValidator()],
       creditCardExportType: [this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object],
       creditCardExportGroup: [this.getExportGroup(this.exportSettings.expense_group_settings?.corporate_credit_card_expense_group_fields)],
       creditCardExportDate: [this.exportSettings.expense_group_settings?.ccc_export_date_type],
@@ -355,7 +387,7 @@ export class ExportSettingsComponent implements OnInit {
         this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/import_settings`]);
       }, () => {
         this.saveInProgress = false;
-        // TODO: handle error
+        this.snackBar.open('Error saving export settings, please try again later');
       });
     }
   }
