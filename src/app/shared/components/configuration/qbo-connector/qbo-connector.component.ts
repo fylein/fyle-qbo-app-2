@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QboConnector, QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
@@ -29,6 +30,7 @@ export class QboConnectorComponent implements OnInit {
     private qboConnectorService: QboConnectorService,
     private route: ActivatedRoute,
     private router: Router,
+    private snackBar: MatSnackBar,
     private userService: UserService,
     private workspaceService: WorkspaceService
   ) { }
@@ -80,8 +82,8 @@ export class QboConnectorComponent implements OnInit {
         this.showOrHideDisconnectQBO();
       });
     }, () => {
-      // TODO: Handle error
-      this.isLoading = false;
+      this.snackBar.open('Failed to connect to QuickBooks Online. Please try again');
+      this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/landing`]);
     });
   }
 

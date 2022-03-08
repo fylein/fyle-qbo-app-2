@@ -13,6 +13,7 @@ import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { ExpenseFormPreviewDialogComponent } from './expense-form-preview-dialog/expense-form-preview-dialog.component';
 import { ExpenseFieldCreationDialogComponent } from './expense-field-creation-dialog/expense-field-creation-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-import-settings',
@@ -41,6 +42,7 @@ export class ImportSettingsComponent implements OnInit {
     public helperService: HelperService,
     private router: Router,
     private mappingService: MappingService,
+    private snackBar: MatSnackBar,
     private workspaceService: WorkspaceService
   ) { }
 
@@ -216,7 +218,7 @@ export class ImportSettingsComponent implements OnInit {
         this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/advanced_settings`]);
       }, () => {
         this.saveInProgress = false;
-        // TODO: handle error
+        this.snackBar.open('Error saving import settings, please try again later');
       });
     }
   }

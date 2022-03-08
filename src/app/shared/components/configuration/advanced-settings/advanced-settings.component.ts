@@ -10,6 +10,7 @@ import { WorkspaceService } from 'src/app/core/services/workspace/workspace.serv
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-advanced-settings',
@@ -45,6 +46,7 @@ export class AdvancedSettingsComponent implements OnInit {
     public helperService: HelperService,
     private mappingService: MappingService,
     private router: Router,
+    private snackBar: MatSnackBar,
     private workspaceService: WorkspaceService
   ) { }
 
@@ -137,7 +139,7 @@ export class AdvancedSettingsComponent implements OnInit {
 
   private getSettingsAndSetupForm(): void {
     forkJoin([
-      this.advancedSettingService.getImportSettings(),
+      this.advancedSettingService.getAdvancedSettings(),
       this.mappingService.getQBODestinationAttributes('BANK_ACCOUNT')
     ]).subscribe(response => {
       this.advancedSettings = response[0];
@@ -165,12 +167,12 @@ export class AdvancedSettingsComponent implements OnInit {
       const advancedSettingPayload = AdvancedSettingModel.constructPayload(this.advancedSettingsForm);
       console.log('Advanced setting payload: ', advancedSettingPayload);
       this.saveInProgress = true;
-      this.advancedSettingService.postImportSettings(advancedSettingPayload).subscribe(() => {
+      this.advancedSettingService.postAdvancedSettings(advancedSettingPayload).subscribe(() => {
         this.saveInProgress = false;
         this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/done`]);
       }, () => {
         this.saveInProgress = false;
-        // TODO: handle error
+        this.snackBar.open('Error saving advanced settings, please try again later');
       });
     }
   }
