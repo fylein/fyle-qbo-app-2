@@ -2,7 +2,7 @@
 
 <div class="qbo-connector">
   <div class="configuration--section">
-    <app-loader *ngIf="isLoading"></app-loader>
+    <app-loader [phase]="'pre_onboarding'" *ngIf="isLoading"></app-loader>
     <div *ngIf="!isLoading" class="configuration--contents">
       <app-configuration-step-header-section></app-configuration-step-header-section>
       <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -87,4 +87,4 @@
     </div>
   </div>
 </div>
-<app-onboarding-footer *ngIf="!isLoading"></app-onboarding-footer>
+<app-onboarding-footer [page]="'qbo_connector'" *ngIf="!isLoading"></app-onboarding-footer>

@@ -4,6 +4,12 @@
   box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(100px);
 
+  &--smaller-page {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
   &--content {
     padding: 26px 36px;
   }

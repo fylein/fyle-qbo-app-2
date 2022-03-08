@@ -335,7 +335,7 @@ export class ExportSettingsComponent implements OnInit {
       this.mappingService.getGroupedQBODestinationAttributes(destinationAttributes)
     ]).subscribe(response => {
       this.exportSettings = response[0];
-      this.reimbursableExportTypes = this.getReimbursableExportTypes(this.exportSettings.workspace_general_settings.employee_field_mapping || EmployeeFieldMapping.EMPLOYEE);
+      this.reimbursableExportTypes = this.getReimbursableExportTypes(this.exportSettings.workspace_general_settings.employee_field_mapping);
 
       this.bankAccounts = response[1].BANK_ACCOUNT;
       this.cccAccounts = response[1].CREDIT_CARD_ACCOUNT;

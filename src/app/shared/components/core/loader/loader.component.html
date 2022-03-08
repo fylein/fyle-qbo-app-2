@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="center center">
+<div fxLayout="row" fxLayoutAlign="center center" [ngClass]="{'position': phase === 'pre_onboarding'}">
   <img *ngIf="size === 'small'" src="assets/gifs/loader.gif" width="60px" height="60px">
   <img *ngIf="!size" src="assets/gifs/loader.gif" width="150px" height="150px">
 </div>
