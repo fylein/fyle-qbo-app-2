@@ -28,6 +28,7 @@ import { ExpenseFormPreviewDialogComponent } from './components/configuration/im
 import { SimpleSearchSelectComponent } from './components/helpers/simple-search-select/simple-search-select.component';
 import { QboConnectorComponent } from './components/configuration/qbo-connector/qbo-connector.component';
 import { ExpenseFieldCreationDialogComponent } from './components/configuration/import-settings/expense-field-creation-dialog/expense-field-creation-dialog.component';
+import { ConfigurationStepFooterSectionComponent } from './components/configuration/configuration-step-footer-section/configuration-step-footer-section.component';
 
 // Pipes
 import { TrimCharacterPipe } from './pipes/trim-character.pipe';
@@ -51,7 +52,8 @@ import { SnakeCaseToSpaceCase } from './pipes/snake-case-to-space-case.pipe';
     TrimCharacterPipe,
     SearchPipe,
     SnakeCaseToSpaceCase,
-    ExpenseFieldCreationDialogComponent
+    ExpenseFieldCreationDialogComponent,
+    ConfigurationStepFooterSectionComponent
   ],
   imports: [
     CommonModule,
@@ -81,7 +83,8 @@ import { SnakeCaseToSpaceCase } from './pipes/snake-case-to-space-case.pipe';
     OnboardingFooterComponent,
     TrimCharacterPipe,
     SearchPipe,
-    SnakeCaseToSpaceCase
+    SnakeCaseToSpaceCase,
+    ConfigurationStepFooterSectionComponent
   ],
   entryComponents: [
     ExpenseFormPreviewDialogComponent,

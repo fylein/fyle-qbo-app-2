@@ -71,19 +71,7 @@
         </div>
       </div>
 
-      <div class="configuration--footer-contents">
-        <div fxLayout="row" fxLayoutAlign="space-between center" >
-          <div fxLayout="row" fxLayoutAlign="space-between center"></div>
-          <div fxLayout="row" fxLayoutAlign="space-between center" class="qbo-connector--submit-btn" [ngClass]="isContinueDisabled ? 'btn-disabled' : 'btn-enabled'" (click)="continueToNextStep()">
-            <h5 class="configuration--submit-btn-text">
-              Continue
-            </h5>
-            <h5 class="qbo-connector--submit-btn-arrow-text">
-              <img src="assets/images/svgs/actions/arrow-mark-right.svg" />
-            </h5>
-          </div>
-        </div>
-      </div>
+      <app-configuration-step-footer-section [ctaText]="'Continue'" [isButtonDisabled]="isContinueDisabled" (save)="continueToNextStep()"></app-configuration-step-footer-section>
     </div>
   </div>
 </div>

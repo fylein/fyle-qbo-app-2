@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EmployeeSettingGet } from 'src/app/core/models/configuration/employee-setting.model';
 import { QboConnector, QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
@@ -58,10 +59,14 @@ export class QboConnectorComponent implements OnInit {
   }
 
   private showOrHideDisconnectQBO(): void {
-    this.importSettingService.getImportSettings().subscribe(() => {
+    this.importSettingService.getImportSettings().subscribe((employeeSettings: EmployeeSettingGet) => {
       // Do nothing
       this.isContinueDisabled = false;
       this.isLoading = false;
+
+      if (!employeeSettings.workspace_general_settings.employee_field_mapping) {
+        this.showDisconnectQBO = true;
+      }
     }, () => {
       // Showing Disconnect QBO button since the customer didn't set up the next step
       this.showDisconnectQBO = true;

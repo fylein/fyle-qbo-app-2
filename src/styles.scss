@@ -71,7 +71,7 @@ h3, h4, h5, h6 {
 
 .btn-disabled {
   background: #FFC2D6;
-  @extend .cursor-disabled
+  @extend .cursor-disabled;
 }
 
 .cursor-disabled {
@@ -162,6 +162,15 @@ h3, h4, h5, h6 {
     width: 181px;
     height: 42px;
     color: #FFFFFF;
+  }
+
+  &--continue-btn {
+    // TODO @extend &--submit-btn;
+    border: none;
+    border-radius: 4px;
+    height: 42px;
+    color: #FFFFFF;
+    width: 134px;
   }
 
   &--img-arrow-left {
