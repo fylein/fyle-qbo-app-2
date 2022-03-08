@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 @Component({
   selector: 'app-configuration-step-header-section',
@@ -11,15 +13,23 @@ export class ConfigurationStepHeaderSectionComponent implements OnInit {
   headerText: string;
   contentText: string;
   isStepOptional: boolean;
+  activePage: string | undefined;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private workspaceService: WorkspaceService
   ) { }
 
-  private setupContent(): void {
-    const activePage = this.router.url.split('/').pop();
+  refreshQBODimensions(): void {
+    this.workspaceService.refreshQBODimensions().subscribe();
+    this.snackBar.open('Refreshing data dimensions from QBO...');
+  }
 
-    switch (activePage) {
+  private setupContent(): void {
+    this.activePage = this.router.url.split('/').pop();
+
+    switch (this.activePage) {
       case 'qbo_connector':
         this.headerText = 'Connect to Quickbooks Online';
         this.contentText = 'Connect to the Quickbooks Online Company from which you would like to import and export data. The Fyle org and Quickbooks Online company cannot be changed once the configuration steps are complete.';
