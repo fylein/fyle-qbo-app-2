@@ -39,4 +39,12 @@ export class WorkspaceService {
   syncQBODimensions() {
     return this.apiService.post(`/workspaces/${this.getWorkspaceId()}/qbo/sync_dimensions/`, {});
   }
+
+  refreshFyleDimensions(): Observable<{}> {
+    return this.apiService.post(`/workspaces/${this.getWorkspaceId()}/fyle/refresh_dimensions/`, {});
+  }
+
+  refreshQBODimensions(): Observable<{}> {
+    return this.apiService.post(`/workspaces/${this.getWorkspaceId()}/qbo/refresh_dimensions/`, {});
+  }
 }
