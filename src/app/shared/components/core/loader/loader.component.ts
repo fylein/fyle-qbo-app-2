@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class LoaderComponent implements OnInit {
 
   @Input() size: string;
+  @Input() phase: string;
 
   constructor() { }
 
