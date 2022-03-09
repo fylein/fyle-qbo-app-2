@@ -75,6 +75,7 @@
                       <mat-select placeholder="Select a field from Fyle" formControlName="source_field">
                         <mat-option *ngFor="let fyleExpenseField of fyleExpenseFields" [value]="fyleExpenseField">
                           {{ fyleExpenseField.split('_').join(' ') | titlecase }}
+                          <img *ngIf="fyleExpenseField === expenseField.value.source_field" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -128,6 +129,7 @@
                     <app-simple-search-select [form]="importSettingsForm"></app-simple-search-select>
                     <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(importSettingsForm)" *ngFor="let option of taxCodes | search : importSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                       {{ option.value }}
+                      <img *ngIf="(importSettingsForm.value.defaultTaxCode | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
