@@ -24,6 +24,14 @@ export class MappingService {
     });
   }
 
+  getQBODestinationAttribute(attributeType: string): Observable<DestinationAttribute[]> {
+    return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/qbo_attributes/`, {
+      attribute_type: attributeType,
+      offset: 0,
+      limit: 1
+    });
+  }
+
   getGroupedQBODestinationAttributes(attributeTypes: string[]): Observable<GroupedDestinationAttribute> {
     return from(this.getQBODestinationAttributes(attributeTypes).toPromise().then((response: DestinationAttribute[]) => {
       return response.reduce((groupedAttributes: GroupedDestinationAttribute | any, attribute: DestinationAttribute) => {

@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 import { EmployeeSettingFormOption, EmployeeSettingGet, EmployeeSettingModel } from 'src/app/core/models/configuration/employee-setting.model';
 import { AutoMapEmployee, EmployeeFieldMapping } from 'src/app/core/models/enum/enum.model';
 import { EmployeeSettingService } from 'src/app/core/services/configuration/employee-setting.service';
+import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 @Component({
@@ -51,6 +53,7 @@ export class EmployeeSettingsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private employeeSettingService: EmployeeSettingService,
+    private mappingService: MappingService,
     private snackBar: MatSnackBar,
     private workspaceService: WorkspaceService
   ) { }
