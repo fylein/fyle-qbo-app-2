@@ -24,6 +24,7 @@
             <mat-select placeholder="Select expense state" formControlName="expenseState">
               <mat-option *ngFor="let option of expenseStateOptions" [value]="option.value">
                 {{ option.label }}
+                <img *ngIf="exportSettingsForm.value.expenseState === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -69,6 +70,7 @@
               <mat-select placeholder="Select expense export type" formControlName="reimbursableExportType">
                 <mat-option *ngFor="let option of reimbursableExportTypes" [value]="option.value">
                   {{ option.label }}
+                  <img *ngIf="exportSettingsForm.value.reimbursableExportType === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -95,6 +97,7 @@
                 <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
                 <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of bankAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                   {{ option.value }}
+                  <img *ngIf="(exportSettingsForm.value.bankAccount | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -121,6 +124,7 @@
                 <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
                 <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of expenseAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                   {{ option.value }}
+                  <img *ngIf="(exportSettingsForm.value.qboExpenseAccount | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -147,6 +151,7 @@
                 <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
                 <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of accountsPayables | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                   {{ option.value }}
+                  <img *ngIf="(exportSettingsForm.value.accountsPayable | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -171,6 +176,7 @@
               <mat-select placeholder="Select expense export type" formControlName="reimbursableExportGroup">
                 <mat-option *ngFor="let option of expenseGroupingFieldOptions" [value]="option.value">
                   {{ option.label }}
+                  <img *ngIf="exportSettingsForm.value.reimbursableExportGroup === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -198,6 +204,7 @@
                 formControlName="reimbursableExportDate">
                 <mat-option *ngFor="let option of expenseGroupingDateOptions" [value]="option.value">
                   {{ option.label }}
+                  <img *ngIf="exportSettingsForm.value.reimbursableExportDate === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -236,6 +243,7 @@
               <mat-select placeholder="Select expense export type" formControlName="creditCardExportType">
                 <mat-option *ngFor="let option of creditCardExportTypes" [value]="option.value">
                   {{ option.label }}
+                  <img *ngIf="exportSettingsForm.value.creditCardExportType === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -263,6 +271,7 @@
                 <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
                 <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of cccAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                   {{ option.value }}
+                  <img *ngIf="(exportSettingsForm.value.defaultCCCAccount | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -290,6 +299,7 @@
                 <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
                 <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of bankAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                   {{ option.value }}
+                  <img *ngIf="(exportSettingsForm.value.defaultDebitCardAccount | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -316,6 +326,7 @@
                 <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
                 <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of vendors | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                   {{ option.value }}
+                  <img *ngIf="(exportSettingsForm.value.defaultCreditCardVendor | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -342,6 +353,7 @@
                 <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
                 <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of accountsPayables | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                   {{ option.value }}
+                  <img *ngIf="(exportSettingsForm.value.accountsPayable | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -366,6 +378,7 @@
               <mat-select placeholder="Select expense export type" formControlName="creditCardExportGroup">
                 <mat-option *ngFor="let option of expenseGroupingFieldOptions" [value]="option.value">
                   {{ option.label }}
+                  <img *ngIf="exportSettingsForm.value.creditCardExportGroup === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -393,6 +406,7 @@
                 formControlName="creditCardExportDate">
                 <mat-option *ngFor="let option of expenseGroupingDateOptions" [value]="option.value">
                   {{ option.label }}
+                  <img *ngIf="exportSettingsForm.value.creditCardExportDate === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
                 </mat-option>
               </mat-select>
             </mat-form-field>
