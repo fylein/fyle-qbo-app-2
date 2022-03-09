@@ -97,10 +97,11 @@
           </div>
         </div>
 
-        <div class="import-settings--tax-section">
+        <div class="import-settings--tax-section" *ngIf="isTaxGroupSyncAllowed">
           <div fxLayout="row" fxLayoutAlign="space-between center" class="import-settings--tax-contents">
             <div class="sub-text-color">
               <div>
+                <!-- TODO: Check if this is sub text color -->
                 Import Tax from QBO
               </div>
               <div class="import-settings--tax-sub-header">

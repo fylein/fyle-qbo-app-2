@@ -14,6 +14,8 @@ import { WorkspaceService } from 'src/app/core/services/workspace/workspace.serv
 import { ExpenseFormPreviewDialogComponent } from './expense-form-preview-dialog/expense-form-preview-dialog.component';
 import { ExpenseFieldCreationDialogComponent } from './expense-field-creation-dialog/expense-field-creation-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
+import { QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
 
 @Component({
   selector: 'app-import-settings',
@@ -24,6 +26,7 @@ export class ImportSettingsComponent implements OnInit {
 
   isLoading: boolean = true;
   saveInProgress: boolean;
+  isTaxGroupSyncAllowed: boolean;
   importSettings: ImportSettingGet;
   importSettingsForm: FormGroup;
   taxCodes: DestinationAttribute[];
@@ -42,6 +45,7 @@ export class ImportSettingsComponent implements OnInit {
     public helperService: HelperService,
     private router: Router,
     private mappingService: MappingService,
+    private qboConnectorService: QboConnectorService,
     private snackBar: MatSnackBar,
     private workspaceService: WorkspaceService
   ) { }
@@ -113,6 +117,20 @@ export class ImportSettingsComponent implements OnInit {
     };
   }
 
+  private updateTaxGroupVisibility(): void {
+    // TODO: this will get fixed after onboarding
+    this.qboConnectorService.getQBOCredentials().subscribe((qboCredentials: QBOCredentials) => {
+      if (qboCredentials && qboCredentials.country !== 'aSUS') {
+        this.isTaxGroupSyncAllowed = true;
+      }
+    });
+  }
+
+  private setCustomValidatorsAndWatchers(): void {
+    this.updateTaxGroupVisibility();
+    this.createTaxCodeWatcher();
+  }
+
   private setupForm(): void {
     const chartOfAccountTypeFormArray = this.chartOfAccountTypesList.map((type) => this.createChartOfAccountField(type));
     const expenseFieldsFormArray = this.qboExpenseFields.map((field) => {
@@ -134,7 +152,7 @@ export class ImportSettingsComponent implements OnInit {
       searchOption: []
     });
 
-    this.createTaxCodeWatcher();
+    this.setCustomValidatorsAndWatchers();
     this.isLoading = false;
   }
 
