@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { EmployeeSettingFormOption, EmployeeSettingGet, EmployeeSettingModel } from 'src/app/core/models/configuration/employee-setting.model';
+import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { AutoMapEmployee, EmployeeFieldMapping } from 'src/app/core/models/enum/enum.model';
 import { EmployeeSettingService } from 'src/app/core/services/configuration/employee-setting.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
@@ -20,6 +21,7 @@ export class EmployeeSettingsComponent implements OnInit {
   isLoading: boolean = true;
   saveInProgress: boolean;
   workspaceId: string = this.workspaceService.getWorkspaceId();
+  liveEntityExample: {[EmployeeFieldMapping.EMPLOYEE]: string | undefined, [EmployeeFieldMapping.VENDOR]: string | undefined};
   employeeMappingOptions: EmployeeSettingFormOption[] = [
     {
       value: EmployeeFieldMapping.EMPLOYEE,
@@ -77,11 +79,22 @@ export class EmployeeSettingsComponent implements OnInit {
     }
   }
 
+  private setLiveEntityExample(destinationAttributes: DestinationAttribute[]): void {
+    this.liveEntityExample = {
+      [EmployeeFieldMapping.EMPLOYEE]: destinationAttributes.find((attribute: DestinationAttribute) => attribute.attribute_type === EmployeeFieldMapping.EMPLOYEE)?.value,
+      [EmployeeFieldMapping.VENDOR]: destinationAttributes.find((attribute: DestinationAttribute) => attribute.attribute_type === EmployeeFieldMapping.VENDOR)?.value
+    };
+  }
+
   private setupForm(): void {
-    this.employeeSettingService.getEmployeeSettings().subscribe((employeeSettings: EmployeeSettingGet) => {
+    forkJoin([
+      this.employeeSettingService.getEmployeeSettings(),
+      this.mappingService.getDistinctQBODestinationAttributes([EmployeeFieldMapping.EMPLOYEE, EmployeeFieldMapping.VENDOR])
+    ]).subscribe((responses) => {
+      this.setLiveEntityExample(responses[1]);
       this.employeeSettingsForm = this.formBuilder.group({
-        employeeMapping: [employeeSettings.workspace_general_settings.employee_field_mapping, Validators.required],
-        autoMapEmployee: [employeeSettings.workspace_general_settings.auto_map_employees, Validators.nullValidator]
+        employeeMapping: [responses[0].workspace_general_settings.employee_field_mapping, Validators.required],
+        autoMapEmployee: [responses[0].workspace_general_settings.auto_map_employees, Validators.nullValidator]
       });
       this.isLoading = false;
     }, () => {

@@ -30,10 +30,10 @@
           </mat-form-field>
           <div class="configuration--auto-map-example-section">
             <h5 *ngIf="employeeSettingsForm.value.employeeMapping === 'EMPLOYEE'" class="sub-text-color">
-              Example of an Employee from your QBO instance : LIVE EXAMPLE
+              Example of an Employee from your QBO instance : {{ liveEntityExample.EMPLOYEE }}
             </h5>
             <h5 *ngIf="employeeSettingsForm.value.employeeMapping === 'VENDOR'" class="sub-text-color">
-              Example of a Vendor from your QBO instance : LIVE EXAMPLE
+              Example of a Vendor from your QBO instance : {{ liveEntityExample.VENDOR }}
             </h5>
           </div>
         </div>

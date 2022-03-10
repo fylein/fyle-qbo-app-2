@@ -24,11 +24,9 @@ export class MappingService {
     });
   }
 
-  getQBODestinationAttribute(attributeType: string): Observable<DestinationAttribute[]> {
+  getDistinctQBODestinationAttributes(attributeTypes: string[]): Observable<DestinationAttribute[]> {
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/qbo_attributes/`, {
-      attribute_type: attributeType,
-      offset: 0,
-      limit: 1
+      attribute_types: attributeTypes
     });
   }
 
