@@ -116,6 +116,7 @@ h3, h4, h5, h6 {
 }
 
 .mat-select-panel .mat-optgroup-label, .mat-select-panel .mat-option {
+  // TODO: scroll is going down when the option is selected
   height: 32px !important;
   font-size: 14px !important;
   color: #414562;
@@ -123,6 +124,45 @@ h3, h4, h5, h6 {
 
 .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
   padding-right: 12px;
+}
+
+.mat-slide-toggle-bar {
+  width: 51px !important;
+  height: 21px !important;
+  background-color: #A9ACBC;
+  border-radius: 11px !important;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #FFFFFF;
+  position: absolute;
+  left: 18px !important;
+  top: 6px !important;
+}
+
+.mat-slide-toggle-thumb {
+  height: 14px !important;
+  width: 14px !important;
+  position: absolute;
+  right: 3px !important;
+  top: 6px;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #FF3366;
+  border-radius: 11px !important;
+}
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background: #000000;
+}
+
+.mat-checkbox-checked.mat-accent.mat-checkbox-disabled .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #A9ACBC;
+}
+
+.mat-primary .mat-pseudo-checkbox-checked {
+  background: #000000;
 }
 
 .selected-value-check-mark {
