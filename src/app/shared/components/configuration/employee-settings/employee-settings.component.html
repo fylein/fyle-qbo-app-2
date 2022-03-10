@@ -24,6 +24,7 @@
             <mat-select placeholder="Select representation" formControlName="employeeMapping">
               <mat-option *ngFor="let option of employeeMappingOptions" [value]="option.value">
                 {{ option.label }}
+                <img *ngIf="employeeSettingsForm.value.employeeMapping === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -56,6 +57,7 @@
             <mat-select placeholder="Select representation" formControlName="autoMapEmployee">
               <mat-option *ngFor="let option of autoMapEmployeeOptions" [value]="option.value">
                 {{ option.label }}
+                <img *ngIf="employeeSettingsForm.value.autoMapEmployee === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
               </mat-option>
             </mat-select>
           </mat-form-field>

@@ -28,6 +28,7 @@
             <mat-select placeholder="Select frequency" formControlName="exportScheduleFrequency">
               <mat-option *ngFor="let option of frequencyIntervals" [value]="option">
                 {{ option }} {{ option === 1 ? 'Hour' : 'Hours' }}
+                <img *ngIf="advancedSettingsForm.value.exportScheduleFrequency === option" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -131,6 +132,7 @@
             <mat-select placeholder="Select status for reimbursable expenses" formControlName="paymentSync">
               <mat-option *ngFor="let option of paymentSyncOptions" [value]="option.value">
                 {{ option.label }}
+                <img *ngIf="advancedSettingsForm.value.paymentSync=== option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -155,6 +157,7 @@
               <app-simple-search-select [form]="advancedSettingsForm"></app-simple-search-select>
               <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(advancedSettingsForm)" *ngFor="let option of billPaymentAccounts | search : advancedSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
                 {{ option.value }}
+                <img *ngIf="(advancedSettingsForm.value.billPaymentAccount | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
               </mat-option>
             </mat-select>
           </mat-form-field>
