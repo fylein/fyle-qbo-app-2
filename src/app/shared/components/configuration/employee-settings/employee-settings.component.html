@@ -28,6 +28,14 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
+          <div class="configuration--auto-map-example-section">
+            <h5 *ngIf="employeeSettingsForm.value.employeeMapping === 'EMPLOYEE'" class="sub-text-color">
+              Example of an Employee from your QBO instance : {{ liveEntityExample.EMPLOYEE }}
+            </h5>
+            <h5 *ngIf="employeeSettingsForm.value.employeeMapping === 'VENDOR'" class="sub-text-color">
+              Example of a Vendor from your QBO instance : {{ liveEntityExample.VENDOR }}
+            </h5>
+          </div>
         </div>
       </div>
 
@@ -36,7 +44,7 @@
           <img src="assets/images/svgs/general/employee.svg" class="configuration--icon">
           <div>
             <div class="configuration--field-header">
-              How should Employees in Fyle be mapped to Employees/Vendors in Quickbooks Online?
+              How should Employees in Fyle be matched to Employees/Vendors in Quickbooks Online?
             </div>
             <h5 class="configuration--field-label sub-text-color">
               Automatically map the employees in Fyle to their corresponding records in QBO based on a unique
@@ -69,7 +77,7 @@
 
       <div class="configuration--auto-map-note-section">
         <div class="configuration--auto-map-note-content sub-text-color">
-          <h5>Note: In case the employee records are not auto mapped by the integration, you could still manually map the records from the Mappings section of the integration.</h5>
+          <h5>Note: In case the employee records are not auto matched by the integration, you could still manually map the records from the Mappings section of the integration.</h5>
         </div>
       </div>
 
