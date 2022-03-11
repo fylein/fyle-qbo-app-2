@@ -35,6 +35,7 @@ import { TrimCharacterPipe } from './pipes/trim-character.pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { SnakeCaseToSpaceCase } from './pipes/snake-case-to-space-case.pipe';
 import { ConfigurationSelectFieldComponent } from './components/configuration/configuration-select-field/configuration-select-field.component';
+import { ConfigurationToggleFieldComponent } from './components/configuration/configuration-toggle-field/configuration-toggle-field.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ConfigurationSelectFieldComponent } from './components/configuration/co
     SnakeCaseToSpaceCase,
     ExpenseFieldCreationDialogComponent,
     ConfigurationStepFooterSectionComponent,
-    ConfigurationSelectFieldComponent
+    ConfigurationSelectFieldComponent,
+    ConfigurationToggleFieldComponent
   ],
   imports: [
     CommonModule,
@@ -87,7 +89,8 @@ import { ConfigurationSelectFieldComponent } from './components/configuration/co
     SearchPipe,
     SnakeCaseToSpaceCase,
     ConfigurationStepFooterSectionComponent,
-    ConfigurationSelectFieldComponent
+    ConfigurationSelectFieldComponent,
+    ConfigurationToggleFieldComponent
   ],
   entryComponents: [
     ExpenseFormPreviewDialogComponent,

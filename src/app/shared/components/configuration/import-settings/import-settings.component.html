@@ -1,29 +1,20 @@
 <app-onboarding-stepper [currentStep]="'Import Settings'"></app-onboarding-stepper>
 
+<!-- TODO: Fix toggle position -->
 <div class="import-settings">
   <div class="configuration--section">
     <app-loader [phase]="'pre_onboarding'" *ngIf="isLoading"></app-loader>
     <div *ngIf="!isLoading" class="configuration--contents">
       <app-configuration-step-header-section></app-configuration-step-header-section>
       <form [formGroup]="importSettingsForm" class="import-settings--field">
-        <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-toggle-section">
-          <div class="configuration--field-label-section">
-            Import Chart of Accounts from Quickbooks Online
-            <h5 class="configuration--field-label sub-text-color">
-              Imported accounts will be available as Categories in Fyle.
-            </h5>
-            <h5 class="import-settings--field-label-note sub-text-color">
-              NOTE: If you have already created categories in Fyle, you can skip this and map your categories to
-              corresponding QBO accounts after completing configuration in <span class="bold">Integration Dashboard >
-                Mappings Section</span>
-            </h5>
-          </div>
-          <div class="configuration--input-toggle-section">
-            <mat-slide-toggle class="configuration--toggle-form-field" color="accent"
-              formControlName="chartOfAccount"></mat-slide-toggle>
-          </div>
-        </div>
-        <div *ngIf="importSettingsForm.value.chartOfAccount" class="import-settings--field-checkbox-section">
+        <app-configuration-toggle-field
+          [form]="importSettingsForm"
+          [label]="'Import Chart of Accounts from Quickbooks Online'"
+          [subLabel]="'Imported accounts will be available as Categories in Fyle.'"
+          [formControllerName]="'chartOfAccount'">
+        </app-configuration-toggle-field>
+
+      <div *ngIf="importSettingsForm.value.chartOfAccount" class="import-settings--field-checkbox-section">
           <div class="import-settings--field-checkbox-contents">
             <div class="import-settings--field-checkbox-inner-contents">
               <div class="import-settings--chart-of-account-header">
@@ -99,28 +90,19 @@
         </div>
 
         <div class="import-settings--tax-section" *ngIf="isTaxGroupSyncAllowed">
-          <div fxLayout="row" fxLayoutAlign="space-between center" class="import-settings--tax-contents">
-            <div class="sub-text-color">
-              <div>
-                <!-- TODO: Check if this is sub text color -->
-                Import Tax from QBO
-              </div>
-              <div class="import-settings--tax-sub-header">
-                <h5>The imported Tax codes from Quickbooks will be set as Tax group in Fyle.</h5>
-              </div>
-            </div>
-            <div class="configuration--input-toggle-section">
-              <mat-slide-toggle class="configuration--toggle-form-field" color="accent" formControlName="taxCode">
-              </mat-slide-toggle>
-            </div>
-          </div>
+          <app-configuration-toggle-field
+            [form]="importSettingsForm"
+            [label]="'Import Tax from QBO'"
+            [subLabel]="'The imported Tax codes from Quickbooks will be set as Tax group in Fyle.'"
+            [formControllerName]="'taxCode'">
+          </app-configuration-toggle-field>
         </div>
 
         <div *ngIf="importSettingsForm.value.taxCode" class="import-settings--default-tax-section sub-text-color">
           <div class="import-settings--default-tax-contents">
             <div class="import-settings--default-tax-field">
               <h5>
-                Deafult Tax Code
+                Default Tax Code
                 <app-mandatory-field></app-mandatory-field>
               </h5>
               <div>

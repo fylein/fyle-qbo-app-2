@@ -1,4 +1,4 @@
-<div  [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
+<div [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
   <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
     <img *ngIf="iconPath" src="{{ iconPath }}" class="configuration--icon">
     <div class="configuration--field-label-text-section" [ngClass]="{'configuration--field-label-text-section-without-img': !iconPath}">
