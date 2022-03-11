@@ -73,25 +73,21 @@
         </div>
       </div>
 
-      <!-- <div class="configuration--field-section"> -->
-        <app-configuration-toggle-field
-          [form]="advancedSettingsForm"
-          [iconPath]="'assets/images/svgs/general/calendar.svg'"
-          [label]="'Post entries in the next open accounting period'"
-          [subLabel]="'If the accounting period in QBO is closed, the expenses from Fyle will be exported with a date stamp of the first day next open accounting period.'"
-          [formControllerName]="'changeAccountingPeriod'">
-        </app-configuration-toggle-field>
-      <!-- </div> -->
+      <app-configuration-toggle-field
+        [form]="advancedSettingsForm"
+        [iconPath]="'assets/images/svgs/general/calendar.svg'"
+        [label]="'Post entries in the next open accounting period'"
+        [subLabel]="'If the accounting period in QBO is closed, the expenses from Fyle will be exported with a date stamp of the first day next open accounting period.'"
+        [formControllerName]="'changeAccountingPeriod'">
+      </app-configuration-toggle-field>
 
-      <!-- <div class="configuration--field-section"> -->
-        <app-configuration-toggle-field
-          [form]="advancedSettingsForm"
-          [iconPath]="'assets/images/svgs/general/building.svg'"
-          [label]="'Auto-Create Vendors'"
-          [subLabel]="'While exporting reimbursable expenses from Fyle, the integration will automatically create a vendor if a match does not exist in QBO already.'"
-          [formControllerName]="'autoCreateVendors'">
-        </app-configuration-toggle-field>
-      <!-- </div> -->
+      <app-configuration-toggle-field
+        [form]="advancedSettingsForm"
+        [iconPath]="'assets/images/svgs/general/building.svg'"
+        [label]="'Auto-Create Vendors'"
+        [subLabel]="'While exporting reimbursable expenses from Fyle, the integration will automatically create a vendor if a match does not exist in QBO already.'"
+        [formControllerName]="'autoCreateVendors'">
+      </app-configuration-toggle-field>
 
       <app-configuration-select-field
         [form]="advancedSettingsForm"
@@ -117,15 +113,13 @@
         </app-configuration-select-field>
       </div>
 
-      <!-- <div class="configuration--field-section"> -->
-        <app-configuration-toggle-field
-          [form]="advancedSettingsForm"
-          [iconPath]="'assets/images/svgs/general/expense.svg'"
-          [label]="'Create a single itemized offset credit entry for Journal'"
-          [subLabel]="'Merge all Credits in a Journal to create a single entry.'"
-          [formControllerName]="'singleCreditLineJE'">
-        </app-configuration-toggle-field>
-      <!-- </div> -->
+      <app-configuration-toggle-field
+        [form]="advancedSettingsForm"
+        [iconPath]="'assets/images/svgs/general/expense.svg'"
+        [label]="'Create a single itemized offset credit entry for Journal'"
+        [subLabel]="'Merge all Credits in a Journal to create a single entry.'"
+        [formControllerName]="'singleCreditLineJE'">
+      </app-configuration-toggle-field>
 
       <app-configuration-step-footer-section [isButtonDisabled]="!advancedSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
 
