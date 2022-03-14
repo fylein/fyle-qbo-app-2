@@ -247,24 +247,15 @@ h3, h4, h5, h6 {
     padding: 15.38px 26.25px 15.37px 0px;
   }
 
-  &--auto-map-note-section {
-    padding: 10px 50px 40px 32px;
-  }
-
-  &--auto-map-note-content {
-    padding: 8px 12px 8px 32px;
-  }
-
-  &--auto-map-example-section {
-    padding: 4px 16px 0px 16px;
-  }
-
   &--toggle-form-field {
-    padding: 22.5px 357px 22.5px 0px;
+    padding: 22.5px 0px 0px 0px;
   }
 
   &--input-toggle-section {
-    width: 408px;
+    width: 455px;
+    @media only screen and (max-width: 1440px) {
+      width: 440px;
+    }
   }
 
   &--icon {
@@ -273,10 +264,6 @@ h3, h4, h5, h6 {
 
   &--field-label-text-section {
     width: 552px;
-  }
-
-  &--field-label-text-section-without-img {
-    padding-left: 40px;
   }
 
   &--field-toggle-section {
@@ -288,16 +275,20 @@ h3, h4, h5, h6 {
   }
 
   &--field-label-section {
-    width: 592px;
+    max-width: 650px;
     padding-right: 46px;
   }
 
   &--form-field {
     width: 401px;
-    padding: 2px 16px 0px 16px;
+    padding: 2px 0px 0px 0px;
+    @media only screen and (max-width: 1440px) {
+      padding: 2px 8px 0px 10px;
+    }
   }
 
   &--field-header {
     padding-top: 3px;
+    width: 592px;
   }
 }

@@ -6,411 +6,209 @@
   <div *ngIf="!isLoading" class="configuration--contents">
     <app-configuration-step-header-section></app-configuration-step-header-section>
     <form [formGroup]="exportSettingsForm">
-      <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-        <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-          <img src="assets/images/svgs/actions/question-mark.svg" class="configuration--icon">
-          <div>
-            <div class="configuration--field-header">
-              At which state should the expenses be ready to export from Fyle?
-              <app-mandatory-field></app-mandatory-field>
-            </div>
-            <h5 class="configuration--field-label sub-text-color">
-              You could choose to export expenses when they have been approved and are awaiting payment clearance, OR simply when they have been paid out.
-            </h5>
-          </div>
-        </div>
-        <div class="configuration--input-section">
-          <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-            <mat-select placeholder="Select expense state" formControlName="expenseState">
-              <mat-option *ngFor="let option of expenseStateOptions" [value]="option.value">
-                {{ option.label }}
-                <img *ngIf="exportSettingsForm.value.expenseState === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
+      <app-configuration-select-field
+        [form]="exportSettingsForm"
+        [options]="expenseStateOptions"
+        [isFieldMandatory]="true"
+        [iconPath]="'assets/images/svgs/actions/question-mark.svg'"
+        [label]="'At which state should the expenses be ready to export from Fyle?'"
+        [subLabel]="'You could choose to export expenses when they have been approved and are awaiting payment clearance, OR simply when they have been paid out.'"
+        [placeholder]="'Select expense state'"
+        [formControllerName]="'expenseState'"
+        >
+      </app-configuration-select-field>
 
-      <div class="configuration--auto-map-note-section">
-        <div class="configuration--auto-map-note-content sub-text-color">
-          <h5>
-            NOTE: Based on the selected state, the integration will automatically import the expenses from Fyle. You can then manually export expenses from the Dashboard or automate the export process in the Advance settings.
-          </h5>
-        </div>
-      </div>
-
-      <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-toggle-section">
-        <div class="configuration--field-label-section">
-          Export Reimbursable Expenses
-          <h5 class="configuration--field-label sub-text-color">
-            Enable this to export the reimbursable expenses from Fyle. If not enabled, any <span class="bold">out-of-pocket</span> expenses will not be exported to QBO.
-          </h5>
-        </div>
-        <div class="configuration--input-toggle-section">
-          <mat-slide-toggle class="configuration--toggle-form-field" color="accent" formControlName="reimbursableExpense"></mat-slide-toggle>
-        </div>
-      </div>
+      <app-configuration-toggle-field
+        [form]="exportSettingsForm"
+        [label]="'Export Reimbursable Expenses'"
+        [subLabel]="'Enable this to export the reimbursable expenses from Fyle. If not enabled, any <span class=bold>out-of-pocket</span> expenses will not be exported to QBO.'"
+        [formControllerName]="'reimbursableExpense'"
+      >
+      </app-configuration-toggle-field>
 
       <div *ngIf="exportSettingsForm.value.reimbursableExpense">
-        <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-            <img src="assets/images/svgs/general/expense.svg" class="configuration--icon">
-            <div class="configuration--field-label-text-section">
-              <div class="configuration--field-header">
-                How should the expenses be exported?
-                <app-mandatory-field></app-mandatory-field>
-              </div>
-              <h5 class="configuration--field-label sub-text-color">
-                Choose the type of transaction in Quickbooks Online to export your Fyle expenses.
-              </h5>
-            </div>
-          </div>
-          <div class="configuration--input-section">
-            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-              <mat-select placeholder="Select expense export type" formControlName="reimbursableExportType">
-                <mat-option *ngFor="let option of reimbursableExportTypes" [value]="option.value">
-                  {{ option.label }}
-                  <img *ngIf="exportSettingsForm.value.reimbursableExportType === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+        <app-configuration-select-field
+          [form]="exportSettingsForm"
+          [options]="reimbursableExportTypes"
+          [isFieldMandatory]="true"
+          [iconPath]="'assets/images/svgs/general/expense.svg'"
+          [label]="'How should the expenses be exported?'"
+          [subLabel]="'Choose the type of transaction in Quickbooks Online to export your Fyle expenses.'"
+          [placeholder]="'Select expense export type'"
+          [formControllerName]="'reimbursableExportType'"
+          >
+        </app-configuration-select-field>
+
+        <div *ngIf="showBankAccountField()">
+          <app-configuration-select-field
+            [form]="exportSettingsForm"
+            [qboAttributes]="bankAccounts"
+            [isFieldMandatory]="true"
+            [label]="'To which Bank Account should the ' + exportSettingsForm.value.reimbursableExportType.toLowerCase() + ' be posted to?'"
+            [subLabel]="'All the offset entry in the Journal will be posted to the selected Bank account'"
+            [placeholder]="'Select Bank Account'"
+            [formControllerName]="'bankAccount'"
+            >
+          </app-configuration-select-field>
         </div>
 
-        <div *ngIf="showBankAccountField()" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-            <div class="configuration--field-label-text-section configuration--field-label-text-section-without-img">
-              <div class="configuration--field-header">
-                To which Bank Account should the {{ exportSettingsForm.value.reimbursableExportType | titlecase }} be posted to?
-                <app-mandatory-field></app-mandatory-field>
-              </div>
-              <h5 class="configuration--field-label sub-text-color">
-                All the offset entry in the Journal will be posted to the selected Bank account
-              </h5>
-            </div>
-          </div>
-          <div class="configuration--input-section">
-            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-              <mat-select
-                placeholder="Select Bank Account"
-                formControlName="bankAccount">
-                <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
-                <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of bankAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
-                  {{ option.value }}
-                  <img *ngIf="(exportSettingsForm.value.bankAccount | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+        <div *ngIf="showExpenseAccountField()">
+          <app-configuration-select-field
+            [form]="exportSettingsForm"
+            [qboAttributes]="expenseAccounts"
+            [isFieldMandatory]="true"
+            [label]="'To which Expense Account should the ' + exportSettingsForm.value.reimbursableExportType.toLowerCase() + ' be posted to?'"
+            [subLabel]="'The expenses exported will be added to the selected Expense Payment Account'"
+            [placeholder]="'Select Expense Account'"
+            [formControllerName]="'qboExpenseAccount'"
+            >
+          </app-configuration-select-field>
         </div>
 
-        <div *ngIf="showExpenseAccountField()" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-            <div class="configuration--field-label-text-section configuration--field-label-text-section-without-img">
-              <div class="configuration--field-header">
-                To which Expense Account should the {{ exportSettingsForm.value.reimbursableExportType | titlecase }} be posted to?
-                <app-mandatory-field></app-mandatory-field>
-              </div>
-              <h5 class="configuration--field-label sub-text-color">
-                The expenses exported will be added to the selected Expense Payment Account
-              </h5>
-            </div>
-          </div>
-          <div class="configuration--input-section">
-            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-              <mat-select
-                placeholder="Select Expense Account"
-                formControlName="qboExpenseAccount">
-                <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
-                <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of expenseAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
-                  {{ option.value }}
-                  <img *ngIf="(exportSettingsForm.value.qboExpenseAccount | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+        <div *ngIf="showReimbursableAccountsPayableField()">
+          <app-configuration-select-field
+            [form]="exportSettingsForm"
+            [qboAttributes]="accountsPayables"
+            [isFieldMandatory]="true"
+            [label]="'To which Accounts Payable account should the Bill be posted to?'"
+            [subLabel]="'The integration will post the offset credit entry in Bill to the selected Accounts Payable Account.'"
+            [placeholder]="'Select accounts payable'"
+            [formControllerName]="'accountsPayable'"
+            >
+          </app-configuration-select-field>
         </div>
 
-        <div *ngIf="showReimbursableAccountsPayableField()" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-            <div class="configuration--field-label-text-section configuration--field-label-text-section-without-img">
-              <div class="configuration--field-header">
-                To which Accounts Payable account should the Bill be posted to?
-                <app-mandatory-field></app-mandatory-field>
-              </div>
-              <h5 class="configuration--field-label sub-text-color">
-                The integration will post the offset credit entry in Bill to the selected Accounts Payable Account.
-              </h5>
-            </div>
-          </div>
-          <div class="configuration--input-section">
-            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-              <mat-select
-                placeholder="Select accounts payable"
-                formControlName="accountsPayable" (keydown)="$event.stopPropagation()">
-                <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
-                <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of accountsPayables | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
-                  {{ option.value }}
-                  <img *ngIf="(exportSettingsForm.value.accountsPayable | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+        <div *ngIf="exportSettingsForm.value.reimbursableExportType">
+          <app-configuration-select-field
+            [form]="exportSettingsForm"
+            [options]="expenseGroupingFieldOptions"
+            [isFieldMandatory]="true"
+            [iconPath]="'assets/images/svgs/general/tabs.svg'"
+            [label]="'How should the expense in ' + exportSettingsForm.value.reimbursableExportType.toLowerCase() + ' be grouped?'"
+            [subLabel]="'Grouping reflects how the expense entries of a ' + exportSettingsForm.value.reimbursableExportType.toLowerCase() + ' are posted in QBO. For example, grouping by payment exports all expenses within a Fyle payment queue as one record.'"
+            [placeholder]="'Select expense export type'"
+            [formControllerName]="'reimbursableExportGroup'"
+            >
+          </app-configuration-select-field>
         </div>
 
-        <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-            <img src="assets/images/svgs/general/tabs.svg" class="configuration--icon">
-            <div>
-              <div class="configuration--field-header">
-                How should the expense in {{ exportSettingsForm.value.reimbursableExportType ? (exportSettingsForm.value.reimbursableExportType | titlecase) : 'QBO' }} be grouped?
-                <app-mandatory-field></app-mandatory-field>
-              </div>
-              <h5 class="configuration--field-label sub-text-color">
-                Grouping reflects how the expense entries of a {{ exportSettingsForm.value.reimbursableExportType ? (exportSettingsForm.value.reimbursableExportType | titlecase) : 'QBO' }} are posted in QBO. For example, grouping by payment exports all expenses within a Fyle payment queue as one record.
-              </h5>
-            </div>
-          </div>
-          <div class="configuration--input-section">
-            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-              <mat-select placeholder="Select expense export type" formControlName="reimbursableExportGroup">
-                <mat-option *ngFor="let option of expenseGroupingFieldOptions" [value]="option.value">
-                  {{ option.label }}
-                  <img *ngIf="exportSettingsForm.value.reimbursableExportGroup === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-
-        <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-            <img src="assets/images/svgs/general/calendar.svg" class="configuration--icon">
-            <div class="configuration--field-label-text-section">
-              <div class="configuration--field-header">
-                Set the {{ exportSettingsForm.value.reimbursableExportType ?
-                (exportSettingsForm.value.reimbursableExportType | titlecase) : 'export' }} date as
-                <app-mandatory-field></app-mandatory-field>
-              </div>
-              <h5 class="configuration--field-label sub-text-color">
-                The selected date will reflect in expenses exported to QBO
-              </h5>
-            </div>
-          </div>
-          <div class="configuration--input-section">
-            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-              <mat-select
-                placeholder="Select the {{ exportSettingsForm.value.reimbursableExportType ? (exportSettingsForm.value.reimbursableExportType | titlecase) : 'export' }} date"
-                formControlName="reimbursableExportDate">
-                <mat-option *ngFor="let option of expenseGroupingDateOptions" [value]="option.value">
-                  {{ option.label }}
-                  <img *ngIf="exportSettingsForm.value.reimbursableExportDate === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+        <div *ngIf="exportSettingsForm.value.reimbursableExportType">
+          <app-configuration-select-field
+            [form]="exportSettingsForm"
+            [options]="expenseGroupingDateOptions"
+            [isFieldMandatory]="true"
+            [iconPath]="'assets/images/svgs/general/calendar.svg'"
+            [label]="'Set the ' + exportSettingsForm.value.reimbursableExportType.toLowerCase() + ' date as'"
+            [subLabel]="'The selected date will reflect in expenses exported to QBO'"
+            [placeholder]="'Select the ' + exportSettingsForm.value.reimbursableExportType.toLowerCase() + 'export'"
+            [formControllerName]="'reimbursableExportDate'"
+            >
+          </app-configuration-select-field>
         </div>
       </div>
 
-      <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-toggle-section">
-        <div class="configuration--field-label-section">
-          Export Credit Card Expenses
-          <h5 class="configuration--field-label sub-text-color">
-            Enable this to export the corporate credit card expenses from Fyle. If not enabled, any expenses <span class="bold">Paid by Corporate Card</span> will not be exported to QBO.
-          </h5>
-        </div>
-        <div class="configuration--input-toggle-section">
-          <mat-slide-toggle class="configuration--toggle-form-field" color="accent" formControlName="creditCardExpense"></mat-slide-toggle>
-        </div>
-      </div>
+      <app-configuration-toggle-field
+        [form]="exportSettingsForm"
+        [label]="'Export Credit Card Expenses'"
+        [subLabel]="'Enable this to export the corporate credit card expenses from Fyle. If not enabled, any expenses <span class=bold>Paid by Corporate Card</span> will not be exported to QBO.'"
+        [formControllerName]="'creditCardExpense'"
+      >
+      </app-configuration-toggle-field>
 
       <div *ngIf="exportSettingsForm.value.creditCardExpense">
-        <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-            <img src="assets/images/svgs/general/expense.svg" class="configuration--icon">
-            <div class="configuration--field-label-text-section">
-              <div class="configuration--field-header">
-                How should the expenses be exported?
-                <app-mandatory-field></app-mandatory-field>
-              </div>
-              <h5 class="configuration--field-label sub-text-color">
-                Choose the type of transaction in Quickbooks Online to export your corporate credit card expense from Fyle.
-              </h5>
-            </div>
-          </div>
-          <div class="configuration--input-section">
-            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-              <mat-select placeholder="Select expense export type" formControlName="creditCardExportType">
-                <mat-option *ngFor="let option of creditCardExportTypes" [value]="option.value">
-                  {{ option.label }}
-                  <img *ngIf="exportSettingsForm.value.creditCardExportType === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+        <app-configuration-select-field
+          [form]="exportSettingsForm"
+          [options]="creditCardExportTypes"
+          [isFieldMandatory]="true"
+          [iconPath]="'assets/images/svgs/general/expense.svg'"
+          [label]="'How should the expenses be exported?'"
+          [subLabel]="'Choose the type of transaction in Quickbooks Online to export your corporate credit card expense from Fyle.'"
+          [placeholder]="'Select expense export type'"
+          [formControllerName]="'creditCardExportType'"
+          >
+        </app-configuration-select-field>
+
+        <div *ngIf="showCreditCardAccountField()">
+          <app-configuration-select-field
+            [form]="exportSettingsForm"
+            [qboAttributes]="cccAccounts"
+            [isFieldMandatory]="true"
+            [label]="'Set Default Credit Card Account as'"
+            [subLabel]="'Post all your company credit card transactions to a default credit card account.'"
+            [placeholder]="'Select Default Credit Card Vendor'"
+            [formControllerName]="'defaultCCCAccount'"
+            >
+          </app-configuration-select-field>
+
         </div>
 
-        <div *ngIf="showCreditCardAccountField()" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-            <div class="configuration--field-label-text-section configuration--field-label-text-section-without-img">
-              <div class="configuration--field-header">
-                Set Default Credit Card Account as
-                <app-mandatory-field></app-mandatory-field>
-              </div>
-              <h5 class="configuration--field-label sub-text-color">
-                Post all your company credit card transactions to a default credit card account.
-                <!-- TODO: Add note section -->
-              </h5>
-            </div>
-          </div>
-          <div class="configuration--input-section">
-            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-              <mat-select
-                placeholder="Select Default Credit Card Vendor"
-                formControlName="defaultCCCAccount">
-                <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
-                <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of cccAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
-                  {{ option.value }}
-                  <img *ngIf="(exportSettingsForm.value.defaultCCCAccount | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+        <div *ngIf="showDebitCardAccountField()">
+          <app-configuration-select-field
+            [form]="exportSettingsForm"
+            [qboAttributes]="bankAccounts"
+            [isFieldMandatory]="true"
+            [label]="'Set Default Debit Card Account as'"
+            [subLabel]="'Post all your company debit card transactions to a default debit card account.'"
+            [placeholder]="'Select Default Debit Card Account'"
+            [formControllerName]="'defaultDebitCardAccount'"
+            >
+          </app-configuration-select-field>
+
         </div>
 
-        <div *ngIf="showDebitCardAccountField()" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-            <div class="configuration--field-label-text-section configuration--field-label-text-section-without-img">
-              <div class="configuration--field-header">
-                Set Default Debit Card Account as
-                <app-mandatory-field></app-mandatory-field>
-              </div>
-              <h5 class="configuration--field-label sub-text-color">
-                Post all your company debit card transactions to a default debit card account.
-                <!-- TODO: Add note section -->
-              </h5>
-            </div>
-          </div>
-          <div class="configuration--input-section">
-            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-              <mat-select
-                placeholder="Select Default Debit Card Account"
-                formControlName="defaultDebitCardAccount">
-                <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
-                <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of bankAccounts | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
-                  {{ option.value }}
-                  <img *ngIf="(exportSettingsForm.value.defaultDebitCardAccount | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+        <div *ngIf="showDefaultCreditCardVendorField()">
+          <app-configuration-select-field
+            [form]="exportSettingsForm"
+            [qboAttributes]="vendors"
+            [isFieldMandatory]="true"
+            [label]="'Set default Credit Card Vendor as'"
+            [subLabel]="'The default vendor will apply to all credit card transactions upon export.'"
+            [placeholder]="'Select default credit card vendor'"
+            [formControllerName]="'defaultCreditCardVendor'"
+            >
+          </app-configuration-select-field>
+
         </div>
 
-        <div *ngIf="showDefaultCreditCardVendorField()" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-            <div class="configuration--field-label-text-section configuration--field-label-text-section-without-img">
-              <div class="configuration--field-header">
-                Set default Credit Card Vendor as
-                <app-mandatory-field></app-mandatory-field>
-              </div>
-              <h5 class="configuration--field-label sub-text-color">
-                The default vendor will apply to all credit card transactions upon export.
-              </h5>
-            </div>
-          </div>
-          <div class="configuration--input-section">
-            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-              <mat-select
-                placeholder="Select default credit card vendor"
-                formControlName="defaultCreditCardVendor">
-                <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
-                <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of vendors | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
-                  {{ option.value }}
-                  <img *ngIf="(exportSettingsForm.value.defaultCreditCardVendor | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+        <div *ngIf="showCCCAccountsPayableField() && !showReimbursableAccountsPayableField()">
+          <app-configuration-select-field
+            [form]="exportSettingsForm"
+            [qboAttributes]="accountsPayables"
+            [isFieldMandatory]="true"
+            [label]="'To which Accounts Payable account should the Bill be posted to?'"
+            [subLabel]="'The integration will post the offset credit entry in Bill to the selected Accounts Payable Account.'"
+            [placeholder]="'Select accounts payable'"
+            [formControllerName]="'accountsPayable'"
+            >
+          </app-configuration-select-field>
         </div>
 
-        <div *ngIf="showCCCAccountsPayableField() && !showReimbursableAccountsPayableField()" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-            <div class="configuration--field-label-text-section configuration--field-label-text-section-without-img">
-              <div class="configuration--field-header">
-                To which Accounts Payable account should the Bill be posted to?
-                <app-mandatory-field></app-mandatory-field>
-              </div>
-              <h5 class="configuration--field-label sub-text-color">
-                The integration will post the offset credit entry in Bill to the selected Accounts Payable Account.
-              </h5>
-            </div>
-          </div>
-          <div class="configuration--input-section">
-            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-              <mat-select
-                placeholder="Select accounts payable"
-                formControlName="accountsPayable">
-                <app-simple-search-select [form]="exportSettingsForm"></app-simple-search-select>
-                <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(exportSettingsForm)" *ngFor="let option of accountsPayables | search : exportSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
-                  {{ option.value }}
-                  <img *ngIf="(exportSettingsForm.value.accountsPayable | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+        <div *ngIf="exportSettingsForm.value.creditCardExportType">
+          <app-configuration-select-field
+            [form]="exportSettingsForm"
+            [options]="expenseGroupingFieldOptions"
+            [isFieldMandatory]="true"
+            [iconPath]="'assets/images/svgs/general/tabs.svg'"
+            [label]="'How should the expense in ' + exportSettingsForm.value.creditCardExportType.toLowerCase() + ' be grouped?'"
+            [subLabel]="'Grouping reflects how the expense entries of a ' + exportSettingsForm.value.creditCardExportType.toLowerCase() + ' are posted in QBO. For example, grouping by payment exports all expenses within a Fyle payment queue as one record.'"
+            [placeholder]="'Select expense export type'"
+            [formControllerName]="'creditCardExportGroup'"
+            >
+          </app-configuration-select-field>
         </div>
 
-        <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-            <img src="assets/images/svgs/general/tabs.svg" class="configuration--icon">
-            <div>
-              <div class="configuration--field-header">
-                How should the expense in {{ exportSettingsForm.value.creditCardExportType ? (exportSettingsForm.value.creditCardExportType | titlecase) : 'QBO' }} be grouped?
-                <app-mandatory-field></app-mandatory-field>
-              </div>
-              <h5 class="configuration--field-label sub-text-color">
-                Grouping reflects how the expense entries of a {{ exportSettingsForm.value.creditCardExportType ? (exportSettingsForm.value.creditCardExportType | titlecase) : 'QBO' }} are posted in QBO. For example, grouping by payment exports all expenses within a Fyle payment queue as one record.
-              </h5>
-            </div>
-          </div>
-          <div class="configuration--input-section">
-            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-              <mat-select placeholder="Select expense export type" formControlName="creditCardExportGroup">
-                <mat-option *ngFor="let option of expenseGroupingFieldOptions" [value]="option.value">
-                  {{ option.label }}
-                  <img *ngIf="exportSettingsForm.value.creditCardExportGroup === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-
-        <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-          <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-            <img src="assets/images/svgs/general/calendar.svg" class="configuration--icon">
-            <div class="configuration--field-label-text-section">
-              <div class="configuration--field-header">
-                Set the {{ exportSettingsForm.value.creditCardExportType ?
-                (exportSettingsForm.value.creditCardExportType | titlecase) : 'export' }} date as
-                <app-mandatory-field></app-mandatory-field>
-              </div>
-              <h5 class="configuration--field-label sub-text-color">
-                The selected date will reflect in the corporate credit card expenses exported to QBO.
-              </h5>
-            </div>
-          </div>
-          <div class="configuration--input-section">
-            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-              <mat-select
-                placeholder="Select the {{ exportSettingsForm.value.reimbursableExportType ? (exportSettingsForm.value.reimbursableExportType | titlecase) : 'export' }} date"
-                formControlName="creditCardExportDate">
-                <mat-option *ngFor="let option of expenseGroupingDateOptions" [value]="option.value">
-                  {{ option.label }}
-                  <img *ngIf="exportSettingsForm.value.creditCardExportDate === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+        <div *ngIf="exportSettingsForm.value.creditCardExportType">
+          <app-configuration-select-field
+            [form]="exportSettingsForm"
+            [options]="expenseGroupingDateOptions"
+            [isFieldMandatory]="true"
+            [iconPath]="'assets/images/svgs/general/calendar.svg'"
+            [label]="'Set the ' + exportSettingsForm.value.creditCardExportType.toLowerCase() + ' date as'"
+            [subLabel]="'The selected date will reflect in the corporate credit card expenses exported to QBO.'"
+            [placeholder]="'Select the ' + exportSettingsForm.value.creditCardExportType.toLowerCase() + 'export'"
+            [formControllerName]="'creditCardExportDate'"
+            >
+          </app-configuration-select-field>
         </div>
       </div>
 

@@ -5,81 +5,29 @@
   <div *ngIf="!isLoading" class="configuration--contents">
     <app-configuration-step-header-section></app-configuration-step-header-section>
     <form [formGroup]="employeeSettingsForm">
-      <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-        <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-          <img src="assets/images/svgs/general/employee.svg" class="configuration--icon">
-          <div>
-            <div class="configuration--field-header">
-              How are your Employees represented in Quickbooks Online?
-              <app-mandatory-field></app-mandatory-field>
-            </div>
-            <h5 class="configuration--field-label sub-text-color">
-              Select how you represent your employees in QBO. This would help to export the expenses from Fyle to the
-              correct employee/vendor record in QBO.
-            </h5>
-          </div>
-        </div>
-        <div class="configuration--input-section">
-          <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-            <mat-select placeholder="Select representation" formControlName="employeeMapping">
-              <mat-option *ngFor="let option of employeeMappingOptions" [value]="option.value">
-                {{ option.label }}
-                <img *ngIf="employeeSettingsForm.value.employeeMapping === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <div class="configuration--auto-map-example-section">
-            <h5 *ngIf="employeeSettingsForm.value.employeeMapping === 'EMPLOYEE'" class="sub-text-color">
-              Example of an Employee from your QBO instance : {{ liveEntityExample.EMPLOYEE }}
-            </h5>
-            <h5 *ngIf="employeeSettingsForm.value.employeeMapping === 'VENDOR'" class="sub-text-color">
-              Example of a Vendor from your QBO instance : {{ liveEntityExample.VENDOR }}
-            </h5>
-          </div>
-        </div>
-      </div>
+      <app-configuration-select-field 
+        [form]="employeeSettingsForm"
+        [options]="employeeMappingOptions"
+        [isFieldMandatory]="true"
+        [liveEntityExample]="liveEntityExample"
+        [iconPath]="'assets/images/svgs/general/employee.svg'"
+        [label]="'How are your Employees represented in Quickbooks Online?'"
+        [subLabel]="'Select how you represent your employees in QBO. This would help to export the expenses from Fyle to the correct employee/vendor record in QBO.'"
+        [placeholder]="'Select representation'"
+        [formControllerName]="'employeeMapping'"
+        >
+      </app-configuration-select-field>
 
-      <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-        <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-          <img src="assets/images/svgs/general/employee.svg" class="configuration--icon">
-          <div>
-            <div class="configuration--field-header">
-              How should Employees in Fyle be matched to Employees/Vendors in Quickbooks Online?
-            </div>
-            <h5 class="configuration--field-label sub-text-color">
-              Automatically map the employees in Fyle to their corresponding records in QBO based on a unique
-              parameter.
-            </h5>
-          </div>
-        </div>
-        <div class="configuration--input-section">
-          <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-            <mat-select placeholder="Select representation" formControlName="autoMapEmployee">
-              <mat-option *ngFor="let option of autoMapEmployeeOptions" [value]="option.value">
-                {{ option.label }}
-                <img *ngIf="employeeSettingsForm.value.autoMapEmployee === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <div class="configuration--auto-map-example-section">
-            <h5 *ngIf="employeeSettingsForm.value.autoMapEmployee === 'NAME'" class="sub-text-color">
-              Example: Ryan Clark will map to Ryan Clark in QBO.
-            </h5>
-            <h5 *ngIf="employeeSettingsForm.value.autoMapEmployee === 'EMAIL'" class="sub-text-color">
-              Example: ryan.clark@acme.com will map to ryan.clark@acme.com in QBO.
-            </h5>
-            <h5 *ngIf="employeeSettingsForm.value.autoMapEmployee === 'EMPLOYEE_CODE'" class="sub-text-color">
-              Example: E0146 will map to E0146 in QBO.
-            </h5>
-          </div>
-        </div>
-      </div>
-
-      <div class="configuration--auto-map-note-section">
-        <div class="configuration--auto-map-note-content sub-text-color">
-          <h5>Note: In case the employee records are not auto matched by the integration, you could still manually map the records from the Mappings section of the integration.</h5>
-        </div>
-      </div>
+      <app-configuration-select-field 
+        [form]="employeeSettingsForm"
+        [options]="autoMapEmployeeOptions"
+        [iconPath]="'assets/images/svgs/general/employee.svg'"
+        [label]="'How should Employees in Fyle be matched to Employees/Vendors in Quickbooks Online?'"
+        [subLabel]="'Automatically map the employees in Fyle to their corresponding records in QBO based on a unique parameter.'"
+        [placeholder]="'Select representation'"
+        [formControllerName]="'autoMapEmployee'"
+        >
+      </app-configuration-select-field>
 
       <app-configuration-step-footer-section [isButtonDisabled]="!employeeSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
     </form>

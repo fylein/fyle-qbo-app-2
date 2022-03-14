@@ -98,6 +98,7 @@ export class EmployeeSettingsComponent implements OnInit {
       });
       this.isLoading = false;
     }, () => {
+      // TODO: remove after connecting to api
       this.employeeSettingsForm = this.formBuilder.group({
         employeeMapping: [null, Validators.required],
         autoMapEmployee: [null, Validators.nullValidator]

@@ -69,6 +69,15 @@
     padding: 8px 16px;
   }
 
+  &--import-to-fyle-toggle {
+    padding-right: 175px;
+  }
+
+  &--field-label-section {
+    width: 650px;
+    padding-right: 46px;
+  }
+
   &--create-custom-field {
     padding: 8px 0px;
   }
@@ -79,14 +88,6 @@
 
   &--default-tax-section {
     height: 160px;
-  }
-
-  &--tax-contents {
-    padding: 40px 32px 16px 32px;
-  }
-
-  &--tax-sub-header {
-    padding-top: 8px;
   }
 
   &--default-tax-contents {
