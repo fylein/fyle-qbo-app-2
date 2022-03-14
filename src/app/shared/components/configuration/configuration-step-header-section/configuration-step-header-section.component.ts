@@ -40,7 +40,7 @@ export class ConfigurationStepHeaderSectionComponent implements OnInit {
         break;
       case 'export_settings':
         this.headerText = 'Export Settings';
-        this.contentText = 'In this section, you will configure how and when expenses from Fyle can be exported to Quickbooks Online';
+        this.contentText = 'In this section, you will configure how and when expenses from Fyle can be exported to Quickbooks Online.';
         break;
       case 'import_settings':
         this.headerText = 'Import Settings';
@@ -51,7 +51,7 @@ export class ConfigurationStepHeaderSectionComponent implements OnInit {
         this.headerText = 'Advanced Settings';
         this.isStepOptional = true;
         // TODO: learn more link
-        this.contentText = 'This section contains settings to automate and customize your expense export. Learn More';
+        this.contentText = 'This section contains settings to automate and customize your expense export.';
         break;
     }
   }

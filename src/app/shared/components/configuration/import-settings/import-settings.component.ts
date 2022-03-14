@@ -118,9 +118,8 @@ export class ImportSettingsComponent implements OnInit {
   }
 
   private updateTaxGroupVisibility(): void {
-    // TODO: this will get fixed after onboarding
     this.qboConnectorService.getQBOCredentials().subscribe((qboCredentials: QBOCredentials) => {
-      if (qboCredentials && qboCredentials.country !== 'aSUS') {
+      if (qboCredentials && qboCredentials.country !== 'US') {
         this.isTaxGroupSyncAllowed = true;
       }
     });
@@ -227,7 +226,6 @@ export class ImportSettingsComponent implements OnInit {
 
   save(): void {
     if (this.importSettingsForm.valid && !this.saveInProgress) {
-      // TODO: check ImportSettingModel class
       const importSettingsPayload = ImportSettingModel.constructPayload(this.importSettingsForm);
       console.log('importSettingPayload', importSettingsPayload);
       this.saveInProgress = true;

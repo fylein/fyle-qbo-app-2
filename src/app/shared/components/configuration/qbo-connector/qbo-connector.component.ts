@@ -41,7 +41,6 @@ export class QboConnectorComponent implements OnInit {
       return;
     }
 
-    // TODO: POST call to save completed info in DB
     this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/employee_settings`]);
   }
 

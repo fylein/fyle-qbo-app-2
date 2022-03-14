@@ -360,7 +360,6 @@ export class ExportSettingsComponent implements OnInit {
       creditCardExportDate: [this.exportSettings.expense_group_settings?.ccc_export_date_type],
       bankAccount: [this.exportSettings.general_mappings.bank_account?.id],
       defaultCCCAccount: [this.exportSettings.general_mappings.default_ccc_account?.id],
-      // TODO: handle accounts payable for bill payments in advanced settings
       accountsPayable: [this.exportSettings.general_mappings.accounts_payable?.id],
       defaultCreditCardVendor: [this.exportSettings.general_mappings.default_ccc_vendor?.id],
       qboExpenseAccount: [this.exportSettings.general_mappings.qbo_expense_account?.id],
@@ -377,7 +376,6 @@ export class ExportSettingsComponent implements OnInit {
   }
 
   save(): void {
-    // TODO: handle reimburse and ccc toggles off case
     if (this.exportSettingsForm.valid && !this.saveInProgress) {
       const exportSettingPayload = ExportSettingModel.constructPayload(this.exportSettingsForm);
       console.log('Export setting payload: ', exportSettingPayload);
