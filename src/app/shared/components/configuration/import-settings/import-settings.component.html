@@ -39,7 +39,7 @@
         <div formArrayName="expenseFields" class="configuration--field-toggle-section">
           <div *ngFor="let expenseField of expenseFields.controls; let i = index" [formGroupName]="i">
             <div fxLayout="row" fxLayoutAlign="space-between center">
-              <div class="configuration--field-label-section import-settings--import-to-fyle-toggle">
+              <div class="import-settings--field-label-section import-settings--import-to-fyle-toggle">
                 Import {{ expenseField.value.destination_field | titlecase }} from Quickbooks Online
                 <h5 class="configuration--field-label sub-text-color">
                   The imported {{ expenseField.value.destination_field | titlecase }} from Quickbooks Online will be a
@@ -92,7 +92,7 @@
           <app-configuration-toggle-field
             [form]="importSettingsForm"
             [label]="'Import Tax from QBO'"
-            [subLabel]="'The imported Tax codes from Quickbooks will be set as Tax group in Fyle.'"
+            [subLabel]="'The imported Tax codes from Quickbooks will be set as Tax group in Fyle. This will be a selectable field while creating an expense.'"
             [formControllerName]="'taxCode'">
           </app-configuration-toggle-field>
         </div>
