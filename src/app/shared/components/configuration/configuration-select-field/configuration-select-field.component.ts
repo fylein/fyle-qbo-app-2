@@ -30,10 +30,6 @@ export class ConfigurationSelectFieldComponent implements OnInit {
     public helperService: HelperService
   ) { }
 
-  close() {
-    console.log('closed')
-  }
-
   ngOnInit(): void {
   }
 
