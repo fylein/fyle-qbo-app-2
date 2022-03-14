@@ -1,6 +1,5 @@
 <app-onboarding-stepper [currentStep]="'Import Settings'"></app-onboarding-stepper>
 
-<!-- TODO: Fix toggle position -->
 <div class="import-settings">
   <div class="configuration--section">
     <app-loader [phase]="'pre_onboarding'" *ngIf="isLoading"></app-loader>
@@ -14,7 +13,7 @@
           [formControllerName]="'chartOfAccount'">
         </app-configuration-toggle-field>
 
-      <div *ngIf="importSettingsForm.value.chartOfAccount" class="import-settings--field-checkbox-section">
+        <div *ngIf="importSettingsForm.value.chartOfAccount" class="import-settings--field-checkbox-section">
           <div class="import-settings--field-checkbox-contents">
             <div class="import-settings--field-checkbox-inner-contents">
               <div class="import-settings--chart-of-account-header">
@@ -40,7 +39,7 @@
         <div formArrayName="expenseFields" class="configuration--field-toggle-section">
           <div *ngFor="let expenseField of expenseFields.controls; let i = index" [formGroupName]="i">
             <div fxLayout="row" fxLayoutAlign="space-between center">
-              <div class="configuration--field-label-section">
+              <div class="configuration--field-label-section import-settings--import-to-fyle-toggle">
                 Import {{ expenseField.value.destination_field | titlecase }} from Quickbooks Online
                 <h5 class="configuration--field-label sub-text-color">
                   The imported {{ expenseField.value.destination_field | titlecase }} from Quickbooks Online will be a
@@ -48,7 +47,7 @@
                 </h5>
               </div>
               <div class="configuration--input-toggle-section">
-                <mat-slide-toggle color="accent" [disabled]="expenseField.value.disable_import_to_fyle"
+                <mat-slide-toggle class="configuration--toggle-form-field" color="accent" [disabled]="expenseField.value.disable_import_to_fyle"
                   formControlName="import_to_fyle"></mat-slide-toggle>
               </div>
             </div>

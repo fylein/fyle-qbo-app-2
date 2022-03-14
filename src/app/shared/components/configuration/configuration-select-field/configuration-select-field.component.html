@@ -1,7 +1,7 @@
 <div [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
   <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
     <img *ngIf="iconPath" src="{{ iconPath }}" class="configuration--icon">
-    <div class="configuration--field-label-text-section" [ngClass]="{'configuration--field-label-text-section-without-img': !iconPath}">
+    <div class="configuration--field-label-text-section" [ngClass]="{'configuration-select-field--field-label-text-section-without-img': !iconPath}">
       <div class="configuration--field-header">
         {{ label }}
         <app-mandatory-field *ngIf="isFieldMandatory"></app-mandatory-field>
@@ -27,7 +27,7 @@
       </mat-select>
     </mat-form-field>
 
-    <div *ngIf="formControllerName === 'autoMapEmployee'" class="configuration--auto-map-example-section">
+    <div *ngIf="formControllerName === 'autoMapEmployee'" class="configuration-select-field--select-example-section">
       <h5 *ngIf="form.value.autoMapEmployee === 'NAME'" class="sub-text-color">
         Example: Ryan Clark will map to Ryan Clark in QBO.
       </h5>
@@ -39,7 +39,7 @@
       </h5>
     </div>
 
-    <div *ngIf="formControllerName === 'employeeMapping'" class="configuration--auto-map-example-section">
+    <div *ngIf="formControllerName === 'employeeMapping'" class="configuration-select-field--select-example-section">
       <h5 *ngIf="form.value.employeeMapping === 'EMPLOYEE'" class="sub-text-color">
         Example of an Employee from your QBO instance : {{ liveEntityExample.EMPLOYEE }}
       </h5>
@@ -47,5 +47,11 @@
         Example of a Vendor from your QBO instance : {{ liveEntityExample.VENDOR }}
       </h5>
     </div>
+  </div>
+</div>
+<div *ngIf="formControllerName === 'autoMapEmployee' || formControllerName === 'expenseState'" class="configuration-select-field--select-note-section">
+  <div class="configuration-select-field--select-note-content sub-text-color">
+    <h5 *ngIf="formControllerName === 'autoMapEmployee'">Note: In case the employee records are not auto matched by the integration, you could still manually map the records from the Mappings section of the integration.</h5>
+    <h5 *ngIf="formControllerName === 'expenseState'">Note: Based on the selected state, the integration will automatically import the expenses from Fyle. You can then manually export expenses from the Dashboard or automate the export process in the Advance settings.</h5>
   </div>
 </div>

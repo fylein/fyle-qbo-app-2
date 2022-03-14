@@ -29,12 +29,6 @@
         >
       </app-configuration-select-field>
 
-      <div class="configuration--auto-map-note-section">
-        <div class="configuration--auto-map-note-content sub-text-color">
-          <h5>Note: In case the employee records are not auto matched by the integration, you could still manually map the records from the Mappings section of the integration.</h5>
-        </div>
-      </div>
-
       <app-configuration-step-footer-section [isButtonDisabled]="!employeeSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
     </form>
   </div>

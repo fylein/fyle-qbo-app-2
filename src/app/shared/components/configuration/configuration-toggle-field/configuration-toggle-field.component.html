@@ -3,13 +3,12 @@
   <div>
     <div class="configuration--field-label-section">
       {{ label }}
-    
-    <h5 class="configuration--field-label sub-text-color" [innerHTML]="subLabel"></h5>
-    <h5 *ngIf="formControllerName === 'chartOfAccount'" class="additional-label-chart-of-accounts sub-text-color">
-      NOTE: If you have already created categories in Fyle, you can skip this and map your categories to
-      corresponding QBO accounts after completing configuration in <span class="bold">Integration Dashboard >
-        Mappings Section</span>
-    </h5>
+      <h5 class="configuration--field-label sub-text-color" [innerHTML]="subLabel"></h5>
+      <h5 *ngIf="formControllerName === 'chartOfAccount'" class="additional-label-chart-of-accounts sub-text-color">
+        NOTE: If you have already created categories in Fyle, you can skip this and map your categories to
+        corresponding QBO accounts after completing configuration in <span class="bold">Integration Dashboard >
+          Mappings Section</span>
+      </h5>
     </div>
   </div>
   <div class="configuration--input-toggle-section">

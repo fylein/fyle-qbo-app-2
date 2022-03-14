@@ -247,18 +247,6 @@ h3, h4, h5, h6 {
     padding: 15.38px 26.25px 15.37px 0px;
   }
 
-  &--auto-map-note-section {
-    padding: 10px 50px 40px 32px;
-  }
-
-  &--auto-map-note-content {
-    padding: 8px 12px 8px 32px;
-  }
-
-  &--auto-map-example-section {
-    padding: 4px 16px 0px 16px;
-  }
-
   &--toggle-form-field {
     padding: 22.5px 0px 0px 0px;
   }
@@ -278,10 +266,6 @@ h3, h4, h5, h6 {
     width: 552px;
   }
 
-  &--field-label-text-section-without-img {
-    padding-left: 35px;
-  }
-
   &--field-toggle-section {
     padding: 24px 8px 24px 32px;
     min-height: 114px;
@@ -291,7 +275,7 @@ h3, h4, h5, h6 {
   }
 
   &--field-label-section {
-    max-width: 650px;
+    width: 650px;
     padding-right: 46px;
   }
 
