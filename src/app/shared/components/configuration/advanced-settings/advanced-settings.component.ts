@@ -122,10 +122,13 @@ export class AdvancedSettingsComponent implements OnInit {
     this.memoStructure = this.advancedSettings.workspace_general_settings.memo_structure;
 
     this.advancedSettingsForm = this.formBuilder.group({
+      // TODO: paymentSync should depend on the workspace general settings
       paymentSync: [paymentSync],
       billPaymentAccount: [this.advancedSettings.general_mappings.bill_payment_account?.id],
       changeAccountingPeriod: [this.advancedSettings.workspace_general_settings.change_accounting_period],
+      // TODO: singleCreditLineJE should depend on the workspace general settings
       singleCreditLineJE: [this.advancedSettings.workspace_general_settings.je_single_credit_line],
+      // TODO: autoCreateVendors should depend on the workspace general settings
       autoCreateVendors: [this.advancedSettings.workspace_general_settings.auto_create_destination_entity],
       exportSchedule: [this.advancedSettings.workspace_schedules.enabled ? this.advancedSettings.workspace_schedules.interval_hours : false],
       exportScheduleFrequency: [this.advancedSettings.workspace_schedules.enabled ? this.advancedSettings.workspace_schedules.interval_hours : null],

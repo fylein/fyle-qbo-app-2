@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { WorkspacesGuard } from 'src/app/core/guard/workspaces.guard';
 import { OnboardingAdvancedSettingsComponent } from './onboarding-advanced-settings/onboarding-advanced-settings.component';
 import { OnboardingDoneComponent } from './onboarding-done/onboarding-done.component';
 import { OnboardingEmployeeSettingsComponent } from './onboarding-employee-settings/onboarding-employee-settings.component';
@@ -21,7 +22,8 @@ const routes: Routes = [
     children: [
       {
         path: 'export_settings',
-        component: OnboardingExportSettingsComponent
+        component: OnboardingExportSettingsComponent,
+        canActivate: [WorkspacesGuard]
       },
       {
         path: 'qbo_connector',
@@ -29,19 +31,23 @@ const routes: Routes = [
       },
       {
         path: 'employee_settings',
-        component: OnboardingEmployeeSettingsComponent
+        component: OnboardingEmployeeSettingsComponent,
+        canActivate: [WorkspacesGuard]
       },
       {
         path: 'import_settings',
-        component: OnboardingImportSettingsComponent
+        component: OnboardingImportSettingsComponent,
+        canActivate: [WorkspacesGuard]
       },
       {
         path: 'advanced_settings',
-        component: OnboardingAdvancedSettingsComponent
+        component: OnboardingAdvancedSettingsComponent,
+        canActivate: [WorkspacesGuard]
       },
       {
         path: 'done',
-        component: OnboardingDoneComponent
+        component: OnboardingDoneComponent,
+        canActivate: [WorkspacesGuard]
       }
     ]
   }
