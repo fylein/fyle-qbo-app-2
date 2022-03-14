@@ -9,6 +9,7 @@ export class HelperService {
   constructor() { }
 
   clearSearchText(form: FormGroup): void {
+    console.log('clearing search text');
     form.controls.searchOption.patchValue(null);
   }
 }

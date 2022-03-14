@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { AdvancedSettingFormOption } from 'src/app/core/models/configuration/advanced-setting.model';
 import { EmployeeSettingFormOption } from 'src/app/core/models/configuration/employee-setting.model';
 import { ExportSettingFormOption } from 'src/app/core/models/configuration/export-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
@@ -14,9 +15,7 @@ import { HelperService } from 'src/app/core/services/core/helper.service';
 export class ConfigurationSelectFieldComponent implements OnInit {
 
   @Input() form: FormGroup;
-  // Having any here is okay, we get a different types of array of objects
-  // TODO: Later convert it to DestinationAttribute[] | string[] etc.., 
-  @Input() options: EmployeeSettingFormOption[] | ExportSettingFormOption[] | any[];
+  @Input() options: EmployeeSettingFormOption[] | ExportSettingFormOption[] | AdvancedSettingFormOption[] | any[];
   @Input() qboAttributes: DestinationAttribute[];
   @Input() iconPath: string;
   @Input() label: string;
@@ -30,6 +29,10 @@ export class ConfigurationSelectFieldComponent implements OnInit {
   constructor(
     public helperService: HelperService
   ) { }
+
+  close() {
+    console.log('closed')
+  }
 
   ngOnInit(): void {
   }

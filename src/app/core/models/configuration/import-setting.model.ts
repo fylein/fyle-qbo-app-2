@@ -48,27 +48,6 @@ export interface ImportSettingFormOption extends SelectFormOption {
   value: string;
 }
 
-function formatChartOfAccounts(chartOfAccounts: {enabled: boolean, name: string}[]): string[] {
-  return chartOfAccounts.filter(chartOfAccount => chartOfAccount.enabled).map(chartOfAccount => chartOfAccount.name);
-}
-
-function formatMappingSettings(expenseFields: ExpenseFieldsFormOption[]): ImportSettingMappingSetting[] {
-  const mappingSettings: ImportSettingMappingSetting[] = [];
-  expenseFields.forEach((expenseField: ExpenseFieldsFormOption) => {
-    if (expenseField.source_field) {     
-      mappingSettings.push({
-        source_field: expenseField.source_field,
-        destination_field: expenseField.destination_field,
-        import_to_fyle: expenseField.import_to_fyle,
-        is_custom: expenseField.source_field === MappingSourceField.COST_CENTER || expenseField.source_field === MappingSourceField.PROJECT ? false : true,
-        placeholder: expenseField.placeholder
-      });
-    }
-  });
-
-  return mappingSettings;
-}
-
 
 export class ImportSettingModel {
   static constructPayload(importSettingsForm: FormGroup): ImportSettingPost {
@@ -76,14 +55,35 @@ export class ImportSettingModel {
     const employeeSettingPayload: ImportSettingPost = {
       workspace_general_settings: {
         import_categories: importSettingsForm.get('chartOfAccount')?.value,
-        charts_of_accounts: formatChartOfAccounts(importSettingsForm.get('chartOfAccountTypes')?.value),
+        charts_of_accounts: ImportSettingModel.formatChartOfAccounts(importSettingsForm.get('chartOfAccountTypes')?.value),
         import_tax_codes: importSettingsForm.get('taxCode')?.value
       },
       general_mappings: {
         default_tax_code: importSettingsForm.get('defaultTaxCode')?.value ? importSettingsForm.get('defaultTaxCode')?.value : emptyDestinationAttribute
       },
-      mapping_settings: formatMappingSettings(importSettingsForm.get('expenseFields')?.value)
+      mapping_settings: ImportSettingModel.formatMappingSettings(importSettingsForm.get('expenseFields')?.value)
     };
     return employeeSettingPayload;
+  }
+
+  static formatChartOfAccounts(chartOfAccounts: {enabled: boolean, name: string}[]): string[] {
+    return chartOfAccounts.filter(chartOfAccount => chartOfAccount.enabled).map(chartOfAccount => chartOfAccount.name);
+  }
+
+  static formatMappingSettings(expenseFields: ExpenseFieldsFormOption[]): ImportSettingMappingSetting[] {
+    const mappingSettings: ImportSettingMappingSetting[] = [];
+    expenseFields.forEach((expenseField: ExpenseFieldsFormOption) => {
+      if (expenseField.source_field) {
+        mappingSettings.push({
+          source_field: expenseField.source_field,
+          destination_field: expenseField.destination_field,
+          import_to_fyle: expenseField.import_to_fyle,
+          is_custom: expenseField.source_field === MappingSourceField.COST_CENTER || expenseField.source_field === MappingSourceField.PROJECT ? false : true,
+          placeholder: expenseField.placeholder
+        });
+      }
+    });
+
+    return mappingSettings;
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MinimalUser } from 'src/app/core/models/db/user.model';
 import { AuthService } from 'src/app/core/services/core/auth.service';
@@ -15,6 +16,7 @@ export class FyleCallbackComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
+    private snackBar: MatSnackBar,
     private userService: UserService
   ) { }
 
@@ -26,8 +28,11 @@ export class FyleCallbackComponent implements OnInit {
 
   private redirectToLogin(): void {
     this.authService.logout();
-    // TODO: handle spender error and show relevant message
     this.router.navigate(['auth/login']);
+    // TODO: fix content
+    this.snackBar.open(`You don't have access to this page, please contact support@fylehq.com if this is not intended`, '', {
+      duration: 7000
+    });
   }
 
   private saveUserProfileAndNavigate(code: string): void {
