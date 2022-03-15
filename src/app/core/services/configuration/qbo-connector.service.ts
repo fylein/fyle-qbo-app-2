@@ -24,7 +24,6 @@ export class QboConnectorService {
     cacheBusterNotifier: qboCredentialsCache$
   })
   connectQBO(qboConnector: QboConnector): Observable<QBOCredentials> {
-    // TODO: test globalCacheBusterNotifier
     globalCacheBusterNotifier.next();
     return this.apiService.post(`/workspaces/${this.workspaceId}/connect_qbo/authorization_code/`, qboConnector);
   }
