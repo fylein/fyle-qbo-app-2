@@ -88,7 +88,7 @@
           </div>
         </div>
 
-        <div class="import-settings--tax-section" *ngIf="!isTaxGroupSyncAllowed">
+        <div class="import-settings--tax-section" *ngIf="isTaxGroupSyncAllowed">
           <app-configuration-toggle-field
             [form]="importSettingsForm"
             [label]="'Import Tax from QBO'"
