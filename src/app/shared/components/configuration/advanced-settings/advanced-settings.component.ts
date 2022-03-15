@@ -5,12 +5,13 @@ import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { AdvancedSettingFormOption, AdvancedSettingGet, AdvancedSettingModel } from 'src/app/core/models/configuration/advanced-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { PaymentSyncDirection } from 'src/app/core/models/enum/enum.model';
+import { AutoMapEmployee, CorporateCreditCardExpensesObject, EmployeeFieldMapping, PaymentSyncDirection, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { WorkspaceGeneralSetting } from 'src/app/core/models/db/workspace-general-setting.model';
 
 @Component({
   selector: 'app-advanced-settings',
@@ -22,6 +23,7 @@ export class AdvancedSettingsComponent implements OnInit {
   isLoading: boolean = true;
   saveInProgress: boolean;
   advancedSettings: AdvancedSettingGet;
+  workspaceGeneralSettings: WorkspaceGeneralSetting;
   billPaymentAccounts: DestinationAttribute[];
   advancedSettingsForm: FormGroup;
   defaultMemoFields: string[] = ['employee_email', 'merchant', 'purpose', 'category', 'spent_on', 'report_number', 'expense_link'];
@@ -111,6 +113,18 @@ export class AdvancedSettingsComponent implements OnInit {
     });
   }
 
+  showPaymentSyncField(): boolean {
+    return this.workspaceGeneralSettings.reimbursable_expenses_object === ReimbursableExpensesObject.BILL;
+  }
+
+  showSingleCreditLineJEField(): boolean {
+    return this.workspaceGeneralSettings.reimbursable_expenses_object === ReimbursableExpensesObject.JOURNAL_ENTRY || this.workspaceGeneralSettings.corporate_credit_card_expenses_object === CorporateCreditCardExpensesObject.JOURNAL_ENTRY;
+  }
+
+  showAutoCreateVendorsField(): boolean {
+    return this.workspaceGeneralSettings.employee_field_mapping === EmployeeFieldMapping.VENDOR && this.workspaceGeneralSettings.auto_map_employees !== null && this.workspaceGeneralSettings.auto_map_employees !== AutoMapEmployee.EMPLOYEE_CODE ;
+  }
+
   private setupForm(): void {
     let paymentSync = '';
     if (this.advancedSettings.workspace_general_settings.sync_fyle_to_qbo_payments) {
@@ -122,13 +136,10 @@ export class AdvancedSettingsComponent implements OnInit {
     this.memoStructure = this.advancedSettings.workspace_general_settings.memo_structure;
 
     this.advancedSettingsForm = this.formBuilder.group({
-      // TODO: paymentSync should depend on the workspace general settings
       paymentSync: [paymentSync],
       billPaymentAccount: [this.advancedSettings.general_mappings.bill_payment_account?.id],
       changeAccountingPeriod: [this.advancedSettings.workspace_general_settings.change_accounting_period],
-      // TODO: singleCreditLineJE should depend on the workspace general settings
       singleCreditLineJE: [this.advancedSettings.workspace_general_settings.je_single_credit_line],
-      // TODO: autoCreateVendors should depend on the workspace general settings
       autoCreateVendors: [this.advancedSettings.workspace_general_settings.auto_create_destination_entity],
       exportSchedule: [this.advancedSettings.workspace_schedules.enabled ? this.advancedSettings.workspace_schedules.interval_hours : false],
       exportScheduleFrequency: [this.advancedSettings.workspace_schedules.enabled ? this.advancedSettings.workspace_schedules.interval_hours : null],
@@ -143,10 +154,12 @@ export class AdvancedSettingsComponent implements OnInit {
   private getSettingsAndSetupForm(): void {
     forkJoin([
       this.advancedSettingService.getAdvancedSettings(),
-      this.mappingService.getQBODestinationAttributes('BANK_ACCOUNT')
+      this.mappingService.getQBODestinationAttributes('BANK_ACCOUNT'),
+      this.workspaceService.getWorkspaceGeneralSettings()
     ]).subscribe(response => {
       this.advancedSettings = response[0];
       this.billPaymentAccounts = response[1];
+      this.workspaceGeneralSettings = response[2];
 
       this.setupForm();
     });
