@@ -93,6 +93,10 @@ h3, h4, h5, h6 {
   padding: 4px 0px 0px 14px !important;
 }
 
+.mat-form-field-wrapper {
+  padding-bottom: 0.5em;
+}
+
 .mat-accent .mat-option.mat-selected:not(.mat-option-disabled), .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
   background: #F5F5F5;
   border-radius: 4px;
@@ -175,8 +179,8 @@ h3, h4, h5, h6 {
 
 .configuration {
   &--section {
-    padding: 0px 170px 100px 176px;
-    margin-top: -135px;
+    padding-bottom: 100px;
+    margin-top: -75px;
   }
 
   &--contents {
@@ -186,6 +190,7 @@ h3, h4, h5, h6 {
     box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
     border-radius: 8px;
     margin: -60px 0px;
+    width: 1098px;
   }
 
   &--field-section {

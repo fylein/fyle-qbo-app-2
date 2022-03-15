@@ -1,5 +1,5 @@
 <div class="header-section">
-  <div fxLayout="row" fxLayoutAlign="space-between center" class="header-section--inner">
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="header-section--inner" [ngClass]="{'header-section--sync-inactive': !(activePage === 'export_settings' || activePage === 'import_settings' || activePage === 'advanced_settings')}">
     <div>
       <h3 class="header-section--header-text single-line-text">
         {{ headerText }} <span *ngIf="isStepOptional" class="sub-text-color italic">(Optional)</span>

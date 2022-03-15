@@ -8,6 +8,11 @@
   &--inner {
     min-height: 71px;
     padding: 32px 32px 32px 32px;
+    width: 1080px;
+  }
+
+  &--sync-inactive {
+    width: 1080px;
   }
 
   &--header-text {

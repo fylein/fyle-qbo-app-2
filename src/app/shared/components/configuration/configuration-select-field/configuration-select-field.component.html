@@ -13,7 +13,7 @@
   </div>
   <div class="configuration--input-section">
     <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-      <mat-select [placeholder]="placeholder" [formControlName]="formControllerName" (closed)="helperService.clearSearchText(form)">
+      <mat-select [placeholder]="placeholder" [formControlName]="formControllerName">
         <mat-option *ngFor="let option of options" [value]="option.value">
           {{ option.label }}
           <img *ngIf="form.value[formControllerName] === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
@@ -31,6 +31,7 @@
     </mat-form-field>
 
     <div *ngIf="formControllerName === 'autoMapEmployee'" class="configuration-select-field--select-example-section">
+      <!-- TODO: content -->
       <h5 *ngIf="form.value.autoMapEmployee === 'NAME'" class="sub-text-color">
         Example: Ryan Clark will map to Ryan Clark in QBO.
       </h5>
