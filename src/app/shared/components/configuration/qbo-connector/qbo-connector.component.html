@@ -1,78 +1,76 @@
 <app-onboarding-stepper [currentStep]="'Connect to QBO'"></app-onboarding-stepper>
 
-<!-- <div class="qbo-connector"> -->
-  <div fxLayout="row" fxLayoutAlign="center center" class="configuration--section">
-    <app-loader [phase]="'pre_onboarding'" *ngIf="isLoading"></app-loader>
-    <div *ngIf="!isLoading" class="configuration--contents">
-      <app-configuration-step-header-section></app-configuration-step-header-section>
-      <div fxLayout="row" fxLayoutAlign="space-between center">
-        <div class="qbo-connector--connection-blocks">
-          <div class="qbo-connector--qbo-org-section">
-            <h5 class="qbo-connector--fyle-section-text align-center sub-text-color bold">
-              FYLE
-            </h5>
-            <h3 class="align-center">
-              {{ fyleOrgName | trimCharacter: 26 }}
-            </h3>
-          </div>
-          <div class="qbo-connector--switch-org-section">
-            <div class="qbo-connector--org-switch-separator"></div>
-            <div class="qbo-connector--switch-org-inner-section">
-              <h4 class="qbo-connector--switch-org-info-text sub-text-color single-line-text">
-                Not the organization that you wish to connect?
-              </h4>
-              <h4 (click)="switchFyleOrg()" class="qbo-connector--switch-org-text actionable-text align-center">
-                Switch Organization
-              </h4>
-            </div>
-          </div>
+<div fxLayout="row" fxLayoutAlign="center center" class="configuration--section">
+  <app-loader [phase]="'pre_onboarding'" *ngIf="isLoading"></app-loader>
+  <div *ngIf="!isLoading" class="configuration--contents">
+    <app-configuration-step-header-section></app-configuration-step-header-section>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="qbo-connector--connection-blocks">
+        <div class="qbo-connector--qbo-org-section">
+          <h5 class="qbo-connector--fyle-section-text align-center sub-text-color bold">
+            FYLE
+          </h5>
+          <h3 class="align-center">
+            {{ fyleOrgName | trimCharacter: 26 }}
+          </h3>
         </div>
-        <div class="qbo-connector--connection-blocks">
-          <div class="qbo-connector--connection-top-block">
-            <div class="qbo-connector--connection-block-separator"></div>
-            <div>
-              <img src="assets/gifs/disconnect.gif" height="100px" width="100px"/>
-            </div>
-            <div class="qbo-connector--connection-block-separator"></div>
-          </div>
-        </div>
-        <div class="qbo-connector--connection-blocks">
-          <div class="qbo-connector--fyle-org-section">
-            <h5 class="qbo-connector--fyle-section-text align-center sub-text-color bold">
-              QUICKBOOKS ONLINE COMPANY
-            </h5>
-            <h3 *ngIf="!qboConnectionInProgress && qboCompanyName" class="align-center">
-              {{ qboCompanyName | trimCharacter: 26 }}
-            </h3>
-            <p class="align-center" *ngIf="qboConnectionInProgress">
-              <app-loader [size]="'small'"></app-loader>
-            </p>
-          </div>
-          <div class="qbo-connector--switch-org-section">
-            <div class="qbo-connector--org-switch-separator"></div>
-            <div class="qbo-connector--switch-org-inner-section">
-              <h4 *ngIf="!qboConnectionInProgress && !qboTokenExpired && showDisconnectQBO" class="qbo-connector--switch-org-info-text align-center sub-text-color single-line-text">
-                Not the company that you wish to connect with?
-              </h4>
-              <h4 *ngIf="qboConnectionInProgress" class="qbo-connector--connection-in-progress-text align-center sub-text-color">
-                Please hold on; we are fetching data from your Quickbooks Online account, which may take a few seconds.
-              </h4>
-              <h4 *ngIf="qboTokenExpired && !qboConnectionInProgress" class="qbo-connector--connection-in-progress-text align-center sub-text-color">
-                Token expired
-              </h4>
-              <h4 *ngIf="!qboConnectionInProgress && qboTokenExpired" (click)="connectQbo()" class="qbo-connector--switch-org-text actionable-text align-center">
-                Re-Connect to QBO
-              </h4>
-              <h4 *ngIf="!qboConnectionInProgress && showDisconnectQBO" (click)="disconnectQbo()" class="qbo-connector--switch-org-text actionable-text align-center">
-                Disconnect
-              </h4>
-            </div>
+        <div class="qbo-connector--switch-org-section">
+          <div class="qbo-connector--org-switch-separator"></div>
+          <div class="qbo-connector--switch-org-inner-section">
+            <h4 class="qbo-connector--switch-org-info-text sub-text-color single-line-text">
+              Not the organization that you wish to connect?
+            </h4>
+            <h4 (click)="switchFyleOrg()" class="qbo-connector--switch-org-text actionable-text align-center">
+              Switch Organization
+            </h4>
           </div>
         </div>
       </div>
-
-      <app-configuration-step-footer-section [ctaText]="'Continue'" [isButtonDisabled]="isContinueDisabled" (save)="continueToNextStep()"></app-configuration-step-footer-section>
+      <div class="qbo-connector--connection-blocks">
+        <div class="qbo-connector--connection-top-block">
+          <div class="qbo-connector--connection-block-separator"></div>
+          <div>
+            <img src="assets/gifs/disconnect.gif" height="100px" width="100px"/>
+          </div>
+          <div class="qbo-connector--connection-block-separator"></div>
+        </div>
+      </div>
+      <div class="qbo-connector--connection-blocks">
+        <div class="qbo-connector--fyle-org-section">
+          <h5 class="qbo-connector--fyle-section-text align-center sub-text-color bold">
+            QUICKBOOKS ONLINE COMPANY
+          </h5>
+          <h3 *ngIf="!qboConnectionInProgress && qboCompanyName" class="align-center">
+            {{ qboCompanyName | trimCharacter: 26 }}
+          </h3>
+          <p class="align-center" *ngIf="qboConnectionInProgress">
+            <app-loader [size]="'small'"></app-loader>
+          </p>
+        </div>
+        <div class="qbo-connector--switch-org-section">
+          <div class="qbo-connector--org-switch-separator"></div>
+          <div class="qbo-connector--switch-org-inner-section">
+            <h4 *ngIf="!qboConnectionInProgress && !qboTokenExpired && showDisconnectQBO" class="qbo-connector--switch-org-info-text align-center sub-text-color single-line-text">
+              Not the company that you wish to connect with?
+            </h4>
+            <h4 *ngIf="qboConnectionInProgress" class="qbo-connector--connection-in-progress-text align-center sub-text-color">
+              Please hold on; we are fetching data from your Quickbooks Online account, which may take a few seconds.
+            </h4>
+            <h4 *ngIf="qboTokenExpired && !qboConnectionInProgress" class="qbo-connector--connection-in-progress-text align-center sub-text-color">
+              Token expired
+            </h4>
+            <h4 *ngIf="!qboConnectionInProgress && qboTokenExpired" (click)="connectQbo()" class="qbo-connector--switch-org-text actionable-text align-center">
+              Re-Connect to QBO
+            </h4>
+            <h4 *ngIf="!qboConnectionInProgress && showDisconnectQBO" (click)="disconnectQbo()" class="qbo-connector--switch-org-text actionable-text align-center">
+              Disconnect
+            </h4>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <app-configuration-step-footer-section [ctaText]="'Continue'" [isButtonDisabled]="isContinueDisabled" (save)="continueToNextStep()"></app-configuration-step-footer-section>
   </div>
-<!-- </div> -->
+</div>
 <app-onboarding-footer [page]="'qbo_connector'" *ngIf="!isLoading"></app-onboarding-footer>
