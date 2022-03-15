@@ -5,9 +5,11 @@
   backdrop-filter: blur(100px);
 
   &--smaller-page {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+    @media only screen and (min-width: 1450px) {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
   }
 
   &--content {

@@ -1,6 +1,6 @@
 <app-onboarding-stepper [currentStep]="'Advanced Settings'"></app-onboarding-stepper>
 
-<div class="configuration--section">
+<div fxLayout="row" fxLayoutAlign="center center" class="configuration--section">
   <app-loader [phase]="'pre_onboarding'" *ngIf="isLoading"></app-loader>
   <div *ngIf="!isLoading" class="configuration--contents">
     <app-configuration-step-header-section></app-configuration-step-header-section>
@@ -25,7 +25,7 @@
           </mat-form-field>
         </div>
 
-        <div class="advanced-settings--schedule-note-section" fxLayout="row" fxLayoutAlign="space-between start">
+        <div fxLayout="row" fxLayoutAlign="space-between start">
           <div class="advanced-settings--schedule-note-content">
             <h5 class="sub-text-color">
               NOTE: If you skip enabling the auto-schedule of export, you could still manually export the data from the <span class="bold">Dashboard</span>
@@ -88,6 +88,7 @@
         [formControllerName]="'autoCreateVendors'">
       </app-configuration-toggle-field>
 
+      <!-- TODO: content of placeholder -->
       <app-configuration-select-field *ngIf="showPaymentSyncField()"
         [form]="advancedSettingsForm"
         [options]="paymentSyncOptions"

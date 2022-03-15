@@ -86,6 +86,7 @@ export class QboConnectorComponent implements OnInit {
         this.showOrHideDisconnectQBO();
       });
     }, () => {
+      // TODO: personalise the message based on the error (if it's an actual error / different company connect)
       this.snackBar.open('Failed to connect to QuickBooks Online. Please try again');
       this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/landing`]);
     });

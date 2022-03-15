@@ -7,10 +7,6 @@
     padding: 16px 32px 40px 32px;
   }
 
-  &--field-checkbox-inner-contents {
-    padding-right: 187px;
-  }
-
   &--chart-of-account-header {
     padding-right: 8px;
   }
@@ -38,7 +34,7 @@
     box-sizing: border-box;
     border-radius: 4px;
     width: 280px;
-    height: 40px;
+    height: 36px;
   }
 
   &--qbo-field-text {
@@ -63,6 +59,7 @@
     border-top: 1px solid #DFDFE2;
     align-self: center;
     width: 48px;
+    height: 26px;
   }
 
   &--or-text {
@@ -103,8 +100,12 @@
     height: 40px;
   }
 
+  &--default-tax-header {
+    padding-bottom: 6px;
+  }
+
   &--default-tax-note {
-    padding-top: 8px;
+    padding-top: 12px;
   }
 
   &--field-label-note {

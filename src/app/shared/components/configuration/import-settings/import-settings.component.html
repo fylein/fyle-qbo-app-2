@@ -1,7 +1,7 @@
 <app-onboarding-stepper [currentStep]="'Import Settings'"></app-onboarding-stepper>
 
 <div class="import-settings">
-  <div class="configuration--section">
+  <div fxLayout="row" fxLayoutAlign="center center" class="configuration--section">
     <app-loader [phase]="'pre_onboarding'" *ngIf="isLoading"></app-loader>
     <div *ngIf="!isLoading" class="configuration--contents">
       <app-configuration-step-header-section></app-configuration-step-header-section>
@@ -15,21 +15,19 @@
 
         <div *ngIf="importSettingsForm.value.chartOfAccount" class="import-settings--field-checkbox-section">
           <div class="import-settings--field-checkbox-contents">
-            <div class="import-settings--field-checkbox-inner-contents">
-              <div class="import-settings--chart-of-account-header">
-                <h5 class="bold">
-                  Select the accounts from QBO to import as categories in Fyle
-                </h5>
-              </div>
-              <div formArrayName="chartOfAccountTypes" class="import-settings--chart-of-account-list-section">
-                <div fxLayout="row wrap">
-                  <div *ngFor="let chartOfAccountType of chartOfAccountTypes.controls; let i = index"
-                    [formGroupName]="i" fxFlex="33" class="import-settings--chart-of-account-list">
-                    <mat-checkbox formControlName="enabled" [checked]="chartOfAccountType.value.enabled"
-                      [disabled]="chartOfAccountType.value.name === 'Expense'">
-                      <h5>{{ chartOfAccountType.value.name }}</h5>
-                    </mat-checkbox>
-                  </div>
+            <div class="import-settings--chart-of-account-header">
+              <h5 class="bold">
+                Select the accounts from QBO to import as categories in Fyle
+              </h5>
+            </div>
+            <div formArrayName="chartOfAccountTypes" class="import-settings--chart-of-account-list-section">
+              <div fxLayout="row wrap">
+                <div *ngFor="let chartOfAccountType of chartOfAccountTypes.controls; let i = index"
+                  [formGroupName]="i" fxFlex="33" class="import-settings--chart-of-account-list">
+                  <mat-checkbox formControlName="enabled" [checked]="chartOfAccountType.value.enabled"
+                    [disabled]="chartOfAccountType.value.name === 'Expense'">
+                    <h5>{{ chartOfAccountType.value.name }}</h5>
+                  </mat-checkbox>
                 </div>
               </div>
             </div>
@@ -88,7 +86,8 @@
           </div>
         </div>
 
-        <div class="import-settings--tax-section" *ngIf="isTaxGroupSyncAllowed">
+        <!-- TODO: content Import Tax from QBO / Quickbooks Online -->
+        <div class="import-settings--tax-section" *ngIf="!isTaxGroupSyncAllowed">
           <app-configuration-toggle-field
             [form]="importSettingsForm"
             [label]="'Import Tax from QBO'"
@@ -100,7 +99,7 @@
         <div *ngIf="importSettingsForm.value.taxCode" class="import-settings--default-tax-section sub-text-color">
           <div class="import-settings--default-tax-contents">
             <div class="import-settings--default-tax-field">
-              <h5>
+              <h5 class="import-settings--default-tax-header">
                 Default Tax Code
                 <app-mandatory-field></app-mandatory-field>
               </h5>
