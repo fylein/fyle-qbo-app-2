@@ -88,7 +88,7 @@
           </div>
         </div>
 
-        <div class="import-settings--tax-section" *ngIf="isTaxGroupSyncAllowed">
+        <div class="import-settings--tax-section" *ngIf="!isTaxGroupSyncAllowed">
           <app-configuration-toggle-field
             [form]="importSettingsForm"
             [label]="'Import Tax from QBO'"
@@ -108,10 +108,13 @@
                 <mat-form-field floatLabel="always" appearance="outline" class="import-settings--default-tax-input">
                   <mat-select placeholder="Select Default Tax Code" formControlName="defaultTaxCode" (closed)="helperService.clearSearchText(importSettingsForm)">
                     <app-simple-search-select [form]="importSettingsForm"></app-simple-search-select>
-                    <mat-option [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(importSettingsForm)" *ngFor="let option of taxCodes | search : importSettingsForm.value.searchOption" [value]="{id: option.id, name: option.value}">
-                      {{ option.value }}
-                      <img *ngIf="(importSettingsForm.value.defaultTaxCode | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-                    </mat-option>
+                    <div *ngFor="let option of taxCodes | search : importSettingsForm.value.searchOption">
+                      <mat-option [ngClass]="{'import-settings--search-zero-state': option && option.value === 'No result found'}" [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(importSettingsForm)" [value]="{id: option.id, name: option.value}">
+                        <p (click)="$event.stopPropagation()" *ngIf="option.value === 'No result found'" class="align-center import-settings--search-zero-state-text">{{ option.value }}</p>
+                        <p *ngIf="option.value !== 'No result found'">{{ option.value }}</p>
+                        <img *ngIf="(importSettingsForm.value.defaultTaxCode | json) === ({id: option.id, name: option.value} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
+                      </mat-option>
+                    </div>
                   </mat-select>
                 </mat-form-field>
               </div>

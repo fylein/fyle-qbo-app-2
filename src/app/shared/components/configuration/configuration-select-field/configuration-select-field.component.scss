@@ -14,4 +14,15 @@
   &--select-note-content {
     padding: 8px 12px 8px 32px;
   }
+
+  &--search-zero-state {
+    height: 100px !important;
+    &:hover {
+      cursor: default;
+    }
+  }
+
+  &--search-zero-state-text {
+    font-style: italic;
+  }
 }
