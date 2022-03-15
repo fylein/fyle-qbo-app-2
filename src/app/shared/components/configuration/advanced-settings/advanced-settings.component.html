@@ -80,7 +80,7 @@
         [formControllerName]="'changeAccountingPeriod'">
       </app-configuration-toggle-field>
 
-      <app-configuration-toggle-field
+      <app-configuration-toggle-field *ngIf="showAutoCreateVendorsField()"
         [form]="advancedSettingsForm"
         [iconPath]="'assets/images/svgs/general/building.svg'"
         [label]="'Auto-Create Vendors'"
@@ -88,7 +88,7 @@
         [formControllerName]="'autoCreateVendors'">
       </app-configuration-toggle-field>
 
-      <app-configuration-select-field
+      <app-configuration-select-field *ngIf="showPaymentSyncField()"
         [form]="advancedSettingsForm"
         [options]="paymentSyncOptions"
         [iconPath]="'assets/images/svgs/actions/sync.svg'"
@@ -112,7 +112,7 @@
         </app-configuration-select-field>
       </div>
 
-      <app-configuration-toggle-field
+      <app-configuration-toggle-field *ngIf="showSingleCreditLineJEField()"
         [form]="advancedSettingsForm"
         [iconPath]="'assets/images/svgs/general/expense.svg'"
         [label]="'Create a single itemized offset credit entry for Journal'"

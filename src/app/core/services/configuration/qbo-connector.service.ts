@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Cacheable, CacheBuster, globalCacheBusterNotifier } from 'ts-cacheable';
 import { QboConnector, QBOCredentials } from '../../models/configuration/qbo-connector.model';
+import { QBOPreference } from '../../models/misc/qbo-preference.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
 
@@ -12,6 +13,7 @@ const qboCredentialsCache$ = new Subject<void>();
   providedIn: 'root'
 })
 export class QboConnectorService {
+  workspaceId = this.workspaceService.getWorkspaceId();
 
   constructor(
     private apiService: ApiService,
@@ -22,9 +24,8 @@ export class QboConnectorService {
     cacheBusterNotifier: qboCredentialsCache$
   })
   connectQBO(qboConnector: QboConnector): Observable<QBOCredentials> {
-    const workspaceId = this.workspaceService.getWorkspaceId();
     globalCacheBusterNotifier.next();
-    return this.apiService.post(`/workspaces/${workspaceId}/connect_qbo/authorization_code/`, qboConnector);
+    return this.apiService.post(`/workspaces/${this.workspaceId}/connect_qbo/authorization_code/`, qboConnector);
   }
 
   @Cacheable({
@@ -33,5 +34,10 @@ export class QboConnectorService {
   getQBOCredentials(): Observable<QBOCredentials> {
     const workspaceId = this.workspaceService.getWorkspaceId();
     return this.apiService.get(`/workspaces/${workspaceId}/credentials/qbo/`, {});
+  }
+
+  @Cacheable()
+  getPreferences(): Observable<QBOPreference> {
+    return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/preferences/`, {});
   }
 }

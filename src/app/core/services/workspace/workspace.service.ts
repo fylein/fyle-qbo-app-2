@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cacheable } from 'ts-cacheable';
+import { WorkspaceGeneralSetting } from '../../models/db/workspace-general-setting.model';
 import { Workspace } from '../../models/db/workspace.model';
 import { ApiService } from '../core/api.service';
 import { StorageService } from '../core/storage.service';
@@ -46,5 +47,9 @@ export class WorkspaceService {
 
   refreshQBODimensions(): Observable<{}> {
     return this.apiService.post(`/workspaces/${this.getWorkspaceId()}/qbo/refresh_dimensions/`, {});
+  }
+
+  getWorkspaceGeneralSettings(): Observable<WorkspaceGeneralSetting> {
+    return this.apiService.get(`/workspaces/${this.getWorkspaceId()}/settings/general/`, {});
   }
 }
