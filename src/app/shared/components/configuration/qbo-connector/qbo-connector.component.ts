@@ -105,7 +105,6 @@ export class QboConnectorComponent implements OnInit {
       this.showOrHideDisconnectQBO();
     }, (error) => {
       // Token expired
-      // TODO: Handle QBO company name
       if ('id' in error.error) {
         // We have a QBO row present in DB
         this.qboTokenExpired = error.error.is_expired;
@@ -132,7 +131,7 @@ export class QboConnectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // TODO: Fyle dimension sync
+    // TODO: Fyle & QBO sync dimension
     this.setupPage();
   }
 
