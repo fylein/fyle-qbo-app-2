@@ -18,11 +18,12 @@ export class QboConnectorComponent implements OnInit {
 
   isLoading: boolean = true;
   qboConnectionInProgress: boolean;
+  isQboConnected: boolean = true;
   qboTokenExpired: boolean;
   showDisconnectQBO: boolean;
   isContinueDisabled: boolean = true;
   workspaceId: string = this.workspaceService.getWorkspaceId();
-  qboCompanyName: string;
+  qboCompanyName: string | null;
   fyleOrgName: string = this.userService.getUserProfile().org_name;
 
   constructor(
@@ -54,7 +55,12 @@ export class QboConnectorComponent implements OnInit {
   }
 
   disconnectQbo(): void {
-    // TODO: Implement
+    this.isLoading = true;
+    this.qboConnectorService.disconnectQBOConnection().subscribe(() => {
+      this.showDisconnectQBO = false;
+      this.qboCompanyName = null;
+      this.getSettings();
+    });
   }
 
   private showOrHideDisconnectQBO(): void {
@@ -85,10 +91,30 @@ export class QboConnectorComponent implements OnInit {
         this.qboCompanyName = qboCredentials.company_name;
         this.showOrHideDisconnectQBO();
       });
-    }, () => {
+    }, (error) => {
       // TODO: personalise the message based on the error (if it's an actual error / different company connect)
-      this.snackBar.open('Failed to connect to QuickBooks Online. Please try again');
+      const errorMessage = 'message' in error.error ? error.error.message : 'Failed to connect to QuickBooks Online. Please try again';
+      this.snackBar.open(errorMessage, '', { duration: 7000 });
       this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/landing`]);
+    });
+  }
+
+  private getSettings(): void {
+    this.qboConnectorService.getQBOCredentials().subscribe((qboCredentials: QBOCredentials) => {
+      this.qboCompanyName = qboCredentials.company_name;
+      this.showOrHideDisconnectQBO();
+    }, (error) => {
+      // Token expired
+      if ('id' in error.error) {
+        // We have a QBO row present in DB
+        this.qboTokenExpired = error.error.is_expired;
+        if (this.qboTokenExpired) {
+          this.qboCompanyName = error.error.company_name;
+        }
+      }
+
+      this.isQboConnected = false;
+      this.isLoading = false;
     });
   }
 
@@ -100,20 +126,12 @@ export class QboConnectorComponent implements OnInit {
       this.qboConnectionInProgress = true;
       this.postQboCredentials(code, realmId);
     } else {
-      this.qboConnectorService.getQBOCredentials().subscribe((qboCredentials: QBOCredentials) => {
-        this.qboCompanyName = qboCredentials.company_name;
-        this.showOrHideDisconnectQBO();
-      }, () => {
-        // Token expired
-        // TODO: Handle QBO company name
-        this.qboTokenExpired = true;
-        this.isLoading = false;
-      });
+      this.getSettings();
     }
   }
 
   ngOnInit(): void {
-    // TODO: Fyle dimension sync
+    // TODO: Fyle & QBO sync dimension
     this.setupPage();
   }
 

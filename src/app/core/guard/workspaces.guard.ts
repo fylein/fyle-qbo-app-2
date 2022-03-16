@@ -37,7 +37,7 @@ export class WorkspacesGuard implements CanActivate {
         map(response => !!response),
         catchError(error => {
           // TODO: fix error message
-          if (error.status === 400 && (error.error.message === 'Quickbooks Online connection expired' || error.error.message === 'QBO credentials not found in workspace')) {
+          if (error.status === 400 && (error.error.message === 'Quickbooks Online connection expired' || error.error.message === 'QBO Credentials not found in this workspace')) {
             // TODO: redirect to dashboard if workspace is already onboarded
             // TODO: content
             this.snackBar.open('Quickbooks Online connection expired, please connect again', '', { duration: 7000 });

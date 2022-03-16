@@ -50,6 +50,12 @@
         <div class="qbo-connector--switch-org-section">
           <div class="qbo-connector--org-switch-separator"></div>
           <div class="qbo-connector--switch-org-inner-section">
+            <h4 *ngIf="!isQboConnected && !qboConnectionInProgress && !qboTokenExpired" class="qbo-connector--connection-in-progress-text align-center sub-text-color">
+              No Quickbooks Online company is connected yet.
+            </h4>
+            <h4 *ngIf="!isQboConnected && !qboConnectionInProgress && !qboTokenExpired" (click)="connectQbo()" class="qbo-connector--switch-org-text actionable-text align-center">
+              Connect to QBO
+            </h4>
             <h4 *ngIf="!qboConnectionInProgress && !qboTokenExpired && showDisconnectQBO" class="qbo-connector--switch-org-info-text align-center sub-text-color single-line-text">
               Not the company that you wish to connect with?
             </h4>
