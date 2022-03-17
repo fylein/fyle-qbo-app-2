@@ -1,0 +1,28 @@
+<router-outlet></router-outlet>
+<app-onboarding-header></app-onboarding-header>
+
+<div class="side-nav-bar">
+  <div *ngFor="let module of modules">
+    <div fxLayout="row" class="pointer" [ngClass]="{'side-nav-bar--active-module': module.isActive}" (click)="navigate(module)">
+      <div *ngIf="module.isActive" class="side-nav-bar--active-tag-module"></div>
+
+      <div fxLayout="row" class="side-nav-bar--module-block-content">
+        <!-- TODO: change font color on active and hover -->
+        <img height="22px" width="22px" src="{{ module.iconPath }}">
+        <h4 class="side-nav-bar--module-block-text">{{ module.name }}</h4>
+        <img *ngIf="module.childPages.length" height="22px" width="22px"
+          src='{{ "assets/images/svgs/actions/arrow-mark-" + (module.isExpanded ? "up" : "down") + ".svg"}}'>
+      </div>
+
+    </div>
+    <div *ngFor="let childPage of module.childPages">
+      <div fxLayout="row">
+        <div *ngIf="childPage.isActive" class="side-nav-bar--active-tag-module"></div>
+        <div *ngIf="module.isExpanded" fxLayout="row" class="side-nav-bar--module-block-content single-line-text pointer"
+          [ngClass]="{'side-nav-bar--active-module': childPage.isActive}" (click)="navigate(childPage)">
+          <h4 class="side-nav-bar--module-block-text-inner"> {{ childPage.name }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
