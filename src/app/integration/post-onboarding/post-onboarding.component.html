@@ -1,0 +1,28 @@
+<router-outlet></router-outlet>
+<app-onboarding-header></app-onboarding-header>
+
+<div class="side-nav-bar">
+  <div *ngFor="let module of modules">
+    <div fxLayout="row" class="pointer" [ngClass]="[module.isActive && !module.childPages.length ? 'side-nav-bar--active-module' : '', module.isActive ? 'side-nav-bar--active-module-text' : '']" (click)="navigate(module)">
+      <div *ngIf="module.isActive && (!module.childPages.length || !module.isExpanded)" class="side-nav-bar--active-tag-module"></div>
+      <div fxLayout="row" class="side-nav-bar--module-block-content">
+        <img height="22px" width="22px" src="{{ module.isActive ? module.iconPath + '-active.svg' :  module.iconPath + '.svg' }}">
+        <h4 class="side-nav-bar--module-block-text">{{ module.name }}</h4>
+        <img *ngIf="module.childPages.length && !module.isActive" height="22px" width="22px"
+          src='{{ "assets/images/svgs/actions/arrow-mark-" + (module.isExpanded ? "up" : "down") + ".svg"}}'>
+        <img *ngIf="module.childPages.length && module.isActive" height="22px" width="22px"
+          src='{{ "assets/images/svgs/actions/arrow-mark-" + (module.isExpanded ? "up-active" : "down-active") + ".svg"}}'>
+      </div>
+
+    </div>
+    <div *ngFor="let childPage of module.childPages">
+      <div fxLayout="row">
+        <div *ngIf="childPage.isActive && module.isExpanded" class="side-nav-bar--active-tag-module"></div>
+        <div *ngIf="module.isExpanded" fxLayout="row" class="side-nav-bar--module-block-content single-line-text pointer"
+          [ngClass]="[childPage.isActive ? 'side-nav-bar--active-module': '', childPage.isActive ? 'side-nav-bar--active-module-text': '']" (click)="navigate(childPage)">
+          <h4 class="side-nav-bar--module-block-text-inner"> {{ childPage.name }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

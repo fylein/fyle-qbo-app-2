@@ -20,7 +20,7 @@ export class OnboardingComponent implements OnInit {
   }
 
   redirectToOnboarding(workspaceId: number): void {
-    // handle all redirects based on settings here
+    // TODO: handle all redirects based on settings here
     // Added landing by default for now
     const pathName = this.windowReference.location.pathname;
     if (pathName.split('/onboarding')[1] === '') {
