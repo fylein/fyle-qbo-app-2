@@ -8,11 +8,12 @@ import { DashboardModule, DashboardModuleChild } from 'src/app/core/models/misc/
 })
 export class PostOnboardingComponent implements OnInit {
 
+  imgSrc: string;
   modules: DashboardModule[] = [
     {
       name: 'Dashboard',
       route: 'dashboard',
-      iconPath: 'assets/images/svgs/general/dashboard.svg',
+      iconPath: 'assets/images/svgs/general/dashboard',
       childPages: [],
       isExpanded: false,
       isActive: false
@@ -20,7 +21,7 @@ export class PostOnboardingComponent implements OnInit {
     {
       name: 'Export Logs',
       route: 'export-logs',
-      iconPath: 'assets/images/svgs/general/export-log.svg',
+      iconPath: 'assets/images/svgs/general/export-log',
       childPages: [],
       isExpanded: false,
       isActive: false
@@ -28,7 +29,7 @@ export class PostOnboardingComponent implements OnInit {
     {
       name: 'Mappings',
       route: 'mappings',
-      iconPath: 'assets/images/svgs/general/export-log.svg',
+      iconPath: 'assets/images/svgs/general/mapping',
       isExpanded: false,
       isActive: false,
       childPages: [
@@ -47,7 +48,7 @@ export class PostOnboardingComponent implements OnInit {
     {
       name: 'Configuration',
       route: 'configuration',
-      iconPath: 'assets/images/svgs/stepper/advanced-setting-inactive.svg',
+      iconPath: 'assets/images/svgs/stepper/configuration',
       isExpanded: false,
       isActive: false,
       childPages: [
@@ -95,10 +96,14 @@ export class PostOnboardingComponent implements OnInit {
       }
     });
 
+    // Set parent module as active if child module is clicked
+    const parentModule = this.modules.find(m => m.childPages.find(c => c.name === module.name));
+    if (parentModule) {
+      parentModule.isActive = true;
+    }
 
     if (module.name === 'Mappings' || module.name === 'Configuration') {
       module.isExpanded = !module.isExpanded;
-      module.isActive = false;
     } else {
       // TODO: navigate
     }

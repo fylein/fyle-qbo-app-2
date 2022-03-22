@@ -12,5 +12,6 @@ export type DashboardModuleChild = {
   name: string,
   route: string,
   isActive: boolean,
-  isExpanded?: boolean
+  isExpanded?: boolean,
+  iconPath?: string
 };
