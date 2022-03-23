@@ -1,0 +1,11 @@
+.configuration-employee-settings {
+  width: 151%;
+  @media only screen and (max-width: 1440px) {
+    width: 107%;
+  }
+
+  &--bg {
+    height: 240px;
+    background: linear-gradient(97.33deg, #E1EEFF 26.8%, #FFE4FB 97.18%);
+  }
+}

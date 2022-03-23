@@ -6,6 +6,7 @@ import { QboConnector, QBOCredentials } from 'src/app/core/models/configuration/
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
 import { AuthService } from 'src/app/core/services/core/auth.service';
+import { WindowService } from 'src/app/core/services/core/window.service';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
@@ -22,9 +23,11 @@ export class QboConnectorComponent implements OnInit {
   qboTokenExpired: boolean;
   showDisconnectQBO: boolean;
   isContinueDisabled: boolean = true;
+  isOnboarding: boolean = false;
   workspaceId: string = this.workspaceService.getWorkspaceId();
   qboCompanyName: string | null;
   fyleOrgName: string = this.userService.getUserProfile().org_name;
+  windowReference: Window;
 
   constructor(
     private authService: AuthService,
@@ -34,8 +37,11 @@ export class QboConnectorComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar,
     private userService: UserService,
+    private windowService: WindowService,
     private workspaceService: WorkspaceService
-  ) { }
+  ) {
+    this.windowReference = this.windowService.nativeWindow;
+  }
 
   continueToNextStep(): void {
     if (this.isContinueDisabled) {
@@ -121,6 +127,7 @@ export class QboConnectorComponent implements OnInit {
   private setupPage(): void {
     const code = this.route.snapshot.queryParams.code;
     const realmId = this.route.snapshot.queryParams.realmId;
+    this.isOnboarding = this.windowReference.location.pathname.includes('onboarding');
     if (code && realmId) {
       this.isLoading = false;
       this.qboConnectionInProgress = true;

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DashboardModule, DashboardModuleChild } from 'src/app/core/models/misc/dashboard-module.model';
+import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 @Component({
   selector: 'app-post-onboarding',
@@ -8,7 +10,7 @@ import { DashboardModule, DashboardModuleChild } from 'src/app/core/models/misc/
 })
 export class PostOnboardingComponent implements OnInit {
 
-  imgSrc: string;
+  workspaceId: string = this.workspaceService.getWorkspaceId();
   modules: DashboardModule[] = [
     {
       name: 'Dashboard',
@@ -54,29 +56,32 @@ export class PostOnboardingComponent implements OnInit {
       childPages: [
         {
           name: 'Map Employees',
-          route: 'employee-settings',
+          route: 'configuration/employee_settings',
           isActive: false
         },
         {
           name: 'Export Settings',
-          route: 'export-settings',
+          route: 'configuration/export_settings',
           isActive: false
         },
         {
           name: 'Import Settings',
-          route: 'import-settings',
+          route: 'configuration/import_settings',
           isActive: false
         },
         {
           name: 'Advanced Settings',
-          route: 'advanced-settings',
+          route: 'configuration/advanced_settings',
           isActive: false
         }
       ]
     }
   ];
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private workspaceService: WorkspaceService
+  ) { }
 
   navigate(module: DashboardModule | DashboardModuleChild): void {
     // Setting clicked module as active
@@ -105,7 +110,7 @@ export class PostOnboardingComponent implements OnInit {
     if (module.name === 'Mappings' || module.name === 'Configuration') {
       module.isExpanded = !module.isExpanded;
     } else {
-      // TODO: navigate
+      this.router.navigate([`/workspaces/${this.workspaceId}/app/${module.route}`]);
     }
   }
 

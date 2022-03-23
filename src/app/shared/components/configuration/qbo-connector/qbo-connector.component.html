@@ -1,5 +1,3 @@
-<app-onboarding-stepper [currentStep]="'Connect to QBO'"></app-onboarding-stepper>
-
 <div fxLayout="row" fxLayoutAlign="center center" class="configuration--section">
   <app-loader [phase]="'pre_onboarding'" *ngIf="isLoading"></app-loader>
   <div *ngIf="!isLoading" class="configuration--contents">
@@ -79,4 +77,4 @@
     <app-configuration-step-footer-section [ctaText]="'Continue'" [isButtonDisabled]="isContinueDisabled" (save)="continueToNextStep()"></app-configuration-step-footer-section>
   </div>
 </div>
-<app-onboarding-footer [page]="'qbo_connector'" *ngIf="!isLoading"></app-onboarding-footer>
+<app-onboarding-footer [page]="'qbo_connector'" *ngIf="!isLoading && isOnboarding"></app-onboarding-footer>

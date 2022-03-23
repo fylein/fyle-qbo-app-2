@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { EmployeeSettingFormOption, EmployeeSettingGet, EmployeeSettingModel } f
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { AutoMapEmployee, EmployeeFieldMapping } from 'src/app/core/models/enum/enum.model';
 import { EmployeeSettingService } from 'src/app/core/services/configuration/employee-setting.service';
+import { WindowService } from 'src/app/core/services/core/window.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
@@ -19,6 +20,7 @@ export class EmployeeSettingsComponent implements OnInit {
 
   employeeSettingsForm: FormGroup;
   isLoading: boolean = true;
+  isOnboarding: boolean = false;
   saveInProgress: boolean;
   workspaceId: string = this.workspaceService.getWorkspaceId();
   liveEntityExample: {[EmployeeFieldMapping.EMPLOYEE]: string | undefined, [EmployeeFieldMapping.VENDOR]: string | undefined};
@@ -50,6 +52,8 @@ export class EmployeeSettingsComponent implements OnInit {
       label: 'Fyle Employee Code to QBO dispay name'
     }
   ];
+  windowReference: Window;
+  @Output() isLoaded = new EventEmitter<boolean>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,8 +61,11 @@ export class EmployeeSettingsComponent implements OnInit {
     private employeeSettingService: EmployeeSettingService,
     private mappingService: MappingService,
     private snackBar: MatSnackBar,
+    private windowService: WindowService,
     private workspaceService: WorkspaceService
-  ) { }
+  ) {
+    this.windowReference = this.windowService.nativeWindow;
+  }
 
   navigateToPreviousStep(): void {
     this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/qbo_connector`]);
@@ -87,6 +94,8 @@ export class EmployeeSettingsComponent implements OnInit {
   }
 
   private setupForm(): void {
+    this.isOnboarding = this.windowReference.location.pathname.includes('onboarding');
+
     forkJoin([
       this.employeeSettingService.getEmployeeSettings(),
       this.mappingService.getDistinctQBODestinationAttributes([EmployeeFieldMapping.EMPLOYEE, EmployeeFieldMapping.VENDOR])
@@ -97,13 +106,7 @@ export class EmployeeSettingsComponent implements OnInit {
         autoMapEmployee: [responses[0].workspace_general_settings.auto_map_employees, Validators.nullValidator]
       });
       this.isLoading = false;
-    }, () => {
-      // TODO: remove after connecting to api
-      this.employeeSettingsForm = this.formBuilder.group({
-        employeeMapping: [null, Validators.required],
-        autoMapEmployee: [null, Validators.nullValidator]
-      });
-      this.isLoading = false;
+      this.isLoaded.emit(true);
     });
   }
 

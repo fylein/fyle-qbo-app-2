@@ -5,17 +5,12 @@ import { PostOnboardingComponent } from './post-onboarding.component';
 const routes: Routes = [
   {
     path: '',
-    component: PostOnboardingComponent
-  },
-  {
-    path: '',
     component: PostOnboardingComponent,
     children: [
-      // {
-      //   path: 'configuration',
-      //   component: ,
-      //   canActivate: [WorkspacesGuard]
-      // }
+      {
+        path: 'configuration',
+        loadChildren: () => import('./configuration/configuration.module').then(m => m.ConfigurationModule)
+      }
     ]
   }
 ];

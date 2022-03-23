@@ -1,0 +1,4 @@
+<div class="configuration-employee-settings">
+  <div *ngIf="!isLoading" class="configuration-employee-settings--bg"></div>
+  <app-employee-settings (isLoaded)="isLoaded($event)"></app-employee-settings>
+</div>
