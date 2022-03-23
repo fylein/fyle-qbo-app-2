@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConfigurationEmployeeSettingsComponent } from './configuration-employee-settings/configuration-employee-settings.component';
-import { ConfigurationQboConnectorComponent } from './configuration-qbo-connector/configuration-qbo-connector.component';
+import { ConfigurationExportSettingsComponent } from './configuration-export-settings/configuration-export-settings.component';
 import { ConfigurationComponent } from './configuration.component';
 
 const routes: Routes = [
@@ -10,12 +10,12 @@ const routes: Routes = [
     component: ConfigurationComponent,
     children: [
       {
-        path: 'qbo_connector',
-        component: ConfigurationQboConnectorComponent
-      },
-      {
         path: 'employee_settings',
         component: ConfigurationEmployeeSettingsComponent
+      },
+      {
+        path: 'export_settings',
+        component: ConfigurationExportSettingsComponent
       }
     ]
   }

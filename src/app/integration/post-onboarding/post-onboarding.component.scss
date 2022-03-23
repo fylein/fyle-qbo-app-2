@@ -1,8 +1,15 @@
 .side-nav-bar {
   background: #161528;
-  width: 260px;
   height: 100%;
   padding-top: 17px;
+  position: fixed;
+
+  &--logo-header-section {
+    background-color: #FFFFFF;
+    position: absolute;
+    top: -76px;
+    padding: 6px 10px;
+  }
 
   &--module-block-content {
     padding: 13px 0px 13px 24px;
@@ -74,6 +81,6 @@
   }
 
   &--child-contents {
-    margin-top: -17px;
+    margin-left: 260px;
   }
 }

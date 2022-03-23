@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
@@ -10,6 +10,7 @@ import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { WindowService } from 'src/app/core/services/core/window.service';
 
 @Component({
   selector: 'app-export-settings',
@@ -20,6 +21,7 @@ export class ExportSettingsComponent implements OnInit {
 
   isLoading: boolean = true;
   saveInProgress: boolean;
+  isOnboarding: boolean = false;
   exportSettingsForm: FormGroup;
   exportSettings: ExportSettingGet;
   bankAccounts: DestinationAttribute[];
@@ -28,6 +30,7 @@ export class ExportSettingsComponent implements OnInit {
   vendors: DestinationAttribute[];
   expenseAccounts: DestinationAttribute[];
   workspaceId: string = this.workspaceService.getWorkspaceId();
+  windowReference: Window;
   expenseStateOptions: ExportSettingFormOption[] = [
     {
       value: ExpenseState.PAYMENT_PROCESSING,
@@ -92,8 +95,8 @@ export class ExportSettingsComponent implements OnInit {
       value: CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE
     }
   ];
-
   reimbursableExportTypes: ExportSettingFormOption[];
+  @Output() isLoaded = new EventEmitter<boolean>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -102,8 +105,11 @@ export class ExportSettingsComponent implements OnInit {
     private mappingService: MappingService,
     private router: Router,
     private snackBar: MatSnackBar,
+    private windowService: WindowService,
     private workspaceService: WorkspaceService
-  ) { }
+  ) {
+    this.windowReference = this.windowService.nativeWindow;
+  }
 
   getReimbursableExportTypes(employeeFieldMapping: EmployeeFieldMapping): ExportSettingFormOption[] {
     return {
@@ -329,6 +335,7 @@ export class ExportSettingsComponent implements OnInit {
   }
 
   private getSettingsAndSetupForm(): void {
+    this.isOnboarding = this.windowReference.location.pathname.includes('onboarding');
     const destinationAttributes = ['BANK_ACCOUNT', 'CREDIT_CARD_ACCOUNT', 'ACCOUNTS_PAYABLE', 'VENDOR'];
     forkJoin([
       this.exportSettingService.getExportSettings(),
@@ -369,6 +376,7 @@ export class ExportSettingsComponent implements OnInit {
 
     this.setCustomValidatorsAndWatchers();
     this.isLoading = false;
+    this.isLoaded.emit(true);
   }
 
   navigateToPreviousStep(): void {

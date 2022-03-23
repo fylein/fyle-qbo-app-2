@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { DashboardModule, DashboardModuleChild } from 'src/app/core/models/misc/dashboard-module.model';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
@@ -114,7 +114,41 @@ export class PostOnboardingComponent implements OnInit {
     }
   }
 
+  private markModuleActive(path: string): void {
+    const route = path.split('/workspaces/1/app/')[1];
+
+    // Filter module list to find the module that matches the route and mark it as active
+    this.modules = this.modules.map(m => {
+      if (m.childPages) {
+        m.childPages.forEach(c => {
+          if (c.route === route) {
+            c.isActive = true;
+            m.isActive = true;
+            m.isExpanded = true;
+          }
+        });
+      }
+
+      if (m.route === route) {
+        m.isActive = true;
+      }
+
+      return m;
+    });
+  }
+
+  private setRouteWatcher(): void {
+    this.router.events.subscribe((val) => {
+      if (val instanceof NavigationStart) {
+        this.markModuleActive(val.url)
+      }
+    });
+
+    this.markModuleActive(this.router.url);
+  }
+
   ngOnInit(): void {
+    this.setRouteWatcher();
   }
 
 }

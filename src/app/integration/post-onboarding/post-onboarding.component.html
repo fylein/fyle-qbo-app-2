@@ -1,7 +1,18 @@
 <app-onboarding-header></app-onboarding-header>
 
-<div fxLayout="row" fxLayoutAlign="start start" class="side-nav-bar">
-  <div>
+<div fxLayout="row" fxLayoutAlign="start start">
+  <div class="side-nav-bar">
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="side-nav-bar--logo-header-section">
+      <div class="navbar--fyle-logo">
+        <img alt="Fyle" src="assets/images/pngs/fyle-logo.png" />
+      </div>
+      <div class="navbar--plus">
+        +
+      </div>
+      <div>
+        <img alt="Quickbooks Online" src="assets/images/pngs/qbo-logo.png" />
+      </div>
+    </div>
     <div *ngFor="let module of modules" class="side-nav-bar--default-text-color">
       <div fxLayout="row" class="pointer" [ngClass]="[module.isActive && !module.childPages.length ? 'side-nav-bar--active-module' : '', module.isActive ? 'side-nav-bar--active-module-text' : '']" (click)="navigate(module)">
         <div *ngIf="module.isActive && (!module.childPages.length || !module.isExpanded)" class="side-nav-bar--active-tag-module"></div>
@@ -25,7 +36,7 @@
       </div>
     </div>
   </div>
-  <div class="side-nav-bar--child-contents" fxFlex>
+  <div class="side-nav-bar--child-contents">
     <router-outlet></router-outlet>
   </div>
 </div>
