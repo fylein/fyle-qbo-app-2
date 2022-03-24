@@ -1,9 +1,7 @@
-<app-onboarding-stepper [currentStep]="'Advanced Settings'"></app-onboarding-stepper>
-
 <div fxLayout="row" fxLayoutAlign="center center" class="configuration--section">
-  <app-loader [phase]="'pre_onboarding'" *ngIf="isLoading"></app-loader>
+  <app-loader [ngClass]="{'loader-main': !isOnboarding}" [phase]="'pre_onboarding'" *ngIf="isLoading"></app-loader>
   <div *ngIf="!isLoading" class="configuration--contents">
-    <app-configuration-step-header-section></app-configuration-step-header-section>
+    <app-configuration-step-header-section [showSyncButton]="isOnboarding"></app-configuration-step-header-section>
     <form [formGroup]="advancedSettingsForm">
       <div class="configuration--field-section">
         <app-configuration-toggle-field
@@ -127,4 +125,4 @@
   </div>
 </div>
 
-<app-onboarding-footer *ngIf="!isLoading"></app-onboarding-footer>
+<app-onboarding-footer *ngIf="isOnboarding && !isLoading"></app-onboarding-footer>

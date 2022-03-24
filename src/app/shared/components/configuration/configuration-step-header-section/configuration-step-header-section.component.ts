@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
@@ -14,6 +14,7 @@ export class ConfigurationStepHeaderSectionComponent implements OnInit {
   contentText: string;
   isStepOptional: boolean;
   activePage: string | undefined;
+  @Input() showSyncButton: boolean;
 
   constructor(
     private router: Router,
