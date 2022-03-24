@@ -20,7 +20,7 @@ export class MainComponent implements OnInit {
     },
     {
       name: 'Export Logs',
-      route: 'export-logs',
+      route: 'export_log',
       iconPath: 'assets/images/svgs/general/export-log',
       childPages: [],
       isExpanded: false,
@@ -28,19 +28,19 @@ export class MainComponent implements OnInit {
     },
     {
       name: 'Mappings',
-      route: 'mappings',
+      route: 'mapping',
       iconPath: 'assets/images/svgs/general/mapping',
       isExpanded: false,
       isActive: false,
       childPages: [
         {
           name: 'Employee Mapping',
-          route: 'employee-mapping',
+          route: 'mapping/employee',
           isActive: false
         },
         {
           name: 'Category Mapping',
-          route: 'category-mapping',
+          route: 'mapping/category',
           isActive: false
         }
       ]
