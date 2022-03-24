@@ -119,7 +119,7 @@
         [formControllerName]="'singleCreditLineJE'">
       </app-configuration-toggle-field>
 
-      <app-configuration-step-footer-section [isButtonDisabled]="!advancedSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
+      <app-configuration-step-footer-section [ctaText]="isOnboarding ? 'Save & Continue' : 'Save'" [showBackButton]="isOnboarding" [isButtonDisabled]="!advancedSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
 
     </form>
   </div>

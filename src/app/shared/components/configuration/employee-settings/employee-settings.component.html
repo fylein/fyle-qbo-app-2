@@ -27,8 +27,7 @@
         >
       </app-configuration-select-field>
 
-      <!-- TODO: [ctaText]="isOnboarding ? 'Save & Continue' : 'Save'" -->
-      <app-configuration-step-footer-section [isButtonDisabled]="!employeeSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
+      <app-configuration-step-footer-section [ctaText]="isOnboarding ? 'Save & Continue' : 'Save'" [showBackButton]="isOnboarding" [isButtonDisabled]="!employeeSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
     </form>
   </div>
 </div>

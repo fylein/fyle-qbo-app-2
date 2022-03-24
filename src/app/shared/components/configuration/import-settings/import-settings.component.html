@@ -126,7 +126,7 @@
         </div>
       </form>
 
-      <app-configuration-step-footer-section [isButtonDisabled]="!importSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
+      <app-configuration-step-footer-section [ctaText]="isOnboarding ? 'Save & Continue' : 'Save'" [showBackButton]="isOnboarding" [isButtonDisabled]="!importSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
     </div>
   </div>
   <app-onboarding-footer *ngIf="isOnboarding && !isLoading"></app-onboarding-footer>

@@ -13,7 +13,7 @@ export class OnboardingDoneComponent implements OnInit {
   ) { }
 
   navigateToDashboard(): void {
-    this.router.navigate([`/workspaces/dashboard`]);
+    this.router.navigate([`/workspaces/main`]);
   }
 
   ngOnInit(): void {
