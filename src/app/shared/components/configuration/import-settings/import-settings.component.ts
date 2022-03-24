@@ -237,7 +237,9 @@ export class ImportSettingsComponent implements OnInit {
       this.saveInProgress = true;
       this.importSettingService.postImportSettings(importSettingsPayload).subscribe(() => {
         this.saveInProgress = false;
-        this.router.navigate([`/workspaces/onboarding/advanced_settings`]);
+        if (this.isOnboarding) {
+          this.router.navigate([`/workspaces/onboarding/advanced_settings`]);
+        }
       }, () => {
         this.saveInProgress = false;
         this.snackBar.open('Error saving import settings, please try again later');

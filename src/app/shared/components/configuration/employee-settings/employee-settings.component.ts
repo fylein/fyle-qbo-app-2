@@ -75,7 +75,9 @@ export class EmployeeSettingsComponent implements OnInit {
       this.saveInProgress = true;
       this.employeeSettingService.postEmployeeSettings(employeeSettingPayload).subscribe(() => {
         this.saveInProgress = false;
-        this.router.navigate([`/workspaces/onboarding/export_settings`]);
+        if (this.isOnboarding) {
+          this.router.navigate([`/workspaces/onboarding/export_settings`]);
+        }
       }, () => {
         this.saveInProgress = false;
         this.snackBar.open('Error saving employee settings, please try again later');
