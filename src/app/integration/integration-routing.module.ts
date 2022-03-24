@@ -14,7 +14,7 @@ const routes: Routes = [
       },
       {
         path: ':workspace_id/app',
-        loadChildren: () => import('./post-onboarding/post-onboarding.module').then(m => m.PostOnboardingModule),
+        loadChildren: () => import('./main/main.module').then(m => m.MainModule),
         canActivate: [WorkspacesGuard]
       }
     ]

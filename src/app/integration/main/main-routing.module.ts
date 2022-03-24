@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PostOnboardingComponent } from './post-onboarding.component';
+import { MainComponent } from './main.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: PostOnboardingComponent,
+    component: MainComponent,
     children: [
       {
         path: 'configuration',
@@ -19,4 +19,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PostOnboardingRoutingModule { }
+export class MainRoutingModule { }

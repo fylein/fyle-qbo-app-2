@@ -4,11 +4,11 @@ import { DashboardModule, DashboardModuleChild } from 'src/app/core/models/misc/
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 @Component({
-  selector: 'app-post-onboarding',
-  templateUrl: './post-onboarding.component.html',
-  styleUrls: ['./post-onboarding.component.scss']
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
 })
-export class PostOnboardingComponent implements OnInit {
+export class MainComponent implements OnInit {
 
   workspaceId: string = this.workspaceService.getWorkspaceId();
   modules: DashboardModule[] = [
