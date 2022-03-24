@@ -8,7 +8,6 @@ import { ExportSettingGet, ExportSettingFormOption, ExportSettingModel } from 's
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
-import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WindowService } from 'src/app/core/services/core/window.service';
 
@@ -29,7 +28,6 @@ export class ExportSettingsComponent implements OnInit {
   accountsPayables: DestinationAttribute[];
   vendors: DestinationAttribute[];
   expenseAccounts: DestinationAttribute[];
-  workspaceId: string = this.workspaceService.getWorkspaceId();
   windowReference: Window;
   expenseStateOptions: ExportSettingFormOption[] = [
     {
@@ -105,8 +103,7 @@ export class ExportSettingsComponent implements OnInit {
     private mappingService: MappingService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private windowService: WindowService,
-    private workspaceService: WorkspaceService
+    private windowService: WindowService
   ) {
     this.windowReference = this.windowService.nativeWindow;
   }
@@ -380,7 +377,7 @@ export class ExportSettingsComponent implements OnInit {
   }
 
   navigateToPreviousStep(): void {
-    this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/employee_settings`]);
+    this.router.navigate([`/workspaces/onboarding/employee_settings`]);
   }
 
   save(): void {
@@ -390,7 +387,7 @@ export class ExportSettingsComponent implements OnInit {
       this.saveInProgress = true;
       this.exportSettingService.postExportSettings(exportSettingPayload).subscribe(() => {
         this.saveInProgress = false;
-        this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/import_settings`]);
+        this.router.navigate([`/workspaces/onboarding/import_settings`]);
       }, () => {
         this.saveInProgress = false;
         this.snackBar.open('Error saving export settings, please try again later');

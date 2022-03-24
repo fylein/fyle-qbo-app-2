@@ -41,7 +41,7 @@ export class WorkspacesGuard implements CanActivate {
             // TODO: redirect to dashboard if workspace is already onboarded
             // TODO: content
             this.snackBar.open('Quickbooks Online connection expired, please connect again', '', { duration: 7000 });
-            return this.router.navigateByUrl(`workspaces/${workspaceId}/onboarding/qbo_connector`);
+            return this.router.navigateByUrl(`workspaces/onboarding/qbo_connector`);
           }
 
           return throwError(error);

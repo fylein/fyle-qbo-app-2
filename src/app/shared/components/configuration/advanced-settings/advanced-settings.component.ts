@@ -40,7 +40,6 @@ export class AdvancedSettingsComponent implements OnInit {
     }
   ];
   frequencyIntervals: number[] = [...Array(24).keys()].map(day => day + 1);
-  workspaceId: string = this.workspaceService.getWorkspaceId();
 
   constructor(
     private advancedSettingService: AdvancedSettingService,
@@ -175,7 +174,7 @@ export class AdvancedSettingsComponent implements OnInit {
   }
 
   navigateToPreviousStep(): void {
-    this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/import_settings`]);
+    this.router.navigate([`/workspaces/onboarding/import_settings`]);
   }
 
   save(): void {
@@ -185,7 +184,7 @@ export class AdvancedSettingsComponent implements OnInit {
       this.saveInProgress = true;
       this.advancedSettingService.postAdvancedSettings(advancedSettingPayload).subscribe(() => {
         this.saveInProgress = false;
-        this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/done`]);
+        this.router.navigate([`/workspaces/onboarding/done`]);
       }, () => {
         this.saveInProgress = false;
         this.snackBar.open('Error saving advanced settings, please try again later');

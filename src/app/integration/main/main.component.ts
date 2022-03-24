@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { DashboardModule, DashboardModuleChild } from 'src/app/core/models/misc/dashboard-module.model';
-import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 @Component({
   selector: 'app-main',
@@ -10,7 +9,6 @@ import { WorkspaceService } from 'src/app/core/services/workspace/workspace.serv
 })
 export class MainComponent implements OnInit {
 
-  workspaceId: string = this.workspaceService.getWorkspaceId();
   modules: DashboardModule[] = [
     {
       name: 'Dashboard',
@@ -79,8 +77,7 @@ export class MainComponent implements OnInit {
   ];
 
   constructor(
-    private router: Router,
-    private workspaceService: WorkspaceService
+    private router: Router
   ) { }
 
   navigate(module: DashboardModule | DashboardModuleChild): void {
@@ -110,12 +107,12 @@ export class MainComponent implements OnInit {
     if (module.name === 'Mappings' || module.name === 'Configuration') {
       module.isExpanded = !module.isExpanded;
     } else {
-      this.router.navigate([`/workspaces/${this.workspaceId}/app/${module.route}`]);
+      this.router.navigate([`/workspaces/main/${module.route}`]);
     }
   }
 
   private markModuleActive(path: string): void {
-    const route = path.split('/workspaces/1/app/')[1];
+    const route = path.split('/workspaces/main/')[1];
 
     // Filter module list to find the module that matches the route and mark it as active
     this.modules = this.modules.map(m => {

@@ -9,7 +9,6 @@ import { AutoMapEmployee, EmployeeFieldMapping } from 'src/app/core/models/enum/
 import { EmployeeSettingService } from 'src/app/core/services/configuration/employee-setting.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
-import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 @Component({
   selector: 'app-employee-settings',
@@ -22,7 +21,6 @@ export class EmployeeSettingsComponent implements OnInit {
   isLoading: boolean = true;
   isOnboarding: boolean = false;
   saveInProgress: boolean;
-  workspaceId: string = this.workspaceService.getWorkspaceId();
   liveEntityExample: {[EmployeeFieldMapping.EMPLOYEE]: string | undefined, [EmployeeFieldMapping.VENDOR]: string | undefined};
   employeeMappingOptions: EmployeeSettingFormOption[] = [
     {
@@ -61,14 +59,13 @@ export class EmployeeSettingsComponent implements OnInit {
     private employeeSettingService: EmployeeSettingService,
     private mappingService: MappingService,
     private snackBar: MatSnackBar,
-    private windowService: WindowService,
-    private workspaceService: WorkspaceService
+    private windowService: WindowService
   ) {
     this.windowReference = this.windowService.nativeWindow;
   }
 
   navigateToPreviousStep(): void {
-    this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/qbo_connector`]);
+    this.router.navigate([`/workspaces/onboarding/qbo_connector`]);
   }
 
   save(): void {
@@ -78,7 +75,7 @@ export class EmployeeSettingsComponent implements OnInit {
       this.saveInProgress = true;
       this.employeeSettingService.postEmployeeSettings(employeeSettingPayload).subscribe(() => {
         this.saveInProgress = false;
-        this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/export_settings`]);
+        this.router.navigate([`/workspaces/onboarding/export_settings`]);
       }, () => {
         this.saveInProgress = false;
         this.snackBar.open('Error saving employee settings, please try again later');

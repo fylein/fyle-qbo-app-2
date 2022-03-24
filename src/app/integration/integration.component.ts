@@ -32,7 +32,7 @@ export class IntegrationComponent implements OnInit {
     const pathName = this.windowReference.location.pathname;
     this.storageService.set('workspaceId', this.workspace.id);
     if (pathName === '/workspaces') {
-      this.router.navigateByUrl(`/workspaces/${this.workspace.id}/onboarding`);
+      this.router.navigateByUrl(`/workspaces/onboarding`);
     }
   }
 

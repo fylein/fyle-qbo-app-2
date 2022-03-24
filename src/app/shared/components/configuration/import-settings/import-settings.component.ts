@@ -32,7 +32,6 @@ export class ImportSettingsComponent implements OnInit {
   taxCodes: DestinationAttribute[];
   fyleExpenseFields: string[];
   qboExpenseFields: ExpenseFieldsFormOption[];
-  workspaceId: string = this.workspaceService.getWorkspaceId();
   chartOfAccountTypesList: string[] = [
     'Expense', 'Other Expense', 'Fixed Asset', 'Cost of Goods Sold', 'Current Liability', 'Equity',
     'Other Current Asset', 'Other Current Liability', 'Long Term Liability', 'Current Asset'
@@ -221,7 +220,7 @@ export class ImportSettingsComponent implements OnInit {
   }
 
   navigateToPreviousStep(): void {
-    this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/export_settings`]);
+    this.router.navigate([`/workspaces/onboarding/export_settings`]);
   }
 
   save(): void {
@@ -231,7 +230,7 @@ export class ImportSettingsComponent implements OnInit {
       this.saveInProgress = true;
       this.importSettingService.postImportSettings(importSettingsPayload).subscribe(() => {
         this.saveInProgress = false;
-        this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/advanced_settings`]);
+        this.router.navigate([`/workspaces/onboarding/advanced_settings`]);
       }, () => {
         this.saveInProgress = false;
         this.snackBar.open('Error saving import settings, please try again later');

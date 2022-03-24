@@ -24,7 +24,6 @@ export class QboConnectorComponent implements OnInit {
   showDisconnectQBO: boolean;
   isContinueDisabled: boolean = true;
   isOnboarding: boolean = false;
-  workspaceId: string = this.workspaceService.getWorkspaceId();
   qboCompanyName: string | null;
   fyleOrgName: string = this.userService.getUserProfile().org_name;
   windowReference: Window;
@@ -48,7 +47,7 @@ export class QboConnectorComponent implements OnInit {
       return;
     }
 
-    this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/employee_settings`]);
+    this.router.navigate([`/workspaces/onboarding/employee_settings`]);
   }
 
   switchFyleOrg(): void {
@@ -101,7 +100,7 @@ export class QboConnectorComponent implements OnInit {
       // TODO: personalise the message based on the error (if it's an actual error / different company connect)
       const errorMessage = 'message' in error.error ? error.error.message : 'Failed to connect to QuickBooks Online. Please try again';
       this.snackBar.open(errorMessage, '', { duration: 7000 });
-      this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/landing`]);
+      this.router.navigate([`/workspaces/onboarding/landing`]);
     });
   }
 
