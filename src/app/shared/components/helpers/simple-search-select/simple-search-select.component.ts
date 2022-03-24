@@ -9,6 +9,8 @@ import { FormGroup } from '@angular/forms';
 export class SimpleSearchSelectComponent implements OnInit {
 
   @Input() form: FormGroup;
+  @Input() showBackgroundColor: boolean = true;
+  @Input() placeholder: string = 'Search';
 
   constructor() { }
 

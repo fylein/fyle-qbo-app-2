@@ -9,6 +9,7 @@ import { DashboardModule, DashboardModuleChild } from 'src/app/core/models/misc/
 })
 export class MainComponent implements OnInit {
 
+  isLoading: boolean = true;
   modules: DashboardModule[] = [
     {
       name: 'Dashboard',
@@ -142,6 +143,7 @@ export class MainComponent implements OnInit {
     });
 
     this.markModuleActive(this.router.url);
+    this.isLoading = false;
   }
 
   ngOnInit(): void {

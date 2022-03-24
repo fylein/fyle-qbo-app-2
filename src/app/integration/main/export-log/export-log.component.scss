@@ -1,0 +1,61 @@
+.export-log {
+  margin-top: -200px;
+  padding-left: 32px;
+  padding-right: 32px;
+
+  width: 1598px;
+  @media only screen and (max-width: 1440px) {
+    width: 1098px;
+  }
+
+  &--content {
+    background: #FFFFFF;
+    border-radius: 8px;
+    height: 866px;
+  }
+
+  &--header-section {
+    padding: 29px 32px 28px 32px;
+  }
+
+  &--simple-search {
+    width: 374px;
+  }
+
+  &--heading {
+    background: #F5F5F5;
+    border: 1px solid #DFDFE2;
+    border-radius: 4px;
+  }
+
+  &--table {
+    padding-bottom: 50px;
+    overflow: scroll;
+  }
+
+  &--row {
+    height: 70px;
+  }
+
+  &--sub-row {
+    color: #A9ACBC;
+  }
+  
+  &--reference-id {
+    text-decoration-line: underline;
+  }
+
+  &--open-in-qbo {
+    padding-left: 20px;
+  }
+}
+
+
+table {
+  width: 100%;
+}
+
+th {
+  color: #2C304E;
+  font-weight: 500;
+}

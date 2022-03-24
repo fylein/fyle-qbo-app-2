@@ -6,7 +6,8 @@
   }
 
   &--search-area {
-    background: #FFFFFF;border: 1px solid #DDD;
+    background: #FFFFFF;
+    border: 1px solid #DDD;
   }
 
   &--search-icon {
@@ -18,6 +19,7 @@ input {
   border: none;
   border-width: 0px;
   padding: 8px 0px 6px 0px;
+  width: 374px;
 }
 
 input:focus-visible {
