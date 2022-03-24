@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { OnboardingStepper } from 'src/app/core/models/misc/onboarding-stepper.model';
-import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 
 @Component({
@@ -49,11 +48,9 @@ export class OnboardingStepperComponent implements OnInit {
       route: 'advanced_settings'
     }
   ];
-  workspaceId: string = this.workspaceService.getWorkspaceId();
 
   constructor(
-    private router: Router,
-    private workspaceService: WorkspaceService
+    private router: Router
   ) { }
 
   private updateActiveStepper(): void {
@@ -69,7 +66,7 @@ export class OnboardingStepperComponent implements OnInit {
 
   navigate(canNavigate: boolean, route: string): void {
     if (canNavigate) {
-      this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/${route}`]);
+      this.router.navigate([`/workspaces/onboarding/${route}`]);
     }
   }
 

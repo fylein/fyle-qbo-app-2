@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -10,12 +10,12 @@ import { MappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
-import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { ExpenseFormPreviewDialogComponent } from './expense-form-preview-dialog/expense-form-preview-dialog.component';
 import { ExpenseFieldCreationDialogComponent } from './expense-field-creation-dialog/expense-field-creation-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
 import { QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
+import { WindowService } from 'src/app/core/services/core/window.service';
 
 @Component({
   selector: 'app-import-settings',
@@ -26,17 +26,19 @@ export class ImportSettingsComponent implements OnInit {
 
   isLoading: boolean = true;
   saveInProgress: boolean;
+  isOnboarding: boolean = false;
   isTaxGroupSyncAllowed: boolean;
   importSettings: ImportSettingGet;
   importSettingsForm: FormGroup;
   taxCodes: DestinationAttribute[];
   fyleExpenseFields: string[];
   qboExpenseFields: ExpenseFieldsFormOption[];
-  workspaceId: string = this.workspaceService.getWorkspaceId();
   chartOfAccountTypesList: string[] = [
     'Expense', 'Other Expense', 'Fixed Asset', 'Cost of Goods Sold', 'Current Liability', 'Equity',
     'Other Current Asset', 'Other Current Liability', 'Long Term Liability', 'Current Asset'
   ];
+  windowReference: Window;
+  @Output() isLoaded = new EventEmitter<boolean>();
 
   constructor(
     public dialog: MatDialog,
@@ -47,8 +49,10 @@ export class ImportSettingsComponent implements OnInit {
     private mappingService: MappingService,
     private qboConnectorService: QboConnectorService,
     private snackBar: MatSnackBar,
-    private workspaceService: WorkspaceService
-  ) { }
+    private windowService: WindowService
+  ) {
+    this.windowReference = this.windowService.nativeWindow;
+  }
 
   createChartOfAccountField(type: string): FormGroup {
     return this.formBuilder.group({
@@ -153,9 +157,11 @@ export class ImportSettingsComponent implements OnInit {
 
     this.setCustomValidatorsAndWatchers();
     this.isLoading = false;
+    this.isLoaded.emit(true);
   }
 
   private getSettingsAndSetupForm(): void {
+    this.isOnboarding = this.windowReference.location.pathname.includes('onboarding');
     forkJoin([
       this.importSettingService.getImportSettings(),
       this.mappingService.getFyleExpenseFields(),
@@ -221,7 +227,7 @@ export class ImportSettingsComponent implements OnInit {
   }
 
   navigateToPreviousStep(): void {
-    this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/export_settings`]);
+    this.router.navigate([`/workspaces/onboarding/export_settings`]);
   }
 
   save(): void {
@@ -231,7 +237,9 @@ export class ImportSettingsComponent implements OnInit {
       this.saveInProgress = true;
       this.importSettingService.postImportSettings(importSettingsPayload).subscribe(() => {
         this.saveInProgress = false;
-        this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/advanced_settings`]);
+        if (this.isOnboarding) {
+          this.router.navigate([`/workspaces/onboarding/advanced_settings`]);
+        }
       }, () => {
         this.saveInProgress = false;
         this.snackBar.open('Error saving import settings, please try again later');

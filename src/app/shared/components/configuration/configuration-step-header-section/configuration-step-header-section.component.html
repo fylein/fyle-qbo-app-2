@@ -1,5 +1,5 @@
 <div class="header-section">
-  <div fxLayout="row" fxLayoutAlign="space-between center" class="header-section--inner" [ngClass]="{'header-section--sync-inactive': !(activePage === 'export_settings' || activePage === 'import_settings' || activePage === 'advanced_settings')}">
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="header-section--inner" [ngClass]="{'header-section--sync-inactive': !(showSyncButton && (activePage === 'export_settings' || activePage === 'import_settings' || activePage === 'advanced_settings'))}">
     <div>
       <h3 class="header-section--header-text single-line-text">
         {{ headerText }} <span *ngIf="isStepOptional" class="sub-text-color italic">(Optional)</span>
@@ -8,7 +8,7 @@
         {{ contentText }}
       </h5>
     </div>
-    <div *ngIf="activePage === 'export_settings' || activePage === 'import_settings' || activePage === 'advanced_settings'">
+    <div *ngIf="showSyncButton && (activePage === 'export_settings' || activePage === 'import_settings' || activePage === 'advanced_settings')">
       <div fxLayout="row" class="configuration--back-btn pointer" (click)="refreshQBODimensions()" matTooltip="Instantly refresh and sync the data dimensions from QBO" matTooltipPosition="above">
         <img src="assets/images/svgs/actions/sync.svg" class="configuration--img-arrow-left" />
         <h5 class="configuration--back-btn-text align-center">Sync</h5>

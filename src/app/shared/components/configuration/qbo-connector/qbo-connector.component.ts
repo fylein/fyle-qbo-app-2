@@ -6,6 +6,7 @@ import { QboConnector, QBOCredentials } from 'src/app/core/models/configuration/
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
 import { AuthService } from 'src/app/core/services/core/auth.service';
+import { WindowService } from 'src/app/core/services/core/window.service';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
@@ -22,9 +23,10 @@ export class QboConnectorComponent implements OnInit {
   qboTokenExpired: boolean;
   showDisconnectQBO: boolean;
   isContinueDisabled: boolean = true;
-  workspaceId: string = this.workspaceService.getWorkspaceId();
+  isOnboarding: boolean = false;
   qboCompanyName: string | null;
   fyleOrgName: string = this.userService.getUserProfile().org_name;
+  windowReference: Window;
 
   constructor(
     private authService: AuthService,
@@ -34,15 +36,18 @@ export class QboConnectorComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar,
     private userService: UserService,
+    private windowService: WindowService,
     private workspaceService: WorkspaceService
-  ) { }
+  ) {
+    this.windowReference = this.windowService.nativeWindow;
+  }
 
   continueToNextStep(): void {
     if (this.isContinueDisabled) {
       return;
     }
 
-    this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/employee_settings`]);
+    this.router.navigate([`/workspaces/onboarding/employee_settings`]);
   }
 
   switchFyleOrg(): void {
@@ -95,7 +100,7 @@ export class QboConnectorComponent implements OnInit {
       // TODO: personalise the message based on the error (if it's an actual error / different company connect)
       const errorMessage = 'message' in error.error ? error.error.message : 'Failed to connect to QuickBooks Online. Please try again';
       this.snackBar.open(errorMessage, '', { duration: 7000 });
-      this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/landing`]);
+      this.router.navigate([`/workspaces/onboarding/landing`]);
     });
   }
 
@@ -121,6 +126,7 @@ export class QboConnectorComponent implements OnInit {
   private setupPage(): void {
     const code = this.route.snapshot.queryParams.code;
     const realmId = this.route.snapshot.queryParams.realmId;
+    this.isOnboarding = this.windowReference.location.pathname.includes('onboarding');
     if (code && realmId) {
       this.isLoading = false;
       this.qboConnectionInProgress = true;

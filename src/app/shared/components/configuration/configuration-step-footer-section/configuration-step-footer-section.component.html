@@ -1,15 +1,16 @@
 <div fxLayout="row" fxLayoutAlign="space-between center"
   class="configuration--field-section configuration--footer-contents">
-  <div fxLayout="row" (click)="navigate()">
-    <div fxLayout="row" *ngIf="ctaText !== 'Continue'" class="configuration--back-btn pointer">
+  <div *ngIf="!showBackButton"></div>
+  <div fxLayout="row" *ngIf="showBackButton" (click)="navigate()">
+    <div fxLayout="row" class="configuration--back-btn pointer">
       <img src="assets/images/svgs/actions/arrow-mark-left.svg" class="configuration--img-arrow-left" />
       <h5 class="configuration--back-btn-text align-center">Back</h5>
     </div>
   </div>
-  <div fxLayout="row" class="pointer" [ngClass]="[ctaText === 'Continue' ? 'configuration--continue-btn' : 'configuration--submit-btn', isButtonDisabled ? 'btn-disabled' : 'btn-enabled']" (click)="saveChanges()">
-    <h5 class="configuration--submit-btn-text single-line-text">
-      {{ ctaText ? ctaText : 'Save & Continue' }}
+  <div fxLayout="row" class="pointer" class="configuration--submit-btn" [ngClass]="isButtonDisabled ? 'btn-disabled' : 'btn-enabled'" (click)="saveChanges()">
+    <h5 class="single-line-text" [ngClass]="ctaText === 'Save' ? 'configuration--save-btn-text' : 'configuration--submit-btn-text'">
+      {{ ctaText }}
     </h5>
-    <img src="assets/images/svgs/actions/arrow-mark-right.svg" class="configuration--submit-btn-arrow-text" />
+    <img *ngIf="ctaText !== 'Save'" src="assets/images/svgs/actions/arrow-mark-right.svg" class="configuration--submit-btn-arrow-text" />
   </div>
 </div>

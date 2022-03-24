@@ -1,0 +1,4 @@
+<div class="configuration-main">
+  <div *ngIf="!isLoading" class="configuration-main--bg"></div>
+  <app-export-settings (isLoaded)="isLoaded($event)"></app-export-settings>
+</div>

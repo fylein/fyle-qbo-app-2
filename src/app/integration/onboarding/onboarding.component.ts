@@ -24,7 +24,7 @@ export class OnboardingComponent implements OnInit {
     // Added landing by default for now
     const pathName = this.windowReference.location.pathname;
     if (pathName.split('/onboarding')[1] === '') {
-      this.router.navigate([`/workspaces/${workspaceId}/onboarding/landing`]);
+      this.router.navigate([`/workspaces/onboarding/landing`]);
     }
   }
 

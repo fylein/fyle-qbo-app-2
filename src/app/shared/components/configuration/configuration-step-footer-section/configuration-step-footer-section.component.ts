@@ -9,6 +9,7 @@ export class ConfigurationStepFooterSectionComponent implements OnInit {
 
   @Input() isButtonDisabled: boolean;
   @Input() ctaText: string;
+  @Input() showBackButton: boolean;
   @Output() save = new EventEmitter();
   @Output() navigateToPreviousStep = new EventEmitter();
 

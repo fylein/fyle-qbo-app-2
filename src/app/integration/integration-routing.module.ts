@@ -9,12 +9,12 @@ const routes: Routes = [
     component: IntegrationComponent,
     children: [
       {
-        path: ':workspace_id/onboarding',
+        path: 'onboarding',
         loadChildren: () => import('./onboarding/onboarding.module').then(m => m.OnboardingModule)
       },
       {
-        path: ':workspace_id/app',
-        loadChildren: () => import('./post-onboarding/post-onboarding.module').then(m => m.PostOnboardingModule),
+        path: 'main',
+        loadChildren: () => import('./main/main.module').then(m => m.MainModule),
         canActivate: [WorkspacesGuard]
       }
     ]

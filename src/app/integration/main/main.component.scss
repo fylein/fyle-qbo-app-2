@@ -1,0 +1,86 @@
+.side-nav-bar {
+  background: #161528;
+  height: 100%;
+  padding-top: 17px;
+  position: fixed;
+
+  &--logo-header-section {
+    background-color: #FFFFFF;
+    position: absolute;
+    top: -76px;
+    padding: 6px 10px;
+  }
+
+  &--module-block-content {
+    padding: 13px 0px 13px 24px;
+    height: 48px;
+    width: 260px;
+
+    &:hover {
+      background: #252841;
+      width: 260px;
+    }
+  }
+
+  &--module-block-content-expandable {
+    padding: 13px 0px 13px 24px;
+    height: 48px;
+    width: 257px;
+
+    &:hover {
+      background: #252841;
+      width: 257px;
+    }
+  }
+
+  &--active-module {
+    background: #252841;
+    width: 260px;
+  }
+
+  &--active-child {
+    background: #252841;
+    width: 257px;
+    &:hover {
+      background: #252841;
+      width: 257px;
+    }
+  }
+
+  &--active-module-text {
+    color: #FFFFFF;
+  }
+
+  &--default-text-color {
+    color: #A9ACBC;
+  }
+
+  &--active-tag-module {
+    width: 3px;
+    height: 48px;
+    background: #FF3366;
+    border-radius: 1px;
+  }
+
+  &--module-block-text {
+    padding-left: 14px;
+    padding-top: 5px;
+    width: 146px;
+  }
+
+  &--text-properties {
+    font-weight: 500;
+    line-height: 18px;
+    font-size: 15.2px;
+  }
+
+  &--module-block-text-inner {
+    padding-left: 30px;
+    padding-top: 5px;
+    width: 202px;
+  }
+
+  &--child-contents {
+    margin-left: 260px;
+  }
+}

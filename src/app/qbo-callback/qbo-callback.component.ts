@@ -21,6 +21,6 @@ export class QboCallbackComponent implements OnInit {
       }
     };
 
-    this.router.navigate([`workspaces/${this.route.snapshot.queryParams.state}/onboarding/qbo_connector`], navigationExtras);
+    this.router.navigate([`workspaces/onboarding/qbo_connector`], navigationExtras);
   }
 }

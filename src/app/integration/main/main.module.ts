@@ -3,20 +3,20 @@ import { CommonModule } from '@angular/common';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { PostOnboardingRoutingModule } from './post-onboarding-routing.module';
-import { PostOnboardingComponent } from './post-onboarding.component';
+import { MainRoutingModule } from './main-routing.module';
+import { MainComponent } from './main.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    PostOnboardingComponent
+    MainComponent
   ],
   imports: [
     CommonModule,
-    PostOnboardingRoutingModule,
+    MainRoutingModule,
     SharedModule,
     FlexLayoutModule
   ]
 })
-export class PostOnboardingModule { }
+export class MainModule { }

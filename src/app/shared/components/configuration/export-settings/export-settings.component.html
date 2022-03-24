@@ -1,10 +1,9 @@
-<app-onboarding-stepper [currentStep]="'Export Settings'"></app-onboarding-stepper>
 <!-- TODO: check content of all fields -->
 
 <div fxLayout="row" fxLayoutAlign="center center" class="configuration--section">
-  <app-loader [phase]="'pre_onboarding'" [phase]="'pre_onboarding'" *ngIf="isLoading"></app-loader>
+  <app-loader [ngClass]="{'loader-main': !isOnboarding}" [phase]="'pre_onboarding'" *ngIf="isLoading"></app-loader>
   <div *ngIf="!isLoading" class="configuration--contents">
-    <app-configuration-step-header-section></app-configuration-step-header-section>
+    <app-configuration-step-header-section [showSyncButton]="isOnboarding"></app-configuration-step-header-section>
     <form [formGroup]="exportSettingsForm">
       <app-configuration-select-field
         [form]="exportSettingsForm"
@@ -212,8 +211,8 @@
         </div>
       </div>
 
-      <app-configuration-step-footer-section [isButtonDisabled]="!exportSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
+      <app-configuration-step-footer-section [ctaText]="isOnboarding ? 'Save & Continue' : 'Save'" [showBackButton]="isOnboarding" [isButtonDisabled]="!exportSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
     </form>
   </div>
 </div>
-<app-onboarding-footer *ngIf="!isLoading"></app-onboarding-footer>
+<app-onboarding-footer *ngIf="isOnboarding && !isLoading"></app-onboarding-footer>

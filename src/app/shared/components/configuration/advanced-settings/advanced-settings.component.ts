@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Router } from '@angular/router';
@@ -12,6 +12,7 @@ import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WorkspaceGeneralSetting } from 'src/app/core/models/db/workspace-general-setting.model';
+import { WindowService } from 'src/app/core/services/core/window.service';
 
 @Component({
   selector: 'app-advanced-settings',
@@ -22,6 +23,7 @@ export class AdvancedSettingsComponent implements OnInit {
 
   isLoading: boolean = true;
   saveInProgress: boolean;
+  isOnboarding: boolean = false;
   advancedSettings: AdvancedSettingGet;
   workspaceGeneralSettings: WorkspaceGeneralSetting;
   billPaymentAccounts: DestinationAttribute[];
@@ -40,7 +42,8 @@ export class AdvancedSettingsComponent implements OnInit {
     }
   ];
   frequencyIntervals: number[] = [...Array(24).keys()].map(day => day + 1);
-  workspaceId: string = this.workspaceService.getWorkspaceId();
+  windowReference: Window;
+  @Output() isLoaded = new EventEmitter<boolean>();
 
   constructor(
     private advancedSettingService: AdvancedSettingService,
@@ -49,8 +52,11 @@ export class AdvancedSettingsComponent implements OnInit {
     private mappingService: MappingService,
     private router: Router,
     private snackBar: MatSnackBar,
+    private windowService: WindowService,
     private workspaceService: WorkspaceService
-  ) { }
+  ) {
+    this.windowReference = this.windowService.nativeWindow;
+  }
 
   private createPaymentSyncWatcher(): void {
     this.advancedSettingsForm.controls.paymentSync.valueChanges.subscribe((ispaymentSyncSelected) => {
@@ -149,9 +155,11 @@ export class AdvancedSettingsComponent implements OnInit {
 
     this.setCustomValidators();
     this.isLoading = false;
+    this.isLoaded.emit(true);
   }
 
   private getSettingsAndSetupForm(): void {
+    this.isOnboarding = this.windowReference.location.pathname.includes('onboarding');
     forkJoin([
       this.advancedSettingService.getAdvancedSettings(),
       this.mappingService.getQBODestinationAttributes('BANK_ACCOUNT'),
@@ -175,7 +183,7 @@ export class AdvancedSettingsComponent implements OnInit {
   }
 
   navigateToPreviousStep(): void {
-    this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/import_settings`]);
+    this.router.navigate([`/workspaces/onboarding/import_settings`]);
   }
 
   save(): void {
@@ -185,7 +193,9 @@ export class AdvancedSettingsComponent implements OnInit {
       this.saveInProgress = true;
       this.advancedSettingService.postAdvancedSettings(advancedSettingPayload).subscribe(() => {
         this.saveInProgress = false;
-        this.router.navigate([`/workspaces/${this.workspaceId}/onboarding/done`]);
+        if (this.isOnboarding) {
+          this.router.navigate([`/workspaces/onboarding/done`]);
+        }
       }, () => {
         this.saveInProgress = false;
         this.snackBar.open('Error saving advanced settings, please try again later');

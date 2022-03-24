@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { DashboardModule, DashboardModuleChild } from 'src/app/core/models/misc/dashboard-module.model';
 
 @Component({
-  selector: 'app-post-onboarding',
-  templateUrl: './post-onboarding.component.html',
-  styleUrls: ['./post-onboarding.component.scss']
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
 })
-export class PostOnboardingComponent implements OnInit {
+export class MainComponent implements OnInit {
 
-  imgSrc: string;
   modules: DashboardModule[] = [
     {
       name: 'Dashboard',
@@ -54,29 +54,31 @@ export class PostOnboardingComponent implements OnInit {
       childPages: [
         {
           name: 'Map Employees',
-          route: 'employee-settings',
+          route: 'configuration/employee_settings',
           isActive: false
         },
         {
           name: 'Export Settings',
-          route: 'export-settings',
+          route: 'configuration/export_settings',
           isActive: false
         },
         {
           name: 'Import Settings',
-          route: 'import-settings',
+          route: 'configuration/import_settings',
           isActive: false
         },
         {
           name: 'Advanced Settings',
-          route: 'advanced-settings',
+          route: 'configuration/advanced_settings',
           isActive: false
         }
       ]
     }
   ];
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   navigate(module: DashboardModule | DashboardModuleChild): void {
     // Setting clicked module as active
@@ -105,11 +107,45 @@ export class PostOnboardingComponent implements OnInit {
     if (module.name === 'Mappings' || module.name === 'Configuration') {
       module.isExpanded = !module.isExpanded;
     } else {
-      // TODO: navigate
+      this.router.navigate([`/workspaces/main/${module.route}`]);
     }
   }
 
+  private markModuleActive(path: string): void {
+    const route = path.split('/workspaces/main/')[1];
+
+    // Filter module list to find the module that matches the route and mark it as active
+    this.modules = this.modules.map(m => {
+      if (m.childPages) {
+        m.childPages.forEach(c => {
+          if (c.route === route) {
+            c.isActive = true;
+            m.isActive = true;
+            m.isExpanded = true;
+          }
+        });
+      }
+
+      if (m.route === route) {
+        m.isActive = true;
+      }
+
+      return m;
+    });
+  }
+
+  private setRouteWatcher(): void {
+    this.router.events.subscribe((val) => {
+      if (val instanceof NavigationStart) {
+        this.markModuleActive(val.url)
+      }
+    });
+
+    this.markModuleActive(this.router.url);
+  }
+
   ngOnInit(): void {
+    this.setRouteWatcher();
   }
 
 }
