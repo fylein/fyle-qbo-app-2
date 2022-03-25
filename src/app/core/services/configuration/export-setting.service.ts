@@ -22,13 +22,13 @@ export class ExportSettingService {
     cacheBusterObserver: exportSettingsCache$
   })
   getExportSettings(): Observable<ExportSettingGet> {
-    return this.apiService.get(`/workspaces/${this.workspaceService.getWorkspaceId()}/mock2/`, {});
+    return this.apiService.get(`/v2/workspaces/${this.workspaceService.getWorkspaceId()}/export_settings/`, {});
   }
 
   @CacheBuster({
     cacheBusterNotifier: exportSettingsCache$
   })
   postExportSettings(exportSettingsPayload: ExportSettingPost): Observable<ExportSettingGet> {
-    return this.apiService.post(`/workspaces/${this.workspaceService.getWorkspaceId()}/mock2/`, exportSettingsPayload);
+    return this.apiService.put(`/v2/workspaces/${this.workspaceService.getWorkspaceId()}/export_settings/`, exportSettingsPayload);
   }
 }
