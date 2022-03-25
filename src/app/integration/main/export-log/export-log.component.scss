@@ -29,7 +29,7 @@
   }
 
   &--table {
-    padding-bottom: 50px;
+    height: 680px;
     overflow: scroll;
   }
 
@@ -58,4 +58,10 @@ table {
 th {
   color: #2C304E;
   font-weight: 500;
+}
+
+tr {
+  &:hover {
+    background: #FAFCFF;
+  }
 }

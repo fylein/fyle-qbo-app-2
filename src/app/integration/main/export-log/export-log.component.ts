@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { environment } from 'environment.localhost';
+import { ExpenseGroup, ExpenseGroupList, ExpenseGroupResponse } from 'src/app/core/models/db/expense-group.model';
+import { Paginator } from 'src/app/core/models/misc/paginator.model';
+import { WindowService } from 'src/app/core/services/core/window.service';
+import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
 
 @Component({
   selector: 'app-export-log',
@@ -8,47 +13,106 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class ExportLogComponent implements OnInit {
 
-  dataSource = [
-    {exportedAt: new Date(), name: 'Hydrogen', fundSource: 'Credit Card', referenceID: '#E/123/23R35', exportType: 'Bill', link: 'https://ashwin.ashwin'},
-  ];
+  expenseGroups: ExpenseGroupList[];
   displayedColumns: string[];
   isLoading: boolean = true;
   exportLogForm: FormGroup;
+  limit: number;
+  offset: number;
+  totalCount: number;
+  private windowReference: Window;
 
   constructor(
-    private formBuilder: FormBuilder
-  ) { }
+    private exportLogService: ExportLogService,
+    private formBuilder: FormBuilder,
+    private windowService: WindowService
+  ) {
+    this.windowReference = this.windowService.nativeWindow;
+  }
 
   openInQBO(url: string): void {
-    // TODO
+    this.windowReference.open(url, '_blank');
+  }
+
+  private generateExportTypeAndId(expenseGroup: ExpenseGroup) {
+    let exportRedirection = null;
+    let exportType = null;
+    let exportId = null;
+
+    if ('Bill' in expenseGroup.response_logs && expenseGroup.response_logs.Bill) {
+      exportRedirection = 'bill';
+      exportType = exportRedirection;
+      exportId = expenseGroup.response_logs.Bill.Id;
+    } else if ('JournalEntry' in expenseGroup.response_logs && expenseGroup.response_logs.JournalEntry) {
+      exportRedirection = 'journal';
+      exportType = 'Journal Entry';
+      exportId = expenseGroup.response_logs.JournalEntry.Id;
+    } else if ('Purchase' in expenseGroup.response_logs && expenseGroup.response_logs.Purchase) {
+      exportId = expenseGroup.response_logs.Purchase.Id;
+      if (expenseGroup.response_logs.Purchase.PaymentType === 'Check') {
+        exportRedirection = 'check';
+        exportType = exportRedirection;
+      } else {
+        exportRedirection = 'expense';
+        if (expenseGroup.fund_source === 'CCC' && expenseGroup.response_logs.Purchase.PaymentType === 'CreditCard' && !expenseGroup.response_logs.Purchase.Credit) {
+          exportType = 'Credit Card Purchase';
+        } else if (expenseGroup.fund_source === 'CCC' && expenseGroup.response_logs.Purchase.PaymentType === 'CreditCard' && expenseGroup.response_logs.Purchase.Credit) {
+          exportType = 'Credit Card Credit';
+          exportRedirection = 'creditcardcredit';
+        } else if (expenseGroup.fund_source === 'CCC' && expenseGroup.response_logs.Purchase.PaymentType === 'Cash') {
+          exportType = 'Debit Card Expense';
+          exportRedirection = 'expense';
+        } else {
+          exportType = 'expense';
+        }
+      }
+    }
+
+    return [exportRedirection, exportId, exportType];
   }
 
   private setupForm(): void {
     this.exportLogForm = this.formBuilder.group({
       searchOption: ['']
-    })
+    });
+  }
+
+  getExpenseGroups(data: Paginator | void): void {
+    this.isLoading = true;
+    this.expenseGroups = [];
+
+    if (data && data.limit) {
+      this.limit = data.limit;
+      this.offset = data.offset;
+    }
+
+    this.exportLogService.getExpenseGroups('ALL', data?.limit, data?.offset).subscribe((expenseGroupResponse: ExpenseGroupResponse) => {
+      this.totalCount = expenseGroupResponse.count;
+      expenseGroupResponse.results.forEach((expenseGroup: ExpenseGroup) => {
+        const [type, id, exportType] = this.generateExportTypeAndId(expenseGroup);
+
+        this.expenseGroups.push({
+          'exportedAt': expenseGroup.exported_at,
+          'employee': ['name', expenseGroup.description.employee_email],
+          'expenseType': expenseGroup.fund_source === 'CCC' ? 'Credit Card' : 'Reimbursable',
+          'referenceNumber': expenseGroup.description.claim_number,
+          'exportedAs': exportType,
+          'url': `${environment.qbo_app_url}/app/${type}?txnId=${id}`
+        });
+      });
+
+      this.isLoading = false;
+    });
+  }
+
+  private getExpenseGroupsAndSetupPage(): void {
+    this.setupForm();
+    this.getExpenseGroups();
   }
 
   ngOnInit(): void {
-    this.dataSource = [
-      {exportedAt: new Date(), name: 'Hydrogen', fundSource: 'Credit Card', referenceID: '#E/123/23R35', exportType: 'Bill', link: 'https://ashwin.ashwin'},
-      {exportedAt: new Date(), name: 'Helium', fundSource: 'Credit Card', referenceID: '#E/123/23R35', exportType: 'Bill', link: 'https://ashwin.ashwin'},
-      {exportedAt: new Date(), name: 'Lithium', fundSource: 'Reimbursable', referenceID: '#E/123/23R35', exportType: 'Bill', link: 'https://ashwin.ashwin'},
-      {exportedAt: new Date(), name: 'Beryllium', fundSource: 'Reimbursable', referenceID: '#E/123/23R35', exportType: 'Bill', link: 'https://ashwin.ashwin'},
-      {exportedAt: new Date(), name: 'Boron', fundSource: 'Reimbursable', referenceID: '#E/123/23R35', exportType: 'Bill', link: 'https://ashwin.ashwin'},
-      {exportedAt: new Date(), name: 'Helium', fundSource: 'Credit Card', referenceID: '#E/123/23R35', exportType: 'Bill', link: 'https://ashwin.ashwin'},
-      {exportedAt: new Date(), name: 'Lithium', fundSource: 'Reimbursable', referenceID: '#E/123/23R35', exportType: 'Bill', link: 'https://ashwin.ashwin'},
-      {exportedAt: new Date(), name: 'Beryllium', fundSource: 'Reimbursable', referenceID: '#E/123/23R35', exportType: 'Bill', link: 'https://ashwin.ashwin'},
-      {exportedAt: new Date(), name: 'Boron', fundSource: 'Reimbursable', referenceID: '#E/123/23R35', exportType: 'Bill', link: 'https://ashwin.ashwin'},
-      {exportedAt: new Date(), name: 'Helium', fundSource: 'Credit Card', referenceID: '#E/123/23R35', exportType: 'Bill', link: 'https://ashwin.ashwin'},
-      {exportedAt: new Date(), name: 'Lithium', fundSource: 'Reimbursable', referenceID: '#E/123/23R35', exportType: 'Bill', link: 'https://ashwin.ashwin'},
-      {exportedAt: new Date(), name: 'Beryllium', fundSource: 'Reimbursable', referenceID: '#E/123/23R35', exportType: 'Bill', link: 'https://ashwin.ashwin'},
-      {exportedAt: new Date(), name: 'Boron', fundSource: 'Reimbursable', referenceID: '#E/123/23R35', exportType: 'Bill', link: 'https://ashwin.ashwin'}
-    ];
     this.displayedColumns = ['exportedAt', 'name', 'fundSource', 'referenceID', 'exportType', 'link'];
-    this.setupForm();    
-    
-    this.isLoading = false;
+    this.getExpenseGroupsAndSetupPage();
   }
 
 }

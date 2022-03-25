@@ -1,6 +1,6 @@
 <div class="configuration-main--bg">
 </div>
-<div class="export-log">
+<div *ngIf="!isLoading" class="export-log">
   <div class="export-log--content">
     
     <!-- header -->
@@ -16,71 +16,74 @@
 
     <!-- table -->
 
-    <table mat-table *ngIf="!isLoading" [dataSource]="dataSource" class="export-log--table">
-      <ng-container matColumnDef="exportedAt">
-        <th mat-header-cell *matHeaderCellDef>
-          <h4>Date and Time of Export</h4>
-        </th>
-        <td mat-cell *matCellDef="let element">
-          <h4>
-            {{element.exportedAt | date: 'dd MMM, yyyy' }}
-          </h4>
+    <div class="export-log--table">
+      <table mat-table [dataSource]="expenseGroups">
+        <ng-container matColumnDef="exportedAt">
+          <th mat-header-cell *matHeaderCellDef>
+            <h4>Date and Time of Export</h4>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <h4>
+              {{element.exportedAt | date: 'dd MMM, yyyy' }}
+            </h4>
 
-          <h5 class="export-log--sub-row">
-            {{element.exportedAt | date: 'hh:mm' }}
-          </h5>
-        </td>
-      </ng-container>
-    
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>
-          <h4>Employee Name and ID</h4>
-        </th>
-        <td mat-cell *matCellDef="let element"> 
-          <h4>
-            {{element.name }}
-          </h4>
-          <h5 class="export-log--sub-row">
-            {{element.name }}.lolo@fyle.in
-          </h5>
-        </td>
-      </ng-container>
-    
-      <ng-container matColumnDef="fundSource">
-        <th mat-header-cell *matHeaderCellDef>
-          <h4>Expense Type</h4>
-        </th>
-        <td mat-cell *matCellDef="let element"> {{element.fundSource}} </td>
-      </ng-container>
+            <h5 class="export-log--sub-row">
+              {{element.exportedAt | date: 'hh:mm' }}
+            </h5>
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="referenceID">
-        <th mat-header-cell *matHeaderCellDef>
-          <h4>Reference ID</h4>
-        </th>
-        <td class="export-log--reference-id pointer" [matTooltip]="'View in Fyle'" mat-cell *matCellDef="let element"> {{element.referenceID}} </td>
-      </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>
+            <h4>Employee Name and ID</h4>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <h4>
+              {{ element.employee[0] }}
+            </h4>
+            <h5 class="export-log--sub-row">
+              {{ element.employee[1] }}
+            </h5>
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="exportType">
-        <th mat-header-cell *matHeaderCellDef>
-          <h4>Exported to QBO as</h4>
-        </th>
-        <td mat-cell *matCellDef="let element"> {{element.exportType}} </td>
-      </ng-container>
+        <ng-container matColumnDef="fundSource">
+          <th mat-header-cell *matHeaderCellDef>
+            <h4>Expense Type</h4>
+          </th>
+          <td mat-cell *matCellDef="let element"> {{ element.expenseType }} </td>
+        </ng-container>
 
-      <ng-container matColumnDef="link">
-        <th mat-header-cell *matHeaderCellDef>
-          <h4>Link to QBO</h4>
-        </th>
-        <td mat-cell *matCellDef="let element" class="export-log--open-in-qbo">
-          <img src="assets/images/svgs/actions/open-in-new-tab.svg" (click)="openInQBO(element.link)"/>
-        </td>
-      </ng-container>
-    
-      <tr class="export-log--heading" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr class="export-log--row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+        <ng-container matColumnDef="referenceID">
+          <th mat-header-cell *matHeaderCellDef>
+            <h4>Reference ID</h4>
+          </th>
+          <td class="export-log--reference-id pointer" [matTooltip]="'View in Fyle'" mat-cell *matCellDef="let element"> {{element.referenceNumber}} </td>
+        </ng-container>
 
+        <ng-container matColumnDef="exportType">
+          <th mat-header-cell *matHeaderCellDef>
+            <h4>Exported to QBO as</h4>
+          </th>
+          <td mat-cell *matCellDef="let element"> {{ element.exportedAs | titlecase }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="link">
+          <th mat-header-cell *matHeaderCellDef>
+            <h4>Link to QBO</h4>
+          </th>
+          <td mat-cell *matCellDef="let element" class="export-log--open-in-qbo">
+            <img class="pointer" src="assets/images/svgs/actions/open-in-new-tab.svg" (click)="openInQBO(element.url)"/>
+          </td>
+        </ng-container>
+
+        <tr class="export-log--heading" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr class="export-log--row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
     <!-- table -->
+
+    <app-paginator [totalCount]="totalCount" [limit]="limit" [offset]="offset" (onPageChange)="getExpenseGroups($event)"></app-paginator>
 
   </div>
 </div>

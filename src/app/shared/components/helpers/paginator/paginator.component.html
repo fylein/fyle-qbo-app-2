@@ -1,1 +1,31 @@
-<p>paginator works!</p>
+<form [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between center">
+  <h5 class="paginator--page-info">Page {{ ((offset - 1) / limit) + 1 | number: '1.0-0' }} of {{ totalCount | number: '1.0-0' }}</h5>
+  <div fxLayout="row">
+    <div fxLayout="row" class="paginator--page-size-section">
+      <h5 class="paginator--page-size-text">
+        Show
+      </h5>
+      <mat-form-field floatLabel="always" appearance="outline" class="paginator--page-size-input-field">
+        <mat-select formControlName="limit">
+          <mat-option *ngFor="let number of [2, 5, 10, 20, 50]" [value]="number">
+            {{ number }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" class="paginator--page-number-section">
+      <h5 class="paginator--page-text">Page</h5>
+      <div fxLayout="row" class="paginator--page-shift-section">
+        <div (click)="onPageChangeHandler('BACKWARD')" class="paginator--page-action-box">
+          <img class="paginator--page-navigation-icon pointer" src="assets/images/svgs/actions/arrow-left.svg" />
+        </div>
+        <div class="paginator--page-action-box">
+          <input (input)="onPageChangeHandler('CHANGE')" formControlName="page" class="paginator--page-number-input" />
+        </div>
+        <div (click)="onPageChangeHandler('FORWARD')" class="paginator--page-action-box">
+          <img class="paginator--page-navigation-icon pointer" src="assets/images/svgs/actions/arrow-right.svg" />
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
