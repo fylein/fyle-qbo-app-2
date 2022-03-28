@@ -15,7 +15,7 @@ export class ExportLogService {
     private workspaceService: WorkspaceService
   ) { }
 
-  getExpenseGroups(state: string, limit: number = 10, offset: number = 0): Observable<ExpenseGroupResponse> {
+  getExpenseGroups(state: string, limit: number, offset: number): Observable<ExpenseGroupResponse> {
     const workspaceId = this.workspaceService.getWorkspaceId();
     return this.apiService.get(
       `/workspaces/${workspaceId}/fyle/expense_groups/`,

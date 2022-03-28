@@ -10,7 +10,7 @@ import { Paginator } from 'src/app/core/models/misc/paginator.model';
 export class PaginatorComponent implements OnInit {
 
   form: FormGroup;
-  @Output() onPageChange = new EventEmitter<Paginator>();
+  @Output() pageChangeEvent = new EventEmitter<Paginator>();
   @Input() limit: number;
   @Input() offset: number;
   @Input() totalCount: number;
@@ -21,7 +21,7 @@ export class PaginatorComponent implements OnInit {
 
   private onPageSizeChangeWatcher(): void {
     this.form.controls.limit.valueChanges.subscribe(limit => {
-      this.onPageChange.emit({
+      this.pageChangeEvent.emit({
         limit: limit,
         offset: 0
       });
@@ -31,7 +31,10 @@ export class PaginatorComponent implements OnInit {
   onPageChangeHandler(event: 'CHANGE' | 'FORWARD' | 'BACKWARD'): void {
     if (event === 'CHANGE') {
       if (this.form.controls.page.value) {
-        return this.onPageChange.emit({
+        if (this.form.controls.page.value > this.totalCount || this.form.controls.page.value < 1) {
+          return;
+        }
+        return this.pageChangeEvent.emit({
           limit: this.limit,
           offset: (this.form.controls.page.value *  this.limit) - this.limit
         });
@@ -42,8 +45,14 @@ export class PaginatorComponent implements OnInit {
 
     let offset: number = this.form.get('offset')?.value;
     if (event === 'FORWARD') {
+      if (this.form.value.page >= this.totalCount) {
+        return;
+      }
       offset = this.form.get('offset')?.value + this.limit;
     } else if (event === 'BACKWARD') {
+      if (this.form.value.page <= 1) {
+        return;
+      }
       offset = this.form.get('offset')?.value - this.limit;
     }
 
@@ -51,7 +60,7 @@ export class PaginatorComponent implements OnInit {
       this.form.get('offset')?.setValue(offset);
     }
 
-    this.onPageChange.emit({
+    this.pageChangeEvent.emit({
       limit: this.form.get('limit')?.value,
       offset: offset
     });
@@ -62,7 +71,7 @@ export class PaginatorComponent implements OnInit {
   }
 
   private setupForm(): void {
-    this.limit = this.limit || 10;
+    this.limit = this.limit || 50;
     this.offset = this.offset || 0;
     this.totalCount = Math.ceil(this.totalCount / this.limit);
     const page = (this.offset / this.limit) + 1;

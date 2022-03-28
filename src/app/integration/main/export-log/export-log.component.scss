@@ -35,6 +35,9 @@
 
   &--row {
     height: 70px;
+      &:hover {
+        background: #FAFCFF;
+      }
   }
 
   &--sub-row {
@@ -60,8 +63,3 @@ th {
   font-weight: 500;
 }
 
-tr {
-  &:hover {
-    background: #FAFCFF;
-  }
-}

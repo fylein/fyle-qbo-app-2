@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { environment } from 'environment.localhost';
 import { ExpenseGroup, ExpenseGroupList, ExpenseGroupResponse } from 'src/app/core/models/db/expense-group.model';
+import { PaginatorPage } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
+import { PaginatorService } from 'src/app/core/services/core/paginator.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
 
@@ -25,6 +27,7 @@ export class ExportLogComponent implements OnInit {
   constructor(
     private exportLogService: ExportLogService,
     private formBuilder: FormBuilder,
+    private paginatorService: PaginatorService,
     private windowService: WindowService
   ) {
     this.windowReference = this.windowService.nativeWindow;
@@ -77,16 +80,19 @@ export class ExportLogComponent implements OnInit {
     });
   }
 
-  getExpenseGroups(data: Paginator | void): void {
+  getExpenseGroups(data: Paginator): void {
     this.isLoading = true;
     this.expenseGroups = [];
 
-    if (data && data.limit) {
-      this.limit = data.limit;
-      this.offset = data.offset;
+    // Store page size when user changes it
+    if (this.limit !== data.limit) {
+      this.paginatorService.storePageSize(PaginatorPage.EXPORT_LOG, data.limit);
     }
 
-    this.exportLogService.getExpenseGroups('ALL', data?.limit, data?.offset).subscribe((expenseGroupResponse: ExpenseGroupResponse) => {
+    this.limit = data.limit;
+    this.offset = data.offset;
+
+    this.exportLogService.getExpenseGroups('ALL', data.limit, data.offset).subscribe((expenseGroupResponse: ExpenseGroupResponse) => {
       this.totalCount = expenseGroupResponse.count;
       expenseGroupResponse.results.forEach((expenseGroup: ExpenseGroup) => {
         const [type, id, exportType] = this.generateExportTypeAndId(expenseGroup);
@@ -107,7 +113,10 @@ export class ExportLogComponent implements OnInit {
 
   private getExpenseGroupsAndSetupPage(): void {
     this.setupForm();
-    this.getExpenseGroups();
+
+    const paginator: Paginator = this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
+
+    this.getExpenseGroups(paginator);
   }
 
   ngOnInit(): void {

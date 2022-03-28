@@ -60,3 +60,8 @@ export enum PaymentSyncDirection {
   FYLE_TO_QBO = 'fyle_to_qbo',
   QBO_TO_FYLE = 'qbo_to_fyle'
 }
+
+export enum PaginatorPage {
+  MAPPING = 'mapping',
+  EXPORT_LOG = 'export-log'
+}

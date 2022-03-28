@@ -83,7 +83,7 @@
     </div>
     <!-- table -->
 
-    <app-paginator [totalCount]="totalCount" [limit]="limit" [offset]="offset" (onPageChange)="getExpenseGroups($event)"></app-paginator>
+    <app-paginator [totalCount]="totalCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getExpenseGroups($event)"></app-paginator>
 
   </div>
 </div>
