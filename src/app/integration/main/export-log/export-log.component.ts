@@ -17,13 +17,13 @@ import { MatTableDataSource } from '@angular/material/table';
 export class ExportLogComponent implements OnInit {
 
   expenseGroups: MatTableDataSource<ExpenseGroupList> = new MatTableDataSource<ExpenseGroupList>([]);
-  // data: MatTableDataSource<ExpenseGroupList> = new MatTableDataSource<ExpenseGroupList>([]);
   displayedColumns: string[] = ['exportedAt', 'name', 'fundSource', 'referenceID', 'exportType', 'link'];
   isLoading: boolean = true;
   exportLogForm: FormGroup;
   limit: number;
   offset: number;
   totalCount: number;
+  FyleReferenceType = FyleReferenceType;
   private windowReference: Window;
 
   constructor(
@@ -37,6 +37,11 @@ export class ExportLogComponent implements OnInit {
 
   openExternalLink(url: string): void {
     this.windowReference.open(url, '_blank');
+  }
+
+  openChildExpenses(expenseIDs: number[]): void {
+    // TODO: Implement this
+    console.log(expenseIDs)
   }
 
   private generateExportTypeAndId(expenseGroup: ExpenseGroup) {
@@ -105,11 +110,11 @@ export class ExportLogComponent implements OnInit {
   }
 
   private generateFyleUrl(expenseGroup: ExpenseGroup, referenceType: FyleReferenceType) : string {
-    let url = `${environment.fyle_app_url}`;
+    let url = `${environment.fyle_app_url}/app/admin/#`;
     if (referenceType === FyleReferenceType.EXPENSE) {
-      url += `/app/admin/#/view_expense/${expenseGroup.description.expense_id}`;
+      url += `/view_expense/${expenseGroup.description.expense_id}`;
     } else if (referenceType === FyleReferenceType.EXPENSE_REPORT) {
-      url += `/app/admin/#/reports/${expenseGroup.description.report_id}`;
+      url += `/reports/${expenseGroup.description.report_id}`;
     }
 
     return url;
@@ -139,10 +144,12 @@ export class ExportLogComponent implements OnInit {
           exportedAt: expenseGroup.exported_at,
           employee: ['name', expenseGroup.description.employee_email],
           expenseType: expenseGroup.fund_source === 'CCC' ? 'Credit Card' : 'Reimbursable',
+          fyleReferenceType: referenceType,
           referenceNumber: expenseGroup.description[referenceType],
           exportedAs: exportType,
           fyleUrl: fyleUrl,
-          qboUrl: `${environment.qbo_app_url}/app/${type}?txnId=${id}`
+          qboUrl: `${environment.qbo_app_url}/app/${type}?txnId=${id}`,
+          expenseIDs: expenseGroup.expenses
         });
 
         this.expenseGroups = new MatTableDataSource(expenseGroups);

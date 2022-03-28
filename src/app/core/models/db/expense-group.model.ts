@@ -15,6 +15,8 @@ export interface ExpenseGroupList {
   exportedAs: string;
   qboUrl: string;
   fyleUrl: string;
+  fyleReferenceType: FyleReferenceType;
+  expenseIDs: number[];
 }
 
 export type ExpenseGroup = {
