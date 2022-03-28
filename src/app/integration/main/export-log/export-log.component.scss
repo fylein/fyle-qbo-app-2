@@ -51,6 +51,20 @@
   &--open-in-qbo {
     padding-left: 20px;
   }
+
+  &--zero-state-img {
+    padding-top: 180px;
+  }
+
+  &--zero-state-text {
+    color: #2C304E;
+  }
+
+  &--zero-state-text-small {
+    color: #5A5D72;
+    width: 298px;
+    padding-top: 8px;
+  }
 }
 
 
@@ -63,3 +77,15 @@ th {
   font-weight: 500;
 }
 
+::ng-deep .mat-tooltip {
+  background: #2C304E;
+  border-radius: 2px;
+  white-space: nowrap;
+  color: #FFFFFF;
+
+  margin-right: 150px !important;
+  margin-bottom: 60px !important;
+  @media only screen and (max-width: 1440px) {
+    margin-right: 70px !important;
+  }
+}

@@ -1,3 +1,5 @@
+import { FyleReferenceType } from "../enum/enum.model";
+
 export type ExpenseGroupResponse = {
   count: number;
   next: string;
@@ -11,7 +13,8 @@ export interface ExpenseGroupList {
   expenseType: 'Credit Card' | 'Reimbursable';
   referenceNumber: string;
   exportedAs: string;
-  url: string;
+  qboUrl: string;
+  fyleUrl: string;
 }
 
 export type ExpenseGroup = {
@@ -30,6 +33,9 @@ export type ExpenseGroup = {
 };
 
 export type ExpenseGroupDescription = {
-  claim_number: string;
+  claim_number: FyleReferenceType.EXPENSE_REPORT;
+  report_id: FyleReferenceType.EXPENSE_REPORT;
   employee_email: string;
+  expense_id: FyleReferenceType.EXPENSE;
+  settlement_id: FyleReferenceType.PAYMENT;
 };

@@ -65,3 +65,10 @@ export enum PaginatorPage {
   MAPPING = 'mapping',
   EXPORT_LOG = 'export-log'
 }
+
+export enum FyleReferenceType {
+  REPORT_ID = 'report_id',
+  EXPENSE_REPORT = 'claim_number',
+  PAYMENT = 'settlement_id',
+  EXPENSE = 'expense_id'
+}

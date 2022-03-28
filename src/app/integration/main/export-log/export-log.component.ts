@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { environment } from 'environment.localhost';
-import { ExpenseGroup, ExpenseGroupList, ExpenseGroupResponse } from 'src/app/core/models/db/expense-group.model';
-import { PaginatorPage } from 'src/app/core/models/enum/enum.model';
+import { ExpenseGroup, ExpenseGroupDescription, ExpenseGroupList, ExpenseGroupResponse } from 'src/app/core/models/db/expense-group.model';
+import { FyleReferenceType, PaginatorPage } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-export-log',
@@ -15,8 +16,9 @@ import { ExportLogService } from 'src/app/core/services/export-log/export-log.se
 })
 export class ExportLogComponent implements OnInit {
 
-  expenseGroups: ExpenseGroupList[];
-  displayedColumns: string[];
+  expenseGroups: MatTableDataSource<ExpenseGroupList> = new MatTableDataSource<ExpenseGroupList>([]);
+  // data: MatTableDataSource<ExpenseGroupList> = new MatTableDataSource<ExpenseGroupList>([]);
+  displayedColumns: string[] = ['exportedAt', 'name', 'fundSource', 'referenceID', 'exportType', 'link'];
   isLoading: boolean = true;
   exportLogForm: FormGroup;
   limit: number;
@@ -33,7 +35,7 @@ export class ExportLogComponent implements OnInit {
     this.windowReference = this.windowService.nativeWindow;
   }
 
-  openInQBO(url: string): void {
+  openExternalLink(url: string): void {
     this.windowReference.open(url, '_blank');
   }
 
@@ -78,11 +80,44 @@ export class ExportLogComponent implements OnInit {
     this.exportLogForm = this.formBuilder.group({
       searchOption: ['']
     });
+
+    this.exportLogForm.controls.searchOption.valueChanges.subscribe((searchTerm: string) => {
+      if (searchTerm) {
+        this.expenseGroups.filter = searchTerm.trim().toLowerCase();
+      } else {
+        this.expenseGroups.filter = '';
+      }
+    });
+  }
+
+  private getReferenceNumber(description: ExpenseGroupDescription): FyleReferenceType {
+    let referenceNumber = FyleReferenceType.EXPENSE_REPORT;
+
+    if (FyleReferenceType.EXPENSE in description) {
+      referenceNumber = FyleReferenceType.EXPENSE;
+    } else if (FyleReferenceType.EXPENSE_REPORT in description) {
+      referenceNumber = FyleReferenceType.EXPENSE_REPORT;
+    } else if (FyleReferenceType.PAYMENT in description) {
+      referenceNumber = FyleReferenceType.PAYMENT;
+    }
+
+    return referenceNumber;
+  }
+
+  private generateFyleUrl(expenseGroup: ExpenseGroup, referenceType: FyleReferenceType) : string {
+    let url = `${environment.fyle_app_url}`;
+    if (referenceType === FyleReferenceType.EXPENSE) {
+      url += `/app/admin/#/view_expense/${expenseGroup.description.expense_id}`;
+    } else if (referenceType === FyleReferenceType.EXPENSE_REPORT) {
+      url += `/app/admin/#/reports/${expenseGroup.description.report_id}`;
+    }
+
+    return url;
   }
 
   getExpenseGroups(data: Paginator): void {
     this.isLoading = true;
-    this.expenseGroups = [];
+    const expenseGroups: ExpenseGroupList[] = [];
 
     // Store page size when user changes it
     if (this.limit !== data.limit) {
@@ -96,19 +131,30 @@ export class ExportLogComponent implements OnInit {
       this.totalCount = expenseGroupResponse.count;
       expenseGroupResponse.results.forEach((expenseGroup: ExpenseGroup) => {
         const [type, id, exportType] = this.generateExportTypeAndId(expenseGroup);
+        const referenceType: FyleReferenceType = this.getReferenceNumber(expenseGroup.description);
 
-        this.expenseGroups.push({
-          'exportedAt': expenseGroup.exported_at,
-          'employee': ['name', expenseGroup.description.employee_email],
-          'expenseType': expenseGroup.fund_source === 'CCC' ? 'Credit Card' : 'Reimbursable',
-          'referenceNumber': expenseGroup.description.claim_number,
-          'exportedAs': exportType,
-          'url': `${environment.qbo_app_url}/app/${type}?txnId=${id}`
+        const fyleUrl = this.generateFyleUrl(expenseGroup, referenceType);
+
+        expenseGroups.push({
+          exportedAt: expenseGroup.exported_at,
+          employee: ['name', expenseGroup.description.employee_email],
+          expenseType: expenseGroup.fund_source === 'CCC' ? 'Credit Card' : 'Reimbursable',
+          referenceNumber: expenseGroup.description[referenceType],
+          exportedAs: exportType,
+          fyleUrl: fyleUrl,
+          qboUrl: `${environment.qbo_app_url}/app/${type}?txnId=${id}`
         });
+
+        this.expenseGroups = new MatTableDataSource(expenseGroups);
+        this.expenseGroups.filterPredicate = this.searchByText;
       });
 
       this.isLoading = false;
     });
+  }
+
+  private searchByText(expenseGroup: ExpenseGroupList, filterText: string) {
+    return expenseGroup.employee[0].includes(filterText) || expenseGroup.employee[1].includes(filterText);
   }
 
   private getExpenseGroupsAndSetupPage(): void {
@@ -120,7 +166,6 @@ export class ExportLogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.displayedColumns = ['exportedAt', 'name', 'fundSource', 'referenceID', 'exportType', 'link'];
     this.getExpenseGroupsAndSetupPage();
   }
 

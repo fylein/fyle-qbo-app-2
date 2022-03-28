@@ -14,6 +14,10 @@ export class SimpleSearchSelectComponent implements OnInit {
 
   constructor() { }
 
+  clearText(): void {
+    this.form.controls.searchOption.patchValue(null);
+  }
+
   ngOnInit(): void {
   }
 

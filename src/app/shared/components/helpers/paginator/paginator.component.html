@@ -1,4 +1,4 @@
-<form [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between center">
+<form *ngIf="totalCount !== 0" [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between center">
   <h5 class="paginator--page-info">Page {{ ((offset - 1) / limit) + 1 | number: '1.0-0' }} of {{ totalCount | number: '1.0-0' }}</h5>
   <div fxLayout="row">
     <div fxLayout="row" class="paginator--page-size-section">
