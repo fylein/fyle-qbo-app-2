@@ -142,7 +142,7 @@ export class ImportSettingsComponent implements OnInit {
         destination_field: [field.destination_field],
         import_to_fyle: [field.import_to_fyle, this.mandatorySourceFieldValidator()],
         disable_import_to_fyle: [field.disable_import_to_fyle],
-        placeholder: ['']
+        source_placeholder: ['']
       })
     });
 
@@ -179,7 +179,7 @@ export class ImportSettingsComponent implements OnInit {
           destination_field: attribute,
           import_to_fyle: mappingSetting.length > 0 ? mappingSetting[0].import_to_fyle : false,
           disable_import_to_fyle: false,
-          placeholder: ''
+          source_placeholder: ''
         }
       });
 
@@ -189,13 +189,13 @@ export class ImportSettingsComponent implements OnInit {
     });
   }
 
-  private patchExpenseFieldValue(destinationType: string, sourceField: string = '', placeholder: string = ''): void {
+  private patchExpenseFieldValue(destinationType: string, sourceField: string = '', source_placeholder: string = ''): void {
     const expenseField = {
       source_field: sourceField,
       destination_field: destinationType,
       import_to_fyle: true,
       disable_import_to_fyle: true,
-      placeholder: placeholder
+      source_placeholder: source_placeholder
     };
 
     this.expenseFields.controls.filter(field => field.value.destination_field === destinationType)[0].patchValue(expenseField);
@@ -221,7 +221,7 @@ export class ImportSettingsComponent implements OnInit {
       if (expenseField) {
         const sourceType = expenseField.name.split(' ').join('_').toUpperCase();
         this.fyleExpenseFields.push(sourceType);
-        this.patchExpenseFieldValue(destinationType, sourceType, expenseField.placeholder);
+        this.patchExpenseFieldValue(destinationType, sourceType, expenseField.source_placeholder);
       }
     });
   }
