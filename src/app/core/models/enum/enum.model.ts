@@ -60,3 +60,12 @@ export enum PaymentSyncDirection {
   FYLE_TO_QBO = 'fyle_to_qbo',
   QBO_TO_FYLE = 'qbo_to_fyle'
 }
+
+export enum OnboardingStateComponentMap {
+  CONNECTION = '/workspaces/onboarding/landing',
+  MAP_EMPLOYEES = '/workspaces/onboarding/employee_settings',
+  EXPORT_SETTINGS = '/workspaces/onboarding/export_settings',
+  IMPORT_SETTINGS = '/workspaces/onboarding/import_settings',
+  ADVANCED_SETTINGS = '/workspaces/onboarding/advanced_settings',
+  COMPLETE = '/workspaces/main'
+}
