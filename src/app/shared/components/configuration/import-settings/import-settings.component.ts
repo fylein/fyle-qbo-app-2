@@ -142,7 +142,7 @@ export class ImportSettingsComponent implements OnInit {
         destination_field: [field.destination_field],
         import_to_fyle: [field.import_to_fyle, this.mandatorySourceFieldValidator()],
         disable_import_to_fyle: [field.disable_import_to_fyle],
-        placeholder: ''
+        placeholder: ['']
       })
     });
 
@@ -151,7 +151,7 @@ export class ImportSettingsComponent implements OnInit {
       chartOfAccountTypes: this.formBuilder.array(chartOfAccountTypeFormArray),
       expenseFields: this.formBuilder.array(expenseFieldsFormArray),
       taxCode: [this.importSettings.workspace_general_settings.import_tax_codes],
-      defaultTaxCode: [this.importSettings.general_mappings.default_tax_code?.id],
+      defaultTaxCode: [this.importSettings.general_mappings?.default_tax_code?.id ? this.importSettings.general_mappings.default_tax_code : null],
       searchOption: []
     });
 

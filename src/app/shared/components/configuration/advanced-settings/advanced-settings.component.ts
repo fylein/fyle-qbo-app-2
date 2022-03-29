@@ -147,8 +147,8 @@ export class AdvancedSettingsComponent implements OnInit {
       changeAccountingPeriod: [this.advancedSettings.workspace_general_settings.change_accounting_period],
       singleCreditLineJE: [this.advancedSettings.workspace_general_settings.je_single_credit_line],
       autoCreateVendors: [this.advancedSettings.workspace_general_settings.auto_create_destination_entity],
-      exportSchedule: [this.advancedSettings.workspace_schedules.enabled ? this.advancedSettings.workspace_schedules.interval_hours : false],
-      exportScheduleFrequency: [this.advancedSettings.workspace_schedules.enabled ? this.advancedSettings.workspace_schedules.interval_hours : null],
+      exportSchedule: [this.advancedSettings.workspace_schedules?.enabled ? this.advancedSettings.workspace_schedules.interval_hours : false],
+      exportScheduleFrequency: [this.advancedSettings.workspace_schedules?.enabled ? this.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [this.advancedSettings.workspace_general_settings.memo_structure],
       searchOption: []
     });

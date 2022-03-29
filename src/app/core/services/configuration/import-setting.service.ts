@@ -20,13 +20,13 @@ export class ImportSettingService {
     cacheBusterObserver: importSettingsCache$
   })
   getImportSettings(): Observable<ImportSettingGet> {
-    return this.apiService.get(`/workspaces/${this.workspaceService.getWorkspaceId()}/mock3/`, {});
+    return this.apiService.get(`/v2/workspaces/${this.workspaceService.getWorkspaceId()}/import_settings/`, {});
   }
 
   @CacheBuster({
     cacheBusterNotifier: importSettingsCache$
   })
   postImportSettings(exportSettingsPayload: ImportSettingPost): Observable<ImportSettingGet> {
-    return this.apiService.post(`/workspaces/${this.workspaceService.getWorkspaceId()}/mock3/`, exportSettingsPayload);
+    return this.apiService.put(`/v2/workspaces/${this.workspaceService.getWorkspaceId()}/import_settings/`, exportSettingsPayload);
   }
 }
