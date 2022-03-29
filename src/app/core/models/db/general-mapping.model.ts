@@ -3,7 +3,7 @@ import { ExportSettingGeneralMapping } from "../configuration/export-setting.mod
 import { ImportSettingGeneralMapping } from "../configuration/import-setting.model";
 
 export type DefaultDestinationAttribute = {
-  id: number;
+  id: string;
   name: string;
 }
 
