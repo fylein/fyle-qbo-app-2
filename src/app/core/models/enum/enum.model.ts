@@ -61,6 +61,15 @@ export enum PaymentSyncDirection {
   QBO_TO_FYLE = 'qbo_to_fyle'
 }
 
+export enum OnboardingState {
+  CONNECTION = 'CONNECTION',
+  MAP_EMPLOYEES = 'MAP_EMPLOYEES',
+  EXPORT_SETTINGS = 'EXPORT_SETTINGS',
+  IMPORT_SETTINGS = 'IMPORT_SETTINGS',
+  ADVANCED_SETTINGS = 'ADVANCED_SETTINGS',
+  COMPLETE = 'COMPLETE'
+}
+
 export enum PaginatorPage {
   MAPPING = 'mapping',
   EXPORT_LOG = 'export-log'

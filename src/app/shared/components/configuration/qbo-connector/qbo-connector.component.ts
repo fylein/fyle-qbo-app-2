@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'environment.localhost';
 import { EmployeeSettingGet } from 'src/app/core/models/configuration/employee-setting.model';
-import { QboConnector, QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
-import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
+import { ExportSettingGet } from 'src/app/core/models/configuration/export-setting.model';
+import { QboConnectorPost, QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
+import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
 import { AuthService } from 'src/app/core/services/core/auth.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
@@ -30,8 +32,8 @@ export class QboConnectorComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private importSettingService: ImportSettingService,
     private qboConnectorService: QboConnectorService,
+    private exportSettingService: ExportSettingService,
     private route: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar,
@@ -69,12 +71,12 @@ export class QboConnectorComponent implements OnInit {
   }
 
   private showOrHideDisconnectQBO(): void {
-    this.importSettingService.getImportSettings().subscribe((employeeSettings: EmployeeSettingGet) => {
+    this.exportSettingService.getExportSettings().subscribe((exportSettings: ExportSettingGet) => {
       // Do nothing
       this.isContinueDisabled = false;
       this.isLoading = false;
 
-      if (!employeeSettings.workspace_general_settings.employee_field_mapping) {
+      if (!(exportSettings.workspace_general_settings?.reimbursable_expenses_object || exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object)) {
         this.showDisconnectQBO = true;
       }
     }, () => {
@@ -85,9 +87,10 @@ export class QboConnectorComponent implements OnInit {
   }
 
   private postQboCredentials(code: string, realmId: string): void {
-    const qboAuthResponse: QboConnector = {
+    const qboAuthResponse: QboConnectorPost = {
       code: code,
-      realm_id: realmId
+      realm_id: realmId,
+      redirect_uri: `${environment.app_url}/qbo_callback`
     };
 
     this.qboConnectorService.connectQBO(qboAuthResponse).subscribe((qboCredentials: QBOCredentials) => {
