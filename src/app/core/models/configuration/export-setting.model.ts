@@ -3,7 +3,6 @@ import { CorporateCreditCardExpensesObject, ExpenseGroupingFieldOption, ExpenseS
 import { ExpenseGroupSetting, ExpenseGroupSettingPost } from "../db/expense-group-setting.model";
 import { DefaultDestinationAttribute, GeneralMapping } from "../db/general-mapping.model";
 import { SelectFormOption } from "../misc/select-form-option.model";
-import { WorkspaceGeneralSetting } from "../db/workspace-general-setting.model";
 
 export type ExportSettingPost = {
   expense_group_settings: ExpenseGroupSettingPost,
@@ -27,7 +26,7 @@ export type ExportSettingGeneralMapping = {
 
 export type ExportSettingGet = {
   expense_group_settings: ExpenseGroupSetting,
-  workspace_general_settings: WorkspaceGeneralSetting,
+  workspace_general_settings: ExportSettingWorkspaceGeneralSetting,
   general_mappings: GeneralMapping
 }
 
@@ -52,7 +51,7 @@ export class ExportSettingModel {
       },
       general_mappings: {
         bank_account: exportSettingsForm.get('bankAccount')?.value ? exportSettingsForm.get('bankAccount')?.value : emptyDestinationAttribute,
-        default_ccc_account: exportSettingsForm.get('defaultCreditCardAccount')?.value ? exportSettingsForm.get('defaultCreditCardAccount')?.value : emptyDestinationAttribute,
+        default_ccc_account: exportSettingsForm.get('defaultCCCAccount')?.value ? exportSettingsForm.get('defaultCCCAccount')?.value : emptyDestinationAttribute,
         accounts_payable: exportSettingsForm.get('accountsPayable')?.value ? exportSettingsForm.get('accountsPayable')?.value : emptyDestinationAttribute,
         default_ccc_vendor: exportSettingsForm.get('defaultCreditCardVendor')?.value ? exportSettingsForm.get('defaultCreditCardVendor')?.value : emptyDestinationAttribute,
         qbo_expense_account: exportSettingsForm.get('qboExpenseAccount')?.value ? exportSettingsForm.get('qboExpenseAccount')?.value : emptyDestinationAttribute,
