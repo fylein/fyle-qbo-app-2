@@ -8,6 +8,8 @@ import { PaginatorService } from 'src/app/core/services/core/paginator.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { ExportLogChildDialogComponent } from './export-log-child-dialog/export-log-child-dialog.component';
 
 @Component({
   selector: 'app-export-log',
@@ -27,6 +29,7 @@ export class ExportLogComponent implements OnInit {
   private windowReference: Window;
 
   constructor(
+    private dialog: MatDialog,
     private exportLogService: ExportLogService,
     private formBuilder: FormBuilder,
     private paginatorService: PaginatorService,
@@ -39,9 +42,16 @@ export class ExportLogComponent implements OnInit {
     this.windowReference.open(url, '_blank');
   }
 
-  openChildExpenses(expenseIDs: number[]): void {
-    // TODO: Implement this
-    console.log(expenseIDs)
+  openChildExpenses(expenseGroupID: number): void {
+    this.dialog.open(ExportLogChildDialogComponent, {
+      width: '784px',
+      height: '974px',
+      data: expenseGroupID,
+      position: {
+        top: '0px',
+        right: '0px'
+      }
+    });
   }
 
   private generateExportTypeAndId(expenseGroup: ExpenseGroup) {
@@ -149,7 +159,7 @@ export class ExportLogComponent implements OnInit {
           exportedAs: exportType,
           fyleUrl: fyleUrl,
           qboUrl: `${environment.qbo_app_url}/app/${type}?txnId=${id}`,
-          expenseIDs: expenseGroup.expenses
+          expenseGroupID: expenseGroup.id
         });
 
         this.expenseGroups = new MatTableDataSource(expenseGroups);

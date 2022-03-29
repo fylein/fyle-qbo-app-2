@@ -17,7 +17,7 @@ export class ExpenseFieldCreationDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: string[],
     public dialogRef: MatDialogRef<ExpenseFieldCreationDialogComponent>,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder
   ) { }
 
   private setupForm(): void {

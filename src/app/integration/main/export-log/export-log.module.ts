@@ -8,13 +8,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ExportLogRoutingModule } from './export-log-routing.module';
 import { ExportLogComponent } from './export-log.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ExportLogChildDialogComponent } from './export-log-child-dialog/export-log-child-dialog.component';
 
 
 
 
 @NgModule({
   declarations: [
-    ExportLogComponent
+    ExportLogComponent,
+    ExportLogChildDialogComponent
   ],
   imports: [
     CommonModule,
