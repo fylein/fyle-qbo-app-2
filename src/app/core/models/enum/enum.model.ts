@@ -61,6 +61,7 @@ export enum PaymentSyncDirection {
   QBO_TO_FYLE = 'qbo_to_fyle'
 }
 
+<<<<<<< HEAD
 export enum OnboardingState {
   CONNECTION = 'CONNECTION',
   MAP_EMPLOYEES = 'MAP_EMPLOYEES',
@@ -68,4 +69,13 @@ export enum OnboardingState {
   IMPORT_SETTINGS = 'IMPORT_SETTINGS',
   ADVANCED_SETTINGS = 'ADVANCED_SETTINGS',
   COMPLETE = 'COMPLETE'
+=======
+export enum OnboardingStateComponentMap {
+  CONNECTION = '/workspaces/onboarding/landing',
+  MAP_EMPLOYEES = '/workspaces/onboarding/employee_settings',
+  EXPORT_SETTINGS = '/workspaces/onboarding/export_settings',
+  IMPORT_SETTINGS = '/workspaces/onboarding/import_settings',
+  ADVANCED_SETTINGS = '/workspaces/onboarding/advanced_settings',
+  COMPLETE = '/workspaces/main'
+>>>>>>> master
 }
