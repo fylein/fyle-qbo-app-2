@@ -244,7 +244,6 @@ export class ExportSettingsComponent implements OnInit {
   }
 
   showCreditCardAccountField(): boolean {
-    console.log('this.exportSettingsForm.controls.creditCardExportType.value',this.exportSettingsForm.controls.creditCardExportType.value)
     return this.exportSettingsForm.controls.creditCardExportType.value && this.exportSettingsForm.controls.creditCardExportType.value !== CorporateCreditCardExpensesObject.BILL && this.exportSettingsForm.controls.creditCardExportType.value !== CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE;
   }
 

@@ -4,7 +4,6 @@ import { AdvancedSettingFormOption } from 'src/app/core/models/configuration/adv
 import { EmployeeSettingFormOption } from 'src/app/core/models/configuration/employee-setting.model';
 import { ExportSettingFormOption } from 'src/app/core/models/configuration/export-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { DefaultDestinationAttribute } from 'src/app/core/models/db/general-mapping.model';
 import { EmployeeFieldMapping } from 'src/app/core/models/enum/enum.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 
