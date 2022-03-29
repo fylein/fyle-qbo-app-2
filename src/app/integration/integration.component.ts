@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MinimalUser } from '../core/models/db/user.model';
 import { Workspace } from '../core/models/db/workspace.model';
+import { OnboardingStateComponentMap } from '../core/models/enum/enum.model';
 import { StorageService } from '../core/services/core/storage.service';
 import { WindowService } from '../core/services/core/window.service';
 import { UserService } from '../core/services/misc/user.service';
@@ -32,7 +33,16 @@ export class IntegrationComponent implements OnInit {
     const pathName = this.windowReference.location.pathname;
     this.storageService.set('workspaceId', this.workspace.id);
     if (pathName === '/workspaces') {
-      this.router.navigateByUrl(`/workspaces/onboarding`);
+      const onboardingStateComponentMap = {
+        [OnboardingStateComponentMap.CONNECTION]: OnboardingStateComponentMap.CONNECTION,
+        [OnboardingStateComponentMap.MAP_EMPLOYEES]: OnboardingStateComponentMap.MAP_EMPLOYEES,
+        [OnboardingStateComponentMap.EXPORT_SETTINGS]: OnboardingStateComponentMap.EXPORT_SETTINGS,
+        [OnboardingStateComponentMap.IMPORT_SETTINGS]: OnboardingStateComponentMap.IMPORT_SETTINGS,
+        [OnboardingStateComponentMap.ADVANCED_SETTINGS]: OnboardingStateComponentMap.ADVANCED_SETTINGS,
+        [OnboardingStateComponentMap.COMPLETE]: OnboardingStateComponentMap.COMPLETE
+      };
+
+      this.router.navigateByUrl(onboardingStateComponentMap[this.workspace.onboarding_state]);
     }
   }
 
