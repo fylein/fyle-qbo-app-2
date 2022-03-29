@@ -41,9 +41,9 @@ export class ExportSettingModel {
     const exportSettingPayload: ExportSettingPost = {
       expense_group_settings: {
         expense_state: exportSettingsForm.get('expenseState')?.value,
-        reimbursable_expense_group_fields: exportSettingsForm.get('reimbursableExportGroup')?.value,
+        reimbursable_expense_group_fields: [exportSettingsForm.get('reimbursableExportGroup')?.value],
         reimbursable_export_date_type: exportSettingsForm.get('reimbursableExportDate')?.value,
-        corporate_credit_card_expense_group_fields: exportSettingsForm.get('creditCardExportGroup')?.value,
+        corporate_credit_card_expense_group_fields: [exportSettingsForm.get('creditCardExportGroup')?.value],
         ccc_export_date_type: exportSettingsForm.get('creditCardExportDate')?.value
       },
       workspace_general_settings: {

@@ -44,6 +44,13 @@ export class ApiService {
   }
 
   // Having any here is ok
+  put(endpoint: string, body: {}): Observable<any> {
+    return this.http.put(API_BASE_URL + endpoint, body, httpOptions).pipe(catchError(error => {
+      return this.handleError(error, 'PUT');
+    }));
+  }
+
+  // Having any here is ok
   get(endpoint: string, apiParams: any): Observable<any> {
     let params = new HttpParams();
     Object.keys(apiParams).forEach(key => {
