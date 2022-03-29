@@ -389,8 +389,8 @@ export class ExportSettingsComponent implements OnInit {
   save(): void {
     if (this.exportSettingsForm.valid && !this.saveInProgress) {
       const exportSettingPayload = ExportSettingModel.constructPayload(this.exportSettingsForm);
-      console.log('Export setting payload: ', exportSettingPayload);
       this.saveInProgress = true;
+
       this.exportSettingService.postExportSettings(exportSettingPayload).subscribe(() => {
         this.saveInProgress = false;
         if (this.isOnboarding) {

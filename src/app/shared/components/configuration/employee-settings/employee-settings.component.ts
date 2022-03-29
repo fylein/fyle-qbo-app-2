@@ -71,8 +71,8 @@ export class EmployeeSettingsComponent implements OnInit {
   save(): void {
     if (this.employeeSettingsForm.valid && !this.saveInProgress) {
       const employeeSettingPayload = EmployeeSettingModel.constructPayload(this.employeeSettingsForm);
-      console.log('Employee setting payload: ', employeeSettingPayload);
       this.saveInProgress = true;
+
       this.employeeSettingService.postEmployeeSettings(employeeSettingPayload).subscribe(() => {
         this.saveInProgress = false;
         if (this.isOnboarding) {

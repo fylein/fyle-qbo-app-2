@@ -55,7 +55,7 @@
           <th mat-header-cell *matHeaderCellDef>
             <h4>Reference ID</h4>
           </th>
-          <td class="export-log--reference-id pointer" [matTooltip]="'View in Fyle'" mat-cell *matCellDef="let element" (click)="openExternalLink(element.fyleUrl)"> {{element.referenceNumber}} </td>
+          <td class="export-log--reference-id pointer" [matTooltip]="'View in Fyle'" mat-cell *matCellDef="let element" (click)="helperService.openExternalLink(element.fyleUrl)"> {{element.referenceNumber}} </td>
         </ng-container>
 
         <ng-container matColumnDef="exportType">
@@ -70,7 +70,7 @@
             <h4>Link to QBO</h4>
           </th>
           <td mat-cell *matCellDef="let element" class="export-log--open-in-qbo">
-            <img class="pointer" src="assets/images/svgs/actions/open-in-new-tab.svg" (click)="openExternalLink(element.qboUrl)"/>
+            <img class="pointer" src="assets/images/svgs/actions/open-in-new-tab.svg" (click)="helperService.openExternalLink(element.qboUrl)"/>
           </td>
         </ng-container>
 

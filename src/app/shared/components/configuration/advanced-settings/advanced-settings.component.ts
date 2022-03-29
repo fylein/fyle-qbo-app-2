@@ -189,8 +189,8 @@ export class AdvancedSettingsComponent implements OnInit {
   save(): void {
     if (this.advancedSettingsForm.valid && !this.saveInProgress) {
       const advancedSettingPayload = AdvancedSettingModel.constructPayload(this.advancedSettingsForm);
-      console.log('Advanced setting payload: ', advancedSettingPayload);
       this.saveInProgress = true;
+
       this.advancedSettingService.postAdvancedSettings(advancedSettingPayload).subscribe(() => {
         this.saveInProgress = false;
         if (this.isOnboarding) {

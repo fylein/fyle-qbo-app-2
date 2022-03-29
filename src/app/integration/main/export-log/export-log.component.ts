@@ -5,11 +5,11 @@ import { ExpenseGroup, ExpenseGroupDescription, ExpenseGroupList, ExpenseGroupRe
 import { FyleReferenceType, PaginatorPage } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
-import { WindowService } from 'src/app/core/services/core/window.service';
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ExportLogChildDialogComponent } from './export-log-child-dialog/export-log-child-dialog.component';
+import { HelperService } from 'src/app/core/services/core/helper.service';
 
 @Component({
   selector: 'app-export-log',
@@ -26,21 +26,14 @@ export class ExportLogComponent implements OnInit {
   offset: number;
   totalCount: number;
   FyleReferenceType = FyleReferenceType;
-  private windowReference: Window;
 
   constructor(
-    private dialog: MatDialog,
+    public dialog: MatDialog,
     private exportLogService: ExportLogService,
     private formBuilder: FormBuilder,
-    private paginatorService: PaginatorService,
-    private windowService: WindowService
-  ) {
-    this.windowReference = this.windowService.nativeWindow;
-  }
-
-  openExternalLink(url: string): void {
-    this.windowReference.open(url, '_blank');
-  }
+    public helperService: HelperService,
+    private paginatorService: PaginatorService
+  ) { }
 
   openChildExpenses(expenseGroupID: number): void {
     this.dialog.open(ExportLogChildDialogComponent, {
@@ -122,6 +115,7 @@ export class ExportLogComponent implements OnInit {
   private generateFyleUrl(expenseGroup: ExpenseGroup, referenceType: FyleReferenceType) : string {
     let url = `${environment.fyle_app_url}/app/admin/#`;
     if (referenceType === FyleReferenceType.EXPENSE) {
+      // TODO: add org_id to fyle url
       url += `/view_expense/${expenseGroup.description.expense_id}`;
     } else if (referenceType === FyleReferenceType.EXPENSE_REPORT) {
       url += `/reports/${expenseGroup.description.report_id}`;
