@@ -24,10 +24,6 @@ export class WorkspaceService {
     return this.apiService.post('/workspaces/', {});
   }
 
-  getWorkspace(orgId: string): Observable<Workspace[]> {
-    return this.apiService.get(`/workspaces/${this.getWorkspaceId()}/`, {});
-  }
-
   @Cacheable()
   getWorkspaces(orgId: string): Observable<Workspace[]> {
     return this.apiService.get(`/workspaces/`, {
