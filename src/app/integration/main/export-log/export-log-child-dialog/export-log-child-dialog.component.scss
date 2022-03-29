@@ -1,25 +1,25 @@
-.export-log {
-  margin-top: -200px;
-  padding-left: 32px;
-  padding-right: 32px;
-
-  width: 1598px;
-  @media only screen and (max-width: 1440px) {
-    width: 1098px;
-  }
-
-  &--content {
-    background: #FFFFFF;
-    border-radius: 8px;
-    height: 866px;
-  }
-
+.export-log-child-dialog {
   &--header-section {
-    padding: 29px 32px 28px 32px;
+    padding: 32px 0px 24px 32px;
+  }
+
+  &--close-icon {
+    padding-right: 35px;
+  }
+
+  &--horizontal-separator {
+    border-top: 1px solid #F5F5F5;
+    width: 100%;
+    align-self: center;
   }
 
   &--simple-search {
     width: 374px;
+    padding: 8px 0px 24px 20px;
+  }
+
+  &--reference-id {
+    text-decoration-line: underline;
   }
 
   &--heading {
@@ -28,28 +28,11 @@
     border-radius: 4px;
   }
 
-  &--table {
-    height: 680px;
-    overflow: scroll;
-  }
-
   &--row {
     height: 70px;
       &:hover {
         background: #FAFCFF;
       }
-  }
-
-  &--sub-row {
-    color: #A9ACBC;
-  }
-  
-  &--reference-id {
-    text-decoration-line: underline;
-  }
-
-  &--open-in-qbo {
-    padding-left: 20px;
   }
 
   &--zero-state-img {
@@ -78,9 +61,8 @@ th {
   white-space: nowrap;
   color: #FFFFFF;
 
-  margin-right: 150px !important;
-  margin-bottom: 60px !important;
+  margin-right: 110px !important;
   @media only screen and (max-width: 1440px) {
-    margin-right: 70px !important;
+    margin-right: 120px !important;
   }
 }

@@ -233,8 +233,8 @@ export class ImportSettingsComponent implements OnInit {
   save(): void {
     if (this.importSettingsForm.valid && !this.saveInProgress) {
       const importSettingsPayload = ImportSettingModel.constructPayload(this.importSettingsForm);
-      console.log('importSettingPayload', importSettingsPayload);
       this.saveInProgress = true;
+
       this.importSettingService.postImportSettings(importSettingsPayload).subscribe(() => {
         this.saveInProgress = false;
         if (this.isOnboarding) {
