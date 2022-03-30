@@ -13,7 +13,7 @@ const routes: Routes = [
     component: AuthComponent,
     children: [
       {
-        path: 'fyle_callback',
+        path: 'callback',
         component: FyleCallbackComponent
       },
       {

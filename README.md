@@ -24,7 +24,7 @@ Frontend Repository for Fyle &lt;> Quickbooks Online Integration
       FYLE_CLIENT_ID: 
       API_URL: http://localhost:8000/api
       APP_URL: http://localhost:4200
-      CALLBACK_URI: http://localhost:4200/auth/fyle_callback
+      CALLBACK_URI: http://localhost:4200/auth/callback
       QBO_CLIENT_ID: 
       QBO_SCOPE: 
       QBO_AUTHORIZE_URL: 

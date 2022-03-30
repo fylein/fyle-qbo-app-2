@@ -4,7 +4,7 @@ export const environment = {
   fyle_client_id: '{{FYLE_CLIENT_ID}}',
   callback_uri: '{{CALLBACK_URI}}',
   api_url: '{{API_URL}}',
-  app_url: '{{ANGULAR APP URL}}',
+  app_url: '{{APP_URL}}',
   qbo_client_id: '{{QBO_CLIENT_ID}}',
   qbo_scope: '{{QBO_SCOPE}}',
   qbo_authorize_uri: '{{QBO_AUTHORIZE_URI}}',
