@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { environment } from 'environment.localhost';
+import { environment } from 'src/environments/environment';
 import { ExpenseGroup, ExpenseGroupDescription, ExpenseGroupList, ExpenseGroupResponse } from 'src/app/core/models/db/expense-group.model';
 import { FyleReferenceType, PaginatorPage } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
