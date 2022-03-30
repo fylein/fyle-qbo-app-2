@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { OnboardingStepperComponent } from './onboarding-stepper.component';
 
 describe('OnboardingStepperComponent', () => {
@@ -8,6 +9,7 @@ describe('OnboardingStepperComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule,HttpClientModule],
       declarations: [ OnboardingStepperComponent ]
     })
     .compileComponents();
@@ -20,6 +22,8 @@ describe('OnboardingStepperComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeDefined();
   });
+  
+  
 });

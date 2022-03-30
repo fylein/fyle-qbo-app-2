@@ -97,7 +97,7 @@ import { ConfigurationToggleFieldComponent } from './components/configuration/co
   ],
   entryComponents: [
     ExpenseFormPreviewDialogComponent,
-    ExpenseFieldCreationDialogComponent
+    ExpenseFieldCreationDialogComponent,
   ],
   providers: []
 })

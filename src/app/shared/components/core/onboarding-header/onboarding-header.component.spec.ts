@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { OnboardingHeaderComponent } from './onboarding-header.component';
+import { TrimCharacterPipe } from '../../../pipes/trim-character.pipe';
 
 describe('OnboardingHeaderComponent', () => {
   let component: OnboardingHeaderComponent;
@@ -8,7 +10,8 @@ describe('OnboardingHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OnboardingHeaderComponent ]
+      imports: [RouterTestingModule,HttpClientModule],
+      declarations: [ OnboardingHeaderComponent,TrimCharacterPipe ]
     })
     .compileComponents();
   });
@@ -20,6 +23,6 @@ describe('OnboardingHeaderComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeUndefined()
   });
 });

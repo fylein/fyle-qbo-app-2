@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {MatDialogModule,MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExpenseFieldCreationDialogComponent } from './expense-field-creation-dialog.component';
 
 describe('ExpenseFieldCreationDialogComponent', () => {
@@ -8,7 +11,12 @@ describe('ExpenseFieldCreationDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExpenseFieldCreationDialogComponent ]
+      imports: [HttpClientModule, RouterTestingModule, MatDialogModule, FormsModule, ReactiveFormsModule],
+      declarations: [ ExpenseFieldCreationDialogComponent ],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} }
+      ]
     })
     .compileComponents();
   });

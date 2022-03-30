@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { SearchPipe } from '../../../pipes/search.pipe'
 import { ConfigurationSelectFieldComponent } from './configuration-select-field.component';
 
 describe('ConfigurationSelectFieldComponent', () => {
@@ -8,7 +8,7 @@ describe('ConfigurationSelectFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConfigurationSelectFieldComponent ]
+      declarations: [ ConfigurationSelectFieldComponent,SearchPipe ]
     })
     .compileComponents();
   });
