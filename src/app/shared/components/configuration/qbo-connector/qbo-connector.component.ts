@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'environment.localhost';
-import { EmployeeSettingGet } from 'src/app/core/models/configuration/employee-setting.model';
+import { environment } from 'src/environments/environment';
 import { ExportSettingGet } from 'src/app/core/models/configuration/export-setting.model';
 import { QboConnectorPost, QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
