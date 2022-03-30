@@ -32,7 +32,7 @@ export class ConfigurationStepHeaderSectionComponent implements OnInit {
     if (route.includes('realmId')) {
       this.activePage = 'qbo_connector';
     } else {
-      this.activePage = this.router.url.split('/').pop();
+      this.activePage = route.split('/').pop();
     }
 
     switch (this.activePage) {
