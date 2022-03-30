@@ -17,7 +17,7 @@ RUN npm install
 COPY . /app
 
 # generate build
-RUN ng build --prod
+RUN ng build
 
 ############
 ### prod ###
