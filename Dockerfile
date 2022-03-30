@@ -17,7 +17,7 @@ RUN npm install
 COPY . /app
 
 # generate build
-RUN ng build --configuration=production --output-path=dist --source-map=false
+RUN ng build --prod
 
 ############
 ### prod ###
