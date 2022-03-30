@@ -1,1 +1,77 @@
-<p>employee-mapping works!</p>
+<div class="mapping">
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration-main--bg mapping--stats-section">
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <div class="mapping--card pointer" [ngClass]="{'mapping--card-active': totalCardActive}">
+        <img *ngIf="totalCardActive" src="assets/images/svgs/general/tick-filled.svg" class="mapping--card-active-icon">
+        <div class="mapping--card-content-section" [ngClass]="{'mapping--card-content-section-active': totalCardActive}">
+          <div class="mapping--card-tag"></div>
+          <div class="mapping--card-content">
+            <h5 class="mapping--card-content-text-header single-line-text">Total Employees</h5>
+            <span class="mapping--card-content-text-count">180</span>
+          </div>
+        </div>
+      </div>
+      <div class="mapping--card pointer" [ngClass]="{'mapping--card-active': !totalCardActive}">
+        <img *ngIf="!totalCardActive" src="assets/images/svgs/general/tick-filled.svg" class="mapping--card-active-icon">
+        <div class="mapping--card-content-section" [ngClass]="{'mapping--card-content-section-active': !totalCardActive}">
+          <div class="mapping--card-tag"></div>
+          <div class="mapping--card-content">
+            <h5 class="mapping--card-content-text-header single-line-text">Unmapped Employees</h5>
+            <span class="mapping--card-content-text-count">10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div *ngIf="autoMapEmployee" class="mapping--auto-map-btn pointer" fxLayout="row" (click)="triggerAutoMapEmployee()">
+        <img src="assets/images/svgs/general/auto-map.svg" width="16px" height="16px" class="mapping--auto-map-icon">
+        <h5 class="mapping--auto-map-btn-text align-center">
+          Automap Employee(s)
+        </h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="mapping--core-section">
+    <div class="mapping--core-section-content">
+      Hello
+      <table [formGroup]="form" *ngIf="!isLoading" mat-table [dataSource]="mappings">
+        <ng-container matColumnDef="fyle">
+          <th mat-header-cell *matHeaderCellDef>
+            <h4>Fyle</h4>
+          </th>
+          <td mat-cell *matCellDef="let element"> {{ element.fyle }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="qbo">
+          <th mat-header-cell *matHeaderCellDef>
+            <h4>QBO</h4>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <!-- {{ element.qbo }}  -->
+            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
+              <mat-select placeholder="Select Employee" formControlName="map">
+                <mat-option *ngFor="let option of ['hey', 'yo', 'ye']" [value]="option">
+                  {{ option }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="state">
+          <th mat-header-cell *matHeaderCellDef>
+            <h4>State</h4>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <!-- {{ element.state }} -->
+            Yo
+          </td>
+        </ng-container>
+
+        <tr class="export-log-child-dialog--heading" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr class="export-log-child-dialog--row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+</div>
