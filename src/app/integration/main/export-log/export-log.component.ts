@@ -136,7 +136,7 @@ export class ExportLogComponent implements OnInit {
     this.limit = data.limit;
     this.offset = data.offset;
 
-    this.exportLogService.getExpenseGroups('ALL', data.limit, data.offset).subscribe((expenseGroupResponse: ExpenseGroupResponse) => {
+    this.exportLogService.getExpenseGroups('COMPLETE', data.limit, data.offset).subscribe((expenseGroupResponse: ExpenseGroupResponse) => {
       this.totalCount = expenseGroupResponse.count;
       expenseGroupResponse.results.forEach((expenseGroup: ExpenseGroup) => {
         const [type, id, exportType] = this.generateExportTypeAndId(expenseGroup);
