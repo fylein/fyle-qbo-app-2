@@ -24,7 +24,6 @@ export class ConfigurationSelectFieldComponent implements OnInit {
   @Input() formControllerName: string;
   @Input() isFieldMandatory: boolean;
   @Input() liveEntityExample: {[EmployeeFieldMapping.EMPLOYEE]: string | undefined, [EmployeeFieldMapping.VENDOR]: string | undefined};
-  value: any;
 
   constructor(
     public helperService: HelperService
