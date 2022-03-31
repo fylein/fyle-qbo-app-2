@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ExportLogChildDialogComponent } from './export-log-child-dialog.component';
+import {MatDialogModule, MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 describe('ExportLogChildDialogComponent', () => {
   let component: ExportLogChildDialogComponent;
@@ -8,7 +10,8 @@ describe('ExportLogChildDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExportLogChildDialogComponent ]
+      declarations: [ ExportLogChildDialogComponent ],
+      imports: [FormsModule, ReactiveFormsModule, MatDialogModule, MAT_DIALOG_DATA, MatDialogRef]
     })
     .compileComponents();
   });
