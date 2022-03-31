@@ -60,3 +60,24 @@ export enum PaymentSyncDirection {
   FYLE_TO_QBO = 'fyle_to_qbo',
   QBO_TO_FYLE = 'qbo_to_fyle'
 }
+
+export enum OnboardingState {
+  CONNECTION = 'CONNECTION',
+  MAP_EMPLOYEES = 'MAP_EMPLOYEES',
+  EXPORT_SETTINGS = 'EXPORT_SETTINGS',
+  IMPORT_SETTINGS = 'IMPORT_SETTINGS',
+  ADVANCED_SETTINGS = 'ADVANCED_SETTINGS',
+  COMPLETE = 'COMPLETE'
+}
+
+export enum PaginatorPage {
+  MAPPING = 'mapping',
+  EXPORT_LOG = 'export-log'
+}
+
+export enum FyleReferenceType {
+  REPORT_ID = 'report_id',
+  EXPENSE_REPORT = 'claim_number',
+  PAYMENT = 'settlement_id',
+  EXPENSE = 'expense_id'
+}

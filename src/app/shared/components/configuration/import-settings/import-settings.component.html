@@ -103,7 +103,7 @@
               </h5>
               <div>
                 <mat-form-field floatLabel="always" appearance="outline" class="import-settings--default-tax-input">
-                  <mat-select placeholder="Select Default Tax Code" formControlName="defaultTaxCode" (closed)="helperService.clearSearchText(importSettingsForm)">
+                  <mat-select placeholder="Select Default Tax Code" formControlName="defaultTaxCode" (closed)="helperService.clearSearchText(importSettingsForm)" [compareWith]="helperService.compareObjects">
                     <app-simple-search-select [form]="importSettingsForm"></app-simple-search-select>
                     <div *ngFor="let option of taxCodes | search : importSettingsForm.value.searchOption">
                       <mat-option [ngClass]="{'import-settings--search-zero-state': option && option.value === 'No result found'}" [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(importSettingsForm)" [value]="{id: option.id, name: option.value}">

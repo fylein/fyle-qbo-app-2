@@ -1,0 +1,60 @@
+<div>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="export-log-child-dialog--header-section">
+    <h3>
+      Expenses {{ expenses.filteredData.length ? "(" + expenses.filteredData.length + ")" : '' }}
+    </h3>
+    <img src="assets/images/svgs/actions/close.svg" (click)="this.dialogRef.close(true);"
+      class="export-log-child-dialog--close-icon sub-text-color pointer" />
+  </div>
+
+  <div class="export-log-child-dialog--horizontal-separator"></div>
+
+  <div fxLayout="row" class="export-log-child-dialog--simple-search">
+    <app-simple-search-select [form]="form" [placeholder]="'Search by Expense ID'" [showBackgroundColor]="false"></app-simple-search-select>
+  </div>
+
+  <table *ngIf="!isLoading" mat-table [dataSource]="expenses">
+    <ng-container matColumnDef="expenseID">
+      <th mat-header-cell *matHeaderCellDef>
+        <h4>Expense ID</h4>
+      </th>
+      <td class="export-log-child-dialog--reference-id pointer" [matTooltip]="'View in Fyle'" mat-cell *matCellDef="let element" (click)="helperService.openExternalLink(element.fyleUrl)"> {{element.expenseID}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="merchant">
+      <th mat-header-cell *matHeaderCellDef>
+        <h4>Merchant</h4>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{ element.merchant ? element.merchant : '-' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef>
+        <h4>Category</h4>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{ element.category }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef>
+        <h4>Amount</h4>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{ element.amount[0] }} {{ element.amount[1] }}  </td>
+    </ng-container>
+
+    <tr class="export-log-child-dialog--heading" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr class="export-log-child-dialog--row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- Zero state -->
+  <div *ngIf="!expenses.filteredData.length" fxLayout="column" fxLayoutAlign="center center">
+    <img class="export-log-child-dialog--zero-state-img" src="assets/images/pngs/zero-state/export-log.png">
+    <h4 class="export-log-child-dialog--zero-state-text align-center">
+      Sorry, no results found!
+    </h4>
+    <h5 class="export-log-child-dialog--zero-state-text-small align-center">
+      Looks like your search term does not match any Expense ID
+    </h5>
+  </div>
+  <!-- Zero state -->
+</div>
