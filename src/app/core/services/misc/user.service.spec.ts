@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
+import { MinimalUser } from '../../models/db/user.model';
 
 import { UserService } from './user.service';
-import { MinimalUser } from '../models/user.model';
 
 describe('UserService', () => {
   let service: UserService;
