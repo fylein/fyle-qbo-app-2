@@ -23,6 +23,10 @@ describe('OnboardingHeaderComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeUndefined()
+    expect(component).toBeTruthy()
   });
+
+  it('user variable check', () => {
+    expect(component.user).toBeDefined()
+  })
 });
