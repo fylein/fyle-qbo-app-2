@@ -155,10 +155,9 @@ export class ExportLogComponent implements OnInit {
           qboUrl: `${environment.qbo_app_url}/app/${type}?txnId=${id}`,
           expenseGroupID: expenseGroup.id
         });
-
-        this.expenseGroups = new MatTableDataSource(expenseGroups);
-        this.expenseGroups.filterPredicate = this.searchByText;
       });
+      this.expenseGroups = new MatTableDataSource(expenseGroups);
+      this.expenseGroups.filterPredicate = this.searchByText;
 
       this.isLoading = false;
     });

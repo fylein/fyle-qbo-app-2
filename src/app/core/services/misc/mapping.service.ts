@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { Cacheable } from 'ts-cacheable';
 import { DestinationAttribute, GroupedDestinationAttribute } from '../../models/db/destination-attribute.model';
+import { EmployeeMappingsResponse } from '../../models/db/employee-mapping.model';
 import { ExpenseField } from '../../models/misc/expense-field.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
@@ -52,5 +53,26 @@ export class MappingService {
   @Cacheable()
   getFyleExpenseFields(): Observable<ExpenseField[]> {
     return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expense_fields/`, {});
+  }
+
+  getEmployeeMappings(state: string, limit: number, offset: number): Observable<EmployeeMappingsResponse> {
+    return this.apiService.get(
+      `/workspaces/${this.workspaceId}/mappings/employee/`,
+      {
+        limit,
+        offset,
+        state
+      }
+    );
+  }
+
+  @Cacheable()
+  getQBOEmployees(): Observable<DestinationAttribute[]> {
+    return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/employees/`, {});
+  }
+
+  @Cacheable()
+  getQBOVendors(): Observable<DestinationAttribute[]> {
+    return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/vendors/`, {});
   }
 }

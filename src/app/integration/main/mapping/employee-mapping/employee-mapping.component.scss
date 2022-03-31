@@ -96,4 +96,118 @@
       width: 1098px;
     }
   }
+
+  &--filters-section {
+   padding: 32px 0px 28px 24px;
+  }
+
+  &--filter-all-selected {
+    width: 31px;
+    height: 24px;
+    background: #F5F5F5;
+    border-radius: 12px;
+  }
+
+  &--filter-all-text {
+    padding: 4px;
+  }
+
+  &--filter-deselected-text {
+    color: #7b7c85;
+  }
+
+  &--filter-alphabet-list {
+    padding-left: 14px;
+    padding-top: 4px;
+  }
+
+  &--heading {
+    background: #F5F5F5;
+    border: 1px solid #DFDFE2;
+    border-radius: 4px;
+  }
+
+  &--row {
+    height: 70px;
+      &:hover {
+        background: #FAFCFF;
+      }
+  }
+
+  &--auto-mapped-row {
+    margin-right: 19px;
+  }
+
+  &--manually-mapped-row {
+    margin-left: 30px;
+  }
+
+  &--row-heading-fyle {
+    margin-left: 34px;
+  }
+
+  &--row-heading-qbo {
+    margin-left: 14px;
+  }
+
+  &--row-heading-state {
+    margin-left: 8px;
+  }
+
+  &--state-pill {
+    height: 24px;
+    border-radius: 13.5px;
+  }
+
+  &--state-pill-mapped {
+    width: 75px;
+    background: #E7F7F2;
+    color: #55B07D;
+    @extend .mapping--state-pill;
+  }
+
+  &--state-pill-unmapped {
+    width: 89px;
+    background: rgba(218, 30, 40, 0.1);
+    color: #DA1E28;
+    @extend .mapping--state-pill;
+  }
+
+  &--state-pill-text {
+    padding: 5px 10px;
+  }
+
+  &--form-field {
+    width: 401px;
+    padding: 2px 0px 0px 0px;
+    @media only screen and (max-width: 1440px) {
+      padding: 2px 8px 0px 10px;
+      width: 228px;
+    }
+  }
+
+  &--table {
+    height: 680px;
+    overflow: scroll;
+  }
+}
+
+th {
+  color: #161528;
+  font-weight: 500;
+}
+
+.mat-column-fyle {
+  flex: none;
+  width: 30%;
+}
+
+.mat-column-qbo {
+  flex: none;
+  width: 37%;
+}
+
+.mat-column-state {
+  flex: none;
+  width: 33%;
 }
