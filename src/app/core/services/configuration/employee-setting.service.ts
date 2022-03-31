@@ -23,13 +23,13 @@ export class EmployeeSettingService {
     cacheBusterObserver: employeeSettingsCache$
   })
   getEmployeeSettings(): Observable<EmployeeSettingGet> {
-    return this.apiService.get(`/workspaces/${this.workspaceService.getWorkspaceId()}/mock/`, {});
+    return this.apiService.get(`/v2/workspaces/${this.workspaceService.getWorkspaceId()}/map_employees/`, {});
   }
 
   @CacheBuster({
     cacheBusterNotifier: employeeSettingsCache$
   })
   postEmployeeSettings(employeeSettingsPayload: EmployeeSettingPost): Observable<EmployeeSettingGet> {
-    return this.apiService.post(`/workspaces/${this.workspaceService.getWorkspaceId()}/mock/`, employeeSettingsPayload);
+    return this.apiService.put(`/v2/workspaces/${this.workspaceService.getWorkspaceId()}/map_employees/`, employeeSettingsPayload);
   }
 }

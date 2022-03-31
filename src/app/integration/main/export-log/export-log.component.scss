@@ -1,0 +1,86 @@
+.export-log {
+  margin-top: -200px;
+  padding-left: 32px;
+  padding-right: 32px;
+
+  width: 1598px;
+  @media only screen and (max-width: 1440px) {
+    width: 1098px;
+  }
+
+  &--content {
+    background: #FFFFFF;
+    border-radius: 8px;
+    height: 866px;
+  }
+
+  &--header-section {
+    padding: 29px 32px 28px 32px;
+  }
+
+  &--simple-search {
+    width: 374px;
+  }
+
+  &--heading {
+    background: #F5F5F5;
+    border: 1px solid #DFDFE2;
+    border-radius: 4px;
+  }
+
+  &--table {
+    height: 680px;
+    overflow: scroll;
+  }
+
+  &--row {
+    height: 70px;
+      &:hover {
+        background: #FAFCFF;
+      }
+  }
+
+  &--sub-row {
+    color: #A9ACBC;
+  }
+  
+  &--reference-id {
+    text-decoration-line: underline;
+  }
+
+  &--open-in-qbo {
+    padding-left: 20px;
+  }
+
+  &--zero-state-img {
+    padding-top: 180px;
+  }
+
+  &--zero-state-text {
+    color: #2C304E;
+  }
+
+  &--zero-state-text-small {
+    color: #5A5D72;
+    width: 298px;
+    padding-top: 8px;
+  }
+}
+
+th {
+  color: #2C304E;
+  font-weight: 500;
+}
+
+::ng-deep .mat-tooltip {
+  background: #2C304E;
+  border-radius: 2px;
+  white-space: nowrap;
+  color: #FFFFFF;
+
+  margin-right: 150px !important;
+  margin-bottom: 60px !important;
+  @media only screen and (max-width: 1440px) {
+    margin-right: 70px !important;
+  }
+}

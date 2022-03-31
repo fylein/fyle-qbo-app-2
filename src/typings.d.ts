@@ -14,4 +14,5 @@ interface Env {
   HOTJAR_ID: string;
   SENTRY_DSN: string;
   RELEASE: string;
+  FYLE_APP_URL: string;
 }

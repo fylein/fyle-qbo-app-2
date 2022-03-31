@@ -15,6 +15,8 @@ import { WorkspaceService } from '../workspace/workspace.service';
 })
 export class AuthService {
 
+  private windowReference: Window;
+
   constructor(
     private apiService: ApiService,
     private storageService: StorageService,
@@ -24,8 +26,6 @@ export class AuthService {
   ) {
     this.windowReference = this.windowReferenceService.nativeWindow;
   }
-
-  private windowReference: Window;
 
 
   redirectToQboOAuth(): void {

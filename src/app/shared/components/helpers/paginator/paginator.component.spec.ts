@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ZeroStateComponent } from './zero-state.component';
+import { PaginatorComponent } from './paginator.component';
 
-describe('ZeroStateComponent', () => {
-  let component: ZeroStateComponent;
-  let fixture: ComponentFixture<ZeroStateComponent>;
+describe('PaginatorComponent', () => {
+  let component: PaginatorComponent;
+  let fixture: ComponentFixture<PaginatorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ZeroStateComponent ]
+      declarations: [ PaginatorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ZeroStateComponent);
+    fixture = TestBed.createComponent(PaginatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

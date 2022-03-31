@@ -1,6 +1,10 @@
 export type QboConnector = {
   code: string;
-  realm_id: string;  
+  realm_id: string;
+}
+
+export interface QboConnectorPost extends QboConnector {
+  redirect_uri: string;
 }
 
 export type QBOCredentials = {

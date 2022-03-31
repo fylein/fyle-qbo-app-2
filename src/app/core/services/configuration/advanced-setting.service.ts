@@ -20,13 +20,13 @@ export class AdvancedSettingService {
     cacheBusterObserver: advancedSettingsCache$
   })
   getAdvancedSettings(): Observable<AdvancedSettingGet> {
-    return this.apiService.get(`/workspaces/${this.workspaceService.getWorkspaceId()}/mock4/`, {});
+    return this.apiService.get(`/v2/workspaces/${this.workspaceService.getWorkspaceId()}/advanced_configurations/`, {});
   }
 
   @CacheBuster({
     cacheBusterNotifier: advancedSettingsCache$
   })
   postAdvancedSettings(exportSettingsPayload: AdvancedSettingPost): Observable<AdvancedSettingGet> {
-    return this.apiService.post(`/workspaces/${this.workspaceService.getWorkspaceId()}/mock4/`, exportSettingsPayload);
+    return this.apiService.put(`/v2/workspaces/${this.workspaceService.getWorkspaceId()}/advanced_configurations/`, exportSettingsPayload);
   }
 }

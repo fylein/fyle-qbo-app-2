@@ -17,7 +17,7 @@ export class ExpenseFieldCreationDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: string[],
     public dialogRef: MatDialogRef<ExpenseFieldCreationDialogComponent>,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder
   ) { }
 
   private setupForm(): void {
@@ -32,7 +32,7 @@ export class ExpenseFieldCreationDialogComponent implements OnInit {
   save(): void {
     const expenseField = {
       name: this.expenseFieldsCreationForm.get('name')?.value,
-      placeholder: this.expenseFieldsCreationForm.get('placeholder')?.value
+      source_placeholder: this.expenseFieldsCreationForm.get('placeholder')?.value
     }
     this.dialogRef.close(expenseField);
   }

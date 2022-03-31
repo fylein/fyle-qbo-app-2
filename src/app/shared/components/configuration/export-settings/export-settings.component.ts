@@ -10,6 +10,8 @@ import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WindowService } from 'src/app/core/services/core/window.service';
+import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
+import { DefaultDestinationAttribute } from 'src/app/core/models/db/general-mapping.model';
 
 @Component({
   selector: 'app-export-settings',
@@ -21,6 +23,7 @@ export class ExportSettingsComponent implements OnInit {
   isLoading: boolean = true;
   saveInProgress: boolean;
   isOnboarding: boolean = false;
+  employeeFieldMapping: EmployeeFieldMapping;
   exportSettingsForm: FormGroup;
   exportSettings: ExportSettingGet;
   bankAccounts: DestinationAttribute[];
@@ -103,7 +106,8 @@ export class ExportSettingsComponent implements OnInit {
     private mappingService: MappingService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private windowService: WindowService
+    private windowService: WindowService,
+    private workspaceService: WorkspaceService
   ) {
     this.windowReference = this.windowService.nativeWindow;
   }
@@ -236,7 +240,7 @@ export class ExportSettingsComponent implements OnInit {
   }
 
   showBankAccountField(): boolean {
-    return this.exportSettings.workspace_general_settings.employee_field_mapping === EmployeeFieldMapping.EMPLOYEE && this.exportSettingsForm.controls.reimbursableExportType.value && this.exportSettingsForm.controls.reimbursableExportType.value !== ReimbursableExpensesObject.EXPENSE;
+    return this.employeeFieldMapping === EmployeeFieldMapping.EMPLOYEE && this.exportSettingsForm.controls.reimbursableExportType.value && this.exportSettingsForm.controls.reimbursableExportType.value !== ReimbursableExpensesObject.EXPENSE;
   }
 
   showCreditCardAccountField(): boolean {
@@ -256,7 +260,7 @@ export class ExportSettingsComponent implements OnInit {
   }
 
   showReimbursableAccountsPayableField(): boolean {
-    return (this.exportSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.BILL) || (this.exportSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.JOURNAL_ENTRY && this.exportSettings.workspace_general_settings.employee_field_mapping === EmployeeFieldMapping.VENDOR);
+    return (this.exportSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.BILL) || (this.exportSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.JOURNAL_ENTRY && this.employeeFieldMapping === EmployeeFieldMapping.VENDOR);
   }
 
   showCCCAccountsPayableField(): boolean {
@@ -336,10 +340,12 @@ export class ExportSettingsComponent implements OnInit {
     const destinationAttributes = ['BANK_ACCOUNT', 'CREDIT_CARD_ACCOUNT', 'ACCOUNTS_PAYABLE', 'VENDOR'];
     forkJoin([
       this.exportSettingService.getExportSettings(),
-      this.mappingService.getGroupedQBODestinationAttributes(destinationAttributes)
+      this.mappingService.getGroupedQBODestinationAttributes(destinationAttributes),
+      this.workspaceService.getWorkspaceGeneralSettings()
     ]).subscribe(response => {
       this.exportSettings = response[0];
-      this.reimbursableExportTypes = this.getReimbursableExportTypes(this.exportSettings.workspace_general_settings.employee_field_mapping);
+      this.employeeFieldMapping = response[2].employee_field_mapping;
+      this.reimbursableExportTypes = this.getReimbursableExportTypes(this.employeeFieldMapping);
 
       this.bankAccounts = response[1].BANK_ACCOUNT;
       this.cccAccounts = response[1].CREDIT_CARD_ACCOUNT;
@@ -362,12 +368,12 @@ export class ExportSettingsComponent implements OnInit {
       creditCardExportType: [this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object],
       creditCardExportGroup: [this.getExportGroup(this.exportSettings.expense_group_settings?.corporate_credit_card_expense_group_fields)],
       creditCardExportDate: [this.exportSettings.expense_group_settings?.ccc_export_date_type],
-      bankAccount: [this.exportSettings.general_mappings.bank_account?.id],
-      defaultCCCAccount: [this.exportSettings.general_mappings.default_ccc_account?.id],
-      accountsPayable: [this.exportSettings.general_mappings.accounts_payable?.id],
-      defaultCreditCardVendor: [this.exportSettings.general_mappings.default_ccc_vendor?.id],
-      qboExpenseAccount: [this.exportSettings.general_mappings.qbo_expense_account?.id],
-      defaultDebitCardAccount: [this.exportSettings.general_mappings.default_debit_card_account?.id],
+      bankAccount: [this.exportSettings.general_mappings?.bank_account?.id ? this.exportSettings.general_mappings.bank_account : null],
+      defaultCCCAccount: [this.exportSettings.general_mappings?.default_ccc_account?.id ? this.exportSettings.general_mappings.default_ccc_account : null],
+      accountsPayable: [this.exportSettings.general_mappings?.accounts_payable?.id ? this.exportSettings.general_mappings.accounts_payable : null],
+      defaultCreditCardVendor: [this.exportSettings.general_mappings?.default_ccc_vendor?.id ? this.exportSettings.general_mappings.default_ccc_vendor : null],
+      qboExpenseAccount: [this.exportSettings.general_mappings?.qbo_expense_account?.id ? this.exportSettings.general_mappings.qbo_expense_account : null],
+      defaultDebitCardAccount: [this.exportSettings.general_mappings?.default_debit_card_account?.id ? this.exportSettings.general_mappings.default_debit_card_account : null],
       searchOption: []
     });
 
@@ -383,8 +389,8 @@ export class ExportSettingsComponent implements OnInit {
   save(): void {
     if (this.exportSettingsForm.valid && !this.saveInProgress) {
       const exportSettingPayload = ExportSettingModel.constructPayload(this.exportSettingsForm);
-      console.log('Export setting payload: ', exportSettingPayload);
       this.saveInProgress = true;
+
       this.exportSettingService.postExportSettings(exportSettingPayload).subscribe(() => {
         this.saveInProgress = false;
         if (this.isOnboarding) {

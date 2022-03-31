@@ -27,7 +27,7 @@ export type ImportSettingMappingSetting = {
   destination_field: MappingDestinationField,
   import_to_fyle: boolean,
   is_custom: boolean,
-  placeholder: string
+  source_placeholder: string | null
 }
 
 export type ExpenseFieldsFormOption = {
@@ -35,7 +35,7 @@ export type ExpenseFieldsFormOption = {
   destination_field: MappingDestinationField,
   import_to_fyle: boolean,
   disable_import_to_fyle: boolean,
-  placeholder: string
+  source_placeholder: string | null
 }
 
 export type ImportSettingGet = {
@@ -79,7 +79,7 @@ export class ImportSettingModel {
           destination_field: expenseField.destination_field,
           import_to_fyle: expenseField.import_to_fyle,
           is_custom: expenseField.source_field === MappingSourceField.COST_CENTER || expenseField.source_field === MappingSourceField.PROJECT ? false : true,
-          placeholder: expenseField.placeholder
+          source_placeholder: expenseField.source_placeholder ? expenseField.source_placeholder : null
         });
       }
     });

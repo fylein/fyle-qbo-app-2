@@ -1,0 +1,58 @@
+.paginator {
+  color: #414562;
+
+  &--page-info {
+    padding: 17px 0px 18px 17px;
+  }
+
+  &--page-number-section {
+    padding: 8px 11px 9px 30px;
+  }
+
+  &--page-text {
+    padding-right: 12px;
+    padding-top: 17px;
+  }
+
+  &--page-shift-section {
+    width: 92px;
+    padding-top: 8px;
+  }
+
+  &--page-action-box {
+    border: 1px solid #DFDFE2;
+    box-sizing: border-box;
+    width: 32px;
+    height: 32px
+  }
+
+  &--page-navigation-icon {
+    padding: 8px 0px 0px 10px;
+  }
+
+  &--page-number-input {
+    width: 24px;
+    height: 24px;
+    padding: 3px 12px;
+    border: none;
+    border-width: 0px;
+  }
+
+  &--page-size-section {
+    padding-top: 8px;
+  }
+
+  &--page-size-text {
+    padding-top: 17px;
+    padding-right: 10px;
+  }
+
+  &--page-size-input-field {
+    width: 88px;
+  }
+}
+
+input:focus-visible {
+  border: none;
+  outline: none;
+}

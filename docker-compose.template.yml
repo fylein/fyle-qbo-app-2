@@ -15,7 +15,7 @@ services:
     environment: 
       production: "False"
       FYLE_URL: 
-      FYLE_CLIENT_ID: 
+      FYLE_CLIENT_ID: 'FYLE_CLIENT_ID'
       API_URL: 
       APP_URL: 
       CALLBACK_URI: 

@@ -71,8 +71,8 @@ export class EmployeeSettingsComponent implements OnInit {
   save(): void {
     if (this.employeeSettingsForm.valid && !this.saveInProgress) {
       const employeeSettingPayload = EmployeeSettingModel.constructPayload(this.employeeSettingsForm);
-      console.log('Employee setting payload: ', employeeSettingPayload);
       this.saveInProgress = true;
+
       this.employeeSettingService.postEmployeeSettings(employeeSettingPayload).subscribe(() => {
         this.saveInProgress = false;
         if (this.isOnboarding) {
@@ -101,8 +101,8 @@ export class EmployeeSettingsComponent implements OnInit {
     ]).subscribe((responses) => {
       this.setLiveEntityExample(responses[1]);
       this.employeeSettingsForm = this.formBuilder.group({
-        employeeMapping: [responses[0].workspace_general_settings.employee_field_mapping, Validators.required],
-        autoMapEmployee: [responses[0].workspace_general_settings.auto_map_employees, Validators.nullValidator]
+        employeeMapping: [responses[0].workspace_general_settings?.employee_field_mapping, Validators.required],
+        autoMapEmployee: [responses[0].workspace_general_settings?.auto_map_employees, Validators.nullValidator]
       });
       this.isLoading = false;
       this.isLoaded.emit(true);
