@@ -1,15 +1,19 @@
-import { AdvancedSettingGeneralMapping } from "../configuration/advanced-setting.model";
-import { ExportSettingGeneralMapping } from "../configuration/export-setting.model";
-import { ImportSettingGeneralMapping } from "../configuration/import-setting.model";
-
 export type DefaultDestinationAttribute = {
-  id: string;
-  name: string;
+  id: string,
+  name: string,
 }
 
-export interface GeneralMapping extends ExportSettingGeneralMapping, ImportSettingGeneralMapping, AdvancedSettingGeneralMapping {
-  id: number;
-  created_at: Date;
-  updated_at: Date;
-  workspace: number;
+export type GeneralMapping = {
+  id: number,
+  created_at: Date,
+  updated_at: Date,
+  workspace: number,
+  bill_payment_account: DefaultDestinationAttribute,
+  bank_account: DefaultDestinationAttribute,
+  default_ccc_account: DefaultDestinationAttribute,
+  accounts_payable: DefaultDestinationAttribute,
+  default_ccc_vendor: DefaultDestinationAttribute,
+  qbo_expense_account: DefaultDestinationAttribute,
+  default_debit_card_account: DefaultDestinationAttribute,
+  default_tax_code: DefaultDestinationAttribute
 };

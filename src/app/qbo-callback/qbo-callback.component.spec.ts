@@ -9,7 +9,7 @@ describe('QboCallbackComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule,HttpClientModule],
+      imports: [RouterTestingModule.withRoutes([{path: 'qbo_callback', component: QboCallbackComponent}]), HttpClientModule],
       declarations: [ QboCallbackComponent ]
     })
     .compileComponents();

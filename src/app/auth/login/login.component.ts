@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   private redirectLoggedInUser(): void {
     if (this.authService.isLoggedIn()) {
-      this.router.navigate(['/workspaces']);
+      this.router.navigate(['/', 'workspaces']);
     }
   }
 

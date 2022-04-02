@@ -8,14 +8,24 @@ import { ExpenseFieldCreationDialogComponent } from './expense-field-creation-di
 describe('ExpenseFieldCreationDialogComponent', () => {
   let component: ExpenseFieldCreationDialogComponent;
   let fixture: ComponentFixture<ExpenseFieldCreationDialogComponent>;
+  const existingFields = ['project'];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientModule, RouterTestingModule, MatDialogModule, FormsModule, ReactiveFormsModule],
       declarations: [ ExpenseFieldCreationDialogComponent ],
       providers: [
-        { provide: MAT_DIALOG_DATA, useValue: {} },
-        { provide: MatDialogRef, useValue: {} }
+        {
+          provide: MAT_DIALOG_DATA,
+          useValue: {
+            width: '551px',
+            data: existingFields
+          }
+        },
+        {
+          provide: MatDialogRef,
+          useValue: {}
+        }
       ]
     })
     .compileComponents();
