@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { GenericMappingComponent } from './generic-mapping.component';
 
@@ -8,7 +9,8 @@ describe('GenericMappingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GenericMappingComponent ]
+      declarations: [ GenericMappingComponent ],
+      imports: [RouterTestingModule]
     })
     .compileComponents();
   });

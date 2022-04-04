@@ -6,7 +6,7 @@
         Show
       </h5>
       <mat-form-field floatLabel="always" appearance="outline" class="paginator--page-size-input-field">
-        <mat-select formControlName="limit">
+        <mat-select formControlName="pageLimit">
           <mat-option *ngFor="let number of [25, 50, 100, 200, 500]" [value]="number">
             {{ number }}
           </mat-option>

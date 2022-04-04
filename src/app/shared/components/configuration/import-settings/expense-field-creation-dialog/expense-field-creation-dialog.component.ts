@@ -26,6 +26,10 @@ export class ExpenseFieldCreationDialogComponent implements OnInit {
       placeholder: ['']
     });
 
+    if (!this.data.length) {
+      this.data = [];
+    }
+
     this.existingFields = this.data.concat(SYSTEM_FIELDS);
   }
 

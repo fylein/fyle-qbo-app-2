@@ -1,12 +1,16 @@
 import { TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { WorkspacesGuard } from './workspaces.guard';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
 
 describe('WorkspacesGuard', () => {
   let guard: WorkspacesGuard;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule,HttpClientModule,MatSnackBarModule]
+    });
     guard = TestBed.inject(WorkspacesGuard);
   });
 

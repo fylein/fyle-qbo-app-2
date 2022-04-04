@@ -20,7 +20,7 @@ export class PaginatorComponent implements OnInit {
   ) { }
 
   private onPageSizeChangeWatcher(): void {
-    this.form.controls.limit.valueChanges.subscribe(limit => {
+    this.form.controls.pageLimit.valueChanges.subscribe(limit => {
       this.pageChangeEvent.emit({
         limit: limit,
         offset: 0
@@ -77,7 +77,7 @@ export class PaginatorComponent implements OnInit {
     const page = (this.offset / this.limit) + 1;
 
     this.form = this.formBuilder.group({
-      limit: [this.limit],
+      pageLimit: [this.limit],
       offset: [this.offset],
       page: [page]
     });
