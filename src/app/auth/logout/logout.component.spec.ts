@@ -9,7 +9,7 @@ describe('LogoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule,HttpClientModule],
+      imports: [RouterTestingModule.withRoutes([{path: 'auth/logout', component: LogoutComponent}]), HttpClientModule],
       declarations: [ LogoutComponent ]
     })
     .compileComponents();

@@ -161,7 +161,7 @@ import { DashboardShimmersComponent } from './components/dashboard/dashboard-shi
   ],
   entryComponents: [
     ExpenseFormPreviewDialogComponent,
-    ExpenseFieldCreationDialogComponent,
+    ExpenseFieldCreationDialogComponent
   ],
   providers: []
 })

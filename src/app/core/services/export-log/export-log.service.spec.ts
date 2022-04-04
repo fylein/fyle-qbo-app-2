@@ -1,9 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
-import {MatDialogModule, MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-
-
 import { ExportLogService } from './export-log.service';
 
 describe('ExportLogService', () => {
@@ -11,7 +8,7 @@ describe('ExportLogService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, MatDialogModule, MAT_DIALOG_DATA, MatDialogRef]
+      imports: [HttpClientModule]
     });
     service = TestBed.inject(ExportLogService);
   });

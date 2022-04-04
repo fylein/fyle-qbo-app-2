@@ -9,7 +9,7 @@ describe('JwtInterceptor', () => {
     providers: [
       {
         provide: JWT_OPTIONS,
-        useValue: JWT_OPTIONS,
+        useValue: JWT_OPTIONS
       },
       JwtInterceptor,
       JwtHelperService

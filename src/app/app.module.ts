@@ -26,13 +26,13 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
   providers: [
     {
       provide: JWT_OPTIONS,
-      useValue: JWT_OPTIONS,
+      useValue: JWT_OPTIONS
     },
     JwtHelperService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
-      multi: true,
+      multi: true
     },
     {
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {
