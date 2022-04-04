@@ -7,6 +7,7 @@ import { MappingList } from 'src/app/core/models/db/mapping.model';
 import { WorkspaceGeneralSetting } from 'src/app/core/models/db/workspace-general-setting.model';
 import { AutoMapEmployee, EmployeeFieldMapping, MappingState, PaginatorPage } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
+import { HelperService } from 'src/app/core/services/core/helper.service';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
@@ -34,6 +35,7 @@ export class EmployeeMappingComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    public helperService: HelperService,
     private mappingService: MappingService,
     private paginatorService: PaginatorService,
     private workspaceService: WorkspaceService
@@ -87,6 +89,7 @@ export class EmployeeMappingComponent implements OnInit {
           autoMapped: employeeMapping.source_employee.auto_mapped
         });
       });
+      console.log(mappings)
 
       this.mappings = new MatTableDataSource(mappings);
       this.mappings.filterPredicate = this.searchByText;
