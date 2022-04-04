@@ -34,7 +34,7 @@ export class EmployeeSettingsComponent implements OnInit {
   ];
   autoMapEmployeeOptions: EmployeeSettingFormOption[] = [
     {
-      value: '',
+      value: null,
       label: 'None'
     },
     {

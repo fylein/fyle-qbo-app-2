@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~12.1.0",
     "@angular/router": "~12.1.0",
     "@auth0/angular-jwt": "^5.0.2",
+    "@rxweb/reactive-form-validators": "^2.1.6",
     "rxjs": "~6.6.0",
     "ts-cacheable": "^1.0.6",
     "tslib": "^2.2.0",

@@ -18,7 +18,7 @@ export type EmployeeSettingGet = {
 }
 
 export interface EmployeeSettingFormOption extends SelectFormOption {
-  value: EmployeeFieldMapping | AutoMapEmployee | '';
+  value: EmployeeFieldMapping | AutoMapEmployee | '' | null;
 }
 
 export class EmployeeSettingModel {
