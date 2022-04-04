@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { EmployeeMapping, EmployeeMappingsResponse } from 'src/app/core/models/db/employee-mapping.model';
@@ -32,6 +32,7 @@ export class EmployeeMappingComponent implements OnInit {
   displayedColumns: string[] = ['fyle', 'qbo', 'state'];
   filterOptions: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   form: FormGroup;
+  mappingForm: FormGroup[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -59,12 +60,24 @@ export class EmployeeMappingComponent implements OnInit {
     }
   }
 
-  private setupForm(): void {
+  private setupForm(mappings: MappingList[]): void {
+    const fyleQboMappingFormArray = mappings.map((mapping: MappingList) => {
+      return this.formBuilder.group({
+        searchOption: [''],
+        source: [mapping.fyle],
+        destination: [mapping.qbo]
+      });
+    });
+
     this.form = this.formBuilder.group({
       map: [''],
+      fyleQboMapping: this.formBuilder.array(fyleQboMappingFormArray),
       searchOption: [''],
       filterOption: [this.filterOptions.concat()]
     });
+
+    const mappingForm = this.form.controls.fyleQboMapping as FormArray;
+    this.mappingForm = mappingForm.controls as FormGroup[];
   }
 
   getMappings(data: Paginator): void {
@@ -81,18 +94,19 @@ export class EmployeeMappingComponent implements OnInit {
 
     this.mappingService.getEmployeeMappings('ALL', data.limit, data.offset).subscribe((employeeMappingResponse: EmployeeMappingsResponse) => {
       this.totalCount = employeeMappingResponse.count;
-      employeeMappingResponse.results.forEach((employeeMapping: EmployeeMapping) => {
+      employeeMappingResponse.results.forEach((employeeMapping: EmployeeMapping, index: number) => {
         mappings.push({
           fyle: employeeMapping.source_employee.value,
           qbo: employeeMapping.destination_employee.value,
           state: MappingState.MAPPED,
-          autoMapped: employeeMapping.source_employee.auto_mapped
+          autoMapped: employeeMapping.source_employee.auto_mapped,
+          index: index
         });
       });
-      console.log(mappings)
 
       this.mappings = new MatTableDataSource(mappings);
       this.mappings.filterPredicate = this.searchByText;
+      this.setupForm(mappings);
 
       this.isLoading = false;
     });
@@ -113,12 +127,22 @@ export class EmployeeMappingComponent implements OnInit {
       }
       qboData$.subscribe((qboData: DestinationAttribute[]) => {
         this.qboData = qboData;
-        this.setupForm();
 
         const paginator: Paginator = this.paginatorService.getPageSize(PaginatorPage.MAPPING);
         this.getMappings(paginator);
       });
     });
+  }
+
+  save(selectedOption: DestinationAttribute, searchForm: FormGroup): void {
+    searchForm.patchValue({
+      destination: selectedOption.value,
+      searchOption: [''],
+      source: searchForm.value.source
+    });
+    this.helperService.clearSearchText(searchForm);
+
+    // TODO: POST API
   }
 
   ngOnInit(): void {

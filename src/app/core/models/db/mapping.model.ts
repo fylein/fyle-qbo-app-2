@@ -21,4 +21,5 @@ export type MappingList = {
   autoMapped: boolean;
   qbo: string;
   state: MappingState;
+  index: number;
 }
