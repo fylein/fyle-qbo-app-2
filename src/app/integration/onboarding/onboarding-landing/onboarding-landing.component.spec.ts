@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { OnboardingLandingComponent } from './onboarding-landing.component';
 
 describe('OnboardingLandingComponent', () => {
@@ -8,6 +9,7 @@ describe('OnboardingLandingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule,HttpClientModule],
       declarations: [ OnboardingLandingComponent ]
     })
     .compileComponents();
