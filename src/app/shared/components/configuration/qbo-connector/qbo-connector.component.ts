@@ -121,6 +121,7 @@ export class QboConnectorComponent implements OnInit {
       }
 
       this.isQboConnected = false;
+      this.isContinueDisabled = true;
       this.isLoading = false;
     });
   }
