@@ -1,5 +1,8 @@
+import { EmployeeFieldMapping } from "../enum/enum.model";
 import { DestinationAttribute } from "./destination-attribute.model";
-import { ExpenseAttribute } from "./expense-attribute.model";
+import { ExpenseAttribute, MinimalExpenseAttribute } from "./expense-attribute.model";
+import { MinimalDestinationAttribute } from "./general-mapping.model";
+import { MappingList } from "./mapping.model";
 
 export type EmployeeMapping = {
   id: number;
@@ -18,3 +21,31 @@ export type EmployeeMappingsResponse = {
   previous: string;
   results: EmployeeMapping[];
 };
+
+export type EmployeeMappingPost = {
+  source_employee: MinimalExpenseAttribute;
+  destination_employee: MinimalDestinationAttribute;
+  destination_vendor: MinimalDestinationAttribute;
+  destination_card_account: MinimalDestinationAttribute;
+  workspace: number;
+};
+
+export class EmployeeMappingModel {
+  static constructPayload(employeeFieldMapping: EmployeeFieldMapping, mappingRow: MappingList, workspaceId: string): EmployeeMappingPost {
+    return {
+      source_employee: {
+        id: mappingRow.fyle.id
+      },
+      destination_employee: {
+        id: employeeFieldMapping === EmployeeFieldMapping.EMPLOYEE ? mappingRow.qbo.id : (mappingRow.preserveDestination?.id || null)
+      },
+      destination_vendor: {
+        id: employeeFieldMapping === EmployeeFieldMapping.VENDOR ? mappingRow.qbo.id : (mappingRow.preserveDestination?.id || null)
+      },
+      destination_card_account: {
+        id: null
+      },
+      workspace: parseInt(workspaceId)
+    };
+  }
+}

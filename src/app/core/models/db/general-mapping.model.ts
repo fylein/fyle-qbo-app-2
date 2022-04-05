@@ -1,6 +1,10 @@
 export type DefaultDestinationAttribute = {
   id: string,
   name: string,
+};
+
+export type MinimalDestinationAttribute = {
+  id: number | null;
 }
 
 export type GeneralMapping = {

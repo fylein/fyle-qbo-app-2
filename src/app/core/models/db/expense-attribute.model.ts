@@ -12,6 +12,10 @@ export type ExpenseAttribute = {
   detail: ExpenseAttributeDetail;
 };
 
+export type MinimalExpenseAttribute = {
+  id: number
+};
+
 export type ExpenseAttributeDetail = {
   location: string;
   full_name: string;

@@ -13,7 +13,7 @@
   </div>
   <div class="configuration--input-section">
     <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-      <mat-select [placeholder]="placeholder" [formControlName]="formControllerName" [compareWith]="helperService.compareObjects">
+      <mat-select [placeholder]="placeholder" [formControlName]="formControllerName" [compareWith]="helperService.compareObjects" (closed)="helperService.clearSearchText(form)">
         <mat-option *ngFor="let option of options" [value]="option.value">
           {{ option.label }}
           <img *ngIf="form.value[formControllerName] === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">

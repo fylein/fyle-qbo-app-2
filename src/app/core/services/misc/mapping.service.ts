@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { Cacheable } from 'ts-cacheable';
 import { DestinationAttribute, GroupedDestinationAttribute } from '../../models/db/destination-attribute.model';
-import { EmployeeMappingsResponse } from '../../models/db/employee-mapping.model';
+import { EmployeeMapping, EmployeeMappingPost, EmployeeMappingsResponse } from '../../models/db/employee-mapping.model';
 import { ExpenseField } from '../../models/misc/expense-field.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
@@ -64,6 +64,10 @@ export class MappingService {
         state
       }
     );
+  }
+
+  postEmployeeMappings(employeeMapping: EmployeeMappingPost): Observable<EmployeeMapping> {
+    return this.apiService.post(`/workspaces/${this.workspaceId}/mappings/employee/`, employeeMapping);
   }
 
   @Cacheable()

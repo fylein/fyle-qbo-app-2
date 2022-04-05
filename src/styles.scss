@@ -98,6 +98,14 @@ table {
   cursor: pointer;
 }
 
+.mapping-snackbar {
+  @extend .single-line-text;
+  background: #24A148;
+  min-width: 122px !important;
+  font-size: 12px;
+  color: #FFFFFF;
+}
+
 .mat-form-field-type-mat-select .mat-form-field-flex {
   height: 40px;
   font-size: 14px !important;

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { EmployeeMapping, EmployeeMappingsResponse } from 'src/app/core/models/db/employee-mapping.model';
+import { EmployeeMapping, EmployeeMappingModel, EmployeeMappingsResponse } from 'src/app/core/models/db/employee-mapping.model';
 import { MappingList } from 'src/app/core/models/db/mapping.model';
 import { WorkspaceGeneralSetting } from 'src/app/core/models/db/workspace-general-setting.model';
 import { AutoMapEmployee, EmployeeFieldMapping, MappingState, PaginatorPage } from 'src/app/core/models/enum/enum.model';
@@ -20,8 +21,7 @@ import { WorkspaceService } from 'src/app/core/services/workspace/workspace.serv
 export class EmployeeMappingComponent implements OnInit {
 
   totalCardActive: boolean = true;
-  // TODO: update this
-  autoMapEmployee: AutoMapEmployee = AutoMapEmployee.NAME;
+  autoMapEmployee: AutoMapEmployee | null;
   isLoading: boolean = true;
   limit: number;
   offset: number;
@@ -39,6 +39,7 @@ export class EmployeeMappingComponent implements OnInit {
     public helperService: HelperService,
     private mappingService: MappingService,
     private paginatorService: PaginatorService,
+    private snackBar: MatSnackBar,
     private workspaceService: WorkspaceService
   ) { }
 
@@ -64,8 +65,8 @@ export class EmployeeMappingComponent implements OnInit {
     const fyleQboMappingFormArray = mappings.map((mapping: MappingList) => {
       return this.formBuilder.group({
         searchOption: [''],
-        source: [mapping.fyle],
-        destination: [mapping.qbo]
+        source: [mapping.fyle.value],
+        destination: [mapping.qbo.value]
       });
     });
 
@@ -96,8 +97,17 @@ export class EmployeeMappingComponent implements OnInit {
       this.totalCount = employeeMappingResponse.count;
       employeeMappingResponse.results.forEach((employeeMapping: EmployeeMapping, index: number) => {
         mappings.push({
-          fyle: employeeMapping.source_employee.value,
-          qbo: employeeMapping.destination_employee.value,
+          fyle: {
+            id: employeeMapping.source_employee.id,
+            value: employeeMapping.source_employee.value
+          },
+          qbo: {
+            id: this.employeeFieldMapping === EmployeeFieldMapping.EMPLOYEE ? employeeMapping.destination_employee?.id : employeeMapping.destination_vendor?.id,
+            value: this.employeeFieldMapping === EmployeeFieldMapping.EMPLOYEE ? employeeMapping.destination_employee?.value : employeeMapping.destination_vendor?.value
+          },
+          preserveDestination: {
+            id: this.employeeFieldMapping === EmployeeFieldMapping.EMPLOYEE ? employeeMapping.destination_vendor?.id : employeeMapping.destination_employee?.id
+          },
           state: MappingState.MAPPED,
           autoMapped: employeeMapping.source_employee.auto_mapped,
           index: index
@@ -105,6 +115,7 @@ export class EmployeeMappingComponent implements OnInit {
       });
 
       this.mappings = new MatTableDataSource(mappings);
+      // TODO: check filter
       this.mappings.filterPredicate = this.searchByText;
       this.setupForm(mappings);
 
@@ -113,12 +124,14 @@ export class EmployeeMappingComponent implements OnInit {
   }
 
   private searchByText(mapping: MappingList, filterText: string) {
-    return mapping.fyle.includes(filterText);
+    return mapping.fyle.value.includes(filterText);
   }
 
   private getMappingsAndSetupPage(): void {
     this.workspaceService.getWorkspaceGeneralSettings().subscribe((workspaceGeneralSetting: WorkspaceGeneralSetting) => {
       this.employeeFieldMapping = workspaceGeneralSetting.employee_field_mapping;
+      this.autoMapEmployee = workspaceGeneralSetting.auto_map_employees;
+
       let qboData$;
       if (this.employeeFieldMapping === EmployeeFieldMapping.EMPLOYEE) {
         qboData$ = this.mappingService.getQBOEmployees();
@@ -134,15 +147,22 @@ export class EmployeeMappingComponent implements OnInit {
     });
   }
 
-  save(selectedOption: DestinationAttribute, searchForm: FormGroup): void {
+  save(selectedRow: MappingList, selectedOption: DestinationAttribute, searchForm: FormGroup): void {
     searchForm.patchValue({
       destination: selectedOption.value,
-      searchOption: [''],
+      searchOption: '',
       source: searchForm.value.source
     });
-    this.helperService.clearSearchText(searchForm);
 
-    // TODO: POST API
+    selectedRow.qbo.id = selectedOption.id;
+    selectedRow.qbo.value = selectedOption.value;
+
+    const employeeMappingPayload = EmployeeMappingModel.constructPayload(this.employeeFieldMapping, selectedRow, this.workspaceService.getWorkspaceId());
+    this.mappingService.postEmployeeMappings(employeeMappingPayload).subscribe(() => this.snackBar.open('Changes saved', '', {
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+      panelClass: 'mapping-snackbar'
+    }));
   }
 
   ngOnInit(): void {

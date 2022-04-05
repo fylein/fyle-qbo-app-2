@@ -17,9 +17,18 @@ export type Mapping = {
 };
 
 export type MappingList = {
-  fyle: string;
+  fyle: {
+    id: number;
+    value: string;
+  };
+  qbo: {
+    id: number;
+    value: string;
+  };
+  preserveDestination?: {
+    id: number;
+  }
   autoMapped: boolean;
-  qbo: string;
   state: MappingState;
   index: number;
 }
