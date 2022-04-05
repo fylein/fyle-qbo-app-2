@@ -35,10 +35,4 @@ export class ExportLogService {
   getExpenseGroupSettings(): Observable<ExpenseGroupSetting> {
     return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expense_group_settings/`, {});
   }
-
-  @Cacheable()
-  getExpensesByExpenseGroupId(expenseGroupID: number): Observable<Expense[]> {
-    const workspaceId = this.workspaceService.getWorkspaceId();
-    return this.apiService.get(`/workspaces/${workspaceId}/fyle/expense_groups/${expenseGroupID}/expenses/`, {});
-  }
 }

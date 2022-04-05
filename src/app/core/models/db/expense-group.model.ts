@@ -1,4 +1,5 @@
 import { FyleReferenceType } from "../enum/enum.model";
+import { Expense } from "./expense.model";
 
 export type ExpenseGroupResponse = {
   count: number;
@@ -16,7 +17,7 @@ export interface ExpenseGroupList {
   qboUrl: string;
   fyleUrl: string;
   fyleReferenceType: FyleReferenceType;
-  expenseGroupID: number;
+  expenses: Expense[];
 }
 
 export type ExpenseGroup = {
@@ -27,11 +28,12 @@ export type ExpenseGroup = {
   // having any here is okay, different qbo exports has different structures
   response_logs: any;
   export_type: string;
+  employee_name: string;
   exported_at: Date;
   created_at: Date;
   updated_at: Date;
   workspace: number;
-  expenses: number[];
+  expenses: Expense[];
 };
 
 export type ExpenseGroupDescription = {
