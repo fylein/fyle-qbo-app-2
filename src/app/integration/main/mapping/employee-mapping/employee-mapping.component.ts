@@ -143,7 +143,7 @@ export class EmployeeMappingComponent implements OnInit {
           preserveDestination: {
             id: this.employeeFieldMapping === EmployeeFieldMapping.EMPLOYEE ? employeeMapping.destination_vendor?.id : employeeMapping.destination_employee?.id
           },
-          state: MappingState.MAPPED, // employeeMapping.destination_employee?.id || employeeMapping.destination_vendor?.id ? MappingState.MAPPED : MappingState.UNMAPPED,
+          state: employeeMapping.destination_employee?.id || employeeMapping.destination_vendor?.id ? MappingState.MAPPED : MappingState.UNMAPPED,
           autoMapped: employeeMapping.source_employee.auto_mapped,
           index: index
         });
