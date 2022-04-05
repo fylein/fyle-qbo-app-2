@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ExportLogChildDialogComponent } from './export-log-child-dialog/export-log-child-dialog.component';
 import { HelperService } from 'src/app/core/services/core/helper.service';
+import { Expense } from 'src/app/core/models/db/expense.model';
 
 @Component({
   selector: 'app-export-log',
@@ -35,11 +36,11 @@ export class ExportLogComponent implements OnInit {
     private paginatorService: PaginatorService
   ) { }
 
-  openChildExpenses(expenseGroupID: number): void {
+  openChildExpenses(expenses: Expense[]): void {
     this.dialog.open(ExportLogChildDialogComponent, {
       width: '784px',
       height: '974px',
-      data: expenseGroupID,
+      data: expenses,
       position: {
         top: '0px',
         right: '0px'
@@ -146,14 +147,14 @@ export class ExportLogComponent implements OnInit {
 
         expenseGroups.push({
           exportedAt: expenseGroup.exported_at,
-          employee: ['name', expenseGroup.description.employee_email],
+          employee: [expenseGroup.employee_name, expenseGroup.description.employee_email],
           expenseType: expenseGroup.fund_source === 'CCC' ? 'Credit Card' : 'Reimbursable',
           fyleReferenceType: referenceType,
           referenceNumber: expenseGroup.description[referenceType],
           exportedAs: exportType,
           fyleUrl: fyleUrl,
           qboUrl: `${environment.qbo_app_url}/app/${type}?txnId=${id}`,
-          expenseGroupID: expenseGroup.id
+          expenses: expenseGroup.expenses
         });
 
         this.expenseGroups = new MatTableDataSource(expenseGroups);
