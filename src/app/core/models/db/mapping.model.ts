@@ -31,4 +31,9 @@ export type MappingList = {
   autoMapped: boolean;
   state: MappingState;
   index: number;
-}
+};
+
+export type MappingStats = {
+  mapped_attributes_count: number;
+  unmapped_attributes_count: number;
+};

@@ -1,5 +1,5 @@
 <div class="mapping">
-  <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration-main--bg mapping--stats-section">
+  <div *ngIf="!isLoading" fxLayout="row" fxLayoutAlign="space-between center" class="configuration-main--bg mapping--stats-section">
     <div fxLayout="row" fxLayoutAlign="space-around center">
       <div class="mapping--card pointer" [ngClass]="{'mapping--card-active': totalCardActive}" (click)="switchView(true)">
         <img *ngIf="totalCardActive" src="assets/images/svgs/general/tick-filled.svg" class="mapping--card-active-icon">
@@ -7,7 +7,7 @@
           <div class="mapping--card-tag"></div>
           <div class="mapping--card-content">
             <h5 class="mapping--card-content-text-header single-line-text">Total Employees</h5>
-            <span class="mapping--card-content-text-count">180</span>
+            <span class="mapping--card-content-text-count">{{ mappingStats.mapped_attributes_count }}</span>
           </div>
         </div>
       </div>
@@ -17,7 +17,7 @@
           <div class="mapping--card-tag"></div>
           <div class="mapping--card-content">
             <h5 class="mapping--card-content-text-header single-line-text">Unmapped Employees</h5>
-            <span class="mapping--card-content-text-count">10</span>
+            <span class="mapping--card-content-text-count">{{ mappingStats.unmapped_attributes_count }}</span>
           </div>
         </div>
       </div>

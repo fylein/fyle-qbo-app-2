@@ -3,6 +3,7 @@ import { from, Observable } from 'rxjs';
 import { Cacheable } from 'ts-cacheable';
 import { DestinationAttribute, GroupedDestinationAttribute } from '../../models/db/destination-attribute.model';
 import { EmployeeMapping, EmployeeMappingPost, EmployeeMappingsResponse } from '../../models/db/employee-mapping.model';
+import { MappingStats } from '../../models/db/mapping.model';
 import { MappingState } from '../../models/enum/enum.model';
 import { ExpenseField } from '../../models/misc/expense-field.model';
 import { ApiService } from '../core/api.service';
@@ -85,5 +86,9 @@ export class MappingService {
   @Cacheable()
   getQBOVendors(): Observable<DestinationAttribute[]> {
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/vendors/`, {});
+  }
+
+  getMappingStats(sourceType: string): Observable<MappingStats> {
+    return this.apiService.get(`/workspaces/${this.workspaceId}/mappings/stats/`, { source_type: sourceType});
   }
 }

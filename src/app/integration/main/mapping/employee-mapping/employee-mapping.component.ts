@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { EmployeeMapping, EmployeeMappingModel, EmployeeMappingsResponse } from 'src/app/core/models/db/employee-mapping.model';
-import { MappingList } from 'src/app/core/models/db/mapping.model';
-import { WorkspaceGeneralSetting } from 'src/app/core/models/db/workspace-general-setting.model';
+import { MappingList, MappingStats } from 'src/app/core/models/db/mapping.model';
 import { AutoMapEmployee, EmployeeFieldMapping, MappingState, PaginatorPage } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
@@ -26,6 +26,7 @@ export class EmployeeMappingComponent implements OnInit {
   limit: number;
   offset: number;
   totalCount: number;
+  mappingStats: MappingStats;
   employeeFieldMapping: EmployeeFieldMapping;
   qboData: DestinationAttribute[];
   mappings: MatTableDataSource<MappingList> = new MatTableDataSource<MappingList>([]);
@@ -169,9 +170,14 @@ export class EmployeeMappingComponent implements OnInit {
   }
 
   private getMappingsAndSetupPage(): void {
-    this.workspaceService.getWorkspaceGeneralSettings().subscribe((workspaceGeneralSetting: WorkspaceGeneralSetting) => {
-      this.employeeFieldMapping = workspaceGeneralSetting.employee_field_mapping;
-      this.autoMapEmployee = workspaceGeneralSetting.auto_map_employees;
+    forkJoin([
+      this.mappingService.getMappingStats(EmployeeFieldMapping.EMPLOYEE),
+      this.workspaceService.getWorkspaceGeneralSettings()
+    ]).subscribe(responses => {
+      this.mappingStats = responses[0];
+
+      this.employeeFieldMapping = responses[1].employee_field_mapping;
+      this.autoMapEmployee = responses[1].auto_map_employees;
 
       let qboData$;
       if (this.employeeFieldMapping === EmployeeFieldMapping.EMPLOYEE) {
