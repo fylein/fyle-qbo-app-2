@@ -51,6 +51,10 @@ export class EmployeeMappingComponent implements OnInit {
     this.form.value.filterOption = this.filterOptions.concat();
   }
 
+  switchView(): void {
+    this.totalCardActive = !this.totalCardActive;
+  }
+
   filterOptionUpdateHandler(alphabet: string): void {
     const index = this.form.value.filterOption.indexOf(alphabet);
 
@@ -75,6 +79,14 @@ export class EmployeeMappingComponent implements OnInit {
       fyleQboMapping: this.formBuilder.array(fyleQboMappingFormArray),
       searchOption: [''],
       filterOption: [this.filterOptions.concat()]
+    });
+
+    this.form.controls.searchOption.valueChanges.subscribe((searchTerm: string) => {
+      if (searchTerm) {
+        this.mappings.filter = searchTerm.trim().toLowerCase();
+      } else {
+        this.mappings.filter = '';
+      }
     });
 
     const mappingForm = this.form.controls.fyleQboMapping as FormArray;
@@ -115,7 +127,6 @@ export class EmployeeMappingComponent implements OnInit {
       });
 
       this.mappings = new MatTableDataSource(mappings);
-      // TODO: check filter
       this.mappings.filterPredicate = this.searchByText;
       this.setupForm(mappings);
 

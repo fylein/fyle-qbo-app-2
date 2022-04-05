@@ -78,22 +78,7 @@
         <tr class="export-log--row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
 
-      <!-- Zero state -->
-      <div *ngIf="!expenseGroups.filteredData.length" fxLayout="column" fxLayoutAlign="center center">
-        <img class="export-log--zero-state-img" src="assets/images/pngs/zero-state/export-log.png">
-        <h4 class="export-log--zero-state-text align-center">
-          {{ exportLogForm.value.searchOption && !expenseGroups.filteredData.length ? 'Sorry, no results found!' : 'No records to show yet!' }}
-        </h4>
-        <h5 class="export-log--zero-state-text-small align-center">
-          {{ exportLogForm.value.searchOption && !expenseGroups.filteredData.length ? 'Looks like your search term does not match any Employee Name or Expense ID' : 'All your successful exports and their details will be stored here.' }}
-        </h5>
-
-        <!-- TODO: update after adding date filter -->
-        <h5 *ngIf="false" class="export-log--zero-state-text-small align-center">
-          We could not find any exports done on timeline that you have selected
-        </h5>
-      </div>
-      <!-- Zero state -->
+      <app-zero-state-with-illustration [form]="exportLogForm" [data]="expenseGroups" [searchTerm]="'Employee Name or Expense ID'"></app-zero-state-with-illustration>
     </div>
 
     <app-paginator *ngIf="expenseGroups.filteredData.length" [totalCount]="totalCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getExpenseGroups($event)"></app-paginator>

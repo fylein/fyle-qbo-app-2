@@ -1,7 +1,7 @@
 <div class="mapping">
   <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration-main--bg mapping--stats-section">
     <div fxLayout="row" fxLayoutAlign="space-around center">
-      <div class="mapping--card pointer" [ngClass]="{'mapping--card-active': totalCardActive}">
+      <div class="mapping--card pointer" [ngClass]="{'mapping--card-active': totalCardActive}" (click)="switchView()">
         <img *ngIf="totalCardActive" src="assets/images/svgs/general/tick-filled.svg" class="mapping--card-active-icon">
         <div class="mapping--card-content-section" [ngClass]="{'mapping--card-content-section-active': totalCardActive}">
           <div class="mapping--card-tag"></div>
@@ -11,7 +11,7 @@
           </div>
         </div>
       </div>
-      <div class="mapping--card pointer" [ngClass]="{'mapping--card-active': !totalCardActive}">
+      <div class="mapping--card pointer" [ngClass]="{'mapping--card-active': !totalCardActive}" (click)="switchView()">
         <img *ngIf="!totalCardActive" src="assets/images/svgs/general/tick-filled.svg" class="mapping--card-active-icon">
         <div class="mapping--card-content-section" [ngClass]="{'mapping--card-content-section-active': !totalCardActive}">
           <div class="mapping--card-tag"></div>
@@ -36,7 +36,7 @@
     <div class="mapping--core-section-content">
       <div fxLayout="row" fxLayoutAlign="start center" class="mapping--filters-section">
         <div>
-          <app-simple-search-select [form]="form" [placeholder]="'Search Employee Name'" [showBackgroundColor]="false"></app-simple-search-select>
+          <app-simple-search-select [form]="form" [placeholder]="'Search Employee Email'" [showBackgroundColor]="false"></app-simple-search-select>
         </div>
         <div fxLayout="row" class="align-center">
           <div [ngClass]="{'mapping--filter-all-selected': form.value.filterOption.length === filterOptions.length}">
@@ -91,6 +91,7 @@
           <tr class="mapping--heading" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
           <tr class="mapping--row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+        <app-zero-state-with-illustration [form]="form" [data]="mappings" [searchTerm]="'Employee Email'"></app-zero-state-with-illustration>
       </div>
 
       <app-paginator *ngIf="mappings.filteredData.length" [totalCount]="totalCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getMappings($event)"></app-paginator>
