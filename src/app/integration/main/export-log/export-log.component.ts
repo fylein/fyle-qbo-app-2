@@ -122,6 +122,8 @@ export class ExportLogComponent implements OnInit {
       url += `/view_expense/${expenseGroup.description.expense_id}`;
     } else if (referenceType === FyleReferenceType.EXPENSE_REPORT) {
       url += `/reports/${expenseGroup.description.report_id}`;
+    } else if (referenceType === FyleReferenceType.PAYMENT) {
+      url += `/settlements/${expenseGroup.description.settlement_id}`;
     }
 
     return url;
