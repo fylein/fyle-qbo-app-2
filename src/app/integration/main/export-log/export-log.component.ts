@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ExportLogChildDialogComponent } from './export-log-child-dialog/export-log-child-dialog.component';
 import { HelperService } from 'src/app/core/services/core/helper.service';
+import { Expense } from 'src/app/core/models/db/expense.model';
 
 @Component({
   selector: 'app-export-log',
@@ -35,16 +36,18 @@ export class ExportLogComponent implements OnInit {
     private paginatorService: PaginatorService
   ) { }
 
-  openChildExpenses(expenseGroupID: number): void {
-    this.dialog.open(ExportLogChildDialogComponent, {
-      width: '784px',
-      height: '974px',
-      data: expenseGroupID,
-      position: {
-        top: '0px',
-        right: '0px'
-      }
-    });
+  openChildExpenses(expenses: Expense[]): void {
+    if (expenses.length > 1) {
+      this.dialog.open(ExportLogChildDialogComponent, {
+        width: '784px',
+        height: '974px',
+        data: expenses,
+        position: {
+          top: '0px',
+          right: '0px'
+        }
+      });
+    }
   }
 
   private generateExportTypeAndId(expenseGroup: ExpenseGroup) {
@@ -119,6 +122,8 @@ export class ExportLogComponent implements OnInit {
       url += `/view_expense/${expenseGroup.description.expense_id}`;
     } else if (referenceType === FyleReferenceType.EXPENSE_REPORT) {
       url += `/reports/${expenseGroup.description.report_id}`;
+    } else if (referenceType === FyleReferenceType.PAYMENT) {
+      url += `/settlements/${expenseGroup.description.settlement_id}`;
     }
 
     return url;
@@ -141,19 +146,24 @@ export class ExportLogComponent implements OnInit {
       expenseGroupResponse.results.forEach((expenseGroup: ExpenseGroup) => {
         const [type, id, exportType] = this.generateExportTypeAndId(expenseGroup);
         const referenceType: FyleReferenceType = this.getReferenceNumber(expenseGroup.description);
+        let referenceNumber: string = expenseGroup.description[referenceType];
+
+        if (referenceType === FyleReferenceType.EXPENSE) {
+          referenceNumber = expenseGroup.expenses[0].expense_number;
+        }
 
         const fyleUrl = this.generateFyleUrl(expenseGroup, referenceType);
 
         expenseGroups.push({
           exportedAt: expenseGroup.exported_at,
-          employee: ['name', expenseGroup.description.employee_email],
+          employee: [expenseGroup.employee_name, expenseGroup.description.employee_email],
           expenseType: expenseGroup.fund_source === 'CCC' ? 'Credit Card' : 'Reimbursable',
           fyleReferenceType: referenceType,
-          referenceNumber: expenseGroup.description[referenceType],
+          referenceNumber: referenceNumber,
           exportedAs: exportType,
           fyleUrl: fyleUrl,
           qboUrl: `${environment.qbo_app_url}/app/${type}?txnId=${id}`,
-          expenseGroupID: expenseGroup.id
+          expenses: expenseGroup.expenses
         });
       });
       this.expenseGroups = new MatTableDataSource(expenseGroups);
