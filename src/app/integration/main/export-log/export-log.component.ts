@@ -37,15 +37,17 @@ export class ExportLogComponent implements OnInit {
   ) { }
 
   openChildExpenses(expenses: Expense[]): void {
-    this.dialog.open(ExportLogChildDialogComponent, {
-      width: '784px',
-      height: '974px',
-      data: expenses,
-      position: {
-        top: '0px',
-        right: '0px'
-      }
-    });
+    if (expenses.length > 1) {
+      this.dialog.open(ExportLogChildDialogComponent, {
+        width: '784px',
+        height: '974px',
+        data: expenses,
+        position: {
+          top: '0px',
+          right: '0px'
+        }
+      });
+    }
   }
 
   private generateExportTypeAndId(expenseGroup: ExpenseGroup) {
@@ -142,6 +144,11 @@ export class ExportLogComponent implements OnInit {
       expenseGroupResponse.results.forEach((expenseGroup: ExpenseGroup) => {
         const [type, id, exportType] = this.generateExportTypeAndId(expenseGroup);
         const referenceType: FyleReferenceType = this.getReferenceNumber(expenseGroup.description);
+        let referenceNumber: string = expenseGroup.description[referenceType];
+
+        if (referenceType === FyleReferenceType.EXPENSE) {
+          referenceNumber = expenseGroup.expenses[0].expense_number;
+        }
 
         const fyleUrl = this.generateFyleUrl(expenseGroup, referenceType);
 
@@ -150,7 +157,7 @@ export class ExportLogComponent implements OnInit {
           employee: [expenseGroup.employee_name, expenseGroup.description.employee_email],
           expenseType: expenseGroup.fund_source === 'CCC' ? 'Credit Card' : 'Reimbursable',
           fyleReferenceType: referenceType,
-          referenceNumber: expenseGroup.description[referenceType],
+          referenceNumber: referenceNumber,
           exportedAs: exportType,
           fyleUrl: fyleUrl,
           qboUrl: `${environment.qbo_app_url}/app/${type}?txnId=${id}`,
