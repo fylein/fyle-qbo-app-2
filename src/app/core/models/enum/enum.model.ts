@@ -83,6 +83,7 @@ export enum FyleReferenceType {
 }
 
 export enum MappingState {
-  MAPPED = 'Mapped',
-  UNMAPPED = 'Unmapped'
+  MAPPED = 'MAPPED',
+  UNMAPPED = 'UNMAPPED',
+  ALL = 'ALL'
 }

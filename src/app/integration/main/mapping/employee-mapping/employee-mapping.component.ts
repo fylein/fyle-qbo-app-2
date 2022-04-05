@@ -29,6 +29,7 @@ export class EmployeeMappingComponent implements OnInit {
   employeeFieldMapping: EmployeeFieldMapping;
   qboData: DestinationAttribute[];
   mappings: MatTableDataSource<MappingList> = new MatTableDataSource<MappingList>([]);
+  fyleQboMappingFormArray: FormGroup[];
   displayedColumns: string[] = ['fyle', 'qbo', 'state'];
   filterOptions: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   form: FormGroup;
@@ -44,15 +45,19 @@ export class EmployeeMappingComponent implements OnInit {
   ) { }
 
   triggerAutoMapEmployee(): void {
-    // TODO: trigger auto map employee
+    this.mappingService.triggerAutoMapEmployees().subscribe(() => this.snackBar.open('Auto mapping of employees may take few minutes'));
   }
 
   addAllFilterHandler(): void {
-    this.form.value.filterOption = this.filterOptions.concat();
+    this.form.controls.filterOption.patchValue(this.filterOptions.concat());
+
+    this.getMappings();
   }
 
-  switchView(): void {
-    this.totalCardActive = !this.totalCardActive;
+  switchView(totalCardActive: boolean = false): void {
+    this.totalCardActive = totalCardActive;
+
+    this.getMappings();
   }
 
   filterOptionUpdateHandler(alphabet: string): void {
@@ -63,20 +68,24 @@ export class EmployeeMappingComponent implements OnInit {
     } else {
       this.form.value.filterOption.push(alphabet);
     }
+
+    this.getMappings();
   }
 
-  private setupForm(mappings: MappingList[]): void {
-    const fyleQboMappingFormArray = mappings.map((mapping: MappingList) => {
+  private setupFyleQboMappingFormArray(mappings: MappingList[]): void {
+    this.fyleQboMappingFormArray = mappings.map((mapping: MappingList) => {
       return this.formBuilder.group({
         searchOption: [''],
         source: [mapping.fyle.value],
         destination: [mapping.qbo.value]
       });
     });
+  }
 
+  private setupForm(): void {
     this.form = this.formBuilder.group({
       map: [''],
-      fyleQboMapping: this.formBuilder.array(fyleQboMappingFormArray),
+      fyleQboMapping: this.formBuilder.array(this.fyleQboMappingFormArray),
       searchOption: [''],
       filterOption: [this.filterOptions.concat()]
     });
@@ -93,19 +102,33 @@ export class EmployeeMappingComponent implements OnInit {
     this.mappingForm = mappingForm.controls as FormGroup[];
   }
 
-  getMappings(data: Paginator): void {
+  getMappings(data: Paginator | void): void {
     this.isLoading = true;
+    const paginator: Paginator = data ? data : this.getPaginator();
+
     const mappings: MappingList[] = [];
 
     // Store page size when user changes it
-    if (this.limit !== data.limit) {
-      this.paginatorService.storePageSize(PaginatorPage.MAPPING, data.limit);
+    if (this.limit !== data?.limit) {
+      this.paginatorService.storePageSize(PaginatorPage.MAPPING, paginator.limit);
     }
 
-    this.limit = data.limit;
-    this.offset = data.offset;
+    this.limit = paginator.limit;
+    this.offset = paginator.offset;
+    const mappingState = this.totalCardActive ? MappingState.ALL : MappingState.UNMAPPED;
 
-    this.mappingService.getEmployeeMappings('ALL', data.limit, data.offset).subscribe((employeeMappingResponse: EmployeeMappingsResponse) => {
+    let alphabetsFilter: string[] = [];
+    let allAlphabets: boolean = true;
+
+    if (this.form) {
+      allAlphabets = this.form.value.filterOption.length === this.filterOptions.length;
+
+      if (!allAlphabets) {
+        alphabetsFilter = this.form.value.filterOption;
+      }
+    }
+
+    this.mappingService.getEmployeeMappings(mappingState, allAlphabets, paginator.limit, paginator.offset, alphabetsFilter).subscribe((employeeMappingResponse: EmployeeMappingsResponse) => {
       this.totalCount = employeeMappingResponse.count;
       employeeMappingResponse.results.forEach((employeeMapping: EmployeeMapping, index: number) => {
         mappings.push({
@@ -120,7 +143,7 @@ export class EmployeeMappingComponent implements OnInit {
           preserveDestination: {
             id: this.employeeFieldMapping === EmployeeFieldMapping.EMPLOYEE ? employeeMapping.destination_vendor?.id : employeeMapping.destination_employee?.id
           },
-          state: MappingState.MAPPED,
+          state: MappingState.MAPPED, // employeeMapping.destination_employee?.id || employeeMapping.destination_vendor?.id ? MappingState.MAPPED : MappingState.UNMAPPED,
           autoMapped: employeeMapping.source_employee.auto_mapped,
           index: index
         });
@@ -128,7 +151,10 @@ export class EmployeeMappingComponent implements OnInit {
 
       this.mappings = new MatTableDataSource(mappings);
       this.mappings.filterPredicate = this.searchByText;
-      this.setupForm(mappings);
+      this.setupFyleQboMappingFormArray(mappings);
+      if (!this.form) {
+        this.setupForm();
+      }
 
       this.isLoading = false;
     });
@@ -136,6 +162,10 @@ export class EmployeeMappingComponent implements OnInit {
 
   private searchByText(mapping: MappingList, filterText: string) {
     return mapping.fyle.value.includes(filterText);
+  }
+
+  private getPaginator(): Paginator {
+    return this.paginatorService.getPageSize(PaginatorPage.MAPPING);
   }
 
   private getMappingsAndSetupPage(): void {
@@ -151,9 +181,7 @@ export class EmployeeMappingComponent implements OnInit {
       }
       qboData$.subscribe((qboData: DestinationAttribute[]) => {
         this.qboData = qboData;
-
-        const paginator: Paginator = this.paginatorService.getPageSize(PaginatorPage.MAPPING);
-        this.getMappings(paginator);
+        this.getMappings();
       });
     });
   }

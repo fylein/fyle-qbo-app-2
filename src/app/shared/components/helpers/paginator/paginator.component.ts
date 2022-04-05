@@ -61,7 +61,7 @@ export class PaginatorComponent implements OnInit {
     }
 
     this.pageChangeEvent.emit({
-      limit: this.form.get('limit')?.value,
+      limit: this.form.get('pageLimit')?.value,
       offset: offset
     });
   }

@@ -3,6 +3,7 @@ import { from, Observable } from 'rxjs';
 import { Cacheable } from 'ts-cacheable';
 import { DestinationAttribute, GroupedDestinationAttribute } from '../../models/db/destination-attribute.model';
 import { EmployeeMapping, EmployeeMappingPost, EmployeeMappingsResponse } from '../../models/db/employee-mapping.model';
+import { MappingState } from '../../models/enum/enum.model';
 import { ExpenseField } from '../../models/misc/expense-field.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
@@ -55,19 +56,25 @@ export class MappingService {
     return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expense_fields/`, {});
   }
 
-  getEmployeeMappings(state: string, limit: number, offset: number): Observable<EmployeeMappingsResponse> {
+  getEmployeeMappings(mappingState: MappingState, allAlphabets: boolean, limit: number, offset: number, alphabetsFilter: string[]): Observable<EmployeeMappingsResponse> {
     return this.apiService.get(
       `/workspaces/${this.workspaceId}/mappings/employee/`,
       {
         limit,
         offset,
-        state
+        all_alphabets: allAlphabets,
+        mapping_state: mappingState,
+        alphabets_filter: alphabetsFilter.length ? alphabetsFilter : null
       }
     );
   }
 
   postEmployeeMappings(employeeMapping: EmployeeMappingPost): Observable<EmployeeMapping> {
     return this.apiService.post(`/workspaces/${this.workspaceId}/mappings/employee/`, employeeMapping);
+  }
+
+  triggerAutoMapEmployees(): Observable<{}> {
+    return this.apiService.post(`/workspaces/${this.workspaceId}/mappings/auto_map_employees/trigger/`, {});
   }
 
   @Cacheable()

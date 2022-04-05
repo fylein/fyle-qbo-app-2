@@ -1,7 +1,7 @@
 <div class="mapping">
   <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration-main--bg mapping--stats-section">
     <div fxLayout="row" fxLayoutAlign="space-around center">
-      <div class="mapping--card pointer" [ngClass]="{'mapping--card-active': totalCardActive}" (click)="switchView()">
+      <div class="mapping--card pointer" [ngClass]="{'mapping--card-active': totalCardActive}" (click)="switchView(true)">
         <img *ngIf="totalCardActive" src="assets/images/svgs/general/tick-filled.svg" class="mapping--card-active-icon">
         <div class="mapping--card-content-section" [ngClass]="{'mapping--card-content-section-active': totalCardActive}">
           <div class="mapping--card-tag"></div>
@@ -82,8 +82,8 @@
               <h4 class="mapping--row-heading-state">State</h4>
             </th>
             <td mat-cell *matCellDef="let element">
-              <div class="mapping--state-pill" [ngClass]="element.state === 'Mapped' ? 'mapping--state-pill-mapped' : 'mapping--state-pill-unmapped'">
-                <h4 class="mapping--state-pill-text align-center">{{ element.state }}</h4>
+              <div class="mapping--state-pill" [ngClass]="element.state === 'MAPPED' ? 'mapping--state-pill-mapped' : 'mapping--state-pill-unmapped'">
+                <h4 class="mapping--state-pill-text align-center">{{ element.state | titlecase }}</h4>
               </div>
             </td>
           </ng-container>
