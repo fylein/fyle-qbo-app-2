@@ -84,7 +84,7 @@ export class ExportSettingsComponent implements OnInit {
       value: CorporateCreditCardExpensesObject.BILL
     },
     {
-      label: 'Credit Card Purchases',
+      label: 'Credit Card Purchase',
       value: CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE
     },
     {
@@ -183,7 +183,7 @@ export class ExportSettingsComponent implements OnInit {
     });
   }
 
-  private restrictExpenseGroupSetting(creditCardExportType: string) : void {
+  private restrictExpenseGroupSetting(creditCardExportType: string | null) : void {
     if (creditCardExportType === CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || creditCardExportType === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE) {
       this.exportSettingsForm.controls.creditCardExportGroup.setValue(ExpenseGroupingFieldOption.EXPENSE_ID);
       this.exportSettingsForm.controls.creditCardExportGroup.disable();
@@ -203,6 +203,7 @@ export class ExportSettingsComponent implements OnInit {
   }
 
   private createCreditCardExportTypeWatcher(): void {
+    this.restrictExpenseGroupSetting(this.exportSettings.workspace_general_settings.corporate_credit_card_expenses_object);
     this.exportSettingsForm.controls.creditCardExportType.valueChanges.subscribe((creditCardExportType: string) => {
       this.setGeneralMappingsValidator();
       this.restrictExpenseGroupSetting(creditCardExportType);
