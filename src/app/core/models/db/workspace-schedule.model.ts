@@ -1,7 +1,7 @@
-import { AdvancedSettingWorkspaceSchedule } from "../configuration/advanced-setting.model";
-
-export interface WorkspaceSchedule extends AdvancedSettingWorkspaceSchedule {
+export type WorkspaceSchedule = {
   id: number;
   start_datetime: Date,
   workspace: number;
+  enabled: boolean;
+  interval_hours: number;
 };

@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { WorkspaceService } from './workspace.service';
 
@@ -8,7 +7,7 @@ describe('WorkspaceService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule,HttpClientModule]
+      imports: [HttpClientModule]
     });
     service = TestBed.inject(WorkspaceService);
   });
