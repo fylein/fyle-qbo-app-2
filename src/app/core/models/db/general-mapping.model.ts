@@ -4,7 +4,7 @@ export type DefaultDestinationAttribute = {
 };
 
 export type MinimalDestinationAttribute = {
-  id: number | null;
+  id: number | null | string;
 }
 
 export type GeneralMapping = {

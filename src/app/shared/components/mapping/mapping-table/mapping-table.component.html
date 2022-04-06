@@ -1,7 +1,7 @@
 <table mat-table [dataSource]="mappings">
   <ng-container matColumnDef="fyle">
     <th mat-header-cell *matHeaderCellDef>
-      <h4 class="mapping-table--row-heading-fyle">Employee in Fyle</h4>
+      <h4 class="mapping-table--row-heading-fyle">{{ sourceType | titlecase | snakeCaseToSpaceCase }} in Fyle</h4>
     </th>
     <td mat-cell *matCellDef="let element">
       <img *ngIf="element.autoMapped" matTooltip="Auto-mapped" src="assets/images/svgs/general/flash.svg" width="12px" height="12px" class="mapping-table--auto-mapped-row">
@@ -11,7 +11,7 @@
 
   <ng-container matColumnDef="qbo">
     <th mat-header-cell *matHeaderCellDef>
-      <h4 class="mapping-table--row-heading-qbo">{{ this.employeeFieldMapping === 'EMPLOYEE' ? 'Employee' : 'Vendor' }} in QBO</h4>
+      <h4 class="mapping-table--row-heading-qbo">{{ this.destinationType | titlecase | snakeCaseToSpaceCase }} in QBO</h4>
     </th>
     <td mat-cell *matCellDef="let element">
       <mat-form-field floatLabel="always" appearance="outline" class="mapping-table--form-field">

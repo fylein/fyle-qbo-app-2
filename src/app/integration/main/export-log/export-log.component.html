@@ -78,7 +78,7 @@
         <tr class="export-log--row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
 
-      <app-zero-state-with-illustration [form]="exportLogForm" [data]="expenseGroups" [searchTerm]="'Employee Name or Expense ID'"></app-zero-state-with-illustration>
+      <app-zero-state-with-illustration [page]="'export_log'" [form]="exportLogForm" [data]="expenseGroups" [searchTerm]="'Employee Name or Expense ID'"></app-zero-state-with-illustration>
     </div>
 
     <app-paginator *ngIf="expenseGroups.filteredData.length" [totalCount]="totalCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getExpenseGroups($event)"></app-paginator>

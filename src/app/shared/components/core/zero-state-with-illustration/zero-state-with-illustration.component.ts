@@ -13,6 +13,7 @@ export class ZeroStateWithIllustrationComponent implements OnInit {
   @Input() data: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   @Input() form: FormGroup;
   @Input() searchTerm: string;
+  @Input() page: 'export_log' | 'mapping';
 
   constructor() { }
 

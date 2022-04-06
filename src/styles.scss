@@ -86,6 +86,10 @@ table {
   font-style: italic;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 .search-zero-state {
   height: 100px !important;
   &:hover {
@@ -383,5 +387,34 @@ table {
 
   &--user-org {
     padding-top: 1px;
+  }
+}
+
+.mapping {
+  width: 1658px;
+  @media only screen and (max-width: 1440px) {
+    width: 1178px;
+  }
+
+  &--core-section {
+    margin-top: -50px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  &--core-section-content {
+    background: #FFFFFF;
+    border-radius: 8px;
+    height: 866px;
+
+    width: 1598px;
+    @media only screen and (max-width: 1440px) {
+      width: 1098px;
+    }
+  }
+
+  &--table {
+    height: 680px;
+    overflow: scroll;
   }
 }

@@ -171,7 +171,7 @@ export class EmployeeMappingComponent implements OnInit {
 
   save(selectedRow: MappingList): void {
     const employeeMappingPayload = EmployeeMappingModel.constructPayload(this.employeeFieldMapping, selectedRow, this.workspaceService.getWorkspaceId());
-    this.mappingService.postEmployeeMappings(employeeMappingPayload).subscribe(() => this.snackBar.open('Changes saved', '', {
+    this.mappingService.postEmployeeMapping(employeeMappingPayload).subscribe(() => this.snackBar.open('Changes saved', '', {
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
       panelClass: 'mapping-snackbar'

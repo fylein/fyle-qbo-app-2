@@ -14,7 +14,8 @@ import { HelperService } from 'src/app/core/services/core/helper.service';
 export class MappingTableComponent implements OnInit {
 
   @Input() mappings: MatTableDataSource<MappingList> = new MatTableDataSource<MappingList>([]);
-  @Input() employeeFieldMapping: EmployeeFieldMapping;
+  @Input() sourceType: string;
+  @Input() destinationType: string;
   @Input() mappingForm: FormGroup[];
   @Input() qboData: DestinationAttribute[];
   @Output() mappingSaveHandler = new EventEmitter<MappingList>();
@@ -31,7 +32,12 @@ export class MappingTableComponent implements OnInit {
       source: searchForm.value.source
     });
 
-    selectedRow.qbo.id = selectedOption.id;
+    if (this.sourceType.toUpperCase() === EmployeeFieldMapping.EMPLOYEE) {
+      selectedRow.qbo.id = selectedOption.id;
+    } else {
+      selectedRow.qbo.id = selectedOption.destination_id;
+    }
+
     selectedRow.qbo.value = selectedOption.value;
 
     this.mappingSaveHandler.emit(selectedRow);
