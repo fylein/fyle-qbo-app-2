@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
+import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
+import { MappingList } from 'src/app/core/models/db/mapping.model';
+import { EmployeeFieldMapping } from 'src/app/core/models/enum/enum.model';
+import { HelperService } from 'src/app/core/services/core/helper.service';
 
 @Component({
   selector: 'app-mapping-table',
@@ -7,7 +13,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MappingTableComponent implements OnInit {
 
-  constructor() { }
+  @Input() mappings: MatTableDataSource<MappingList> = new MatTableDataSource<MappingList>([]);
+  @Input() employeeFieldMapping: EmployeeFieldMapping;
+  @Input() mappingForm: FormGroup[];
+  @Input() qboData: DestinationAttribute[];
+  @Output() mappingSaveHandler = new EventEmitter<MappingList>();
+  displayedColumns: string[] = ['fyle', 'qbo', 'state'];
+
+  constructor(
+    public helperService: HelperService
+  ) { }
+
+  saveMapping(selectedRow: MappingList, selectedOption: DestinationAttribute, searchForm: FormGroup): void {
+    searchForm.patchValue({
+      destination: selectedOption.value,
+      searchOption: '',
+      source: searchForm.value.source
+    });
+
+    selectedRow.qbo.id = selectedOption.id;
+    selectedRow.qbo.value = selectedOption.value;
+
+    this.mappingSaveHandler.emit(selectedRow);
+  }
 
   ngOnInit(): void {
   }

@@ -4,8 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MatTableModule } from '@angular/material/table';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 
@@ -25,9 +23,7 @@ import { EmployeeMappingComponent } from './employee-mapping/employee-mapping.co
     CommonModule,
     MappingRoutingModule,
     FlexLayoutModule,
-    MatTableModule,
     SharedModule,
-    MatTooltipModule,
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,

@@ -13,6 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTableModule } from '@angular/material/table';
 
 // Pipes
 import { TrimCharacterPipe } from './pipes/trim-character.pipe';
@@ -115,7 +116,8 @@ import { DashboardShimmersComponent } from './components/dashboard/dashboard-shi
     MatCheckboxModule,
     MatButtonModule,
     MatDialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTableModule
   ],
   exports: [
     LoaderComponent,

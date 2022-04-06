@@ -31,7 +31,6 @@ export class EmployeeMappingComponent implements OnInit {
   qboData: DestinationAttribute[];
   mappings: MatTableDataSource<MappingList> = new MatTableDataSource<MappingList>([]);
   fyleQboMappingFormArray: FormGroup[];
-  displayedColumns: string[] = ['fyle', 'qbo', 'state'];
   filterOptions: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   form: FormGroup;
   mappingForm: FormGroup[];
@@ -170,16 +169,7 @@ export class EmployeeMappingComponent implements OnInit {
     });
   }
 
-  save(selectedRow: MappingList, selectedOption: DestinationAttribute, searchForm: FormGroup): void {
-    searchForm.patchValue({
-      destination: selectedOption.value,
-      searchOption: '',
-      source: searchForm.value.source
-    });
-
-    selectedRow.qbo.id = selectedOption.id;
-    selectedRow.qbo.value = selectedOption.value;
-
+  save(selectedRow: MappingList): void {
     const employeeMappingPayload = EmployeeMappingModel.constructPayload(this.employeeFieldMapping, selectedRow, this.workspaceService.getWorkspaceId());
     this.mappingService.postEmployeeMappings(employeeMappingPayload).subscribe(() => this.snackBar.open('Changes saved', '', {
       horizontalPosition: 'center',
