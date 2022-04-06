@@ -1,36 +1,5 @@
 <div class="mapping">
-  <div *ngIf="!isLoading" fxLayout="row" fxLayoutAlign="space-between center" class="configuration-main--bg mapping--stats-section">
-    <div fxLayout="row" fxLayoutAlign="space-around center">
-      <div class="mapping--card pointer" [ngClass]="{'mapping--card-active': totalCardActive}" (click)="switchView(true)">
-        <img *ngIf="totalCardActive" src="assets/images/svgs/general/tick-filled.svg" class="mapping--card-active-icon">
-        <div class="mapping--card-content-section" [ngClass]="{'mapping--card-content-section-active': totalCardActive}">
-          <div class="mapping--card-tag"></div>
-          <div class="mapping--card-content">
-            <h5 class="mapping--card-content-text-header single-line-text">Total Employees</h5>
-            <span class="mapping--card-content-text-count">{{ mappingStats.mapped_attributes_count }}</span>
-          </div>
-        </div>
-      </div>
-      <div class="mapping--card pointer" [ngClass]="{'mapping--card-active': !totalCardActive}" (click)="switchView()">
-        <img *ngIf="!totalCardActive" src="assets/images/svgs/general/tick-filled.svg" class="mapping--card-active-icon">
-        <div class="mapping--card-content-section" [ngClass]="{'mapping--card-content-section-active': !totalCardActive}">
-          <div class="mapping--card-tag"></div>
-          <div class="mapping--card-content">
-            <h5 class="mapping--card-content-text-header single-line-text">Unmapped Employees</h5>
-            <span class="mapping--card-content-text-count">{{ mappingStats.unmapped_attributes_count }}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <div *ngIf="autoMapEmployee" class="mapping--auto-map-btn pointer" fxLayout="row" (click)="triggerAutoMapEmployee()">
-        <img src="assets/images/svgs/general/auto-map.svg" width="16px" height="16px" class="mapping--auto-map-icon">
-        <h5 class="mapping--auto-map-btn-text align-center">
-          Automap Employee(s)
-        </h5>
-      </div>
-    </div>
-  </div>
+  <app-mapping-header-section *ngIf="!isLoading" [mappingStats]="mappingStats" [totalCardActive]="totalCardActive" [sourceType]="'employee'" [autoMapEmployee]="autoMapEmployee" (mappingCardUpdateHandler)="mappingCardUpdateHandler($event)"></app-mapping-header-section>
 
   <div *ngIf="!isLoading" [formGroup]="form" class="mapping--core-section">
     <div class="mapping--core-section-content">

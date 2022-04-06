@@ -45,17 +45,13 @@ export class EmployeeMappingComponent implements OnInit {
     private workspaceService: WorkspaceService
   ) { }
 
-  triggerAutoMapEmployee(): void {
-    this.mappingService.triggerAutoMapEmployees().subscribe(() => this.snackBar.open('Auto mapping of employees may take few minutes'));
-  }
-
   addAllFilterHandler(): void {
     this.form.controls.filterOption.patchValue(this.filterOptions.concat());
 
     this.getMappings();
   }
 
-  switchView(totalCardActive: boolean = false): void {
+  mappingCardUpdateHandler(totalCardActive: boolean): void {
     this.totalCardActive = totalCardActive;
 
     this.getMappings();

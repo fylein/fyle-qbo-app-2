@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MappingStats } from 'src/app/core/models/db/mapping.model';
+import { AutoMapEmployee } from 'src/app/core/models/enum/enum.model';
+import { MappingService } from 'src/app/core/services/misc/mapping.service';
 
 @Component({
   selector: 'app-mapping-header-section',
@@ -7,7 +11,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MappingHeaderSectionComponent implements OnInit {
 
-  constructor() { }
+  @Input() totalCardActive: boolean;
+  @Input() sourceType: string;
+  @Input() mappingStats: MappingStats;
+  @Input() autoMapEmployee: AutoMapEmployee | null;
+  @Output() mappingCardUpdateHandler = new EventEmitter<boolean>();
+
+  constructor(
+    private mappingService: MappingService,
+    private snackBar: MatSnackBar
+  ) { }
+
+  switchView(totalCardActive: boolean = false): void {
+    this.totalCardActive = totalCardActive;
+
+
+    this.mappingCardUpdateHandler.emit(this.totalCardActive);
+  }
+
+  triggerAutoMapEmployee(): void {
+    this.mappingService.triggerAutoMapEmployees().subscribe(() => this.snackBar.open('Auto mapping of employees may take few minutes'));
+  }
 
   ngOnInit(): void {
   }
