@@ -11,6 +11,7 @@ import { MappingState, PaginatorPage } from 'src/app/core/models/enum/enum.model
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
+
 @Component({
   selector: 'app-generic-mapping',
   templateUrl: './generic-mapping.component.html',
@@ -56,7 +57,8 @@ export class GenericMappingComponent implements OnInit {
       map: [''],
       fyleQboMapping: this.formBuilder.array(this.fyleQboMappingFormArray),
       searchOption: [''],
-      filterOption: [this.filterOptions.concat()]
+      filterOption: [this.filterOptions.concat()],
+      sourceUpdated: [false]
     });
 
     this.form.controls.searchOption.valueChanges.subscribe((searchTerm: string) => {
@@ -116,8 +118,8 @@ export class GenericMappingComponent implements OnInit {
             value: mapping.source.value
           },
           qbo: {
-            id: mapping.destination.destination_id,
-            value: mapping.destination.value
+            id: mapping.destination?.destination_id,
+            value: mapping.destination?.value
           },
           state: mapping.destination?.id ? MappingState.MAPPED : MappingState.UNMAPPED,
           autoMapped: mapping.source.auto_mapped,
@@ -128,7 +130,9 @@ export class GenericMappingComponent implements OnInit {
       this.mappings = new MatTableDataSource(mappings);
       this.mappings.filterPredicate = this.searchByText;
       this.setupFyleQboMappingFormArray(mappings);
-      if (!this.form) {
+
+      // Reinitialize form when source type changes or when the component is loaded for first time
+      if ((this.form && this.form.value.sourceUpdated) || !this.form) {
         this.setupForm();
       }
 
@@ -166,7 +170,16 @@ export class GenericMappingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getMappingsAndSetupPage();
+    // Watch for changes in route, since this component is used for all mapping types
+    this.route.params.subscribe(() => {
+      this.isLoading = true;
+
+      // If source type is changed, reinitialize the form by maintaining sourceUpdated flag
+      if (this.form) {
+        this.form.controls.sourceUpdated.patchValue(true);
+      }
+      this.getMappingsAndSetupPage();
+    });
   }
 
 }

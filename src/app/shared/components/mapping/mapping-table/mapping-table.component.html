@@ -15,7 +15,7 @@
     </th>
     <td mat-cell *matCellDef="let element">
       <mat-form-field floatLabel="always" appearance="outline" class="mapping-table--form-field">
-        <mat-select placeholder="Select Employee" [value]="mappingForm[element.index].value.destination" (closed)="helperService.clearSearchText(mappingForm[element.index])">
+        <mat-select placeholder="Select {{ this.destinationType | titlecase | snakeCaseToSpaceCase }}" [value]="mappingForm[element.index].value.destination" (closed)="helperService.clearSearchText(mappingForm[element.index])">
           <app-simple-search-select [form]="mappingForm[element.index]"></app-simple-search-select>
 
           <mat-option *ngFor="let option of qboData | search : mappingForm[element.index].value.searchOption" [ngClass]="{'search-zero-state': option && option.value === 'No result found'}" [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="saveMapping(element, option, mappingForm[element.index]);" [value]="option.value">
