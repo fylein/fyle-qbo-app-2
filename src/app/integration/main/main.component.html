@@ -18,7 +18,7 @@
         <div *ngIf="module.isActive && (!module.childPages.length || !module.isExpanded)" class="side-nav-bar--active-tag-module"></div>
         <div fxLayout="row" [ngClass]="[module.childPages.length ? 'side-nav-bar--module-block-content-expandable' : 'side-nav-bar--module-block-content']">
           <img height="22px" width="22px" src="{{ module.isActive ? module.iconPath + '-active.svg' :  module.iconPath + '.svg' }}">
-          <h4 class="side-nav-bar--module-block-text side-nav-bar--text-properties">{{ module.name }}</h4>
+          <h4 class="side-nav-bar--module-block-text side-nav-bar--text-properties capitalize">{{ module.name }}</h4>
           <img *ngIf="module.childPages.length && !module.isActive" height="22px" width="22px"
             src='{{ "assets/images/svgs/actions/arrow-mark-" + (module.isExpanded ? "up" : "down") + ".svg"}}'>
           <img *ngIf="module.childPages.length && module.isActive" height="22px" width="22px"
@@ -30,7 +30,7 @@
           <div *ngIf="childPage.isActive && module.isExpanded" class="side-nav-bar--active-tag-module"></div>
           <div *ngIf="module.isExpanded" fxLayout="row" class="side-nav-bar--module-block-content single-line-text pointer"
             [ngClass]="[childPage.isActive ? 'side-nav-bar--active-child': '', childPage.isActive ? 'side-nav-bar--active-module-text': '']" (click)="navigate(childPage)">
-            <h4 class="side-nav-bar--module-block-text-inner side-nav-bar--text-properties"> {{ childPage.name }}</h4>
+            <h4 class="side-nav-bar--module-block-text-inner side-nav-bar--text-properties capitalize"> {{ childPage.name | titlecase | snakeCaseToSpaceCase }}</h4>
           </div>
         </div>
       </div>

@@ -1,1 +1,17 @@
-<p>generic-mapping works!</p>
+<div class="mapping">
+  <app-mapping-header-section *ngIf="!isLoading" [mappingStats]="mappingStats" [totalCardActive]="totalCardActive" [sourceType]="sourceType" (mappingCardUpdateHandler)="mappingCardUpdateHandler($event)"></app-mapping-header-section>
+
+  <div *ngIf="!isLoading" [formGroup]="form" class="mapping--core-section">
+    <div class="mapping--core-section-content">
+      <app-mapping-filter [form]="form" [searchTerm]="(sourceType | titlecase | snakeCaseToSpaceCase) + ' name'" (mappingFilterUpdateHandler)="getMappings()"></app-mapping-filter>
+
+      <div class="mapping--table">
+        <app-mapping-table [mappings]="mappings" [sourceType]="mappingSetting.source_field" [destinationType]="mappingSetting.destination_field" [qboData]="qboData" [mappingForm]="mappingForm" (mappingSaveHandler)="save($event)"></app-mapping-table>
+
+        <app-zero-state-with-illustration [page]="'mapping'" [form]="form" [data]="mappings" [searchTerm]="(sourceType | titlecase | snakeCaseToSpaceCase) + ' name'"></app-zero-state-with-illustration>
+      </div>
+
+      <app-paginator *ngIf="mappings.filteredData.length" [totalCount]="totalCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getMappings($event)"></app-paginator>
+    </div>
+  </div>
+</div>

@@ -11,3 +11,10 @@ export type MappingSetting = {
   is_custom: boolean;
   source_placeholder: string | null
 }
+
+export type MappingSettingResponse = {
+  count: number;
+  next: string;
+  previous: string;
+  results: MappingSetting[];
+};

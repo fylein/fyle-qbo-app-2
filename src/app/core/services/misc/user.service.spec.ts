@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { UserService } from './user.service';
+
 import { MinimalUser } from '../../models/db/user.model';
+import { UserService } from './user.service';
 
 describe('UserService', () => {
   let service: UserService;

@@ -51,12 +51,12 @@ export class ExportLogChildDialogComponent implements OnInit {
         category: expense.category,
         expenseID: expense.expense_number
       });
-
-      this.expenses = new MatTableDataSource(expenses);
-      this.expenses.filterPredicate = this.searchByText;
-
-      this.isLoading = false;
     });
+
+    this.expenses = new MatTableDataSource(expenses);
+    this.expenses.filterPredicate = this.searchByText;
+
+    this.isLoading = false;
   }
 
   private searchByText(expense: ExpenseList, filterText: string) {

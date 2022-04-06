@@ -115,17 +115,6 @@
   &--field {
     background: #FAFCFF;
   }
-
-  &--search-zero-state {
-    height: 100px !important;
-    &:hover {
-      cursor: default;
-    }
-  }
-
-  &--search-zero-state-text {
-    font-style: italic;
-  }
 }
 
 :host {

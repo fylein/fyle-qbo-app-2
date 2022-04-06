@@ -81,3 +81,9 @@ export enum FyleReferenceType {
   PAYMENT = 'settlement_id',
   EXPENSE = 'expense_id'
 }
+
+export enum MappingState {
+  MAPPED = 'MAPPED',
+  UNMAPPED = 'UNMAPPED',
+  ALL = 'ALL'
+}

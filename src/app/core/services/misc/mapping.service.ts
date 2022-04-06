@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { Cacheable } from 'ts-cacheable';
 import { DestinationAttribute, GroupedDestinationAttribute } from '../../models/db/destination-attribute.model';
+import { EmployeeMapping, EmployeeMappingPost, EmployeeMappingsResponse } from '../../models/db/employee-mapping.model';
+import { MappingSettingResponse } from '../../models/db/mapping-setting.model';
+import { MappingPost, MappingResponse, MappingStats } from '../../models/db/mapping.model';
+import { MappingState } from '../../models/enum/enum.model';
 import { ExpenseField } from '../../models/misc/expense-field.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
@@ -52,5 +56,65 @@ export class MappingService {
   @Cacheable()
   getFyleExpenseFields(): Observable<ExpenseField[]> {
     return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expense_fields/`, {});
+  }
+
+  getMappings(mappingState: MappingState, allAlphabets: boolean, limit: number, offset: number, alphabetsFilter: string[], sourceType: string, destinationType: string): Observable<MappingResponse> {
+    return this.apiService.get(
+      `/workspaces/${this.workspaceId}/mappings/`,
+      {
+        limit,
+        offset,
+        all_alphabets: allAlphabets,
+        mapping_state: mappingState,
+        alphabets_filter: alphabetsFilter.length ? alphabetsFilter : null,
+        source_type: sourceType,
+        destination_type: destinationType,
+        table_dimension: 2
+      }
+    );
+  }
+
+  postMapping(mapping: MappingPost): Observable<EmployeeMapping> {
+    return this.apiService.post(`/workspaces/${this.workspaceId}/mappings/`, mapping);
+  }
+
+  getEmployeeMappings(mappingState: MappingState, allAlphabets: boolean, limit: number, offset: number, alphabetsFilter: string[]): Observable<EmployeeMappingsResponse> {
+    return this.apiService.get(
+      `/workspaces/${this.workspaceId}/mappings/employee/`,
+      {
+        limit,
+        offset,
+        all_alphabets: allAlphabets,
+        mapping_state: mappingState,
+        alphabets_filter: alphabetsFilter.length ? alphabetsFilter : null
+      }
+    );
+  }
+
+  postEmployeeMapping(employeeMapping: EmployeeMappingPost): Observable<EmployeeMapping> {
+    return this.apiService.post(`/workspaces/${this.workspaceId}/mappings/employee/`, employeeMapping);
+  }
+
+  triggerAutoMapEmployees(): Observable<{}> {
+    return this.apiService.post(`/workspaces/${this.workspaceId}/mappings/auto_map_employees/trigger/`, {});
+  }
+
+  @Cacheable()
+  getQBOEmployees(): Observable<DestinationAttribute[]> {
+    return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/employees/`, {});
+  }
+
+  @Cacheable()
+  getQBOVendors(): Observable<DestinationAttribute[]> {
+    return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/vendors/`, {});
+  }
+
+  getMappingStats(sourceType: string): Observable<MappingStats> {
+    return this.apiService.get(`/workspaces/${this.workspaceId}/mappings/stats/`, { source_type: sourceType});
+  }
+
+  // TODO: cache this safely later
+  getMappingSettings(): Observable<MappingSettingResponse> {
+    return this.apiService.get(`/workspaces/${this.workspaceId}/mappings/settings/`, {});
   }
 }

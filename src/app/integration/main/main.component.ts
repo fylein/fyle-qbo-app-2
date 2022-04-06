@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
+import { MappingSetting, MappingSettingResponse } from 'src/app/core/models/db/mapping-setting.model';
+import { EmployeeFieldMapping } from 'src/app/core/models/enum/enum.model';
 import { DashboardModule, DashboardModuleChild } from 'src/app/core/models/misc/dashboard-module.model';
+import { MappingService } from 'src/app/core/services/misc/mapping.service';
 
 @Component({
   selector: 'app-main',
@@ -78,7 +81,8 @@ export class MainComponent implements OnInit {
   ];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private mappingService: MappingService
   ) { }
 
   navigate(module: DashboardModule | DashboardModuleChild): void {
@@ -114,36 +118,50 @@ export class MainComponent implements OnInit {
 
   private markModuleActive(path: string): void {
     const route = path.split('/workspaces/main/')[1];
+    if (typeof(route) === 'undefined') {
+      this.router.navigate(['/workspaces/main/dashboard']);
+    } else {
+      // Filter module list to find the module that matches the route and mark it as active
+      this.modules = this.modules.map(m => {
+        if (m.childPages) {
+          m.childPages.forEach(c => {
+            if (c.route === route) {
+              c.isActive = true;
+              m.isActive = true;
+              m.isExpanded = true;
+            }
+          });
+        }
 
-    // Filter module list to find the module that matches the route and mark it as active
-    this.modules = this.modules.map(m => {
-      if (m.childPages) {
-        m.childPages.forEach(c => {
-          if (c.route === route) {
-            c.isActive = true;
-            m.isActive = true;
-            m.isExpanded = true;
-          }
-        });
-      }
+        if (m.route === route) {
+          m.isActive = true;
+        }
 
-      if (m.route === route) {
-        m.isActive = true;
-      }
+        return m;
+      });
+    }
 
-      return m;
-    });
   }
 
   private setRouteWatcher(): void {
+    this.mappingService.getMappingSettings().subscribe((mappingSettingResponse: MappingSettingResponse) => {
+      mappingSettingResponse.results.forEach((mappingSetting: MappingSetting) => {
+        if (mappingSetting.source_field !== EmployeeFieldMapping.EMPLOYEE && mappingSetting.source_field !== 'CATEGORY') {
+          this.modules[2].childPages.push({
+            name: `${mappingSetting.source_field} Mapping`,
+            route: `mapping/${mappingSetting.source_field.toLowerCase()}`,
+            isActive: false
+          });
+        }
+      });
+      this.markModuleActive(this.router.url);
+      this.isLoading = false;
+    });
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationStart) {
-        this.markModuleActive(val.url)
+        this.markModuleActive(val.url);
       }
     });
-
-    this.markModuleActive(this.router.url);
-    this.isLoading = false;
   }
 
   ngOnInit(): void {
