@@ -45,26 +45,8 @@ export class EmployeeMappingComponent implements OnInit {
     private workspaceService: WorkspaceService
   ) { }
 
-  addAllFilterHandler(): void {
-    this.form.controls.filterOption.patchValue(this.filterOptions.concat());
-
-    this.getMappings();
-  }
-
   mappingCardUpdateHandler(totalCardActive: boolean): void {
     this.totalCardActive = totalCardActive;
-
-    this.getMappings();
-  }
-
-  filterOptionUpdateHandler(alphabet: string): void {
-    const index = this.form.value.filterOption.indexOf(alphabet);
-
-    if (index > -1) {
-      this.form.value.filterOption.splice(index, 1);
-    } else {
-      this.form.value.filterOption.push(alphabet);
-    }
 
     this.getMappings();
   }
