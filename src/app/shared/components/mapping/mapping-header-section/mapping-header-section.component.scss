@@ -6,7 +6,7 @@
   &--card {
     margin-left: 24px;
     height: 84px;
-    width: 166px;
+    min-width: 166px;
     background: linear-gradient(112.47deg, rgba(255, 255, 255, 0.9) 1.65%, rgba(255, 255, 255, 0.24) 100%);
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.02), inset 3px 3px 6px rgba(255, 255, 255, 0.6);
@@ -19,8 +19,8 @@
 
   &--card-active-icon {
     position: relative;
-    left: 149px;
-    bottom: 7px;
+    top: -8px;
+    right: -8px;
   }
 
   &--card-inactive {
@@ -28,7 +28,7 @@
   }
 
   &--card-content-section {
-    width: 90px;
+    min-width: 90px;
     height: 58px;
     padding: 16px 60px 10px 16px;
   }
