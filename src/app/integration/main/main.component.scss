@@ -3,8 +3,8 @@
   height: 100%;
   padding-top: 17px;
   position: fixed;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-x: clip;
+  overflow-y: initial;
 
   &--logo-header-section {
     background-color: #FFFFFF;

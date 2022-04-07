@@ -46,15 +46,5 @@
     <tr class="export-log-child-dialog--row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <!-- Zero state -->
-  <div *ngIf="!expenses.filteredData.length" fxLayout="column" fxLayoutAlign="center center">
-    <img class="export-log-child-dialog--zero-state-img" src="assets/images/pngs/zero-state/export-log.png">
-    <h4 class="export-log-child-dialog--zero-state-text align-center">
-      Sorry, no results found!
-    </h4>
-    <h5 class="export-log-child-dialog--zero-state-text-small align-center">
-      Looks like your search term does not match any Expense ID
-    </h5>
-  </div>
-  <!-- Zero state -->
+  <app-zero-state-with-illustration [page]="'export_log'" [form]="form" [data]="expenses" [searchTerm]="'Expense ID'"></app-zero-state-with-illustration>
 </div>

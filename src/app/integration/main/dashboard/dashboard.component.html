@@ -1,1 +1,45 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+  <!-- TODO -->
+  <app-dashboard-header-section [name]="'Ashwin'"></app-dashboard-header-section>
+
+  <div class="export">
+    <div class="export--core-section">
+      <div class="export--content-section">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div fxLayout="row" fxLayoutAlign="space-between start">
+            <div *ngIf="!zeroState" class="export--arrow-section">
+              <img src="assets/images/svgs/actions/arrow-up.svg" />
+            </div>
+            <div class="export--info-section">
+              <h3 *ngIf="!exportInProgress && !exportExpenses && zeroState">Sit back and relax!</h3>
+              <h3 *ngIf="!exportInProgress && exportExpenses">{{ expensesCount }} new expenses ready to export</h3>
+              <h3 *ngIf="exportInProgress">Exporting 1 of 20 expenses to your QBO account</h3>
+              <h3 *ngIf="!exportInProgress && failedExpensesCount">{{ failedExpensesCount }} expenses to export</h3>
+              <div class="export--info-text">
+                <h5 *ngIf="!exportInProgress && !exportExpenses && zeroState">No new expenses to export from the payment processing state in Fyle.</h5>
+                <h5 *ngIf="!exportInProgress && !exportExpenses && zeroState">Once you start processing payment for the expenses, they will be automatically available here to export.</h5>
+                <h5 *ngIf="!exportInProgress && exportExpenses">Click on <b>Export</b> to start exporting these expenses from Fyle to Quickbooks Online.</h5>
+                <h5 *ngIf="exportInProgress">This may take a few minutes. Please wait...</h5>
+                <div fxLayout="row">
+                  <h5 *ngIf="!exportInProgress && failedExpensesCount">0 new expenses, {{ failedExpensesCount }} previously failed expenses </h5>
+                  <img *ngIf="!exportInProgress && failedExpensesCount" src="assets/images/svgs/general/info.svg" class="export--info-icon" width="16px" height="16px" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div fxLayout="row" class="pointer" class="configuration--submit-btn" [ngClass]="!exportExpenses ? 'btn-disabled' : 'btn-enabled'" (click)="export()">
+            <h5 class="single-line-text" class="configuration--submit-btn-text">
+              Export
+            </h5>
+            <img src="assets/images/svgs/actions/arrow-mark-right.svg" class="configuration--submit-btn-arrow-text" />
+          </div>
+        </div>
+      </div>
+
+      <!-- TODO: Progress bar goes here -->
+
+    </div>
+  </div>
+</div>
+
+<app-zero-state-with-illustration [page]="'dashboard'"></app-zero-state-with-illustration>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard-header-section',
@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardHeaderSectionComponent implements OnInit {
 
+  @Input() name: string;
+
   constructor() { }
+
+  refreshQBODimensions(): void {
+    // TODO
+  }
 
   ngOnInit(): void {
   }
