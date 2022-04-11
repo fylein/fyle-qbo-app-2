@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Cacheable } from 'ts-cacheable';
+import { Cacheable, globalCacheBusterNotifier } from 'ts-cacheable';
 import { WorkspaceGeneralSetting } from '../../models/db/workspace-general-setting.model';
 import { Workspace } from '../../models/db/workspace.model';
 import { ApiService } from '../core/api.service';
@@ -42,6 +42,7 @@ export class WorkspaceService {
   }
 
   refreshFyleDimensions(): Observable<{}> {
+    globalCacheBusterNotifier.next();
     return this.apiService.post(`/workspaces/${this.getWorkspaceId()}/fyle/refresh_dimensions/`, {});
   }
 
@@ -49,6 +50,7 @@ export class WorkspaceService {
     return this.apiService.post(`/workspaces/${this.getWorkspaceId()}/qbo/refresh_dimensions/`, {});
   }
 
+  // TODO: Cache this call safely
   getWorkspaceGeneralSettings(): Observable<WorkspaceGeneralSetting> {
     return this.apiService.get(`/workspaces/${this.getWorkspaceId()}/settings/general/`, {});
   }

@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { forkJoin, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { globalCacheBusterNotifier } from 'ts-cacheable';
 import { QboConnectorService } from '../services/configuration/qbo-connector.service';
 import { WorkspaceService } from '../services/workspace/workspace.service';
 
@@ -37,9 +38,10 @@ export class WorkspacesGuard implements CanActivate {
         map(response => !!response),
         catchError(error => {
           // TODO: fix error message
-          if (error.status === 400 && (error.error.message === 'Quickbooks Online connection expired' || error.error.message === 'QBO Credentials not found in this workspace')) {
+          if (error.status === 400) {
             // TODO: redirect to dashboard if workspace is already onboarded
             // TODO: content
+            globalCacheBusterNotifier.next();
             this.snackBar.open('Quickbooks Online connection expired, please connect again', '', { duration: 7000 });
             return this.router.navigateByUrl(`workspaces/onboarding/qbo_connector`);
           }

@@ -1,1 +1,17 @@
-<p>employee-mapping works!</p>
+<div class="mapping">
+  <app-mapping-header-section *ngIf="!isLoading" [mappingStats]="mappingStats" [totalCardActive]="totalCardActive" [sourceType]="'employee'" [autoMapEmployee]="autoMapEmployee" (mappingCardUpdateHandler)="mappingCardUpdateHandler($event)"></app-mapping-header-section>
+
+  <div *ngIf="!isLoading" [formGroup]="form" class="mapping--core-section">
+    <div class="mapping--core-section-content">
+      <app-mapping-filter [form]="form" [searchTerm]="'Employee Email'" (mappingFilterUpdateHandler)="getMappings()"></app-mapping-filter>
+
+      <div class="mapping--table">
+        <app-mapping-table [mappings]="mappings" [sourceType]="'EMPLOYEE'" [destinationType]="employeeFieldMapping" [qboData]="qboData" [mappingForm]="mappingForm" (mappingSaveHandler)="save($event)"></app-mapping-table>
+
+        <app-zero-state-with-illustration [page]="'mapping'" [form]="form" [data]="mappings" [searchTerm]="'Employee Email'"></app-zero-state-with-illustration>
+      </div>
+
+      <app-paginator *ngIf="mappings.filteredData.length" [totalCount]="totalCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getMappings($event)"></app-paginator>
+    </div>
+  </div>
+</div>

@@ -63,7 +63,8 @@
                   "replace": "src/environments/environment.ts",
                   "with": "environment.localhost.ts"
                 }
-              ]
+              ],
+              "sourceMap": true
             },
             "docker": {
               "fileReplacements": [

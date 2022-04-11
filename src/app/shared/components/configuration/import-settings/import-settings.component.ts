@@ -16,6 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
 import { QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
 import { WindowService } from 'src/app/core/services/core/window.service';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 
 @Component({
   selector: 'app-import-settings',
@@ -80,47 +81,6 @@ export class ImportSettingsComponent implements OnInit {
     });
   }
 
-  private mandatorySourceFieldValidator(): ValidatorFn {
-    // Validate mandatory source field if import to fyle is enabled
-    return (control: AbstractControl): { [key: string]: object } | null => {
-      let sourceFieldNotMapped = false;
-
-      if (this.importSettingsForm) {
-        if (control.value && typeof control.value === 'boolean' && !control.parent?.value.source_field && !control.parent?.value.disable_import_to_fyle) {
-          sourceFieldNotMapped = true;
-        }
-      } else {
-        // return null if form isn't created
-        return null;
-      }
-
-      if (sourceFieldNotMapped) {
-        return {
-          forbiddenOption: { value: control.value }
-        };
-      } else {
-        // clear errors
-        control.parent?.get('import_to_fyle')?.setErrors(null);
-        return null;
-      }
-    };
-  }
-
-  private uniqueSourceMappingValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: object } | null => {
-      // Validate duplicate sources
-      if (this.importSettingsForm && control.value && !control.pristine) {
-        const existingSources = this.expenseFields.controls.map(field => field.value.source_field);
-
-        if (existingSources.includes(control.value)) {
-          return { duplicateSource: { value: control.value } };
-        }
-      }
-
-      return null;
-    };
-  }
-
   private updateTaxGroupVisibility(): void {
     this.qboConnectorService.getQBOCredentials().subscribe((qboCredentials: QBOCredentials) => {
       if (qboCredentials && qboCredentials.country !== 'US') {
@@ -138,9 +98,9 @@ export class ImportSettingsComponent implements OnInit {
     const chartOfAccountTypeFormArray = this.chartOfAccountTypesList.map((type) => this.createChartOfAccountField(type));
     const expenseFieldsFormArray = this.qboExpenseFields.map((field) => {
       return this.formBuilder.group({
-        source_field: [field.source_field, Validators.compose([this.mandatorySourceFieldValidator(), this.uniqueSourceMappingValidator()])],
+        source_field: [field.source_field, RxwebValidators.unique()],
         destination_field: [field.destination_field],
-        import_to_fyle: [field.import_to_fyle, this.mandatorySourceFieldValidator()],
+        import_to_fyle: [field.import_to_fyle],
         disable_import_to_fyle: [field.disable_import_to_fyle],
         source_placeholder: ['']
       })
@@ -193,8 +153,8 @@ export class ImportSettingsComponent implements OnInit {
     const expenseField = {
       source_field: sourceField,
       destination_field: destinationType,
-      import_to_fyle: true,
-      disable_import_to_fyle: true,
+      import_to_fyle: sourceField ? true : false,
+      disable_import_to_fyle: sourceField ? true : false,
       source_placeholder: source_placeholder
     };
 
