@@ -32,7 +32,27 @@ describe('ExportSettingModel', () => {
       defaultDebitCardAccount: new FormControl([null]),
       searchOption: new FormControl([])
     })
-    
-    expect(ExportSettingModel.constructPayload(exportSettingsForm)).toBeTruthy();
+    const exportSettingPayload = {
+      expense_group_settings: {
+        expense_state: exportSettingsForm.get('expenseState')?.value,
+        reimbursable_expense_group_fields: [exportSettingsForm.get('reimbursableExportGroup')?.value],
+        reimbursable_export_date_type: exportSettingsForm.get('reimbursableExportDate')?.value,
+        corporate_credit_card_expense_group_fields: [exportSettingsForm.get('creditCardExportGroup')?.value],
+        ccc_export_date_type: exportSettingsForm.get('creditCardExportDate')?.value
+      },
+      workspace_general_settings: {
+        reimbursable_expenses_object: exportSettingsForm.get('reimbursableExportType')?.value,
+        corporate_credit_card_expenses_object: exportSettingsForm.get('creditCardExportType')?.value
+      },
+      general_mappings: {
+        bank_account: exportSettingsForm.get('bankAccount')?.value ,
+        default_ccc_account: exportSettingsForm.get('defaultCCCAccount')?.value ,
+        accounts_payable: exportSettingsForm.get('accountsPayable')?.value ,
+        default_ccc_vendor: exportSettingsForm.get('defaultCreditCardVendor')?.value ,
+        qbo_expense_account: exportSettingsForm.get('qboExpenseAccount')?.value ,
+        default_debit_card_account: exportSettingsForm.get('defaultDebitCardAccount')?.value
+      }
+    };
+    expect(ExportSettingModel.constructPayload(exportSettingsForm)).toEqual(exportSettingPayload);
   });
   });

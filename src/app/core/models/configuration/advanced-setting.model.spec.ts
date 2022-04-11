@@ -20,11 +20,29 @@ describe('AdvancedSettingModel', () => {
       changeAccountingPeriod: new FormControl([10]),
       singleCreditLineJE: new FormControl([2]),
       autoCreateVendors: new FormControl(['dhaarani']),
-      exportSchedule: new FormControl([false]),
+      exportSchedule: new FormControl([true]),
       exportScheduleFrequency: new FormControl([null]),
       memoStructure: new FormControl(["sss"]),
       searchOption: new FormControl([])
     })
-    expect(AdvancedSettingModel.constructPayload(advancedSettingsForm)).toBeTruthy();
+
+    const advancedSettingPayload = {
+      workspace_general_settings: {
+        sync_fyle_to_qbo_payments: false,
+        sync_qbo_to_fyle_payments: false,
+        auto_create_destination_entity: advancedSettingsForm.get('autoCreateVendors')?.value,
+        je_single_credit_line: advancedSettingsForm.get('singleCreditLineJE')?.value,
+        change_accounting_period: advancedSettingsForm.get('changeAccountingPeriod')?.value,
+        memo_structure: advancedSettingsForm.get('memoStructure')?.value
+      },
+      general_mappings: {
+        bill_payment_account: advancedSettingsForm.get('billPaymentAccount')?.value
+      },
+      workspace_schedules: {
+        enabled: advancedSettingsForm.get('exportSchedule')?.value ? true : false,
+        interval_hours: advancedSettingsForm.get('exportScheduleFrequency')?.value ? advancedSettingsForm.get('exportScheduleFrequency')?.value : null
+      }
+    };
+    expect(AdvancedSettingModel.constructPayload(advancedSettingsForm)).toEqual(advancedSettingPayload);
   });
   });

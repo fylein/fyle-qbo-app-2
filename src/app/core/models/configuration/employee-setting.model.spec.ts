@@ -17,8 +17,13 @@ describe(' EmployeeSettingModel', () => {
       employeeMapping: new FormControl([true]),
       autoMapEmployee: new FormControl(["dhaarani"]),
     })
-    
-    expect( EmployeeSettingModel.constructPayload(employeeSettingsForm)).toBeTruthy();
+    const employeeSettingPayload= {
+      workspace_general_settings: {
+        employee_field_mapping: employeeSettingsForm.get('employeeMapping')?.value,
+        auto_map_employees: employeeSettingsForm.get('autoMapEmployee')?.value
+      }
+    };
+    expect( EmployeeSettingModel.constructPayload(employeeSettingsForm)).toEqual(employeeSettingPayload);
    
   });
   });
