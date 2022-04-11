@@ -14,7 +14,7 @@ describe('AdvancedSettingModel', () => {
   });
 
   it('Should return AdvancedSettingModel[]', () => {
-    let advancedSettingsForm= new FormGroup({
+    const advancedSettingsForm= new FormGroup({
       paymentSync: new FormControl(true),
       billPaymentAccount: new FormControl({id:'1',name:'Fyle'}),
       changeAccountingPeriod: new FormControl(true),
@@ -22,7 +22,7 @@ describe('AdvancedSettingModel', () => {
       autoCreateVendors: new FormControl(true),
       exportSchedule: new FormControl(true),
       exportScheduleFrequency: new FormControl(10),
-      memoStructure: new FormControl(["Fyle"]),
+      memoStructure: new FormControl(['Fyle']),
       searchOption: new FormControl([])
     })
 

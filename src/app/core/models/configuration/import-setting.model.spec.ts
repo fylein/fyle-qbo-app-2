@@ -22,7 +22,7 @@ describe('ImportSettingModel', () => {
       is_custom: true,
       source_placeholder: 'Fyle'
     }]
-    let importSettingsForm= new FormGroup({
+    const importSettingsForm= new FormGroup({
       chartOfAccount: new FormControl(true),
       chartOfAccountTypes: new FormControl([{enabled: true, name: 'expence'}]),
       expenseFields: new FormControl(expence_Field),

@@ -14,7 +14,7 @@ describe(' EmployeeSettingModel', () => {
   });
 
   it('Should return EmployeeSettingModel[]', () => {
-    let employeeSettingsForm= new FormGroup({
+    const employeeSettingsForm= new FormGroup({
       employeeMapping: new FormControl('EMPLOYEE'),
       autoMapEmployee: new FormControl('EMPLOYEE_CODE'),
     })
@@ -24,6 +24,6 @@ describe(' EmployeeSettingModel', () => {
         auto_map_employees: AutoMapEmployee.EMPLOYEE_CODE
       }
     };
-    expect( EmployeeSettingModel.constructPayload(employeeSettingsForm)).toEqual(employeeSettingPayload);
+    expect(EmployeeSettingModel.constructPayload(employeeSettingsForm)).toEqual(employeeSettingPayload);
   });
 });

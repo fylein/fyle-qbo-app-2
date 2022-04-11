@@ -15,7 +15,7 @@ describe('ExportSettingModel', () => {
   });
 
   it('Should return ExportSettingModel[]', () => {
-    let exportSettingsForm= new FormGroup({
+    const exportSettingsForm= new FormGroup({
       expenseState: new FormControl('PAID'),
       reimbursableExpense: new FormControl(true),
       reimbursableExportType: new FormControl('BILL'),
