@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ImportSettingModel } from "./import-setting.model";
+import { MappingDestinationField, MappingSourceField } from '../enum/enum.model';
+import { ImportSettingModel, ImportSettingPost } from "./import-setting.model";
 
 describe('ImportSettingModel', () => {
   let component: ImportSettingModel;
@@ -14,25 +15,38 @@ describe('ImportSettingModel', () => {
   });
 
   it('Should return ImportSettingModel[]', () => {
+    const expence_Field = [{
+      source_field: 'PROJECT',
+      destination_field: 'CLASS',
+      import_to_fyle: true,
+      is_custom: true,
+      source_placeholder: 'Fyle'
+    }]
     let importSettingsForm= new FormGroup({
-      chartOfAccount: new FormControl(['sample']),
-      chartOfAccountTypes: new FormControl(['expence']),
-      expenseFields: new FormControl(['expence']),
-      taxCode: new FormControl(['00']),
-      defaultTaxCode:new FormControl(['00']),
+      chartOfAccount: new FormControl(true),
+      chartOfAccountTypes: new FormControl([{enabled: true, name: 'expence'}]),
+      expenseFields: new FormControl(expence_Field),
+      taxCode: new FormControl(true),
+      defaultTaxCode:new FormControl({id:'1',name:'Fyle'}),
       searchOption: new FormControl([])
     })
-    const employeeSettingPayload= {
+    const employeeSettingPayload: ImportSettingPost = {
       workspace_general_settings: {
-        import_categories: importSettingsForm.get('chartOfAccount')?.value,
-        charts_of_accounts: ImportSettingModel.formatChartOfAccounts(importSettingsForm.get('chartOfAccountTypes')?.value),
-        import_tax_codes: importSettingsForm.get('taxCode')?.value
+        import_categories: true,
+        charts_of_accounts: ImportSettingModel.formatChartOfAccounts([{enabled: true, name: 'expence'}]),
+        import_tax_codes: true
       },
       general_mappings: {
-        default_tax_code: importSettingsForm.get('defaultTaxCode')?.value
+        default_tax_code: {id:'1',name:'Fyle'}
       },
-      mapping_settings: ImportSettingModel.formatMappingSettings(importSettingsForm.get('expenseFields')?.value)
+      mapping_settings: [{
+        source_field: MappingSourceField.PROJECT,
+        destination_field: MappingDestinationField.CLASS,
+        import_to_fyle: true,
+        is_custom: false,
+        source_placeholder: 'Fyle'
+      }]
     };
     expect(ImportSettingModel.constructPayload(importSettingsForm)).toEqual(employeeSettingPayload);
   });
-  });
+});

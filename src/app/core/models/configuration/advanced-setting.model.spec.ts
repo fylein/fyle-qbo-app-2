@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup} from '@angular/forms';
-import { AdvancedSettingModel} from "./advanced-setting.model";
+import { AdvancedSettingModel, AdvancedSettingPost} from "./advanced-setting.model";
 
 describe('AdvancedSettingModel', () => {
   let component: AdvancedSettingModel;
@@ -15,34 +15,34 @@ describe('AdvancedSettingModel', () => {
 
   it('Should return AdvancedSettingModel[]', () => {
     let advancedSettingsForm= new FormGroup({
-      paymentSync: new FormControl([true]),
-      billPaymentAccount: new FormControl([1]),
-      changeAccountingPeriod: new FormControl([10]),
-      singleCreditLineJE: new FormControl([2]),
-      autoCreateVendors: new FormControl(['dhaarani']),
-      exportSchedule: new FormControl([true]),
-      exportScheduleFrequency: new FormControl([null]),
-      memoStructure: new FormControl(["sss"]),
+      paymentSync: new FormControl(true),
+      billPaymentAccount: new FormControl({id:'1',name:'Fyle'}),
+      changeAccountingPeriod: new FormControl(true),
+      singleCreditLineJE: new FormControl(true),
+      autoCreateVendors: new FormControl(true),
+      exportSchedule: new FormControl(true),
+      exportScheduleFrequency: new FormControl(10),
+      memoStructure: new FormControl(["Fyle"]),
       searchOption: new FormControl([])
     })
 
-    const advancedSettingPayload = {
+    const advancedSettingPayload:AdvancedSettingPost = {
       workspace_general_settings: {
         sync_fyle_to_qbo_payments: false,
         sync_qbo_to_fyle_payments: false,
-        auto_create_destination_entity: advancedSettingsForm.get('autoCreateVendors')?.value,
-        je_single_credit_line: advancedSettingsForm.get('singleCreditLineJE')?.value,
-        change_accounting_period: advancedSettingsForm.get('changeAccountingPeriod')?.value,
-        memo_structure: advancedSettingsForm.get('memoStructure')?.value
+        auto_create_destination_entity: true,
+        je_single_credit_line: true,
+        change_accounting_period: true,
+        memo_structure: ['Fyle']
       },
       general_mappings: {
-        bill_payment_account: advancedSettingsForm.get('billPaymentAccount')?.value
+        bill_payment_account: {id:'1',name:'Fyle'}
       },
       workspace_schedules: {
-        enabled: advancedSettingsForm.get('exportSchedule')?.value ? true : false,
-        interval_hours: advancedSettingsForm.get('exportScheduleFrequency')?.value ? advancedSettingsForm.get('exportScheduleFrequency')?.value : null
+        enabled: true,
+        interval_hours: 10
       }
     };
     expect(AdvancedSettingModel.constructPayload(advancedSettingsForm)).toEqual(advancedSettingPayload);
-  });
+    });
   });

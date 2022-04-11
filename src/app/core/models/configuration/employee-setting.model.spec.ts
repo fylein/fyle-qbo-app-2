@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup} from '@angular/forms';
-import { EmployeeSettingModel } from './employee-setting.model'
+import { AutoMapEmployee, EmployeeFieldMapping } from '../enum/enum.model';
+import { EmployeeSettingModel, EmployeeSettingPost } from './employee-setting.model'
 describe(' EmployeeSettingModel', () => {
   let component: EmployeeSettingModel;
 
@@ -14,16 +15,15 @@ describe(' EmployeeSettingModel', () => {
 
   it('Should return EmployeeSettingModel[]', () => {
     let employeeSettingsForm= new FormGroup({
-      employeeMapping: new FormControl([true]),
-      autoMapEmployee: new FormControl(["dhaarani"]),
+      employeeMapping: new FormControl('EMPLOYEE'),
+      autoMapEmployee: new FormControl('EMPLOYEE_CODE'),
     })
-    const employeeSettingPayload= {
+    const employeeSettingPayload: EmployeeSettingPost= {
       workspace_general_settings: {
-        employee_field_mapping: employeeSettingsForm.get('employeeMapping')?.value,
-        auto_map_employees: employeeSettingsForm.get('autoMapEmployee')?.value
+        employee_field_mapping: EmployeeFieldMapping.EMPLOYEE,
+        auto_map_employees: AutoMapEmployee.EMPLOYEE_CODE
       }
     };
     expect( EmployeeSettingModel.constructPayload(employeeSettingsForm)).toEqual(employeeSettingPayload);
-   
   });
-  });
+});

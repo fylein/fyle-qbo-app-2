@@ -9,6 +9,6 @@ describe('TrimCharacterPipe', () => {
   it('TrimCharacterPipe Transform function check',() => {
     const name = 'FyleIntegration'
     const pipe = new TrimCharacterPipe();
-    expect(pipe.transform(name,4)).toEqual('Fyle...')
+    expect(pipe.transform(name, 4)).toEqual('Fyle...')
   })
 });
