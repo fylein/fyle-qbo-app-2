@@ -87,3 +87,9 @@ export enum MappingState {
   UNMAPPED = 'UNMAPPED',
   ALL = 'ALL'
 }
+
+export enum ErrorType {
+  EMPLOYEE_MAPPING = 'EMPLOYEE_MAPPING',
+  CATEGORY_MAPPING = 'CATEGORY_MAPPING',
+  QBO_ERROR = 'QBO_ERROR'
+}

@@ -1,4 +1,4 @@
-<div class="dashboard">
+<div class="dashboard" *ngIf="!isLoading">
   <!-- TODO -->
   <app-dashboard-header-section [name]="'Ashwin'"></app-dashboard-header-section>
 
@@ -7,27 +7,27 @@
       <div class="export--content-section">
         <div fxLayout="row" fxLayoutAlign="space-between center">
           <div fxLayout="row" fxLayoutAlign="space-between start">
-            <div *ngIf="!zeroState" class="export--arrow-section">
+            <div *ngIf="!exportInProgress && exportableExpenseGroupIds.length" class="export--arrow-section">
               <img src="assets/images/svgs/actions/arrow-up.svg" />
             </div>
             <div class="export--info-section">
-              <h3 *ngIf="!exportInProgress && !exportExpenses && zeroState">Sit back and relax!</h3>
-              <h3 *ngIf="!exportInProgress && exportExpenses">{{ expensesCount }} new expenses ready to export</h3>
-              <h3 *ngIf="exportInProgress">Exporting 1 of 20 expenses to your QBO account</h3>
-              <h3 *ngIf="!exportInProgress && failedExpensesCount">{{ failedExpensesCount }} expenses to export</h3>
+              <h3 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">Sit back and relax!</h3>
+              <h3 *ngIf="!exportInProgress && exportableExpenseGroupIds.length && !failedExpenseGroupCount">{{ exportableExpenseGroupIds.length }} new expenses ready to export</h3>
+              <h3 *ngIf="exportInProgress">Exporting {{ processedCount }} of {{ exportableExpenseGroupIds.length }} expenses to your QBO account</h3>
+              <h3 *ngIf="!exportInProgress && failedExpenseGroupCount">{{ failedExpenseGroupCount }} expenses to export</h3>
               <div class="export--info-text">
-                <h5 *ngIf="!exportInProgress && !exportExpenses && zeroState">No new expenses to export from the payment processing state in Fyle.</h5>
-                <h5 *ngIf="!exportInProgress && !exportExpenses && zeroState">Once you start processing payment for the expenses, they will be automatically available here to export.</h5>
-                <h5 *ngIf="!exportInProgress && exportExpenses">Click on <b>Export</b> to start exporting these expenses from Fyle to Quickbooks Online.</h5>
+                <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">No new expenses to export from the payment processing state in Fyle.</h5>
+                <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">Once you start processing payment for the expenses, they will be automatically available here to export.</h5>
+                <h5 *ngIf="!exportInProgress && exportableExpenseGroupIds.length">Click on <b>Export</b> to start exporting these expenses from Fyle to Quickbooks Online.</h5>
                 <h5 *ngIf="exportInProgress">This may take a few minutes. Please wait...</h5>
                 <div fxLayout="row">
-                  <h5 *ngIf="!exportInProgress && failedExpensesCount">0 new expenses, {{ failedExpensesCount }} previously failed expenses </h5>
-                  <img *ngIf="!exportInProgress && failedExpensesCount" src="assets/images/svgs/general/info.svg" class="export--info-icon" width="16px" height="16px" />
+                  <h5 *ngIf="!exportInProgress && failedExpenseGroupCount">0 new expenses, {{ failedExpenseGroupCount }} previously failed expenses </h5>
+                  <img *ngIf="!exportInProgress && failedExpenseGroupCount" src="assets/images/svgs/general/info.svg" class="export--info-icon" width="16px" height="16px" />
                 </div>
               </div>
             </div>
           </div>
-          <div fxLayout="row" class="pointer" class="configuration--submit-btn" [ngClass]="!exportExpenses ? 'btn-disabled' : 'btn-enabled'" (click)="export()">
+          <div fxLayout="row" class="pointer" class="configuration--submit-btn" [ngClass]="!exportableExpenseGroupIds.length || exportInProgress ? 'btn-disabled' : 'btn-enabled'" (click)="export()">
             <h5 class="single-line-text" class="configuration--submit-btn-text">
               Export
             </h5>
@@ -35,11 +35,113 @@
           </div>
         </div>
       </div>
-
-      <!-- TODO: Progress bar goes here -->
-
+      <mat-progress-bar *ngIf="exportInProgress" mode="determinate" [value]="exportProgressPercentage"></mat-progress-bar>
     </div>
   </div>
+
+  <div fxLayout="row" fxLayoutAlign="start start">
+    <div class="past-export" *ngIf="pastExport">
+      <div class="past-export--section">
+        <div class="past-export--content-section">
+          <h2 class="past-export--header">
+            Your last export
+          </h2>
+          <p class="past-export--header-divider"></p>
+          <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">
+            <p class="past-export--detail">Date & Time of export</p>
+            <p class="single-line-text">{{ pastExport.exported_at | date: 'dd MMM, yyyy' }} at {{ pastExport.exported_at | date: 'HH:mm' }}</p>
+          </div>
+          <p class="past-export--divider"></p>
+
+          <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">
+            <p class="past-export--detail">Mode of export</p>
+            <p>{{ pastExport.mode }}</p>
+          </div>
+          <p class="past-export--divider"></p>
+
+          <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">
+            <p class="past-export--detail">Total expenses</p>
+            <p>{{ pastExport.total_expenses }}</p>
+          </div>
+          <p class="past-export--divider"></p>
+
+          <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">
+            <p class="past-export--detail">Successful Expenses</p>
+            <p class="past-export--view-expense">{{ pastExport.successful_expenses }}</p>
+            <p class="past-export--view-expense-text pointer">View</p>
+          </div>
+          <p class="past-export--divider"></p>
+
+          <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">
+            <p class="past-export--detail">Failed Expenses</p>
+            <p class="past-export--view-expense">{{ pastExport.failed_expenses }}</p>
+            <p class="past-export--view-expense-text pointer">View</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="errors">
+      <div class="errors--section" [ngClass]="{'errors--zero-state-section': !errors.EMPLOYEE_MAPPING.length && !errors.CATEGORY_MAPPING.length && !errors.QBO_ERROR.length}">
+        <p class="errors--header" fxLayout="row">
+          Errors
+          <img src="assets/images/svgs/general/info.svg" class="errors--info-icon" width="16px" height="16px" />
+        </p>
+        <p class="errors--header-divider"></p>
+
+        <div *ngIf="errors.EMPLOYEE_MAPPING.length || errors.CATEGORY_MAPPING.length" class="errors--integration-error-section">
+          <div class="errors--integration-error-contents">
+            <p>Integration Errors</p>
+            <h5 class="errors--integration-error-sub-header sub-text-color">Check and resolve these errors before trying to re-export them again.</h5>
+          </div>
+        </div>
+
+        <div *ngIf="errors.EMPLOYEE_MAPPING.length || errors.CATEGORY_MAPPING.length" class="errors--mapping-error-section">
+          <div *ngIf="errors.EMPLOYEE_MAPPING.length" class="errors--mapping-error-contents" fxLayout="row" fxLayoutAlign="space-between center">
+            <p>Employee Mapping errors</p>
+            <div fxLayout="row" class="errors--resolve-btn configuration--submit-btn pointer">
+              <p class="single-line-text configuration--save-btn-text">
+                Resolve
+              </p>
+            </div>
+          </div>
+          <p class="errors--divider"></p>
+
+          <div *ngIf="errors.CATEGORY_MAPPING.length" class="errors--mapping-error-contents" fxLayout="row" fxLayoutAlign="space-between center">
+            <p>Category Mapping errors</p>
+            <div fxLayout="row" class="errors--resolve-btn configuration--submit-btn pointer">
+              <p class="single-line-text configuration--save-btn-text">
+                Resolve
+              </p>
+            </div>
+          </div>
+          <p class="errors--divider"></p>
+        </div>
+
+        <div *ngIf="errors.QBO_ERROR.length" class="errors--integration-error-section">
+          <div class="errors--integration-error-contents">
+            <p>Quickbooks Errors</p>
+            <h5 class="errors--integration-error-sub-header sub-text-color">Resolve these errors on your Quickbooks Account before trying to re-export them again.</h5>
+          </div>
+        </div>
+
+        <div *ngFor="let error of errors.QBO_ERROR">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="errors--qbo-error">
+            <div>
+              <p>{{ error.error_title }}</p>
+              <h5 class="errors--qbo-error-short-description sub-text-color">{{ error.error_detail }}</h5>
+            </div>
+            <div class="errors--view-expenses pointer">
+              <h5 class="errors--view-expenses-text">View Expenses</h5>
+            </div>
+          </div>
+        </div>
+
+        <app-zero-state-with-illustration *ngIf="!errors.EMPLOYEE_MAPPING.length && !errors.CATEGORY_MAPPING.length && !errors.QBO_ERROR.length" [page]="'dashboard_error'"></app-zero-state-with-illustration>
+      </div>
+    </div>
+  </div>
+
+  <app-zero-state-with-illustration *ngIf="zeroState" [page]="'dashboard'"></app-zero-state-with-illustration>
 </div>
 
-<app-zero-state-with-illustration [page]="'dashboard'"></app-zero-state-with-illustration>
