@@ -1,0 +1,108 @@
+.dashboard-resolve-mapping-dialog {
+  &--header-section {
+    padding: 32px 0px 24px 32px;
+  }
+
+  &--close-icon {
+    padding-right: 35px;
+  }
+
+  &--sub-header-text {
+    padding-top: 8px;
+  }
+
+  &--horizontal-separator {
+    border-top: 1px solid #F5F5F5;
+    width: 100%;
+    align-self: center;
+    padding-bottom: 28px;
+  }
+
+  &--table {
+    overflow: scroll;
+    height: 750px;
+    @media only screen and (max-width: 1440px) {
+      height: 570px;
+    }
+  }
+
+  &--view-expenses-section {
+    padding-right: 12px;
+  }
+
+  &--view-expenses {
+    width: 83px;
+    height: 42px;
+    background: #FFFFFF;
+    border: 1px solid #DFDFE2;
+    box-sizing: border-box;
+    border-radius: 4px;
+  }
+
+  &--view-expenses-text {
+    color: #2C304E;
+    padding: 12px 24px;
+  }
+
+  &--heading {
+    background: #F5F5F5;
+    border: 1px solid #DFDFE2;
+    border-radius: 4px;
+  }
+
+  &--row {
+    height: 70px;
+      &:hover {
+        background: #FAFCFF;
+      }
+  }
+
+  &--manually-mapped-row {
+    margin-left: 30px;
+  }
+
+  &--row-heading-fyle {
+    margin-left: 34px;
+  }
+
+  &--row-heading-qbo {
+    margin-left: 14px;
+  }
+
+  &--form-field {
+    width: 401px;
+    padding: 2px 0px 0px 0px;
+    @media only screen and (max-width: 1440px) {
+      padding: 2px 8px 0px 10px;
+      width: 228px;
+    }
+  }
+}
+
+
+th {
+  color: #161528;
+  font-weight: 500;
+}
+
+.mat-column-fyle {
+  flex: none;
+  width: 30%;
+}
+
+.mat-column-qbo {
+  flex: none;
+  width: 37%;
+}
+
+::ng-deep .mat-tooltip {
+  background: #2C304E;
+  border-radius: 2px;
+  white-space: nowrap;
+  color: #FFFFFF;
+
+  margin-right: 110px !important;
+  @media only screen and (max-width: 1440px) {
+    margin-right: 120px !important;
+  }
+}

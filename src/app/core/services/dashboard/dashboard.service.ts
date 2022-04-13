@@ -24,7 +24,7 @@ export class DashboardService {
   getExportableGroupsIds(): Observable<number[]> {
     // TODO: connect API
     return new Observable(observer => {
-      observer.next([27, 26, 28]);
+      observer.next([41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29]);
       observer.complete();
     });
   }

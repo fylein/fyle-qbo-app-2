@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { MappingSetting, MappingSettingResponse } from 'src/app/core/models/db/mapping-setting.model';
-import { EmployeeFieldMapping } from 'src/app/core/models/enum/enum.model';
+import { EmployeeFieldMapping, FyleField } from 'src/app/core/models/enum/enum.model';
 import { DashboardModule, DashboardModuleChild } from 'src/app/core/models/misc/dashboard-module.model';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 
@@ -146,7 +146,7 @@ export class MainComponent implements OnInit {
   private setRouteWatcher(): void {
     this.mappingService.getMappingSettings().subscribe((mappingSettingResponse: MappingSettingResponse) => {
       mappingSettingResponse.results.forEach((mappingSetting: MappingSetting) => {
-        if (mappingSetting.source_field !== EmployeeFieldMapping.EMPLOYEE && mappingSetting.source_field !== 'CATEGORY') {
+        if (mappingSetting.source_field !== EmployeeFieldMapping.EMPLOYEE && mappingSetting.source_field !== FyleField.CATEGORY) {
           this.modules[2].childPages.push({
             name: `${mappingSetting.source_field} Mapping`,
             route: `mapping/${mappingSetting.source_field.toLowerCase()}`,

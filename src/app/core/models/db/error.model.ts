@@ -18,5 +18,15 @@ export type Error = {
 export type GroupedErrors = {
   [ErrorType.EMPLOYEE_MAPPING]: Error[];
   [ErrorType.CATEGORY_MAPPING]: Error[];
-  [ErrorType.QBO_ERROR]: Error[];  
+  [ErrorType.QBO_ERROR]: Error[];
+}
+
+export type ErrorStat = {
+  resolvedCount: number;
+  totalCount: number;
+}
+
+export type GroupedErrorStat = {
+  [ErrorType.EMPLOYEE_MAPPING]: null | ErrorStat;
+  [ErrorType.CATEGORY_MAPPING]: null | ErrorStat;
 }

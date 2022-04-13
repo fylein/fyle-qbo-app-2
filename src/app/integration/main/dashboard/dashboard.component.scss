@@ -183,6 +183,18 @@
     padding: 20px 24px;
   }
 
+  &--resolved-stat {
+    padding-top: 4px;
+  }
+
+  &--resolved-icon {
+    padding-right: 6px;
+  }
+
+  &--resolve-btn-text {
+    padding-right: 4px;
+  }
+
   &--qbo-error-short-description {
     padding-top: 8px;
     font-size: 12px;
@@ -209,4 +221,12 @@ p {
 
 h2 {
   margin: 0;
+}
+
+::ng-deep .mat-tooltip {
+  background: #2C304E;
+  border-radius: 2px;
+  white-space: nowrap;
+  color: #FFFFFF;
+  min-width: 440px;
 }

@@ -110,6 +110,11 @@ table {
   color: #FFFFFF;
 }
 
+.dashboard-snackbar {
+  @extend .mapping-snackbar;
+  margin-right: 300px !important;
+}
+
 .mat-form-field-type-mat-select .mat-form-field-flex {
   height: 40px;
   font-size: 14px !important;
