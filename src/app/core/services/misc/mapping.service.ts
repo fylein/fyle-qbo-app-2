@@ -3,6 +3,7 @@ import { from, Observable } from 'rxjs';
 import { Cacheable } from 'ts-cacheable';
 import { DestinationAttribute, GroupedDestinationAttribute } from '../../models/db/destination-attribute.model';
 import { EmployeeMapping, EmployeeMappingPost, EmployeeMappingsResponse } from '../../models/db/employee-mapping.model';
+import { ExtendedExpenseAttributeResponse } from '../../models/db/expense-attribute.model';
 import { MappingSettingResponse } from '../../models/db/mapping-setting.model';
 import { MappingPost, MappingResponse, MappingStats } from '../../models/db/mapping.model';
 import { MappingState } from '../../models/enum/enum.model';
@@ -58,18 +59,17 @@ export class MappingService {
     return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expense_fields/`, {});
   }
 
-  getMappings(mappingState: MappingState, allAlphabets: boolean, limit: number, offset: number, alphabetsFilter: string[], sourceType: string, destinationType: string): Observable<MappingResponse> {
+  getMappings(mappingState: MappingState, allAlphabets: boolean, limit: number, offset: number, alphabetsFilter: string[], sourceType: string, destinationType: string): Observable<ExtendedExpenseAttributeResponse> {
     return this.apiService.get(
-      `/workspaces/${this.workspaceId}/mappings/`,
+      `/workspaces/${this.workspaceId}/mappings/expense_attributes/`,
       {
         limit,
         offset,
         all_alphabets: allAlphabets,
-        mapping_state: mappingState,
-        alphabets_filter: alphabetsFilter.length ? alphabetsFilter : null,
+        mapped: mappingState === MappingState.ALL ? MappingState.ALL : false,
+        mapping_source_alphabets: alphabetsFilter.length ? alphabetsFilter : null,
         source_type: sourceType,
-        destination_type: destinationType,
-        table_dimension: 2
+        destination_type: destinationType
       }
     );
   }

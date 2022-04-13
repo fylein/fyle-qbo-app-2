@@ -1,3 +1,5 @@
+import { Mapping } from "./mapping.model";
+
 export type ExpenseAttribute = {
   id: number;
   attribute_type: string;
@@ -23,4 +25,15 @@ export type ExpenseAttributeDetail = {
   department: string;
   department_code: string;
   employee_code: string;
+};
+
+export interface ExtendedExpenseAttribute extends ExpenseAttribute {
+  mappings: Mapping[];
+};
+
+export type ExtendedExpenseAttributeResponse = {
+  count: number;
+  next: string;
+  previous: string;
+  results: ExtendedExpenseAttribute[];
 };
