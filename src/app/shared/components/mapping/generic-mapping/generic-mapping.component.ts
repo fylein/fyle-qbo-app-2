@@ -45,6 +45,7 @@ export class GenericMappingComponent implements OnInit {
 
   mappingCardUpdateHandler(totalCardActive: boolean): void {
     this.totalCardActive = totalCardActive;
+    this.form.controls.sourceUpdated.patchValue(true);
 
     this.getMappings();
   }
