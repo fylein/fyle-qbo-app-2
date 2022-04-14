@@ -23,7 +23,6 @@ export class DashboardQboErrorDialogComponent implements OnInit {
   private setupPage(): void {
     const expenses: ExpenseList[] = [];
 
-    console.log(this.data)
     this.data.expense_group.expenses.forEach((expense: Expense) => {
       // TODO: add org_id to fyle url
       expenses.push({
@@ -37,7 +36,6 @@ export class DashboardQboErrorDialogComponent implements OnInit {
       });
     });
 
-    console.log(expenses)
     this.expenses = new MatTableDataSource(expenses);
   }
 

@@ -3,7 +3,7 @@ import { from, Observable } from 'rxjs';
 import { Error } from '../../models/db/error.model';
 import { PastExport } from '../../models/db/past-export.model';
 import { TaskGetParams, TaskResponse } from '../../models/db/task-log.model';
-import { ErrorType } from '../../models/enum/enum.model';
+import { ErrorType, TaskLogState, TaskLogType } from '../../models/enum/enum.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
 
@@ -176,7 +176,7 @@ export class DashboardService {
     });
   }
 
-  getAllTasks(status: string[], expenseGroupIds: number[] = [], taskType: string[] = []): Observable<TaskResponse> {
+  getAllTasks(status: TaskLogState[], expenseGroupIds: number[] = [], taskType: TaskLogType[] = []): Observable<TaskResponse> {
     const limit = 500;
     const allTasks: TaskResponse = {
       count: 0,
@@ -213,10 +213,13 @@ export class DashboardService {
       status
     };
 
-    if (expenseGroupIds && taskType) {
+    if (expenseGroupIds.length) {
       const expenseKey = 'expense_group_ids';
-      const typeKey = 'task_type';
       apiParams[expenseKey] = expenseGroupIds;
+    }
+
+    if (taskType) {
+      const typeKey = 'task_type';
       apiParams[typeKey] = taskType;
     }
 

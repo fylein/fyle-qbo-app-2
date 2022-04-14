@@ -1,6 +1,6 @@
 <div class="dashboard" *ngIf="!isLoading">
   <!-- TODO -->
-  <app-dashboard-header-section [name]="'Ashwin'"></app-dashboard-header-section>
+  <app-dashboard-header-section [name]="employeeName"></app-dashboard-header-section>
 
   <div class="export">
     <div class="export--core-section">
@@ -29,9 +29,10 @@
           </div>
           <div fxLayout="row" class="pointer" class="configuration--submit-btn" [ngClass]="!exportableExpenseGroupIds.length || exportInProgress ? 'btn-disabled' : 'btn-enabled'" (click)="export()">
             <h5 class="single-line-text" class="configuration--submit-btn-text">
-              Export
+              {{ exportInProgress ? 'Exporting' : 'Export' }}
             </h5>
-            <img src="assets/images/svgs/actions/arrow-mark-right.svg" class="configuration--submit-btn-arrow-text" />
+            <img *ngIf="!exportInProgress" src="assets/images/svgs/actions/arrow-mark-right.svg" class="configuration--submit-btn-arrow-text" />
+            <img *ngIf="exportInProgress" src="assets/images/svgs/actions/sync-dashboard-export.svg" class="configuration--submit-btn-arrow-text" />
           </div>
         </div>
       </div>
@@ -81,23 +82,23 @@
       </div>
     </div>
 
-    <div class="errors">
-      <div class="errors--section" [ngClass]="{'errors--zero-state-section': !errors.EMPLOYEE_MAPPING.length && !errors.CATEGORY_MAPPING.length && !errors.QBO_ERROR.length}">
+    <div *ngIf="errors" class="errors">
+      <div class="errors--section" [ngClass]="{'errors--zero-state-section': !errors || !errors?.EMPLOYEE_MAPPING?.length && !errors?.CATEGORY_MAPPING?.length && !errors?.QBO_ERROR?.length}">
         <p class="errors--header" fxLayout="row">
           Errors
           <img src="assets/images/svgs/general/info.svg" class="errors--info-icon" width="16px" height="16px" matTooltip="Expenses failed to export due to the following errors. Resolve them before trying to re-export again." matTooltipPosition="right" />
         </p>
         <p class="errors--header-divider"></p>
 
-        <div *ngIf="errors.EMPLOYEE_MAPPING.length || (groupedErrorStat && groupedErrorStat.EMPLOYEE_MAPPING) || errors.CATEGORY_MAPPING.length || (groupedErrorStat && groupedErrorStat.CATEGORY_MAPPING)" class="errors--integration-error-section">
+        <div *ngIf="errors?.EMPLOYEE_MAPPING?.length || groupedErrorStat?.EMPLOYEE_MAPPING || errors?.CATEGORY_MAPPING?.length || groupedErrorStat?.CATEGORY_MAPPING" class="errors--integration-error-section">
           <div class="errors--integration-error-contents">
             <p>Integration Errors</p>
             <h5 class="errors--integration-error-sub-header sub-text-color">Check and resolve these errors before trying to re-export them again.</h5>
           </div>
         </div>
 
-        <div *ngIf="errors.EMPLOYEE_MAPPING.length || (groupedErrorStat && groupedErrorStat.EMPLOYEE_MAPPING) || errors.CATEGORY_MAPPING.length || (groupedErrorStat && groupedErrorStat.CATEGORY_MAPPING)" class="errors--mapping-error-section">
-          <div *ngIf="errors.EMPLOYEE_MAPPING.length || (groupedErrorStat && groupedErrorStat.EMPLOYEE_MAPPING)" class="errors--mapping-error-contents" fxLayout="row" fxLayoutAlign="space-between center">
+        <div *ngIf="errors?.EMPLOYEE_MAPPING?.length || groupedErrorStat?.EMPLOYEE_MAPPING || errors?.CATEGORY_MAPPING?.length || groupedErrorStat?.CATEGORY_MAPPING" class="errors--mapping-error-section">
+          <div *ngIf="errors?.EMPLOYEE_MAPPING?.length || groupedErrorStat?.EMPLOYEE_MAPPING" class="errors--mapping-error-contents" fxLayout="row" fxLayoutAlign="space-between center">
             <div>
               <p>Employee Mapping errors</p>
               <h5 *ngIf="groupedErrorStat.EMPLOYEE_MAPPING" class="errors--resolved-stat sub-text-color">{{ groupedErrorStat.EMPLOYEE_MAPPING.resolvedCount }}/{{ groupedErrorStat.EMPLOYEE_MAPPING.totalCount }} error(s) resolved</h5>
@@ -117,7 +118,7 @@
           </div>
           <p class="errors--divider"></p>
 
-          <div *ngIf="errors.CATEGORY_MAPPING.length || (groupedErrorStat && groupedErrorStat.CATEGORY_MAPPING)" class="errors--mapping-error-contents" fxLayout="row" fxLayoutAlign="space-between center">
+          <div *ngIf="errors?.CATEGORY_MAPPING?.length || (groupedErrorStat && groupedErrorStat.CATEGORY_MAPPING)" class="errors--mapping-error-contents" fxLayout="row" fxLayoutAlign="space-between center">
             <div>
               <p>Category Mapping errors</p>
               <h5 *ngIf="groupedErrorStat.CATEGORY_MAPPING" class="errors--resolved-stat sub-text-color">{{ groupedErrorStat.CATEGORY_MAPPING.resolvedCount }}/{{ groupedErrorStat.CATEGORY_MAPPING.totalCount }} error(s) resolved</h5>
@@ -138,30 +139,30 @@
           <p class="errors--divider"></p>
         </div>
 
-        <div *ngIf="errors.QBO_ERROR.length" class="errors--integration-error-section">
+        <div *ngIf="errors?.QBO_ERROR?.length" class="errors--integration-error-section">
           <div class="errors--integration-error-contents">
             <p>Quickbooks Errors</p>
             <h5 class="errors--integration-error-sub-header sub-text-color">Resolve these errors on your Quickbooks Account before trying to re-export them again.</h5>
           </div>
         </div>
 
-        <div *ngFor="let error of errors.QBO_ERROR">
+        <div *ngFor="let error of errors?.QBO_ERROR">
           <div fxLayout="row" fxLayoutAlign="space-between center" class="errors--qbo-error">
             <div>
               <p>{{ error.error_title }}</p>
               <h5 class="errors--qbo-error-short-description sub-text-color">{{ error.error_detail }}</h5>
             </div>
             <div class="errors--view-expenses pointer">
-              <h5 class="errors--view-expenses-text" (click)="showDashboardQboError(error)">View Expenses</h5>
+              <h5 class="errors--view-expenses-text single-line-text" (click)="showDashboardQboError(error)">View Expenses</h5>
             </div>
           </div>
         </div>
 
-        <app-zero-state-with-illustration *ngIf="!errors.EMPLOYEE_MAPPING.length && !errors.CATEGORY_MAPPING.length && !errors.QBO_ERROR.length && !groupedErrorStat.EMPLOYEE_MAPPING && !groupedErrorStat.CATEGORY_MAPPING" [page]="'dashboard_error'"></app-zero-state-with-illustration>
+        <app-zero-state-with-illustration *ngIf="!errors.EMPLOYEE_MAPPING.length && !errors.CATEGORY_MAPPING.length && !errors.QBO_ERROR.length" [page]="'dashboard_error'"></app-zero-state-with-illustration>
       </div>
     </div>
   </div>
 
-  <app-zero-state-with-illustration *ngIf="zeroState" [page]="'dashboard'"></app-zero-state-with-illustration>
+  <app-zero-state-with-illustration *ngIf="!errors" [page]="'dashboard'"></app-zero-state-with-illustration>
 </div>
 

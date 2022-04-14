@@ -198,6 +198,10 @@
   &--qbo-error-short-description {
     padding-top: 8px;
     font-size: 12px;
+    width: 750px;
+    @media only screen and (max-width: 1440px) {
+      width: 450px;
+    }
   }
 
   &--view-expenses {

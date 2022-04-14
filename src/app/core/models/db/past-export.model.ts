@@ -12,4 +12,4 @@ export type PastExport = {
   failed_expenses: any[]; // ExpenseGroup[];
   created_at: Date;
   updated_at: Date;
-}
+};

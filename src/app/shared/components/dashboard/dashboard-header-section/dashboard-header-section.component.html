@@ -2,6 +2,7 @@
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <h3>👋 Hello {{ name }}!</h3>
 
+    <!-- TODO: check all matTooltip css https://stackoverflow.com/questions/45777232/customize-angular-material-2-tooltip-styles -->
     <div fxLayout="row" class="configuration--back-btn pointer dashboard-header-section--sync-btn" (click)="refreshQBODimensions()"
       matTooltip="Instantly refresh and sync the data dimensions from QBO" matTooltipPosition="above">
       <img src="assets/images/svgs/actions/sync.svg" class="configuration--img-arrow-left" />

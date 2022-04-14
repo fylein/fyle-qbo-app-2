@@ -4,12 +4,15 @@ import { switchMap, takeWhile } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { Error, GroupedErrors, GroupedErrorStat } from 'src/app/core/models/db/error.model';
 import { PastExport } from 'src/app/core/models/db/past-export.model';
-import { EmployeeFieldMapping, ErrorType, ExportState, FyleField, QBOField } from 'src/app/core/models/enum/enum.model';
+import { EmployeeFieldMapping, ErrorType, ExportState, FyleField, QBOField, TaskLogState, TaskLogType } from 'src/app/core/models/enum/enum.model';
 import { DashboardService } from 'src/app/core/services/dashboard/dashboard.service';
 import { DashboardResolveMappingErrorDialogComponent } from 'src/app/shared/components/dashboard/dashboard-resolve-mapping-error-dialog/dashboard-resolve-mapping-error-dialog.component';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { DashboardExportLogDialogComponent } from 'src/app/shared/components/dashboard/dashboard-export-log-dialog/dashboard-export-log-dialog.component';
 import { DashboardQboErrorDialogComponent } from 'src/app/shared/components/dashboard/dashboard-qbo-error-dialog/dashboard-qbo-error-dialog.component';
+import { Task } from 'src/app/core/models/db/task-log.model';
+import { UserService } from 'src/app/core/services/misc/user.service';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -18,7 +21,6 @@ import { DashboardQboErrorDialogComponent } from 'src/app/shared/components/dash
 export class DashboardComponent implements OnInit {
 
   isLoading: boolean = true;
-  zeroState: boolean = false;
   processedCount: number = 0;
   successfulExpenseGroupCount: number;
   failedExpenseGroupCount: number;
@@ -33,34 +35,35 @@ export class DashboardComponent implements OnInit {
     [ErrorType.CATEGORY_MAPPING]: null
   };
   ExportState = ExportState;
+  employeeName: string = this.userService.getUserProfile().full_name;
+  private taskType: TaskLogType[] = [TaskLogType.FETCHING_EXPENSE, TaskLogType.CREATING_BILL, TaskLogType.CREATING_EXPENSE, TaskLogType.CREATING_CHECK, TaskLogType.CREATING_CREDIT_CARD_PURCHASE, TaskLogType.CREATING_JOURNAL_ENTRY, TaskLogType.CREATING_CREDIT_CARD_CREDIT, TaskLogType.CREATING_DEBIT_CARD_EXPENSE];
 
   constructor(
     private dashboardService: DashboardService,
     private dialog: MatDialog,
+    private userService: UserService,
     private workspaceService: WorkspaceService
   ) { }
 
 
-  private pollExportStatus(): void {
-    const taskType = ['CREATING_BILL', 'CREATING_EXPENSE', 'CREATING_CHECK', 'CREATING_CREDIT_CARD_PURCHASE', 'CREATING_JOURNAL_ENTRY', 'CREATING_CREDIT_CARD_CREDIT', 'CREATING_DEBIT_CARD_EXPENSE'];
+  private pollExportStatus(exportableExpenseGroupIds: number[] = []): void {
     interval(3000).pipe(
-      switchMap(() => from(this.dashboardService.getAllTasks([], this.exportableExpenseGroupIds, taskType))),
-      takeWhile((response) => response.results.filter(task => (task.status === 'IN_PROGRESS' || task.status === 'ENQUEUED') && this.exportableExpenseGroupIds.includes(task.expense_group)).length > 0, true)
+      switchMap(() => from(this.dashboardService.getAllTasks([], exportableExpenseGroupIds, this.taskType))),
+      takeWhile((response) => response.results.filter(task => (task.status === 'IN_PROGRESS' || task.status === 'ENQUEUED') && exportableExpenseGroupIds.includes(task.expense_group)).length > 0, true)
     ).subscribe((res) => {
-      this.processedCount = res.results.filter(task => (task.status !== 'IN_PROGRESS' && task.status !== 'ENQUEUED') && (task.type !== 'FETCHING_EXPENSES' && task.type !== 'CREATING_BILL_PAYMENT') && this.exportableExpenseGroupIds.includes(task.expense_group)).length;
-      this.exportProgressPercentage = Math.round((this.processedCount / this.exportableExpenseGroupIds.length) * 100);
+      this.processedCount = res.results.filter(task => (task.status !== 'IN_PROGRESS' && task.status !== 'ENQUEUED') && (task.type !== 'FETCHING_EXPENSES' && task.type !== 'CREATING_BILL_PAYMENT') && exportableExpenseGroupIds.includes(task.expense_group)).length;
+      this.exportProgressPercentage = Math.round((this.processedCount / exportableExpenseGroupIds.length) * 100);
 
-      if (res.results.filter(task => (task.status === 'IN_PROGRESS' || task.status === 'ENQUEUED') && this.exportableExpenseGroupIds.includes(task.expense_group)).length === 0) {
-        this.dashboardService.getAllTasks(['FAILED', 'FATAL']).subscribe((taskResponse) => {
+      if (res.results.filter(task => (task.status === 'IN_PROGRESS' || task.status === 'ENQUEUED') && exportableExpenseGroupIds.includes(task.expense_group)).length === 0) {
+        this.dashboardService.getAllTasks([TaskLogState.FAILED, TaskLogState.FATAL]).subscribe((taskResponse) => {
           this.failedExpenseGroupCount = taskResponse.count;
-          this.successfulExpenseGroupCount = this.exportableExpenseGroupIds.length - this.failedExpenseGroupCount;
+          this.successfulExpenseGroupCount = exportableExpenseGroupIds.length - this.failedExpenseGroupCount;
           this.exportInProgress = false;
           this.exportProgressPercentage = 0;
           this.processedCount = 0;
         });
       }
     });
-
   }
 
   private formatErrors(errors: Error[]): GroupedErrors {
@@ -78,18 +81,23 @@ export class DashboardComponent implements OnInit {
   }
 
   private setupPage(): void {
-    // TODO: check active exports
     forkJoin([
       this.dashboardService.getPastExport(),
       this.dashboardService.getExportableGroupsIds(),
       this.dashboardService.getExportErrors(),
-      this.workspaceService.getWorkspaceGeneralSettings()
+      this.workspaceService.getWorkspaceGeneralSettings(),
+      this.dashboardService.getAllTasks([TaskLogState.ENQUEUED, TaskLogState.IN_PROGRESS], undefined, this.taskType)
     ]).subscribe((responses) => {
       this.pastExport = responses[0];
       this.exportableExpenseGroupIds = responses[1];
       this.errors = this.formatErrors(responses[2]);
       this.employeeFieldMapping = responses[3].employee_field_mapping;
 
+      if (responses[4].count) {
+        this.exportInProgress = true;
+        this.exportableExpenseGroupIds = responses[4].results.map((task: Task) => task.expense_group);
+        this.pollExportStatus(this.exportableExpenseGroupIds);
+      }
       this.isLoading = false;
     });
   }
@@ -174,7 +182,7 @@ export class DashboardComponent implements OnInit {
     if (!this.exportInProgress) {
       this.exportInProgress = true;
       this.dashboardService.exportExpenseGroups(this.exportableExpenseGroupIds).subscribe(() => {
-        this.pollExportStatus();
+        this.pollExportStatus(this.exportableExpenseGroupIds);
       });
     }
   }

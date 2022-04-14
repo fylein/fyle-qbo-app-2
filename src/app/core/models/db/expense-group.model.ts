@@ -22,8 +22,6 @@ export interface ExpenseGroupList {
 
 export type ExpenseGroup = {
   id: number;
-  // TODO: check and remove this
-  fyle_group_id: string;
   fund_source: string;
   description: ExpenseGroupDescription;
   // having any here is okay, different qbo exports has different structures
