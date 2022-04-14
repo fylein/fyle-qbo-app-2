@@ -1,1 +1,63 @@
-<p>export-log-table works lolo!</p>
+<table *ngIf="totalCount" mat-table [dataSource]="expenseGroups">
+  <ng-container *ngIf="displayedColumns.indexOf('exportedAt') !== -1" matColumnDef="exportedAt">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>Date and Time of Export</h4>
+    </th>
+    <td [ngClass]="{'pointer': element.fyleReferenceType !== FyleReferenceType.EXPENSE}" (click)="openChildExpenses(element.expenses)" mat-cell *matCellDef="let element">
+      <h4>
+        {{element.exportedAt | date: 'dd MMM, yyyy' }}
+      </h4>
+
+      <h5 class="export-log-table--sub-row">
+        {{element.exportedAt | date: 'hh:mm' }}
+      </h5>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>Employee Name and ID</h4>
+    </th>
+    <td [ngClass]="{'pointer': element.fyleReferenceType !== FyleReferenceType.EXPENSE}" (click)="openChildExpenses(element.expenses)" mat-cell *matCellDef="let element">
+      <h4>
+        {{ element.employee[0] }}
+      </h4>
+      <h5 class="export-log-table--sub-row">
+        {{ element.employee[1] }}
+      </h5>
+    </td>
+  </ng-container>
+
+  <ng-container *ngIf="displayedColumns.indexOf('fundSource') !== -1" matColumnDef="exportedAt" matColumnDef="fundSource">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>Expense Type</h4>
+    </th>
+    <td [ngClass]="{'pointer': element.fyleReferenceType !== FyleReferenceType.EXPENSE}" (click)="openChildExpenses(element.expenses)" mat-cell *matCellDef="let element"> {{ element.expenseType }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="referenceID">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>Reference ID</h4>
+    </th>
+    <td class="export-log-table--reference-id pointer" [matTooltip]="'View in Fyle'" mat-cell *matCellDef="let element" (click)="helperService.openExternalLink(element.fyleUrl)"> {{element.referenceNumber}} </td>
+  </ng-container>
+
+  <ng-container *ngIf="displayedColumns.indexOf('exportType') !== -1" matColumnDef="exportedAt" matColumnDef="exportType">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>Exported to QBO as</h4>
+    </th>
+    <td [ngClass]="{'pointer': element.fyleReferenceType !== FyleReferenceType.EXPENSE}" (click)="openChildExpenses(element.expenses)" mat-cell *matCellDef="let element"> {{ element.exportedAs | titlecase }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="link">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>Link to {{ externalUrlType }}</h4>
+    </th>
+    <td mat-cell *matCellDef="let element" class="export-log-table--open-in-qbo">
+      <img class="pointer" src="assets/images/svgs/actions/open-in-new-tab.svg" (click)="helperService.openExternalLink(element.qboUrl)"/>
+    </td>
+  </ng-container>
+
+  <tr class="export-log-table--heading" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr class="export-log-table--row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

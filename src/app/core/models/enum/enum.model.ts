@@ -110,3 +110,8 @@ export enum QBOField {
   CLASS = 'CLASS',
   TAX_CODE = 'TAX_CODE'
 }
+
+export enum ExportState {
+  SUCCESS = 'SUCCESS',
+  FAILED = 'FAILED'
+}

@@ -34,7 +34,8 @@ export type ExpenseGroup = {
   created_at: Date;
   updated_at: Date;
   workspace: number;
-  expenses: Expense[];
+  // TODO: change this after API connect
+  expenses: any[]; // Expense[];
 };
 
 export type ExpenseGroupDescription = {

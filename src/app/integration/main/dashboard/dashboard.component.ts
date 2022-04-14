@@ -4,10 +4,11 @@ import { switchMap, takeWhile } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { Error, GroupedErrors, GroupedErrorStat } from 'src/app/core/models/db/error.model';
 import { PastExport } from 'src/app/core/models/db/past-export.model';
-import { EmployeeFieldMapping, ErrorType, FyleField, QBOField } from 'src/app/core/models/enum/enum.model';
+import { EmployeeFieldMapping, ErrorType, ExportState, FyleField, QBOField } from 'src/app/core/models/enum/enum.model';
 import { DashboardService } from 'src/app/core/services/dashboard/dashboard.service';
 import { DashboardResolveMappingErrorDialogComponent } from 'src/app/shared/components/dashboard/dashboard-resolve-mapping-error-dialog/dashboard-resolve-mapping-error-dialog.component';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
+import { DashboardExportLogDialogComponent } from 'src/app/shared/components/dashboard/dashboard-export-log-dialog/dashboard-export-log-dialog.component';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -30,6 +31,7 @@ export class DashboardComponent implements OnInit {
     [ErrorType.EMPLOYEE_MAPPING]: null,
     [ErrorType.CATEGORY_MAPPING]: null
   };
+  ExportState = ExportState;
 
   constructor(
     private dashboardService: DashboardService,
@@ -137,6 +139,21 @@ export class DashboardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(() => {
       this.showErrorStats();
+    });
+  }
+
+  showDashboardExportLog(exportState: ExportState): void {
+    this.dialog.open(DashboardExportLogDialogComponent, {
+      width: '784px',
+      height: '974px',
+      data: {
+        expenseGroups: exportState === ExportState.SUCCESS ? this.pastExport.successful_expenses : this.pastExport.failed_expenses,
+        event: exportState
+      },
+      position: {
+        top: '0px',
+        right: '0px'
+      }
     });
   }
 

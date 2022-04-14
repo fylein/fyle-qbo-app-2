@@ -59,6 +59,7 @@ import { DashboardExportStatsComponent } from './components/dashboard/dashboard-
 import { DashboardExportErrorsComponent } from './components/dashboard/dashboard-export-errors/dashboard-export-errors.component';
 import { DashboardResolveMappingErrorDialogComponent } from './components/dashboard/dashboard-resolve-mapping-error-dialog/dashboard-resolve-mapping-error-dialog.component';
 import { DashboardShimmersComponent } from './components/dashboard/dashboard-shimmers/dashboard-shimmers.component';
+import { DashboardExportLogDialogComponent } from './components/dashboard/dashboard-export-log-dialog/dashboard-export-log-dialog.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { DashboardShimmersComponent } from './components/dashboard/dashboard-shi
     DashboardExportStatsComponent,
     DashboardExportErrorsComponent,
     DashboardResolveMappingErrorDialogComponent,
-    DashboardShimmersComponent
+    DashboardShimmersComponent,
+    DashboardExportLogDialogComponent
   ],
   imports: [
     CommonModule,

@@ -67,15 +67,15 @@
 
           <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">
             <p class="past-export--detail">Successful Expenses</p>
-            <p class="past-export--view-expense">{{ pastExport.successful_expenses }}</p>
-            <p class="past-export--view-expense-text pointer">View</p>
+            <p class="past-export--view-expense">{{ pastExport.successful_expenses.length }}</p>
+            <p class="past-export--view-expense-text pointer" (click)="showDashboardExportLog(ExportState.SUCCESS)">View</p>
           </div>
           <p class="past-export--divider"></p>
 
           <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">
             <p class="past-export--detail">Failed Expenses</p>
-            <p class="past-export--view-expense">{{ pastExport.failed_expenses }}</p>
-            <p class="past-export--view-expense-text pointer">View</p>
+            <p class="past-export--view-expense">{{ pastExport.failed_expenses.length }}</p>
+            <p class="past-export--view-expense-text pointer" (click)="showDashboardExportLog(ExportState.FAILED)">View</p>
           </div>
         </div>
       </div>
