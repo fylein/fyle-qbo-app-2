@@ -1,6 +1,6 @@
 import { MappingState } from "../enum/enum.model";
 import { DestinationAttribute } from "./destination-attribute.model";
-import { ExpenseAttribute } from "./expense-attribute.model";
+import { ExpenseAttribute, ExtendedExpenseAttribute } from "./expense-attribute.model";
 import { MappingSetting } from "./mapping-setting.model";
 
 export interface Mapping extends MappingPost {
@@ -24,7 +24,7 @@ export type MappingResponse = {
   count: number;
   next: string;
   previous: string;
-  results: Mapping[];
+  results: ExtendedExpenseAttribute[];
 };
 
 export type MappingList = {
@@ -37,7 +37,7 @@ export type MappingList = {
     value: string;
   };
   preserveDestination?: {
-    id: number;
+    id: number | string;
   }
   autoMapped: boolean;
   state: MappingState;
@@ -45,7 +45,7 @@ export type MappingList = {
 };
 
 export type MappingStats = {
-  mapped_attributes_count: number;
+  all_attributes_count: number;
   unmapped_attributes_count: number;
 };
 

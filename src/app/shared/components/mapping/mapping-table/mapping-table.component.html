@@ -5,7 +5,7 @@
     </th>
     <td mat-cell *matCellDef="let element">
       <img *ngIf="element.autoMapped" matTooltip="Auto-mapped" src="assets/images/svgs/general/flash.svg" width="12px" height="12px" class="mapping-table--auto-mapped-row">
-      <span [ngClass]="{'mapping-table--manually-mapped-row': !element.autoMapped}">{{ element.fyle.value }}</span>
+      <span [matTooltip]="element.fyle.value" [matTooltipDisabled]="element.fyle.value.length <= 30" matTooltipPosition="above" [ngClass]="{'mapping-table--manually-mapped-row': !element.autoMapped}">{{ element.fyle.value | trimCharacter: 30 }}</span>
     </td>
   </ng-container>
 

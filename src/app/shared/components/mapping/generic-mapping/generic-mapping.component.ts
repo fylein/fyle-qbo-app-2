@@ -5,8 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
+import { ExtendedExpenseAttribute, ExtendedExpenseAttributeResponse } from 'src/app/core/models/db/expense-attribute.model';
 import { MappingSetting } from 'src/app/core/models/db/mapping-setting.model';
-import { Mapping, MappingList, MappingModel, MappingResponse, MappingStats } from 'src/app/core/models/db/mapping.model';
+import { MappingList, MappingModel, MappingStats } from 'src/app/core/models/db/mapping.model';
 import { MappingState, PaginatorPage } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
@@ -44,6 +45,7 @@ export class GenericMappingComponent implements OnInit {
 
   mappingCardUpdateHandler(totalCardActive: boolean): void {
     this.totalCardActive = totalCardActive;
+    this.form.controls.sourceUpdated.patchValue(true);
 
     this.getMappings();
   }
@@ -101,7 +103,7 @@ export class GenericMappingComponent implements OnInit {
     let alphabetsFilter: string[] = [];
     let allAlphabets: boolean = true;
 
-    if (this.form) {
+    if (this.form && !this.form.value.sourceUpdated) {
       allAlphabets = this.form.value.filterOption.length === this.filterOptions.length;
 
       if (!allAlphabets) {
@@ -109,20 +111,20 @@ export class GenericMappingComponent implements OnInit {
       }
     }
 
-    this.mappingService.getMappings(mappingState, allAlphabets, paginator.limit, paginator.offset, alphabetsFilter, this.mappingSetting.source_field, this.mappingSetting.destination_field).subscribe((mappingResponse: MappingResponse) => {
-      this.totalCount = mappingResponse.count;
-      mappingResponse.results.forEach((mapping: Mapping, index: number) => {
+    this.mappingService.getMappings(mappingState, allAlphabets, paginator.limit, paginator.offset, alphabetsFilter, this.mappingSetting.source_field, this.mappingSetting.destination_field).subscribe((extendedExpenseAttributeResponse: ExtendedExpenseAttributeResponse) => {
+      this.totalCount = extendedExpenseAttributeResponse.count;
+      extendedExpenseAttributeResponse.results.forEach((extendedExpenseAttribute: ExtendedExpenseAttribute, index: number) => {
         mappings.push({
           fyle: {
-            id: mapping.source.id,
-            value: mapping.source.value
+            id: extendedExpenseAttribute.id,
+            value: extendedExpenseAttribute.value
           },
           qbo: {
-            id: mapping.destination?.destination_id,
-            value: mapping.destination?.value
+            id: extendedExpenseAttribute.mappings.length ? extendedExpenseAttribute.mappings[0].destination.id : '',
+            value: extendedExpenseAttribute.mappings.length ? extendedExpenseAttribute.mappings[0].destination.value : ''
           },
-          state: mapping.destination?.id ? MappingState.MAPPED : MappingState.UNMAPPED,
-          autoMapped: mapping.source.auto_mapped,
+          state: extendedExpenseAttribute.mappings.length ? MappingState.MAPPED : MappingState.UNMAPPED,
+          autoMapped: extendedExpenseAttribute.auto_mapped,
           index: index
         });
       });
@@ -141,7 +143,8 @@ export class GenericMappingComponent implements OnInit {
   }
 
   private searchByText(mapping: MappingList, filterText: string) {
-    return mapping.fyle.value.includes(filterText);
+    // TODO: update all searchByText with case insentitive
+    return mapping.fyle.value.toLowerCase().includes(filterText.toLowerCase());
   }
 
   private getMappingsAndSetupPage(): void {
@@ -162,17 +165,27 @@ export class GenericMappingComponent implements OnInit {
 
   save(selectedRow: MappingList): void {
     const mappingPayload = MappingModel.constructPayload(this.mappingSetting, selectedRow);
-    this.mappingService.postMapping(mappingPayload).subscribe(() => this.snackBar.open('Changes saved', '', {
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom',
-      panelClass: 'mapping-snackbar'
-    }));
+    this.mappingService.postMapping(mappingPayload).subscribe(() => {
+
+      if (selectedRow.state === MappingState.UNMAPPED) {
+        this.mappingStats.unmapped_attributes_count -= 1;
+        selectedRow.state = MappingState.MAPPED;
+      }
+
+      this.snackBar.open('Changes saved', '', {
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        panelClass: 'mapping-snackbar'
+      });
+    });
+
   }
 
   ngOnInit(): void {
     // Watch for changes in route, since this component is used for all mapping types
     this.route.params.subscribe(() => {
       this.isLoading = true;
+      this.totalCardActive = true;
 
       // If source type is changed, reinitialize the form by maintaining sourceUpdated flag
       if (this.form) {
