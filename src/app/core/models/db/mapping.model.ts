@@ -1,7 +1,8 @@
-import { MappingState } from "../enum/enum.model";
+import { EmployeeFieldMapping, MappingState, QBOField } from "../enum/enum.model";
 import { DestinationAttribute } from "./destination-attribute.model";
+import { Error } from "./error.model";
 import { ExpenseAttribute, ExtendedExpenseAttribute } from "./expense-attribute.model";
-import { MappingSetting } from "./mapping-setting.model";
+import { MinimalMappingSetting } from "./mapping-setting.model";
 
 export interface Mapping extends MappingPost {
   id: number;
@@ -49,8 +50,15 @@ export type MappingStats = {
   unmapped_attributes_count: number;
 };
 
+export type ResolveMappingError = {
+  sourceType: EmployeeFieldMapping;
+  destinationType: QBOField | EmployeeFieldMapping;
+  fyleAttributes: Error[];
+  workspaceId: string;
+};
+
 export class MappingModel {
-  static constructPayload(mappingSetting: MappingSetting, mappingRow: MappingList): MappingPost {
+  static constructPayload(mappingSetting: MinimalMappingSetting, mappingRow: MappingList): MappingPost {
     return {
       source_type: mappingSetting.source_field,
       source_value: mappingRow.fyle.value,

@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { ExpenseGroupList } from 'src/app/core/models/db/expense-group.model';
+import { Expense } from 'src/app/core/models/db/expense.model';
+import { FyleReferenceType } from 'src/app/core/models/enum/enum.model';
+import { HelperService } from 'src/app/core/services/core/helper.service';
+import { ExportLogChildDialogComponent } from 'src/app/integration/main/export-log/export-log-child-dialog/export-log-child-dialog.component';
 
 @Component({
   selector: 'app-export-log-table',
@@ -7,7 +14,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExportLogTableComponent implements OnInit {
 
-  constructor() { }
+  @Input() totalCount: number;
+  @Input() displayedColumns: string[];
+  @Input() expenseGroups: MatTableDataSource<ExpenseGroupList> = new MatTableDataSource<ExpenseGroupList>([]);
+  @Input() externalUrlType: string = 'QBO';
+  FyleReferenceType = FyleReferenceType;
+
+  constructor(
+    private dialog: MatDialog,
+    public helperService: HelperService
+  ) { }
+
+  openChildExpenses(expenses: Expense[]): void {
+    if (expenses.length > 1) {
+      this.dialog.open(ExportLogChildDialogComponent, {
+        width: '784px',
+        height: '974px',
+        data: expenses,
+        position: {
+          top: '0px',
+          right: '0px'
+        }
+      });
+    }
+  }
 
   ngOnInit(): void {
   }

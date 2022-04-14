@@ -59,6 +59,9 @@ import { DashboardExportStatsComponent } from './components/dashboard/dashboard-
 import { DashboardExportErrorsComponent } from './components/dashboard/dashboard-export-errors/dashboard-export-errors.component';
 import { DashboardResolveMappingErrorDialogComponent } from './components/dashboard/dashboard-resolve-mapping-error-dialog/dashboard-resolve-mapping-error-dialog.component';
 import { DashboardShimmersComponent } from './components/dashboard/dashboard-shimmers/dashboard-shimmers.component';
+import { DashboardExportLogDialogComponent } from './components/dashboard/dashboard-export-log-dialog/dashboard-export-log-dialog.component';
+import { DashboardQboErrorDialogComponent } from './components/dashboard/dashboard-qbo-error-dialog/dashboard-qbo-error-dialog.component';
+import { ExportLogChildTableComponent } from './components/export-log/export-log-child-table/export-log-child-table.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +105,10 @@ import { DashboardShimmersComponent } from './components/dashboard/dashboard-shi
     DashboardExportStatsComponent,
     DashboardExportErrorsComponent,
     DashboardResolveMappingErrorDialogComponent,
-    DashboardShimmersComponent
+    DashboardShimmersComponent,
+    DashboardExportLogDialogComponent,
+    DashboardQboErrorDialogComponent,
+    ExportLogChildTableComponent
   ],
   imports: [
     CommonModule,
@@ -159,7 +165,8 @@ import { DashboardShimmersComponent } from './components/dashboard/dashboard-shi
     DashboardExportStatsComponent,
     DashboardExportErrorsComponent,
     DashboardResolveMappingErrorDialogComponent,
-    DashboardShimmersComponent
+    DashboardShimmersComponent,
+    ExportLogChildTableComponent
   ],
   entryComponents: [
     ExpenseFormPreviewDialogComponent,

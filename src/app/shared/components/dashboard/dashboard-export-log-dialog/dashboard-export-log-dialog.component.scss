@@ -1,0 +1,29 @@
+.dashboard-export-log {
+  &--header-section {
+    padding: 32px 0px 24px 32px;
+  }
+
+  &--close-icon {
+    padding-right: 35px;
+  }
+
+  &--sub-header-text {
+    padding-top: 8px;
+    width: 625px;
+  }
+
+  &--table {
+    overflow: scroll;
+    height: 750px;
+    @media only screen and (max-width: 1440px) {
+      height: 570px;
+    }
+  }
+
+  &--horizontal-separator {
+    border-top: 1px solid #F5F5F5;
+    width: 100%;
+    align-self: center;
+    padding-bottom: 28px;
+  }
+}

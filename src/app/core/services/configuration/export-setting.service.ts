@@ -4,7 +4,6 @@ import { ExportSettingGet, ExportSettingPost } from '../../models/configuration/
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
 
-
 @Injectable({
   providedIn: 'root'
 })

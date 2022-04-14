@@ -1,0 +1,24 @@
+<div>
+  <div class="dashboard-export-log--header-section">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <h3>
+        {{ data.event === ExportState.SUCCESS ? 'Successful' : 'Failed' }} Expenses
+      </h3>
+      <img src="assets/images/svgs/actions/close.svg" (click)="this.dialogRef.close()"
+        class="dashboard-export-log--close-icon sub-text-color pointer" />
+    </div>
+    <h5 *ngIf="data.event === ExportState.SUCCESS" class="dashboard-export-log--sub-header-text sub-text-color">
+      These expenses have been successfully exported to your Quickbooks Online Account.
+    </h5>
+    <h5 *ngIf="data.event === ExportState.FAILED" class="dashboard-export-log--sub-header-text sub-text-color">
+      These expenses have failed to export due to some errors. Resolve the errors on your dashboard to and try to re-export them again
+    </h5>
+  </div>
+
+
+  <div class="dashboard-export-log--horizontal-separator"></div>
+
+  <div class="dashboard-export-log--table">
+    <app-export-log-table [displayedColumns]="displayedColumns" [totalCount]="data.expenseGroups.length" [expenseGroups]="expenseGroups" [externalUrlType]="externalUrlType"></app-export-log-table>
+  </div>
+</div>

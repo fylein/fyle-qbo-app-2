@@ -1,14 +1,6 @@
-.export-log-table {
-  &--sub-row {
-    color: #A9ACBC;
-  }
-
+.export-log-child-table {
   &--reference-id {
     text-decoration-line: underline;
-  }
-
-  &--open-in-qbo {
-    padding-left: 20px;
   }
 
   &--heading {
@@ -30,16 +22,14 @@ th {
   font-weight: 500;
 }
 
-// TODO: check this weird behaviour
 ::ng-deep .mat-tooltip {
   background: #2C304E;
   border-radius: 2px;
   white-space: nowrap;
   color: #FFFFFF;
 
-  margin-right: 150px !important;
-  margin-bottom: 60px !important;
+  margin-right: 110px !important;
   @media only screen and (max-width: 1440px) {
-    margin-right: 70px !important;
+    margin-right: 120px !important;
   }
 }

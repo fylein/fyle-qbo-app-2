@@ -1,4 +1,4 @@
-import { MappingDestinationField, MappingSourceField } from "../enum/enum.model";
+import { MappingDestinationField, MappingSourceField, QBOField } from "../enum/enum.model";
 
 export type MappingSetting = {
   id: number;
@@ -11,6 +11,11 @@ export type MappingSetting = {
   is_custom: boolean;
   source_placeholder: string | null
 }
+
+export type MinimalMappingSetting = {
+  source_field: MappingSourceField | string;
+  destination_field: MappingDestinationField | QBOField;
+};
 
 export type MappingSettingResponse = {
   count: number;

@@ -12,4 +12,17 @@
     width: 298px;
     padding-top: 8px;
   }
+
+  &--info-section {
+    padding-top: 16px;
+    color: #161528;
+  }
+
+  &--sub-info-section {
+    padding-top: 8px;
+  }
+
+  &--sub-info-section-error {
+    width: 337px;
+  }
 }

@@ -1,4 +1,4 @@
-<div *ngIf="!data.filteredData.length" fxLayout="column" fxLayoutAlign="center center">
+<div *ngIf="page !== 'dashboard' && page !== 'dashboard_error' && !data.filteredData.length" fxLayout="column" fxLayoutAlign="center center">
   <img class="zero-state-with-illustration--zero-state-img" src="assets/images/pngs/zero-state/export-log.png">
   <h4 class="zero-state-with-illustration--zero-state-text align-center">
     {{ form.value.searchOption && !data.filteredData.length ? 'Sorry, no results found!' : 'No records to show yet!' }}
@@ -16,4 +16,23 @@
   <h5 *ngIf="false" class="zero-state-with-illustration--zero-state-text-small align-center">
     We could not find any exports done on timeline that you have selected
   </h5>
+</div>
+
+
+<div *ngIf="page === 'dashboard' || page === 'dashboard_error'" fxLayout="column" fxLayoutAlign="center center">
+  <img *ngIf="page === 'dashboard'" class="zero-state-with-illustration--zero-state-img" src="assets/images/pngs/zero-state/dashboard-zero-state.svg" width="400px" height="300px">
+  <img *ngIf="page === 'dashboard_error'" class="zero-state-with-illustration--zero-state-img" src="assets/images/pngs/zero-state/dashboard-error-zero-state.svg" width="48px" height="48px">
+  <div class="zero-state-with-illustration--info-section align-center">
+    <h4 *ngIf="page === 'dashboard'">Curious on how exports work in Fyle-QBO integrations?</h4>
+    <h4 *ngIf="page === 'dashboard_error'">Congratulations, you are winning!</h4>
+
+    <h4 *ngIf="page === 'dashboard'" class="zero-state-with-illustration--sub-info-section sub-text-color">
+      Learn more here
+      <!-- TODO: add link -->
+      <img *ngIf="page === 'dashboard'" class="pointer" src="assets/images/svgs/actions/open-in-new-tab-dashboard.svg" height="12px" width="12px"/>
+    </h4>
+    <h5 *ngIf="page === 'dashboard_error'" class="zero-state-with-illustration--sub-info-section sub-text-color" [ngClass]="{'zero-state-with-illustration--sub-info-section-error': page === 'dashboard_error'}">
+      You exports did not face any error. If they do, you can resolve them right here and re-export successfully.
+    </h5>
+  </div>
 </div>

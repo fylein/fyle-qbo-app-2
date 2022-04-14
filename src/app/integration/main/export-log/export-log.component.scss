@@ -22,51 +22,8 @@
     width: 374px;
   }
 
-  &--heading {
-    background: #F5F5F5;
-    border: 1px solid #DFDFE2;
-    border-radius: 4px;
-  }
-
   &--table {
     height: 680px;
     overflow: scroll;
-  }
-
-  &--row {
-    height: 70px;
-      &:hover {
-        background: #FAFCFF;
-      }
-  }
-
-  &--sub-row {
-    color: #A9ACBC;
-  }
-  
-  &--reference-id {
-    text-decoration-line: underline;
-  }
-
-  &--open-in-qbo {
-    padding-left: 20px;
-  }
-}
-
-th {
-  color: #2C304E;
-  font-weight: 500;
-}
-
-::ng-deep .mat-tooltip {
-  background: #2C304E;
-  border-radius: 2px;
-  white-space: nowrap;
-  color: #FFFFFF;
-
-  margin-right: 150px !important;
-  margin-bottom: 60px !important;
-  @media only screen and (max-width: 1440px) {
-    margin-right: 70px !important;
   }
 }
