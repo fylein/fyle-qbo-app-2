@@ -30,6 +30,17 @@ export type EmployeeMappingPost = {
   workspace: number;
 };
 
+export interface ExtendedEmployeeAttribute extends ExpenseAttribute {
+  employee_mapping: EmployeeMapping[];
+};
+
+export type ExtendedEmployeeAttributeResponse = {
+  count: number;
+  next: string;
+  previous: string;
+  results: ExtendedEmployeeAttribute[];
+};
+
 export class EmployeeMappingModel {
   static constructPayload(employeeFieldMapping: EmployeeFieldMapping, mappingRow: MappingList, workspaceId: string): EmployeeMappingPost {
     return {
