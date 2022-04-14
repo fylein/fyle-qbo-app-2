@@ -37,7 +37,7 @@ export type MappingList = {
     value: string;
   };
   preserveDestination?: {
-    id: number;
+    id: number | string;
   }
   autoMapped: boolean;
   state: MappingState;

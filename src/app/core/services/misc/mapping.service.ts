@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { Cacheable } from 'ts-cacheable';
 import { DestinationAttribute, GroupedDestinationAttribute } from '../../models/db/destination-attribute.model';
-import { EmployeeMapping, EmployeeMappingPost, EmployeeMappingsResponse } from '../../models/db/employee-mapping.model';
+import { EmployeeMapping, EmployeeMappingPost, ExtendedEmployeeAttributeResponse } from '../../models/db/employee-mapping.model';
 import { ExtendedExpenseAttributeResponse } from '../../models/db/expense-attribute.model';
 import { MappingSettingResponse } from '../../models/db/mapping-setting.model';
-import { MappingPost, MappingResponse, MappingStats } from '../../models/db/mapping.model';
-import { MappingState } from '../../models/enum/enum.model';
+import { MappingPost, MappingStats } from '../../models/db/mapping.model';
+import { EmployeeFieldMapping, MappingState } from '../../models/enum/enum.model';
 import { ExpenseField } from '../../models/misc/expense-field.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
@@ -78,15 +78,15 @@ export class MappingService {
     return this.apiService.post(`/workspaces/${this.workspaceId}/mappings/`, mapping);
   }
 
-  getEmployeeMappings(mappingState: MappingState, allAlphabets: boolean, limit: number, offset: number, alphabetsFilter: string[]): Observable<EmployeeMappingsResponse> {
+  getEmployeeMappings(mappingState: MappingState, allAlphabets: boolean, limit: number, offset: number, alphabetsFilter: string[]): Observable<ExtendedEmployeeAttributeResponse> {
     return this.apiService.get(
-      `/workspaces/${this.workspaceId}/mappings/employee/`,
+      `/workspaces/${this.workspaceId}/mappings/employee_attributes/`,
       {
         limit,
         offset,
         all_alphabets: allAlphabets,
-        mapping_state: mappingState,
-        alphabets_filter: alphabetsFilter.length ? alphabetsFilter : null
+        mapped: mappingState === MappingState.ALL ? MappingState.ALL : false,
+        mapping_source_alphabets: alphabetsFilter.length ? alphabetsFilter : null
       }
     );
   }

@@ -4,7 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { EmployeeMapping, EmployeeMappingModel, EmployeeMappingsResponse } from 'src/app/core/models/db/employee-mapping.model';
+import { EmployeeMapping, EmployeeMappingModel, EmployeeMappingsResponse, ExtendedEmployeeAttribute, ExtendedEmployeeAttributeResponse } from 'src/app/core/models/db/employee-mapping.model';
+import { ExtendedExpenseAttribute, ExtendedExpenseAttributeResponse } from 'src/app/core/models/db/expense-attribute.model';
 import { MappingList, MappingStats } from 'src/app/core/models/db/mapping.model';
 import { AutoMapEmployee, EmployeeFieldMapping, MappingState, PaginatorPage } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
@@ -46,7 +47,7 @@ export class EmployeeMappingComponent implements OnInit {
 
   mappingCardUpdateHandler(totalCardActive: boolean): void {
     this.totalCardActive = totalCardActive;
-    this.form.controls.sourceUpdated.patchValue(true);
+    this.form.controls.cardUpdated.patchValue(true);
 
     this.getMappings();
   }
@@ -66,7 +67,8 @@ export class EmployeeMappingComponent implements OnInit {
       map: [''],
       fyleQboMapping: this.formBuilder.array(this.fyleQboMappingFormArray),
       searchOption: [''],
-      filterOption: [this.filterOptions.concat()]
+      filterOption: [this.filterOptions.concat()],
+      cardUpdated: [false]
     });
 
     this.form.controls.searchOption.valueChanges.subscribe((searchTerm: string) => {
@@ -99,7 +101,7 @@ export class EmployeeMappingComponent implements OnInit {
     let alphabetsFilter: string[] = [];
     let allAlphabets: boolean = true;
 
-    if (this.form) {
+    if (this.form && !this.form.value.cardUpdated) {
       allAlphabets = this.form.value.filterOption.length === this.filterOptions.length;
 
       if (!allAlphabets) {
@@ -107,23 +109,40 @@ export class EmployeeMappingComponent implements OnInit {
       }
     }
 
-    this.mappingService.getEmployeeMappings(mappingState, allAlphabets, paginator.limit, paginator.offset, alphabetsFilter).subscribe((employeeMappingResponse: EmployeeMappingsResponse) => {
-      this.totalCount = employeeMappingResponse.count;
-      employeeMappingResponse.results.forEach((employeeMapping: EmployeeMapping, index: number) => {
+    this.mappingService.getEmployeeMappings(mappingState, allAlphabets, paginator.limit, paginator.offset, alphabetsFilter).subscribe((extendedEmployeeAttributeResponse: ExtendedEmployeeAttributeResponse) => {
+      this.totalCount = extendedEmployeeAttributeResponse.count;
+      extendedEmployeeAttributeResponse.results.forEach((extendedEmployeeAttribute: ExtendedEmployeeAttribute, index: number) => {
+
+        const qbo: {id: string | number, value: string} = {
+          id: '',
+          value: ''
+        };
+
+        const preserveDestination: {id: string | number} = {
+          id: ''
+        };
+
+        if (extendedEmployeeAttribute.employee_mapping.length) {
+          if (this.employeeFieldMapping === EmployeeFieldMapping.EMPLOYEE) {
+            qbo.id = extendedEmployeeAttribute.employee_mapping[0].destination_employee?.id;
+            qbo.value = extendedEmployeeAttribute.employee_mapping[0].destination_employee?.value;
+            preserveDestination.id = extendedEmployeeAttribute.employee_mapping[0].destination_vendor?.id;
+          } else {
+            qbo.id = extendedEmployeeAttribute.employee_mapping[0].destination_vendor?.id;
+            qbo.value = extendedEmployeeAttribute.employee_mapping[0].destination_vendor?.value;
+            preserveDestination.id = extendedEmployeeAttribute.employee_mapping[0].destination_employee?.id;
+          }
+        }
+
         mappings.push({
           fyle: {
-            id: employeeMapping.source_employee.id,
-            value: employeeMapping.source_employee.value
+            id: extendedEmployeeAttribute.id,
+            value: extendedEmployeeAttribute.value
           },
-          qbo: {
-            id: this.employeeFieldMapping === EmployeeFieldMapping.EMPLOYEE ? employeeMapping.destination_employee?.id : employeeMapping.destination_vendor?.id,
-            value: this.employeeFieldMapping === EmployeeFieldMapping.EMPLOYEE ? employeeMapping.destination_employee?.value : employeeMapping.destination_vendor?.value
-          },
-          preserveDestination: {
-            id: this.employeeFieldMapping === EmployeeFieldMapping.EMPLOYEE ? employeeMapping.destination_vendor?.id : employeeMapping.destination_employee?.id
-          },
-          state: employeeMapping.destination_employee?.id || employeeMapping.destination_vendor?.id ? MappingState.MAPPED : MappingState.UNMAPPED,
-          autoMapped: employeeMapping.source_employee.auto_mapped,
+          qbo: qbo,
+          preserveDestination: preserveDestination,
+          state: qbo.id ? MappingState.MAPPED : MappingState.UNMAPPED,
+          autoMapped: extendedEmployeeAttribute.auto_mapped,
           index: index
         });
       });
@@ -131,7 +150,9 @@ export class EmployeeMappingComponent implements OnInit {
       this.mappings = new MatTableDataSource(mappings);
       this.mappings.filterPredicate = this.searchByText;
       this.setupFyleQboMappingFormArray(mappings);
-      if (!this.form) {
+
+      // Reinitialize form when the card changes or when the component is loaded for first time
+      if (!this.form || (this.form && this.form.value.cardUpdated)) {
         this.setupForm();
       }
 
@@ -140,7 +161,7 @@ export class EmployeeMappingComponent implements OnInit {
   }
 
   private searchByText(mapping: MappingList, filterText: string) {
-    return mapping.fyle.value.includes(filterText);
+    return mapping.fyle.value.toLowerCase().includes(filterText.toLowerCase());
   }
 
   private getPaginator(): Paginator {
@@ -172,11 +193,19 @@ export class EmployeeMappingComponent implements OnInit {
 
   save(selectedRow: MappingList): void {
     const employeeMappingPayload = EmployeeMappingModel.constructPayload(this.employeeFieldMapping, selectedRow, this.workspaceService.getWorkspaceId());
-    this.mappingService.postEmployeeMapping(employeeMappingPayload).subscribe(() => this.snackBar.open('Changes saved', '', {
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom',
-      panelClass: 'mapping-snackbar'
-    }));
+
+    this.mappingService.postEmployeeMapping(employeeMappingPayload).subscribe(() => {
+      if (selectedRow.state === MappingState.UNMAPPED) {
+        this.mappingStats.unmapped_attributes_count -= 1;
+        selectedRow.state = MappingState.MAPPED;
+      }
+
+      this.snackBar.open('Changes saved', '', {
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        panelClass: 'mapping-snackbar'
+      });
+    });
   }
 
   ngOnInit(): void {

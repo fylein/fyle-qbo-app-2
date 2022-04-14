@@ -103,7 +103,7 @@ export class GenericMappingComponent implements OnInit {
     let alphabetsFilter: string[] = [];
     let allAlphabets: boolean = true;
 
-    if (this.form) {
+    if (this.form && !this.form.value.sourceUpdated) {
       allAlphabets = this.form.value.filterOption.length === this.filterOptions.length;
 
       if (!allAlphabets) {
