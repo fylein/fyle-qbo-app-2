@@ -1,0 +1,56 @@
+.dashboard-export-log {
+  &--header-section {
+    padding: 32px 0px 24px 32px;
+  }
+
+  &--close-icon {
+    padding-right: 35px;
+  }
+
+  &--sub-header-text {
+    padding-top: 8px;
+    width: 625px;
+  }
+
+  &--table {
+    overflow: scroll;
+    height: 720px;
+    @media only screen and (max-width: 1440px) {
+      height: 540px;
+    }
+  }
+
+  &--horizontal-separator {
+    border-top: 1px solid #F5F5F5;
+    width: 100%;
+    align-self: center;
+    padding-bottom: 28px;
+  }
+
+  &--view-expenses-section {
+    padding-right: 12px;
+  }
+
+  &--view-expenses {
+    width: 83px;
+    height: 42px;
+    background: #FFFFFF;
+    border: 1px solid #DFDFE2;
+    box-sizing: border-box;
+    border-radius: 4px;
+  }
+
+  &--view-expenses-text {
+    color: #2C304E;
+    padding: 12px 24px;
+  }
+
+  &--error-resolve-text {
+    padding-left: 6px;
+    padding-bottom: 20px;
+  }
+
+  &--info-icon {
+    padding-left: 34px;
+  }
+}

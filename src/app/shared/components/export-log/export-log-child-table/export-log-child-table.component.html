@@ -1,0 +1,74 @@
+<table mat-table [dataSource]="expenses">
+  <ng-container  matColumnDef="expenseID">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>Expense ID</h4>
+    </th>
+    <td class="export-log-child-table--reference-id pointer" [matTooltip]="'View in Fyle'" mat-cell *matCellDef="let element" (click)="helperService.openExternalLink(element.fyleUrl)"> {{element.expenseID}} </td>
+  </ng-container>
+
+  <ng-container *ngIf="displayedColumns.indexOf('name') !== -1" matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>Employee Name and ID</h4>
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <h4>
+        {{ element.name[0] }}
+      </h4>
+      <h5 class="export-log-table--sub-row">
+        {{ element.name[1] }}
+      </h5>
+    </td>
+  </ng-container>
+
+  <ng-container *ngIf="displayedColumns.indexOf('fundSource') !== -1" matColumnDef="fundSource">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>Expense Type</h4>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{ element.fundSource }} </td>
+  </ng-container>
+
+  <ng-container *ngIf="displayedColumns.indexOf('merchant') !== -1" matColumnDef="merchant">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>Merchant</h4>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{ element.merchant ? element.merchant : '-' }} </td>
+  </ng-container>
+
+  <ng-container *ngIf="displayedColumns.indexOf('category') !== -1" matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>Category</h4>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{ element.category }} </td>
+  </ng-container>
+
+  <ng-container *ngIf="displayedColumns.indexOf('amount') !== -1" matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>Amount</h4>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{ element.amount[0] }} {{ element.amount[1] }}  </td>
+  </ng-container>
+
+  <ng-container *ngIf="displayedColumns.indexOf('account') !== -1" matColumnDef="account">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>QBO Account</h4>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{ element.account }} </td>
+  </ng-container>
+
+  <ng-container *ngIf="displayedColumns.indexOf('customer') !== -1" matColumnDef="customer">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>QBO Customer</h4>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{ element.customer }} </td>
+  </ng-container>
+
+  <ng-container *ngIf="displayedColumns.indexOf('class') !== -1" matColumnDef="class">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>QBO Class</h4>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{ element.class }} </td>
+  </ng-container>
+
+  <tr class="export-log-child-table--heading" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr class="export-log-child-table--row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

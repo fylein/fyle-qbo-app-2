@@ -1,0 +1,35 @@
+.export-log-child-table {
+  &--reference-id {
+    text-decoration-line: underline;
+  }
+
+  &--heading {
+    background: #F5F5F5;
+    border: 1px solid #DFDFE2;
+    border-radius: 4px;
+  }
+
+  &--row {
+    height: 70px;
+      &:hover {
+        background: #FAFCFF;
+      }
+  }
+}
+
+th {
+  color: #2C304E;
+  font-weight: 500;
+}
+
+::ng-deep .mat-tooltip {
+  background: #2C304E;
+  border-radius: 2px;
+  white-space: nowrap;
+  color: #FFFFFF;
+
+  margin-right: 110px !important;
+  @media only screen and (max-width: 1440px) {
+    margin-right: 120px !important;
+  }
+}

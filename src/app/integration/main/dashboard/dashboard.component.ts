@@ -9,6 +9,7 @@ import { DashboardService } from 'src/app/core/services/dashboard/dashboard.serv
 import { DashboardResolveMappingErrorDialogComponent } from 'src/app/shared/components/dashboard/dashboard-resolve-mapping-error-dialog/dashboard-resolve-mapping-error-dialog.component';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { DashboardExportLogDialogComponent } from 'src/app/shared/components/dashboard/dashboard-export-log-dialog/dashboard-export-log-dialog.component';
+import { DashboardQboErrorDialogComponent } from 'src/app/shared/components/dashboard/dashboard-qbo-error-dialog/dashboard-qbo-error-dialog.component';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -150,6 +151,18 @@ export class DashboardComponent implements OnInit {
         expenseGroups: exportState === ExportState.SUCCESS ? this.pastExport.successful_expenses : this.pastExport.failed_expenses,
         event: exportState
       },
+      position: {
+        top: '0px',
+        right: '0px'
+      }
+    });
+  }
+
+  showDashboardQboError(error: Error): void {
+    this.dialog.open(DashboardQboErrorDialogComponent, {
+      width: '784px',
+      height: '974px',
+      data: error,
       position: {
         top: '0px',
         right: '0px'

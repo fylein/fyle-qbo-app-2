@@ -36,8 +36,14 @@ export type Expense = {
 
 export interface ExpenseList {
   expenseID: string;
-  amount: [number, string];
-  merchant: string;
-  category: string;
+  amount?: [number, string];
+  merchant?: string;
+  category?: string;
   fyleUrl: string;
+  expenseType?: 'Credit Card' | 'Reimbursable';
+  name?: [string, string];
+  fundSource?: string;
+  account?: string;
+  customer?: string;
+  class?: string;
 }
