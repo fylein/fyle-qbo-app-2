@@ -98,11 +98,5 @@ th {
 ::ng-deep .mat-tooltip {
   background: #2C304E;
   border-radius: 2px;
-  white-space: nowrap;
   color: #FFFFFF;
-
-  margin-right: 110px !important;
-  @media only screen and (max-width: 1440px) {
-    margin-right: 120px !important;
-  }
 }
