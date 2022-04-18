@@ -14,7 +14,7 @@
     <h3 [ngClass]="showBackButton && activePage ? 'navbar--page-name-with-back-btn' : 'navbar--page-name'">{{ activePage | titlecase | snakeCaseToSpaceCase }}</h3>
   </div>
   <div fxLayout="row" fxLayoutAlign="space-between center" class="navbar--profile-help">
-    <div fxLayout="row" class="navbar--help-section">
+    <div (click)="openHelpArticle()" fxLayout="row" class="navbar--help-section pointer">
       <div class="navbar--help-icon">
         <img src="assets/images/svgs/actions/help.svg" />
       </div>

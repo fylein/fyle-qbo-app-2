@@ -131,6 +131,10 @@ export class OnboardingHeaderComponent implements OnInit {
     event?.stopPropagation();
   }
 
+  openHelpArticle(): void {
+    // TODO: Add help article url
+  }
+
   ngOnInit(): void {
     this.setupPage();
   }
