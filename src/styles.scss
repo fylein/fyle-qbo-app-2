@@ -393,6 +393,24 @@ table {
   &--user-org {
     padding-top: 1px;
   }
+
+  &--vertical-divider {
+    border: 1px solid #DFDFE2;
+    height: 80px;
+    width: 2px;
+  }
+
+  &--page-name-with-back-btn {
+    padding-left: 14px;
+  }
+
+  &--page-name {
+    padding-left: 24px;
+  }
+
+  &--back-btn {
+    padding-left: 20px;
+  }
 }
 
 .mapping {

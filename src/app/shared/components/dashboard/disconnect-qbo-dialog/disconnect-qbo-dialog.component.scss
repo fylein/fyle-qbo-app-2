@@ -1,0 +1,60 @@
+.disconnect-qbo {
+  height: 290px;
+  
+  &--header-section {
+    height: 74px; 
+  }
+
+  &--header-content {
+    padding: 21px 26px 20px 24px;
+  }
+
+  &--warning-section {
+    background: #FCF7E6;
+    border-radius: 4px;
+    width: 32px;
+    height: 32px;
+  }
+
+  &--warning-icon {
+    padding: 7px 7px;
+  }
+
+  &--header-text {
+    padding-left: 12px;
+  }
+
+  &--divider {
+    border: 1px solid #F5F5F5;
+    width: 548px;
+    margin: 0;
+    margin-bottom: 16px;
+  }
+
+  &--info {
+    line-height: 24px;
+    font-size: 14px;
+    padding-left: 24px;
+    padding-right: 24px;
+    color: #414562;
+  }
+
+  &--btn-section {
+    padding: 16px 16px 16px 0px;
+  }
+
+  &--cancel-btn {
+    background: #FFFFFF;
+    border: 1px solid #DFDFE2;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 94px;
+    height: 42px;
+
+    margin-right: 16px;
+  }
+
+  &--cancel-btn-text {
+    padding: 12px 24px;
+  }
+}

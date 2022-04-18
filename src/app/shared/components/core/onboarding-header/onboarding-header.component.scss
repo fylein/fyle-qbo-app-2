@@ -1,0 +1,79 @@
+.profile {
+  height: 320px;
+  width: 353px;
+  right: 20px;
+  position: absolute;
+  background: #FFFFFF;
+  box-shadow: 0px 8px 40px rgba(215, 215, 215, 0.73);
+  border-radius: 8px;
+  margin-top: 10px;
+  z-index: 101;
+
+  &--section {
+    padding: 16px 16px;
+  }
+
+  &--dropdown {
+    padding-top: 8px;
+    padding-left: 8px;
+  }
+
+  &--name {
+    padding-left: 16px;
+  }
+
+  &--divider {
+    border: 1px solid #F5F5F5;
+    width: 321px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  &--org-section {
+    padding-top: 11px;
+  }
+
+  &--org-name {
+    color: #414562;
+    font-size: 14px;
+    padding-right: 8px;
+  }
+
+  &--state-pill {
+    height: 24px;
+    border-radius: 13.5px;
+  }
+
+  &--state-pill-active {
+    width: 75px;
+    background: #E7F7F2;
+    color: #55B07D;
+    @extend .profile--state-pill;
+  }
+
+  &--state-pill-inactive {
+    width: 89px;
+    background: rgba(218, 30, 40, 0.1);
+    color: #DA1E28;
+    @extend .profile--state-pill;
+  }
+
+  &--state-pill-text {
+    padding: 5px 10px;
+  }
+
+  &--currency {
+    font-size: 12px;
+    padding-top: 7px;
+  }
+
+  &--signout-section {
+    padding-bottom: 16px;
+  }
+
+  &--signout-text {
+    font-size: 14px;
+    padding-left: 6px;
+    color: #DA1E28;
+  }
+}

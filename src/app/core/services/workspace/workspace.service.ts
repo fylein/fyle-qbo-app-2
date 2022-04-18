@@ -20,6 +20,10 @@ export class WorkspaceService {
     return this.storageService.get('workspaceId');
   }
 
+  getFyleCurrency(): string {
+    return this.storageService.get('currency');
+  }
+
   createWorkspace(): Observable<Workspace> {
     return this.apiService.post('/workspaces/', {});
   }
