@@ -1,8 +1,8 @@
-<div class="dashboard" *ngIf="!isLoading">
+<div class="dashboard">
   <!-- TODO -->
   <app-dashboard-header-section [name]="employeeName"></app-dashboard-header-section>
 
-  <div class="export">
+  <div *ngIf="!isLoading" class="export">
     <div class="export--core-section">
       <div class="export--content-section">
         <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -40,8 +40,30 @@
     </div>
   </div>
 
+  <!-- export shimmer -->
+  <div *ngIf="isLoading" class="export">
+    <div class="export--core-section">
+      <div class="export--content-section">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div fxLayout="row" fxLayoutAlign="space-between start">
+            <div class="shimmers shimmers--export-arrow"></div>
+            <div class="export--info-section">
+              <div class="shimmers shimmers--export-header"></div>
+              <div class="export--info-text">
+                <div class="shimmers shimmers--export-sub-header"></div>
+              </div>
+            </div>
+          </div>
+          <div class="shimmers shimmers--export-btn"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- export shimmer -->
+
+
   <div fxLayout="row" fxLayoutAlign="start start">
-    <div class="past-export" *ngIf="pastExport">
+    <div class="past-export" *ngIf="pastExport && !isLoading">
       <div class="past-export--section">
         <div class="past-export--content-section">
           <h2 class="past-export--header">
@@ -82,7 +104,28 @@
       </div>
     </div>
 
-    <div *ngIf="errors" class="errors">
+    <!-- past export shimmer -->
+    <div class="past-export" *ngIf="isLoading">
+      <div class="past-export--section">
+        <div class="past-export--content-section">
+          <div class="past-export--header shimmers shimmers--past-export-header"></div>
+          <div class="past-export--header shimmers shimmers--past-export-sub-header"></div>
+
+          <div class="past-export--header shimmers shimmers--past-export-sub-header-with-space"></div>
+
+          <div *ngFor="let i of [0,1]">
+            <div fxLayout="row" fxLayoutAlign="start center" class="shimmers--past-export-avatar-section">
+              <div class="shimmers shimmers--past-export-avatar"></div>
+              <div class="shimmers shimmers--past-export-line-header"></div>
+            </div>
+            <div class="shimmers shimmers--past-export-line-sub-header"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- past export shimmer -->
+
+    <div *ngIf="errors && !isLoading" class="errors">
       <div class="errors--section" [ngClass]="{'errors--zero-state-section': !errors || !errors?.EMPLOYEE_MAPPING?.length && !errors?.CATEGORY_MAPPING?.length && !errors?.QBO_ERROR?.length}">
         <p class="errors--header" fxLayout="row">
           Errors
@@ -161,8 +204,27 @@
         <app-zero-state-with-illustration *ngIf="!errors.EMPLOYEE_MAPPING.length && !errors.CATEGORY_MAPPING.length && !errors.QBO_ERROR.length" [page]="'dashboard_error'"></app-zero-state-with-illustration>
       </div>
     </div>
+
+    <!-- errors shimmer -->
+    <div *ngIf="isLoading" class="errors">
+      <div class="errors--section">
+        <div class="shimmers shimmers--errors-header"></div>
+        <p class="errors--divider"></p>
+        <div class="shimmers shimmers--errors-type-header"></div>
+        <p></p>
+        <div class="shimmers shimmers--errors-type-sub-header"></div>
+
+        <div *ngFor="let i of [0,1,2]">
+          <div class="shimmers--error-box" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="shimmers shimmers--error-type"></div>
+            <div class="shimmers shimmers--error-btn"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- errors shimmer -->
+
   </div>
 
-  <app-zero-state-with-illustration *ngIf="!errors" [page]="'dashboard'"></app-zero-state-with-illustration>
+  <app-zero-state-with-illustration *ngIf="!errors && !isLoading" [page]="'dashboard'"></app-zero-state-with-illustration>
 </div>
-
