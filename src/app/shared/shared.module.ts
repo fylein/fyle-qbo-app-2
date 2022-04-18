@@ -39,8 +39,6 @@ import { ExpenseFieldCreationDialogComponent } from './components/configuration/
 import { ConfigurationStepFooterSectionComponent } from './components/configuration/configuration-step-footer-section/configuration-step-footer-section.component';
 import { OnboardingHeaderComponent } from './components/core/onboarding-header/onboarding-header.component';
 import { ZeroStateWithIllustrationComponent } from './components/core/zero-state-with-illustration/zero-state-with-illustration.component';
-import { ProfileDropdownComponent } from './components/profile/profile-dropdown/profile-dropdown.component';
-import { DisconnectQboDialogComponent } from './components/profile/profile-dropdown/disconnect-qbo-dialog/disconnect-qbo-dialog.component';
 import { SimpleSearchTextComponent } from './components/helpers/simple-search-text/simple-search-text.component';
 import { AdvancedSearchSelectComponent } from './components/helpers/advanced-search-select/advanced-search-select.component';
 import { PaginatorComponent } from './components/helpers/paginator/paginator.component';
@@ -62,6 +60,7 @@ import { DashboardShimmersComponent } from './components/dashboard/dashboard-shi
 import { DashboardExportLogDialogComponent } from './components/dashboard/dashboard-export-log-dialog/dashboard-export-log-dialog.component';
 import { DashboardQboErrorDialogComponent } from './components/dashboard/dashboard-qbo-error-dialog/dashboard-qbo-error-dialog.component';
 import { ExportLogChildTableComponent } from './components/export-log/export-log-child-table/export-log-child-table.component';
+import { DisconnectQboDialogComponent } from './components/dashboard/disconnect-qbo-dialog/disconnect-qbo-dialog.component';
 
 @NgModule({
   declarations: [
@@ -86,8 +85,6 @@ import { ExportLogChildTableComponent } from './components/export-log/export-log
     ConfigurationToggleFieldComponent,
     OnboardingHeaderComponent,
     ZeroStateWithIllustrationComponent,
-    ProfileDropdownComponent,
-    DisconnectQboDialogComponent,
     SimpleSearchTextComponent,
     AdvancedSearchSelectComponent,
     PaginatorComponent,
@@ -108,7 +105,8 @@ import { ExportLogChildTableComponent } from './components/export-log/export-log
     DashboardShimmersComponent,
     DashboardExportLogDialogComponent,
     DashboardQboErrorDialogComponent,
-    ExportLogChildTableComponent
+    ExportLogChildTableComponent,
+    DisconnectQboDialogComponent
   ],
   imports: [
     CommonModule,
@@ -146,8 +144,6 @@ import { ExportLogChildTableComponent } from './components/export-log/export-log
     OnboardingHeaderComponent,
     OnboardingHeaderComponent,
     ZeroStateWithIllustrationComponent,
-    ProfileDropdownComponent,
-    DisconnectQboDialogComponent,
     SimpleSearchTextComponent,
     AdvancedSearchSelectComponent,
     PaginatorComponent,
@@ -170,7 +166,8 @@ import { ExportLogChildTableComponent } from './components/export-log/export-log
   ],
   entryComponents: [
     ExpenseFormPreviewDialogComponent,
-    ExpenseFieldCreationDialogComponent
+    ExpenseFieldCreationDialogComponent,
+    DisconnectQboDialogComponent
   ],
   providers: []
 })

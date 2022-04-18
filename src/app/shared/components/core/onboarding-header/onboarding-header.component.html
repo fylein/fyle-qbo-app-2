@@ -19,20 +19,89 @@
         Help
       </div>
     </div>
-    <div fxLayout="row">
-      <div class="navbar--avatar-section">
+    <div fxLayout="row" (click)="showOrHideProfileDropdown()" #menu>
+      <div class="navbar--avatar-section pointer">
         <p class="navbar--avatar-text">
           {{user.full_name[0]}}
         </p>
       </div>
 
       <div class="navbar--profile-section">
-        <div>
+        <div class="pointer">
           {{ user.full_name | trimCharacter: 20 }}
         </div>
-        <div class="navbar--user-org navbar--small-text sub-text-color">
+        <div class="navbar--user-org navbar--small-text sub-text-color pointer">
           {{ user.org_name | trimCharacter: 26 }}
         </div>
+        <div *ngIf="isProfileExpanded" class="profile">
+          <div class="profile--section">
+            <div fxLayout="row" fxLayoutAlign="start center">
+              <div class="navbar--avatar-section">
+                <p class="navbar--avatar-text">
+                  {{user.full_name[0]}}
+                </p>
+              </div>
+
+              <h3 class="profile--name">
+                {{ user.full_name | trimCharacter: 20 }}
+              </h3>
+            </div>
+
+            <div class="profile--divider"></div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <div>Fyle Organization</div>
+              <div class="actionable-text" (click)="switchFyleOrg()">Switch Organization</div>
+            </div>
+
+            <div>
+              <div fxLayout="row" fxLayoutAlign="start center" class="profile--org-section">
+                <div class="profile--org-name">
+                  {{ user.org_name | trimCharacter: 26 }}
+                </div>
+                <div class="profile--state-pill profile--state-pill-active">
+                  <h4 class="profile--state-pill-text align-center">Active</h4>
+                </div>
+              </div>
+              <div class="profile--currency sub-text-color">
+                {{ currency }}
+              </div>
+            </div>
+
+            <div class="profile--divider"></div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <div>Quickbooks Online Company</div>
+              <div *ngIf="isQboConnected" class="actionable-text" (click)="disconnectQbo()">Disconnect</div>
+            </div>
+
+            <div>
+              <div fxLayout="row" fxLayoutAlign="start center" class="profile--org-section">
+                <div *ngIf="qboCompanyName" class="profile--org-name">
+                  {{ qboCompanyName | trimCharacter: 26 }}
+                </div>
+                <div class="profile--state-pill" [ngClass]="isQboConnected ? 'profile--state-pill-active' : 'profile--state-pill-inactive'">
+                  <h4 class="profile--state-pill-text align-center">{{ isQboConnected ? 'Active': 'Inactive' }}</h4>
+                </div>
+              </div>
+              <div class="profile--currency sub-text-color">
+                {{ currency }}
+              </div>
+            </div>
+
+            <div class="profile--divider"></div>
+
+            <div fxLayout="row" fxLayoutAlign="center center" class="profile--signout-section pointer" (click)="logout()">
+              <img src="assets/images/svgs/actions/signout.svg" />
+              <div class="profile--signout-text">Signout</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="profile--dropdown pointer">
+        <img #menuButton src='{{ "assets/images/svgs/actions/arrow-mark-" + (isProfileExpanded ? "up" : "down") + "-dashboard.svg"}}' />
       </div>
     </div>
   </div>

@@ -1,0 +1,36 @@
+<div class="disconnect-qbo">
+  <div class="disconnect-qbo--header-section">
+    <div class="disconnect-qbo--header-content">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <div class="disconnect-qbo--warning-section">
+            <img src="assets/images/svgs/general/alert.svg" class="disconnect-qbo--warning-icon" />
+          </div>
+          <h3 class="disconnect-qbo--header-text">
+            Disconnect Quickbooks Online
+          </h3>
+        </div>
+        <img src="assets/images/svgs/actions/close.svg" (click)="this.dialogRef.close()" class="sub-text-color pointer" width="12px" height="12px" />
+      </div>
+    </div>
+  </div>
+  
+  <p class="disconnect-qbo--divider"></p>
+
+  <p class="disconnect-qbo--info">
+    Exporting expenses from Fyle will no longer work if you disconnect your 
+    Quickbooks Online Company.
+    <br>
+    Are you sure you want to disconnect <b>{{ data.companyName }}</b> Quickbooks Online
+    company?
+  </p>
+
+  <p class="disconnect-qbo--divider"></p>
+
+  <div fxLayout="row" fxLayoutAlign="end center" class="disconnect-qbo--btn-section">
+    <div class="disconnect-qbo--cancel-btn pointer" mat-dialog-close>
+      <h5 class="disconnect-qbo--cancel-btn-text align-center">Cancel</h5>
+    </div>
+    <button mat-flat-button color="accent" (click)="this.dialogRef.close(true)" mat-flat-button color="primary">Disconnect</button>
+  </div>
+</div>

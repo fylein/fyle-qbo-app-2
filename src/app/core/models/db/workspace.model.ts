@@ -5,6 +5,7 @@ export type Workspace = {
   name: string;
   user: number[];
   fyle_org_id: string;
+  fyle_currency: string;
   qbo_realm_id: string;
   cluster_domain: string;
   onboarding_state: OnboardingState;

@@ -62,7 +62,7 @@ export class IntegrationComponent implements OnInit {
     this.user = this.userService.getUserProfile();
     this.getOrCreateWorkspace().then((workspace: Workspace) => {
       this.workspace = workspace;
-      // TODO: Store this in local storage, will be used by the profile dropdown for displaying currency
+      this.storageService.set('currency', workspace.fyle_currency);
       this.navigate();
     });
   }
