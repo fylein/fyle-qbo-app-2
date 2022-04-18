@@ -161,7 +161,6 @@ export class MainComponent implements OnInit {
     });
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationStart) {
-        console.log(val.url)
         this.markModuleActive(val.url);
       }
     });
