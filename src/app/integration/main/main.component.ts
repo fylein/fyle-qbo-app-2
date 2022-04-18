@@ -129,6 +129,8 @@ export class MainComponent implements OnInit {
               c.isActive = true;
               m.isActive = true;
               m.isExpanded = true;
+            } else {
+              c.isActive = false;
             }
           });
         }
@@ -159,6 +161,7 @@ export class MainComponent implements OnInit {
     });
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationStart) {
+        console.log(val.url)
         this.markModuleActive(val.url);
       }
     });
