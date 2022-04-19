@@ -15,7 +15,16 @@
   }
 
   &--clear-icon {
+    padding-top: 9px;
     padding-right: 8px;
+  }
+
+  &--clear-icon-smaller-area {
+    padding-top: 7px;
+  }
+
+  &--smaller-search-area {
+    height: 36px;
   }
 }
 

@@ -1,11 +1,11 @@
 <form [formGroup]="form" [ngClass]="{'search-select': showBackgroundColor}">
   <div class="search-select--search-input">
-    <div fxLayout="row" class="search-select--search-area">
+    <div fxLayout="row" class="search-select--search-area" [ngClass]="{'search-select--smaller-search-area': !showBackgroundColor}">
       <img class="search-select--search-icon" src="assets/images/svgs/actions/search.svg">
       <input class="search-select--input-field"
         [placeholder]="placeholder" class="export-settings--search" formControlName="searchOption" cdkFocusInitial type="text"
         matInput>
-        <img src="assets/images/svgs/actions/clear.svg" class="search-select--clear-icon pointer" (click)="clearText()">
+        <img width="20px" height="20px" src="assets/images/svgs/actions/clear.svg" class="search-select--clear-icon pointer" [ngClass]="{'search-select--clear-icon-smaller-area': !showBackgroundColor}" (click)="clearText()">
     </div>
   </div>
 </form>

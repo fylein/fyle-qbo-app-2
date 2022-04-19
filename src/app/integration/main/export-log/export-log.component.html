@@ -3,19 +3,56 @@
 <div *ngIf="!isLoading" class="export-log">
   <div class="export-log--content">
     <!-- header -->
-    <div *ngIf="totalCount" class="export-log--header-section">
-      <div fxLayout="row" class="export-log--simple-search">
+    <div [formGroup]="exportLogForm" *ngIf="totalCount || selectedDateFilter" class="export-log--header-section">
+      <div fxLayout="row" class="export-log--simple-search" [class.active]="selectedDateFilter">
         <app-simple-search-select [form]="exportLogForm" [placeholder]="'Search by Employee Name or Expense ID'" [showBackgroundColor]="false"></app-simple-search-select>
 
-        <!-- TODO: fix date filter -->
-        <app-simple-search-select [form]="exportLogForm" [placeholder]="'Select date range'" [showBackgroundColor]="false"></app-simple-search-select>
+        <mat-form-field floatLabel="always" appearance="outline" class="export-log--date-filter">
+          <mat-select placeholder="Select date range" formControlName="dateRange">
+            <mat-select-trigger *ngIf="selectedDateFilter" class="export-log--selected-date">
+              {{ selectedDateFilter.startDate | date: 'MMM dd, yyyy' }} - {{ selectedDateFilter.endDate | date: 'MMM dd, yyyy' }}
+              <img src="assets/images/svgs/actions/clear-date-filter.svg" (click)="clearDateFilter()" class="export-log--clear-date-filter" width="12px" height="12px">
+            </mat-select-trigger>
+            <mat-option class="export-log--date-select-option" *ngFor="let dateOption of dateOptions" [value]="dateOption">
+              <div>
+                <div class="sub-text-color">{{ dateOption.dateRange }}</div>
+                <div class="export-log--date-range">{{ dateOption.startDate | date: 'MMM dd, yyyy' }} - {{ dateOption.endDate | date: 'MMM dd, yyyy' }}</div>
+              </div>
+            </mat-option>
+            <mat-option class="export-log--date-select-option" [value]="''" (click)="picker.open();">
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-text-color">Custom dates</div>
+                <img src="assets/images/svgs/actions/arrow-right-export-log.svg" class="configuration--icon">
+              </div>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="export-log--date-field">
+          <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field export-log--date-filter">
+            <mat-date-range-input [formGroup]="exportLogForm" [rangePicker]="picker">
+              <input matStartDate formControlName="start" placeholder="Start date">
+              <input (dateChange)="dateFilterHandler()" matEndDate formControlName="end" placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker>
+              <mat-date-range-picker-actions>
+                <div class="export-log--cancel-btn pointer" matDateRangePickerCancel>
+                  <h5 class="export-log--cancel-btn-text align-center">Cancel</h5>
+                </div>
+                <div class="export-log--done pointer" matDateRangePickerApply>
+                  <h5 class="export-log--done-text align-center">Done</h5>
+                </div>
+              </mat-date-range-picker-actions>
+            </mat-date-range-picker>
+          </mat-form-field>
+        </div>
       </div>
     </div>
     <!-- header -->
 
     <div class="export-log--table">
       <app-export-log-table [displayedColumns]="displayedColumns" [totalCount]="totalCount" [expenseGroups]="expenseGroups"></app-export-log-table>
-      <app-zero-state-with-illustration [page]="'export_log'" [form]="exportLogForm" [data]="expenseGroups" [searchTerm]="'Employee Name or Expense ID'"></app-zero-state-with-illustration>
+      <app-zero-state-with-illustration [page]="'export_log'" [form]="exportLogForm" [data]="expenseGroups" [searchTerm]="'Employee Name or Expense ID'" [dateFilter]="selectedDateFilter"></app-zero-state-with-illustration>
     </div>
 
     <app-paginator *ngIf="expenseGroups.filteredData.length" [totalCount]="totalCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getExpenseGroups($event)"></app-paginator>
