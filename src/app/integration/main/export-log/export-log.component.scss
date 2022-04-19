@@ -20,10 +20,80 @@
 
   &--simple-search {
     width: 374px;
+
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
+      width: 325px !important;
+    }
+
+    &.active {
+      ::ng-deep .mat-select-arrow {
+        display: none !important;
+      }
+    }
   }
 
   &--table {
     height: 680px;
     overflow: scroll;
+  }
+
+  &--date-filter {
+    margin-top: 5px;
+  }
+
+  &--date-select-option {
+    line-height: normal !important;
+    height: 58px !important;
+    font-size: 14px !important;
+    color: #414562;
+  }
+
+  &--date-range {
+    color: #A9ACBC;
+  }
+
+  &--selected-date {
+    font-size: 14px;
+  }
+
+  &--date-field {
+    visibility: hidden;
+    overflow: hidden;
+    height: 0;
+    width: 0;
+    margin-left: -212px;
+  }
+
+  &--cancel-btn {
+    background: #FFFFFF;
+    border: 1px solid #DFDFE2;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 94px;
+    height: 42px;
+    margin-right: 16px;
+  }
+
+  &--cancel-btn-text {
+    padding: 12px 24px;
+  }
+
+  &--done {
+    background: linear-gradient(162.38deg, #FF3366 3.01%, #FE5196 111.5%);
+    border: 1px solid #DFDFE2;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 83px;
+    height: 42px;
+    color: #FFFFFF;
+  }
+
+  &--done-text {
+    padding: 12px 24px;
+  }
+
+  &--clear-date-filter {
+    position: absolute;
+    right: 12px;
   }
 }

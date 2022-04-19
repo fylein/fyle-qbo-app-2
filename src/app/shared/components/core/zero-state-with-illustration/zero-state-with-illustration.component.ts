@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { SelectedDateFilter } from 'src/app/core/models/misc/date-filter.model';
 
 @Component({
   selector: 'app-zero-state-with-illustration',
@@ -14,6 +15,7 @@ export class ZeroStateWithIllustrationComponent implements OnInit {
   @Input() form: FormGroup;
   @Input() searchTerm: string;
   @Input() page: 'export_log' | 'mapping' | 'dashboard' | 'dashboard_error';
+  @Input() dateFilter: SelectedDateFilter | null;
 
   constructor() { }
 

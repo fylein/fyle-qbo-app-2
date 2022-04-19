@@ -9,6 +9,7 @@ import { ExportLogService } from 'src/app/core/services/export-log/export-log.se
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { HelperService } from 'src/app/core/services/core/helper.service';
+import { DateFilter, SelectedDateFilter } from 'src/app/core/models/misc/date-filter.model';
 
 @Component({
   selector: 'app-export-log',
@@ -25,6 +26,24 @@ export class ExportLogComponent implements OnInit {
   offset: number;
   totalCount: number;
   FyleReferenceType = FyleReferenceType;
+  selectedDateFilter: SelectedDateFilter | null;
+  dateOptions: DateFilter[] = [
+    {
+      dateRange: 'This Month',
+      startDate: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+      endDate: new Date()
+    },
+    {
+      dateRange: 'This Week',
+      startDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - new Date().getDay()),
+      endDate: new Date()
+    },
+    {
+      dateRange: 'Today',
+      startDate: new Date(),
+      endDate: new Date()
+    }
+  ];
 
   constructor(
     public dialog: MatDialog,
@@ -36,7 +55,10 @@ export class ExportLogComponent implements OnInit {
 
   private setupForm(): void {
     this.exportLogForm = this.formBuilder.group({
-      searchOption: ['']
+      searchOption: [''],
+      dateRange: [null],
+      start: [''],
+      end: ['']
     });
 
     this.exportLogForm.controls.searchOption.valueChanges.subscribe((searchTerm: string) => {
@@ -46,6 +68,38 @@ export class ExportLogComponent implements OnInit {
         this.expenseGroups.filter = '';
       }
     });
+
+    this.exportLogForm.controls.dateRange.valueChanges.subscribe((dateRange) => {
+      if (dateRange) {
+        this.selectedDateFilter = {
+          startDate: dateRange.startDate,
+          endDate: dateRange.endDate
+        };
+
+        const paginator: Paginator = this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
+        this.getExpenseGroups(paginator);
+      }
+    });
+  }
+
+  clearDateFilter(): void {
+    this.selectedDateFilter = null;
+    this.exportLogForm.controls.dateRange.patchValue(null);
+    this.exportLogForm.controls.start.patchValue('');
+    this.exportLogForm.controls.end.patchValue('');
+
+    const paginator: Paginator = this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
+    this.getExpenseGroups(paginator);
+  }
+
+  dateFilterHandler(): void {
+    this.selectedDateFilter = {
+      startDate: this.exportLogForm.controls.start.value,
+      endDate: this.exportLogForm.controls.end.value
+    };
+
+    const paginator: Paginator = this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
+    this.getExpenseGroups(paginator);
   }
 
   getExpenseGroups(data: Paginator): void {
@@ -60,7 +114,7 @@ export class ExportLogComponent implements OnInit {
     this.limit = data.limit;
     this.offset = data.offset;
 
-    this.exportLogService.getExpenseGroups('COMPLETE', data.limit, data.offset).subscribe((expenseGroupResponse: ExpenseGroupResponse) => {
+    this.exportLogService.getExpenseGroups('COMPLETE', data.limit, data.offset, this.selectedDateFilter).subscribe((expenseGroupResponse: ExpenseGroupResponse) => {
       this.totalCount = expenseGroupResponse.count;
       expenseGroupResponse.results.forEach((expenseGroup: ExpenseGroup) => {
         const [type, id, exportType] = this.exportLogService.generateExportTypeAndId(expenseGroup);
