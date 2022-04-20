@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'environment.localhost';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Cacheable } from 'ts-cacheable';
 import { ExpenseGroupSetting } from '../../models/db/expense-group-setting.model';
 import { ExpenseGroup, ExpenseGroupDescription, ExpenseGroupResponse } from '../../models/db/expense-group.model';
