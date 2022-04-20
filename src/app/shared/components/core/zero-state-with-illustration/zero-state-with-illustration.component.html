@@ -1,9 +1,12 @@
 <div *ngIf="page !== 'dashboard' && page !== 'dashboard_error' && !data.filteredData.length" fxLayout="column" fxLayoutAlign="center center">
   <img class="zero-state-with-illustration--zero-state-img" src="assets/images/pngs/zero-state/export-log.png">
-  <h4 class="zero-state-with-illustration--zero-state-text align-center">
+  <h4 *ngIf="!dateFilter" class="zero-state-with-illustration--zero-state-text align-center">
     {{ form.value.searchOption && !data.filteredData.length ? 'Sorry, no results found!' : 'No records to show yet!' }}
   </h4>
-  <h5 class="zero-state-with-illustration--zero-state-text-small align-center" *ngIf="page === 'export_log'">
+  <h4 *ngIf="dateFilter" class="zero-state-with-illustration--zero-state-text align-center">
+    Sorry, no results found!
+  </h4>
+  <h5 class="zero-state-with-illustration--zero-state-text-small align-center" *ngIf="page === 'export_log' && !dateFilter">
     {{ form.value.searchOption && !data.filteredData.length ? 'Looks like your search term does not match any ' + searchTerm : 'All your successful exports and their details will be stored here.' }}
   </h5>
 
@@ -12,8 +15,7 @@
     {{ form.value.searchOption && !data.filteredData.length ? 'Looks like your search term does not match any ' + searchTerm : 'No mappings to display.' }}
   </h5>
 
-  <!-- TODO: update after adding export log date filter -->
-  <h5 *ngIf="false" class="zero-state-with-illustration--zero-state-text-small align-center">
+  <h5 *ngIf="dateFilter" class="zero-state-with-illustration--zero-state-text-small align-center">
     We could not find any exports done on timeline that you have selected
   </h5>
 </div>

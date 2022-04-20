@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { Cacheable } from 'ts-cacheable';
 import { ExpenseGroupSetting } from '../../models/db/expense-group-setting.model';
 import { ExpenseGroup, ExpenseGroupDescription, ExpenseGroupResponse } from '../../models/db/expense-group.model';
-import { Expense } from '../../models/db/expense.model';
 import { FyleReferenceType } from '../../models/enum/enum.model';
+import { SelectedDateFilter } from '../../models/misc/date-filter.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
 
@@ -22,15 +22,19 @@ export class ExportLogService {
     private workspaceService: WorkspaceService
   ) { }
 
-  getExpenseGroups(state: string, limit: number, offset: number): Observable<ExpenseGroupResponse> {
-    return this.apiService.get(
-      `/workspaces/${this.workspaceId}/fyle/expense_groups/`,
-      {
-        limit,
-        offset,
-        state
-      }
-    );
+  getExpenseGroups(state: string, limit: number, offset: number, selectedDateFilter: SelectedDateFilter | null): Observable<ExpenseGroupResponse> {
+    const params: any = {
+      limit,
+      offset,
+      state
+    };
+
+    if (selectedDateFilter) {
+      params['start_date'] = selectedDateFilter.startDate.toISOString().split('T')[0];
+      params['end_date'] = selectedDateFilter.endDate.toISOString().split('T')[0];
+    }
+
+    return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expense_groups/`, params);
   }
 
   @Cacheable()
