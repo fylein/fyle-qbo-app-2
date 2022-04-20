@@ -1,4 +1,5 @@
-<div fxLayout="row" fxLayoutAlign="space-between center" class="configuration-main--bg mapping-header-section--stats-section">
+<div class="mapping--bg"></div>
+<div fxLayout="row" fxLayoutAlign="space-between center" class="mapping--stats-section">
   <div fxLayout="row" fxLayoutAlign="space-around center">
     <div class="mapping-header-section--card pointer" [ngClass]="{'mapping-header-section--card-active': totalCardActive}" (click)="switchView(true)">
       <div fxLayout="row" fxLayoutAlign="end center">
@@ -8,7 +9,7 @@
         <div class="mapping-header-section--card-tag"></div>
         <div class="mapping-header-section--card-content">
           <h5 class="mapping-header-section--card-content-text-header single-line-text">Total {{ sourceType !== 'category' ? (sourceType | titlecase | snakeCaseToSpaceCase) + 's' : 'Categories' }}</h5>
-          <span class="mapping-header-section--card-content-text-count">{{ mappingStats.all_attributes_count }}</span>
+          <span class="mapping-header-section--card-content-text-count">{{ mappingStats?.all_attributes_count }}</span>
         </div>
       </div>
     </div>
@@ -20,12 +21,12 @@
         <div class="mapping-header-section--card-tag"></div>
         <div class="mapping-header-section--card-content">
           <h5 class="mapping-header-section--card-content-text-header single-line-text">Unmapped {{ sourceType !== 'category' ? (sourceType | titlecase | snakeCaseToSpaceCase) + 's' : 'Categories' }}</h5>
-          <span class="mapping-header-section--card-content-text-count">{{ mappingStats.unmapped_attributes_count }}</span>
+          <span class="mapping-header-section--card-content-text-count">{{ mappingStats?.unmapped_attributes_count }}</span>
         </div>
       </div>
     </div>
   </div>
-  <div fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="mapping-header-section--auto-map-btn-section">
     <div *ngIf="autoMapEmployee" class="mapping-header-section--auto-map-btn pointer" fxLayout="row" (click)="triggerAutoMapEmployee()">
       <img src="assets/images/svgs/general/auto-map.svg" width="16px" height="16px" class="mapping-header-section--auto-map-icon">
       <h5 class="mapping-header-section--auto-map-btn-text align-center">

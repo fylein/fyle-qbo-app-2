@@ -11,7 +11,6 @@
   &--content {
     background: #FFFFFF;
     border-radius: 8px;
-    height: 866px;
   }
 
   &--header-section {
@@ -23,6 +22,7 @@
 
     ::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
       width: 325px !important;
+      margin-top: 6px;
     }
 
     &.active {
@@ -33,8 +33,11 @@
   }
 
   &--table {
-    height: 680px;
     overflow: scroll;
+    height: 680px;
+    @media only screen and (max-width: 1440px) {
+      height: 500px;
+    }
   }
 
   &--date-filter {

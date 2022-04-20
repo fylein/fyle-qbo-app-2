@@ -1,8 +1,4 @@
 .mapping-header-section {
-  &--stats-section {
-    padding: 20px 24px 0px 0px;
-  }
-
   &--card {
     margin-left: 24px;
     height: 84px;
@@ -19,8 +15,8 @@
 
   &--card-active-icon {
     position: relative;
-    top: -8px;
-    right: -8px;
+    top: -5px;
+    right: -4px;
   }
 
   &--card-inactive {
@@ -56,6 +52,10 @@
   &--card-content-text-count {
     color: #2C304E;
     font-size: 20px;
+  }
+
+  &--auto-map-btn-section {
+    padding-right: 24px;
   }
 
   &--auto-map-btn {

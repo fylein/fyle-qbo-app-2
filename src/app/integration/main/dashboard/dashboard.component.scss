@@ -234,3 +234,101 @@ h2 {
   color: #FFFFFF;
   min-width: 440px;
 }
+
+.loader {
+  &--export-arrow {
+    height: 19px;
+    width: 19px;
+    margin-right: 12px;
+  }
+
+  &--export-header {
+    height: 19px;
+    width: 158px;
+  }
+
+  &--export-sub-header {
+    height: 19px;
+    width: 222px;
+  }
+
+  &--export-btn {
+    height: 42px;
+    width: 256px;
+  }
+
+  &--past-export-header {
+    width: 158px;
+  }
+
+  &--past-export-sub-header {
+    width: 222px;
+  }
+
+  &--past-export-sub-header-with-space {
+    @extend .loader--past-export-sub-header;
+    margin-top: 44px;
+  }
+
+  &--past-export-avatar-section {
+    margin-top: 44px;
+  }
+
+  &--past-export-avatar {
+    border-radius: 8px;
+    height: 28px;
+    width: 28px;
+    margin-right: 8px;
+  }
+
+  &--past-export-line-header {
+    height: 19px;
+    width: 120px;
+  }
+
+  &--past-export-line-sub-header {
+    height: 19px;
+    width: 60px;
+    margin-top: 15px;
+    margin-left: 36px;
+  }
+
+  &--errors-header {
+    height: 19px;
+    width: 222px;
+    margin: 19px 0px 18px 25px;
+  }
+
+  &--errors-type-header {
+    width: 222px;
+    height: 19px;
+    margin: 19px 0px 18px 25px;
+  }
+
+  &--errors-type-sub-header {
+    width: 149px;
+    height: 19px;
+    margin: 19px 0px 18px 25px;
+  }
+
+  &--error-box {
+    margin: 25px 16px;
+    background: #FFFFFF;
+    border: 1px solid #F5F5F5;
+    box-sizing: border-box;
+    border-radius: 6px;
+    height: 68px;
+  }
+
+  &--error-type {
+    width: 206px;
+    height: 19px;
+    margin-left: 16px;
+  }
+
+  &--error-btn {
+    margin-right: 16px;
+    width: 104px;
+    height: 44px;
+  }
+}
