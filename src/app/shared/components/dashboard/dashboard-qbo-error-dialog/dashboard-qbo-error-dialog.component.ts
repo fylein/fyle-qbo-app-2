@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { environment } from 'environment.localhost';
 import { Error } from 'src/app/core/models/db/error.model';
 import { Expense, ExpenseList } from 'src/app/core/models/db/expense.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard-qbo-error-dialog',

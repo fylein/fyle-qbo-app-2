@@ -25,12 +25,12 @@ export class ExportLogTableComponent implements OnInit {
     public helperService: HelperService
   ) { }
 
-  openChildExpenses(expenses: Expense[]): void {
-    if (expenses.length > 1) {
+  openChildExpenses(selectedRow: ExpenseGroupList): void {
+    if (selectedRow.fyleReferenceType !== FyleReferenceType.EXPENSE) {
       this.dialog.open(ExportLogChildDialogComponent, {
         width: '784px',
         height: '974px',
-        data: expenses,
+        data: selectedRow.expenses,
         position: {
           top: '0px',
           right: '0px'

@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { environment } from 'environment.localhost';
 import { ExpenseGroup, ExpenseGroupList } from 'src/app/core/models/db/expense-group.model';
 import { ExportState, FyleReferenceType } from 'src/app/core/models/enum/enum.model';
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard-export-log-dialog',
