@@ -235,19 +235,7 @@ h2 {
   min-width: 440px;
 }
 
-.shimmers {
-  background: #efefef;
-  background-image: linear-gradient(to right, #efefef 0%, #e8e8e8 20%, #efefef 40%, #efefef 100%);
-  background-size: 800px 104px;
-  display: inline-block;
-  position: relative;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
-  animation-iteration-count: infinite;
-  animation-name: shimmer;
-  animation-timing-function: linear;
-  border-radius: 4px;
-
+.loader {
   &--export-arrow {
     height: 19px;
     width: 19px;
@@ -278,7 +266,7 @@ h2 {
   }
 
   &--past-export-sub-header-with-space {
-    @extend .shimmers--past-export-sub-header;
+    @extend .loader--past-export-sub-header;
     margin-top: 44px;
   }
 
@@ -342,15 +330,5 @@ h2 {
     margin-right: 16px;
     width: 104px;
     height: 44px;
-  }
-}
-
-
-@keyframes shimmer {
-  0% {
-    background-position: -468px 0;
-  }
-  100% {
-    background-position: 468px 0;
   }
 }

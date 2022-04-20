@@ -1,15 +1,37 @@
 <div class="mapping">
-  <app-mapping-header-section *ngIf="!isLoading" [mappingStats]="mappingStats" [totalCardActive]="totalCardActive" [sourceType]="sourceType" (mappingCardUpdateHandler)="mappingCardUpdateHandler($event)"></app-mapping-header-section>
+  <app-mapping-header-section [mappingStats]="mappingStats" [totalCardActive]="totalCardActive" [sourceType]="sourceType" (mappingCardUpdateHandler)="mappingCardUpdateHandler($event)"></app-mapping-header-section>
 
-  <div *ngIf="!isLoading" [formGroup]="form" class="mapping--core-section">
+  <div class="mapping--core-section">
     <div class="mapping--core-section-content">
       <app-mapping-filter [form]="form" [searchTerm]="(sourceType | titlecase | snakeCaseToSpaceCase) + ' name'" (mappingFilterUpdateHandler)="getMappings()"></app-mapping-filter>
 
-      <div class="mapping--table">
+      <div *ngIf="!isLoading" class="mapping--table">
         <app-mapping-table [mappings]="mappings" [sourceType]="mappingSetting.source_field" [destinationType]="mappingSetting.destination_field" [qboData]="qboData" [mappingForm]="mappingForm" (mappingSaveHandler)="save($event)"></app-mapping-table>
 
         <app-zero-state-with-illustration [page]="'mapping'" [form]="form" [data]="mappings" [searchTerm]="(sourceType | titlecase | snakeCaseToSpaceCase) + ' name'"></app-zero-state-with-illustration>
       </div>
+
+      <!-- shimmers -->
+      <div *ngIf="isLoading">
+        <table class="shimmers mapping-loader--table">
+          <tr fxFlex="row" fxLayoutAlign="space-between center">
+            <th><span class="mapping-loader--fyle">{{ sourceType | titlecase | snakeCaseToSpaceCase }} in Fyle</span></th>
+            <th>
+              <span class="mapping-loader--qbo">{{ mappingSetting?.destination_field | titlecase | snakeCaseToSpaceCase }} in QBO</span>
+            </th>
+            <th><span class="mapping-loader--state">State</span></th>
+          </tr>
+        </table>
+        <div *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" fxLayout="row" fxLayoutAlign="start center" class="mapping-loader--row-box">
+          <div class="mapping-loader--init-box-section">
+            <div class="shimmers mapping-loader--init-box"></div>
+          </div>
+          <div class="mapping-loader--end-box-section">
+            <div class="shimmers mapping-loader--end-box"></div>
+          </div>
+        </div>
+      </div>
+      <!-- shimmers -->
 
       <app-paginator *ngIf="mappings.filteredData.length" [totalCount]="totalCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getMappings($event)"></app-paginator>
     </div>

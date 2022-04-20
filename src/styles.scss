@@ -419,8 +419,13 @@ table {
     width: 1178px;
   }
 
+  &--bg {
+    height: 240px;
+    background: linear-gradient(97.33deg, #E1EEFF 26.8%, #FFE4FB 97.18%);
+  }
+
   &--core-section {
-    margin-top: -50px;
+    margin-top: 24px;
     padding-left: 32px;
     padding-right: 32px;
   }
@@ -428,7 +433,6 @@ table {
   &--core-section-content {
     background: #FFFFFF;
     border-radius: 8px;
-    height: 866px;
 
     width: 1598px;
     @media only screen and (max-width: 1440px) {
@@ -436,8 +440,95 @@ table {
     }
   }
 
+  &--stats-section {
+    margin-top: -216px;
+    padding-left: 10px;
+  }
+
   &--table {
-    height: 680px;
     overflow: scroll;
+    height: 580px;
+    @media only screen and (max-width: 1440px) {
+      height: 400px;
+    }
+  }
+}
+
+.shimmers {
+  background: #efefef;
+  background-image: linear-gradient(to right, #efefef 0%, #e8e8e8 20%, #efefef 40%, #efefef 100%);
+  background-size: 800px 104px;
+  display: inline-block;
+  position: relative;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: shimmer;
+  animation-timing-function: linear;
+  border-radius: 4px;
+
+  @keyframes shimmer {
+    0% {
+      background-position: -468px 0;
+    }
+    100% {
+      background-position: 468px 0;
+    }
+  }
+}
+
+.mapping-loader {
+  &--table {
+    font-size: 12px;
+    border: 1px solid #DFDFE2;
+    border-radius: 4px;
+    height: 56px;
+    background: #F5F5F5;
+    text-align: left;
+  }
+
+  &--fyle {
+    padding-left: 54px;
+  }
+
+  &--qbo {
+    padding-right: 160px;
+    @media only screen and (max-width: 1440px) {
+      padding-right: 140px;
+    }
+  }
+
+  &--state {
+    padding-right: 490px;
+    @media only screen and (max-width: 1440px) {
+      padding-right: 320px;
+    }
+  }
+
+  &--row-box {
+    background: #FFFFFF;
+    border-radius: 4px;
+    height: 70px;
+  }
+
+  &--init-box-section {
+    padding: 24px 19px 24px 15px;
+  }
+
+  &--init-box {
+    height: 22px;
+    width: 29px;
+  }
+
+  &--end-box-section {
+    padding: 26px 32px 26px 0px;
+  }
+
+  &--end-box {
+    height: 18px;
+    width: 1498px;
+    @media only screen and (max-width: 1440px) {
+      width: 1021px;
+    }
   }
 }
