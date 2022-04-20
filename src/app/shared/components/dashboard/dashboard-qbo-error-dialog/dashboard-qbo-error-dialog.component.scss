@@ -54,3 +54,9 @@
     padding-left: 34px;
   }
 }
+
+::ng-deep .mat-tooltip {
+  background: #2C304E;
+  border-radius: 2px;
+  color: #FFFFFF;
+}
