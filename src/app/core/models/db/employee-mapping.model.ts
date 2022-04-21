@@ -31,7 +31,7 @@ export type EmployeeMappingPost = {
 };
 
 export interface ExtendedEmployeeAttribute extends ExpenseAttribute {
-  employee_mapping: EmployeeMapping[];
+  employeemapping: EmployeeMapping[];
 };
 
 export type ExtendedEmployeeAttributeResponse = {

@@ -28,7 +28,7 @@ export type ExpenseAttributeDetail = {
 };
 
 export interface ExtendedExpenseAttribute extends ExpenseAttribute {
-  mappings: Mapping[];
+  mapping: Mapping[];
 };
 
 export type ExtendedExpenseAttributeResponse = {

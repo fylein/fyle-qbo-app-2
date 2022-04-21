@@ -120,10 +120,10 @@ export class GenericMappingComponent implements OnInit {
             value: extendedExpenseAttribute.value
           },
           qbo: {
-            id: extendedExpenseAttribute.mappings.length ? extendedExpenseAttribute.mappings[0].destination.id : '',
-            value: extendedExpenseAttribute.mappings.length ? extendedExpenseAttribute.mappings[0].destination.value : ''
+            id: extendedExpenseAttribute.mapping.length ? extendedExpenseAttribute.mapping[0].destination.id : '',
+            value: extendedExpenseAttribute.mapping.length ? extendedExpenseAttribute.mapping[0].destination.value : ''
           },
-          state: extendedExpenseAttribute.mappings.length ? MappingState.MAPPED : MappingState.UNMAPPED,
+          state: extendedExpenseAttribute.mapping.length ? MappingState.MAPPED : MappingState.UNMAPPED,
           autoMapped: extendedExpenseAttribute.auto_mapped,
           index: index
         });

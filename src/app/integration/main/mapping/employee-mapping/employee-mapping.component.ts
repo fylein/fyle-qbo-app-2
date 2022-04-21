@@ -121,15 +121,15 @@ export class EmployeeMappingComponent implements OnInit {
           id: ''
         };
 
-        if (extendedEmployeeAttribute.employee_mapping.length) {
+        if (extendedEmployeeAttribute.employeemapping.length) {
           if (this.employeeFieldMapping === EmployeeFieldMapping.EMPLOYEE) {
-            qbo.id = extendedEmployeeAttribute.employee_mapping[0].destination_employee?.id;
-            qbo.value = extendedEmployeeAttribute.employee_mapping[0].destination_employee?.value;
-            preserveDestination.id = extendedEmployeeAttribute.employee_mapping[0].destination_vendor?.id;
+            qbo.id = extendedEmployeeAttribute.employeemapping[0].destination_employee?.id;
+            qbo.value = extendedEmployeeAttribute.employeemapping[0].destination_employee?.value;
+            preserveDestination.id = extendedEmployeeAttribute.employeemapping[0].destination_vendor?.id;
           } else {
-            qbo.id = extendedEmployeeAttribute.employee_mapping[0].destination_vendor?.id;
-            qbo.value = extendedEmployeeAttribute.employee_mapping[0].destination_vendor?.value;
-            preserveDestination.id = extendedEmployeeAttribute.employee_mapping[0].destination_employee?.id;
+            qbo.id = extendedEmployeeAttribute.employeemapping[0].destination_vendor?.id;
+            qbo.value = extendedEmployeeAttribute.employeemapping[0].destination_vendor?.value;
+            preserveDestination.id = extendedEmployeeAttribute.employeemapping[0].destination_employee?.id;
           }
         }
 
