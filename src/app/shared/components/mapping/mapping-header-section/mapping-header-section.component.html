@@ -27,9 +27,9 @@
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="space-between center" class="mapping-header-section--auto-map-btn-section">
-    <div *ngIf="autoMapEmployee" class="mapping-header-section--auto-map-btn pointer" fxLayout="row" (click)="triggerAutoMapEmployee()">
-      <img src="assets/images/svgs/general/auto-map.svg" width="16px" height="16px" class="mapping-header-section--auto-map-icon">
-      <h5 class="mapping-header-section--auto-map-btn-text align-center">
+    <div *ngIf="autoMapEmployee" class="mapping-header-section--auto-map-btn pointer" fxLayout="row" fxLayoutAlign="space-between center" (click)="triggerAutoMapEmployee()">
+      <img src="assets/images/svgs/general/auto-map.svg" width="16px" height="16px" class="btn-cta-text-with-icon">
+      <h5 class="btn-icon mapping-header-section--auto-map-btn-text align-center">
         Automap Employee(s)
       </h5>
     </div>

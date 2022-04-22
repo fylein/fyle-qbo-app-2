@@ -27,12 +27,12 @@
               </div>
             </div>
           </div>
-          <div fxLayout="row" class="pointer" class="configuration--submit-btn" [ngClass]="!exportableExpenseGroupIds.length || exportInProgress ? 'btn-disabled' : 'btn-enabled'" (click)="export()">
-            <h5 class="single-line-text" class="configuration--submit-btn-text">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="pointer configuration--submit-btn" [ngClass]="!exportableExpenseGroupIds.length || exportInProgress ? 'btn-disabled' : 'btn-enabled'" (click)="export()">
+            <h5 class="btn-cta-text-with-icon single-line-text">
               {{ exportInProgress ? 'Exporting' : 'Export' }}
             </h5>
-            <img *ngIf="!exportInProgress" src="assets/images/svgs/actions/arrow-mark-right.svg" class="configuration--submit-btn-arrow-text" />
-            <img *ngIf="exportInProgress" src="assets/images/svgs/actions/sync-dashboard-export.svg" class="configuration--submit-btn-arrow-text" />
+            <img *ngIf="!exportInProgress" src="assets/images/svgs/actions/arrow-mark-right.svg" class="btn-icon" />
+            <img *ngIf="exportInProgress" src="assets/images/svgs/actions/sync-dashboard-export.svg" class="btn-icon" />
           </div>
         </div>
       </div>
@@ -146,8 +146,8 @@
               <p>Employee Mapping errors</p>
               <h5 *ngIf="groupedErrorStat.EMPLOYEE_MAPPING" class="errors--resolved-stat sub-text-color">{{ groupedErrorStat.EMPLOYEE_MAPPING.resolvedCount }}/{{ groupedErrorStat.EMPLOYEE_MAPPING.totalCount }} error(s) resolved</h5>
             </div>
-            <div *ngIf="!groupedErrorStat.EMPLOYEE_MAPPING || (groupedErrorStat.EMPLOYEE_MAPPING && groupedErrorStat.EMPLOYEE_MAPPING.resolvedCount !== groupedErrorStat.EMPLOYEE_MAPPING.totalCount)" fxLayout="row" class="errors--resolve-btn configuration--submit-btn pointer" (click)="resolveMappingError(errors.EMPLOYEE_MAPPING)">
-              <p class="single-line-text configuration--save-btn-text">
+            <div *ngIf="!groupedErrorStat.EMPLOYEE_MAPPING || (groupedErrorStat.EMPLOYEE_MAPPING && groupedErrorStat.EMPLOYEE_MAPPING.resolvedCount !== groupedErrorStat.EMPLOYEE_MAPPING.totalCount)" fxLayout="row" fxLayoutAlign="space-between center" class="errors--resolve-btn configuration--submit-btn pointer" (click)="resolveMappingError(errors.EMPLOYEE_MAPPING)">
+              <p class="single-line-text btn-cta-text-without-icon">
                 Resolve
               </p>
             </div>
@@ -166,8 +166,8 @@
               <p>Category Mapping errors</p>
               <h5 *ngIf="groupedErrorStat.CATEGORY_MAPPING" class="errors--resolved-stat sub-text-color">{{ groupedErrorStat.CATEGORY_MAPPING.resolvedCount }}/{{ groupedErrorStat.CATEGORY_MAPPING.totalCount }} error(s) resolved</h5>
             </div>
-            <div *ngIf="!groupedErrorStat.CATEGORY_MAPPING || (groupedErrorStat.CATEGORY_MAPPING && groupedErrorStat.CATEGORY_MAPPING.resolvedCount !== groupedErrorStat.CATEGORY_MAPPING.totalCount)" fxLayout="row" class="errors--resolve-btn configuration--submit-btn pointer" (click)="resolveMappingError(errors.CATEGORY_MAPPING)">
-              <p class="single-line-text configuration--save-btn-text">
+            <div *ngIf="!groupedErrorStat.CATEGORY_MAPPING || (groupedErrorStat.CATEGORY_MAPPING && groupedErrorStat.CATEGORY_MAPPING.resolvedCount !== groupedErrorStat.CATEGORY_MAPPING.totalCount)" fxLayout="row" fxLayoutAlign="space-between center" class="errors--resolve-btn configuration--submit-btn pointer" (click)="resolveMappingError(errors.CATEGORY_MAPPING)">
+              <p class="single-line-text btn-cta-text-without-icon">
                 Resolve
               </p>
             </div>

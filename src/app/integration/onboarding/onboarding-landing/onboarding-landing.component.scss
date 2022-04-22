@@ -8,7 +8,6 @@
 
   &--welcome-text {
     height: 119px;
-    padding-bottom: 52px;
   }
 
   &--welcome-text-header {
@@ -34,8 +33,13 @@
   }
 
   &--guide-section {
-    padding-top: 110px;
+    padding-top: 223px;
     height: 560px;
+  }
+
+  &--guide-video {
+    box-shadow: 0px 12px 16px -4px rgba(16, 24, 40, 0.1), 0px 4px 6px -2px rgba(16, 24, 40, 0.05);
+    border-radius: 8px;
   }
 
   &--guide-text {
@@ -47,7 +51,8 @@
   }
 
   &--integration-data-flow-section {
-    padding: 407px 184px 177px 184px;
+    padding-top: 407px;
+    padding-bottom: 105px;
     background: #F6FAFF;
   }
 

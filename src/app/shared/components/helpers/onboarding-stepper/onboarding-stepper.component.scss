@@ -18,7 +18,7 @@
   &--step {
     width: 48px;
     height: 48px;
-    border: 1.5px solid #027A48;
+    border: 1.5px solid #24A148;
     box-sizing: border-box;
     border-radius: 48px;
   }
@@ -31,6 +31,10 @@
   &--step-inactive {
     background: #FFFFFF;
     border: 1.5px solid #DFDFE2;
+  }
+
+  &--step-active {
+    background: #FFFFFF;
   }
 
   &--step-name {
@@ -56,4 +60,8 @@
     width: 160px;
     align-self: center;
   }
+}
+
+p {
+  margin: 0;
 }

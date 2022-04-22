@@ -46,6 +46,10 @@ h3, h4, h5, h6 {
   margin: 0;
 }
 
+h1, h2 {
+  margin: 0;
+}
+
 table {
   width: 100%;
 }
@@ -76,6 +80,20 @@ table {
 .btn-disabled {
   background: #FFC2D6;
   @extend .cursor-disabled;
+}
+
+.btn-cta-text-with-icon {
+  padding-left: 24px;
+}
+
+.btn-cta-text-without-icon {
+  @extend .btn-cta-text-with-icon;
+  padding-right: 24px;
+}
+
+.btn-icon {
+  padding-left: 10px;
+  padding-right: 26px;
 }
 
 .cursor-disabled {
@@ -119,6 +137,10 @@ table {
   height: 40px;
   font-size: 14px !important;
   padding: 4px 0px 0px 14px !important;
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #5a5d72 !important;
 }
 
 .mat-form-field-wrapper {
@@ -251,14 +273,6 @@ table {
     color: #2C304E;
   }
 
-  &--submit-btn-text {
-    padding: 12px 10.25px 12px 24px;
-  }
-
-  &--save-btn-text {
-    padding: 12px 22px 12px 22px;
-  }
-
   &--submit-btn {
     border: none;
     border-radius: 4px;
@@ -266,12 +280,12 @@ table {
     color: #FFFFFF;
   }
 
-  &--img-arrow-left {
-    padding: 12px 8px 12px 24px;
+  &--back-btn-arrow {
+    padding-left: 26px;
   }
 
-  &--submit-btn-arrow-text {
-    padding: 15.38px 26.25px 15.37px 0px;
+  &--img-arrow-left {
+    padding: 12px 8px 12px 24px;
   }
 
   &--toggle-form-field {
