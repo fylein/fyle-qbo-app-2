@@ -35,8 +35,6 @@ export class ConfigurationStepHeaderSectionComponent implements OnInit {
       this.activePage = route.split('/').pop();
     }
 
-    console.log('this.activePage',this.activePage)
-
     switch (this.activePage) {
       case 'qbo_connector':
         this.headerText = 'Connect to Quickbooks Online';

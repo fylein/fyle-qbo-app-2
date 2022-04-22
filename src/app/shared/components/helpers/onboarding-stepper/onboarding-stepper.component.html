@@ -9,15 +9,15 @@
     <div *ngFor="let onboardingStep of onboardingSteps">
       <div fxLayout="column">
         <div fxLayout="row">
-          <div class="stepper--step" (click)="navigate(onboardingStep.completed, onboardingStep.route)" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? 'stepper--step-completed pointer' : 'stepper--step-active cursor-disabled', !onboardingStep.active && !onboardingStep.completed ? 'stepper--step-inactive cursor-disabled' : '']">
-            <img *ngIf="onboardingStep.active" src='{{ "assets/images/svgs/stepper/" + onboardingStep.icon + ".svg" }}' class="stepper--icon">
-            <img *ngIf="!onboardingStep.active && onboardingStep.completed" src="assets/images/svgs/general/tick.svg" class="stepper--icon">
-            <img *ngIf="!onboardingStep.active && !onboardingStep.completed" src='{{ "assets/images/svgs/stepper/" + onboardingStep.icon + "-inactive.svg" }}' class="stepper--icon">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="stepper--step" (click)="navigate(onboardingStep.completed, onboardingStep.route)" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? 'stepper--step-completed pointer' : 'stepper--step-active cursor-disabled', !onboardingStep.active && !onboardingStep.completed ? 'stepper--step-inactive cursor-disabled' : '']">
+            <img *ngIf="onboardingStep.active" src='{{ "assets/images/svgs/stepper/" + onboardingStep.icon + ".svg" }}' class="stepper--icon" [height]="onboardingStep.size.height" [width]="onboardingStep.size.width">
+            <img *ngIf="!onboardingStep.active && onboardingStep.completed" src="assets/images/svgs/general/tick.svg" class="stepper--icon" width="20px" height="14px">
+            <img *ngIf="!onboardingStep.active && !onboardingStep.completed" src='{{ "assets/images/svgs/stepper/" + onboardingStep.icon + "-inactive.svg" }}' class="stepper--icon" [height]="onboardingStep.size.height" [width]="onboardingStep.size.width">
           </div>
           <div *ngIf="onboardingStep.step !== 'Advanced Settings'" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? 'stepper--horizontal-separator-completed' : 'stepper--horizontal-separator', !onboardingStep.active && !onboardingStep.completed ? 'stepper--horizontal-separator' : '']"></div>
         </div>
         <div (click)="navigate(onboardingStep.completed, onboardingStep.route)" class="stepper--step-name" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? 'pointer' : 'cursor-disabled', !onboardingStep.active && !onboardingStep.completed ? 'sub-text-color cursor-disabled' : '']">
-          <h5>{{onboardingStep.step}}</h5>
+          <h5 [ngClass]="{'stepper--step-1-2-text': onboardingStep.number === 1 || onboardingStep.number === 2, 'stepper--step-3-4-text': onboardingStep.number === 3 || onboardingStep.number === 4, 'stepper--step-5-text': onboardingStep.number === 5}">{{onboardingStep.step}}</h5>
         </div>
       </div>
     </div>

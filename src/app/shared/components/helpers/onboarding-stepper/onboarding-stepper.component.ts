@@ -15,37 +15,62 @@ export class OnboardingStepperComponent implements OnInit {
     {
       active: false,
       completed: false,
+      number: 1,
       step: 'Connect to QBO',
       icon: 'qbo-connector',
-      route: 'qbo_connector'
+      route: 'qbo_connector',
+      size: {
+        height: '20px',
+        width: '10px'
+      }
     },
     {
       active: false,
       completed: false,
+      number: 2,
       step: 'Map Employees',
       icon: 'employee-setting',
-      route: 'employee_settings'
+      route: 'employee_settings',
+      size: {
+        height: '19px',
+        width: '20px'
+      }
     },
     {
       active: false,
       completed: false,
+      number: 3,
       step: 'Export Settings',
       icon: 'export-setting',
-      route: 'export_settings'
+      route: 'export_settings',
+      size: {
+        height: '18px',
+        width: '15px'
+      }
     },
     {
       active: false,
       completed: false,
+      number: 4,
       step: 'Import Settings',
       icon: 'import-setting',
-      route: 'import_settings'
+      route: 'import_settings',
+      size: {
+        height: '18px',
+        width: '15px'
+      }
     },
     {
       active: false,
       completed: false,
+      number: 5,
       step: 'Advanced Settings',
       icon: 'advanced-setting',
-      route: 'advanced_settings'
+      route: 'advanced_settings',
+      size: {
+        height: '20px',
+        width: '20px'
+      }
     }
   ];
 

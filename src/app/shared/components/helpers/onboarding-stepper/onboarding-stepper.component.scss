@@ -39,8 +39,19 @@
 
   &--step-name {
     padding-top: 15px;
-    margin-left: -15px;
     white-space: nowrap;
+  }
+
+  &--step-1-2-text {
+    margin-left: -20px;
+  }
+
+  &--step-3-4-text {
+    margin-left: -15px;
+  }
+
+  &--step-5-text {
+    margin-left: -24px;
   }
 
   &--icon {
