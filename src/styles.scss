@@ -133,6 +133,15 @@ table {
   margin-right: 300px !important;
 }
 
+.mat-select-arrow-closed {
+  position: absolute;
+  right: 16px;
+  top: 3px;
+  width: 16px;
+  height: 10px;
+  background-image: url("assets/images/svgs/actions/arrow-mark-down.svg");
+}
+
 .mat-form-field-type-mat-select .mat-form-field-flex {
   height: 40px;
   font-size: 14px !important;
@@ -178,6 +187,10 @@ table {
 
 .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
   padding-right: 12px;
+}
+
+.mat-select-arrow {
+  display: none !important;
 }
 
 .mat-slide-toggle-bar {
