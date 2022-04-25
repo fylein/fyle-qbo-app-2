@@ -134,3 +134,8 @@ export enum TaskLogState {
   FATAL = 'FATAL',
   COMPLETED = 'COMPLETED',
 }
+
+export enum PreviewPage {
+  QBO_EXPENSE = 'qbo_expense',
+  FYLE_EXPENSE = 'fyle_expense'
+}

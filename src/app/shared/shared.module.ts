@@ -32,7 +32,6 @@ import { AdvancedSettingsComponent } from './components/configuration/advanced-s
 import { OnboardingFooterComponent } from './components/core/onboarding-footer/onboarding-footer.component';
 import { ConfigurationStepHeaderSectionComponent } from './components/configuration/configuration-step-header-section/configuration-step-header-section.component';
 import { MandatoryFieldComponent } from './components/helpers/mandatory-field/mandatory-field.component';
-import { ExpenseFormPreviewDialogComponent } from './components/configuration/import-settings/expense-form-preview-dialog/expense-form-preview-dialog.component';
 import { SimpleSearchSelectComponent } from './components/helpers/simple-search-select/simple-search-select.component';
 import { QboConnectorComponent } from './components/configuration/qbo-connector/qbo-connector.component';
 import { ExpenseFieldCreationDialogComponent } from './components/configuration/import-settings/expense-field-creation-dialog/expense-field-creation-dialog.component';
@@ -61,6 +60,7 @@ import { DashboardExportLogDialogComponent } from './components/dashboard/dashbo
 import { DashboardQboErrorDialogComponent } from './components/dashboard/dashboard-qbo-error-dialog/dashboard-qbo-error-dialog.component';
 import { ExportLogChildTableComponent } from './components/export-log/export-log-child-table/export-log-child-table.component';
 import { DisconnectQboDialogComponent } from './components/dashboard/disconnect-qbo-dialog/disconnect-qbo-dialog.component';
+import { PreviewDialogComponent } from './components/configuration/preview-dialog/preview-dialog.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +73,6 @@ import { DisconnectQboDialogComponent } from './components/dashboard/disconnect-
     OnboardingFooterComponent,
     ConfigurationStepHeaderSectionComponent,
     MandatoryFieldComponent,
-    ExpenseFormPreviewDialogComponent,
     SimpleSearchSelectComponent,
     QboConnectorComponent,
     TrimCharacterPipe,
@@ -106,7 +105,8 @@ import { DisconnectQboDialogComponent } from './components/dashboard/disconnect-
     DashboardExportLogDialogComponent,
     DashboardQboErrorDialogComponent,
     ExportLogChildTableComponent,
-    DisconnectQboDialogComponent
+    DisconnectQboDialogComponent,
+    PreviewDialogComponent
   ],
   imports: [
     CommonModule,
@@ -165,9 +165,9 @@ import { DisconnectQboDialogComponent } from './components/dashboard/disconnect-
     ExportLogChildTableComponent
   ],
   entryComponents: [
-    ExpenseFormPreviewDialogComponent,
     ExpenseFieldCreationDialogComponent,
-    DisconnectQboDialogComponent
+    DisconnectQboDialogComponent,
+    PreviewDialogComponent
   ],
   providers: []
 })

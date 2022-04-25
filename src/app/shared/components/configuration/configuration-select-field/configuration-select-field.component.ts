@@ -1,11 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { AdvancedSettingFormOption } from 'src/app/core/models/configuration/advanced-setting.model';
 import { EmployeeSettingFormOption } from 'src/app/core/models/configuration/employee-setting.model';
 import { ExportSettingFormOption } from 'src/app/core/models/configuration/export-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { EmployeeFieldMapping } from 'src/app/core/models/enum/enum.model';
+import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, PreviewPage, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
+import { PreviewDialogComponent } from '../preview-dialog/preview-dialog.component';
 
 @Component({
   selector: 'app-configuration-select-field',
@@ -26,10 +28,20 @@ export class ConfigurationSelectFieldComponent implements OnInit {
   @Input() liveEntityExample: {[EmployeeFieldMapping.EMPLOYEE]: string | undefined, [EmployeeFieldMapping.VENDOR]: string | undefined};
 
   constructor(
+    private dialog: MatDialog,
     public helperService: HelperService
   ) { }
 
+  showQBOExportPreview(exportType: ReimbursableExpensesObject | CorporateCreditCardExpensesObject): void {
+    this.dialog.open(PreviewDialogComponent, {
+      width: '960px',
+      height: '530px',
+      data: exportType
+    });
+  }
+
   ngOnInit(): void {
+    // this.showQBOExportPreview();
   }
 
 }
