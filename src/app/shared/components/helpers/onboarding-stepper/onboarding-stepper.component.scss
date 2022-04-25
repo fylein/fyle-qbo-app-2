@@ -18,7 +18,7 @@
   &--step {
     width: 48px;
     height: 48px;
-    border: 1.5px solid #027A48;
+    border: 1.5px solid #24A148;
     box-sizing: border-box;
     border-radius: 48px;
   }
@@ -33,10 +33,25 @@
     border: 1.5px solid #DFDFE2;
   }
 
+  &--step-active {
+    background: #FFFFFF;
+  }
+
   &--step-name {
     padding-top: 15px;
-    margin-left: -15px;
     white-space: nowrap;
+  }
+
+  &--step-1-2-text {
+    margin-left: -20px;
+  }
+
+  &--step-3-4-text {
+    margin-left: -15px;
+  }
+
+  &--step-5-text {
+    margin-left: -24px;
   }
 
   &--icon {
@@ -56,4 +71,8 @@
     width: 160px;
     align-self: center;
   }
+}
+
+p {
+  margin: 0;
 }

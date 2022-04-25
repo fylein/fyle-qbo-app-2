@@ -1,6 +1,10 @@
 .advanced-settings {
   &--schedule-frequency-section {
-    padding: 2px 0px 6px 40px;
+    padding: 32px 0 24px 0px;
+    padding-left: 40px;
+    @media only screen and (max-width: 1440px) {
+      padding-left: 30px;
+    }
   }
 
   &--schedule-note-content {

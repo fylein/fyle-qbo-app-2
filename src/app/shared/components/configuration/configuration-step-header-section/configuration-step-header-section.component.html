@@ -9,9 +9,9 @@
       </h5>
     </div>
     <div *ngIf="showSyncButton && (activePage === 'export_settings' || activePage === 'import_settings' || activePage === 'advanced_settings')">
-      <div fxLayout="row" class="configuration--back-btn pointer" (click)="refreshQBODimensions()" matTooltip="Instantly refresh and sync the data dimensions from QBO" matTooltipPosition="above">
-        <img src="assets/images/svgs/actions/sync.svg" class="configuration--img-arrow-left" />
-        <h5 class="configuration--back-btn-text align-center">Sync</h5>
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--back-btn pointer" (click)="refreshQBODimensions()" matTooltip="Instantly refresh and sync the data dimensions from QBO" matTooltipPosition="above">
+        <img src="assets/images/svgs/actions/sync.svg" class="btn-cta-text-with-icon" />
+        <h5 class="btn-icon align-center">Sync</h5>
       </div>
     </div>
   </div>

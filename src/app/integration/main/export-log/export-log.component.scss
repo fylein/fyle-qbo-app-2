@@ -24,12 +24,6 @@
       width: 325px !important;
       margin-top: 6px;
     }
-
-    &.active {
-      ::ng-deep .mat-select-arrow {
-        display: none !important;
-      }
-    }
   }
 
   &--table {
