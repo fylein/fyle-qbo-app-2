@@ -1,0 +1,36 @@
+<div>
+  <div class="confirmation-dialog--header-section">
+    <div class="confirmation-dialog--header-content">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <div class="confirmation-dialog--warning-section">
+            <img src="assets/images/svgs/general/alert.svg" class="confirmation-dialog--warning-icon" />
+          </div>
+          <h3 class="confirmation-dialog--header-text">
+            {{ data.title }}
+          </h3>
+        </div>
+        <img src="assets/images/svgs/actions/close.svg" (click)="this.dialogRef.close()" class="sub-text-color pointer" width="12px" height="12px" />
+      </div>
+    </div>
+  </div>
+  
+  <p class="confirmation-dialog--divider"></p>
+
+  <p class="confirmation-dialog--info" [innerHTML]="data.contents">
+  </p>
+
+  <p class="confirmation-dialog--divider"></p>
+
+  <div fxLayout="row" fxLayoutAlign="end center" class="confirmation-dialog--btn-section">
+    <div class="confirmation-dialog--cancel-btn pointer" mat-dialog-close>
+      <h5 class="confirmation-dialog--cancel-btn-text align-center">Cancel</h5>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--submit-btn pointer btn-enabled" (click)="this.dialogRef.close(true)">
+      <h5 class="btn-cta-text-without-icon single-line-text">
+        {{ data.primaryCtaText }}
+      </h5>
+    </div>
+  </div>
+</div>

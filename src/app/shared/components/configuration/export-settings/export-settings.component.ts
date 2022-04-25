@@ -394,6 +394,8 @@ export class ExportSettingsComponent implements OnInit {
 
       this.exportSettingService.postExportSettings(exportSettingPayload).subscribe(() => {
         this.saveInProgress = false;
+        this.snackBar.open('Export settings saved successfully');
+        // TODO: handle redirection
         if (this.isOnboarding) {
           this.router.navigate([`/workspaces/onboarding/import_settings`]);
         }

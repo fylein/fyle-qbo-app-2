@@ -199,6 +199,8 @@ export class ImportSettingsComponent implements OnInit {
 
       this.importSettingService.postImportSettings(importSettingsPayload).subscribe(() => {
         this.saveInProgress = false;
+        this.snackBar.open('Import settings saved successfully');
+        // TODO: handle redirection
         if (this.isOnboarding) {
           this.router.navigate([`/workspaces/onboarding/advanced_settings`]);
         }
