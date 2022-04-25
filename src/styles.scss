@@ -142,6 +142,18 @@ table {
   background-image: url("assets/images/svgs/actions/arrow-mark-down.svg");
 }
 
+.mat-form-field-outline-start {
+  border-width: 1px !important;
+}
+
+.mat-form-field-outline-end {
+  border-width: 1px !important;
+}
+
+.mat-form-field-outline-thick {
+  border-width: 1px !important;
+}
+
 .mat-form-field-type-mat-select .mat-form-field-flex {
   height: 40px;
   font-size: 14px !important;
