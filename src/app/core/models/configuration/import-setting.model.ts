@@ -14,6 +14,7 @@ export type ImportSettingPost = {
 
 export type ImportSettingWorkspaceGeneralSetting = {
   import_categories: boolean,
+  import_vendors_as_merchants: boolean,
   charts_of_accounts: string[],
   import_tax_codes: boolean
 }
@@ -56,7 +57,8 @@ export class ImportSettingModel {
       workspace_general_settings: {
         import_categories: importSettingsForm.get('chartOfAccount')?.value,
         charts_of_accounts: ImportSettingModel.formatChartOfAccounts(importSettingsForm.get('chartOfAccountTypes')?.value),
-        import_tax_codes: importSettingsForm.get('taxCode')?.value
+        import_tax_codes: importSettingsForm.get('taxCode')?.value,
+        import_vendors_as_merchants: importSettingsForm.get('importVendorsAsMerchants')?.value
       },
       general_mappings: {
         default_tax_code: importSettingsForm.get('defaultTaxCode')?.value ? importSettingsForm.get('defaultTaxCode')?.value : emptyDestinationAttribute
