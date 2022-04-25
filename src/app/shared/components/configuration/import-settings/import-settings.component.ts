@@ -112,7 +112,8 @@ export class ImportSettingsComponent implements OnInit {
       expenseFields: this.formBuilder.array(expenseFieldsFormArray),
       taxCode: [this.importSettings.workspace_general_settings.import_tax_codes],
       defaultTaxCode: [this.importSettings.general_mappings?.default_tax_code?.id ? this.importSettings.general_mappings.default_tax_code : null],
-      searchOption: []
+      searchOption: [],
+      importVendorsAsMerchants: [this.importSettings.workspace_general_settings.import_vendors_as_merchants]
     });
 
     this.setCustomValidatorsAndWatchers();

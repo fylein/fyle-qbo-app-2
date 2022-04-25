@@ -318,10 +318,7 @@ table {
   }
 
   &--input-toggle-section {
-    width: 455px;
-    @media only screen and (max-width: 1440px) {
-      width: 440px;
-    }
+    padding-right: 365px;
   }
 
   &--icon {
