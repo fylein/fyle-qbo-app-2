@@ -41,7 +41,6 @@ export class ConfigurationSelectFieldComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.showQBOExportPreview();
   }
 
 }
