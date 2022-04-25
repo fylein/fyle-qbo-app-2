@@ -4,19 +4,19 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { MappingDestinationField } from 'src/app/core/models/enum/enum.model';
+import { MappingDestinationField, PreviewPage } from 'src/app/core/models/enum/enum.model';
 import { ExpenseFieldsFormOption, ImportSettingGet, ImportSettingModel } from 'src/app/core/models/configuration/import-setting.model';
 import { MappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
-import { ExpenseFormPreviewDialogComponent } from './expense-form-preview-dialog/expense-form-preview-dialog.component';
 import { ExpenseFieldCreationDialogComponent } from './expense-field-creation-dialog/expense-field-creation-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
 import { QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { PreviewDialogComponent } from '../preview-dialog/preview-dialog.component';
 
 @Component({
   selector: 'app-import-settings',
@@ -163,9 +163,10 @@ export class ImportSettingsComponent implements OnInit {
   }
 
   showFyleExpenseFormPreview(): void {
-    this.dialog.open(ExpenseFormPreviewDialogComponent, {
-      width: '1173px',
-      height: '643px'
+    this.dialog.open(PreviewDialogComponent, {
+      width: '560px',
+      height: '770px',
+      data: PreviewPage.FYLE_EXPENSE
     });
   }
 
