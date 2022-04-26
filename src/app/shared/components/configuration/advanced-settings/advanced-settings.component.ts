@@ -194,9 +194,10 @@ export class AdvancedSettingsComponent implements OnInit {
       this.advancedSettingService.postAdvancedSettings(advancedSettingPayload).subscribe(() => {
         this.saveInProgress = false;
         this.snackBar.open('Advanced settings saved successfully');
-        // TODO: handle redirection
         if (this.isOnboarding) {
           this.router.navigate([`/workspaces/onboarding/done`]);
+        } else {
+          this.router.navigate(['/workspaces/main/dashboard']);
         }
       }, () => {
         this.saveInProgress = false;
