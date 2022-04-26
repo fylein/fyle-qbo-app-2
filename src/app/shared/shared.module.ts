@@ -59,8 +59,8 @@ import { DashboardShimmersComponent } from './components/dashboard/dashboard-shi
 import { DashboardExportLogDialogComponent } from './components/dashboard/dashboard-export-log-dialog/dashboard-export-log-dialog.component';
 import { DashboardQboErrorDialogComponent } from './components/dashboard/dashboard-qbo-error-dialog/dashboard-qbo-error-dialog.component';
 import { ExportLogChildTableComponent } from './components/export-log/export-log-child-table/export-log-child-table.component';
-import { DisconnectQboDialogComponent } from './components/dashboard/disconnect-qbo-dialog/disconnect-qbo-dialog.component';
 import { PreviewDialogComponent } from './components/configuration/preview-dialog/preview-dialog.component';
+import { ConfirmationDialogComponent } from './components/core/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -105,8 +105,9 @@ import { PreviewDialogComponent } from './components/configuration/preview-dialo
     DashboardExportLogDialogComponent,
     DashboardQboErrorDialogComponent,
     ExportLogChildTableComponent,
-    DisconnectQboDialogComponent,
-    PreviewDialogComponent
+    PreviewDialogComponent,
+    ConfirmationDialogComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     CommonModule,
@@ -166,8 +167,8 @@ import { PreviewDialogComponent } from './components/configuration/preview-dialo
   ],
   entryComponents: [
     ExpenseFieldCreationDialogComponent,
-    DisconnectQboDialogComponent,
-    PreviewDialogComponent
+    PreviewDialogComponent,
+    ConfirmationDialogComponent
   ],
   providers: []
 })

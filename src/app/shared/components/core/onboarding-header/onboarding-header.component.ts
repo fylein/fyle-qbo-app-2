@@ -4,12 +4,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { NavigationStart, Router } from '@angular/router';
 import { QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
 import { MinimalUser } from 'src/app/core/models/db/user.model';
+import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
 import { AuthService } from 'src/app/core/services/core/auth.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
-import { DisconnectQboDialogComponent } from '../../dashboard/disconnect-qbo-dialog/disconnect-qbo-dialog.component';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-onboarding-header',
@@ -104,11 +105,19 @@ export class OnboardingHeaderComponent implements OnInit {
   }
 
   disconnectQbo(): void {
-    const dialogRef = this.dialog.open(DisconnectQboDialogComponent, {
+    const data: ConfirmationDialog = {
+      title: 'Disconnect Quickbooks Online',
+      contents: `Exporting expenses from Fyle will no longer work if you disconnect your 
+        Quickbooks Online Company.
+        <br>
+        Are you sure you want to disconnect <b>${this.qboCompanyName}</b> Quickbooks Online
+        company?`,
+      primaryCtaText: 'Disconnect'
+    };
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '551px',
-      data: {
-        companyName: this.qboCompanyName
-      }
+      data: data
     });
 
     dialogRef.afterClosed().subscribe((disconnect) => {

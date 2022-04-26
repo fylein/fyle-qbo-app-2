@@ -11,7 +11,9 @@ import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
-import { DefaultDestinationAttribute } from 'src/app/core/models/db/general-mapping.model';
+import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../../core/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-export-settings',
@@ -100,6 +102,7 @@ export class ExportSettingsComponent implements OnInit {
   @Output() isLoaded = new EventEmitter<boolean>();
 
   constructor(
+    private dialog: MatDialog,
     private formBuilder: FormBuilder,
     private exportSettingService: ExportSettingService,
     public helperService: HelperService,
@@ -387,20 +390,93 @@ export class ExportSettingsComponent implements OnInit {
     this.router.navigate([`/workspaces/onboarding/employee_settings`]);
   }
 
-  save(): void {
-    if (this.exportSettingsForm.valid && !this.saveInProgress) {
-      const exportSettingPayload = ExportSettingModel.constructPayload(this.exportSettingsForm);
+  private singleItemizedJournalEntryAffected(): boolean {
+    return (this.exportSettings?.workspace_general_settings?.reimbursable_expenses_object !== ReimbursableExpensesObject.JOURNAL_ENTRY && this.exportSettingsForm.value.reimbursableExportType === ReimbursableExpensesObject.JOURNAL_ENTRY) || (this.exportSettings?.workspace_general_settings?.corporate_credit_card_expenses_object !== CorporateCreditCardExpensesObject.JOURNAL_ENTRY && this.exportSettingsForm.value.creditCardExportType === CorporateCreditCardExpensesObject.JOURNAL_ENTRY);
+  }
+
+  private paymentsSyncAffected(): boolean {
+    return this.exportSettings?.workspace_general_settings?.reimbursable_expenses_object !== ReimbursableExpensesObject.BILL && this.exportSettingsForm.value.reimbursableExportType  === ReimbursableExpensesObject.BILL;
+  }
+
+  private advancedSettingAffected(): boolean {
+    if (this.singleItemizedJournalEntryAffected() || this.paymentsSyncAffected()) {
+      return true;
+    }
+
+    return false;
+  }
+
+  private constructWarningMessage(): string {
+    let configurationUpdateList = '';
+    const existingReimbursableExportType = this.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? this.exportSettings.workspace_general_settings.reimbursable_expenses_object : 'None';
+    const existingCorporateCardExportType = this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object ? this.exportSettings.workspace_general_settings.corporate_credit_card_expenses_object : 'None';
+    const updatedReimbursableExportType = this.exportSettingsForm.value.reimbursableExportType ? this.exportSettingsForm.value.reimbursableExportType : 'None';
+    const updatedCorporateCardExportType = this.exportSettingsForm.value.creditCardExportType ? this.exportSettingsForm.value.creditCardExportType : 'None';
+
+    if (this.singleItemizedJournalEntryAffected()) {
+      if (updatedReimbursableExportType !== existingReimbursableExportType) {
+        configurationUpdateList += `You are changing your export representation from <b>${existingReimbursableExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b> to <b>${updatedReimbursableExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b><br>`;
+      } else if (existingCorporateCardExportType !== updatedCorporateCardExportType) {
+        configurationUpdateList += `You are changing your export representation from <b>${existingCorporateCardExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b> to <b>${updatedCorporateCardExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b><br>`;
+      }
+    }
+
+    if (!this.singleItemizedJournalEntryAffected() && this.paymentsSyncAffected()) {
+      configurationUpdateList += `You are changing your export representation from <b>${existingReimbursableExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b> to <b>Bill</b><br>`;
+    }
+
+    return configurationUpdateList;
+  }
+
+  private showConfirmationDialog(): void {
+    const configurationUpdateList = this.constructWarningMessage();
+
+    const data: ConfirmationDialog = {
+      title: 'Change in Configuration',
+      contents: `${configurationUpdateList}This might effect other configurations<br><br>Do you wish to continue?`,
+      primaryCtaText: 'Continue',
+    };
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '551px',
+      data: data
+    });
+
+    dialogRef.afterClosed().subscribe((ctaClicked) => {
+      if (ctaClicked) {
+        this.constructPayloadAndSave();
+      }
+    });
+  }
+
+  private constructPayloadAndSave(): void {
+    const exportSettingPayload = ExportSettingModel.constructPayload(this.exportSettingsForm);
       this.saveInProgress = true;
 
       this.exportSettingService.postExportSettings(exportSettingPayload).subscribe(() => {
         this.saveInProgress = false;
+        this.snackBar.open('Export settings saved successfully');
         if (this.isOnboarding) {
           this.router.navigate([`/workspaces/onboarding/import_settings`]);
+        } else if (this.advancedSettingAffected()) {
+          this.router.navigate(['/workspaces/main/configuration/advanced_settings']);
+        } else {
+          this.router.navigate(['/workspaces/main/dashboard']);
         }
       }, () => {
         this.saveInProgress = false;
         this.snackBar.open('Error saving export settings, please try again later');
       });
+  }
+
+  save(): void {
+    if (this.exportSettingsForm.valid && !this.saveInProgress) {
+      if (this.advancedSettingAffected()) {
+        // Show warning dialog
+        this.showConfirmationDialog();
+        return;
+      }
+      this.constructPayloadAndSave();
     }
   }
 
