@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 })
 export class DashboardExportLogDialogComponent implements OnInit {
 
+  isLoading: boolean = true;
   expenseGroups: MatTableDataSource<ExpenseGroupList> = new MatTableDataSource<ExpenseGroupList>([]);
   displayedColumns: string[];
   ExportState = ExportState;
@@ -65,6 +66,7 @@ export class DashboardExportLogDialogComponent implements OnInit {
         });
       });
       this.expenseGroups = new MatTableDataSource(expenseGroups);
+      this.isLoading = false;
     });
   }
 

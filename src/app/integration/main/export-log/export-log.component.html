@@ -1,9 +1,9 @@
 <div class="configuration-main--bg">
 </div>
-<div *ngIf="!isLoading" class="export-log">
+<div class="export-log">
   <div class="export-log--content">
     <!-- header -->
-    <div [formGroup]="exportLogForm" *ngIf="totalCount || selectedDateFilter" class="export-log--header-section">
+    <div [formGroup]="exportLogForm" class="export-log--header-section">
       <div fxLayout="row" class="export-log--simple-search" [class.active]="selectedDateFilter">
         <app-simple-search-select [form]="exportLogForm" [placeholder]="'Search by Employee Name or Expense ID'" [showBackgroundColor]="false"></app-simple-search-select>
 
@@ -51,7 +51,30 @@
     </div>
     <!-- header -->
 
-    <div class="export-log--table">
+    <!-- shimmers -->
+    <div *ngIf="isLoading">
+      <table class="shimmers skeleton-loader-list-view--table">
+        <tr fxFlex="row" fxLayoutAlign="space-between center">
+          <th><span class="skeleton-loader-list-view--export-log-col-1">Date and Time of Export</span></th>
+          <th><span class="skeleton-loader-list-view--export-log-col-2">Employee Name and ID</span></th>
+          <th><span class="skeleton-loader-list-view--export-log-col-3">Expense Type</span></th>
+          <th><span class="skeleton-loader-list-view--export-log-col-4">Reference ID</span></th>
+          <th><span>Exported to QBO as</span></th>
+          <th><span class="skeleton-loader-list-view--export-log-col-6">Link to QBO</span></th>
+        </tr>
+      </table>
+      <div *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" fxLayout="row" fxLayoutAlign="start center" class="skeleton-loader-list-view--row-box">
+        <div class="skeleton-loader-list-view--init-box-section">
+          <div class="shimmers skeleton-loader-list-view--init-box-export-log"></div>
+        </div>
+        <div class="skeleton-loader-list-view--end-box-section">
+          <div class="shimmers skeleton-loader-list-view--end-box-export-log"></div>
+        </div>
+      </div>
+    </div>
+    <!-- shimmers -->
+
+    <div *ngIf="!isLoading" class="export-log--table">
       <app-export-log-table [displayedColumns]="displayedColumns" [totalCount]="totalCount" [expenseGroups]="expenseGroups"></app-export-log-table>
       <app-zero-state-with-illustration [page]="'export_log'" [form]="exportLogForm" [data]="expenseGroups" [searchTerm]="'Employee Name or Expense ID'" [dateFilter]="selectedDateFilter"></app-zero-state-with-illustration>
     </div>

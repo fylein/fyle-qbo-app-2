@@ -18,8 +18,29 @@
 
   <div class="dashboard-export-log--horizontal-separator"></div>
 
-  <div class="dashboard-export-log--table" *ngIf="expenseGroups">
-    <!-- TODO: shimmers -->
+  <div class="dashboard-export-log--table" *ngIf="!isLoading">
     <app-export-log-table [displayedColumns]="displayedColumns" [totalCount]="1" [expenseGroups]="expenseGroups" [externalUrlType]="externalUrlType"></app-export-log-table>
   </div>
+
+  <!-- shimmers -->
+  <div *ngIf="isLoading">
+    <table class="shimmers skeleton-loader-list-view--table">
+      <tr fxFlex="row" fxLayoutAlign="space-between center">
+        <th><span class="skeleton-loader-list-view--export-log-col-1">Reference ID</span></th>
+        <th><span class="skeleton-loader-list-view--export-log-col-2">Employee Name and ID</span></th>
+        <th *ngIf="data.exportState === ExportState.SUCCESS"><span>Exported to QBO as</span></th>
+        <th><span class="skeleton-loader-list-view--export-log-col-6">Link to QBO</span></th>
+      </tr>
+    </table>
+    <div *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" fxLayout="row" fxLayoutAlign="start center" class="skeleton-loader-list-view--row-box">
+      <div class="skeleton-loader-list-view--init-box-section">
+        <div class="shimmers skeleton-loader-list-view--init-box-export-log"></div>
+      </div>
+      <div class="skeleton-loader-list-view--end-box-section">
+        <div class="shimmers skeleton-loader-list-view--end-box-export-log"></div>
+      </div>
+    </div>
+  </div>
+  <!-- shimmers -->
+
 </div>

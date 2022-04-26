@@ -513,7 +513,7 @@ table {
   }
 }
 
-.mapping-loader {
+.skeleton-loader-list-view {
   &--table {
     font-size: 12px;
     border: 1px solid #DFDFE2;
@@ -525,6 +525,32 @@ table {
 
   &--fyle {
     padding-left: 54px;
+  }
+
+  &--export-log-col-1 {
+    margin-left: 24px;
+  }
+
+  &--export-log-col-2 {
+    margin-left: 66px;
+    @media only screen and (max-width: 1440px) {
+      margin-left: 30px;
+    }
+  }
+
+  &--export-log-col-3 {
+    margin-left: 90px;
+    @media only screen and (max-width: 1440px) {
+      margin-left: 40px;
+    }
+  }
+
+  &--export-log-col-4 {
+    margin-right: 36px;
+  }
+
+  &--export-log-col-6 {
+    margin-right: 136px;
   }
 
   &--qbo {
@@ -556,6 +582,11 @@ table {
     width: 29px;
   }
 
+  &--init-box-export-log {
+    height: 18px;
+    width: 162px;
+  }
+
   &--end-box-section {
     padding: 26px 32px 26px 0px;
   }
@@ -565,6 +596,14 @@ table {
     width: 1498px;
     @media only screen and (max-width: 1440px) {
       width: 1021px;
+    }
+  }
+
+  &--end-box-export-log {
+    height: 18px;
+    width: 1372px;
+    @media only screen and (max-width: 1440px) {
+      width: 849px;
     }
   }
 }
