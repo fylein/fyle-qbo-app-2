@@ -145,7 +145,7 @@ export class MainComponent implements OnInit {
 
   }
 
-  private setRouteWatcher(): void {
+  setupMappingPages(): void {
     this.mappingService.getMappingSettings().subscribe((mappingSettingResponse: MappingSettingResponse) => {
       mappingSettingResponse.results.forEach((mappingSetting: MappingSetting) => {
         if (mappingSetting.source_field !== EmployeeFieldMapping.EMPLOYEE && mappingSetting.source_field !== FyleField.CATEGORY) {
@@ -159,6 +159,10 @@ export class MainComponent implements OnInit {
       this.markModuleActive(this.router.url);
       this.isLoading = false;
     });
+  }
+
+  private setRouteWatcher(): void {
+    this.setupMappingPages();
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationStart) {
         this.markModuleActive(val.url);

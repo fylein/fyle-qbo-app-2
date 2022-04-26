@@ -17,6 +17,7 @@ import { QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { PreviewDialogComponent } from '../preview-dialog/preview-dialog.component';
+import { MainComponent } from 'src/app/integration/main/main.component';
 
 @Component({
   selector: 'app-import-settings',
@@ -47,6 +48,7 @@ export class ImportSettingsComponent implements OnInit {
     private formBuilder: FormBuilder,
     public helperService: HelperService,
     private router: Router,
+    private mainComponent: MainComponent,
     private mappingService: MappingService,
     private qboConnectorService: QboConnectorService,
     private snackBar: MatSnackBar,
@@ -203,6 +205,8 @@ export class ImportSettingsComponent implements OnInit {
         if (this.isOnboarding) {
           this.router.navigate([`/workspaces/onboarding/advanced_settings`]);
         } else {
+          // Refresh Mappings list in sidenavbar
+          this.mainComponent.setupMappingPages();
           this.router.navigate(['/workspaces/main/dashboard']);
         }
       }, () => {
