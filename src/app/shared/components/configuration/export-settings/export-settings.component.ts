@@ -14,6 +14,7 @@ import { WorkspaceService } from 'src/app/core/services/workspace/workspace.serv
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../core/confirmation-dialog/confirmation-dialog.component';
+import { MainComponent } from 'src/app/integration/main/main.component';
 
 @Component({
   selector: 'app-export-settings',
@@ -106,6 +107,7 @@ export class ExportSettingsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private exportSettingService: ExportSettingService,
     public helperService: HelperService,
+    private mainComponent: MainComponent,
     private mappingService: MappingService,
     private router: Router,
     private snackBar: MatSnackBar,
@@ -442,7 +444,10 @@ export class ExportSettingsComponent implements OnInit {
       data: data
     });
 
+    this.mainComponent.scrollableDialogHandler(true);
+
     dialogRef.afterClosed().subscribe((ctaClicked) => {
+      this.mainComponent.scrollableDialogHandler(false);
       if (ctaClicked) {
         this.constructPayloadAndSave();
       }

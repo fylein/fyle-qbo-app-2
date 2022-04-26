@@ -6,6 +6,15 @@
   overflow-x: clip;
   overflow-y: initial;
 
+  &--dialog-active {
+    // padding-top: 777px;
+    // @media only screen and (max-width: 1440px) {
+    //   padding-top: 960px;
+    //   height: 125%;
+    // }
+    // display: none;
+  }
+
   &--logo-header-section {
     background-color: #FFFFFF;
     position: absolute;

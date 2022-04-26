@@ -5,8 +5,9 @@ import { AdvancedSettingFormOption } from 'src/app/core/models/configuration/adv
 import { EmployeeSettingFormOption } from 'src/app/core/models/configuration/employee-setting.model';
 import { ExportSettingFormOption } from 'src/app/core/models/configuration/export-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, PreviewPage, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
+import { MainComponent } from 'src/app/integration/main/main.component';
 import { PreviewDialogComponent } from '../preview-dialog/preview-dialog.component';
 
 @Component({
@@ -29,15 +30,19 @@ export class ConfigurationSelectFieldComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    public helperService: HelperService
+    public helperService: HelperService,
+    private mainComponent: MainComponent
   ) { }
 
   showQBOExportPreview(exportType: ReimbursableExpensesObject | CorporateCreditCardExpensesObject): void {
-    this.dialog.open(PreviewDialogComponent, {
+    const dialogRef = this.dialog.open(PreviewDialogComponent, {
       width: '960px',
       height: '530px',
       data: exportType
     });
+    this.mainComponent.scrollableDialogHandler(true);
+
+    dialogRef.afterClosed().subscribe(() => this.mainComponent.scrollableDialogHandler(false));
   }
 
   ngOnInit(): void {

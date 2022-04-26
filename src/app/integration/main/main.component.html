@@ -1,7 +1,7 @@
 <app-onboarding-header *ngIf="!isLoading"></app-onboarding-header>
 
 <div *ngIf="!isLoading" fxLayout="row" fxLayoutAlign="start start">
-  <div class="side-nav-bar">
+  <div class="side-nav-bar" [ngClass]="matDialogActive ? 'side-nav-bar--dialog-active': ''">
     <div fxLayout="row" fxLayoutAlign="space-between center" class="side-nav-bar--logo-header-section">
       <div class="navbar--fyle-logo">
         <img alt="Fyle" src="assets/images/svgs/logo/fyle.svg" width="70px" height="25px"/>

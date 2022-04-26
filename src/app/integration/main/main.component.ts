@@ -13,6 +13,7 @@ import { MappingService } from 'src/app/core/services/misc/mapping.service';
 export class MainComponent implements OnInit {
 
   isLoading: boolean = true;
+  matDialogActive = false;
   modules: DashboardModule[] = [
     {
       name: 'Dashboard',
@@ -85,6 +86,10 @@ export class MainComponent implements OnInit {
     private mappingService: MappingService
   ) { }
 
+  scrollableDialogHandler(isActive: boolean) : void {
+    this.matDialogActive = isActive;
+  }
+
   navigate(module: DashboardModule | DashboardModuleChild): void {
     // Setting clicked module as active
     module.isActive = true;
@@ -142,7 +147,6 @@ export class MainComponent implements OnInit {
         return m;
       });
     }
-
   }
 
   private setRouteWatcher(): void {
