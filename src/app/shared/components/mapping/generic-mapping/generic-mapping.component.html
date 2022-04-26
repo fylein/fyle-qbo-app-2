@@ -13,21 +13,21 @@
 
       <!-- shimmers -->
       <div *ngIf="isLoading">
-        <table class="shimmers mapping-loader--table">
+        <table class="shimmers skeleton-loader-list-view--table">
           <tr fxFlex="row" fxLayoutAlign="space-between center">
-            <th><span class="mapping-loader--fyle">{{ sourceType | titlecase | snakeCaseToSpaceCase }} in Fyle</span></th>
+            <th><span class="skeleton-loader-list-view--fyle">{{ sourceType | titlecase | snakeCaseToSpaceCase }} in Fyle</span></th>
             <th>
-              <span class="mapping-loader--qbo">{{ mappingSetting?.destination_field | titlecase | snakeCaseToSpaceCase }} in QBO</span>
+              <span class="skeleton-loader-list-view--qbo">{{ mappingSetting?.destination_field | titlecase | snakeCaseToSpaceCase }} in QBO</span>
             </th>
-            <th><span class="mapping-loader--state">State</span></th>
+            <th><span class="skeleton-loader-list-view--state">State</span></th>
           </tr>
         </table>
-        <div *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" fxLayout="row" fxLayoutAlign="start center" class="mapping-loader--row-box">
-          <div class="mapping-loader--init-box-section">
-            <div class="shimmers mapping-loader--init-box"></div>
+        <div *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" fxLayout="row" fxLayoutAlign="start center" class="skeleton-loader-list-view--row-box">
+          <div class="skeleton-loader-list-view--init-box-section">
+            <div class="shimmers skeleton-loader-list-view--init-box"></div>
           </div>
-          <div class="mapping-loader--end-box-section">
-            <div class="shimmers mapping-loader--end-box"></div>
+          <div class="skeleton-loader-list-view--end-box-section">
+            <div class="shimmers skeleton-loader-list-view--end-box"></div>
           </div>
         </div>
       </div>
