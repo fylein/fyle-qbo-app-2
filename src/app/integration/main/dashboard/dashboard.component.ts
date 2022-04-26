@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { forkJoin, from, interval } from 'rxjs';
+import { forkJoin, from, interval, Observable } from 'rxjs';
 import { switchMap, takeWhile } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { Error, GroupedErrors, GroupedErrorStat } from 'src/app/core/models/db/error.model';
-import { PastExport } from 'src/app/core/models/db/past-export.model';
+import { LastExport } from 'src/app/core/models/db/last-export.model';
 import { EmployeeFieldMapping, ErrorType, ExportState, FyleField, QBOField, TaskLogState, TaskLogType } from 'src/app/core/models/enum/enum.model';
 import { DashboardService } from 'src/app/core/services/dashboard/dashboard.service';
 import { DashboardResolveMappingErrorDialogComponent } from 'src/app/shared/components/dashboard/dashboard-resolve-mapping-error-dialog/dashboard-resolve-mapping-error-dialog.component';
@@ -12,6 +12,7 @@ import { DashboardExportLogDialogComponent } from 'src/app/shared/components/das
 import { DashboardQboErrorDialogComponent } from 'src/app/shared/components/dashboard/dashboard-qbo-error-dialog/dashboard-qbo-error-dialog.component';
 import { Task } from 'src/app/core/models/db/task-log.model';
 import { UserService } from 'src/app/core/services/misc/user.service';
+import { ExportableExpenseGroup } from 'src/app/core/models/db/expense-group.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,13 +22,13 @@ import { UserService } from 'src/app/core/services/misc/user.service';
 export class DashboardComponent implements OnInit {
 
   isLoading: boolean = true;
+  importInProgress: boolean = true;
   processedCount: number = 0;
-  successfulExpenseGroupCount: number;
   failedExpenseGroupCount: number;
   exportInProgress: boolean = false;
   exportProgressPercentage: number = 0;
   exportableExpenseGroupIds: number[];
-  pastExport: PastExport;
+  lastExport: LastExport;
   errors: GroupedErrors;
   employeeFieldMapping: EmployeeFieldMapping;
   groupedErrorStat: GroupedErrorStat = {
@@ -36,6 +37,7 @@ export class DashboardComponent implements OnInit {
   };
   ExportState = ExportState;
   employeeName: string = this.userService.getUserProfile().full_name;
+  getExportErrors$: Observable<Error[]> = this.dashboardService.getExportErrors();
   private taskType: TaskLogType[] = [TaskLogType.FETCHING_EXPENSE, TaskLogType.CREATING_BILL, TaskLogType.CREATING_EXPENSE, TaskLogType.CREATING_CHECK, TaskLogType.CREATING_CREDIT_CARD_PURCHASE, TaskLogType.CREATING_JOURNAL_ENTRY, TaskLogType.CREATING_CREDIT_CARD_CREDIT, TaskLogType.CREATING_DEBIT_CARD_EXPENSE];
 
   constructor(
@@ -55,9 +57,11 @@ export class DashboardComponent implements OnInit {
       this.exportProgressPercentage = Math.round((this.processedCount / exportableExpenseGroupIds.length) * 100);
 
       if (res.results.filter(task => (task.status === 'IN_PROGRESS' || task.status === 'ENQUEUED') && exportableExpenseGroupIds.includes(task.expense_group)).length === 0) {
+        this.getExportErrors$.subscribe((errors: Error[]) => {
+          this.errors = this.formatErrors(errors);
+        });
         this.dashboardService.getAllTasks([TaskLogState.FAILED, TaskLogState.FATAL]).subscribe((taskResponse) => {
           this.failedExpenseGroupCount = taskResponse.count;
-          this.successfulExpenseGroupCount = exportableExpenseGroupIds.length - this.failedExpenseGroupCount;
           this.exportInProgress = false;
           this.exportProgressPercentage = 0;
           this.processedCount = 0;
@@ -82,28 +86,34 @@ export class DashboardComponent implements OnInit {
 
   private setupPage(): void {
     forkJoin([
-      this.dashboardService.getPastExport(),
-      this.dashboardService.getExportableGroupsIds(),
-      this.dashboardService.getExportErrors(),
+      this.dashboardService.getLastExport(),
+      this.getExportErrors$,
       this.workspaceService.getWorkspaceGeneralSettings(),
       this.dashboardService.getAllTasks([TaskLogState.ENQUEUED, TaskLogState.IN_PROGRESS], undefined, this.taskType)
     ]).subscribe((responses) => {
-      this.pastExport = responses[0];
-      this.exportableExpenseGroupIds = responses[1];
-      this.errors = this.formatErrors(responses[2]);
-      this.employeeFieldMapping = responses[3].employee_field_mapping;
+      this.lastExport = responses[0];
+      this.errors = this.formatErrors(responses[1]);
+      this.employeeFieldMapping = responses[2].employee_field_mapping;
 
-      if (responses[4].count) {
+      if (responses[3].count) {
+        this.importInProgress = false;
         this.exportInProgress = true;
-        this.exportableExpenseGroupIds = responses[4].results.map((task: Task) => task.expense_group);
-        this.pollExportStatus(this.exportableExpenseGroupIds);
+        this.exportableExpenseGroupIds = responses[3].results.map((task: Task) => task.expense_group);
+        this.pollExportStatus();
+      } else {
+        this.dashboardService.importExpenseGroups().subscribe(() => {
+          this.dashboardService.getExportableGroupsIds().subscribe((exportableExpenseGroups: ExportableExpenseGroup) => {
+            this.exportableExpenseGroupIds = exportableExpenseGroups.exportable_expense_group_ids;
+            this.importInProgress = false;
+          });
+        });
       }
       this.isLoading = false;
     });
   }
 
   private showErrorStats(): void {
-    this.dashboardService.getExportErrors().subscribe((errors) => {
+    this.getExportErrors$.subscribe((errors) => {
       const newError: GroupedErrors = this.formatErrors(errors);
 
       if (this.errors.CATEGORY_MAPPING.length !== newError.CATEGORY_MAPPING.length) {
@@ -156,8 +166,8 @@ export class DashboardComponent implements OnInit {
       width: '784px',
       height: '974px',
       data: {
-        expenseGroups: exportState === ExportState.SUCCESS ? this.pastExport.successful_expenses : this.pastExport.failed_expenses,
-        event: exportState
+        exportState: exportState,
+        lastExportedAt: exportState === ExportState.SUCCESS && this.lastExport?.last_exported_at ? this.lastExport.last_exported_at : null
       },
       position: {
         top: '0px',
@@ -181,7 +191,7 @@ export class DashboardComponent implements OnInit {
   export(): void {
     if (!this.exportInProgress) {
       this.exportInProgress = true;
-      this.dashboardService.exportExpenseGroups(this.exportableExpenseGroupIds).subscribe(() => {
+      this.dashboardService.exportExpenseGroups().subscribe(() => {
         this.pollExportStatus(this.exportableExpenseGroupIds);
       });
     }

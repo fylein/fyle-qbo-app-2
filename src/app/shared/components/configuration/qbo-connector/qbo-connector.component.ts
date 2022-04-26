@@ -93,7 +93,7 @@ export class QboConnectorComponent implements OnInit {
     };
 
     this.qboConnectorService.connectQBO(qboAuthResponse).subscribe((qboCredentials: QBOCredentials) => {
-      this.workspaceService.syncQBODimensions().subscribe(() => {
+      this.workspaceService.refreshQBODimensions().subscribe(() => {
         this.qboConnectionInProgress = false;
         this.qboCompanyName = qboCredentials.company_name;
         this.showOrHideDisconnectQBO();

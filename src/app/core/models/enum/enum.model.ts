@@ -139,3 +139,8 @@ export enum PreviewPage {
   QBO_EXPENSE = 'qbo_expense',
   FYLE_EXPENSE = 'fyle_expense'
 }
+
+export enum ExportMode {
+  MANUAL = 'MANUAL',
+  AUTO = 'AUTO'
+}

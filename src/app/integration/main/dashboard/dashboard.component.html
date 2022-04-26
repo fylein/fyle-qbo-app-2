@@ -2,7 +2,7 @@
   <!-- TODO -->
   <app-dashboard-header-section [name]="employeeName"></app-dashboard-header-section>
 
-  <div *ngIf="!isLoading" class="export">
+  <div *ngIf="!importInProgress" class="export">
     <div class="export--core-section">
       <div class="export--content-section">
         <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -41,7 +41,7 @@
   </div>
 
   <!-- export shimmer -->
-  <div *ngIf="isLoading" class="export">
+  <div *ngIf="importInProgress" class="export">
     <div class="export--core-section">
       <div class="export--content-section">
         <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -63,7 +63,7 @@
 
 
   <div fxLayout="row" fxLayoutAlign="start start">
-    <div class="past-export" *ngIf="pastExport && !isLoading">
+    <div class="past-export" *ngIf="lastExport && !isLoading">
       <div class="past-export--section">
         <div class="past-export--content-section">
           <h2 class="past-export--header">
@@ -72,32 +72,32 @@
           <p class="past-export--header-divider"></p>
           <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">
             <p class="past-export--detail">Date & Time of export</p>
-            <p class="single-line-text">{{ pastExport.exported_at | date: 'dd MMM, yyyy' }} at {{ pastExport.exported_at | date: 'HH:mm' }}</p>
+            <p class="single-line-text">{{ lastExport.last_exported_at| date: 'dd MMM, yyyy' }} at {{ lastExport.last_exported_at | date: 'HH:mm' }}</p>
           </div>
           <p class="past-export--divider"></p>
 
           <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">
             <p class="past-export--detail">Mode of export</p>
-            <p>{{ pastExport.mode }}</p>
+            <p>{{ lastExport.export_mode | titlecase }}</p>
           </div>
           <p class="past-export--divider"></p>
 
           <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">
             <p class="past-export--detail">Total expenses</p>
-            <p>{{ pastExport.total_expenses }}</p>
+            <p>{{ lastExport.total_expense_groups_count }}</p>
           </div>
           <p class="past-export--divider"></p>
 
           <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">
             <p class="past-export--detail">Successful Expenses</p>
-            <p class="past-export--view-expense">{{ pastExport.successful_expenses.length }}</p>
+            <p class="past-export--view-expense">{{ lastExport.successful_expense_groups_count }}</p>
             <p class="past-export--view-expense-text pointer" (click)="showDashboardExportLog(ExportState.SUCCESS)">View</p>
           </div>
           <p class="past-export--divider"></p>
 
           <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">
             <p class="past-export--detail">Failed Expenses</p>
-            <p class="past-export--view-expense">{{ pastExport.failed_expenses.length }}</p>
+            <p class="past-export--view-expense">{{ lastExport.failed_expense_groups_count }}</p>
             <p class="past-export--view-expense-text pointer" (click)="showDashboardExportLog(ExportState.FAILED)">View</p>
           </div>
         </div>

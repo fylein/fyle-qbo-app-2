@@ -63,6 +63,8 @@ export class IntegrationComponent implements OnInit {
     this.getOrCreateWorkspace().then((workspace: Workspace) => {
       this.workspace = workspace;
       this.storageService.set('currency', workspace.fyle_currency);
+      this.workspaceService.syncFyleDimensions().subscribe();
+      this.workspaceService.syncQBODimensions().subscribe();
       this.navigate();
     });
   }
