@@ -43,3 +43,7 @@ export type ExpenseGroupDescription = {
   expense_id: FyleReferenceType.EXPENSE;
   settlement_id: FyleReferenceType.PAYMENT;
 };
+
+export type ExportableExpenseGroup = {
+  exportable_expense_group_ids: number[];
+};
