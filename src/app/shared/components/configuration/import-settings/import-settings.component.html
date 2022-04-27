@@ -32,14 +32,19 @@
           </div>
         </div>
 
-        <div formArrayName="expenseFields" class="configuration--field-toggle-section">
+        <div formArrayName="expenseFields" class="import-settings--field-toggle-section">
           <div *ngFor="let expenseField of expenseFields.controls; let i = index" [formGroupName]="i">
             <div fxLayout="row" fxLayoutAlign="space-between center">
-              <div class="import-settings--field-label-section import-settings--import-to-fyle-toggle">
+              <div class="import-settings--field-label-section import-settings--import-area">
                 Import {{ expenseField.value.destination_field | titlecase }} from Quickbooks Online
                 <h5 class="configuration--field-label sub-text-color">
                   The imported {{ expenseField.value.destination_field | titlecase }} from Quickbooks Online will be a
                   selectable field while creating an expense.
+                </h5>
+
+                <h5 class="import-settings--additional-note sub-text-color">
+                  NOTE: If you have already created {{ expenseField.value.destination_field | titlecase }} values in Fyle, you can skip importing now and map your Fyle field to
+                  corresponding QBO {{ expenseField.value.destination_field | titlecase }} dimensions after completing the configuration from <span class="bold">Dashboard > Mappings Section</span>
                 </h5>
               </div>
               <div class="configuration--input-toggle-section">
@@ -47,8 +52,8 @@
                   formControlName="import_to_fyle"></mat-slide-toggle>
               </div>
             </div>
-            <div fxLayout="row" fxLayoutAlign="space-between center" class="import-settings--mapping-section">
-              <div fxLayout="row" class="import-settings--field-checkbox-contents">
+            <div *ngIf="expenseField.value.import_to_fyle" fxLayout="row" fxLayoutAlign="space-between center" class="import-settings--mapping-section">
+              <div fxLayout="row">
                 <div fxLayout="row" class="import-settings--mapping-qbo-fyle-section">
                   <div class="import-settings--qbo-field">
                     <h5 class="import-settings--qbo-field-text single-line-text">
