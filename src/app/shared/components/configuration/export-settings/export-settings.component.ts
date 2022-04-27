@@ -450,22 +450,22 @@ export class ExportSettingsComponent implements OnInit {
   }
 
   private constructPayloadAndSave(): void {
+    this.saveInProgress = true;
     const exportSettingPayload = ExportSettingModel.constructPayload(this.exportSettingsForm);
-      this.saveInProgress = true;
 
-      this.exportSettingService.postExportSettings(exportSettingPayload).subscribe(() => {
-        this.saveInProgress = false;
-        this.snackBar.open('Export settings saved successfully');
-        if (this.isOnboarding) {
-          this.router.navigate([`/workspaces/onboarding/import_settings`]);
-        } else if (this.advancedSettingAffected()) {
-          this.router.navigate(['/workspaces/main/configuration/advanced_settings']);
-        } else {
-          this.router.navigate(['/workspaces/main/dashboard']);
-        }
-      }, () => {
-        this.saveInProgress = false;
-        this.snackBar.open('Error saving export settings, please try again later');
+    this.exportSettingService.postExportSettings(exportSettingPayload).subscribe(() => {
+      this.saveInProgress = false;
+      this.snackBar.open('Export settings saved successfully');
+      if (this.isOnboarding) {
+        this.router.navigate([`/workspaces/onboarding/import_settings`]);
+      } else if (this.advancedSettingAffected()) {
+        this.router.navigate(['/workspaces/main/configuration/advanced_settings']);
+      } else {
+        this.router.navigate(['/workspaces/main/dashboard']);
+      }
+    }, () => {
+      this.saveInProgress = false;
+      this.snackBar.open('Error saving export settings, please try again later');
       });
   }
 

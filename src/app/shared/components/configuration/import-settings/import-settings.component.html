@@ -59,7 +59,6 @@
                   <div>
                     <mat-form-field floatLabel="always" appearance="outline" class="import-settings--fyle-field">
                       <mat-select placeholder="Select a field from Fyle" formControlName="source_field">
-                        <mat-option>None</mat-option>
                         <mat-option *ngFor="let fyleExpenseField of fyleExpenseFields" [value]="fyleExpenseField">
                           {{ fyleExpenseField.split('_').join(' ') | titlecase }}
                           <img *ngIf="fyleExpenseField === expenseField.value.source_field" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
