@@ -1,15 +1,28 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
 import { ExportSettingService } from './export-setting.service';
 import { ExportSettingPost } from '../../models/configuration/export-setting.model';
 import { ExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject } from '../../models/enum/enum.model';
+import { or } from '@rxweb/reactive-form-validators';
 
 describe('ExportSettingService', () => {
   let service: ExportSettingService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule]
+      imports: [HttpClientModule],
+      providers: [{
+        provide: JWT_OPTIONS,
+        useValue: JWT_OPTIONS
+      },
+      JwtHelperService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: JwtInterceptor,
+        multi: true
+      }]
     });
     service = TestBed.inject(ExportSettingService);
   });
@@ -18,8 +31,26 @@ describe('ExportSettingService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('getEmployeeSettings service check', () => {
+
+  it('getExportSettings service check', () => {
     expect(service.getExportSettings()).toBeTruthy()
+  })
+
+  it('getExportSettings service check attributes check', () => {
+    let keys:any;
+    let orgKeys = ['expense_group_settings', 'general_mappings', 'workspace_general_settings']
+    orgKeys = orgKeys.sort()
+    service.getExportSettings().subscribe((value)=>
+    {
+        for(let key of Object.keys(value)){
+          if(key != 'workspace_id'){
+            keys.push(key)
+          }
+        }
+        keys = keys.sort()
+        expect(keys).toEqual(orgKeys)
+    })
+    
   })
 
   it('postEmployeeSettings service check', () => {

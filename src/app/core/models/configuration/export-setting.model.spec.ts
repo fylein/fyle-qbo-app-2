@@ -4,7 +4,6 @@ import { CorporateCreditCardExpensesObject, ExpenseState, ReimbursableExpensesOb
 import { ExportSettingModel, ExportSettingPost } from "./export-setting.model";
 
 describe('ExportSettingModel', () => {
-  let component: ExportSettingModel;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

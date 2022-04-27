@@ -12,5 +12,9 @@ export const environment = {
   hotjar_id : '',
   sentry_dsn: '',
   release: '',
-  fyle_app_url: ''
+  fyle_app_url: '',
+  tests:{
+    workspaceId: '',
+    user: ''
+  }
 };

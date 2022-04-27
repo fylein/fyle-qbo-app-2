@@ -3,7 +3,6 @@ import { FormControl, FormGroup} from '@angular/forms';
 import { AutoMapEmployee, EmployeeFieldMapping } from '../enum/enum.model';
 import { EmployeeSettingModel, EmployeeSettingPost } from './employee-setting.model'
 describe(' EmployeeSettingModel', () => {
-  let component: EmployeeSettingModel;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

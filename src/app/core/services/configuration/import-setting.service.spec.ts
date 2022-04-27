@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
 import { ImportSettingService } from './import-setting.service';
 import { ImportSettingPost, ImportSettingModel } from '../../models/configuration/import-setting.model';
 import { MappingSourceField, MappingDestinationField } from '../../models/enum/enum.model';
@@ -9,7 +11,17 @@ describe('ImportSettingService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule]
+      imports: [HttpClientModule],
+      providers: [{
+        provide: JWT_OPTIONS,
+        useValue: JWT_OPTIONS
+      },
+      JwtHelperService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: JwtInterceptor,
+        multi: true
+      }]
     });
     service = TestBed.inject(ImportSettingService);
   });
@@ -18,15 +30,30 @@ describe('ImportSettingService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('getEmployeeSettings service check', () => {
+  it('getImportSettings service check', () => {
     expect(service.getImportSettings()).toBeTruthy()
   })
 
-  it('postEmployeeSettings service check', () => {
+  it('getImportSettings service attribute check', () => {
+    let keys:any[]=[]
+    let orgKeys=['workspace_general_settings','general_mappings','workspace_schedules']
+    orgKeys = orgKeys.sort()
+    service.getImportSettings().subscribe((value) => {
+      for(let key of Object.keys(value)){
+        if(key != 'workspace_id'){
+          keys.push(key)
+        }
+      }
+      keys = keys.sort()
+      expect(keys).toEqual(orgKeys)
+    })
+  })
+
+  it('getImportSettings service check', () => {
     const employeeSettingPayload: ImportSettingPost = {
       workspace_general_settings: {
         import_categories: true,
-        charts_of_accounts: ImportSettingModel.formatChartOfAccounts([{enabled: true, name: 'expence'}]),
+        charts_of_accounts: ImportSettingModel.formatChartOfAccounts([{enabled: true, name: 'expense'}]),
         import_tax_codes: true
       },
       general_mappings: {

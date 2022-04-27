@@ -4,7 +4,6 @@ import { MappingDestinationField, MappingSourceField } from '../enum/enum.model'
 import { ImportSettingModel, ImportSettingPost } from "./import-setting.model";
 
 describe('ImportSettingModel', () => {
-  let component: ImportSettingModel;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

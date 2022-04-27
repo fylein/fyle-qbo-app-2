@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
 import { EmployeeSettingService } from './employee-setting.service';
 import { EmployeeSettingPost } from '../../models/configuration/employee-setting.model';
 import { AutoMapEmployee, EmployeeFieldMapping } from '../../models/enum/enum.model';
@@ -9,7 +11,17 @@ describe('EmployeeSettingService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule]
+      imports: [HttpClientModule],
+      providers: [{
+        provide: JWT_OPTIONS,
+        useValue: JWT_OPTIONS
+      },
+      JwtHelperService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: JwtInterceptor,
+        multi: true
+      }]
     });
     service = TestBed.inject(EmployeeSettingService);
   });
@@ -20,6 +32,18 @@ describe('EmployeeSettingService', () => {
 
   it('getEmployeeSettings service check', () => {
     expect(service.getEmployeeSettings()).toBeTruthy()
+  })
+
+  it('getEmployeeSettings service attribuite check', () => {
+    const orgkey = ['workspace_general_settings']
+    let keys:any[] = []
+    service.getEmployeeSettings().subscribe((value) => {
+      for(let key of Object.keys(value)){
+        if(key == 'workspace_general_settings')
+          keys.push(key)
+      }
+      expect(keys).toEqual(orgkey)
+    })
   })
 
   it('postEmployeeSettings service check', () => {

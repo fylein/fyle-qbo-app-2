@@ -3,7 +3,6 @@ import { FormControl, FormGroup} from '@angular/forms';
 import { AdvancedSettingModel, AdvancedSettingPost} from "./advanced-setting.model";
 
 describe('AdvancedSettingModel', () => {
-  let component: AdvancedSettingModel;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

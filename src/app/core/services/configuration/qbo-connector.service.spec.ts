@@ -1,18 +1,40 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { QboConnectorService } from './qbo-connector.service';
 import { QboConnectorPost } from '../../models/configuration/qbo-connector.model';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
 
 describe('QboConnectorService', () => {
   let service: QboConnectorService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule]
+      imports: [HttpClientModule],
+      providers: [{
+        provide: JWT_OPTIONS,
+        useValue: JWT_OPTIONS
+      },
+      JwtHelperService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: JwtInterceptor,
+        multi: true
+      }]
     });
     service = TestBed.inject(QboConnectorService);
   });
 
+  function checking(value:any){
+    let keys:any[]=[]
+    for(let key of Object.keys(value)){
+      if(key != 'workspace_id'){
+        keys.push(key)
+      }
+    }
+    keys = keys.sort()
+    return keys
+  }
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
@@ -29,6 +51,37 @@ describe('QboConnectorService', () => {
     expect(service.getQBOCredentials()).toBeTruthy()
   })
 
+  it('getQBOCredentials service attribuite check', () => {
+    let orgkeys=['id','refresh_token','is_expired','realm_id','country','company_name','created_at','updated_at','workspace']
+    orgkeys=orgkeys.sort()
+    service.getQBOCredentials().subscribe((value) => {
+      let keys = checking(value)
+      expect(keys).toEqual(orgkeys)
+    })
+  })
+
+  it('getPreferences Service attribute check', () => {
+    let org = ['AccountingInfoPrefs','ProductAndServicesPrefs',
+      'SalesFormsPrefs',
+      'EmailMessagesPrefs',
+      'VendorAndPurchasesPrefs',
+      'TimeTrackingPrefs',
+      'TaxPrefs',
+      'CurrencyPrefs',
+      'ReportPrefs',
+      'OtherPrefs',
+      'domain',
+      'sparse',
+      'Id',
+      'SyncToken',
+      'MetaData']
+    org = org.sort()
+    service.getPreferences().subscribe((value) => {
+      let keys = checking(value)
+      expect(keys).toEqual(org)
+    })
+  })
+
   it('service check', () => {
     const qboConnector:QboConnectorPost = {
       code: 'Fyle',
@@ -37,4 +90,5 @@ describe('QboConnectorService', () => {
     }
     expect(service.connectQBO(qboConnector)).toBeTruthy()
   })
+
 });
