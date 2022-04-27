@@ -201,7 +201,7 @@
           </div>
         </div>
 
-        <app-zero-state-with-illustration *ngIf="!errors.EMPLOYEE_MAPPING.length && !errors.CATEGORY_MAPPING.length && !errors.QBO_ERROR.length" [page]="'dashboard_error'"></app-zero-state-with-illustration>
+        <app-zero-state-with-illustration *ngIf="!errors.EMPLOYEE_MAPPING.length && !errors.CATEGORY_MAPPING.length && !errors.QBO_ERROR.length && !groupedErrorStat.CATEGORY_MAPPING && !groupedErrorStat.EMPLOYEE_MAPPING" [page]="'dashboard_error'"></app-zero-state-with-illustration>
       </div>
     </div>
 
