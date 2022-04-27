@@ -38,6 +38,7 @@ export class DashboardComponent implements OnInit {
   ExportState = ExportState;
   employeeName: string = this.userService.getUserProfile().full_name;
   getExportErrors$: Observable<Error[]> = this.dashboardService.getExportErrors();
+  getLastExport$: Observable<LastExport> = this.dashboardService.getLastExport();
   private taskType: TaskLogType[] = [TaskLogType.FETCHING_EXPENSE, TaskLogType.CREATING_BILL, TaskLogType.CREATING_EXPENSE, TaskLogType.CREATING_CHECK, TaskLogType.CREATING_CREDIT_CARD_PURCHASE, TaskLogType.CREATING_JOURNAL_ENTRY, TaskLogType.CREATING_CREDIT_CARD_CREDIT, TaskLogType.CREATING_DEBIT_CARD_EXPENSE];
 
   constructor(
@@ -57,8 +58,12 @@ export class DashboardComponent implements OnInit {
       this.exportProgressPercentage = Math.round((this.processedCount / exportableExpenseGroupIds.length) * 100);
 
       if (res.results.filter(task => (task.status === 'IN_PROGRESS' || task.status === 'ENQUEUED') && exportableExpenseGroupIds.includes(task.expense_group)).length === 0) {
-        this.getExportErrors$.subscribe((errors: Error[]) => {
-          this.errors = this.formatErrors(errors);
+        forkJoin([
+          this.getExportErrors$,
+          this.getLastExport$,
+        ]).subscribe(responses => {
+          this.errors = this.formatErrors(responses[0]);
+          this.lastExport = responses[1];
         });
         this.dashboardService.getAllTasks([TaskLogState.FAILED, TaskLogState.FATAL]).subscribe((taskResponse) => {
           this.failedExpenseGroupCount = taskResponse.count;
@@ -86,7 +91,7 @@ export class DashboardComponent implements OnInit {
 
   private setupPage(): void {
     forkJoin([
-      this.dashboardService.getLastExport(),
+      this.getLastExport$,
       this.getExportErrors$,
       this.workspaceService.getWorkspaceGeneralSettings(),
       this.dashboardService.getAllTasks([TaskLogState.ENQUEUED, TaskLogState.IN_PROGRESS], undefined, this.taskType)
