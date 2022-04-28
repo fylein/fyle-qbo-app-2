@@ -16,7 +16,7 @@ describe('ImportSettingService', () => {
         provide: JWT_OPTIONS,
         useValue: JWT_OPTIONS
       },
-      JwtHelperService,
+        JwtHelperService,
       {
         provide: HTTP_INTERCEPTORS,
         useClass: JwtInterceptor,
@@ -31,33 +31,31 @@ describe('ImportSettingService', () => {
   });
 
   it('getImportSettings service check', () => {
-    expect(service.getImportSettings()).toBeTruthy()
+    expect(service.getImportSettings()).toBeTruthy();
   })
 
   it('getImportSettings service attribute check', () => {
-    let keys:any[]=[]
-    let orgKeys=['workspace_general_settings','general_mappings','workspace_schedules']
-    orgKeys = orgKeys.sort()
+    let keys: string[] = [];
+    const responseKeys = ['workspace_general_settings', 'general_mappings', 'workspace_schedules','workspace_id'].sort();
     service.getImportSettings().subscribe((value) => {
-      for(let key of Object.keys(value)){
-        if(key != 'workspace_id'){
-          keys.push(key)
-        }
+      for (let key of Object.keys(value)) {
+        keys.push(key);
       }
-      keys = keys.sort()
-      expect(keys).toEqual(orgKeys)
+      keys = keys.sort();
+      expect(keys).toEqual(responseKeys);
+      console.log("keys",keys,responseKeys);
     })
   })
 
-  it('getImportSettings service check', () => {
+  it('postImportSettings service check', (done) => {
     const employeeSettingPayload: ImportSettingPost = {
       workspace_general_settings: {
         import_categories: true,
-        charts_of_accounts: ImportSettingModel.formatChartOfAccounts([{enabled: true, name: 'expense'}]),
+        charts_of_accounts: ImportSettingModel.formatChartOfAccounts([{ enabled: true, name: 'expense' }]),
         import_tax_codes: true
       },
       general_mappings: {
-        default_tax_code: {id:'1',name:'Fyle'}
+        default_tax_code: { id: '1', name: 'Fyle' }
       },
       mapping_settings: [{
         source_field: MappingSourceField.PROJECT,
@@ -67,6 +65,7 @@ describe('ImportSettingService', () => {
         source_placeholder: 'Fyle'
       }]
     };
-    expect(service.postImportSettings(employeeSettingPayload)).toBeTruthy()
+    expect(service.postImportSettings(employeeSettingPayload)).toBeTruthy();
+    done();
   })
 });

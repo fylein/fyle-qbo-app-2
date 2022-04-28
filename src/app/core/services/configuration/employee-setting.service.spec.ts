@@ -16,7 +16,7 @@ describe('EmployeeSettingService', () => {
         provide: JWT_OPTIONS,
         useValue: JWT_OPTIONS
       },
-      JwtHelperService,
+        JwtHelperService,
       {
         provide: HTTP_INTERCEPTORS,
         useClass: JwtInterceptor,
@@ -31,28 +31,28 @@ describe('EmployeeSettingService', () => {
   });
 
   it('getEmployeeSettings service check', () => {
-    expect(service.getEmployeeSettings()).toBeTruthy()
+    expect(service.getEmployeeSettings()).toBeTruthy();
   })
 
-  it('getEmployeeSettings service attribuite check', () => {
-    const orgkey = ['workspace_general_settings']
-    let keys:any[] = []
+  it('getEmployeeSettings service check', () => {
+    const responseKeys = ['workspace_general_settings', 'workspace_id'].sort();
+    let keys: string[] = [];
     service.getEmployeeSettings().subscribe((value) => {
-      for(let key of Object.keys(value)){
-        if(key == 'workspace_general_settings')
-          keys.push(key)
+      for (let key of Object.keys(value)) {
+        keys.push(key);
       }
-      expect(keys).toEqual(orgkey)
+      keys = keys.sort();
+      expect(keys).toEqual(responseKeys);
     })
   })
 
   it('postEmployeeSettings service check', () => {
-    const employeeSettingPayload: EmployeeSettingPost= {
+    const employeeSettingPayload: EmployeeSettingPost = {
       workspace_general_settings: {
         employee_field_mapping: EmployeeFieldMapping.EMPLOYEE,
         auto_map_employees: AutoMapEmployee.EMPLOYEE_CODE
       }
     };
-    expect(service.postEmployeeSettings(employeeSettingPayload)).toBeTruthy()
+    expect(service.postEmployeeSettings(employeeSettingPayload)).toBeTruthy();
   })
 });

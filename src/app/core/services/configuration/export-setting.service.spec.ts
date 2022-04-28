@@ -17,7 +17,7 @@ describe('ExportSettingService', () => {
         provide: JWT_OPTIONS,
         useValue: JWT_OPTIONS
       },
-      JwtHelperService,
+        JwtHelperService,
       {
         provide: HTTP_INTERCEPTORS,
         useClass: JwtInterceptor,
@@ -33,24 +33,20 @@ describe('ExportSettingService', () => {
 
 
   it('getExportSettings service check', () => {
-    expect(service.getExportSettings()).toBeTruthy()
+    expect(service.getExportSettings()).toBeTruthy();
   })
 
   it('getExportSettings service check attributes check', () => {
-    let keys:any;
-    let orgKeys = ['expense_group_settings', 'general_mappings', 'workspace_general_settings']
-    orgKeys = orgKeys.sort()
-    service.getExportSettings().subscribe((value)=>
-    {
-        for(let key of Object.keys(value)){
-          if(key != 'workspace_id'){
-            keys.push(key)
-          }
-        }
-        keys = keys.sort()
-        expect(keys).toEqual(orgKeys)
+    let keys: string[] = [];
+    const responseKeys = ['expense_group_settings', 'general_mappings', 'workspace_general_settings', 'workspace_id'].sort();
+    service.getExportSettings().subscribe((value) => {
+      for (let key of Object.keys(value)) {
+        keys.push(key);
+      }
+      keys = keys.sort();
+      expect(keys).toEqual(responseKeys);
     })
-    
+
   })
 
   it('postEmployeeSettings service check', () => {
@@ -67,12 +63,12 @@ describe('ExportSettingService', () => {
         corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL
       },
       general_mappings: {
-        bank_account: {id:'1',name:'Fyle'} ,
-        default_ccc_account: {id:'1',name:'Fyle'} ,
-        accounts_payable: {id:'1',name:'Fyle'},
-        default_ccc_vendor: {id:'1',name:'Fyle'} ,
-        qbo_expense_account: {id:'1',name:'Fyle'} ,
-        default_debit_card_account: {id:'1',name:'Fyle'}
+        bank_account: { id: '1', name: 'Fyle' },
+        default_ccc_account: { id: '1', name: 'Fyle' },
+        accounts_payable: { id: '1', name: 'Fyle' },
+        default_ccc_vendor: { id: '1', name: 'Fyle' },
+        qbo_expense_account: { id: '1', name: 'Fyle' },
+        default_debit_card_account: { id: '1', name: 'Fyle' }
       }
     };
     expect(service.postExportSettings(exportSettingPayload)).toBeTruthy()

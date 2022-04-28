@@ -27,7 +27,8 @@ export type ExportSettingGeneralMapping = {
 export type ExportSettingGet = {
   expense_group_settings: ExpenseGroupSetting,
   workspace_general_settings: ExportSettingWorkspaceGeneralSetting,
-  general_mappings: GeneralMapping
+  general_mappings: GeneralMapping,
+  workspace_id:number
 }
 
 export interface ExportSettingFormOption extends SelectFormOption {

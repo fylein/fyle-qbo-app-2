@@ -30,19 +30,19 @@ describe('AuthService', () => {
   });
 
   it('redirectToQboOAuth is working', () => {
-    expect(service.redirectToQboOAuth()).toBeFalsy()
+    expect(service.redirectToQboOAuth()).toBeFalsy();
   })
 
   it('redirectToFyleOAuth is working', () => {
-    expect(service.redirectToFyleOAuth()).toBeFalsy()
+    expect(service.redirectToFyleOAuth()).toBeFalsy();
   })
 
   it('isLoggedIn is working', () => {
-    const result = service.isLoggedIn()
+    const result = service.isLoggedIn();
     if(result == true)
-      expect(result).toBeTrue()
+      expect(result).toBeTrue();
     else
-      expect(result).toBeFalse()
+      expect(result).toBeFalse();
   })
 
   it('login is working', () => {
@@ -66,11 +66,11 @@ describe('AuthService', () => {
         user_id: 'ust5Ga9HC3qc'
       }
     };
-    expect(service.login(code)).toBeTruthy()
+    expect(service.login(code)).toBeTruthy();
   })
 
 
   it(' is working', () => {
-    expect(service.redirectToFyleOAuth())
+    expect(service.redirectToFyleOAuth());
   })
 });

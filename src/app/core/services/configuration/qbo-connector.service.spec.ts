@@ -26,13 +26,13 @@ describe('QboConnectorService', () => {
   });
 
   function checking(value:any){
-    let keys:any[]=[]
+    let keys:string[]=[]
     for(let key of Object.keys(value)){
-      if(key != 'workspace_id'){
-        keys.push(key)
-      }
+      
+        keys.push(key);
+      
     }
-    keys = keys.sort()
+    keys = keys.sort();
     return keys
   }
   it('should be created', () => {
@@ -40,28 +40,27 @@ describe('QboConnectorService', () => {
   });
 
   it('getPreferences Service check', () => {
-    expect(service.getPreferences()).toBeTruthy()
+    expect(service.getPreferences()).toBeTruthy();
   })
 
   it('disconnectQBOConnection service check', () => {
-    expect(service.disconnectQBOConnection()).toBeTruthy()
+    expect(service.disconnectQBOConnection()).toBeTruthy();
   })
 
   it('getQBOCredentials service check', () => {
-    expect(service.getQBOCredentials()).toBeTruthy()
+    expect(service.getQBOCredentials()).toBeTruthy();
   })
 
   it('getQBOCredentials service attribuite check', () => {
-    let orgkeys=['id','refresh_token','is_expired','realm_id','country','company_name','created_at','updated_at','workspace']
-    orgkeys=orgkeys.sort()
+    const responseKeys=['id','refresh_token','is_expired','realm_id','country','company_name','created_at','updated_at','workspace','workspace_id'].sort();
     service.getQBOCredentials().subscribe((value) => {
-      let keys = checking(value)
-      expect(keys).toEqual(orgkeys)
+      let keys = checking(value);
+      expect(keys).toEqual(responseKeys);
     })
   })
 
   it('getPreferences Service attribute check', () => {
-    let org = ['AccountingInfoPrefs','ProductAndServicesPrefs',
+    const responseKeys = ['AccountingInfoPrefs','ProductAndServicesPrefs',
       'SalesFormsPrefs',
       'EmailMessagesPrefs',
       'VendorAndPurchasesPrefs',
@@ -74,11 +73,10 @@ describe('QboConnectorService', () => {
       'sparse',
       'Id',
       'SyncToken',
-      'MetaData']
-    org = org.sort()
+      'MetaData','workspace_id'].sort();
     service.getPreferences().subscribe((value) => {
-      let keys = checking(value)
-      expect(keys).toEqual(org)
+      let keys = checking(value);
+      expect(keys).toEqual(responseKeys);
     })
   })
 
@@ -87,8 +85,8 @@ describe('QboConnectorService', () => {
       code: 'Fyle',
       realm_id: 'Fyle',
       redirect_uri: 'https://app.fyle.tech'
-    }
-    expect(service.connectQBO(qboConnector)).toBeTruthy()
+    };
+    expect(service.connectQBO(qboConnector)).toBeTruthy();
   })
 
 });

@@ -41,7 +41,8 @@ export type ExpenseFieldsFormOption = {
 export type ImportSettingGet = {
   workspace_general_settings: WorkspaceGeneralSetting,
   general_mappings: GeneralMapping,
-  mapping_settings: MappingSetting[]
+  mapping_settings: MappingSetting[],
+  workspace_id:number
 }
 
 export interface ImportSettingFormOption extends SelectFormOption {
