@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { MappingDestinationField, PreviewPage } from 'src/app/core/models/enum/enum.model';
+import { MappingDestinationField } from 'src/app/core/models/enum/enum.model';
 import { ExpenseFieldsFormOption, ImportSettingGet, ImportSettingModel } from 'src/app/core/models/configuration/import-setting.model';
 import { MappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
@@ -166,7 +166,9 @@ export class ImportSettingsComponent implements OnInit {
     this.dialog.open(PreviewDialogComponent, {
       width: '560px',
       height: '770px',
-      data: PreviewPage.FYLE_EXPENSE
+      data: {
+        fyleExpense: true
+      }
     });
   }
 

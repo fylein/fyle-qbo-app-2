@@ -5,7 +5,8 @@ import { AdvancedSettingFormOption } from 'src/app/core/models/configuration/adv
 import { EmployeeSettingFormOption } from 'src/app/core/models/configuration/employee-setting.model';
 import { ExportSettingFormOption } from 'src/app/core/models/configuration/export-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, PreviewPage, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { PreviewPage } from 'src/app/core/models/misc/preview-page.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { PreviewDialogComponent } from '../preview-dialog/preview-dialog.component';
 
@@ -32,11 +33,16 @@ export class ConfigurationSelectFieldComponent implements OnInit {
     public helperService: HelperService
   ) { }
 
-  showQBOExportPreview(exportType: ReimbursableExpensesObject | CorporateCreditCardExpensesObject): void {
+  showQBOExportPreview(reimbursableExportType: ReimbursableExpensesObject | null, creditCardExportType: CorporateCreditCardExpensesObject | null): void {
+    const data: PreviewPage = {
+      qboReimburse: reimbursableExportType,
+      qboCCC: creditCardExportType
+    };
+
     this.dialog.open(PreviewDialogComponent, {
       width: '960px',
       height: '530px',
-      data: exportType
+      data: data
     });
   }
 

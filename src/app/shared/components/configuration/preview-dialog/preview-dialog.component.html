@@ -6,7 +6,13 @@
     class="expense-form-preview--close-icon sub-text-color pointer" />
 </div>
 <div class="expense-form-preview--preview-section">
-  <img *ngIf="data === PreviewPage.FYLE_EXPENSE" class="expense-form-preview--preview" src="assets/images/pngs/expense-form-preview.png" width="536px" height="680px" />
-  <img *ngIf="data === ReimbursableExpensesObject.EXPENSE" class="expense-form-preview--preview" src="assets/images/pngs/qbo-expense-preview.png" width="940px" height="446px" />
-  <!-- TODO: add all qbo export types -->
+  <img *ngIf="data.fyleExpense" class="expense-form-preview--preview" src="assets/images/pngs/preview-screens/expense-form-preview.png" width="536px" height="680px" />
+  <img *ngIf="data.qboReimburse === ReimbursableExpensesObject.EXPENSE" class="expense-form-preview--preview" src="assets/images/pngs/preview-screens/reimburse-expense.png" width="940px" height="446px" />
+  <img *ngIf="data.qboReimburse === ReimbursableExpensesObject.BILL" class="expense-form-preview--preview" src="assets/images/pngs/preview-screens/reimburse-bill.png" width="940px" height="446px" />
+  <img *ngIf="data.qboReimburse === ReimbursableExpensesObject.JOURNAL_ENTRY" class="expense-form-preview--preview" src="assets/images/pngs/preview-screens/reimburse-journal-entry.png" width="940px" height="446px" />
+  <img *ngIf="data.qboReimburse === ReimbursableExpensesObject.CHECK" class="expense-form-preview--preview" src="assets/images/pngs/preview-screens/reimburse-check.png" width="940px" height="446px" />
+  <img *ngIf="data.qboCCC === CorporateCreditCardExpensesObject.BILL" class="expense-form-preview--preview" src="assets/images/pngs/preview-screens/ccc-bill.png" width="940px" height="446px" />
+  <img *ngIf="data.qboCCC === CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE" class="expense-form-preview--preview" src="assets/images/pngs/preview-screens/ccc-expense.png" width="940px" height="446px" />
+  <img *ngIf="data.qboCCC === CorporateCreditCardExpensesObject.JOURNAL_ENTRY" class="expense-form-preview--preview" src="assets/images/pngs/preview-screens/ccc-journal-entry.png" width="940px" height="446px" />
+  <img *ngIf="data.qboCCC === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE" class="expense-form-preview--preview" src="assets/images/pngs/preview-screens/ccc-debit-card.png" width="940px" height="446px" />
 </div>

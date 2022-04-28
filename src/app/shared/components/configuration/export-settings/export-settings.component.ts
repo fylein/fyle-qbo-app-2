@@ -414,6 +414,7 @@ export class ExportSettingsComponent implements OnInit {
     const updatedCorporateCardExportType = this.exportSettingsForm.value.creditCardExportType ? this.exportSettingsForm.value.creditCardExportType : 'None';
 
     if (this.singleItemizedJournalEntryAffected()) {
+      // TODO: Handle None to something
       if (updatedReimbursableExportType !== existingReimbursableExportType) {
         configurationUpdateList += `You are changing your export representation from <b>${existingReimbursableExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b> to <b>${updatedReimbursableExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b><br>`;
       } else if (existingCorporateCardExportType !== updatedCorporateCardExportType) {
