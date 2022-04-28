@@ -8,7 +8,7 @@
 
   &--bg-triangle-left {
     @extend .landing--bg-triangle;
-    background: linear-gradient(-83.33deg, #E1EEFF 26.8%, #FFE4FB 97.18%);
+    background: linear-gradient(-83.33deg,#e1eeffba 26.8%,#ffe4fbde 97.18%);
     clip-path: polygon(0 0, 100% 0, 0 100%, 0 0%);
   }
 
