@@ -12,11 +12,11 @@
             </div>
             <div class="export--info-section">
               <h3 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">Sit back and relax!</h3>
-              <h3 *ngIf="!exportInProgress && exportableExpenseGroupIds.length && failedExpenseGroupCount === null">{{ exportableExpenseGroupIds.length }} new expenses ready to export</h3>
+              <h3 *ngIf="!exportInProgress && exportableExpenseGroupIds.length && failedExpenseGroupCount === null">{{ exportableExpenseGroupIds.length }} new {{ expenseGroupSetting }} ready to export</h3>
               <h3 *ngIf="exportInProgress">Exporting {{ processedCount }} of {{ exportableExpenseGroupIds.length }} expenses to your QBO account</h3>
               <h3 *ngIf="!exportInProgress && failedExpenseGroupCount !== null">{{ failedExpenseGroupCount }} expenses to export</h3>
               <div class="export--info-text">
-                <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">No new expenses to export from the payment processing state in Fyle.</h5>
+                <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">No new {{ expenseGroupSetting }} to export from the payment processing state in Fyle.</h5>
                 <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">Once you start processing payment for the expenses, they will be automatically available here to export.</h5>
                 <h5 *ngIf="!exportInProgress && exportableExpenseGroupIds.length">Click on <b>Export</b> to start exporting these expenses from Fyle to Quickbooks Online.</h5>
                 <h5 *ngIf="exportInProgress">This may take a few minutes. Please wait...</h5>
@@ -83,20 +83,20 @@
           <p class="past-export--divider"></p>
 
           <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">
-            <p class="past-export--detail">Total expenses</p>
+            <p class="past-export--detail">Total Exports</p>
             <p>{{ lastExport.total_expense_groups_count }}</p>
           </div>
           <p class="past-export--divider"></p>
 
           <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">
-            <p class="past-export--detail">Successful Expenses</p>
+            <p class="past-export--detail">Successful Exports</p>
             <p class="past-export--view-expense">{{ lastExport.successful_expense_groups_count }}</p>
             <p class="past-export--view-expense-text pointer" (click)="showDashboardExportLog(ExportState.SUCCESS)">View</p>
           </div>
           <p class="past-export--divider"></p>
 
           <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">
-            <p class="past-export--detail">Failed Expenses</p>
+            <p class="past-export--detail">Failed Exports</p>
             <p class="past-export--view-expense">{{ lastExport.failed_expense_groups_count }}</p>
             <p class="past-export--view-expense-text pointer" (click)="showDashboardExportLog(ExportState.FAILED)">View</p>
           </div>
