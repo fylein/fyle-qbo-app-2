@@ -12,17 +12,17 @@
             </div>
             <div class="export--info-section">
               <h3 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">Sit back and relax!</h3>
-              <h3 *ngIf="!exportInProgress && exportableExpenseGroupIds.length && !failedExpenseGroupCount">{{ exportableExpenseGroupIds.length }} new expenses ready to export</h3>
+              <h3 *ngIf="!exportInProgress && exportableExpenseGroupIds.length && failedExpenseGroupCount === null">{{ exportableExpenseGroupIds.length }} new expenses ready to export</h3>
               <h3 *ngIf="exportInProgress">Exporting {{ processedCount }} of {{ exportableExpenseGroupIds.length }} expenses to your QBO account</h3>
-              <h3 *ngIf="!exportInProgress && failedExpenseGroupCount">{{ failedExpenseGroupCount }} expenses to export</h3>
+              <h3 *ngIf="!exportInProgress && failedExpenseGroupCount !== null">{{ failedExpenseGroupCount }} expenses to export</h3>
               <div class="export--info-text">
                 <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">No new expenses to export from the payment processing state in Fyle.</h5>
                 <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">Once you start processing payment for the expenses, they will be automatically available here to export.</h5>
                 <h5 *ngIf="!exportInProgress && exportableExpenseGroupIds.length">Click on <b>Export</b> to start exporting these expenses from Fyle to Quickbooks Online.</h5>
                 <h5 *ngIf="exportInProgress">This may take a few minutes. Please wait...</h5>
-                <div fxLayout="row">
-                  <h5 *ngIf="!exportInProgress && failedExpenseGroupCount">0 new expenses, {{ failedExpenseGroupCount }} previously failed expenses </h5>
-                  <img *ngIf="!exportInProgress && failedExpenseGroupCount" src="assets/images/svgs/general/info.svg" class="export--info-icon" width="16px" height="16px" />
+                <div *ngIf="!exportInProgress && failedExpenseGroupCount !== null" fxLayout="row">
+                  <h5>0 new expenses, {{ failedExpenseGroupCount }} previously failed expenses </h5>
+                  <img src="assets/images/svgs/general/info.svg" class="export--info-icon" width="16px" height="16px" />
                 </div>
               </div>
             </div>
@@ -125,7 +125,7 @@
     </div>
     <!-- past export shimmer -->
 
-    <div *ngIf="errors && !isLoading" class="errors">
+    <div *ngIf="!isLoading && lastExport && errors" class="errors">
       <div class="errors--section" [ngClass]="{'errors--zero-state-section': !errors || !errors?.EMPLOYEE_MAPPING?.length && !errors?.CATEGORY_MAPPING?.length && !errors?.QBO_ERROR?.length}">
         <p class="errors--header" fxLayout="row">
           Errors
@@ -201,7 +201,7 @@
           </div>
         </div>
 
-        <app-zero-state-with-illustration *ngIf="!errors.EMPLOYEE_MAPPING.length && !errors.CATEGORY_MAPPING.length && !errors.QBO_ERROR.length && !groupedErrorStat.CATEGORY_MAPPING && !groupedErrorStat.EMPLOYEE_MAPPING" [page]="'dashboard_error'"></app-zero-state-with-illustration>
+        <app-zero-state-with-illustration *ngIf="lastExport && !errors.EMPLOYEE_MAPPING.length && !errors.CATEGORY_MAPPING.length && !errors.QBO_ERROR.length && !groupedErrorStat.CATEGORY_MAPPING && !groupedErrorStat.EMPLOYEE_MAPPING" [page]="'dashboard_error'"></app-zero-state-with-illustration>
       </div>
     </div>
 
@@ -226,5 +226,5 @@
 
   </div>
 
-  <app-zero-state-with-illustration *ngIf="!errors && !isLoading" [page]="'dashboard'"></app-zero-state-with-illustration>
+  <app-zero-state-with-illustration *ngIf="!isLoading && !lastExport" [page]="'dashboard'"></app-zero-state-with-illustration>
 </div>

@@ -13,7 +13,7 @@
 
   <div class="dashboard-resolve-mapping-dialog--horizontal-separator"></div>
 
-  <div class="dashboard-resolve-mapping-dialog--table">
+  <div *ngIf="!isLoading" class="dashboard-resolve-mapping-dialog--table">
     <table mat-table [dataSource]="mappings">
       <ng-container matColumnDef="fyle">
         <th mat-header-cell *matHeaderCellDef>
@@ -48,6 +48,25 @@
       <tr class="dashboard-resolve-mapping-dialog--row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
+
+    <!-- shimmers -->
+    <div *ngIf="isLoading">
+      <table class="shimmers skeleton-loader-list-view--table">
+        <tr fxFlex="row" fxLayoutAlign="start center">
+          <th><span class="skeleton-loader-list-view--export-log-col-1">{{ data.sourceType | titlecase | snakeCaseToSpaceCase }} in Fyle</span></th>
+          <th><span class="skeleton-loader-list-view--export-log-col-3">{{ data.destinationType | titlecase | snakeCaseToSpaceCase }} in QBO</span></th>
+        </tr>
+      </table>
+      <div *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" fxLayout="row" fxLayoutAlign="start center" class="skeleton-loader-list-view--row-box">
+        <div class="skeleton-loader-list-view--init-box-section">
+          <div class="shimmers skeleton-loader-list-view--init-box-export-log"></div>
+        </div>
+        <div class="skeleton-loader-list-view--end-box-section">
+          <div class="shimmers skeleton-loader-list-view--end-box-export-log"></div>
+        </div>
+      </div>
+    </div>
+    <!-- shimmers -->
 
   <div>
     <div class="dashboard-resolve-mapping-dialog--horizontal-separator"></div>
