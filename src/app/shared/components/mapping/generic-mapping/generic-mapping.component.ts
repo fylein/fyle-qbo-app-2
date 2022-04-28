@@ -6,9 +6,9 @@ import { ActivatedRoute } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { ExtendedExpenseAttribute, ExtendedExpenseAttributeResponse } from 'src/app/core/models/db/expense-attribute.model';
-import { MappingSetting } from 'src/app/core/models/db/mapping-setting.model';
+import { MinimalMappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { MappingList, MappingModel, MappingStats } from 'src/app/core/models/db/mapping.model';
-import { MappingState, PaginatorPage } from 'src/app/core/models/enum/enum.model';
+import { FyleField, MappingState, PaginatorPage, QBOField } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
@@ -26,7 +26,7 @@ export class GenericMappingComponent implements OnInit {
   limit: number;
   offset: number;
   totalCount: number;
-  mappingSetting: MappingSetting;
+  mappingSetting: MinimalMappingSetting;
   mappingStats: MappingStats;
   qboData: DestinationAttribute[];
   mappings: MatTableDataSource<MappingList> = new MatTableDataSource<MappingList>([]);
@@ -153,7 +153,8 @@ export class GenericMappingComponent implements OnInit {
       this.mappingService.getMappingSettings(),
       this.mappingService.getMappingStats(this.sourceType.toUpperCase())
     ]).subscribe(responses => {
-      this.mappingSetting = responses[0].results.filter((mappingSetting) => mappingSetting.source_field === this.sourceType.toUpperCase())[0];
+      const mappingSetting = responses[0].results.filter((mappingSetting) => mappingSetting.source_field === this.sourceType.toUpperCase());
+      this.mappingSetting = mappingSetting.length ? mappingSetting[0] : {source_field: FyleField.CATEGORY, destination_field: QBOField.ACCOUNT};
       this.mappingStats = responses[1];
 
       this.mappingService.getQBODestinationAttributes(this.mappingSetting.destination_field).subscribe((qboData: DestinationAttribute[]) => {
