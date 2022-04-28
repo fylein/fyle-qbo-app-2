@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { forkJoin, from, interval, Observable } from 'rxjs';
-import { switchMap, takeWhile } from 'rxjs/operators';
+import { forkJoin, from, interval, Observable, of } from 'rxjs';
+import { catchError, map, switchMap, takeWhile } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { Error, GroupedErrors, GroupedErrorStat } from 'src/app/core/models/db/error.model';
 import { LastExport } from 'src/app/core/models/db/last-export.model';
@@ -24,11 +24,11 @@ export class DashboardComponent implements OnInit {
   isLoading: boolean = true;
   importInProgress: boolean = true;
   processedCount: number = 0;
-  failedExpenseGroupCount: number;
+  failedExpenseGroupCount: number | null = null;
   exportInProgress: boolean = false;
   exportProgressPercentage: number = 0;
   exportableExpenseGroupIds: number[];
-  lastExport: LastExport;
+  lastExport: LastExport | null;
   errors: GroupedErrors;
   employeeFieldMapping: EmployeeFieldMapping;
   groupedErrorStat: GroupedErrorStat = {
@@ -91,7 +91,7 @@ export class DashboardComponent implements OnInit {
 
   private setupPage(): void {
     forkJoin([
-      this.getLastExport$,
+      this.getLastExport$.pipe(map((res) => res), catchError(() => of(null))),
       this.getExportErrors$,
       this.workspaceService.getWorkspaceGeneralSettings(),
       this.dashboardService.getAllTasks([TaskLogState.ENQUEUED, TaskLogState.IN_PROGRESS], undefined, this.taskType)
@@ -104,7 +104,7 @@ export class DashboardComponent implements OnInit {
         this.importInProgress = false;
         this.exportInProgress = true;
         this.exportableExpenseGroupIds = responses[3].results.map((task: Task) => task.expense_group);
-        this.pollExportStatus();
+        this.pollExportStatus(this.exportableExpenseGroupIds);
       } else {
         this.dashboardService.importExpenseGroups().subscribe(() => {
           this.dashboardService.getExportableGroupsIds().subscribe((exportableExpenseGroups: ExportableExpenseGroup) => {
@@ -194,7 +194,7 @@ export class DashboardComponent implements OnInit {
   }
 
   export(): void {
-    if (!this.exportInProgress) {
+    if (!this.exportInProgress && this.exportableExpenseGroupIds.length) {
       this.exportInProgress = true;
       this.dashboardService.exportExpenseGroups().subscribe(() => {
         this.pollExportStatus(this.exportableExpenseGroupIds);
