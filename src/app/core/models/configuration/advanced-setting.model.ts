@@ -9,13 +9,14 @@ import { WorkspaceSchedule } from "../db/workspace-schedule.model";
 export type AdvancedSettingPost = {
   workspace_general_settings: AdvancedSettingWorkspaceGeneralSetting,
   general_mappings: AdvancedSettingGeneralMapping,
-  workspace_schedules: AdvancedSettingWorkspaceSchedule
+  workspace_schedules: AdvancedSettingWorkspaceSchedule,
 }
 
 export type AdvancedSettingGet = {
   workspace_general_settings: WorkspaceGeneralSetting,
   general_mappings: GeneralMapping,
-  workspace_schedules: WorkspaceSchedule
+  workspace_schedules: WorkspaceSchedule,
+  workspace_id:number
 }
 
 export type AdvancedSettingWorkspaceGeneralSetting = {

@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { PaginatorPage } from '../../models/enum/enum.model';
 
 import { PaginatorService } from './paginator.service';
 
@@ -13,4 +14,19 @@ describe('PaginatorService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('pageinator service', () => {
+    const expected = {
+      offset: 0,
+      limit: 1
+    }
+    const result = service.getPageSize(PaginatorPage.EXPORT_LOG);
+    expect(result).toEqual(expected);
+  });
+
+  it('storePageSize service', () => {
+    service.storePageSize(PaginatorPage.EXPORT_LOG,1);
+    const result = localStorage.getItem(`page-size.${PaginatorPage.EXPORT_LOG}`);
+    expect(result).toEqual('1');
+  })
 });
