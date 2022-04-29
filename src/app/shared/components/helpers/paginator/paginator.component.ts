@@ -23,7 +23,8 @@ export class PaginatorComponent implements OnInit {
     this.form.controls.pageLimit.valueChanges.subscribe(limit => {
       this.pageChangeEvent.emit({
         limit: limit,
-        offset: 0
+        offset: 0,
+        pageSizeChange: true
       });
     });
   }

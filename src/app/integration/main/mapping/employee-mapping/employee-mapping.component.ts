@@ -85,6 +85,9 @@ export class EmployeeMappingComponent implements OnInit {
 
   getMappings(data: Paginator | void): void {
     this.isLoading = true;
+    if (this.form && data?.pageSizeChange) {
+      this.form.controls.sourceUpdated.patchValue(true);
+    }
     const paginator: Paginator = data ? data : this.getPaginator();
 
     const mappings: MappingList[] = [];
