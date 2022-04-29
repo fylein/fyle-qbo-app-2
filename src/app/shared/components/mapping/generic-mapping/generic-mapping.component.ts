@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { ExtendedExpenseAttribute, ExtendedExpenseAttributeResponse } from 'src/app/core/models/db/expense-attribute.model';
-import { MinimalMappingSetting } from 'src/app/core/models/db/mapping-setting.model';
+import { MappingSettingResponse, MinimalMappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { MappingList, MappingModel, MappingStats } from 'src/app/core/models/db/mapping.model';
 import { FyleField, MappingState, PaginatorPage, QBOField } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
@@ -149,17 +149,16 @@ export class GenericMappingComponent implements OnInit {
 
   private getMappingsAndSetupPage(): void {
     this.sourceType = this.route.snapshot.params.source_field;
-    forkJoin([
-      this.mappingService.getMappingSettings(),
-      this.mappingService.getMappingStats(this.sourceType.toUpperCase())
-    ]).subscribe(responses => {
-      const mappingSetting = responses[0].results.filter((mappingSetting) => mappingSetting.source_field === this.sourceType.toUpperCase());
+    this.mappingService.getMappingSettings().subscribe((mappingSettingResponse: MappingSettingResponse) => {
+      const mappingSetting = mappingSettingResponse.results.filter((mappingSetting) => mappingSetting.source_field === this.sourceType.toUpperCase());
       this.mappingSetting = mappingSetting.length ? mappingSetting[0] : {source_field: FyleField.CATEGORY, destination_field: QBOField.ACCOUNT};
-      this.mappingStats = responses[1];
+      this.mappingService.getMappingStats(this.sourceType.toUpperCase(), this.mappingSetting.destination_field).subscribe((mappingStats: MappingStats) => {
+        this.mappingStats = mappingStats;
 
-      this.mappingService.getQBODestinationAttributes(this.mappingSetting.destination_field).subscribe((qboData: DestinationAttribute[]) => {
-        this.qboData = qboData;
-        this.getMappings();
+        this.mappingService.getQBODestinationAttributes(this.mappingSetting.destination_field).subscribe((qboData: DestinationAttribute[]) => {
+          this.qboData = qboData;
+          this.getMappings();
+        });
       });
     });
   }

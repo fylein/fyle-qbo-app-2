@@ -6,6 +6,7 @@ import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { EmployeeMappingModel, ExtendedEmployeeAttribute, ExtendedEmployeeAttributeResponse } from 'src/app/core/models/db/employee-mapping.model';
 import { MappingList, MappingStats } from 'src/app/core/models/db/mapping.model';
+import { WorkspaceGeneralSetting } from 'src/app/core/models/db/workspace-general-setting.model';
 import { AutoMapEmployee, EmployeeFieldMapping, MappingState, PaginatorPage } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
@@ -168,15 +169,12 @@ export class EmployeeMappingComponent implements OnInit {
   }
 
   private getMappingsAndSetupPage(): void {
-    forkJoin([
-      this.mappingService.getMappingStats(EmployeeFieldMapping.EMPLOYEE),
-      this.workspaceService.getWorkspaceGeneralSettings()
-    ]).subscribe(responses => {
-      this.mappingStats = responses[0];
+    this.workspaceService.getWorkspaceGeneralSettings().subscribe((workspaceGeneralSettings: WorkspaceGeneralSetting) => {
+    this.employeeFieldMapping = workspaceGeneralSettings.employee_field_mapping;
+    this.autoMapEmployee = workspaceGeneralSettings.auto_map_employees;
 
-      this.employeeFieldMapping = responses[1].employee_field_mapping;
-      this.autoMapEmployee = responses[1].auto_map_employees;
-
+    this.mappingService.getMappingStats(EmployeeFieldMapping.EMPLOYEE, this.employeeFieldMapping).subscribe((mappingStats: MappingStats) => {
+      this.mappingStats = mappingStats;
       let qboData$;
       if (this.employeeFieldMapping === EmployeeFieldMapping.EMPLOYEE) {
         qboData$ = this.mappingService.getQBOEmployees();
@@ -188,6 +186,7 @@ export class EmployeeMappingComponent implements OnInit {
         this.getMappings();
       });
     });
+  });
   }
 
   save(selectedRow: MappingList): void {

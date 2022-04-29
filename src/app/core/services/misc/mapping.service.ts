@@ -109,8 +109,8 @@ export class MappingService {
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/vendors/`, {});
   }
 
-  getMappingStats(sourceType: string): Observable<MappingStats> {
-    return this.apiService.get(`/workspaces/${this.workspaceId}/mappings/stats/`, { source_type: sourceType});
+  getMappingStats(sourceType: string, destinationType: string): Observable<MappingStats> {
+    return this.apiService.get(`/workspaces/${this.workspaceId}/mappings/stats/`, { source_type: sourceType, destination_type: destinationType });
   }
 
   // TODO: cache this safely later
