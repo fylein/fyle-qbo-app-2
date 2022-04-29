@@ -43,7 +43,6 @@ describe('ImportSettingService', () => {
       }
       keys = keys.sort();
       expect(keys).toEqual(responseKeys);
-      console.log("keys",keys,responseKeys);
     })
   })
 
