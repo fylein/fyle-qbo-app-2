@@ -25,6 +25,10 @@ export class WorkspaceService {
     return this.storageService.get('currency');
   }
 
+  setOnboardingState(onboardingState: OnboardingState): void {
+    return this.storageService.set('onboardingState', onboardingState);
+  }
+
   getOnboardingState(): OnboardingState {
     return this.storageService.get('onboardingState');
   }

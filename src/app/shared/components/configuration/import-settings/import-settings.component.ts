@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { MappingDestinationField } from 'src/app/core/models/enum/enum.model';
+import { MappingDestinationField, OnboardingState } from 'src/app/core/models/enum/enum.model';
 import { ExpenseFieldsFormOption, ImportSettingGet, ImportSettingModel } from 'src/app/core/models/configuration/import-setting.model';
 import { MappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
@@ -17,6 +17,7 @@ import { QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { PreviewDialogComponent } from '../preview-dialog/preview-dialog.component';
+import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 @Component({
   selector: 'app-import-settings',
@@ -50,7 +51,8 @@ export class ImportSettingsComponent implements OnInit {
     private mappingService: MappingService,
     private qboConnectorService: QboConnectorService,
     private snackBar: MatSnackBar,
-    private windowService: WindowService
+    private windowService: WindowService,
+    private workspaceService: WorkspaceService
   ) {
     this.windowReference = this.windowService.nativeWindow;
   }
@@ -203,6 +205,7 @@ export class ImportSettingsComponent implements OnInit {
         this.saveInProgress = false;
         this.snackBar.open('Import settings saved successfully');
         if (this.isOnboarding) {
+          this.workspaceService.setOnboardingState(OnboardingState.ADVANCED_CONFIGURATION);
           this.router.navigate([`/workspaces/onboarding/advanced_settings`]);
         } else {
           // Refresh Mappings list in sidenavbar

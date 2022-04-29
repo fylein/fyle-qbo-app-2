@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { OnboardingState } from 'src/app/core/models/enum/enum.model';
 import { OnboardingStepper } from 'src/app/core/models/misc/onboarding-stepper.model';
+import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 
 @Component({
@@ -75,17 +77,30 @@ export class OnboardingStepperComponent implements OnInit {
   ];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private workspaceService: WorkspaceService
   ) { }
 
-  private updateActiveStepper(): void {
-    for (let index = 0; index < this.onboardingSteps.length; index++) {
-      if (this.onboardingSteps[index].step === this.currentStep) {
-        this.onboardingSteps[index].active = true;
-        break;
-      } else {
-        this.onboardingSteps[index].completed = true;
+  private updateActiveAndCompletedSteps(): void {
+    this.onboardingSteps.forEach(step => {
+      if (step.step === this.currentStep) {
+        step.active = true;
       }
+    });
+
+    const onboardingState: OnboardingState = this.workspaceService.getOnboardingState();
+
+    const onboardingStateStepMap = {
+      [OnboardingState.CONNECTION]: 1,
+      [OnboardingState.MAP_EMPLOYEES]: 2,
+      [OnboardingState.EXPORT_SETTINGS]: 3,
+      [OnboardingState.IMPORT_SETTINGS]: 4,
+      [OnboardingState.ADVANCED_CONFIGURATION]: 5,
+      [OnboardingState.COMPLETE]: 6
+    };
+
+    for (let index = onboardingStateStepMap[onboardingState] - 1; index > 0; index--) {
+      this.onboardingSteps[index - 1].completed = true;
     }
   }
 
@@ -96,7 +111,7 @@ export class OnboardingStepperComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.updateActiveStepper();
+    this.updateActiveAndCompletedSteps();
   }
 
 }

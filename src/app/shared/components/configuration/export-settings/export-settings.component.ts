@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, OnboardingState, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { ExportSettingGet, ExportSettingFormOption, ExportSettingModel } from 'src/app/core/models/configuration/export-setting.model';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
@@ -464,6 +464,7 @@ export class ExportSettingsComponent implements OnInit {
       this.saveInProgress = false;
       this.snackBar.open('Export settings saved successfully');
       if (this.isOnboarding) {
+        this.workspaceService.setOnboardingState(OnboardingState.IMPORT_SETTINGS);
         this.router.navigate([`/workspaces/onboarding/import_settings`]);
       } else if (this.advancedSettingAffected()) {
         this.router.navigate(['/workspaces/main/configuration/advanced_settings']);
