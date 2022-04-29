@@ -96,13 +96,28 @@ export class ImportSettingsComponent implements OnInit {
     this.createTaxCodeWatcher();
   }
 
+  private importToggleWatcher(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: object} | null => {
+      if (control.value) {
+        // Mark Fyle field as mandatory if toggle is enabled
+        control.parent?.get('source_field')?.setValidators(Validators.required)
+      } else {
+        // Reset Fyle field if toggle is disabled
+        control.parent?.get('source_field')?.clearValidators();
+        control.parent?.get('source_field')?.setValue(null);
+      }
+
+      return null;
+    };
+  }
+
   private setupForm(): void {
     const chartOfAccountTypeFormArray = this.chartOfAccountTypesList.map((type) => this.createChartOfAccountField(type));
     const expenseFieldsFormArray = this.qboExpenseFields.map((field) => {
       return this.formBuilder.group({
         source_field: [field.source_field, RxwebValidators.unique()],
         destination_field: [field.destination_field],
-        import_to_fyle: [field.import_to_fyle],
+        import_to_fyle: [field.import_to_fyle, this.importToggleWatcher()],
         disable_import_to_fyle: [field.disable_import_to_fyle],
         source_placeholder: ['']
       })
