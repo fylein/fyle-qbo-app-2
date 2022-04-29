@@ -54,7 +54,7 @@ describe('ExportLogService', () => {
     const response = {
       count: 0,
       next: null,
-      previous: "http://localhost:8002/api/workspaces/1/fyle/expense_groups/?limit=10&state=COMPLETE",
+      previous: "xxx",
       results: []
     };
     service.getExpenseGroups('COMPLETE', 10, 5).subscribe(result => {
