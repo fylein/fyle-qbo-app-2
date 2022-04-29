@@ -392,6 +392,10 @@ export class ExportSettingsComponent implements OnInit {
     this.router.navigate([`/workspaces/onboarding/employee_settings`]);
   }
 
+  private updateExportSettings(): boolean {
+    return this.exportSettings.workspace_general_settings.reimbursable_expenses_object !== null || this.exportSettings.workspace_general_settings.corporate_credit_card_expenses_object !== null;
+  }
+
   private singleItemizedJournalEntryAffected(): boolean {
     return (this.exportSettings?.workspace_general_settings?.reimbursable_expenses_object !== ReimbursableExpensesObject.JOURNAL_ENTRY && this.exportSettingsForm.value.reimbursableExportType === ReimbursableExpensesObject.JOURNAL_ENTRY) || (this.exportSettings?.workspace_general_settings?.corporate_credit_card_expenses_object !== CorporateCreditCardExpensesObject.JOURNAL_ENTRY && this.exportSettingsForm.value.creditCardExportType === CorporateCreditCardExpensesObject.JOURNAL_ENTRY);
   }
@@ -401,7 +405,7 @@ export class ExportSettingsComponent implements OnInit {
   }
 
   private advancedSettingAffected(): boolean {
-    if (this.singleItemizedJournalEntryAffected() || this.paymentsSyncAffected()) {
+    if (this.updateExportSettings() && (this.singleItemizedJournalEntryAffected() || this.paymentsSyncAffected())) {
       return true;
     }
 

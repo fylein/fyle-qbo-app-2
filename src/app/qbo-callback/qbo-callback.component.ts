@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { environment } from 'environment.localhost';
-import { QboConnectorPost, QBOCredentials } from '../core/models/configuration/qbo-connector.model';
+import { QboConnectorPost } from '../core/models/configuration/qbo-connector.model';
 import { OnboardingState } from '../core/models/enum/enum.model';
 import { QboConnectorService } from '../core/services/configuration/qbo-connector.service';
 import { WorkspaceService } from '../core/services/workspace/workspace.service';
@@ -29,7 +29,7 @@ export class QboCallbackComponent implements OnInit {
       redirect_uri: `${environment.app_url}/qbo_callback`
     };
 
-    this.qboConnectorService.connectQBO(qboAuthResponse).subscribe((qboCredentials: QBOCredentials) => {
+    this.qboConnectorService.connectQBO(qboAuthResponse).subscribe(() => {
       this.router.navigate([`/workspaces/main/dashboard`]);
     }, (error) => {
       // TODO: personalise the message based on the error (if it's an actual error / different company connect)
