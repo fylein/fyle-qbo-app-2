@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { environment } from 'environment.localhost';
+import { environment } from 'src/environments/environment';
 import { QboConnectorPost } from '../core/models/configuration/qbo-connector.model';
 import { OnboardingState } from '../core/models/enum/enum.model';
 import { QboConnectorService } from '../core/services/configuration/qbo-connector.service';
