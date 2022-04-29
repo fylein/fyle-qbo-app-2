@@ -31,27 +31,28 @@ describe('UserService', () => {
 
   it('getUserdetails service', () => {
     const response:MinimalUser = {
-      access_token: "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTEyMjAyMzcsImlzcyI6IkZ5bGVBcHAiLCJ1c2VyX2lkIjoidXN0NUdhOUhDM3FjIiwib3JnX3VzZXJfaWQiOiJvdUV0bEhJSjZjYWkiLCJvcmdfaWQiOiJvcnVueFhzSWFqU0UiLCJyb2xlcyI6IltcIkZZTEVSXCIsXCJBRE1JTlwiLFwiUEFZTUVOVF9QUk9DRVNTT1JcIixcIlZFUklGSUVSXCIsXCJGSU5BTkNFXCIsXCJBVURJVE9SXCJdIiwic2NvcGVzIjoiW10iLCJ0cGFfaWQiOiJ0cGFZZlU3Vkx5ckVOIiwidHBhX25hbWUiOiJGeWxlIFFCTyBJbnRlZ3IuLiIsImFsbG93ZWRfQ0lEUnMiOiJbXSIsInZlcnNpb24iOiIzIiwiY2x1c3Rlcl9kb21haW4iOiJcImh0dHBzOi8vc3RhZ2luZy5meWxlLnRlY2hcIiIsImV4cCI6MTY1MTIyMzgzN30.RbDFqAuBZGZh2epvtvY4cNQ1iJa5ROWs50bwceQOE4U",
+      access_token: "fyle",
       email: "sravan.kumar@fyle.in",
       full_name: "sravan k",
       org_id: "orunxXsIajSE",
       org_name: "Test Sample Statement - GBP",
-      refresh_token: "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NDkyMjIwNzEsImlzcyI6IkZ5bGVBcHAiLCJvcmdfdXNlcl9pZCI6Ilwib3VFdGxISUo2Y2FpXCIiLCJ0cGFfaWQiOiJcInRwYVlmVTdWTHlyRU5cIiIsInRwYV9uYW1lIjoiXCJGeWxlIFFCTyBJbnRlZ3IuLlwiIiwiY2x1c3Rlcl9kb21haW4iOiJcImh0dHBzOi8vc3RhZ2luZy5meWxlLnRlY2hcIiIsImV4cCI6MTk2NDU4MjA3MX0.PTXHh5uuu3m1BLb87BUCeYTq9PtHsW65VSVfNF-6Ydo",
+      refresh_token: "fyle",
       user_id: "ust5Ga9HC3qc",
     };
     const actualResponse:MinimalUser = service.getUserProfile();
-    actualResponse['access_token']='eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTEyMjAyMzcsImlzcyI6IkZ5bGVBcHAiLCJ1c2VyX2lkIjoidXN0NUdhOUhDM3FjIiwib3JnX3VzZXJfaWQiOiJvdUV0bEhJSjZjYWkiLCJvcmdfaWQiOiJvcnVueFhzSWFqU0UiLCJyb2xlcyI6IltcIkZZTEVSXCIsXCJBRE1JTlwiLFwiUEFZTUVOVF9QUk9DRVNTT1JcIixcIlZFUklGSUVSXCIsXCJGSU5BTkNFXCIsXCJBVURJVE9SXCJdIiwic2NvcGVzIjoiW10iLCJ0cGFfaWQiOiJ0cGFZZlU3Vkx5ckVOIiwidHBhX25hbWUiOiJGeWxlIFFCTyBJbnRlZ3IuLiIsImFsbG93ZWRfQ0lEUnMiOiJbXSIsInZlcnNpb24iOiIzIiwiY2x1c3Rlcl9kb21haW4iOiJcImh0dHBzOi8vc3RhZ2luZy5meWxlLnRlY2hcIiIsImV4cCI6MTY1MTIyMzgzN30.RbDFqAuBZGZh2epvtvY4cNQ1iJa5ROWs50bwceQOE4U';
+    actualResponse['access_token']='fyle';
+    actualResponse['refresh_token']='fyle';
     expect(actualResponse).toEqual(response || null);
   })
 
   it('setUserDetails service', () => {
     const user:MinimalUser = {
-      access_token: "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTEyMjAyMzcsImlzcyI6IkZ5bGVBcHAiLCJ1c2VyX2lkIjoidXN0NUdhOUhDM3FjIiwib3JnX3VzZXJfaWQiOiJvdUV0bEhJSjZjYWkiLCJvcmdfaWQiOiJvcnVueFhzSWFqU0UiLCJyb2xlcyI6IltcIkZZTEVSXCIsXCJBRE1JTlwiLFwiUEFZTUVOVF9QUk9DRVNTT1JcIixcIlZFUklGSUVSXCIsXCJGSU5BTkNFXCIsXCJBVURJVE9SXCJdIiwic2NvcGVzIjoiW10iLCJ0cGFfaWQiOiJ0cGFZZlU3Vkx5ckVOIiwidHBhX25hbWUiOiJGeWxlIFFCTyBJbnRlZ3IuLiIsImFsbG93ZWRfQ0lEUnMiOiJbXSIsInZlcnNpb24iOiIzIiwiY2x1c3Rlcl9kb21haW4iOiJcImh0dHBzOi8vc3RhZ2luZy5meWxlLnRlY2hcIiIsImV4cCI6MTY1MTIyMzgzN30.RbDFqAuBZGZh2epvtvY4cNQ1iJa5ROWs50bwceQOE4U",
+      access_token: "fyle",
       email: "sravan.kumar@fyle.in",
       full_name: "sravan k",
       org_id: "orunxXsIajSE",
       org_name: "Test Sample Statement - GBP",
-      refresh_token: "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NDkyMjIwNzEsImlzcyI6IkZ5bGVBcHAiLCJvcmdfdXNlcl9pZCI6Ilwib3VFdGxISUo2Y2FpXCIiLCJ0cGFfaWQiOiJcInRwYVlmVTdWTHlyRU5cIiIsInRwYV9uYW1lIjoiXCJGeWxlIFFCTyBJbnRlZ3IuLlwiIiwiY2x1c3Rlcl9kb21haW4iOiJcImh0dHBzOi8vc3RhZ2luZy5meWxlLnRlY2hcIiIsImV4cCI6MTk2NDU4MjA3MX0.PTXHh5uuu3m1BLb87BUCeYTq9PtHsW65VSVfNF-6Ydo",
+      refresh_token: "fyle",
       user_id: "ust5Ga9HC3qc",
     };
     service.storeUserProfile(user);
