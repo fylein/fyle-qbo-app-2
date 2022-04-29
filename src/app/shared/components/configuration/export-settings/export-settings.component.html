@@ -94,7 +94,7 @@
         <div *ngIf="exportSettingsForm.value.reimbursableExportType">
           <app-configuration-select-field
             [form]="exportSettingsForm"
-            [options]="expenseGroupingDateOptions"
+            [options]="reimbursableExpenseGroupingDateOptions"
             [isFieldMandatory]="true"
             [iconPath]="'assets/images/svgs/general/calendar.svg'"
             [label]="'Set the ' + exportSettingsForm.value.reimbursableExportType.toLowerCase() + ' date as'"
@@ -199,7 +199,7 @@
         <div *ngIf="exportSettingsForm.value.creditCardExportType">
           <app-configuration-select-field
             [form]="exportSettingsForm"
-            [options]="expenseGroupingDateOptions"
+            [options]="cccExpenseGroupingDateOptions"
             [isFieldMandatory]="true"
             [iconPath]="'assets/images/svgs/general/calendar.svg'"
             [label]="'Set the ' + exportSettingsForm.value.creditCardExportType.toLowerCase() + ' date as'"

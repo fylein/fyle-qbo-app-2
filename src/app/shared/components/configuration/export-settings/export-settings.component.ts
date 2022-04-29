@@ -58,7 +58,7 @@ export class ExportSettingsComponent implements OnInit {
       value: ExpenseGroupingFieldOption.EXPENSE_ID
     }
   ];
-  expenseGroupingDateOptions: ExportSettingFormOption[] = [
+  reimbursableExpenseGroupingDateOptions: ExportSettingFormOption[] = [
     {
       label: 'Current Date',
       value: ExportDateType.CURRENT_DATE
@@ -80,6 +80,7 @@ export class ExportSettingsComponent implements OnInit {
       value: ExportDateType.LAST_SPENT_AT
     }
   ];
+  cccExpenseGroupingDateOptions: ExportSettingFormOption[] = this.reimbursableExpenseGroupingDateOptions.concat();
   creditCardExportTypes: ExportSettingFormOption[] = [
     {
       label: 'Bill',
@@ -321,6 +322,36 @@ export class ExportSettingsComponent implements OnInit {
     }
   }
 
+  private createReimbursableExportGroupWatcher(): void {
+    this.exportSettingsForm.controls.reimbursableExportGroup.valueChanges.subscribe((reimbursableExportGroup: ExpenseGroupingFieldOption) => {
+      if (reimbursableExportGroup === ExpenseGroupingFieldOption.EXPENSE_ID) {
+        this.reimbursableExpenseGroupingDateOptions.pop();
+      } else {
+        if (this.reimbursableExpenseGroupingDateOptions.length !== 5) {
+          this.reimbursableExpenseGroupingDateOptions.push({
+            label: 'Last Spend Date',
+            value: ExportDateType.LAST_SPENT_AT
+          });
+        }
+      }
+    });
+  }
+
+  private createCreditCardExportGroupWatcher(): void {
+    this.exportSettingsForm.controls.creditCardExportGroup.valueChanges.subscribe((creditCardExportGroup: ExpenseGroupingFieldOption) => {
+      if (creditCardExportGroup === ExpenseGroupingFieldOption.EXPENSE_ID) {
+        this.cccExpenseGroupingDateOptions.pop();
+      } else {
+        if (this.cccExpenseGroupingDateOptions.length !== 5) {
+          this.cccExpenseGroupingDateOptions.push({
+            label: 'Last Spend Date',
+            value: ExportDateType.LAST_SPENT_AT
+          });
+        }
+      }
+    });
+  }
+
   private setCustomValidatorsAndWatchers(): void {
     // Toggles
     this.createReimbursableExpenseWatcher();
@@ -329,6 +360,10 @@ export class ExportSettingsComponent implements OnInit {
     // Export select fields
     this.createReimbursableExportTypeWatcher();
     this.createCreditCardExportTypeWatcher();
+
+    // Goruping fields
+    this.createReimbursableExportGroupWatcher();
+    this.createCreditCardExportGroupWatcher();
 
     this.setGeneralMappingsValidator();
   }
