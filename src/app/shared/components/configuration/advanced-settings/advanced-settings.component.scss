@@ -35,6 +35,17 @@
     ::ng-deep .mat-select-value {
       width: 96.7%;
     }
+
+    ::ng-deep .mat-select-panel-wrap {
+      @extend .mat-select-panel-wrap;
+      // TODO: check this
+      margin-left: 7% !important;
+    }
+
+    ::ng-deep .cdk-overlay-pane {
+      // TODO: check this
+      margin-left: 1.5% !important;
+    }
   }
 }
 

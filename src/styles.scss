@@ -56,6 +56,10 @@ table {
 
 .bold { font-weight: bold; }
 
+.paragraph {
+  line-height: 1.5;
+}
+
 .align-center {
   text-align: center;
 }
@@ -75,6 +79,12 @@ table {
 .btn-enabled {
   background: linear-gradient(162.38deg, #FF3366 3.01%, #FE5196 111.5%);
   @extend .pointer;
+
+  &:hover {
+    // TODO: shadow effect
+    // box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, .125);
+    // box-shadow: 0px 4px rgba(213, 213, 213, 0.758);
+  }
 }
 
 .btn-disabled {
@@ -204,6 +214,10 @@ table {
   height: 32px !important;
   font-size: 14px !important;
   color: #414562;
+}
+
+.mat-select-panel-wrap {
+  flex-basis: 96% !important;
 }
 
 .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
