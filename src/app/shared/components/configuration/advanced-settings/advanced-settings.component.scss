@@ -30,6 +30,12 @@
   &--memo-preview {
     padding: 8px 0px 8px 8px;
   }
+
+  &--memo-preview-select {
+    ::ng-deep .mat-select-value {
+      width: 96.7%;
+    }
+  }
 }
 
 .cdk-drag-preview {
