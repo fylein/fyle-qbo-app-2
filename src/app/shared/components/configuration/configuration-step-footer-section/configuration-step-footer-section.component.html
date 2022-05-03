@@ -12,6 +12,9 @@
     <h5 class="single-line-text" [ngClass]="ctaText === 'Save' ? 'btn-cta-text-without-icon' : 'btn-cta-text-with-icon'">
       {{ ctaText }}
     </h5>
-    <img *ngIf="ctaText !== 'Save'" class="btn-icon" src="assets/images/svgs/actions/arrow-mark-right.svg" />
+    <img *ngIf="ctaText !== 'Save' && ctaText !== 'Saving'" class="btn-icon" src="assets/images/svgs/actions/arrow-mark-right.svg" />
+    <div *ngIf="ctaText === 'Saving'" class="btn-loader">
+      <mat-spinner diameter="20" color="white"></mat-spinner>
+    </div>
   </div>
 </div>

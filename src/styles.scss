@@ -96,6 +96,11 @@ table {
   padding-right: 26px;
 }
 
+.btn-loader {
+  padding-left: 10px;
+  padding-right: 20px;
+}
+
 .cursor-disabled {
   cursor: no-drop;
 }
@@ -140,6 +145,10 @@ table {
   width: 16px;
   height: 10px;
   background-image: url("assets/images/svgs/actions/arrow-mark-down.svg");
+}
+
+.mat-spinner circle {
+  stroke: white;
 }
 
 .mat-form-field-outline-start {

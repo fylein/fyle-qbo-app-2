@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/core/services/core/auth.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
-import { OnboardingState } from 'src/app/core/models/enum/enum.model';
+import { ConfigurationCtaText, OnboardingState } from 'src/app/core/models/enum/enum.model';
 
 @Component({
   selector: 'app-qbo-connector',
@@ -29,6 +29,7 @@ export class QboConnectorComponent implements OnInit {
   qboCompanyName: string | null;
   fyleOrgName: string = this.userService.getUserProfile().org_name;
   windowReference: Window;
+  ConfigurationCtaText = ConfigurationCtaText;
 
   constructor(
     private authService: AuthService,

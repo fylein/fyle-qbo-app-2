@@ -139,3 +139,10 @@ export enum ExportMode {
   MANUAL = 'MANUAL',
   AUTO = 'AUTO'
 }
+
+export enum ConfigurationCtaText {
+  SAVE = 'Save',
+  SAVE_AND_CONTINUE = 'Save and Continue',
+  CONTINUE = 'Continue',
+  SAVING = 'Saving'
+}

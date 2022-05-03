@@ -4,9 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { EmployeeSettingFormOption, EmployeeSettingGet, EmployeeSettingModel } from 'src/app/core/models/configuration/employee-setting.model';
+import { EmployeeSettingFormOption, EmployeeSettingModel } from 'src/app/core/models/configuration/employee-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { AutoMapEmployee, EmployeeFieldMapping, OnboardingState, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { AutoMapEmployee, ConfigurationCtaText, EmployeeFieldMapping, OnboardingState, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { EmployeeSettingService } from 'src/app/core/services/configuration/employee-setting.service';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
@@ -59,6 +59,7 @@ export class EmployeeSettingsComponent implements OnInit {
   ];
   windowReference: Window;
   @Output() isLoaded = new EventEmitter<boolean>();
+  ConfigurationCtaText = ConfigurationCtaText;
 
   constructor(
     private dialog: MatDialog,

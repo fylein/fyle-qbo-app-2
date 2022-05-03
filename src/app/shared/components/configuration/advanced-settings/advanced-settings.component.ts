@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { AdvancedSettingFormOption, AdvancedSettingGet, AdvancedSettingModel } from 'src/app/core/models/configuration/advanced-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { AutoMapEmployee, CorporateCreditCardExpensesObject, EmployeeFieldMapping, OnboardingState, PaymentSyncDirection, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { AutoMapEmployee, ConfigurationCtaText, CorporateCreditCardExpensesObject, EmployeeFieldMapping, OnboardingState, PaymentSyncDirection, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
@@ -44,6 +44,7 @@ export class AdvancedSettingsComponent implements OnInit {
   frequencyIntervals: number[] = [...Array(24).keys()].map(day => day + 1);
   windowReference: Window;
   @Output() isLoaded = new EventEmitter<boolean>();
+  ConfigurationCtaText = ConfigurationCtaText;
 
   constructor(
     private advancedSettingService: AdvancedSettingService,

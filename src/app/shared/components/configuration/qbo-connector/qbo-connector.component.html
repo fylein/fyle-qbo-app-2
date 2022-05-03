@@ -74,7 +74,7 @@
       </div>
     </div>
 
-    <app-configuration-step-footer-section [ctaText]="'Continue'" [isButtonDisabled]="isContinueDisabled" (save)="continueToNextStep()"></app-configuration-step-footer-section>
+    <app-configuration-step-footer-section [ctaText]="ConfigurationCtaText.CONTINUE" [isButtonDisabled]="isContinueDisabled" (save)="continueToNextStep()"></app-configuration-step-footer-section>
   </div>
 </div>
 <app-onboarding-footer [page]="'qbo_connector'" *ngIf="!isLoading && isOnboarding"></app-onboarding-footer>
