@@ -340,10 +340,15 @@ export class ExportSettingsComponent implements OnInit {
 
   private createCreditCardExportGroupWatcher(): void {
     this.exportSettingsForm.controls.creditCardExportGroup.valueChanges.subscribe((creditCardExportGroup: ExpenseGroupingFieldOption) => {
-      if (creditCardExportGroup === ExpenseGroupingFieldOption.EXPENSE_ID) {
-        this.cccExpenseGroupingDateOptions.pop();
+      if (creditCardExportGroup && creditCardExportGroup === ExpenseGroupingFieldOption.EXPENSE_ID) {
+        this.cccExpenseGroupingDateOptions = this.cccExpenseGroupingDateOptions.filter((option) => {
+          return option.value !== ExportDateType.LAST_SPENT_AT;
+        });
       } else {
-        if (this.cccExpenseGroupingDateOptions.length !== 5) {
+        const lastSpentAt = this.cccExpenseGroupingDateOptions.filter((option) => {
+          return option.value === ExportDateType.LAST_SPENT_AT;
+        });
+        if (!lastSpentAt.length) {
           this.cccExpenseGroupingDateOptions.push({
             label: 'Last Spend Date',
             value: ExportDateType.LAST_SPENT_AT
