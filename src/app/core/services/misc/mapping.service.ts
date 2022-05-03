@@ -78,7 +78,7 @@ export class MappingService {
     return this.apiService.post(`/workspaces/${this.workspaceId}/mappings/`, mapping);
   }
 
-  getEmployeeMappings(mappingState: MappingState, allAlphabets: boolean, limit: number, offset: number, alphabetsFilter: string[]): Observable<ExtendedEmployeeAttributeResponse> {
+  getEmployeeMappings(mappingState: MappingState, allAlphabets: boolean, limit: number, offset: number, alphabetsFilter: string[], destinationType: string): Observable<ExtendedEmployeeAttributeResponse> {
     return this.apiService.get(
       `/workspaces/${this.workspaceId}/mappings/employee_attributes/`,
       {
@@ -86,7 +86,8 @@ export class MappingService {
         offset,
         all_alphabets: allAlphabets,
         mapped: mappingState === MappingState.ALL ? MappingState.ALL : false,
-        mapping_source_alphabets: alphabetsFilter.length ? alphabetsFilter : null
+        mapping_source_alphabets: alphabetsFilter.length ? alphabetsFilter : null,
+        destination_type: destinationType
       }
     );
   }
@@ -109,8 +110,8 @@ export class MappingService {
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/vendors/`, {});
   }
 
-  getMappingStats(sourceType: string): Observable<MappingStats> {
-    return this.apiService.get(`/workspaces/${this.workspaceId}/mappings/stats/`, { source_type: sourceType});
+  getMappingStats(sourceType: string, destinationType: string): Observable<MappingStats> {
+    return this.apiService.get(`/workspaces/${this.workspaceId}/mappings/stats/`, { source_type: sourceType, destination_type: destinationType });
   }
 
   // TODO: cache this safely later

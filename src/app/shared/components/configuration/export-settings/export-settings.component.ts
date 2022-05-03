@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, OnboardingState, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { ExportSettingGet, ExportSettingFormOption, ExportSettingModel } from 'src/app/core/models/configuration/export-setting.model';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
@@ -58,7 +58,7 @@ export class ExportSettingsComponent implements OnInit {
       value: ExpenseGroupingFieldOption.EXPENSE_ID
     }
   ];
-  expenseGroupingDateOptions: ExportSettingFormOption[] = [
+  reimbursableExpenseGroupingDateOptions: ExportSettingFormOption[] = [
     {
       label: 'Current Date',
       value: ExportDateType.CURRENT_DATE
@@ -80,6 +80,7 @@ export class ExportSettingsComponent implements OnInit {
       value: ExportDateType.LAST_SPENT_AT
     }
   ];
+  cccExpenseGroupingDateOptions: ExportSettingFormOption[] = this.reimbursableExpenseGroupingDateOptions.concat();
   creditCardExportTypes: ExportSettingFormOption[] = [
     {
       label: 'Bill',
@@ -225,6 +226,8 @@ export class ExportSettingsComponent implements OnInit {
               forbidden = false;
             }
           }
+        } else if ((control.value === ExpenseState.PAID || control.value === ExpenseState.PAYMENT_PROCESSING) && control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value) {
+          forbidden = false;
         }
 
         if (!forbidden) {
@@ -319,6 +322,36 @@ export class ExportSettingsComponent implements OnInit {
     }
   }
 
+  private createReimbursableExportGroupWatcher(): void {
+    this.exportSettingsForm.controls.reimbursableExportGroup.valueChanges.subscribe((reimbursableExportGroup: ExpenseGroupingFieldOption) => {
+      if (reimbursableExportGroup === ExpenseGroupingFieldOption.EXPENSE_ID) {
+        this.reimbursableExpenseGroupingDateOptions.pop();
+      } else {
+        if (this.reimbursableExpenseGroupingDateOptions.length !== 5) {
+          this.reimbursableExpenseGroupingDateOptions.push({
+            label: 'Last Spend Date',
+            value: ExportDateType.LAST_SPENT_AT
+          });
+        }
+      }
+    });
+  }
+
+  private createCreditCardExportGroupWatcher(): void {
+    this.exportSettingsForm.controls.creditCardExportGroup.valueChanges.subscribe((creditCardExportGroup: ExpenseGroupingFieldOption) => {
+      if (creditCardExportGroup === ExpenseGroupingFieldOption.EXPENSE_ID) {
+        this.cccExpenseGroupingDateOptions.pop();
+      } else {
+        if (this.cccExpenseGroupingDateOptions.length !== 5) {
+          this.cccExpenseGroupingDateOptions.push({
+            label: 'Last Spend Date',
+            value: ExportDateType.LAST_SPENT_AT
+          });
+        }
+      }
+    });
+  }
+
   private setCustomValidatorsAndWatchers(): void {
     // Toggles
     this.createReimbursableExpenseWatcher();
@@ -327,6 +360,10 @@ export class ExportSettingsComponent implements OnInit {
     // Export select fields
     this.createReimbursableExportTypeWatcher();
     this.createCreditCardExportTypeWatcher();
+
+    // Goruping fields
+    this.createReimbursableExportGroupWatcher();
+    this.createCreditCardExportGroupWatcher();
 
     this.setGeneralMappingsValidator();
   }
@@ -390,6 +427,10 @@ export class ExportSettingsComponent implements OnInit {
     this.router.navigate([`/workspaces/onboarding/employee_settings`]);
   }
 
+  private updateExportSettings(): boolean {
+    return this.exportSettings.workspace_general_settings.reimbursable_expenses_object !== null || this.exportSettings.workspace_general_settings.corporate_credit_card_expenses_object !== null;
+  }
+
   private singleItemizedJournalEntryAffected(): boolean {
     return (this.exportSettings?.workspace_general_settings?.reimbursable_expenses_object !== ReimbursableExpensesObject.JOURNAL_ENTRY && this.exportSettingsForm.value.reimbursableExportType === ReimbursableExpensesObject.JOURNAL_ENTRY) || (this.exportSettings?.workspace_general_settings?.corporate_credit_card_expenses_object !== CorporateCreditCardExpensesObject.JOURNAL_ENTRY && this.exportSettingsForm.value.creditCardExportType === CorporateCreditCardExpensesObject.JOURNAL_ENTRY);
   }
@@ -399,7 +440,7 @@ export class ExportSettingsComponent implements OnInit {
   }
 
   private advancedSettingAffected(): boolean {
-    if (this.singleItemizedJournalEntryAffected() || this.paymentsSyncAffected()) {
+    if (this.updateExportSettings() && (this.singleItemizedJournalEntryAffected() || this.paymentsSyncAffected())) {
       return true;
     }
 
@@ -414,6 +455,7 @@ export class ExportSettingsComponent implements OnInit {
     const updatedCorporateCardExportType = this.exportSettingsForm.value.creditCardExportType ? this.exportSettingsForm.value.creditCardExportType : 'None';
 
     if (this.singleItemizedJournalEntryAffected()) {
+      // TODO: Handle None to something
       if (updatedReimbursableExportType !== existingReimbursableExportType) {
         configurationUpdateList += `You are changing your export representation from <b>${existingReimbursableExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b> to <b>${updatedReimbursableExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b><br>`;
       } else if (existingCorporateCardExportType !== updatedCorporateCardExportType) {
@@ -457,6 +499,7 @@ export class ExportSettingsComponent implements OnInit {
       this.saveInProgress = false;
       this.snackBar.open('Export settings saved successfully');
       if (this.isOnboarding) {
+        this.workspaceService.setOnboardingState(OnboardingState.IMPORT_SETTINGS);
         this.router.navigate([`/workspaces/onboarding/import_settings`]);
       } else if (this.advancedSettingAffected()) {
         this.router.navigate(['/workspaces/main/configuration/advanced_settings']);

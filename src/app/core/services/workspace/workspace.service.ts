@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Cacheable, globalCacheBusterNotifier } from 'ts-cacheable';
 import { WorkspaceGeneralSetting } from '../../models/db/workspace-general-setting.model';
 import { Workspace } from '../../models/db/workspace.model';
+import { OnboardingState } from '../../models/enum/enum.model';
 import { ApiService } from '../core/api.service';
 import { StorageService } from '../core/storage.service';
 
@@ -22,6 +23,14 @@ export class WorkspaceService {
 
   getFyleCurrency(): string {
     return this.storageService.get('currency');
+  }
+
+  setOnboardingState(onboardingState: OnboardingState): void {
+    return this.storageService.set('onboardingState', onboardingState);
+  }
+
+  getOnboardingState(): OnboardingState {
+    return this.storageService.get('onboardingState');
   }
 
   createWorkspace(): Observable<Workspace> {

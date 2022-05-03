@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { AdvancedSettingFormOption, AdvancedSettingGet, AdvancedSettingModel } from 'src/app/core/models/configuration/advanced-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { AutoMapEmployee, CorporateCreditCardExpensesObject, EmployeeFieldMapping, PaymentSyncDirection, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { AutoMapEmployee, CorporateCreditCardExpensesObject, EmployeeFieldMapping, OnboardingState, PaymentSyncDirection, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
@@ -195,6 +195,7 @@ export class AdvancedSettingsComponent implements OnInit {
         this.saveInProgress = false;
         this.snackBar.open('Advanced settings saved successfully');
         if (this.isOnboarding) {
+          this.workspaceService.setOnboardingState(OnboardingState.COMPLETE);
           this.router.navigate([`/workspaces/onboarding/done`]);
         } else {
           this.router.navigate(['/workspaces/main/dashboard']);

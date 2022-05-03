@@ -148,7 +148,7 @@ export class ExportLogComponent implements OnInit {
   }
 
   private searchByText(expenseGroup: ExpenseGroupList, filterText: string) {
-    return expenseGroup.employee[0].includes(filterText) || expenseGroup.employee[1].includes(filterText);
+    return expenseGroup.employee[0].toLowerCase().includes(filterText) || expenseGroup.employee[1].toLowerCase().includes(filterText) || expenseGroup.referenceNumber.toLowerCase().includes(filterText);
   }
 
   private getExpenseGroupsAndSetupPage(): void {

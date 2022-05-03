@@ -4,7 +4,7 @@ import { catchError, map, switchMap, takeWhile } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { Error, GroupedErrors, GroupedErrorStat } from 'src/app/core/models/db/error.model';
 import { LastExport } from 'src/app/core/models/db/last-export.model';
-import { EmployeeFieldMapping, ErrorType, ExportState, FyleField, QBOField, TaskLogState, TaskLogType } from 'src/app/core/models/enum/enum.model';
+import { EmployeeFieldMapping, ErrorType, ExportState, FyleField, FyleReferenceType, QBOField, TaskLogState, TaskLogType } from 'src/app/core/models/enum/enum.model';
 import { DashboardService } from 'src/app/core/services/dashboard/dashboard.service';
 import { DashboardResolveMappingErrorDialogComponent } from 'src/app/shared/components/dashboard/dashboard-resolve-mapping-error-dialog/dashboard-resolve-mapping-error-dialog.component';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
@@ -13,6 +13,8 @@ import { DashboardQboErrorDialogComponent } from 'src/app/shared/components/dash
 import { Task } from 'src/app/core/models/db/task-log.model';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { ExportableExpenseGroup } from 'src/app/core/models/db/expense-group.model';
+import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
+import { ExpenseGroupSetting } from 'src/app/core/models/db/expense-group-setting.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,6 +33,7 @@ export class DashboardComponent implements OnInit {
   lastExport: LastExport | null;
   errors: GroupedErrors;
   employeeFieldMapping: EmployeeFieldMapping;
+  expenseGroupSetting: string;
   groupedErrorStat: GroupedErrorStat = {
     [ErrorType.EMPLOYEE_MAPPING]: null,
     [ErrorType.CATEGORY_MAPPING]: null
@@ -44,6 +47,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private dashboardService: DashboardService,
     private dialog: MatDialog,
+    private exportLogService: ExportLogService,
     private userService: UserService,
     private workspaceService: WorkspaceService
   ) { }
@@ -89,16 +93,31 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  private getExpenseGroupingSetting(expenseGroupSetting: ExpenseGroupSetting): string {
+    const grouping: string[] = expenseGroupSetting.reimbursable_expense_group_fields ? expenseGroupSetting.reimbursable_expense_group_fields : expenseGroupSetting.corporate_credit_card_expense_group_fields;
+    if (grouping.includes(FyleReferenceType.EXPENSE)) {
+      return 'expense';
+    } else if (grouping.includes(FyleReferenceType.REPORT_ID)) {
+      return 'expense report';
+    } else if (grouping.includes(FyleReferenceType.PAYMENT)) {
+      return 'payment';
+    }
+
+    return '';
+  }
+
   private setupPage(): void {
     forkJoin([
       this.getLastExport$.pipe(map((res) => res), catchError(() => of(null))),
       this.getExportErrors$,
       this.workspaceService.getWorkspaceGeneralSettings(),
-      this.dashboardService.getAllTasks([TaskLogState.ENQUEUED, TaskLogState.IN_PROGRESS], undefined, this.taskType)
+      this.dashboardService.getAllTasks([TaskLogState.ENQUEUED, TaskLogState.IN_PROGRESS], undefined, this.taskType),
+      this.exportLogService.getExpenseGroupSettings()
     ]).subscribe((responses) => {
       this.lastExport = responses[0];
       this.errors = this.formatErrors(responses[1]);
       this.employeeFieldMapping = responses[2].employee_field_mapping;
+      this.expenseGroupSetting = this.getExpenseGroupingSetting(responses[4]);
 
       if (responses[3].count) {
         this.importInProgress = false;

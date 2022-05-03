@@ -38,7 +38,7 @@ export class IntegrationComponent implements OnInit {
         [OnboardingState.MAP_EMPLOYEES]: '/workspaces/onboarding/employee_settings',
         [OnboardingState.EXPORT_SETTINGS]: '/workspaces/onboarding/export_settings',
         [OnboardingState.IMPORT_SETTINGS]: '/workspaces/onboarding/import_settings',
-        [OnboardingState.ADVANCED_SETTINGS]: '/workspaces/onboarding/advanced_settings',
+        [OnboardingState.ADVANCED_CONFIGURATION]: '/workspaces/onboarding/advanced_settings',
         [OnboardingState.COMPLETE]: '/workspaces/main'
       };
 
@@ -63,6 +63,7 @@ export class IntegrationComponent implements OnInit {
     this.getOrCreateWorkspace().then((workspace: Workspace) => {
       this.workspace = workspace;
       this.storageService.set('currency', workspace.fyle_currency);
+      this.storageService.set('onboardingState', workspace.onboarding_state);
       this.workspaceService.syncFyleDimensions().subscribe();
       this.workspaceService.syncQBODimensions().subscribe();
       this.navigate();

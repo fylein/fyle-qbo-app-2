@@ -2,15 +2,15 @@
   background: #161528;
   height: 100%;
   padding-top: 17px;
+  top: 72px;
   position: fixed;
-  overflow-x: clip;
-  overflow-y: initial;
 
   &--logo-header-section {
     background-color: #FFFFFF;
     position: absolute;
-    top: -76px;
-    padding: 6px 10px;
+    top: -72px;
+    border-right: 1px solid #DFDFE2;
+    right: 0px;
   }
 
   &--module-block-content {

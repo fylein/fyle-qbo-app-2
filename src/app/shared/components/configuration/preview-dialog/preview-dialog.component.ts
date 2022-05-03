@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CorporateCreditCardExpensesObject, PreviewPage, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { CorporateCreditCardExpensesObject, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { PreviewPage } from 'src/app/core/models/misc/preview-page.model';
 
 @Component({
   selector: 'app-preview-dialog',
@@ -9,13 +10,12 @@ import { CorporateCreditCardExpensesObject, PreviewPage, ReimbursableExpensesObj
 })
 export class PreviewDialogComponent implements OnInit {
 
-  PreviewPage = PreviewPage;
   ReimbursableExpensesObject = ReimbursableExpensesObject;
   CorporateCreditCardExpensesObject = CorporateCreditCardExpensesObject;
   // TODO: check ReimbursableExpensesObject and CorporateCreditCardExpensesObject comparision for JE
   
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: ReimbursableExpensesObject | CorporateCreditCardExpensesObject | PreviewPage.FYLE_EXPENSE
+    @Inject(MAT_DIALOG_DATA) public data: PreviewPage
   ) { }
 
   ngOnInit(): void {

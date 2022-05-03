@@ -4,6 +4,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { forkJoin, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { globalCacheBusterNotifier } from 'ts-cacheable';
+import { OnboardingState } from '../models/enum/enum.model';
 import { QboConnectorService } from '../services/configuration/qbo-connector.service';
 import { WorkspaceService } from '../services/workspace/workspace.service';
 
@@ -37,13 +38,18 @@ export class WorkspacesGuard implements CanActivate {
       ).pipe(
         map(response => !!response),
         catchError(error => {
-          // TODO: fix error message
           if (error.status === 400) {
-            // TODO: redirect to dashboard if workspace is already onboarded
             // TODO: content
             globalCacheBusterNotifier.next();
             this.snackBar.open('Quickbooks Online connection expired, please connect again', '', { duration: 7000 });
-            return this.router.navigateByUrl(`workspaces/onboarding/qbo_connector`);
+
+            const onboardingState: OnboardingState = this.workspaceService.getOnboardingState();
+
+            if (onboardingState !== OnboardingState.COMPLETE) {
+              return this.router.navigateByUrl('workspaces/onboarding/qbo_connector');
+            } else {
+              return this.router.navigateByUrl('workspaces/onboarding/landing');
+            }
           }
 
           return throwError(error);

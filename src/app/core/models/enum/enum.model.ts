@@ -66,7 +66,7 @@ export enum OnboardingState {
   MAP_EMPLOYEES = 'MAP_EMPLOYEES',
   EXPORT_SETTINGS = 'EXPORT_SETTINGS',
   IMPORT_SETTINGS = 'IMPORT_SETTINGS',
-  ADVANCED_SETTINGS = 'ADVANCED_SETTINGS',
+  ADVANCED_CONFIGURATION = 'ADVANCED_CONFIGURATION',
   COMPLETE = 'COMPLETE'
 }
 
@@ -133,11 +133,6 @@ export enum TaskLogState {
   FAILED = 'FAILED',
   FATAL = 'FATAL',
   COMPLETED = 'COMPLETED',
-}
-
-export enum PreviewPage {
-  QBO_EXPENSE = 'qbo_expense',
-  FYLE_EXPENSE = 'fyle_expense'
 }
 
 export enum ExportMode {

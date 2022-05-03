@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { MappingDestinationField, PreviewPage } from 'src/app/core/models/enum/enum.model';
+import { MappingDestinationField, OnboardingState } from 'src/app/core/models/enum/enum.model';
 import { ExpenseFieldsFormOption, ImportSettingGet, ImportSettingModel } from 'src/app/core/models/configuration/import-setting.model';
 import { MappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
@@ -17,6 +17,7 @@ import { QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { PreviewDialogComponent } from '../preview-dialog/preview-dialog.component';
+import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 @Component({
   selector: 'app-import-settings',
@@ -50,7 +51,8 @@ export class ImportSettingsComponent implements OnInit {
     private mappingService: MappingService,
     private qboConnectorService: QboConnectorService,
     private snackBar: MatSnackBar,
-    private windowService: WindowService
+    private windowService: WindowService,
+    private workspaceService: WorkspaceService
   ) {
     this.windowReference = this.windowService.nativeWindow;
   }
@@ -94,13 +96,28 @@ export class ImportSettingsComponent implements OnInit {
     this.createTaxCodeWatcher();
   }
 
+  private importToggleWatcher(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: object} | null => {
+      if (control.value) {
+        // Mark Fyle field as mandatory if toggle is enabled
+        control.parent?.get('source_field')?.setValidators(Validators.required)
+      } else {
+        // Reset Fyle field if toggle is disabled
+        control.parent?.get('source_field')?.clearValidators();
+        control.parent?.get('source_field')?.setValue(null);
+      }
+
+      return null;
+    };
+  }
+
   private setupForm(): void {
     const chartOfAccountTypeFormArray = this.chartOfAccountTypesList.map((type) => this.createChartOfAccountField(type));
     const expenseFieldsFormArray = this.qboExpenseFields.map((field) => {
       return this.formBuilder.group({
         source_field: [field.source_field, RxwebValidators.unique()],
         destination_field: [field.destination_field],
-        import_to_fyle: [field.import_to_fyle],
+        import_to_fyle: [field.import_to_fyle, this.importToggleWatcher()],
         disable_import_to_fyle: [field.disable_import_to_fyle],
         source_placeholder: ['']
       })
@@ -166,7 +183,9 @@ export class ImportSettingsComponent implements OnInit {
     this.dialog.open(PreviewDialogComponent, {
       width: '560px',
       height: '770px',
-      data: PreviewPage.FYLE_EXPENSE
+      data: {
+        fyleExpense: true
+      }
     });
   }
 
@@ -201,6 +220,7 @@ export class ImportSettingsComponent implements OnInit {
         this.saveInProgress = false;
         this.snackBar.open('Import settings saved successfully');
         if (this.isOnboarding) {
+          this.workspaceService.setOnboardingState(OnboardingState.ADVANCED_CONFIGURATION);
           this.router.navigate([`/workspaces/onboarding/advanced_settings`]);
         } else {
           // Refresh Mappings list in sidenavbar

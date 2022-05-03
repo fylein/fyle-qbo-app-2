@@ -1,4 +1,5 @@
 export type Paginator = {
   limit: number,
-  offset: number
+  offset: number,
+  pageSizeChange?: boolean
 };
