@@ -1,6 +1,9 @@
 .zero-state-with-illustration {
   &--zero-state-img {
     padding-top: 180px;
+    @media only screen and (max-width: 1440px) {
+      padding-top: 60px;
+    }
   }
 
   &--zero-state-text {

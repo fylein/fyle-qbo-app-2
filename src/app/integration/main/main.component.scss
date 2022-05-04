@@ -13,6 +13,16 @@
     right: 0px;
   }
 
+  &--active-module-block {
+    @extend .side-nav-bar--module-block-content;
+    padding-left: 21px !important;
+  }
+
+  &--active-module-block-expandable {
+    @extend .side-nav-bar--module-block-content-expandable;
+    padding-left: 21px !important;
+  }
+
   &--module-block-content {
     padding: 13px 0px 13px 24px;
     height: 48px;

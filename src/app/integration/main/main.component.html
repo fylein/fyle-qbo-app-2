@@ -16,7 +16,7 @@
     <div *ngFor="let module of modules" class="side-nav-bar--default-text-color">
       <div fxLayout="row" class="pointer" [ngClass]="[module.isActive && !module.childPages.length ? 'side-nav-bar--active-module' : '', module.isActive ? 'side-nav-bar--active-module-text' : '']" (click)="navigate(module)">
         <div *ngIf="module.isActive && (!module.childPages.length || !module.isExpanded)" class="side-nav-bar--active-tag-module"></div>
-        <div fxLayout="row" [ngClass]="[module.childPages.length ? 'side-nav-bar--module-block-content-expandable' : 'side-nav-bar--module-block-content']">
+        <div fxLayout="row" [ngClass]="[module.childPages.length ? 'side-nav-bar--module-block-content-expandable' : 'side-nav-bar--module-block-content', module.isActive && (!module.childPages.length || !module.isExpanded) ? 'side-nav-bar--active-module-block' : '', module.isActive && (!module.childPages.length || !module.isExpanded) ? 'side-nav-bar--active-module-block-expandable' : '']">
           <img height="22px" width="22px" src="{{ module.isActive ? module.iconPath + '-active.svg' :  module.iconPath + '.svg' }}">
           <h4 class="side-nav-bar--module-block-text side-nav-bar--text-properties capitalize">{{ module.name }}</h4>
           <img *ngIf="module.childPages.length && !module.isActive" height="22px" width="22px"
@@ -29,7 +29,7 @@
         <div fxLayout="row">
           <div *ngIf="childPage.isActive && module.isExpanded" class="side-nav-bar--active-tag-module"></div>
           <div *ngIf="module.isExpanded" fxLayout="row" class="side-nav-bar--module-block-content single-line-text pointer"
-            [ngClass]="[childPage.isActive ? 'side-nav-bar--active-child': '', childPage.isActive ? 'side-nav-bar--active-module-text': '']" (click)="navigate(childPage)">
+            [ngClass]="[childPage.isActive ? 'side-nav-bar--active-child': '', childPage.isActive ? 'side-nav-bar--active-module-text': '', childPage.isActive && module.isExpanded ? 'side-nav-bar--active-module-block' : '']" (click)="navigate(childPage)">
             <h4 class="side-nav-bar--module-block-text-inner side-nav-bar--text-properties capitalize"> {{ childPage.name | titlecase | snakeCaseToSpaceCase }}</h4>
           </div>
         </div>
