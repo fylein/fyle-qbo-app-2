@@ -171,6 +171,10 @@
 
   &--resolve-btn {
     background: #2C304E;
+
+    &:hover {
+      box-shadow: 0px 4px 4px rgba(44, 48, 78, 0.1);
+    }
   }
 
   &--mapping-error-contents {
@@ -211,6 +215,10 @@
     border: 1px solid #DFDFE2;
     box-sizing: border-box;
     border-radius: 4px;
+
+    &:hover {
+      box-shadow: 0px 4px 4px rgba(44, 48, 78, 0.1);
+    }
   }
 
   &--view-expenses-text {

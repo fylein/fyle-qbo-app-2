@@ -81,9 +81,7 @@ table {
   @extend .pointer;
 
   &:hover {
-    // TODO: shadow effect
-    // box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, .125);
-    // box-shadow: 0px 4px rgba(213, 213, 213, 0.758);
+    @extend .btn-shadow;
   }
 }
 
@@ -275,6 +273,10 @@ table {
   top: 8px;
 }
 
+.btn-shadow {
+  box-shadow: 0px 4px 4px rgba(44, 48, 78, 0.1);
+}
+
 .configuration {
   &--section {
     padding-bottom: 100px;
@@ -314,6 +316,10 @@ table {
     border-radius: 4px;
     width: 107px;
     height: 42px;
+
+    &:hover {
+      @extend .btn-shadow;
+    }
   }
 
   &--back-btn-text {

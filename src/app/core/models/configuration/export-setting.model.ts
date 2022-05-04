@@ -43,7 +43,7 @@ export class ExportSettingModel {
         expense_state: exportSettingsForm.get('expenseState')?.value,
         reimbursable_expense_group_fields: exportSettingsForm.get('reimbursableExportGroup')?.value ? [exportSettingsForm.get('reimbursableExportGroup')?.value] : null,
         reimbursable_export_date_type: exportSettingsForm.get('reimbursableExportDate')?.value,
-        corporate_credit_card_expense_group_fields: [exportSettingsForm.get('creditCardExportGroup')?.value],
+        corporate_credit_card_expense_group_fields: exportSettingsForm.get('creditCardExportGroup')?.value ? [exportSettingsForm.get('creditCardExportGroup')?.value] : null,
         ccc_export_date_type: exportSettingsForm.get('creditCardExportDate')?.value
       },
       workspace_general_settings: {

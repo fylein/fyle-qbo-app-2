@@ -453,35 +453,50 @@ export class ExportSettingsComponent implements OnInit {
     return false;
   }
 
+  private replaceContentBasedOnConfiguration(updatedConfiguration: string, existingConfiguration: string): string {
+    const configurationUpdate = `You have changed the export type of $exportType expense from <b>$existingExportType</b> to <b>$updatedExportType</b>,
+    which would impact a few configurations in the Advanced settings. <br><br>Please revisit the Advanced settings to check and enable the
+    features that could help customize and automate your integration workflows.`;
+
+    const newConfiguration = `You have selected a new export type for the $exportType expense, which would impact a few configurations
+      in the Advanced settings. <br><br>Please revisit the Advanced settings to check and enable the features that could help customize and
+      automate your integration workflows.`;
+
+    if (updatedConfiguration !== 'None' && existingConfiguration !== 'None') {
+      return configurationUpdate.replace('$exportType', 'reimbursable').replace('$existingExportType', existingConfiguration.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())).replace('$updatedExportType', updatedConfiguration.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase()));
+    } else {
+      return newConfiguration.replace('$exportType', 'credit card');
+    }
+  }
+
   private constructWarningMessage(): string {
-    let configurationUpdateList = '';
+    let content: string = '';
     const existingReimbursableExportType = this.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? this.exportSettings.workspace_general_settings.reimbursable_expenses_object : 'None';
     const existingCorporateCardExportType = this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object ? this.exportSettings.workspace_general_settings.corporate_credit_card_expenses_object : 'None';
     const updatedReimbursableExportType = this.exportSettingsForm.value.reimbursableExportType ? this.exportSettingsForm.value.reimbursableExportType : 'None';
     const updatedCorporateCardExportType = this.exportSettingsForm.value.creditCardExportType ? this.exportSettingsForm.value.creditCardExportType : 'None';
 
     if (this.singleItemizedJournalEntryAffected()) {
-      // TODO: Handle None to something
       if (updatedReimbursableExportType !== existingReimbursableExportType) {
-        configurationUpdateList += `You are changing your export representation from <b>${existingReimbursableExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b> to <b>${updatedReimbursableExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b><br>`;
+        content = this.replaceContentBasedOnConfiguration(updatedReimbursableExportType, existingReimbursableExportType);
       } else if (existingCorporateCardExportType !== updatedCorporateCardExportType) {
-        configurationUpdateList += `You are changing your export representation from <b>${existingCorporateCardExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b> to <b>${updatedCorporateCardExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b><br>`;
+        content = this.replaceContentBasedOnConfiguration(updatedCorporateCardExportType, existingCorporateCardExportType);
       }
     }
 
     if (!this.singleItemizedJournalEntryAffected() && this.paymentsSyncAffected()) {
-      configurationUpdateList += `You are changing your export representation from <b>${existingReimbursableExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b> to <b>Bill</b><br>`;
+      content = this.replaceContentBasedOnConfiguration(updatedReimbursableExportType, existingReimbursableExportType);
     }
 
-    return configurationUpdateList;
+    return content;
   }
 
   private showConfirmationDialog(): void {
-    const configurationUpdateList = this.constructWarningMessage();
+    const content = this.constructWarningMessage();
 
     const data: ConfirmationDialog = {
       title: 'Change in Configuration',
-      contents: `${configurationUpdateList}This might effect other configurations<br><br>Do you wish to continue?`,
+      contents: `${content}<br><br>Do you wish to continue?`,
       primaryCtaText: 'Continue',
     };
 
