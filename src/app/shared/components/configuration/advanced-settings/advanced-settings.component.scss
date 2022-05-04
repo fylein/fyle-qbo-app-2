@@ -18,17 +18,18 @@
 
   &--memo-preview-text {
     font-weight: 500;
-    padding-bottom: 12px;
   }
 
   &--memo-preview-area {
     padding: 12px 12px 0px 0px;
-    background: #F5F5F5;
-    border-radius: 4px;
   }
 
   &--memo-preview {
     padding: 8px 0px 8px 8px;
+    background: #F5F5F5;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
   }
 
   &--memo-preview-select {
