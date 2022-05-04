@@ -379,7 +379,7 @@ export class ExportSettingsComponent implements OnInit {
       return exportGroup === ExpenseGroupingFieldOption.EXPENSE_ID || exportGroup === ExpenseGroupingFieldOption.CLAIM_NUMBER || exportGroup === ExpenseGroupingFieldOption.SETTLEMENT_ID;
     });
 
-    return exportGroup ? exportGroup : 'expense_report';
+    return exportGroup ? exportGroup : ExpenseGroupingFieldOption.CLAIM_NUMBER;
   }
 
   private getSettingsAndSetupForm(): void {
@@ -453,19 +453,19 @@ export class ExportSettingsComponent implements OnInit {
     return false;
   }
 
-  private replaceContentBasedOnConfiguration(updatedConfiguration: string, existingConfiguration: string): string {
+  private replaceContentBasedOnConfiguration(updatedConfiguration: string, existingConfiguration: string, exportType: 'reimbursable' | 'credit card'): string {
     const configurationUpdate = `You have changed the export type of $exportType expense from <b>$existingExportType</b> to <b>$updatedExportType</b>,
-    which would impact a few configurations in the Advanced settings. <br><br>Please revisit the Advanced settings to check and enable the
+    which would impact a few configurations in the <b>Advanced settings</b>. <br><br>Please revisit the <b>Advanced settings</b> to check and enable the
     features that could help customize and automate your integration workflows.`;
 
-    const newConfiguration = `You have selected a new export type for the $exportType expense, which would impact a few configurations
-      in the Advanced settings. <br><br>Please revisit the Advanced settings to check and enable the features that could help customize and
+    const newConfiguration = `You have <b>selected a new export type</b> for the $exportType expense, which would impact a few configurations
+      in the <b>Advanced settings</b>. <br><br>Please revisit the <b>Advanced settings</b> to check and enable the features that could help customize and
       automate your integration workflows.`;
 
     if (updatedConfiguration !== 'None' && existingConfiguration !== 'None') {
-      return configurationUpdate.replace('$exportType', 'reimbursable').replace('$existingExportType', existingConfiguration.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())).replace('$updatedExportType', updatedConfiguration.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase()));
+      return configurationUpdate.replace('$exportType', exportType).replace('$existingExportType', existingConfiguration.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())).replace('$updatedExportType', updatedConfiguration.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase()));
     } else {
-      return newConfiguration.replace('$exportType', 'credit card');
+      return newConfiguration.replace('$exportType', exportType);
     }
   }
 
@@ -478,14 +478,14 @@ export class ExportSettingsComponent implements OnInit {
 
     if (this.singleItemizedJournalEntryAffected()) {
       if (updatedReimbursableExportType !== existingReimbursableExportType) {
-        content = this.replaceContentBasedOnConfiguration(updatedReimbursableExportType, existingReimbursableExportType);
+        content = this.replaceContentBasedOnConfiguration(updatedReimbursableExportType, existingReimbursableExportType, 'reimbursable');
       } else if (existingCorporateCardExportType !== updatedCorporateCardExportType) {
-        content = this.replaceContentBasedOnConfiguration(updatedCorporateCardExportType, existingCorporateCardExportType);
+        content = this.replaceContentBasedOnConfiguration(updatedCorporateCardExportType, existingCorporateCardExportType, 'credit card');
       }
     }
 
     if (!this.singleItemizedJournalEntryAffected() && this.paymentsSyncAffected()) {
-      content = this.replaceContentBasedOnConfiguration(updatedReimbursableExportType, existingReimbursableExportType);
+      content = this.replaceContentBasedOnConfiguration(updatedReimbursableExportType, existingReimbursableExportType, 'reimbursable');
     }
 
     return content;
@@ -496,8 +496,8 @@ export class ExportSettingsComponent implements OnInit {
 
     const data: ConfirmationDialog = {
       title: 'Change in Configuration',
-      contents: `${content}<br><br>Do you wish to continue?`,
-      primaryCtaText: 'Continue',
+      contents: `${content}<br><br>Would you like to continue?`,
+      primaryCtaText: 'Continue'
     };
 
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {

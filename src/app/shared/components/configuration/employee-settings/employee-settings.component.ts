@@ -86,11 +86,9 @@ export class EmployeeSettingsComponent implements OnInit {
     const data: ConfirmationDialog = {
       title: 'Change in Configuration',
       contents: `You are changing your employee representation from <b>${existingEmployeeFieldMapping}</b> to <b>${updatedEmployeeFieldMapping}</b>
-        <br><br>The changes made to the Map Employee Settings will impact the Export settings and how the export of expenses
-        from Fyle to Quickbooks Online is handled. So please go ahead and revisit the Export settings and complete the configuration.<br><br>
-        This will impact the <b>Export settings</b> on how the expenses can be exported from Fyle to Quickbooks Online.
-        <br><br>
-        Do you wish to continue?`,
+        <br><br>This will impact the configuration in the <b>Export settings</b> on How the export of expenses
+        can be exported from Fyle to Quickbooks Online.<br><br>
+        Would you like to continue? If yes, you will be redirected to <b>Export settings</b> to revisit the configuration and complete it.`,
       primaryCtaText: 'Continue',
     };
 
