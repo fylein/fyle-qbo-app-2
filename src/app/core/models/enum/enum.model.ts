@@ -146,3 +146,7 @@ export enum ConfigurationCtaText {
   CONTINUE = 'Continue',
   SAVING = 'Saving'
 }
+
+export enum RedirectLink {
+  FYLE_WEBSITE = 'https://fylehq.com/'
+}

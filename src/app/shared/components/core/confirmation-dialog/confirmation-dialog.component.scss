@@ -1,8 +1,4 @@
 .confirmation-dialog {
-  &--header-section {
-    height: 74px; 
-  }
-
   &--header-content {
     padding: 21px 26px 20px 24px;
   }
@@ -38,7 +34,7 @@
   }
 
   &--btn-section {
-    padding: 16px 16px 16px 0px;
+    padding: 0px 16px 16px 0px;
   }
 
   &--cancel-btn {
@@ -48,8 +44,11 @@
     border-radius: 4px;
     width: 94px;
     height: 42px;
-
     margin-right: 16px;
+
+    &:hover {
+      box-shadow: 0px 4px 4px rgba(44, 48, 78, 0.1);
+    }
   }
 
   &--cancel-btn-text {

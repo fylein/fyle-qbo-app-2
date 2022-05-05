@@ -253,8 +253,34 @@ table {
   border-radius: 11px !important;
 }
 
+.mat-checkbox-frame {
+  border-radius: 3px !important;
+  border-width: 1.5px !important;
+  border-color: #000000 !important;
+}
+
+.mat-pseudo-checkbox {
+  border: 1px solid !important;
+  border-color: #000000 !important;
+  border-radius: 3px !important;
+}
+
 .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-  background: #000000;
+  background: #2C304E;
+}
+
+.mat-pseudo-checkbox-checked {
+  background: #2C304E;
+}
+
+.mat-pseudo-checkbox-checked::after {
+  width: 7px !important;
+  left: 2px !important;
+}
+
+.mat-checkbox-checkmark {
+  height: 12px;
+  top: 2px !important;
 }
 
 .mat-checkbox-checked.mat-accent.mat-checkbox-disabled .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
@@ -262,7 +288,7 @@ table {
 }
 
 .mat-primary .mat-pseudo-checkbox-checked {
-  background: #000000;
+  background: #2C304E;
 }
 
 .selected-value-check-mark {
@@ -280,7 +306,14 @@ table {
 .configuration {
   &--section {
     padding-bottom: 100px;
+  }
+
+  &--onboarding-section {
     margin-top: -75px;
+  }
+
+  &--post-onboarding-section {
+    margin-top: -140px;
   }
 
   &--contents {

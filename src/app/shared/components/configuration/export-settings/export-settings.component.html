@@ -1,6 +1,6 @@
 <!-- TODO: check content of all fields -->
 
-<div fxLayout="row" fxLayoutAlign="center center" class="configuration--section">
+<div fxLayout="row" fxLayoutAlign="center center" class="configuration--section" [ngClass]="[isOnboarding ? 'configuration--onboarding-section' : '', !isOnboarding ? 'configuration--post-onboarding-section': '']">
   <app-loader [ngClass]="{'loader-main': !isOnboarding}" [phase]="'pre_onboarding'" *ngIf="isLoading"></app-loader>
   <div *ngIf="!isLoading" class="configuration--contents">
     <app-configuration-step-header-section [showSyncButton]="isOnboarding"></app-configuration-step-header-section>
