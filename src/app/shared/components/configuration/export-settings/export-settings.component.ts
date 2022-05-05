@@ -46,7 +46,7 @@ export class ExportSettingsComponent implements OnInit {
   ];
   expenseGroupingFieldOptions: ExportSettingFormOption[] = [
     {
-      label: 'Expense Report',
+      label: 'Report',
       value: ExpenseGroupingFieldOption.CLAIM_NUMBER
     },
     {
@@ -115,6 +115,12 @@ export class ExportSettingsComponent implements OnInit {
     private workspaceService: WorkspaceService
   ) {
     this.windowReference = this.windowService.nativeWindow;
+  }
+
+  getExportType(exportType: ReimbursableExpensesObject | CorporateCreditCardExpensesObject): string {
+    const lowerCaseWord = exportType.toLowerCase();
+
+    return lowerCaseWord.charAt(0).toUpperCase() + lowerCaseWord.slice(1);
   }
 
   getReimbursableExportTypes(employeeFieldMapping: EmployeeFieldMapping): ExportSettingFormOption[] {

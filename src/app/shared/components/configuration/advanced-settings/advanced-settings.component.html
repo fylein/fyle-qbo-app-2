@@ -88,14 +88,13 @@
         [formControllerName]="'autoCreateVendors'">
       </app-configuration-toggle-field>
 
-      <!-- TODO: content of placeholder -->
       <app-configuration-select-field *ngIf="showPaymentSyncField()"
         [form]="advancedSettingsForm"
         [options]="paymentSyncOptions"
         [iconPath]="'assets/images/svgs/actions/sync.svg'"
         [label]="'Auto Sync payment status for reimbursable expenses'"
         [subLabel]="'When expense is marked paid in Fyle the transaction in QBO will be automatically be updated to Paid and vice versa.'"
-        [placeholder]="'Select status for reimbursable expenses'"
+        [placeholder]="'Select how payments should be synced for reimbursable expenses'"
         [formControllerName]="'paymentSync'"
         >
       </app-configuration-select-field>

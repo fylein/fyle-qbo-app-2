@@ -143,7 +143,6 @@ export class QboConnectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // TODO: Fyle & QBO sync dimension
     this.setupPage();
   }
 

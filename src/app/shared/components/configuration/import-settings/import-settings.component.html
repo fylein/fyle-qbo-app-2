@@ -72,7 +72,7 @@
                       <div class="mat-select-arrow-closed"></div>
                     </mat-form-field>
                     <div class="import-settings--preview-text sub-text-color">
-                      <h6>Click <span class="import-settings--preview-btn pointer" (click)="showFyleExpenseFormPreview()">here</span> to Preivew on how it looks on Expense Form</h6>
+                      <h6>Click <span class="import-settings--preview-btn pointer" (click)="showFyleExpenseFormPreview()">here</span> to preview on how it looks on Expense Form</h6>
                     </div>
                   </div>
                 </div>
@@ -135,7 +135,7 @@
           <app-configuration-toggle-field
             [form]="importSettingsForm"
             [label]="'Import QBO Vendors'"
-            [subLabel]="'QBO vendors will be imported as merchants in Fyle that can be selected while fyling expenses.'"
+            [subLabel]="'QBO vendors will be imported as merchants in Fyle that can be selected while submitting expenses.'"
             [formControllerName]="'importVendorsAsMerchants'">
           </app-configuration-toggle-field>
         </div>

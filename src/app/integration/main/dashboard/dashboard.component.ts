@@ -98,7 +98,7 @@ export class DashboardComponent implements OnInit {
     if (grouping.includes(FyleReferenceType.EXPENSE)) {
       return 'expense';
     } else if (grouping.includes(FyleReferenceType.REPORT_ID)) {
-      return 'expense report';
+      return 'report';
     } else if (grouping.includes(FyleReferenceType.PAYMENT)) {
       return 'payment';
     }

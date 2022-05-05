@@ -29,8 +29,7 @@ export class FyleCallbackComponent implements OnInit {
   private redirectToLogin(): void {
     this.authService.logout();
     this.router.navigate(['auth/login']);
-    // TODO: fix content
-    this.snackBar.open(`You don't have access to this page, please contact support@fylehq.com if this is not intended`, '', {
+    this.snackBar.open(`You don't have administrator access to this page, please contact support@fylehq.com if you need further assistance on this`, '', {
       duration: 7000
     });
   }

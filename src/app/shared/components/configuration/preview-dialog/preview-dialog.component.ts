@@ -12,7 +12,6 @@ export class PreviewDialogComponent implements OnInit {
 
   ReimbursableExpensesObject = ReimbursableExpensesObject;
   CorporateCreditCardExpensesObject = CorporateCreditCardExpensesObject;
-  // TODO: check ReimbursableExpensesObject and CorporateCreditCardExpensesObject comparision for JE
   
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: PreviewPage
