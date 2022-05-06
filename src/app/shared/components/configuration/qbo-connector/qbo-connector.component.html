@@ -8,7 +8,7 @@
           <h5 class="qbo-connector--fyle-section-text align-center sub-text-color bold">
             FYLE
           </h5>
-          <h3 [matTooltip]="fyleOrgName" [matTooltipDisabled]="fyleOrgName.length > 26 === false" matTooltipPosition="left" class="align-center single-line-text">
+          <h3 [matTooltip]="fyleOrgName" [matTooltipDisabled]="fyleOrgName.length > 26 === false" matTooltipPosition="left" class="align-center default-cursor single-line-text">
             {{ fyleOrgName | trimCharacter: 26 }}
           </h3>
         </div>
@@ -38,7 +38,7 @@
           <h5 class="qbo-connector--fyle-section-text align-center sub-text-color bold">
             QUICKBOOKS ONLINE COMPANY
           </h5>
-          <h3 [matTooltip]="qboCompanyName" [matTooltipDisabled]="qboCompanyName.length > 26 === false" matTooltipPosition="right" *ngIf="!qboConnectionInProgress && qboCompanyName" class="single-line-text align-center">
+          <h3 [matTooltip]="qboCompanyName" [matTooltipDisabled]="qboCompanyName.length > 26 === false" matTooltipPosition="right" *ngIf="!qboConnectionInProgress && qboCompanyName" class="default-cursor single-line-text align-center">
             {{ qboCompanyName | trimCharacter: 26 }}
           </h3>
           <p class="align-center" *ngIf="qboConnectionInProgress">

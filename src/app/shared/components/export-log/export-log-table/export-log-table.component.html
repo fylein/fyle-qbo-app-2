@@ -39,7 +39,7 @@
     <th mat-header-cell *matHeaderCellDef>
       <h4>Reference ID</h4>
     </th>
-    <td class="export-log-table--reference-id pointer" [matTooltip]="'View in Fyle'" mat-cell *matCellDef="let element" (click)="helperService.openExternalLink(element.fyleUrl)"> {{ element.referenceNumber }} </td>
+    <td class="export-log-table--reference-id pointer" [matTooltip]="'View in Fyle'" matTooltipClass="export-log-tooltip" mat-cell *matCellDef="let element" (click)="helperService.openExternalLink(element.fyleUrl)"> {{ element.referenceNumber }} </td>
   </ng-container>
 
   <ng-container *ngIf="displayedColumns.indexOf('exportType') !== -1" matColumnDef="exportedAt" matColumnDef="exportType">

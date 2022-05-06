@@ -68,6 +68,10 @@ table {
   color: #5A5D72;
 }
 
+.default-cursor {
+  cursor: default;
+}
+
 .pointer {
   cursor: pointer;
 }
@@ -146,6 +150,19 @@ table {
   margin-right: 300px !important;
 }
 
+.export-log-tooltip {
+  margin-top: -20px !important;
+  margin-right: 150px !important;
+  @media only screen and (max-width: 1440px) {
+    margin-right: 80px !important;
+  }
+}
+
+.export-log-child-tooltip {
+  @extend .export-log-tooltip;
+  margin-right: 200px !important;
+}
+
 .mat-select-arrow-closed {
   position: absolute;
   right: 16px;
@@ -202,6 +219,16 @@ table {
 .mat-dialog-container {
   padding: 0 !important;
 }
+
+.mat-tooltip {
+  background: #2C304E;
+  border-radius: 2px;
+  color: #FFFFFF;
+  min-width: fit-content;
+  font-size: 12px;
+  @extend .single-line-text;
+}
+
 
 .mat-select-panel {
   margin-top: 50px;
