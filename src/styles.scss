@@ -275,6 +275,10 @@ table {
   top: 6px;
 }
 
+.mat-slide-toggle-ripple {
+  display: none;
+}
+
 .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
   background-color: #FF3366;
   border-radius: 11px !important;
