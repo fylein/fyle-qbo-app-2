@@ -45,6 +45,7 @@
 
   &--preview-text {
     padding-top: 16px;
+    font-size: 12px;
   }
 
   &--preview-btn {
@@ -148,4 +149,8 @@
       }
     }
   }
+}
+
+p {
+  margin: 0;
 }
