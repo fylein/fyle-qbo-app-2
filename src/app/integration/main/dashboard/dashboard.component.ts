@@ -222,7 +222,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.error('hellooo sentryyy')
+    this.errors.CATEGORY_MAPPING.pop();
     this.setupPage();
   }
 }
