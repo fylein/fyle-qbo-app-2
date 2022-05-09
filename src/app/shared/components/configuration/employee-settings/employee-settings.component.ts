@@ -32,11 +32,11 @@ export class EmployeeSettingsComponent implements OnInit {
   employeeMappingOptions: EmployeeSettingFormOption[] = [
     {
       value: EmployeeFieldMapping.EMPLOYEE,
-      label: 'Employee'
+      label: 'Employees'
     },
     {
       value: EmployeeFieldMapping.VENDOR,
-      label: 'Vendor'
+      label: 'Vendors'
     }
   ];
   autoMapEmployeeOptions: EmployeeSettingFormOption[] = [

@@ -123,6 +123,21 @@ export class ExportSettingsComponent implements OnInit {
     return lowerCaseWord.charAt(0).toUpperCase() + lowerCaseWord.slice(1);
   }
 
+  generateGroupingLabel(exportSource: 'reimbursable' | 'credit card'): string {
+    let exportType: ReimbursableExpensesObject | CorporateCreditCardExpensesObject;
+    if (exportSource === 'reimbursable') {
+      exportType = this.exportSettingsForm.value.reimbursableExportType;
+    } else {
+      exportType = this.exportSettingsForm.value.creditCardExportType;
+    }
+
+    if (exportType === ReimbursableExpensesObject.EXPENSE) {
+      return 'How should the expenses be grouped?';
+    } else {
+      return `How should the expense in ${this.getExportType(exportType)} be grouped?`;
+    }
+  }
+
   getReimbursableExportTypes(employeeFieldMapping: EmployeeFieldMapping): ExportSettingFormOption[] {
     return {
       EMPLOYEE: [
