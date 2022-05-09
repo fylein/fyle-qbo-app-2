@@ -11,6 +11,9 @@ import { WindowService } from 'src/app/core/services/core/window.service';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { ConfigurationCtaText, OnboardingState } from 'src/app/core/models/enum/enum.model';
+import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../../core/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-qbo-connector',
@@ -33,6 +36,7 @@ export class QboConnectorComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private dialog: MatDialog,
     private qboConnectorService: QboConnectorService,
     private exportSettingService: ExportSettingService,
     private route: ActivatedRoute,
@@ -87,6 +91,26 @@ export class QboConnectorComponent implements OnInit {
     });
   }
 
+  private showWarningDialog(): void {
+    const data: ConfirmationDialog = {
+      title: 'Incorrect account selected',
+      contents: 'You had previously set up the integration with a different QBO account. Please choose the same to restore the settings',
+      primaryCtaText: 'Re connect',
+      hideSecondaryCTA: true
+    };
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '551px',
+      data: data
+    });
+
+    dialogRef.afterClosed().subscribe((ctaClicked) => {
+      if (ctaClicked) {
+        this.router.navigate([`/workspaces/onboarding/landing`]);
+      }
+    });
+  }
+
   private postQboCredentials(code: string, realmId: string): void {
     const qboAuthResponse: QboConnectorPost = {
       code: code,
@@ -104,8 +128,12 @@ export class QboConnectorComponent implements OnInit {
     }, (error) => {
       // TODO: personalise the message based on the error (if it's an actual error / different company connect)
       const errorMessage = 'message' in error.error ? error.error.message : 'Failed to connect to QuickBooks Online. Please try again';
-      this.snackBar.open(errorMessage, '', { duration: 7000 });
-      this.router.navigate([`/workspaces/onboarding/landing`]);
+      if (errorMessage === 'Please choose the correct Quickbooks online account') {
+        this.showWarningDialog();
+      } else {
+        this.snackBar.open(errorMessage, '', { duration: 7000 });
+        this.router.navigate([`/workspaces/onboarding/landing`]);
+      }
     });
   }
 

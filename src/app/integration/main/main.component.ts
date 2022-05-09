@@ -23,7 +23,7 @@ export class MainComponent implements OnInit {
       isActive: false
     },
     {
-      name: 'Export Logs',
+      name: 'Export Log',
       route: 'export_log',
       iconPath: 'assets/images/svgs/general/export-log',
       childPages: [],

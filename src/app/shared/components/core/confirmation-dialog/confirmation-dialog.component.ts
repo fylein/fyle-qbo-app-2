@@ -9,12 +9,14 @@ import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog
 })
 export class ConfirmationDialogComponent implements OnInit {
 
+  hideSecondaryCTA: boolean;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ConfirmationDialog,
     public dialogRef: MatDialogRef<ConfirmationDialogComponent>,
   ) { }
 
   ngOnInit(): void {
+    this.hideSecondaryCTA = this.data.hideSecondaryCTA ? this.data.hideSecondaryCTA : false;
   }
 
 }

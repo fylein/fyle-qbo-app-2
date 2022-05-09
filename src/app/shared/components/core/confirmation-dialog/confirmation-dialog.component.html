@@ -21,7 +21,7 @@
   <p class="confirmation-dialog--divider"></p>
 
   <div fxLayout="row" fxLayoutAlign="end center" class="confirmation-dialog--btn-section">
-    <div class="confirmation-dialog--cancel-btn pointer" mat-dialog-close>
+    <div *ngIf="!hideSecondaryCTA" class="confirmation-dialog--cancel-btn pointer" mat-dialog-close>
       <h5 class="confirmation-dialog--cancel-btn-text align-center">Cancel</h5>
     </div>
 
