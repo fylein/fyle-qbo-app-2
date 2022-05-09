@@ -62,6 +62,7 @@ import { DashboardQboErrorDialogComponent } from './components/dashboard/dashboa
 import { ExportLogChildTableComponent } from './components/export-log/export-log-child-table/export-log-child-table.component';
 import { PreviewDialogComponent } from './components/configuration/preview-dialog/preview-dialog.component';
 import { ConfirmationDialogComponent } from './components/core/confirmation-dialog/confirmation-dialog.component';
+import { MandatoryErrorMessageComponent } from './components/helpers/mandatory-error-message/mandatory-error-message.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +109,8 @@ import { ConfirmationDialogComponent } from './components/core/confirmation-dial
     ExportLogChildTableComponent,
     PreviewDialogComponent,
     ConfirmationDialogComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    MandatoryErrorMessageComponent
   ],
   imports: [
     CommonModule,
@@ -165,7 +167,8 @@ import { ConfirmationDialogComponent } from './components/core/confirmation-dial
     DashboardExportErrorsComponent,
     DashboardResolveMappingErrorDialogComponent,
     DashboardShimmersComponent,
-    ExportLogChildTableComponent
+    ExportLogChildTableComponent,
+    MandatoryErrorMessageComponent
   ],
   entryComponents: [
     ExpenseFieldCreationDialogComponent,

@@ -224,8 +224,6 @@ export class ImportSettingsComponent implements OnInit {
           this.workspaceService.setOnboardingState(OnboardingState.ADVANCED_CONFIGURATION);
           this.router.navigate([`/workspaces/onboarding/advanced_settings`]);
         } else {
-          // Refresh Mappings list in sidenavbar
-          // TODO: https://www.digitalocean.com/community/tutorials/angular-change-detection-strategy
           const navigationExtras: NavigationExtras = {
             queryParams: {
               refreshMappings: true

@@ -27,6 +27,8 @@ export class ConfigurationSelectFieldComponent implements OnInit {
   @Input() formControllerName: string;
   @Input() isFieldMandatory: boolean;
   @Input() liveEntityExample: {[EmployeeFieldMapping.EMPLOYEE]: string | undefined, [EmployeeFieldMapping.VENDOR]: string | undefined};
+  @Input() mandatoryErrorListName: string;
+  @Input() customErrorMessage: string;
 
   constructor(
     private dialog: MatDialog,

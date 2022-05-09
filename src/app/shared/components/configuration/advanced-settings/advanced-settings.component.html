@@ -22,6 +22,7 @@
             </mat-select>
             <div class="mat-select-arrow-closed"></div>
           </mat-form-field>
+          <app-mandatory-error-message *ngIf="advancedSettingsForm.controls.exportScheduleFrequency.touched && !advancedSettingsForm.controls.exportScheduleFrequency.valid" [listName]="'frequency'"></app-mandatory-error-message>
         </div>
 
         <div fxLayout="row" fxLayoutAlign="space-between start">
