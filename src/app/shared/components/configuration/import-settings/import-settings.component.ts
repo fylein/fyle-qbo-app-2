@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { ConfigurationCtaText, MappingDestinationField, OnboardingState } from 'src/app/core/models/enum/enum.model';
@@ -226,7 +226,12 @@ export class ImportSettingsComponent implements OnInit {
         } else {
           // Refresh Mappings list in sidenavbar
           // TODO: https://www.digitalocean.com/community/tutorials/angular-change-detection-strategy
-          this.router.navigate(['/workspaces/main/dashboard']);
+          const navigationExtras: NavigationExtras = {
+            queryParams: {
+              refreshMappings: true
+            }
+          };
+          this.router.navigate(['/workspaces/main/dashboard'], navigationExtras);
         }
       }, () => {
         this.saveInProgress = false;

@@ -147,15 +147,21 @@ export class MainComponent implements OnInit {
 
   setupMappingPages(): void {
     this.mappingService.getMappingSettings().subscribe((mappingSettingResponse: MappingSettingResponse) => {
+      const sourceFieldRoutes: string[] = [`mapping/${FyleField.EMPLOYEE.toLowerCase()}`, `mapping/${FyleField.CATEGORY.toLowerCase()}`];
       mappingSettingResponse.results.forEach((mappingSetting: MappingSetting) => {
         if (mappingSetting.source_field !== EmployeeFieldMapping.EMPLOYEE && mappingSetting.source_field !== FyleField.CATEGORY) {
+          sourceFieldRoutes.push(`mapping/${mappingSetting.source_field.toLowerCase()}`);
           this.modules[2].childPages.push({
-            name: `${mappingSetting.source_field} Mapping`,
+            name: `${mappingSetting.source_field.toLowerCase()} Mapping`,
             route: `mapping/${mappingSetting.source_field.toLowerCase()}`,
             isActive: false
           });
         }
       });
+
+      // remove dead mappings
+      this.modules[2].childPages = this.modules[2].childPages.filter(c => sourceFieldRoutes.includes(c.route));
+
       this.markModuleActive(this.router.url);
       this.isLoading = false;
     });
@@ -165,7 +171,11 @@ export class MainComponent implements OnInit {
     this.setupMappingPages();
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationStart) {
-        this.markModuleActive(val.url);
+        const splitUrl = val.url.split('?');
+        if (splitUrl.length > 1 && splitUrl[1].includes('refreshMappings')) {
+          this.setupMappingPages();
+        }
+        this.markModuleActive(splitUrl[0]);
       }
     });
   }
