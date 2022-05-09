@@ -11,6 +11,7 @@ export const environment = {
   qbo_app_url: $ENV.QBO_APP_URL,
   hotjar_id : '',
   sentry_dsn: '',
+  sentry_env: '',
   release: '',
   fyle_app_url: '',
   tests:{
