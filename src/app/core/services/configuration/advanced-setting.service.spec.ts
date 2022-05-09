@@ -1,47 +1,55 @@
-import { TestBed } from '@angular/core/testing';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
+import { getTestBed, TestBed } from '@angular/core/testing';
 import { AdvancedSettingService } from './advanced-setting.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AdvancedSettingGet, AdvancedSettingPost } from '../../models/configuration/advanced-setting.model';
-import { environment } from 'environment.localhost';
 
 describe('AdvancedSettingService', () => {
   let service: AdvancedSettingService;
+  let injector: TestBed;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
-      providers: [{
-        provide: JWT_OPTIONS,
-        useValue: JWT_OPTIONS
-      },
-        JwtHelperService,
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: JwtInterceptor,
-        multi: true
-      }]
+      imports: [HttpClientTestingModule],
+      providers: [AdvancedSettingService]
     });
-    service = TestBed.inject(AdvancedSettingService);
-    localStorage.setItem('workspaceId', environment.tests.workspaceId);
-    localStorage.setItem('user', environment.tests.user)
+    injector = getTestBed();
+    service = injector.inject(AdvancedSettingService);
+    httpMock = injector.inject(HttpTestingController);
   });
+ 
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('getAdvancedSettings service working check', () => {
-    expect(service.getAdvancedSettings()).toBeTruthy();
-  })
-
   it('getAdvancedSettings service check', () => {
-    const responseKeys = ['workspace_general_settings', 'general_mappings', 'workspace_schedules', 'workspace_id'].sort();
+    const advancedSettingResponse:AdvancedSettingGet = {
+      workspace_general_settings: {
+        sync_fyle_to_qbo_payments: false,
+        sync_qbo_to_fyle_payments: false,
+        auto_create_destination_entity: true,
+        je_single_credit_line: true,
+        change_accounting_period: true,
+        memo_structure: ['Fyle']
+      },
+      general_mappings: {
+        bill_payment_account: { id: '1', name: 'Fyle' }
+      },
+      workspace_schedules: {
+        enabled: true,
+        interval_hours: 10
+      },
+      workspace_id: 1
+    };
     service.getAdvancedSettings().subscribe((value) => {
-      const keys = Object.keys(value).sort();
-      expect(keys).toEqual(responseKeys);
-    })
+      expect(value).toEqual(advancedSettingResponse);
+    });
+    const req = httpMock.expectOne({
+	      method: 'GET',
+	      url: `http://localhost:8002/api/v2/workspaces/1/advanced_configurations/`,
+	    });
+    req.flush(advancedSettingResponse);
   })
 
   it('postAdvancedSettings service check', () => {
@@ -63,7 +71,7 @@ describe('AdvancedSettingService', () => {
       }
     };
 
-    const advancedSettingResponse = {
+    const advancedSettingResponse:AdvancedSettingGet = {
       workspace_general_settings: {
         sync_fyle_to_qbo_payments: false,
         sync_qbo_to_fyle_payments: false,
@@ -82,11 +90,12 @@ describe('AdvancedSettingService', () => {
       workspace_id: 1
     };
     service.postAdvancedSettings(advancedSettingPayload).subscribe(value => {
-      const keys = Object.keys(value).sort();
-      const responseKeys = Object.keys(advancedSettingResponse).sort();
-      expect(keys).toEqual(responseKeys);
-    }, error => {
-      expect(error).toBeTruthy();
+      expect(value).toEqual(advancedSettingResponse);
     })
+    const req = httpMock.expectOne({
+      method: 'PUT',
+      url: `http://localhost:8002/api/v2/workspaces/1/advanced_configurations/`,
+    });
+  req.flush(advancedSettingResponse);
   })
 });

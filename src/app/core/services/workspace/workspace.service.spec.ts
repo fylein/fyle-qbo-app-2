@@ -1,39 +1,41 @@
-import { TestBed } from '@angular/core/testing';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
+import { getTestBed, TestBed } from '@angular/core/testing';
 import { WorkspaceService } from './workspace.service';
 import { Workspace } from '../../models/db/workspace.model';
-import { OnboardingState } from '../../models/enum/enum.model';
+import { EmployeeFieldMapping, OnboardingState } from '../../models/enum/enum.model';
+import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import { WorkspaceGeneralSetting } from '../../models/db/workspace-general-setting.model';
 
 describe('WorkspaceService', () => {
   let service: WorkspaceService;
+  let injector: TestBed;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
-      providers: [{
-        provide: JWT_OPTIONS,
-        useValue: JWT_OPTIONS
-      },
-        JwtHelperService,
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: JwtInterceptor,
-        multi: true
-      }]
+      imports: [HttpClientTestingModule],
+      providers: [WorkspaceService]
     });
-    service = TestBed.inject(WorkspaceService);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+    injector = getTestBed();
+    service = injector.inject(WorkspaceService);
+    httpMock = injector.inject(HttpTestingController);
   });
 
   it('getWorkspaceid service', () => {
     const id = service.getWorkspaceId();
     const org = "1";
     expect(id.toString()).toEqual(org);
+  });
+  it('getFyleCurrency service', () => {
+    const id = service.getFyleCurrency();
+    const org = '';
+    expect(id).toBeNull()
+  });
+
+  it('setOnboardingState and getOnboardingState service', () => {
+    service.setOnboardingState(OnboardingState.COMPLETE);
+    const state = 'COMPLETE';
+    const response = service.getOnboardingState()
+    expect(state).toEqual(response);
   });
 
   it('createWorkspace service', () => {
@@ -42,6 +44,7 @@ describe('WorkspaceService', () => {
       name: "Test Sample Statement - GBP",
       user: [1],
       fyle_org_id: "orunxXsIajSE",
+      fyle_currency:"ING",
       qbo_realm_id: "",
       cluster_domain: "",
       onboarding_state: OnboardingState.CONNECTION,
@@ -54,22 +57,49 @@ describe('WorkspaceService', () => {
     service.createWorkspace().subscribe((value) => {
       expect(value).toEqual(responseKeys);
     })
+    const req = httpMock.expectOne({
+      method: 'POST',
+      url: `http://localhost:8002/api/workspaces/`,
+    });
+  req.flush(responseKeys);
   });
 
   it('getWorkspace details service', () => {
-    expect(service.getWorkspaces('1')).toBeTruthy();
+    const responseKeys:Workspace[] = [{
+      id: 1,
+      name: "Test Sample Statement - GBP",
+      user: [1],
+      fyle_org_id: "orunxXsIajSE",
+      fyle_currency:"ING",
+      qbo_realm_id: "",
+      cluster_domain: "",
+      onboarding_state: OnboardingState.CONNECTION,
+      last_synced_at: new Date("2022-04-13T10:29:18.796760Z") ,
+      source_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
+      destination_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
+      created_at: new Date("2022-04-13T10:29:18.796760Z"),
+      updated_at: new Date("2022-04-13T10:29:18.796760Z"),
+    }];
+    service.getWorkspaces('1').subscribe(value => {
+      expect(value).toEqual(responseKeys);
+    })
+    const req = httpMock.expectOne({
+      method: 'GET',
+      url: `http://localhost:8002/api/workspaces/?org_id=1`,
+    });
+  req.flush(responseKeys);
   });
 
   it('WorkspacegeneralSetting service', () => {
-    const response = {
+    const response:WorkspaceGeneralSetting = {
       auto_create_destination_entity: true,
       auto_map_employees: null,
       category_sync_version: "v1",
       change_accounting_period: true,
       charts_of_accounts: ['Expense'],
       corporate_credit_card_expenses_object: null,
-      created_at: "2022-04-27T11:07:17.694377Z",
-      employee_field_mapping: "",
+      created_at: new Date("2022-04-27T11:07:17.694377Z"),
+      employee_field_mapping: EmployeeFieldMapping.EMPLOYEE,
       id: 1,
       import_categories: false,
       import_projects: false,
@@ -83,14 +113,17 @@ describe('WorkspaceService', () => {
       skip_cards_mapping: false,
       sync_fyle_to_qbo_payments: false,
       sync_qbo_to_fyle_payments: false,
-      updated_at: "2022-04-28T12:48:39.150177Z",
+      updated_at: new Date("2022-04-28T12:48:39.150177Z"),
       workspace: 1
     };
-    const responseKeys = Object.keys(response).sort();
     service.getWorkspaceGeneralSettings().subscribe((value) => {
-      const keys = Object.keys(value).sort();
-      expect(keys).toEqual(responseKeys);
+      expect(value).toEqual(response);
     });
+    const req = httpMock.expectOne({
+      method: 'GET',
+      url: `http://localhost:8002/api/workspaces/1/settings/general/`,
+    });
+  req.flush(response);
   });
 
   it('syncFyleDimensions service', () => {

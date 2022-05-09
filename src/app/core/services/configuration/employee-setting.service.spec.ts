@@ -1,29 +1,22 @@
-import { TestBed } from '@angular/core/testing';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
+import { getTestBed, TestBed } from '@angular/core/testing';
 import { EmployeeSettingService } from './employee-setting.service';
-import { EmployeeSettingPost } from '../../models/configuration/employee-setting.model';
+import { EmployeeSettingGet, EmployeeSettingPost } from '../../models/configuration/employee-setting.model';
 import { AutoMapEmployee, EmployeeFieldMapping } from '../../models/enum/enum.model';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('EmployeeSettingService', () => {
   let service: EmployeeSettingService;
+  let injector: TestBed;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
-      providers: [{
-        provide: JWT_OPTIONS,
-        useValue: JWT_OPTIONS
-      },
-        JwtHelperService,
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: JwtInterceptor,
-        multi: true
-      }]
+      imports: [HttpClientTestingModule],
+      providers: [EmployeeSettingService]
     });
-    service = TestBed.inject(EmployeeSettingService);
+    injector = getTestBed();
+    service = injector.inject(EmployeeSettingService);
+    httpMock = injector.inject(HttpTestingController);
   });
 
   it('should be created', () => {
@@ -31,19 +24,18 @@ describe('EmployeeSettingService', () => {
   });
 
   it('getEmployeeSettings service check', () => {
-    expect(service.getEmployeeSettings()).toBeTruthy();
-  })
-
-  it('getEmployeeSettings service check', () => {
-    const responseKeys = ['workspace_general_settings', 'workspace_id'].sort();
-    let keys: string[] = [];
+    const response: EmployeeSettingGet = {
+      workspace_general_settings: { employee_field_mapping: EmployeeFieldMapping.EMPLOYEE, auto_map_employees: null },
+      workspace_id: 1
+    }
     service.getEmployeeSettings().subscribe((value) => {
-      for (let key of Object.keys(value)) {
-        keys.push(key);
-      }
-      keys = keys.sort();
-      expect(keys).toEqual(responseKeys);
+      expect(value).toEqual(response);
     })
+    const req = httpMock.expectOne({
+      method: 'GET',
+      url: `http://localhost:8002/api/v2/workspaces/1/map_employees/`,
+    });
+    req.flush(response);
   })
 
   it('postEmployeeSettings service check', () => {
@@ -53,6 +45,17 @@ describe('EmployeeSettingService', () => {
         auto_map_employees: AutoMapEmployee.EMPLOYEE_CODE
       }
     };
-    expect(service.postEmployeeSettings(employeeSettingPayload)).toBeTruthy();
+    const response: EmployeeSettingGet = {
+      workspace_general_settings: { employee_field_mapping: EmployeeFieldMapping.EMPLOYEE, auto_map_employees: AutoMapEmployee.EMPLOYEE_CODE },
+      workspace_id: 1
+    }
+    service.postEmployeeSettings(employeeSettingPayload).subscribe(value =>{
+      expect(value).toEqual(response);
+    })
+    const req = httpMock.expectOne({
+      method: 'PUT',
+      url: `http://localhost:8002/api/v2/workspaces/1/map_employees/`,
+    });
+    req.flush(response);
   })
 });

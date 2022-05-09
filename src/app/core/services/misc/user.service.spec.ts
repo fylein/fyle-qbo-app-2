@@ -4,6 +4,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
 import { MinimalUser } from '../../models/db/user.model';
 import { UserService } from './user.service';
+import { environment } from 'environment.localhost';
 
 describe('UserService', () => {
   let service: UserService;
@@ -24,10 +25,7 @@ describe('UserService', () => {
     });
     service = TestBed.inject(UserService);
   });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+  const realuser = localStorage.getItem('user')
 
   it('getUserdetails service', () => {
     const response:MinimalUser = {
@@ -40,8 +38,8 @@ describe('UserService', () => {
       user_id: "ust5Ga9HC3qc",
     };
     const actualResponse:MinimalUser = service.getUserProfile();
-    actualResponse['access_token']='fyle';
-    actualResponse['refresh_token']='fyle';
+    actualResponse.access_token="fyle";
+    actualResponse.refresh_token='fyle';
     expect(actualResponse).toEqual(response || null);
   })
 
@@ -58,15 +56,16 @@ describe('UserService', () => {
     service.storeUserProfile(user);
     const response = localStorage.getItem('user');
     expect(response).toBeDefined();
+    localStorage.setItem('user',environment.tests.user)
   })
 
   it('storeFyleOrgsCount service', (done) => {
     service.storeFyleOrgsCount();
     const response = localStorage.getItem('orgsCount');
-    if(response == null){
+    if(response == 'null'){
       expect(response).toBeNull()
     }
-    expect(response).toBeGreaterThanOrEqual(1)
+    expect(response).toBe('1')
     done();
   })
 });

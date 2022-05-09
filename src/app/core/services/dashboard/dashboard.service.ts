@@ -27,7 +27,7 @@ export class DashboardService {
     return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/exportable_expense_groups/`, {});
   }
 
-  getExportErrors(): Observable<Error[]> {
+  getExportErrors(){
     return this.apiService.get(`/v2/workspaces/${this.workspaceId}/errors/`, {is_resolved: false});
   }
 

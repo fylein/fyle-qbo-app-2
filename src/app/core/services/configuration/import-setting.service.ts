@@ -19,14 +19,14 @@ export class ImportSettingService {
   @Cacheable({
     cacheBusterObserver: importSettingsCache$
   })
-  getImportSettings(): Observable<ImportSettingGet> {
+  getImportSettings() {
     return this.apiService.get(`/v2/workspaces/${this.workspaceService.getWorkspaceId()}/import_settings/`, {});
   }
 
   @CacheBuster({
     cacheBusterNotifier: importSettingsCache$
   })
-  postImportSettings(exportSettingsPayload: ImportSettingPost): Observable<ImportSettingGet> {
+  postImportSettings(exportSettingsPayload: ImportSettingPost){
     return this.apiService.put(`/v2/workspaces/${this.workspaceService.getWorkspaceId()}/import_settings/`, exportSettingsPayload);
   }
 }

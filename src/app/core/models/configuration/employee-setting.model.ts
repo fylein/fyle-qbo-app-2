@@ -14,7 +14,8 @@ export type EmployeeSettingWorkspaceGeneralSetting = {
 }
 
 export type EmployeeSettingGet = {
-  workspace_general_settings: WorkspaceGeneralSetting;
+  workspace_general_settings: EmployeeSettingWorkspaceGeneralSetting,
+  workspace_id: number
 }
 
 export interface EmployeeSettingFormOption extends SelectFormOption {
