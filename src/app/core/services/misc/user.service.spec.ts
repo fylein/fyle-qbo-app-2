@@ -1,27 +1,16 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
 import { MinimalUser } from '../../models/db/user.model';
 import { UserService } from './user.service';
 import { environment } from 'environment.localhost';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('UserService', () => {
   let service: UserService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
-      providers: [{
-        provide: JWT_OPTIONS,
-        useValue: JWT_OPTIONS
-      },
-        JwtHelperService,
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: JwtInterceptor,
-        multi: true
-      }]
+      imports: [HttpClientTestingModule],
+      providers: [UserService]
     });
     service = TestBed.inject(UserService);
   });

@@ -3,12 +3,14 @@ import { EmployeeSettingService } from './employee-setting.service';
 import { EmployeeSettingGet, EmployeeSettingPost } from '../../models/configuration/employee-setting.model';
 import { AutoMapEmployee, EmployeeFieldMapping } from '../../models/enum/enum.model';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { environment } from 'src/environments/environment';
 
 describe('EmployeeSettingService', () => {
   let service: EmployeeSettingService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-
+  const API_BASE_URL = environment.api_url
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -33,7 +35,7 @@ describe('EmployeeSettingService', () => {
     })
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `http://localhost:8002/api/v2/workspaces/1/map_employees/`,
+      url: `${API_BASE_URL}/v2/workspaces/1/map_employees/`,
     });
     req.flush(response);
   })
@@ -54,7 +56,7 @@ describe('EmployeeSettingService', () => {
     })
     const req = httpMock.expectOne({
       method: 'PUT',
-      url: `http://localhost:8002/api/v2/workspaces/1/map_employees/`,
+      url: `${API_BASE_URL}/v2/workspaces/1/map_employees/`,
     });
     req.flush(response);
   })

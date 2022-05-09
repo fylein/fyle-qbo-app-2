@@ -3,12 +3,14 @@ import { ImportSettingService } from './import-setting.service';
 import { ImportSettingPost, ImportSettingModel } from '../../models/configuration/import-setting.model';
 import { MappingSourceField, MappingDestinationField } from '../../models/enum/enum.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import { environment } from 'src/environments/environment';
 
 describe('ImportSettingService', () => {
   let service: ImportSettingService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-
+  const API_BASE_URL = environment.api_url
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -39,7 +41,7 @@ describe('ImportSettingService', () => {
     })
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `http://localhost:8002/api/v2/workspaces/1/import_settings/`,
+      url: `${API_BASE_URL}/v2/workspaces/1/import_settings/`,
     });
     req.flush(response);
   })
@@ -83,7 +85,7 @@ describe('ImportSettingService', () => {
     })
     const req = httpMock.expectOne({
       method: 'PUT',
-      url: `http://localhost:8002/api/v2/workspaces/1/import_settings/`,
+      url: `${API_BASE_URL}/v2/workspaces/1/import_settings/`,
     });
     req.flush(response);
   })

@@ -1,17 +1,15 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { getTestBed, TestBed } from '@angular/core/testing';
-import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
-import { JwtInterceptor } from '../../interceptors/jwt.interceptor';
+import { environment } from 'src/environments/environment';
 import { ExportableExpenseGroup } from '../../models/db/expense-group.model';
-
 import { DashboardService } from './dashboard.service';
 
 describe('DashboardService', () => {
   let service: DashboardService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-
+  const API_BASE_URL = environment.api_url
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -34,7 +32,7 @@ describe('DashboardService', () => {
     })
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `http://localhost:8002/api/workspaces/1/fyle/exportable_expense_groups/`,
+      url: `${API_BASE_URL}/workspaces/1/fyle/exportable_expense_groups/`,
     });
   req.flush(response);
   })
@@ -45,7 +43,7 @@ describe('DashboardService', () => {
     })
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `http://localhost:8002/api/v2/workspaces/1/errors/?is_resolved=false`,
+      url: `${API_BASE_URL}/v2/workspaces/1/errors/?is_resolved=false`,
     });
     req.flush([]);
   })
@@ -56,7 +54,7 @@ describe('DashboardService', () => {
     })
     const req = httpMock.expectOne({
       method: 'POST',
-      url: `http://localhost:8002/api/workspaces/1/fyle/expense_groups/sync/`,
+      url: `${API_BASE_URL}/workspaces/1/fyle/expense_groups/sync/`,
     });
     req.flush({});
   })
@@ -67,7 +65,7 @@ describe('DashboardService', () => {
     })
     const req = httpMock.expectOne({
       method: 'POST',
-      url: `http://localhost:8002/api/workspaces/1/exports/trigger/`,
+      url: `${API_BASE_URL}/workspaces/1/exports/trigger/`,
     });
     req.flush({});
   })

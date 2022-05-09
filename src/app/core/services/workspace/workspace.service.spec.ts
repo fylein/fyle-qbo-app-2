@@ -4,12 +4,14 @@ import { Workspace } from '../../models/db/workspace.model';
 import { EmployeeFieldMapping, OnboardingState } from '../../models/enum/enum.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { WorkspaceGeneralSetting } from '../../models/db/workspace-general-setting.model';
+import { environment } from 'src/environments/environment';
 
 describe('WorkspaceService', () => {
   let service: WorkspaceService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-
+  const API_BASE_URL = environment.api_url
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -59,7 +61,7 @@ describe('WorkspaceService', () => {
     })
     const req = httpMock.expectOne({
       method: 'POST',
-      url: `http://localhost:8002/api/workspaces/`,
+      url: `${API_BASE_URL}/workspaces/`,
     });
   req.flush(responseKeys);
   });
@@ -85,7 +87,7 @@ describe('WorkspaceService', () => {
     })
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `http://localhost:8002/api/workspaces/?org_id=1`,
+      url: `${API_BASE_URL}/workspaces/?org_id=1`,
     });
   req.flush(responseKeys);
   });
@@ -121,7 +123,7 @@ describe('WorkspaceService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `http://localhost:8002/api/workspaces/1/settings/general/`,
+      url: `${API_BASE_URL}/workspaces/1/settings/general/`,
     });
   req.flush(response);
   });

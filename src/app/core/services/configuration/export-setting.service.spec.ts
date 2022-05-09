@@ -3,12 +3,14 @@ import { ExportSettingService } from './export-setting.service';
 import { ExportSettingPost } from '../../models/configuration/export-setting.model';
 import { ExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject } from '../../models/enum/enum.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import { environment } from 'src/environments/environment';
 
 describe('ExportSettingService', () => {
   let service: ExportSettingService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-
+  const API_BASE_URL = environment.api_url
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -52,7 +54,7 @@ describe('ExportSettingService', () => {
     })
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `http://localhost:8002/api/v2/workspaces/1/export_settings/`,
+      url: `${API_BASE_URL}/v2/workspaces/1/export_settings/`,
     });
     req.flush(response);
 
@@ -107,7 +109,7 @@ describe('ExportSettingService', () => {
     })
     const req = httpMock.expectOne({
       method: 'PUT',
-      url: `http://localhost:8002/api/v2/workspaces/1/export_settings/`,
+      url: `${API_BASE_URL}/v2/workspaces/1/export_settings/`,
     });
     req.flush(response);
 

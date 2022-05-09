@@ -1,6 +1,3 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
 import { getTestBed, TestBed } from '@angular/core/testing';
 
 import { ExportLogService } from './export-log.service';
@@ -8,12 +5,14 @@ import { ExpenseGroupSetting } from '../../models/db/expense-group-setting.model
 import { ExpenseGroupResponse } from '../../models/db/expense-group.model';
 import { ExpenseState, ExportDateType } from '../../models/enum/enum.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import { environment } from 'src/environments/environment';
 
 describe('ExportLogService', () => {
   let service: ExportLogService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-
+  const API_BASE_URL = environment.api_url
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -43,7 +42,7 @@ describe('ExportLogService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `http://localhost:8002/api/workspaces/1/fyle/expense_group_settings/`,
+      url: `${API_BASE_URL}/workspaces/1/fyle/expense_group_settings/`,
     });
       req.flush(response);
   });
@@ -60,7 +59,7 @@ describe('ExportLogService', () => {
     })
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `http://localhost:8002/api/workspaces/1/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE`,
+      url: `${API_BASE_URL}/workspaces/1/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE`,
     });
       req.flush(response);
   });

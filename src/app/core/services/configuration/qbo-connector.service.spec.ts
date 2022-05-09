@@ -1,14 +1,16 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
 import { QboConnectorService } from './qbo-connector.service';
-import { QboConnector, QboConnectorPost, QBOCredentials } from '../../models/configuration/qbo-connector.model';
+import { QBOCredentials } from '../../models/configuration/qbo-connector.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { QBOPreference } from '../../models/misc/qbo-preference.model';
+import { environment } from 'src/environments/environment';
 
 describe('QboConnectorService', () => {
   let service: QboConnectorService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-
+  const API_BASE_URL = environment.api_url
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -31,16 +33,17 @@ describe('QboConnectorService', () => {
       id: 219,
       is_expired: false,
       realm_id: "123146326950399",
-      refresh_token: "AB11660569175Swsv8kPzw01M6MAAndaYBrjQCv8fAEIBn82vI",
+      refresh_token: "AB",
       updated_at: new Date("2022-05-06T13:13:25.893837Z"),
       workspace: 1,
     }
     service.getQBOCredentials().subscribe((value) => {
+      value.refresh_token="AB";
       expect(value).toEqual(response);
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `http://localhost:8002/api/workspaces/1/credentials/qbo/`,
+      url: `${API_BASE_URL}/workspaces/1/credentials/qbo/`,
     });
     req.flush(response);
   })
@@ -174,7 +177,7 @@ describe('QboConnectorService', () => {
       })
       const req = httpMock.expectOne({
         method: 'GET',
-        url: `http://localhost:8002/api/workspaces/1/qbo/preferences/`,
+        url: `${API_BASE_URL}/workspaces/1/qbo/preferences/`,
       });
       req.flush(response);
     });

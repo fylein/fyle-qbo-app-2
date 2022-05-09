@@ -2,12 +2,14 @@ import { getTestBed, TestBed } from '@angular/core/testing';
 import { AdvancedSettingService } from './advanced-setting.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AdvancedSettingGet, AdvancedSettingPost } from '../../models/configuration/advanced-setting.model';
+import { environment } from 'src/environments/environment';
 
 describe('AdvancedSettingService', () => {
   let service: AdvancedSettingService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-
+  const API_BASE_URL = environment.api_url
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -47,7 +49,7 @@ describe('AdvancedSettingService', () => {
     });
     const req = httpMock.expectOne({
 	      method: 'GET',
-	      url: `http://localhost:8002/api/v2/workspaces/1/advanced_configurations/`,
+	      url: `${API_BASE_URL}/v2/workspaces/1/advanced_configurations/`,
 	    });
     req.flush(advancedSettingResponse);
   })
@@ -94,7 +96,7 @@ describe('AdvancedSettingService', () => {
     })
     const req = httpMock.expectOne({
       method: 'PUT',
-      url: `http://localhost:8002/api/v2/workspaces/1/advanced_configurations/`,
+      url: `${API_BASE_URL}/v2/workspaces/1/advanced_configurations/`,
     });
   req.flush(advancedSettingResponse);
   })
