@@ -7,6 +7,7 @@ import { StorageService } from '../core/services/core/storage.service';
 import { WindowService } from '../core/services/core/window.service';
 import { UserService } from '../core/services/misc/user.service';
 import { WorkspaceService } from '../core/services/workspace/workspace.service';
+import * as Sentry from '@sentry/angular';
 
 @Component({
   selector: 'app-integration',
@@ -62,6 +63,10 @@ export class IntegrationComponent implements OnInit {
     this.user = this.userService.getUserProfile();
     this.getOrCreateWorkspace().then((workspace: Workspace) => {
       this.workspace = workspace;
+      Sentry.setUser({
+        email: this.user.email,
+        workspaceId: workspace.id
+      });
       this.storageService.set('currency', workspace.fyle_currency);
       this.storageService.set('onboardingState', workspace.onboarding_state);
       this.workspaceService.syncFyleDimensions().subscribe();

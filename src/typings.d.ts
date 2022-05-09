@@ -13,6 +13,7 @@ interface Env {
   QBO_APP_URL: string;
   HOTJAR_ID: string;
   SENTRY_DSN: string;
+  SENTRY_ENV: string;
   RELEASE: string;
   FYLE_APP_URL: string;
 }

@@ -24,4 +24,5 @@ services:
       QBO_AUTHORIZE_URL: https://appcenter.intuit.com/connect/oauth2
       QBO_APP_URL: 
       SENTRY_DSN: ''
+      SENTRY_ENV: ''
       RELEASE: 'local'
