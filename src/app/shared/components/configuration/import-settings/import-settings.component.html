@@ -1,5 +1,5 @@
 <div class="import-settings">
-  <div fxLayout="row" fxLayoutAlign="center center" class="configuration--section">
+  <div fxLayout="row" fxLayoutAlign="center center" class="configuration--section" [ngClass]="[isOnboarding ? 'configuration--onboarding-section' : '', !isOnboarding ? 'configuration--post-onboarding-section': '']">
     <app-loader [ngClass]="{'loader-main': !isOnboarding}" [phase]="'pre_onboarding'" *ngIf="isLoading"></app-loader>
     <div *ngIf="!isLoading" class="configuration--contents">
       <app-configuration-step-header-section [showSyncButton]="isOnboarding"></app-configuration-step-header-section>
@@ -32,7 +32,7 @@
           </div>
         </div>
 
-        <div formArrayName="expenseFields" class="import-settings--field-toggle-section">
+        <div formArrayName="expenseFields" class="import-settings--field-toggle-section paragraph">
           <div *ngFor="let expenseField of expenseFields.controls; let i = index" [formGroupName]="i">
             <div fxLayout="row" fxLayoutAlign="space-between center">
               <div class="import-settings--field-label-section import-settings--import-area">
@@ -52,7 +52,7 @@
                   formControlName="import_to_fyle"></mat-slide-toggle>
               </div>
             </div>
-            <div *ngIf="expenseField.value.import_to_fyle" fxLayout="row" fxLayoutAlign="space-between center" class="import-settings--mapping-section">
+            <div *ngIf="expenseField.value.import_to_fyle" fxLayout="row" fxLayoutAlign="space-between center">
               <div fxLayout="row">
                 <div fxLayout="row" class="import-settings--mapping-qbo-fyle-section">
                   <div class="import-settings--qbo-field">
@@ -72,7 +72,7 @@
                       <div class="mat-select-arrow-closed"></div>
                     </mat-form-field>
                     <div class="import-settings--preview-text sub-text-color">
-                      <h6>Click <span class="import-settings--preview-btn pointer" (click)="showFyleExpenseFormPreview()">here</span> to Preivew on how it looks on Expense Form</h6>
+                      <p>Click <span class="import-settings--preview-btn pointer" (click)="showFyleExpenseFormPreview()">here</span> to preview on how it looks on Expense Form</p>
                     </div>
                   </div>
                 </div>
@@ -135,13 +135,13 @@
           <app-configuration-toggle-field
             [form]="importSettingsForm"
             [label]="'Import QBO Vendors'"
-            [subLabel]="'QBO vendors will be imported as merchants in Fyle that can be selected while fyling expenses.'"
+            [subLabel]="'QBO vendors will be imported as merchants in Fyle that can be selected while submitting expenses.'"
             [formControllerName]="'importVendorsAsMerchants'">
           </app-configuration-toggle-field>
         </div>
       </form>
 
-      <app-configuration-step-footer-section [ctaText]="isOnboarding ? 'Save & Continue' : 'Save'" [showBackButton]="isOnboarding" [isButtonDisabled]="!importSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
+      <app-configuration-step-footer-section [ctaText]="!saveInProgress ? (isOnboarding ? ConfigurationCtaText.SAVE_AND_CONTINUE : ConfigurationCtaText.SAVE) : ConfigurationCtaText.SAVING" [showBackButton]="isOnboarding" [isButtonDisabled]="!importSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
     </div>
   </div>
   <app-onboarding-footer *ngIf="isOnboarding && !isLoading"></app-onboarding-footer>

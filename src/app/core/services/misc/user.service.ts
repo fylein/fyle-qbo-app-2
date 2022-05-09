@@ -18,7 +18,6 @@ export class UserService {
   }
 
   storeFyleOrgsCount(): void {
-    // TODO: fix the return type to number (i.e.) len(orgs) - returning all orgs with details is useless
     const currentOrgsCount = this.storageService.get('orgsCount');
     if (currentOrgsCount && currentOrgsCount > 1) {
       // do nothing - we already have the orgs count to show switch org button

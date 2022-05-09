@@ -5,6 +5,10 @@
     padding: 12px 11px 12px 10px;
   }
 
+  &--search-section {
+    width: 440px;
+  }
+
   &--search-area {
     background: #FFFFFF;
     border: 1px solid #DDD;
@@ -15,12 +19,12 @@
   }
 
   &--clear-icon {
-    padding-top: 9px;
-    padding-right: 8px;
+    padding-top: 13px;
+    padding-right: 12px;
   }
 
   &--clear-icon-smaller-area {
-    padding-top: 7px;
+    padding-top: 11px;
   }
 
   &--smaller-search-area {

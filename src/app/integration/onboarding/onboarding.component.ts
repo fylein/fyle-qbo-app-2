@@ -19,9 +19,7 @@ export class OnboardingComponent implements OnInit {
     this.windowReference = this.windowService.nativeWindow;
   }
 
-  redirectToOnboarding(workspaceId: number): void {
-    // TODO: handle all redirects based on settings here
-    // Added landing by default for now
+  redirectToOnboarding(): void {
     const pathName = this.windowReference.location.pathname;
     if (pathName.split('/onboarding')[1] === '') {
       this.router.navigate([`/workspaces/onboarding/landing`]);
@@ -30,7 +28,7 @@ export class OnboardingComponent implements OnInit {
 
   ngOnInit(): void {
     const workspaceId = this.route.snapshot.params.workspace_id;
-    this.redirectToOnboarding(workspaceId);
+    this.redirectToOnboarding();
   }
 
 }

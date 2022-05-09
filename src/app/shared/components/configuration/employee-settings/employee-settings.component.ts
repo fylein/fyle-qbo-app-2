@@ -4,9 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { EmployeeSettingFormOption, EmployeeSettingGet, EmployeeSettingModel } from 'src/app/core/models/configuration/employee-setting.model';
+import { EmployeeSettingFormOption, EmployeeSettingModel } from 'src/app/core/models/configuration/employee-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { AutoMapEmployee, EmployeeFieldMapping, OnboardingState, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { AutoMapEmployee, ConfigurationCtaText, EmployeeFieldMapping, OnboardingState, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { EmployeeSettingService } from 'src/app/core/services/configuration/employee-setting.service';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
@@ -32,11 +32,11 @@ export class EmployeeSettingsComponent implements OnInit {
   employeeMappingOptions: EmployeeSettingFormOption[] = [
     {
       value: EmployeeFieldMapping.EMPLOYEE,
-      label: 'Employee'
+      label: 'Employees'
     },
     {
       value: EmployeeFieldMapping.VENDOR,
-      label: 'Vendor'
+      label: 'Vendors'
     }
   ];
   autoMapEmployeeOptions: EmployeeSettingFormOption[] = [
@@ -59,6 +59,7 @@ export class EmployeeSettingsComponent implements OnInit {
   ];
   windowReference: Window;
   @Output() isLoaded = new EventEmitter<boolean>();
+  ConfigurationCtaText = ConfigurationCtaText;
 
   constructor(
     private dialog: MatDialog,
@@ -84,12 +85,10 @@ export class EmployeeSettingsComponent implements OnInit {
 
     const data: ConfirmationDialog = {
       title: 'Change in Configuration',
-      contents: `You are changing your employee representation from <b>${existingEmployeeFieldMapping}</b> to 
-        <b>${updatedEmployeeFieldMapping}</b>
-        <br>
-        This might effect other configurations
-        <br><br>
-        Do you wish to continue?`,
+      contents: `You are changing your employee representation from <b>${existingEmployeeFieldMapping}</b> to <b>${updatedEmployeeFieldMapping}</b>
+        <br><br>This will impact the configuration in the <b>Export settings</b> on How the export of expenses
+        can be exported from Fyle to Quickbooks Online.<br><br>
+        Would you like to continue? If yes, you will be redirected to <b>Export settings</b> to revisit the configuration and complete it.`,
       primaryCtaText: 'Continue',
     };
 

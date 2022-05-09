@@ -1,21 +1,20 @@
 <div *ngIf="form" [formGroup]="form" [ngClass]="{'search-select': showBackgroundColor}">
-  <div class="search-select--search-input">
+  <div class="search-select--search-input" [ngClass]="{'search-select--search-section': !showBackgroundColor}">
     <div fxLayout="row" class="search-select--search-area" [ngClass]="{'search-select--smaller-search-area': !showBackgroundColor}">
       <img class="search-select--search-icon" src="assets/images/svgs/actions/search.svg">
       <input class="search-select--input-field"
         [placeholder]="placeholder" class="export-settings--search" formControlName="searchOption" cdkFocusInitial type="text" matInput>
-        <img width="20px" height="20px" src="assets/images/svgs/actions/clear.svg" class="search-select--clear-icon pointer" [ngClass]="{'search-select--clear-icon-smaller-area': !showBackgroundColor}" (click)="clearText()">
+        <img *ngIf="form.value.searchOption" width="12px" height="12px" src="assets/images/svgs/actions/clear-search.svg" class="search-select--clear-icon pointer" [ngClass]="{'search-select--clear-icon-smaller-area': !showBackgroundColor}" (click)="clearText()">
     </div>
   </div>
 </div>
 
 <div *ngIf="!form" [ngClass]="{'search-select': showBackgroundColor}">
-  <div class="search-select--search-input">
+  <div class="search-select--search-input" [ngClass]="{'search-select--search-section': !showBackgroundColor}">
     <div fxLayout="row" class="search-select--search-area" [ngClass]="{'search-select--smaller-search-area': !showBackgroundColor}">
       <img class="search-select--search-icon" src="assets/images/svgs/actions/search.svg">
       <input class="search-select--input-field"
         [placeholder]="placeholder" class="export-settings--search" cdkFocusInitial type="text" matInput>
-        <img width="20px" height="20px" src="assets/images/svgs/actions/clear.svg" class="search-select--clear-icon pointer" [ngClass]="{'search-select--clear-icon-smaller-area': !showBackgroundColor}" (click)="clearText()">
     </div>
   </div>
 </div>

@@ -53,11 +53,11 @@ export class OnboardingHeaderComponent implements OnInit {
     if (currentPageUrl.indexOf('dashboard') > -1) {
       return 'Dashboard';
     } else if (currentPageUrl.indexOf('export_log') > -1) {
-      return 'Export Logs';
+      return 'Export Log';
     } else if (currentPageUrl.indexOf('mapping') > -1) {
       return currentPageUrl.split('/')[4] + ' mapping';
     } else if (currentPageUrl.indexOf('/configuration/employee_settings') > -1) {
-      return 'Employee Settings';
+      return 'Map Employees';
     } else if (currentPageUrl.indexOf('/configuration/export_settings') > -1) {
       return 'Export Settings';
     } else if (currentPageUrl.indexOf('/configuration/import_settings') > -1) {

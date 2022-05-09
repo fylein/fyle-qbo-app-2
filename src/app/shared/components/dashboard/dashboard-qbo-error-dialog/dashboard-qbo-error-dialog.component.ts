@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 export class DashboardQboErrorDialogComponent implements OnInit {
 
   expenses: MatTableDataSource<ExpenseList> = new MatTableDataSource<ExpenseList>([]);
-  displayedColumns: string[] = ['expenseID', 'name', 'fundSource', 'account', 'customer', 'class'];
+  displayedColumns: string[] = ['expenseID', 'name', 'fundSource'];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Error,
@@ -29,10 +29,7 @@ export class DashboardQboErrorDialogComponent implements OnInit {
         fyleUrl: `${environment.fyle_app_url}/app/admin/#/view_expense/${expense.expense_id}`,
         expenseID: expense.expense_number,
         name: [this.data.expense_group.employee_name, this.data.expense_group.description.employee_email],
-        fundSource: this.data.expense_group.fund_source === 'CCC' ? 'Credit Card' : 'Reimbursable',
-        account: 'QBO Account',
-        customer: 'QBO Customer',
-        class: 'QBO Class'
+        fundSource: this.data.expense_group.fund_source === 'CCC' ? 'Credit Card' : 'Reimbursable'
       });
     });
 

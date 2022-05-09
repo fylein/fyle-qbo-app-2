@@ -18,17 +18,35 @@
 
   &--memo-preview-text {
     font-weight: 500;
-    padding-bottom: 12px;
   }
 
   &--memo-preview-area {
     padding: 12px 12px 0px 0px;
-    background: #F5F5F5;
-    border-radius: 4px;
   }
 
   &--memo-preview {
     padding: 8px 0px 8px 8px;
+    background: #F5F5F5;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+  }
+
+  &--memo-preview-select {
+    ::ng-deep .mat-select-value {
+      width: 96.7%;
+    }
+
+    ::ng-deep .mat-select-panel-wrap {
+      @extend .mat-select-panel-wrap;
+      // TODO: check this
+      margin-left: 7% !important;
+    }
+
+    ::ng-deep .cdk-overlay-pane {
+      // TODO: check this
+      margin-left: 1.5% !important;
+    }
   }
 }
 

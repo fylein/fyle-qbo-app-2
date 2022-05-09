@@ -56,12 +56,20 @@ table {
 
 .bold { font-weight: bold; }
 
+.paragraph {
+  line-height: 1.5;
+}
+
 .align-center {
   text-align: center;
 }
 
 .sub-text-color {
   color: #5A5D72;
+}
+
+.default-cursor {
+  cursor: default;
 }
 
 .pointer {
@@ -75,6 +83,10 @@ table {
 .btn-enabled {
   background: linear-gradient(162.38deg, #FF3366 3.01%, #FE5196 111.5%);
   @extend .pointer;
+
+  &:hover {
+    @extend .btn-shadow;
+  }
 }
 
 .btn-disabled {
@@ -94,6 +106,11 @@ table {
 .btn-icon {
   padding-left: 10px;
   padding-right: 26px;
+}
+
+.btn-loader {
+  padding-left: 10px;
+  padding-right: 20px;
 }
 
 .cursor-disabled {
@@ -133,6 +150,19 @@ table {
   margin-right: 300px !important;
 }
 
+.export-log-tooltip {
+  margin-top: -20px !important;
+  margin-right: 150px !important;
+  @media only screen and (max-width: 1440px) {
+    margin-right: 80px !important;
+  }
+}
+
+.export-log-child-tooltip {
+  @extend .export-log-tooltip;
+  margin-right: 200px !important;
+}
+
 .mat-select-arrow-closed {
   position: absolute;
   right: 16px;
@@ -140,6 +170,10 @@ table {
   width: 16px;
   height: 10px;
   background-image: url("assets/images/svgs/actions/arrow-mark-down.svg");
+}
+
+.mat-spinner circle {
+  stroke: white;
 }
 
 .mat-form-field-outline-start {
@@ -186,6 +220,16 @@ table {
   padding: 0 !important;
 }
 
+.mat-tooltip {
+  background: #2C304E;
+  border-radius: 2px;
+  color: #FFFFFF;
+  min-width: fit-content;
+  font-size: 12px;
+  @extend .single-line-text;
+}
+
+
 .mat-select-panel {
   margin-top: 50px;
 }
@@ -195,6 +239,10 @@ table {
   height: 32px !important;
   font-size: 14px !important;
   color: #414562;
+}
+
+.mat-select-panel-wrap {
+  flex-basis: 96% !important;
 }
 
 .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
@@ -227,13 +275,43 @@ table {
   top: 6px;
 }
 
+.mat-slide-toggle-ripple {
+  display: none;
+}
+
 .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
   background-color: #FF3366;
   border-radius: 11px !important;
 }
 
+.mat-checkbox-frame {
+  border-radius: 3px !important;
+  border-width: 1.5px !important;
+  border-color: #000000 !important;
+}
+
+.mat-pseudo-checkbox {
+  border: 1px solid !important;
+  border-color: #000000 !important;
+  border-radius: 3px !important;
+}
+
 .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-  background: #000000;
+  background: #2C304E;
+}
+
+.mat-pseudo-checkbox-checked {
+  background: #2C304E;
+}
+
+.mat-pseudo-checkbox-checked::after {
+  width: 7px !important;
+  left: 2px !important;
+}
+
+.mat-checkbox-checkmark {
+  height: 12px;
+  top: 2px !important;
 }
 
 .mat-checkbox-checked.mat-accent.mat-checkbox-disabled .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
@@ -241,7 +319,7 @@ table {
 }
 
 .mat-primary .mat-pseudo-checkbox-checked {
-  background: #000000;
+  background: #2C304E;
 }
 
 .selected-value-check-mark {
@@ -252,10 +330,21 @@ table {
   top: 8px;
 }
 
+.btn-shadow {
+  box-shadow: 0px 4px 4px rgba(44, 48, 78, 0.1);
+}
+
 .configuration {
   &--section {
     padding-bottom: 100px;
+  }
+
+  &--onboarding-section {
     margin-top: -75px;
+  }
+
+  &--post-onboarding-section {
+    margin-top: -140px;
   }
 
   &--contents {
@@ -291,6 +380,10 @@ table {
     border-radius: 4px;
     width: 107px;
     height: 42px;
+
+    &:hover {
+      @extend .btn-shadow;
+    }
   }
 
   &--back-btn-text {

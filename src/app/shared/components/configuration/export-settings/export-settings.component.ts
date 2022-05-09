@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, OnboardingState, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { ConfigurationCtaText, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, OnboardingState, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { ExportSettingGet, ExportSettingFormOption, ExportSettingModel } from 'src/app/core/models/configuration/export-setting.model';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
@@ -46,7 +46,7 @@ export class ExportSettingsComponent implements OnInit {
   ];
   expenseGroupingFieldOptions: ExportSettingFormOption[] = [
     {
-      label: 'Expense Report',
+      label: 'Report',
       value: ExpenseGroupingFieldOption.CLAIM_NUMBER
     },
     {
@@ -101,6 +101,7 @@ export class ExportSettingsComponent implements OnInit {
   ];
   reimbursableExportTypes: ExportSettingFormOption[];
   @Output() isLoaded = new EventEmitter<boolean>();
+  ConfigurationCtaText = ConfigurationCtaText;
 
   constructor(
     private dialog: MatDialog,
@@ -114,6 +115,27 @@ export class ExportSettingsComponent implements OnInit {
     private workspaceService: WorkspaceService
   ) {
     this.windowReference = this.windowService.nativeWindow;
+  }
+
+  getExportType(exportType: ReimbursableExpensesObject | CorporateCreditCardExpensesObject): string {
+    const lowerCaseWord = exportType.toLowerCase();
+
+    return lowerCaseWord.charAt(0).toUpperCase() + lowerCaseWord.slice(1);
+  }
+
+  generateGroupingLabel(exportSource: 'reimbursable' | 'credit card'): string {
+    let exportType: ReimbursableExpensesObject | CorporateCreditCardExpensesObject;
+    if (exportSource === 'reimbursable') {
+      exportType = this.exportSettingsForm.value.reimbursableExportType;
+    } else {
+      exportType = this.exportSettingsForm.value.creditCardExportType;
+    }
+
+    if (exportType === ReimbursableExpensesObject.EXPENSE) {
+      return 'How should the expenses be grouped?';
+    } else {
+      return `How should the expense in ${this.getExportType(exportType)} be grouped?`;
+    }
   }
 
   getReimbursableExportTypes(employeeFieldMapping: EmployeeFieldMapping): ExportSettingFormOption[] {
@@ -339,10 +361,15 @@ export class ExportSettingsComponent implements OnInit {
 
   private createCreditCardExportGroupWatcher(): void {
     this.exportSettingsForm.controls.creditCardExportGroup.valueChanges.subscribe((creditCardExportGroup: ExpenseGroupingFieldOption) => {
-      if (creditCardExportGroup === ExpenseGroupingFieldOption.EXPENSE_ID) {
-        this.cccExpenseGroupingDateOptions.pop();
+      if (creditCardExportGroup && creditCardExportGroup === ExpenseGroupingFieldOption.EXPENSE_ID) {
+        this.cccExpenseGroupingDateOptions = this.cccExpenseGroupingDateOptions.filter((option) => {
+          return option.value !== ExportDateType.LAST_SPENT_AT;
+        });
       } else {
-        if (this.cccExpenseGroupingDateOptions.length !== 5) {
+        const lastSpentAt = this.cccExpenseGroupingDateOptions.filter((option) => {
+          return option.value === ExportDateType.LAST_SPENT_AT;
+        });
+        if (!lastSpentAt.length) {
           this.cccExpenseGroupingDateOptions.push({
             label: 'Last Spend Date',
             value: ExportDateType.LAST_SPENT_AT
@@ -373,7 +400,7 @@ export class ExportSettingsComponent implements OnInit {
       return exportGroup === ExpenseGroupingFieldOption.EXPENSE_ID || exportGroup === ExpenseGroupingFieldOption.CLAIM_NUMBER || exportGroup === ExpenseGroupingFieldOption.SETTLEMENT_ID;
     });
 
-    return exportGroup ? exportGroup : 'expense_report';
+    return exportGroup ? exportGroup : ExpenseGroupingFieldOption.CLAIM_NUMBER;
   }
 
   private getSettingsAndSetupForm(): void {
@@ -447,36 +474,51 @@ export class ExportSettingsComponent implements OnInit {
     return false;
   }
 
+  private replaceContentBasedOnConfiguration(updatedConfiguration: string, existingConfiguration: string, exportType: 'reimbursable' | 'credit card'): string {
+    const configurationUpdate = `You have changed the export type of $exportType expense from <b>$existingExportType</b> to <b>$updatedExportType</b>,
+    which would impact a few configurations in the <b>Advanced settings</b>. <br><br>Please revisit the <b>Advanced settings</b> to check and enable the
+    features that could help customize and automate your integration workflows.`;
+
+    const newConfiguration = `You have <b>selected a new export type</b> for the $exportType expense, which would impact a few configurations
+      in the <b>Advanced settings</b>. <br><br>Please revisit the <b>Advanced settings</b> to check and enable the features that could help customize and
+      automate your integration workflows.`;
+
+    if (updatedConfiguration !== 'None' && existingConfiguration !== 'None') {
+      return configurationUpdate.replace('$exportType', exportType).replace('$existingExportType', existingConfiguration.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())).replace('$updatedExportType', updatedConfiguration.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase()));
+    } else {
+      return newConfiguration.replace('$exportType', exportType);
+    }
+  }
+
   private constructWarningMessage(): string {
-    let configurationUpdateList = '';
+    let content: string = '';
     const existingReimbursableExportType = this.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? this.exportSettings.workspace_general_settings.reimbursable_expenses_object : 'None';
     const existingCorporateCardExportType = this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object ? this.exportSettings.workspace_general_settings.corporate_credit_card_expenses_object : 'None';
     const updatedReimbursableExportType = this.exportSettingsForm.value.reimbursableExportType ? this.exportSettingsForm.value.reimbursableExportType : 'None';
     const updatedCorporateCardExportType = this.exportSettingsForm.value.creditCardExportType ? this.exportSettingsForm.value.creditCardExportType : 'None';
 
     if (this.singleItemizedJournalEntryAffected()) {
-      // TODO: Handle None to something
       if (updatedReimbursableExportType !== existingReimbursableExportType) {
-        configurationUpdateList += `You are changing your export representation from <b>${existingReimbursableExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b> to <b>${updatedReimbursableExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b><br>`;
+        content = this.replaceContentBasedOnConfiguration(updatedReimbursableExportType, existingReimbursableExportType, 'reimbursable');
       } else if (existingCorporateCardExportType !== updatedCorporateCardExportType) {
-        configurationUpdateList += `You are changing your export representation from <b>${existingCorporateCardExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b> to <b>${updatedCorporateCardExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b><br>`;
+        content = this.replaceContentBasedOnConfiguration(updatedCorporateCardExportType, existingCorporateCardExportType, 'credit card');
       }
     }
 
     if (!this.singleItemizedJournalEntryAffected() && this.paymentsSyncAffected()) {
-      configurationUpdateList += `You are changing your export representation from <b>${existingReimbursableExportType.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())}</b> to <b>Bill</b><br>`;
+      content = this.replaceContentBasedOnConfiguration(updatedReimbursableExportType, existingReimbursableExportType, 'reimbursable');
     }
 
-    return configurationUpdateList;
+    return content;
   }
 
   private showConfirmationDialog(): void {
-    const configurationUpdateList = this.constructWarningMessage();
+    const content = this.constructWarningMessage();
 
     const data: ConfirmationDialog = {
       title: 'Change in Configuration',
-      contents: `${configurationUpdateList}This might effect other configurations<br><br>Do you wish to continue?`,
-      primaryCtaText: 'Continue',
+      contents: `${content}<br><br>Would you like to continue?`,
+      primaryCtaText: 'Continue'
     };
 
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {

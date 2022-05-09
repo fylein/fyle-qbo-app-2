@@ -1,10 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { MappingDestinationField, OnboardingState } from 'src/app/core/models/enum/enum.model';
+import { ConfigurationCtaText, MappingDestinationField, OnboardingState } from 'src/app/core/models/enum/enum.model';
 import { ExpenseFieldsFormOption, ImportSettingGet, ImportSettingModel } from 'src/app/core/models/configuration/import-setting.model';
 import { MappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
@@ -41,6 +41,7 @@ export class ImportSettingsComponent implements OnInit {
   ];
   windowReference: Window;
   @Output() isLoaded = new EventEmitter<boolean>();
+  ConfigurationCtaText = ConfigurationCtaText;
 
   constructor(
     public dialog: MatDialog,
@@ -225,7 +226,12 @@ export class ImportSettingsComponent implements OnInit {
         } else {
           // Refresh Mappings list in sidenavbar
           // TODO: https://www.digitalocean.com/community/tutorials/angular-change-detection-strategy
-          this.router.navigate(['/workspaces/main/dashboard']);
+          const navigationExtras: NavigationExtras = {
+            queryParams: {
+              refreshMappings: true
+            }
+          };
+          this.router.navigate(['/workspaces/main/dashboard'], navigationExtras);
         }
       }, () => {
         this.saveInProgress = false;

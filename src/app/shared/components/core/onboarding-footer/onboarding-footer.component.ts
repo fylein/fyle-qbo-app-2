@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { RedirectLink } from 'src/app/core/models/enum/enum.model';
 
 @Component({
   selector: 'app-onboarding-footer',
@@ -8,6 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class OnboardingFooterComponent implements OnInit {
 
   @Input() page: string;
+  RedirectLink = RedirectLink;
 
   constructor() { }
 

@@ -1,13 +1,10 @@
 <footer class="footer" [ngClass]="{'footer--smaller-page': page === 'qbo_connector'}">
-  <div class="footer--content align-center">
-    <span class="sub-text-color">
-      Made with
+  <div class="footer--content align-center sub-text-color">
+    <span>
+      Made with ❤️ by
     </span>
-    <span class="footer--heart">
-      ❤️
-    </span>
-    <span class="sub-text-color">
-      by FyleHQ
-    </span>
+    <a class="sub-text-color footer--link-to-fyle" [href]="RedirectLink.FYLE_WEBSITE" target="_blank" rel="noopener noreferrer">
+      Fyle
+    </a>
   </div>
 </footer>

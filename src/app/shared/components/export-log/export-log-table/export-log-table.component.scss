@@ -19,19 +19,14 @@
 
   &--row {
     height: 70px;
-      &:hover {
-        background: #FAFCFF;
-      }
+
+    &:hover {
+      background: #FAFCFF;
+    }
   }
 }
 
 th {
   color: #2C304E;
   font-weight: 500;
-}
-
-::ng-deep .mat-tooltip {
-  background: #2C304E;
-  border-radius: 2px;
-  color: #FFFFFF;
 }

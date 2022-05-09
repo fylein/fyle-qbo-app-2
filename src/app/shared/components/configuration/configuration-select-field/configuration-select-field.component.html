@@ -6,7 +6,7 @@
         {{ label }}
         <app-mandatory-field *ngIf="isFieldMandatory"></app-mandatory-field>
       </div>
-      <h5 class="configuration--field-label sub-text-color">
+      <h5 class="configuration--field-label sub-text-color paragraph">
         {{ subLabel }}
       </h5>
     </div>
@@ -31,12 +31,11 @@
       <div class="mat-select-arrow-closed"></div>
     </mat-form-field>
     <div *ngIf="(formControllerName === 'reimbursableExportType' && form.value.reimbursableExportType) || (formControllerName === 'creditCardExportType' && form.value.creditCardExportType)" class="configuration-select-field--preview-text sub-text-color">
-      <h6 *ngIf="formControllerName === 'reimbursableExportType'">Click <span class="configuration-select-field--preview-btn pointer" (click)="showQBOExportPreview(form.value.reimbursableExportType, null)">here</span> to Preivew on how it looks on QBO</h6>
-      <h6 *ngIf="formControllerName === 'creditCardExportType'">Click <span class="configuration-select-field--preview-btn pointer" (click)="showQBOExportPreview(null, form.value.creditCardExportType)">here</span> to Preivew on how it looks on QBO</h6>
+      <p *ngIf="formControllerName === 'reimbursableExportType'">Click <span class="configuration-select-field--preview-btn pointer" (click)="showQBOExportPreview(form.value.reimbursableExportType, null)">here</span> to Preivew on how it looks on QBO</p>
+      <p *ngIf="formControllerName === 'creditCardExportType'">Click <span class="configuration-select-field--preview-btn pointer" (click)="showQBOExportPreview(null, form.value.creditCardExportType)">here</span> to Preivew on how it looks on QBO</p>
     </div>
 
-    <div *ngIf="formControllerName === 'autoMapEmployee'" class="configuration-select-field--select-example-section">
-      <!-- TODO: content -->
+    <div *ngIf="formControllerName === 'autoMapEmployee'" class="configuration-select-field--select-example-section paragraph">
       <h5 *ngIf="form.value.autoMapEmployee === 'NAME'" class="sub-text-color">
         Example: Ryan Clark will map to Ryan Clark in QBO.
       </h5>
@@ -48,7 +47,7 @@
       </h5>
     </div>
 
-    <div *ngIf="formControllerName === 'employeeMapping'" class="configuration-select-field--select-example-section">
+    <div *ngIf="formControllerName === 'employeeMapping'" class="configuration-select-field--select-example-section paragraph">
       <h5 *ngIf="form.value.employeeMapping === 'EMPLOYEE'" class="sub-text-color">
         Example of an Employee from your QBO instance : {{ liveEntityExample.EMPLOYEE }}
       </h5>
@@ -58,7 +57,7 @@
     </div>
   </div>
 </div>
-<div *ngIf="formControllerName === 'autoMapEmployee' || formControllerName === 'expenseState'" class="configuration-select-field--select-note-section">
+<div *ngIf="formControllerName === 'autoMapEmployee' || formControllerName === 'expenseState'" class="configuration-select-field--select-note-section paragraph">
   <div class="configuration-select-field--select-note-content sub-text-color">
     <h5 *ngIf="formControllerName === 'autoMapEmployee'">Note: In case the employee records are not auto matched by the integration, you could still manually map the records from the Mappings section of the integration.</h5>
     <h5 *ngIf="formControllerName === 'expenseState'">Note: Based on the selected state, the integration will automatically import the expenses from Fyle. You can then manually export expenses from the Dashboard or automate the export process in the Advance settings.</h5>

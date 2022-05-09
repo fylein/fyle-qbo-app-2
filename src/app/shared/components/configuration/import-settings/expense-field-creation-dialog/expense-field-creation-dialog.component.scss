@@ -89,4 +89,16 @@
   &--cancel-btn {
     padding-right: 16px;
   }
+
+  &--cancel-btn-text {
+    &:hover {
+      box-shadow: 0px 4px 4px rgba(44, 48, 78, 0.1);
+    }
+  }
+
+  &--cta-btn {
+    &:hover {
+      box-shadow: 0px 4px 4px rgba(44, 48, 78, 0.1);
+    }
+  }
 }

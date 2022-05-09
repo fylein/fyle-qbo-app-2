@@ -1,6 +1,4 @@
-<!-- TODO: check content of all fields -->
-
-<div fxLayout="row" fxLayoutAlign="center center" class="configuration--section">
+<div fxLayout="row" fxLayoutAlign="center center" class="configuration--section" [ngClass]="[isOnboarding ? 'configuration--onboarding-section' : '', !isOnboarding ? 'configuration--post-onboarding-section': '']">
   <app-loader [ngClass]="{'loader-main': !isOnboarding}" [phase]="'pre_onboarding'" *ngIf="isLoading"></app-loader>
   <div *ngIf="!isLoading" class="configuration--contents">
     <app-configuration-step-header-section [showSyncButton]="isOnboarding"></app-configuration-step-header-section>
@@ -31,7 +29,7 @@
           [options]="reimbursableExportTypes"
           [isFieldMandatory]="true"
           [iconPath]="'assets/images/svgs/general/expense.svg'"
-          [label]="'How should the expenses be exported?'"
+          [label]="'How should the expense be exported?'"
           [subLabel]="'Choose the type of transaction in Quickbooks Online to export your Fyle expenses.'"
           [placeholder]="'Select expense export type'"
           [formControllerName]="'reimbursableExportType'"
@@ -43,7 +41,7 @@
             [form]="exportSettingsForm"
             [qboAttributes]="bankAccounts"
             [isFieldMandatory]="true"
-            [label]="'To which Bank Account should the ' + exportSettingsForm.value.reimbursableExportType.toLowerCase() + ' be posted to?'"
+            [label]="'To which Bank Account should the ' + getExportType(exportSettingsForm.value.reimbursableExportType) + ' be posted to?'"
             [subLabel]="'All the offset entry in the Journal will be posted to the selected Bank account'"
             [placeholder]="'Select Bank Account'"
             [formControllerName]="'bankAccount'"
@@ -56,7 +54,7 @@
             [form]="exportSettingsForm"
             [qboAttributes]="expenseAccounts"
             [isFieldMandatory]="true"
-            [label]="'To which Expense Account should the ' + exportSettingsForm.value.reimbursableExportType.toLowerCase() + ' be posted to?'"
+            [label]="'To which Expense Account should the ' + getExportType(exportSettingsForm.value.reimbursableExportType) + ' be posted to?'"
             [subLabel]="'The expenses exported will be added to the selected Expense Payment Account'"
             [placeholder]="'Select Expense Account'"
             [formControllerName]="'qboExpenseAccount'"
@@ -83,9 +81,9 @@
             [options]="expenseGroupingFieldOptions"
             [isFieldMandatory]="true"
             [iconPath]="'assets/images/svgs/general/tabs.svg'"
-            [label]="'How should the expense in ' + exportSettingsForm.value.reimbursableExportType.toLowerCase() + ' be grouped?'"
-            [subLabel]="'Grouping reflects how the expense entries of a ' + exportSettingsForm.value.reimbursableExportType.toLowerCase() + ' are posted in QBO. For example, grouping by payment exports all expenses within a Fyle payment queue as one record.'"
-            [placeholder]="'Select expense export type'"
+            [label]="generateGroupingLabel('reimbursable')"
+            [subLabel]="'Grouping reflects how the expense entries of a ' + getExportType(exportSettingsForm.value.reimbursableExportType) + ' are posted in QBO. For example, grouping by payment exports all expenses within a Fyle payment queue as one record.'"
+            [placeholder]="'Select expense export grouping'"
             [formControllerName]="'reimbursableExportGroup'"
             >
           </app-configuration-select-field>
@@ -97,9 +95,9 @@
             [options]="reimbursableExpenseGroupingDateOptions"
             [isFieldMandatory]="true"
             [iconPath]="'assets/images/svgs/general/calendar.svg'"
-            [label]="'Set the ' + exportSettingsForm.value.reimbursableExportType.toLowerCase() + ' date as'"
+            [label]="'Set the ' + getExportType(exportSettingsForm.value.reimbursableExportType) + ' date as'"
             [subLabel]="'The selected date will reflect in expenses exported to QBO'"
-            [placeholder]="'Select the ' + exportSettingsForm.value.reimbursableExportType.toLowerCase() + ' export'"
+            [placeholder]="'Select the date of the ' + getExportType(exportSettingsForm.value.reimbursableExportType)"
             [formControllerName]="'reimbursableExportDate'"
             >
           </app-configuration-select-field>
@@ -120,7 +118,7 @@
           [options]="creditCardExportTypes"
           [isFieldMandatory]="true"
           [iconPath]="'assets/images/svgs/general/expense.svg'"
-          [label]="'How should the expenses be exported?'"
+          [label]="'How should the expense be exported?'"
           [subLabel]="'Choose the type of transaction in Quickbooks Online to export your corporate credit card expense from Fyle.'"
           [placeholder]="'Select expense export type'"
           [formControllerName]="'creditCardExportType'"
@@ -188,9 +186,9 @@
             [options]="expenseGroupingFieldOptions"
             [isFieldMandatory]="true"
             [iconPath]="'assets/images/svgs/general/tabs.svg'"
-            [label]="'How should the expense in ' + exportSettingsForm.value.creditCardExportType.toLowerCase() + ' be grouped?'"
-            [subLabel]="'Grouping reflects how the expense entries of a ' + exportSettingsForm.value.creditCardExportType.toLowerCase() + ' are posted in QBO. For example, grouping by payment exports all expenses within a Fyle payment queue as one record.'"
-            [placeholder]="'Select expense export type'"
+            [label]="generateGroupingLabel('credit card')"
+            [subLabel]="'Grouping reflects how the expense entries of a ' + getExportType(exportSettingsForm.value.creditCardExportType) + ' are posted in QBO. For example, grouping by payment exports all expenses within a Fyle payment queue as one consolidated record.'"
+            [placeholder]="'Select expense export grouping'"
             [formControllerName]="'creditCardExportGroup'"
             >
           </app-configuration-select-field>
@@ -202,16 +200,16 @@
             [options]="cccExpenseGroupingDateOptions"
             [isFieldMandatory]="true"
             [iconPath]="'assets/images/svgs/general/calendar.svg'"
-            [label]="'Set the ' + exportSettingsForm.value.creditCardExportType.toLowerCase() + ' date as'"
+            [label]="'Set the ' + getExportType(exportSettingsForm.value.creditCardExportType) + ' date as'"
             [subLabel]="'The selected date will reflect in the corporate credit card expenses exported to QBO.'"
-            [placeholder]="'Select the ' + exportSettingsForm.value.creditCardExportType.toLowerCase() + ' export'"
+            [placeholder]="'Select the date of the ' + getExportType(exportSettingsForm.value.creditCardExportType)"
             [formControllerName]="'creditCardExportDate'"
             >
           </app-configuration-select-field>
         </div>
       </div>
 
-      <app-configuration-step-footer-section [ctaText]="isOnboarding ? 'Save & Continue' : 'Save'" [showBackButton]="isOnboarding" [isButtonDisabled]="!exportSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
+      <app-configuration-step-footer-section [ctaText]="!saveInProgress ? (isOnboarding ? ConfigurationCtaText.SAVE_AND_CONTINUE : ConfigurationCtaText.SAVE) : ConfigurationCtaText.SAVING" [showBackButton]="isOnboarding" [isButtonDisabled]="!exportSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
     </form>
   </div>
 </div>

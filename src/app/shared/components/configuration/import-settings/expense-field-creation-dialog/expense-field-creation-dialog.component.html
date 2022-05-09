@@ -14,7 +14,7 @@
       class="expense-field-creation-dialog--error-section">
       <div fxLayout="row" class="expense-field-creation-dialog--error-contents">
         <img src="assets/images/svgs/general/error.svg" class="expense-field-creation-dialog--error-icon" />
-        <h5 class="expense-field-creation-dialog--error-text sub-text-color">
+        <h5 class="expense-field-creation-dialog--error-text sub-text-color paragraph">
           Oops! It looks like another field with the same name already exists in your Fyle account. Would you please
           give the field a different name?
         </h5>
@@ -66,11 +66,11 @@
 
     <div fxLayout="row" fxLayoutAlign="end center" class="expense-field-creation-dialog--btn-section">
       <div class="expense-field-creation-dialog--cancel-btn">
-        <a mat-stroked-button mat-dialog-close>Cancel</a>
+        <a mat-stroked-button mat-dialog-close class="expense-field-creation-dialog--cancel-btn-text">Cancel</a>
       </div>
       <button
         [disabled]="!expenseFieldsCreationForm.valid || existingFields.indexOf(expenseFieldsCreationForm.value.name.toLowerCase()) !== -1"
-        mat-flat-button color="accent" (click)="save()" mat-flat-button color="primary">Create & Save</button>
+        mat-flat-button color="accent" (click)="save()" mat-flat-button color="primary" [ngClass]="{'expense-field-creation-dialog--cta-btn': !(!expenseFieldsCreationForm.valid || existingFields.indexOf(expenseFieldsCreationForm.value.name.toLowerCase()) !== -1)}">Create & Save</button>
     </div>
   </form>
 </div>

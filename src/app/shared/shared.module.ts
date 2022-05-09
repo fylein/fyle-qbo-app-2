@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Pipes
 import { TrimCharacterPipe } from './pipes/trim-character.pipe';
@@ -122,7 +123,8 @@ import { ConfirmationDialogComponent } from './components/core/confirmation-dial
     MatButtonModule,
     MatDialogModule,
     MatTooltipModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     LoaderComponent,

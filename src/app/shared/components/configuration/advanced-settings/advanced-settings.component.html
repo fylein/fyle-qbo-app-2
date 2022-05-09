@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="center center" class="configuration--section">
+<div fxLayout="row" fxLayoutAlign="center center" class="configuration--section" [ngClass]="[isOnboarding ? 'configuration--onboarding-section' : '', !isOnboarding ? 'configuration--post-onboarding-section': '']">
   <app-loader [ngClass]="{'loader-main': !isOnboarding}" [phase]="'pre_onboarding'" *ngIf="isLoading"></app-loader>
   <div *ngIf="!isLoading" class="configuration--contents">
     <app-configuration-step-header-section [showSyncButton]="isOnboarding"></app-configuration-step-header-section>
@@ -26,7 +26,7 @@
 
         <div fxLayout="row" fxLayoutAlign="space-between start">
           <div class="advanced-settings--schedule-note-content">
-            <h5 class="sub-text-color">
+            <h5 class="sub-text-color paragraph">
               NOTE: If you skip enabling the auto-schedule of export, you could still manually export the data from the <span class="bold">Dashboard</span>
             </h5>
           </div>
@@ -41,12 +41,12 @@
               <div class="configuration--field-header">
                 Set description field in QuickBooks Online
               </div>
-              <h5 class="configuration--field-label sub-text-color">
+              <h5 class="configuration--field-label sub-text-color paragraph">
                 Customize the data set you would like to pass to the description field of QBO while exporting expenses from Fyle
               </h5>
             </div>
           </div>
-          <div class="configuration--input-section">
+          <div class="configuration--input-section advanced-settings--memo-preview-select">
             <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
               <mat-select placeholder="Select and reorder the memo fields" formControlName="memoStructure" multiple>
                 <div cdkDropList (cdkDropListDropped)="drop($event)">
@@ -55,6 +55,7 @@
                   </mat-option>
                 </div>
               </mat-select>
+              <div class="mat-select-arrow-closed"></div>
             </mat-form-field>
           </div>
         </div>
@@ -64,7 +65,7 @@
             Preview in QBO
           </h5>
           <div class="advanced-settings--memo-preview-area">
-            <h5 class="advanced-settings--memo-preview">
+            <h5 class="advanced-settings--memo-preview paragraph">
               {{ memoPreviewText }}
             </h5>
           </div>
@@ -87,14 +88,13 @@
         [formControllerName]="'autoCreateVendors'">
       </app-configuration-toggle-field>
 
-      <!-- TODO: content of placeholder -->
       <app-configuration-select-field *ngIf="showPaymentSyncField()"
         [form]="advancedSettingsForm"
         [options]="paymentSyncOptions"
         [iconPath]="'assets/images/svgs/actions/sync.svg'"
         [label]="'Auto Sync payment status for reimbursable expenses'"
         [subLabel]="'When expense is marked paid in Fyle the transaction in QBO will be automatically be updated to Paid and vice versa.'"
-        [placeholder]="'Select status for reimbursable expenses'"
+        [placeholder]="'Select how payments should be synced for reimbursable expenses'"
         [formControllerName]="'paymentSync'"
         >
       </app-configuration-select-field>
@@ -120,7 +120,7 @@
         [formControllerName]="'singleCreditLineJE'">
       </app-configuration-toggle-field>
 
-      <app-configuration-step-footer-section [ctaText]="isOnboarding ? 'Save & Continue' : 'Save'" [showBackButton]="isOnboarding" [isButtonDisabled]="!advancedSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
+      <app-configuration-step-footer-section [ctaText]="!saveInProgress ? (isOnboarding ? ConfigurationCtaText.SAVE_AND_CONTINUE : ConfigurationCtaText.SAVE) : ConfigurationCtaText.SAVING" [showBackButton]="isOnboarding" [isButtonDisabled]="!advancedSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
 
     </form>
   </div>
