@@ -120,6 +120,7 @@
                   </mat-select>
                   <div class="mat-select-arrow-closed"></div>
                 </mat-form-field>
+                <app-mandatory-error-message *ngIf="importSettingsForm.controls.defaultTaxCode.touched && !importSettingsForm.controls.defaultTaxCode.valid" [listName]="'tax'"></app-mandatory-error-message>
               </div>
             </div>
             <div class="import-settings--default-tax-note">

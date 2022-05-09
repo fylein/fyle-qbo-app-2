@@ -4,7 +4,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
 import { AdvancedSettingService } from './advanced-setting.service';
 import { AdvancedSettingGet, AdvancedSettingPost } from '../../models/configuration/advanced-setting.model';
-import { environment } from 'environment.localhost';
+import { environment } from 'src/environments/environment';
 
 describe('AdvancedSettingService', () => {
   let service: AdvancedSettingService;

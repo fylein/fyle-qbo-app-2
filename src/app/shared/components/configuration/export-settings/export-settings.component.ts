@@ -427,7 +427,7 @@ export class ExportSettingsComponent implements OnInit {
 
   private setupForm(): void {
     this.exportSettingsForm = this.formBuilder.group({
-      expenseState: [this.exportSettings.expense_group_settings?.expense_state, Validators.compose([Validators.required, this.exportSelectionValidator()])],
+      expenseState: [this.exportSettings.expense_group_settings?.expense_state, Validators.required],
       reimbursableExpense: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? true : false, this.exportSelectionValidator()],
       reimbursableExportType: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object],
       reimbursableExportGroup: [this.getExportGroup(this.exportSettings.expense_group_settings?.reimbursable_expense_group_fields)],
