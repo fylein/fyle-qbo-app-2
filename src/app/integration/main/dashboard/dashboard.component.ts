@@ -222,6 +222,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.errors.EMPLOYEE_MAPPING.pop();
     this.setupPage();
   }
 }
