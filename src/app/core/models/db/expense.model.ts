@@ -43,7 +43,4 @@ export interface ExpenseList {
   expenseType?: 'Credit Card' | 'Reimbursable';
   name?: [string, string];
   fundSource?: string;
-  account?: string;
-  customer?: string;
-  class?: string;
 }
