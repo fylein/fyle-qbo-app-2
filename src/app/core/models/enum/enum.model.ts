@@ -149,5 +149,6 @@ export enum ConfigurationCtaText {
 }
 
 export enum RedirectLink {
-  FYLE_WEBSITE = 'https://fylehq.com/'
+  FYLE_WEBSITE = 'https://fylehq.com/',
+  FYLE_HELP = 'https://help.fylehq.com/'
 }

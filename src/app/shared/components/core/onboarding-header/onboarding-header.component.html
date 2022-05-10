@@ -15,7 +15,7 @@
     <h3 [ngClass]="showBackButton && activePage ? 'navbar--page-name-with-back-btn' : 'navbar--page-name'">{{ activePage | titlecase | snakeCaseToSpaceCase }}</h3>
   </div>
   <div fxLayout="row" fxLayoutAlign="space-between center" class="navbar--profile-help">
-    <div (click)="openHelpArticle()" fxLayout="row" class="navbar--help-section pointer">
+    <div #helpButton (click)="showOrHideHelpDropdown()" fxLayout="row" class="navbar--help-section pointer">
       <div class="navbar--help-icon">
         <img src="assets/images/svgs/actions/help.svg" />
       </div>
@@ -100,6 +100,14 @@
               <div class="profile--signout-text">Signout</div>
             </div>
 
+          </div>
+        </div>
+        <div *ngIf="isHelpSectionExpanded" class="help" #help>
+          <div class="help--help-center-section">
+            <h5 fxLayout="row" fxLayoutAlign=" center" class="help--help-center-content">
+              Visit Help Centre
+            </h5>
+            <img class="pointer" src="assets/images/svgs/actions/open-in-new-tab-help.svg" (click)="helperService.openExternalLink(RedirectLink.FYLE_HELP)"/>
           </div>
         </div>
       </div>
