@@ -15,7 +15,9 @@ export const environment = {
   release: '',
   fyle_app_url: '',
   tests:{
-    workspaceId: '',
-    user: ''
+    workspaceId: '{{TEST_WORKSPACE_ID}}',
+    user: {
+      refresh_token: '{{TEST_REFRESH_TOKEN}}'
+    }
   }
 };
