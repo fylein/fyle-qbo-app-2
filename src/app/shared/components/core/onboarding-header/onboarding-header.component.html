@@ -23,19 +23,21 @@
         Help
       </div>
     </div>
-    <div fxLayout="row" (click)="showOrHideProfileDropdown()" #menu>
-      <div class="navbar--avatar-section pointer">
+    <div fxLayout="row" #menu>
+      <div (click)="showOrHideProfileDropdown()" class="navbar--avatar-section pointer">
         <p class="navbar--avatar-text">
           {{user.full_name[0]}}
         </p>
       </div>
 
       <div class="navbar--profile-section">
-        <div class="pointer">
-          {{ user.full_name | trimCharacter: 20 }}
-        </div>
-        <div class="navbar--user-org navbar--small-text sub-text-color pointer">
-          {{ user.org_name | trimCharacter: 26 }}
+        <div (click)="showOrHideProfileDropdown()">
+          <div class="pointer">
+            {{ user.full_name | trimCharacter: 20 }}
+          </div>
+          <div class="navbar--user-org navbar--small-text sub-text-color pointer">
+            {{ user.org_name | trimCharacter: 26 }}
+          </div>
         </div>
         <div *ngIf="isProfileExpanded" class="profile">
           <div class="profile--section">
@@ -102,12 +104,22 @@
 
           </div>
         </div>
-        <div *ngIf="isHelpSectionExpanded" class="help" #help>
+        <div *ngIf="isHelpSectionExpanded" class="help paragraph" #help>
           <div class="help--help-center-section">
-            <h5 fxLayout="row" fxLayoutAlign=" center" class="help--help-center-content">
+            <h5 fxLayout="row" fxLayoutAlign=" center" class="help--help-center-content pointer" (click)="helperService.openExternalLink(RedirectLink.FYLE_HELP)">
               Visit Help Centre
+              <img class="help--open-in-new-tab-icon" src="assets/images/svgs/actions/open-in-new-tab-help.svg" width="14px" height="14px"/>
             </h5>
-            <img class="pointer" src="assets/images/svgs/actions/open-in-new-tab-help.svg" (click)="helperService.openExternalLink(RedirectLink.FYLE_HELP)"/>
+          </div>
+
+          <div class="help--divider"></div>
+
+          <div class="help--email-section">
+            <h5>Still facing issues?</h5>
+            <h5 class="sub-text-color help--email-info-text">
+              Write your query to us along with screenshots (if any) at
+            </h5>
+            <h5 (click)="helperService.openExternalLink('mailto:support@fylehq.com')" class="help--support-email pointer">support@fylehq.com</h5>
           </div>
         </div>
       </div>

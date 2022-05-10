@@ -150,5 +150,5 @@ export enum ConfigurationCtaText {
 
 export enum RedirectLink {
   FYLE_WEBSITE = 'https://fylehq.com/',
-  FYLE_HELP = 'https://help.fylehq.com/'
+  FYLE_HELP = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks'
 }

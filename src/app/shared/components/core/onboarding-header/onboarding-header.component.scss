@@ -80,13 +80,14 @@
 
 .help {
   width: 245px;
-  height: 186px;
   margin-top: 10px;
   right: 154px;
   position: absolute;
   background: #FFFFFF;
   box-shadow: 0px 8px 40px rgba(215, 215, 215, 0.73);
   border-radius: 4px;
+  color: #2C304E;
+  z-index: 101;
 
   &--help-center-section {
     padding-top: 8px;
@@ -96,7 +97,31 @@
   &--help-center-content {
     height: 50px;
     background: #F5F5F5;
-    color: #2C304E;
     padding-left: 16px;
+  }
+
+  &--open-in-new-tab-icon {
+    padding-left: 9px;
+  }
+
+  &--divider {
+    margin: 0px 16px 24px 16px;
+    border: 1px solid #DFDFE2;
+    width: 213px;
+  }
+
+  &--email-section {
+    padding-left: 16px;
+  }
+
+  &--email-info-text {
+    width: 185px;
+    padding-top: 8px;
+  }
+
+  &--support-email {
+    padding-top: 4px;
+    padding-bottom: 20px;
+    color: #0062FF;
   }
 }
