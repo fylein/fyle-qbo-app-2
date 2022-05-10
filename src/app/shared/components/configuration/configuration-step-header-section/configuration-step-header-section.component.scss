@@ -16,7 +16,26 @@
   }
 
   &--header-text {
-    font-weight: 500;
     padding-bottom: 12px;
+  }
+
+  &--info-section {
+    padding-top: 16px;
+  }
+
+  &--info-content-section {
+    background: #EFF5FC;
+    border-radius: 4px;
+    padding: 12px 26px 12px 12px;
+  }
+
+  &--info-icon {
+    padding-left: 2px;
+    padding-right: 8px;
+  }
+
+  &--sync-btn {
+    padding-top: 25px;
+    padding-left: 10px;
   }
 }

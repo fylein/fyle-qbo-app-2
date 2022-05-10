@@ -16,7 +16,7 @@ export class MappingFilterComponent implements OnInit {
   constructor() { }
 
   addAllFilterHandler(): void {
-    this.form.controls.filterOption.patchValue(this.filterOptions.concat());
+    this.form.controls.filterOption.patchValue([]);
 
     this.mappingFilterUpdateHandler.emit({});
   }

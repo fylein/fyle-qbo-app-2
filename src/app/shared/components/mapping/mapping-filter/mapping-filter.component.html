@@ -3,7 +3,7 @@
     <app-simple-search-select [form]="form" [placeholder]="'Search ' + searchTerm" [showBackgroundColor]="false"></app-simple-search-select>
   </div>
   <div fxLayout="row" class="align-center">
-    <div [ngClass]="{'mapping-filter--filter-all-selected': form?.value?.filterOption?.length === filterOptions.length}">
+    <div [ngClass]="{'mapping-filter--filter-all-selected': form?.value?.filterOption?.length === 0}">
       <h5 class="mapping-filter--filter-all-text pointer" (click)="addAllFilterHandler()">All</h5>
     </div>
     <h5 *ngFor="let option of filterOptions" [ngClass]="{'mapping-filter--filter-deselected-text': form?.value?.filterOption?.indexOf(option) === -1}" class="mapping-filter--filter-alphabet-list pointer" (click)="filterOptionUpdateHandler(option)">{{option}}</h5>

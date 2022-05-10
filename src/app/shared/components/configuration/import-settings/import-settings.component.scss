@@ -1,10 +1,6 @@
 .import-settings {
-  &--field-checkbox-section {
-    min-height: 234px;
-  }
-
   &--field-checkbox-contents {
-    padding: 16px 32px 40px 32px;
+    padding: 16px 32px 26px;
   }
 
   &--chart-of-account-header {
@@ -109,12 +105,8 @@
     background: #FAFCFF;
   }
 
-  &--additional-note {
-    padding-top: 18px;
-  }
-
   &--field-toggle-section {
-    padding: 0px 8px 0px 32px;
+    padding: 0px 8px 19px 32px;
     background: #FAFCFF;
     border: 1px solid #F5F5F5;
     box-sizing: border-box;

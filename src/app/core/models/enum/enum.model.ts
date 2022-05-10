@@ -124,6 +124,7 @@ export enum TaskLogType {
   CREATING_CREDIT_CARD_PURCHASE = 'CREATING_CREDIT_CARD_PURCHASE',
   CREATING_CREDIT_CARD_CREDIT = 'CREATING_CREDIT_CARD_CREDIT',
   CREATING_DEBIT_CARD_EXPENSE = 'CREATING_DEBIT_CARD_EXPENSE',
+  CREATING_BILL_PAYMENT = 'CREATING_BILL_PAYMENT',
   FETCHING_EXPENSE = 'FETCHING_EXPENSE'
 }
 
@@ -148,5 +149,6 @@ export enum ConfigurationCtaText {
 }
 
 export enum RedirectLink {
-  FYLE_WEBSITE = 'https://fylehq.com/'
+  FYLE_WEBSITE = 'https://fylehq.com/',
+  FYLE_HELP = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks'
 }
