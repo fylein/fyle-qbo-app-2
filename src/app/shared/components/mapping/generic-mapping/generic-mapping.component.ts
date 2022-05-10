@@ -59,7 +59,7 @@ export class GenericMappingComponent implements OnInit {
       map: [''],
       fyleQboMapping: this.formBuilder.array(this.fyleQboMappingFormArray),
       searchOption: [''],
-      filterOption: [this.filterOptions.concat()],
+      filterOption: [[]],
       sourceUpdated: [false]
     });
 
@@ -107,7 +107,7 @@ export class GenericMappingComponent implements OnInit {
     let allAlphabets: boolean = true;
 
     if (this.form && !this.form.value.sourceUpdated) {
-      allAlphabets = this.form.value.filterOption.length === this.filterOptions.length;
+      allAlphabets = this.form.value.filterOption.length === 0;
 
       if (!allAlphabets) {
         alphabetsFilter = this.form.value.filterOption;

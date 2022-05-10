@@ -136,7 +136,6 @@ export class DashboardComponent implements OnInit {
           });
         });
       }
-      console.log(this.failedExpenseGroupCount)
       this.isLoading = false;
     });
   }
