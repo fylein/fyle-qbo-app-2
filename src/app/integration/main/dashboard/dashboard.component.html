@@ -16,7 +16,7 @@
               <div class="export--info-text">
                 <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">No new Transaction to export from the payment processing state in Fyle.</h5>
                 <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">Once you start processing payment for the expenses, they will be automatically available here to export.</h5>
-                <h5 *ngIf="!exportInProgress && exportableExpenseGroupIds.length">Click on <b>Export</b> to start exporting these expenses from Fyle to Quickbooks Online.</h5>
+                <h5 *ngIf="!exportInProgress && exportableExpenseGroupIds.length">Click on <b>Export</b> to start exporting expenses from Fyle as QBO transactions.</h5>
                 <h5 *ngIf="exportInProgress">This may take a few minutes. Please wait...</h5>
                 <div *ngIf="!exportInProgress && failedExpenseGroupCount !== null && failedExpenseGroupCount > 0" fxLayout="row">
                   <h5>{{ exportableExpenseGroupIds.length - failedExpenseGroupCount }} new Transaction{{(exportableExpenseGroupIds.length - failedExpenseGroupCount) > 1 ? 's' : ''}}, {{ failedExpenseGroupCount }} previously failed Transaction{{failedExpenseGroupCount > 1 ? 's' : ''}}</h5>
