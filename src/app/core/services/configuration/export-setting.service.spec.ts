@@ -1,30 +1,25 @@
-import { TestBed } from '@angular/core/testing';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
+import { getTestBed, TestBed } from '@angular/core/testing';
 import { ExportSettingService } from './export-setting.service';
 import { ExportSettingPost } from '../../models/configuration/export-setting.model';
 import { ExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject } from '../../models/enum/enum.model';
-import { or } from '@rxweb/reactive-form-validators';
+import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import { environment } from 'src/environments/environment';
 
 describe('ExportSettingService', () => {
   let service: ExportSettingService;
-
+  let injector: TestBed;
+  let httpMock: HttpTestingController;
+  const API_BASE_URL = environment.api_url
+  const workspace_id = environment.tests.workspaceId
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
-      providers: [{
-        provide: JWT_OPTIONS,
-        useValue: JWT_OPTIONS
-      },
-        JwtHelperService,
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: JwtInterceptor,
-        multi: true
-      }]
+      imports: [HttpClientTestingModule],
+      providers: [ExportSettingService]
     });
-    service = TestBed.inject(ExportSettingService);
+    injector = getTestBed();
+    service = injector.inject(ExportSettingService);
+    httpMock = injector.inject(HttpTestingController);
   });
 
   it('should be created', () => {
@@ -32,20 +27,37 @@ describe('ExportSettingService', () => {
   });
 
 
-  it('getExportSettings service check', () => {
-    expect(service.getExportSettings()).toBeTruthy();
-  })
-
   it('getExportSettings service check attributes check', () => {
-    let keys: string[] = [];
-    const responseKeys = ['expense_group_settings', 'general_mappings', 'workspace_general_settings', 'workspace_id'].sort();
+    const response={
+      expense_group_settings: {
+        expense_state: ExpenseState.PAID,
+        reimbursable_expense_group_fields: ['sample'],
+        reimbursable_export_date_type: null,
+        corporate_credit_card_expense_group_fields: ['sipper'],
+        ccc_export_date_type: null
+      },
+      workspace_general_settings: {
+        reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
+        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL
+      },
+      general_mappings: {
+        bank_account: { id: '1', name: 'Fyle' },
+        default_ccc_account: { id: '1', name: 'Fyle' },
+        accounts_payable: { id: '1', name: 'Fyle' },
+        default_ccc_vendor: { id: '1', name: 'Fyle' },
+        qbo_expense_account: { id: '1', name: 'Fyle' },
+        default_debit_card_account: { id: '1', name: 'Fyle' }
+      },
+      workspace_id:1
+    }
     service.getExportSettings().subscribe((value) => {
-      for (let key of Object.keys(value)) {
-        keys.push(key);
-      }
-      keys = keys.sort();
-      expect(keys).toEqual(responseKeys);
+      expect(value).toEqual(response);
     })
+    const req = httpMock.expectOne({
+      method: 'GET',
+      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/export_settings/`,
+    });
+    req.flush(response);
 
   })
 
@@ -71,7 +83,37 @@ describe('ExportSettingService', () => {
         default_debit_card_account: { id: '1', name: 'Fyle' }
       }
     };
-    expect(service.postExportSettings(exportSettingPayload)).toBeTruthy()
+    const response={
+      expense_group_settings: {
+        expense_state: ExpenseState.PAID,
+        reimbursable_expense_group_fields: ['sample'],
+        reimbursable_export_date_type: null,
+        corporate_credit_card_expense_group_fields: ['sipper'],
+        ccc_export_date_type: null
+      },
+      workspace_general_settings: {
+        reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
+        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL
+      },
+      general_mappings: {
+        bank_account: { id: '1', name: 'Fyle' },
+        default_ccc_account: { id: '1', name: 'Fyle' },
+        accounts_payable: { id: '1', name: 'Fyle' },
+        default_ccc_vendor: { id: '1', name: 'Fyle' },
+        qbo_expense_account: { id: '1', name: 'Fyle' },
+        default_debit_card_account: { id: '1', name: 'Fyle' }
+      },
+      workspace_id:1
+    }
+    service.postExportSettings(exportSettingPayload).subscribe(value => {
+      expect(value).toEqual(response)
+    })
+    const req = httpMock.expectOne({
+      method: 'PUT',
+      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/export_settings/`,
+    });
+    req.flush(response);
+
   })
 
 });

@@ -13,9 +13,9 @@ export type AdvancedSettingPost = {
 }
 
 export type AdvancedSettingGet = {
-  workspace_general_settings: WorkspaceGeneralSetting,
-  general_mappings: GeneralMapping,
-  workspace_schedules: WorkspaceSchedule,
+  workspace_general_settings: AdvancedSettingWorkspaceGeneralSetting,
+  general_mappings: AdvancedSettingGeneralMapping,
+  workspace_schedules: AdvancedSettingWorkspaceSchedule,
   workspace_id:number
 }
 
