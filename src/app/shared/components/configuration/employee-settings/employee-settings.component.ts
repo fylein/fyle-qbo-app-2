@@ -126,11 +126,7 @@ export class EmployeeSettingsComponent implements OnInit {
   }
 
   private exportSettingAffected(): boolean | undefined {
-    return this.isNonCompatibleExportType() && this.existingEmployeeFieldMapping && this.existingEmployeeFieldMapping !== this.employeeSettingsForm.value.employeeMapping;
-  }
-
-  private isNonCompatibleExportType(): boolean {
-    return this.reimbursableExportType === ReimbursableExpensesObject.BILL || this.reimbursableExportType === ReimbursableExpensesObject.CHECK;
+    return this.existingEmployeeFieldMapping && this.existingEmployeeFieldMapping !== this.employeeSettingsForm.value.employeeMapping;
   }
 
   save(): void {
