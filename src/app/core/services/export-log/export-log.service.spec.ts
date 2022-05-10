@@ -1,66 +1,67 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
-import { TestBed } from '@angular/core/testing';
+import { getTestBed, TestBed } from '@angular/core/testing';
 
 import { ExportLogService } from './export-log.service';
 import { ExpenseGroupSetting } from '../../models/db/expense-group-setting.model';
+import { ExpenseGroupResponse } from '../../models/db/expense-group.model';
+import { ExpenseState, ExportDateType } from '../../models/enum/enum.model';
+import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import { environment } from 'src/environments/environment';
 
 describe('ExportLogService', () => {
   let service: ExportLogService;
-
+  let injector: TestBed;
+  let httpMock: HttpTestingController;
+  const API_BASE_URL = environment.api_url
+  const workspace_id = environment.tests.workspaceId
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
-      providers: [{
-        provide: JWT_OPTIONS,
-        useValue: JWT_OPTIONS
-      },
-        JwtHelperService,
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: JwtInterceptor,
-        multi: true
-      }]
+      imports: [HttpClientTestingModule],
+      providers: [ExportLogService]
     });
-    service = TestBed.inject(ExportLogService);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+    injector = getTestBed();
+    service = injector.inject(ExportLogService);
+    httpMock = injector.inject(HttpTestingController);
   });
 
   it('getExpenseGroupSettings service', () => {
-    const response = {
-      ccc_export_date_type: "current_date",
+    const response:ExpenseGroupSetting = {
+      ccc_export_date_type: ExportDateType.CURRENT_DATE,
       corporate_credit_card_expense_group_fields: ["employee_email", "report_id", "claim_number", "fund_source"],
-      created_at: "2022-04-13T10:29:18.802702Z",
-      expense_state: "PAYMENT_PROCESSING",
+      created_at: new Date("2022-04-13T10:29:18.802702Z"),
+      expense_state: ExpenseState.PAYMENT_PROCESSING,
       id: 1,
       import_card_credits: false,
       reimbursable_expense_group_fields: ["employee_email", "report_id", "claim_number", "fund_source"],
-      reimbursable_export_date_type: "current_date",
-      updated_at: "2022-04-13T10:29:18.802749Z",
+      reimbursable_export_date_type: ExportDateType.CURRENT_DATE,
+      updated_at: new Date("2022-04-13T10:29:18.802749Z"),
       workspace: 1
     };
+    
     service.getExpenseGroupSettings().subscribe(result => {
-      const responseKeys = Object.keys(response).sort();
-      const keys = Object.keys(result).sort();
-      expect(keys).toEqual(responseKeys);
+      expect(result).toEqual(response);
     });
+    const req = httpMock.expectOne({
+      method: 'GET',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_group_settings/`,
+    });
+      req.flush(response);
   });
 
   it('getExpenseGroups service', () => {
-    const response = {
+    const response: ExpenseGroupResponse= {
       count: 0,
-      next: null,
+      next: 'null',
       previous: "xxx",
       results: []
     };
-    service.getExpenseGroups('COMPLETE', 10, 5).subscribe(result => {
-      const responseKeys = Object.keys(response).sort();
-      const keys = Object.keys(result).sort();
-      expect(keys).toEqual(responseKeys);
+    service.getExpenseGroups('COMPLETE', 10, 5, null, ).subscribe(result => {
+      expect(result).toEqual(response);
     })
+    const req = httpMock.expectOne({
+      method: 'GET',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE`,
+    });
+      req.flush(response);
   });
 });

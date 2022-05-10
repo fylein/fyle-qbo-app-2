@@ -16,12 +16,22 @@ describe('PaginatorService', () => {
   });
 
   it('pageinator service', () => {
-    const expected = {
-      offset: 0,
-      limit: 1
-    }
+    const limit = localStorage.getItem('page-size.export-log')
     const result = service.getPageSize(PaginatorPage.EXPORT_LOG);
-    expect(result).toEqual(expected);
+    if(limit){
+      const expected = {
+        offset: 0,
+        limit: 1,
+      }
+      expect(result).toEqual(expected);
+    }
+    else{
+      const expected = {
+        offset: 0,
+        limit: 50,
+      }
+      expect(result).toEqual(expected);
+    }
   });
 
   it('storePageSize service', () => {

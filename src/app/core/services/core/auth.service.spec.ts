@@ -29,13 +29,6 @@ describe('AuthService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('redirectToQboOAuth is working', () => {
-    expect(service.redirectToQboOAuth()).toBeFalsy();
-  })
-
-  it('redirectToFyleOAuth is working', () => {
-    expect(service.redirectToFyleOAuth()).toBeFalsy();
-  })
 
   it('isLoggedIn is working', () => {
     const result = service.isLoggedIn();
@@ -43,9 +36,5 @@ describe('AuthService', () => {
       expect(result).toBeTrue();
     else
       expect(result).toBeFalse();
-  })
-
-  it(' is working', () => {
-    expect(service.redirectToFyleOAuth());
   })
 });

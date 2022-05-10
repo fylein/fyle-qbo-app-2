@@ -13,6 +13,8 @@ export type QBOPreference = {
   domain: string;
   sparse: boolean;
   Id: string;
-  SyncToken: string;
+  SyncToken?: string;
   MetaData: any;
+  HomeCurrency?: any;
+  MultiCurrencyEnabled?: boolean;
 };
