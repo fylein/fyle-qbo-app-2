@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit {
       switchMap(() => from(this.dashboardService.getAllTasks([], exportableExpenseGroupIds, this.taskType))),
       takeWhile((response) => response.results.filter(task => (task.status === 'IN_PROGRESS' || task.status === 'ENQUEUED') && exportableExpenseGroupIds.includes(task.expense_group)).length > 0, true)
     ).subscribe((res) => {
-      this.processedCount = res.results.filter(task => (task.status !== 'IN_PROGRESS' && task.status !== 'ENQUEUED') && (task.type !== 'FETCHING_EXPENSES' && task.type !== 'CREATING_BILL_PAYMENT') && exportableExpenseGroupIds.includes(task.expense_group)).length;
+      this.processedCount = res.results.filter(task => (task.status !== 'IN_PROGRESS' && task.status !== 'ENQUEUED') && (task.type !== TaskLogType.FETCHING_EXPENSE && task.type !== TaskLogType.CREATING_BILL_PAYMENT) && exportableExpenseGroupIds.includes(task.expense_group)).length;
       this.exportProgressPercentage = Math.round((this.processedCount / exportableExpenseGroupIds.length) * 100);
 
       if (res.results.filter(task => (task.status === 'IN_PROGRESS' || task.status === 'ENQUEUED') && exportableExpenseGroupIds.includes(task.expense_group)).length === 0) {
@@ -71,6 +71,7 @@ export class DashboardComponent implements OnInit {
         });
         this.dashboardService.getAllTasks([TaskLogState.FAILED, TaskLogState.FATAL]).subscribe((taskResponse) => {
           this.failedExpenseGroupCount = taskResponse.count;
+          this.exportableExpenseGroupIds = taskResponse.results.map((task: Task) => task.expense_group);
           this.exportInProgress = false;
           this.exportProgressPercentage = 0;
           this.processedCount = 0;
@@ -111,7 +112,7 @@ export class DashboardComponent implements OnInit {
       this.getLastExport$.pipe(map((res) => res), catchError(() => of(null))),
       this.getExportErrors$,
       this.workspaceService.getWorkspaceGeneralSettings(),
-      this.dashboardService.getAllTasks([TaskLogState.ENQUEUED, TaskLogState.IN_PROGRESS], undefined, this.taskType),
+      this.dashboardService.getAllTasks([TaskLogState.ENQUEUED, TaskLogState.IN_PROGRESS, TaskLogState.FAILED], undefined, this.taskType),
       this.exportLogService.getExpenseGroupSettings()
     ]).subscribe((responses) => {
       this.lastExport = responses[0];
@@ -119,10 +120,13 @@ export class DashboardComponent implements OnInit {
       this.employeeFieldMapping = responses[2].employee_field_mapping;
       this.expenseGroupSetting = this.getExpenseGroupingSetting(responses[4]);
 
-      if (responses[3].count) {
+      const queuedTasks: Task[] = responses[3].results.filter((task: Task) => task.status === TaskLogState.ENQUEUED || task.status === TaskLogState.IN_PROGRESS);
+      this.failedExpenseGroupCount = responses[3].results.filter((task: Task) => task.status === TaskLogState.FAILED).length;
+
+      if (queuedTasks.length) {
         this.importInProgress = false;
         this.exportInProgress = true;
-        this.exportableExpenseGroupIds = responses[3].results.map((task: Task) => task.expense_group);
+        this.exportableExpenseGroupIds = responses[3].results.filter((task: Task) => task.status === TaskLogState.ENQUEUED || task.status === TaskLogState.IN_PROGRESS).map((task: Task) => task.expense_group);
         this.pollExportStatus(this.exportableExpenseGroupIds);
       } else {
         this.dashboardService.importExpenseGroups().subscribe(() => {
@@ -132,6 +136,7 @@ export class DashboardComponent implements OnInit {
           });
         });
       }
+      console.log(this.failedExpenseGroupCount)
       this.isLoading = false;
     });
   }

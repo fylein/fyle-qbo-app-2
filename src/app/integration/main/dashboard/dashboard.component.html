@@ -11,16 +11,16 @@
             </div>
             <div class="export--info-section">
               <h3 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">Sit back and relax!</h3>
-              <h3 *ngIf="!exportInProgress && exportableExpenseGroupIds.length && failedExpenseGroupCount === null">{{ exportableExpenseGroupIds.length }} new {{ expenseGroupSetting | titlecase }} ready to export</h3>
+              <h3 *ngIf="!exportInProgress && exportableExpenseGroupIds.length && failedExpenseGroupCount !== null && failedExpenseGroupCount === 0">{{ exportableExpenseGroupIds.length }} new {{ expenseGroupSetting | titlecase }} ready to export</h3>
               <h3 *ngIf="exportInProgress">Exporting {{ processedCount }} of {{ exportableExpenseGroupIds.length }} {{ expenseGroupSetting | titlecase }} to your QBO account</h3>
-              <h3 *ngIf="!exportInProgress && failedExpenseGroupCount !== null">{{ failedExpenseGroupCount }} {{ expenseGroupSetting | titlecase }} to export</h3>
+              <h3 *ngIf="!exportInProgress && exportableExpenseGroupIds.length && failedExpenseGroupCount !== null && failedExpenseGroupCount > 0">{{ exportableExpenseGroupIds.length }} {{ expenseGroupSetting | titlecase }} to export</h3>
               <div class="export--info-text">
                 <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">No new {{ expenseGroupSetting | titlecase }} to export from the payment processing state in Fyle.</h5>
                 <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">Once you start processing payment for the expenses, they will be automatically available here to export.</h5>
                 <h5 *ngIf="!exportInProgress && exportableExpenseGroupIds.length">Click on <b>Export</b> to start exporting these expenses from Fyle to Quickbooks Online.</h5>
                 <h5 *ngIf="exportInProgress">This may take a few minutes. Please wait...</h5>
-                <div *ngIf="!exportInProgress && failedExpenseGroupCount !== null" fxLayout="row">
-                  <h5>0 new {{ expenseGroupSetting | titlecase }}, {{ failedExpenseGroupCount }} previously failed {{ expenseGroupSetting | titlecase }} </h5>
+                <div *ngIf="!exportInProgress && failedExpenseGroupCount !== null && failedExpenseGroupCount > 0" fxLayout="row">
+                  <h5>{{ exportableExpenseGroupIds.length - failedExpenseGroupCount }} new {{ expenseGroupSetting | titlecase }}, {{ failedExpenseGroupCount }} previously failed {{ expenseGroupSetting | titlecase }} </h5>
                   <!-- <img src="assets/images/svgs/general/info.svg" class="export--info-icon" width="16px" height="16px" /> -->
                 </div>
               </div>

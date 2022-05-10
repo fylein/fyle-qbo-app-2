@@ -1,3 +1,5 @@
+import { TaskLogState, TaskLogType } from "../enum/enum.model";
+
 export type Task = {
   bill: number;
   cheque: number;
@@ -10,9 +12,9 @@ export type Task = {
   id: number;
   journal_entry: number;
   bill_payment: number;
-  status: string;
+  status: TaskLogState;
   task_id: string;
-  type: string;
+  type: TaskLogType;
   updated_at: Date;
   workspace: number;
 };
