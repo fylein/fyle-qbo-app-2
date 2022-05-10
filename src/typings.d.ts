@@ -16,4 +16,10 @@ interface Env {
   SENTRY_ENV: string;
   RELEASE: string;
   FYLE_APP_URL: string;
+  tests:{
+    workspaceId: string,
+    user: {
+      refresh_token: string
+    }
+  }
 }

@@ -15,8 +15,6 @@ describe('AppComponent', () => {
         AppComponent
       ]
     }).compileComponents();
-    localStorage.setItem('workspaceId', environment.tests.workspaceId);
-    localStorage.setItem('user', environment.tests.user)
   });
 
   it('should create the app', () => {
