@@ -426,6 +426,7 @@ export class ExportSettingsComponent implements OnInit {
   }
 
   private setupForm(): void {
+    console.log(this.exportSettings.general_mappings.accounts_payable)
     this.exportSettingsForm = this.formBuilder.group({
       expenseState: [this.exportSettings.expense_group_settings?.expense_state, Validators.required],
       reimbursableExpense: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? true : false, this.exportSelectionValidator()],
