@@ -10,6 +10,7 @@ describe('EmployeeSettingService', () => {
   let injector: TestBed;
   let httpMock: HttpTestingController;
   const API_BASE_URL = environment.api_url
+  const workspace_id = environment.tests.workspaceId
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -35,7 +36,7 @@ describe('EmployeeSettingService', () => {
     })
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/v2/workspaces/1/map_employees/`,
+      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/map_employees/`,
     });
     req.flush(response);
   })
@@ -56,7 +57,7 @@ describe('EmployeeSettingService', () => {
     })
     const req = httpMock.expectOne({
       method: 'PUT',
-      url: `${API_BASE_URL}/v2/workspaces/1/map_employees/`,
+      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/map_employees/`,
     });
     req.flush(response);
   })

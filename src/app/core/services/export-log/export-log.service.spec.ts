@@ -12,6 +12,7 @@ describe('ExportLogService', () => {
   let injector: TestBed;
   let httpMock: HttpTestingController;
   const API_BASE_URL = environment.api_url
+  const workspace_id = environment.tests.workspaceId
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -42,7 +43,7 @@ describe('ExportLogService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/1/fyle/expense_group_settings/`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_group_settings/`,
     });
       req.flush(response);
   });
@@ -59,7 +60,7 @@ describe('ExportLogService', () => {
     })
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/1/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE`,
     });
       req.flush(response);
   });

@@ -9,6 +9,7 @@ describe('AdvancedSettingService', () => {
   let injector: TestBed;
   let httpMock: HttpTestingController;
   const API_BASE_URL = environment.api_url
+  const workspace_id = environment.tests.workspaceId
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -49,7 +50,7 @@ describe('AdvancedSettingService', () => {
     });
     const req = httpMock.expectOne({
 	      method: 'GET',
-	      url: `${API_BASE_URL}/v2/workspaces/1/advanced_configurations/`,
+	      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/advanced_configurations/`,
 	    });
     req.flush(advancedSettingResponse);
   })
@@ -96,7 +97,7 @@ describe('AdvancedSettingService', () => {
     })
     const req = httpMock.expectOne({
       method: 'PUT',
-      url: `${API_BASE_URL}/v2/workspaces/1/advanced_configurations/`,
+      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/advanced_configurations/`,
     });
   req.flush(advancedSettingResponse);
   })

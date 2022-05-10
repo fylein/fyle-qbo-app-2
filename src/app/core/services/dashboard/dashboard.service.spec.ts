@@ -9,6 +9,7 @@ describe('DashboardService', () => {
   let injector: TestBed;
   let httpMock: HttpTestingController;
   const API_BASE_URL = environment.api_url
+  const workspace_id = environment.tests.workspaceId
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -32,7 +33,7 @@ describe('DashboardService', () => {
     })
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/1/fyle/exportable_expense_groups/`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/exportable_expense_groups/`,
     });
   req.flush(response);
   })
@@ -43,7 +44,7 @@ describe('DashboardService', () => {
     })
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/v2/workspaces/1/errors/?is_resolved=false`,
+      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/errors/?is_resolved=false`,
     });
     req.flush([]);
   })
@@ -54,7 +55,7 @@ describe('DashboardService', () => {
     })
     const req = httpMock.expectOne({
       method: 'POST',
-      url: `${API_BASE_URL}/workspaces/1/fyle/expense_groups/sync/`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/sync/`,
     });
     req.flush({});
   })
@@ -65,7 +66,7 @@ describe('DashboardService', () => {
     })
     const req = httpMock.expectOne({
       method: 'POST',
-      url: `${API_BASE_URL}/workspaces/1/exports/trigger/`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/exports/trigger/`,
     });
     req.flush({});
   })

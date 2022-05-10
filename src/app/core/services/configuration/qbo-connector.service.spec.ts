@@ -10,6 +10,7 @@ describe('QboConnectorService', () => {
   let injector: TestBed;
   let httpMock: HttpTestingController;
   const API_BASE_URL = environment.api_url
+  const workspace_id = environment.tests.workspaceId
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -43,7 +44,7 @@ describe('QboConnectorService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/1/credentials/qbo/`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/credentials/qbo/`,
     });
     req.flush(response);
   })
@@ -177,7 +178,7 @@ describe('QboConnectorService', () => {
       })
       const req = httpMock.expectOne({
         method: 'GET',
-        url: `${API_BASE_URL}/workspaces/1/qbo/preferences/`,
+        url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/preferences/`,
       });
       req.flush(response);
     });

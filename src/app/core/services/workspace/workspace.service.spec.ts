@@ -11,6 +11,7 @@ describe('WorkspaceService', () => {
   let injector: TestBed;
   let httpMock: HttpTestingController;
   const API_BASE_URL = environment.api_url
+  const workspace_id = environment.tests.workspaceId
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -24,7 +25,7 @@ describe('WorkspaceService', () => {
 
   it('getWorkspaceid service', () => {
     const id = service.getWorkspaceId();
-    const org = "1";
+    const org = workspace_id;
     expect(id.toString()).toEqual(org);
   });
   it('getFyleCurrency service', () => {
@@ -123,7 +124,7 @@ describe('WorkspaceService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/1/settings/general/`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/settings/general/`,
     });
   req.flush(response);
   });
