@@ -6,8 +6,8 @@ import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting
 } from '@angular/platform-browser-dynamic/testing';
-import { environment } from 'environment.localhost';
-
+import { environment } from 'src/environments/environment';
+const API_BASE_URL = environment.api_url
 declare const require: {
   context(path: string, deep?: boolean, filter?: RegExp): {
     keys(): string[];
@@ -24,7 +24,7 @@ getTestBed().initTestEnvironment(
   localStorage.setItem('orgsCount', '1');
   localStorage.setItem('user',environment.tests.user)
   let user = JSON.parse(environment.tests.user);
-  fetch('http://localhost:8002/api/auth/refresh/', {
+  fetch(`${API_BASE_URL}/auth/refresh/`, {
     method: 'POST',
     body: JSON.stringify({ refresh_token: user.refresh_token }),
     headers: { 'Content-Type': 'application/json' }
