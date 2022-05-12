@@ -1,0 +1,17 @@
+name: PR Review Stats
+
+on: pull_request
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run pull request stats
+        uses: flowwer-dev/pull-request-stats@master
+        with:
+          organization: 'fylein'
+          # repositories
+          period: 1000
+          charts: true
+          limit: 0
+          sort-by: 'REVIEWS'
