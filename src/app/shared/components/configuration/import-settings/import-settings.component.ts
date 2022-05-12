@@ -101,7 +101,8 @@ export class ImportSettingsComponent implements OnInit {
     return (control: AbstractControl): {[key: string]: object} | null => {
       if (control.value) {
         // Mark Fyle field as mandatory if toggle is enabled
-        control.parent?.get('source_field')?.setValidators(Validators.required)
+        control.parent?.get('source_field')?.setValidators(Validators.required);
+        control.parent?.get('source_field')?.setValidators(RxwebValidators.unique());
       } else {
         // Reset Fyle field if toggle is disabled
         control.parent?.get('source_field')?.clearValidators();
@@ -116,7 +117,7 @@ export class ImportSettingsComponent implements OnInit {
     const chartOfAccountTypeFormArray = this.chartOfAccountTypesList.map((type) => this.createChartOfAccountField(type));
     const expenseFieldsFormArray = this.qboExpenseFields.map((field) => {
       return this.formBuilder.group({
-        source_field: [field.source_field, RxwebValidators.unique()],
+        source_field: [field.source_field],
         destination_field: [field.destination_field],
         import_to_fyle: [field.import_to_fyle, this.importToggleWatcher()],
         disable_import_to_fyle: [field.disable_import_to_fyle],
