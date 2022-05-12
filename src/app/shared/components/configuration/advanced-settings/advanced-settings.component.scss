@@ -33,10 +33,6 @@
   }
 
   &--memo-preview-select {
-    ::ng-deep .mat-select-value {
-      width: 96.7%;
-    }
-
     ::ng-deep .mat-select-panel-wrap {
       @extend .mat-select-panel-wrap;
       // TODO: check this
