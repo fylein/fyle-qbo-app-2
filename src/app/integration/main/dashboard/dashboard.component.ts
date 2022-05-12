@@ -67,6 +67,10 @@ export class DashboardComponent implements OnInit {
           this.getLastExport$,
         ]).subscribe(responses => {
           this.errors = this.formatErrors(responses[0]);
+          this.groupedErrorStat = {
+            EMPLOYEE_MAPPING: null,
+            CATEGORY_MAPPING: null
+          };
           this.lastExport = responses[1];
         });
         this.dashboardService.getAllTasks([TaskLogState.FAILED, TaskLogState.FATAL]).subscribe((taskResponse) => {
