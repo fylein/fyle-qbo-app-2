@@ -124,7 +124,7 @@
         </div>
       </div>
 
-      <div class="profile--dropdown pointer">
+      <div (click)="showOrHideProfileDropdown()" class="profile--dropdown pointer">
         <img #menuButton src='{{ "assets/images/svgs/actions/arrow-mark-" + (isProfileExpanded ? "up" : "down") + "-dashboard.svg"}}' />
       </div>
     </div>
