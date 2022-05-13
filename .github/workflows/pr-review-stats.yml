@@ -11,6 +11,7 @@ jobs:
         with:
           organization: 'fylein'
           # repositories: 'fylein/fyle-qbo-app'
+          limit: 10
           period: 1000
           charts: true
           sort-by: 'REVIEWS'
