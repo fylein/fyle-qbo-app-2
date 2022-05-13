@@ -4,10 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "npm run config && ng build --prod",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "lint": "ng lint"
+    "test": "npm run config && ng test",
+    "lint": "ng lint",
+    "config": "ts-node -O '{\"module\": \"commonjs\"}' config.index.ts"
   },
   "private": true,
   "dependencies": {
@@ -28,6 +29,7 @@
     "@sentry/tracing": "^6.19.7",
     "rxjs": "~6.6.0",
     "ts-cacheable": "^1.0.6",
+    "ts-node": "^10.7.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },
