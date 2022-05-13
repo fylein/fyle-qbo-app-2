@@ -14,7 +14,7 @@
     <img *ngIf="showBackButton && activePage" class="navbar--back-btn pointer" (click)="navigateBack()" src="assets/images/svgs/actions/arrow-mark-left-back.svg" />
     <h3 [ngClass]="showBackButton && activePage ? 'navbar--page-name-with-back-btn' : 'navbar--page-name'">{{ activePage | titlecase | snakeCaseToSpaceCase }}</h3>
     <div *ngIf="activePage" class="navbar--switcher-divider"></div>
-    <div *ngIf="activePage" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--back-btn pointer">
+    <div (click)="switchToOldApp()" *ngIf="activePage" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--back-btn pointer">
       <img src="assets/images/svgs/actions/sync.svg" class="configuration--back-btn-arrow" width="13.5px" height="11.25px" />
       <h5 class="btn-icon align-center">Switch to Old Design</h5>
     </div>
