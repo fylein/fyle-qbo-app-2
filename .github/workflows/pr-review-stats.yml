@@ -10,6 +10,7 @@ jobs:
         uses: flowwer-dev/pull-request-stats@master
         with:
           organization: 'fylein'
+          limit: 10
           # repositories: 'fylein/fyle-qbo-app'
           period: 1000
           charts: true
