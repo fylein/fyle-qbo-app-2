@@ -36,18 +36,7 @@ export class MainComponent implements OnInit {
       iconPath: 'assets/images/svgs/general/mapping',
       isExpanded: false,
       isActive: false,
-      childPages: [
-        {
-          name: 'Employee Mapping',
-          route: 'mapping/employee',
-          isActive: false
-        },
-        {
-          name: 'Category Mapping',
-          route: 'mapping/category',
-          isActive: false
-        }
-      ]
+      childPages: []
     },
     {
       name: 'Configuration',
@@ -146,6 +135,17 @@ export class MainComponent implements OnInit {
   }
 
   setupMappingPages(): void {
+    this.modules[2].childPages = [{
+      name: 'Employee Mapping',
+      route: 'mapping/employee',
+      isActive: false
+    },
+    {
+      name: 'Category Mapping',
+      route: 'mapping/category',
+      isActive: false
+    }];
+
     this.mappingService.getMappingSettings().subscribe((mappingSettingResponse: MappingSettingResponse) => {
       const sourceFieldRoutes: string[] = [`mapping/${FyleField.EMPLOYEE.toLowerCase()}`, `mapping/${FyleField.CATEGORY.toLowerCase()}`];
       mappingSettingResponse.results.forEach((mappingSetting: MappingSetting) => {
@@ -158,9 +158,6 @@ export class MainComponent implements OnInit {
           });
         }
       });
-
-      // remove dead mappings
-      this.modules[2].childPages = this.modules[2].childPages.filter(c => sourceFieldRoutes.includes(c.route));
 
       this.markModuleActive(this.router.url);
       this.isLoading = false;
