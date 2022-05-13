@@ -105,7 +105,6 @@ export class ExportLogService {
   generateFyleUrl(expenseGroup: ExpenseGroup, referenceType: FyleReferenceType) : string {
     let url = `${environment.fyle_app_url}/app/`;
     if (referenceType === FyleReferenceType.EXPENSE) {
-      // TODO: add org_id to fyle url
       url += `main/#/view_expense/${expenseGroup.description.expense_id}`;
     } else if (referenceType === FyleReferenceType.EXPENSE_REPORT) {
       url += `admin/#/reports/${expenseGroup.description.report_id}`;

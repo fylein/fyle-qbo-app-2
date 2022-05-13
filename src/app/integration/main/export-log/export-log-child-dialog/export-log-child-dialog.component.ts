@@ -62,7 +62,7 @@ export class ExportLogChildDialogComponent implements OnInit {
   }
 
   private searchByText(expense: ExpenseList, filterText: string) {
-    return expense.expenseID.toLowerCase().includes(filterText);
+    return expense.expenseID.toLowerCase().includes(filterText.toLowerCase());
   }
 
   private setupPage(): void {
