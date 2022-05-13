@@ -18,6 +18,7 @@ export const environment = {
   sentry_env: '{{SENTRY_ENV}}',
   release: '{{RELEASE}}',
   fyle_app_url: '{{FYLE_APP_URL}}',
+  clarity_project_id: '{{CLARITY_PROJECT_ID}}',
   tests:{
     workspaceId: '{{TEST_WORKSPACE_ID}}',
     user: {

@@ -15,6 +15,7 @@ interface Env {
   SENTRY_DSN: string;
   SENTRY_ENV: string;
   RELEASE: string;
+  CLARITY_PROJECT_ID: string;
   FYLE_APP_URL: string;
   tests:{
     workspaceId: string,
