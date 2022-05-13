@@ -121,7 +121,7 @@
               ]
             }
           },
-          "defaultConfiguration": "localhost",
+          
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
