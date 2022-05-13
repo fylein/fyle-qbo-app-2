@@ -2,7 +2,7 @@ name: TypeScript Lint Check
 
 on:
   pull_request:
-    types: [assigned  opened  synchronize  reopened]
+    types: [assigned,  opened,  synchronize,  reopened]
 
 jobs:
   build:
@@ -35,3 +35,4 @@ jobs:
         SECRETS_FYLE_APP_URL: ${{secrets.FYLE_APP_URL}} 
         SECRETS_TESTS_USER_REFRESH_TOKEN: ${{secrets.TESTS_USER_REFRESH_TOKEN}} 
         SECRETS_TESTS_WORKSPACEID: ${{secrets.TESTS_WORKSPACEID}}
+        
