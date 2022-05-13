@@ -110,6 +110,10 @@ export class OnboardingHeaderComponent implements OnInit {
     this.location.back();
   }
 
+  switchToOldApp(): void {
+    // TODO: implement switchToOldApp
+  }
+
   switchFyleOrg(): void {
     this.authService.logout();
     this.authService.redirectToFyleOAuth();
