@@ -2,29 +2,32 @@ import { writeFile } from 'fs';
 
 const targetPath = './src/environments/environment.prod.ts';
 
+console.log("hello")
+console.log("hello",process.env.API_URL)
 const envConfigFile = `export const environment = {
   production: false,
-  fyle_url: '${process.env.SECRETS_FYLE_URL}',
-  fyle_client_id: '${process.env.SECRETS_FYLE_CLIENT_ID}',
-  callback_uri: '${process.env.SECRETS_CALLBACK_URL}',
-  api_url: '${process.env.SECRETS_API_URL}',
-  app_url: '${process.env.SECRETS_APP_URL}',
-  qbo_client_id: '${process.env.SECRETS_QBO_CLIENT_ID}',
-  qbo_scope: '${process.env.SECRETS_QBO_SCOPE}',
-  qbo_authorize_uri: '${process.env.SECRETS_QBO_AUTHORIZE_URI}',
-  qbo_app_url: '${process.env.SECRETS_QBO_APP_URL}',
-  hotjar_id: '${process.env.SECRETS_HOTJAR_ID}',
-  sentry_dsn: '${process.env.SECRETS_SENTRY_DSN}',
-  release: '${process.env.SECRETS_RELEASE}',
-  fyle_app_url: '${process.env.SECRETS_FYLE_APP_URL}',
+  fyle_url: '${process.env.FYLE_URL}',
+  fyle_client_id: '${process.env.FYLE_CLIENT_ID}',
+  callback_uri: '${process.env.CALLBACK_URL}',
+  api_url: '${process.env.API_URL}',
+  app_url: '${process.env.APP_URL}',
+  qbo_client_id: '${process.env.QBO_CLIENT_ID}',
+  qbo_scope: '${process.env.QBO_SCOPE}',
+  qbo_authorize_uri: '${process.env.QBO_AUTHORIZE_URI}',
+  qbo_app_url: '${process.env.QBO_APP_URL}',
+  hotjar_id: '${process.env.HOTJAR_ID}',
+  sentry_dsn: '${process.env.SENTRY_DSN}',
+  release: '${process.env.RELEASE}',
+  fyle_app_url: '${process.env.FYLE_APP_URL}',
   tests: {
     user: {
-      refresh_token: '${process.env.SECRETS_TESTS_USER_REFRESH_TOKEN}',
+      refresh_token: '${process.env.TESTS_USER_REFRESH_TOKEN}',
     },
-    workspaceId: '${process.env.SECRETS_TESTS_WORKSPACEID}'
+    workspaceId: '${process.env.TESTS_WORKSPACEID}'
   }
 };
 `;
+console.log("I am over",envConfigFile)
 
 writeFile(targetPath, envConfigFile, 'utf8', (err) => {
   if (err) {
