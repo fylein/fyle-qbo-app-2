@@ -1,0 +1,16 @@
+name: PR Review Stats
+
+on: pull_request
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run pull request stats
+        uses: flowwer-dev/pull-request-stats@master
+        with:
+          organization: 'fylein'
+          # repositories: 'fylein/fyle-qbo-app'
+          period: 1000
+          charts: true
+          sort-by: 'REVIEWS'

@@ -148,6 +148,7 @@ export class ExportLogComponent implements OnInit {
   }
 
   private searchByText(expenseGroup: ExpenseGroupList, filterText: string) {
+    filterText = filterText.toLowerCase();
     return expenseGroup.employee[0].toLowerCase().includes(filterText) || expenseGroup.employee[1].toLowerCase().includes(filterText) || expenseGroup.referenceNumber.toLowerCase().includes(filterText);
   }
 

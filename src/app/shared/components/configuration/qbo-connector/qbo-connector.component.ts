@@ -126,7 +126,6 @@ export class QboConnectorComponent implements OnInit {
         this.showOrHideDisconnectQBO();
       });
     }, (error) => {
-      // TODO: personalise the message based on the error (if it's an actual error / different company connect)
       const errorMessage = 'message' in error.error ? error.error.message : 'Failed to connect to QuickBooks Online. Please try again';
       if (errorMessage === 'Please choose the correct Quickbooks online account') {
         this.showWarningDialog();

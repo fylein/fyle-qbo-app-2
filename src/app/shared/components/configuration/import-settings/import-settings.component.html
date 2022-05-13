@@ -108,10 +108,10 @@
                   <mat-select placeholder="Select Default Tax Code" formControlName="defaultTaxCode" (closed)="helperService.clearSearchText(importSettingsForm)" [compareWith]="helperService.compareObjects">
                     <app-simple-search-select [form]="importSettingsForm"></app-simple-search-select>
                     <div *ngFor="let option of taxCodes | search : importSettingsForm.value.searchOption">
-                      <mat-option [ngClass]="{'search-zero-state': option && option.value === 'No result found'}" [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(importSettingsForm)" [value]="{name: option.value, id: option.id}">
+                      <mat-option [ngClass]="{'search-zero-state': option && option.value === 'No result found'}" [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" (click)="helperService.clearSearchText(importSettingsForm)" [value]="{name: option.value, id: option.destination_id}">
                         <p (click)="$event.stopPropagation()" *ngIf="option.value === 'No result found'" class="align-center italic">{{ option.value }}</p>
                         <p *ngIf="option.value !== 'No result found'">{{ option.value }}</p>
-                        <img *ngIf="(importSettingsForm.value.defaultTaxCode | json) === ({name: option.value, id: option.id} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
+                        <img *ngIf="(importSettingsForm.value.defaultTaxCode | json) === ({name: option.value, id: option.destination_id} | json)" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
                       </mat-option>
                     </div>
                   </mat-select>

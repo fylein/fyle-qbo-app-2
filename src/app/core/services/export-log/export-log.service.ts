@@ -7,6 +7,7 @@ import { ExpenseGroup, ExpenseGroupDescription, ExpenseGroupResponse } from '../
 import { FyleReferenceType } from '../../models/enum/enum.model';
 import { SelectedDateFilter } from '../../models/misc/date-filter.model';
 import { ApiService } from '../core/api.service';
+import { UserService } from '../misc/user.service';
 import { WorkspaceService } from '../workspace/workspace.service';
 
 
@@ -16,9 +17,11 @@ import { WorkspaceService } from '../workspace/workspace.service';
 export class ExportLogService {
 
   workspaceId: string = this.workspaceService.getWorkspaceId();
+  private org_id: string = this.userService.getUserProfile().org_id;
 
   constructor(
     private apiService: ApiService,
+    private userService: UserService,
     private workspaceService: WorkspaceService
   ) { }
 
@@ -100,16 +103,15 @@ export class ExportLogService {
   }
 
   generateFyleUrl(expenseGroup: ExpenseGroup, referenceType: FyleReferenceType) : string {
-    let url = `${environment.fyle_app_url}/app/admin/#`;
+    let url = `${environment.fyle_app_url}/app/`;
     if (referenceType === FyleReferenceType.EXPENSE) {
-      // TODO: add org_id to fyle url
-      url += `/view_expense/${expenseGroup.description.expense_id}`;
+      url += `main/#/view_expense/${expenseGroup.description.expense_id}`;
     } else if (referenceType === FyleReferenceType.EXPENSE_REPORT) {
-      url += `/reports/${expenseGroup.description.report_id}`;
+      url += `admin/#/reports/${expenseGroup.description.report_id}`;
     } else if (referenceType === FyleReferenceType.PAYMENT) {
-      url += `/settlements/${expenseGroup.description.settlement_id}`;
+      url += `admin/#/settlements/${expenseGroup.description.settlement_id}`;
     }
 
-    return url;
+    return `${url}?org_id=${this.org_id}`;
   }
 }

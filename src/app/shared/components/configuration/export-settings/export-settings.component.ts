@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { ConfigurationCtaText, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, OnboardingState, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
@@ -546,7 +546,12 @@ export class ExportSettingsComponent implements OnInit {
       } else if (this.advancedSettingAffected()) {
         this.router.navigate(['/workspaces/main/configuration/advanced_settings']);
       } else {
-        this.router.navigate(['/workspaces/main/dashboard']);
+        const navigationExtras: NavigationExtras = {
+          queryParams: {
+            refreshMappings: true
+          }
+        };
+        this.router.navigate(['/workspaces/main/dashboard'], navigationExtras);
       }
     }, () => {
       this.saveInProgress = false;

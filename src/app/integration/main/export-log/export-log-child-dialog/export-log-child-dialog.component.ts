@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { environment } from 'src/environments/environment';
 import { Expense, ExpenseList } from 'src/app/core/models/db/expense.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
+import { UserService } from 'src/app/core/services/misc/user.service';
 
 @Component({
   selector: 'app-export-log-child-dialog',
@@ -16,13 +17,15 @@ export class ExportLogChildDialogComponent implements OnInit {
   form: FormGroup;
   displayedColumns: string[] = ['expenseID', 'merchant', 'category', 'amount'];
   isLoading: boolean = true;
+  private org_id: string = this.userService.getUserProfile().org_id;
   expenses: MatTableDataSource<ExpenseList> = new MatTableDataSource<ExpenseList>([]);
 
   constructor(
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: Expense[],
     public dialogRef: MatDialogRef<ExportLogChildDialogComponent>,
-    public helperService: HelperService
+    public helperService: HelperService,
+    private userService: UserService
   ) { }
 
   private setupForm(): void {
@@ -43,9 +46,8 @@ export class ExportLogChildDialogComponent implements OnInit {
     const expenses: ExpenseList[] = [];
 
     expenseList.forEach((expense: Expense) => {
-      // TODO: add org_id to fyle url
       expenses.push({
-        fyleUrl: `${environment.fyle_app_url}/app/admin/#/view_expense/${expense.expense_id}`,
+        fyleUrl: `${environment.fyle_app_url}/app/main/#/view_expense/${expense.expense_id}?org_id=${this.org_id}`,
         amount: [expense.amount, expense.currency],
         merchant: expense.vendor,
         category: expense.category,
@@ -60,7 +62,7 @@ export class ExportLogChildDialogComponent implements OnInit {
   }
 
   private searchByText(expense: ExpenseList, filterText: string) {
-    return expense.expenseID.toLowerCase().includes(filterText);
+    return expense.expenseID.toLowerCase().includes(filterText.toLowerCase());
   }
 
   private setupPage(): void {

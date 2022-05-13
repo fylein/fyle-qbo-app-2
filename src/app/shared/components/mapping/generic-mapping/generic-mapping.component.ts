@@ -146,7 +146,6 @@ export class GenericMappingComponent implements OnInit {
   }
 
   private searchByText(mapping: MappingList, filterText: string) {
-    // TODO: update all searchByText with case insentitive
     return mapping.fyle.value.toLowerCase().includes(filterText.toLowerCase());
   }
 
