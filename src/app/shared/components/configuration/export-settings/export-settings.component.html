@@ -114,7 +114,7 @@
       <app-configuration-toggle-field
         [form]="exportSettingsForm"
         [label]="'Export Credit Card Expenses'"
-        [subLabel]="'Enable this to export the corporate credit card expenses from Fyle. If not enabled, any expenses <span class=bold>Paid by Corporate Card</span> will not be exported to QBO.'"
+        [subLabel]="'Enable this to export the credit card expenses from Fyle. If not enabled, any expenses <span class=bold>Paid by Corporate Card</span> will not be exported to QBO.'"
         [formControllerName]="'creditCardExpense'"
       >
       </app-configuration-toggle-field>
@@ -127,7 +127,7 @@
           [mandatoryErrorListName]="'expense export type'"
           [iconPath]="'assets/images/svgs/general/expense.svg'"
           [label]="'How should the expense be exported?'"
-          [subLabel]="'Choose the type of transaction in Quickbooks Online to export your corporate credit card expense from Fyle.'"
+          [subLabel]="'Choose the type of transaction in Quickbooks Online to export your credit card expense from Fyle.'"
           [placeholder]="'Select expense export type'"
           [formControllerName]="'creditCardExportType'"
           >
@@ -215,7 +215,7 @@
             [mandatoryErrorListName]="'date'"
             [iconPath]="'assets/images/svgs/general/calendar.svg'"
             [label]="'Set the ' + getExportType(exportSettingsForm.value.creditCardExportType) + ' date as'"
-            [subLabel]="'The selected date will reflect in the corporate credit card expenses exported to QBO.'"
+            [subLabel]="'The selected date will reflect in the credit card expenses exported to QBO.'"
             [placeholder]="'Select the date of the ' + getExportType(exportSettingsForm.value.creditCardExportType)"
             [formControllerName]="'creditCardExportDate'"
             >
