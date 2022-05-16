@@ -9,6 +9,7 @@ import { FyleCallbackComponent } from './fyle-callback/fyle-callback.component';
 import { AuthComponent } from './auth.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SharedLoginComponent } from './shared-login/shared-login.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     LoginComponent,
     LogoutComponent,
     FyleCallbackComponent,
-    AuthComponent
+    AuthComponent,
+    SharedLoginComponent
   ],
   imports: [
     CommonModule,

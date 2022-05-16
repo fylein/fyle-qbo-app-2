@@ -85,4 +85,10 @@ export class AuthService {
 
     return user ? user.refresh_token : null;
   }
+
+  checkLoginStatusAndLogout(): void {
+    if (this.isLoggedIn()) {
+      this.logout();
+    }
+  }
 }

@@ -77,7 +77,7 @@ export class OnboardingHeaderComponent implements OnInit {
       return 'Advanced Settings';
     }
 
-    return '';
+    return 'Dashboard';
   }
 
   private setupPage(): void {

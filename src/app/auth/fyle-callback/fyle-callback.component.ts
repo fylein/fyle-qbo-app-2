@@ -20,12 +20,6 @@ export class FyleCallbackComponent implements OnInit {
     private userService: UserService
   ) { }
 
-  private checkLoginStatusAndLogout(): void {
-    if (this.authService.isLoggedIn()) {
-      this.authService.logout();
-    }
-  }
-
   private redirectToLogin(): void {
     this.authService.logout();
     this.router.navigate(['auth/login']);
@@ -67,7 +61,7 @@ export class FyleCallbackComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.checkLoginStatusAndLogout();
+    this.authService.checkLoginStatusAndLogout();
 
     this.login();
   }
