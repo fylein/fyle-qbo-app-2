@@ -2,7 +2,7 @@ name: TypeScript Lint Check
 
 on:
   pull_request:
-    types: [assigned,  opened,  synchronize,  reopened]
+    types: [assigned, opened, synchronize, reopened]
 
 jobs:
   build:
@@ -21,10 +21,10 @@ jobs:
     - name: Test
       run: npm run test
       env:
-        FYLE_URL: ${{secrets.FYLE_URL}} 
+        FYLE_URL: '${{ secrets.FYLE_URL }}'
         FYLE_CLIENT_ID: ${{secrets.FYLE_CLIENT_ID}} 
         CALLBACK_URL: ${{secrets.CALLBACK_URL}} 
-        API_URL: ${{secrets.API_URL}} 
+        API_URL: '${{ secrets.API_URL }}'
         APP_URL: ${{secrets.APP_URL}} 
         QBO_CLIENT_ID: ${{secrets.QBO_CLIENT_ID}} 
         QBO_SCOPE: ${{secrets.QBO_SCOPE}} 
