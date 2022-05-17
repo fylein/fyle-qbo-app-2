@@ -2,10 +2,11 @@ import { writeFile } from 'fs';
 
 const targetPath = './src/environments/environment.prod.ts';
 
+console.log('complete', process.env)
 console.log("hello",process.env.API_URL)
 const envConfigFile = `export const environment = {
   production: false,
-  fyle_url: '${process.env.FYLE_URL}',
+  fyle_url: ${process.env.FYLE_URL},
   fyle_client_id: '${process.env.FYLE_CLIENT_ID}',
   callback_uri: '${process.env.CALLBACK_URL}',
   api_url: '${process.env.API_URL}',
