@@ -126,17 +126,17 @@ export class OnboardingHeaderComponent implements OnInit {
       const user = this.userService.getUserProfile();
 
       const localStorageDump = {
-        'email': user.email,
-        'access_token': user.access_token,
-        'refresh_token': user.refresh_token,
-        'user': {
-          'employee_email': user.email,
-          'full_name': user.full_name,
-          'user_id': user.user_id,
-          'org_id': user.org_id,
-          'org_name': user.org_name
+        email: user.email,
+        access_token: user.access_token,
+        refresh_token: user.refresh_token,
+        user: {
+          employee_email: user.email,
+          full_name: user.full_name,
+          user_id: user.user_id,
+          org_id: user.org_id,
+          org_name: user.org_name
         },
-        'orgsCount': this.storageService.get('refresh_token')
+        orgsCount: this.storageService.get('refresh_token')
       };
 
       this.windowReference.location.href = `${environment.old_qbo_app_url}?local_storage_dump=${JSON.stringify(localStorageDump)}`;
