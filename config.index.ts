@@ -1,6 +1,6 @@
 import { writeFile } from 'fs';
 
-const targetPath = './src/environments/environment.prod.ts';
+const targetPath = './src/environments/environment.ts';
 
 console.log('complete', process.env)
 console.log("hello",process.env.API_URL)

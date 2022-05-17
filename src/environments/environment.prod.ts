@@ -1,22 +1,23 @@
 export const environment = {
-  production: false,
-  fyle_url: 'https://fyle.com',
-  fyle_client_id: 'undefined',
-  callback_uri: 'undefined',
-  api_url: 'undefined',
-  app_url: 'undefined',
-  qbo_client_id: 'undefined',
-  qbo_scope: 'undefined',
-  qbo_authorize_uri: 'undefined',
-  qbo_app_url: 'undefined',
-  hotjar_id: 'undefined',
-  sentry_dsn: 'undefined',
-  release: 'undefined',
-  fyle_app_url: 'undefined',
-  tests: {
+  production: '{{PRODUCTION}}',
+  fyle_url: '{{FYLE_URL}}',
+  fyle_client_id: '{{FYLE_CLIENT_ID}}',
+  callback_uri: '{{CALLBACK_URI}}',
+  api_url: '{{API_URL}}',
+  app_url: '{{APP_URL}}',
+  qbo_client_id: '{{QBO_CLIENT_ID}}',
+  qbo_scope: '{{QBO_SCOPE}}',
+  qbo_authorize_uri: '{{QBO_AUTHORIZE_URI}}',
+  qbo_app_url: '{{QBO_APP_URL}}',
+  hotjar_id : '{{HOTJAR_ID}}',
+  sentry_dsn: '{{SENTRY_DSN}}',
+  sentry_env: '{{SENTRY_ENV}}',
+  release: '{{RELEASE}}',
+  fyle_app_url: '{{FYLE_APP_URL}}',
+  tests:{
+    workspaceId: '{{TEST_WORKSPACE_ID}}',
     user: {
-      refresh_token: 'undefined',
-    },
-    workspaceId: 'undefined'
+      refresh_token: '{{TEST_REFRESH_TOKEN}}'
+    }
   }
 };

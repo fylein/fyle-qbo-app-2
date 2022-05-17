@@ -50,3 +50,4 @@ environment.localhost.ts
 docker-compose.yml
 setup.sh
 githubSecrets.environment.ts
+secrets.sh
