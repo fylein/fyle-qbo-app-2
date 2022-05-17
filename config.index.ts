@@ -2,8 +2,6 @@ import { writeFile } from 'fs';
 
 const targetPath = './src/environments/environment.ts';
 
-console.log('complete', process.env)
-console.log("hello",process.env.API_URL)
 const envConfigFile = `export const environment = {
   production: false,
   fyle_url: '${process.env.FYLE_URL}',
@@ -27,7 +25,7 @@ const envConfigFile = `export const environment = {
   }
 };
 `;
-console.log("it ends here", envConfigFile)
+
 writeFile(targetPath, envConfigFile, 'utf8', (err) => {
   if (err) {
     return console.log(err);
