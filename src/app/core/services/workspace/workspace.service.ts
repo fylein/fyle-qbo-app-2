@@ -25,6 +25,10 @@ export class WorkspaceService {
     return this.storageService.get('currency');
   }
 
+  getWorkspaceCreatedAt(): Date {
+    return new Date(this.storageService.get('workspaceCreatedAt'));
+  }
+
   setOnboardingState(onboardingState: OnboardingState): void {
     return this.storageService.set('onboardingState', onboardingState);
   }
@@ -35,6 +39,10 @@ export class WorkspaceService {
 
   createWorkspace(): Observable<Workspace> {
     return this.apiService.post('/workspaces/', {});
+  }
+
+  patchWorkspace(): Observable<Workspace> {
+    return this.apiService.patch(`/workspaces/${this.getWorkspaceId()}/`, {app_version: 'v1'});
   }
 
   @Cacheable()

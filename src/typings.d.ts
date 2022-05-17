@@ -7,6 +7,7 @@ interface Env {
   CALLBACK_URI: string;
   API_URL: string;
   APP_URL: string;
+  OLD_QBO_APP_URL: string;
   QBO_CLIENT_ID: string;
   QBO_SCOPE: string;
   QBO_AUTHORIZE_URL: string;

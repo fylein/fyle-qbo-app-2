@@ -49,3 +49,4 @@ private/
 environment.localhost.ts
 docker-compose.yml
 setup.sh
+secrets.sh
