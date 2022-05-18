@@ -111,7 +111,7 @@ export class OnboardingHeaderComponent implements OnInit {
   }
 
   switchFyleOrg(): void {
-    this.authService.logout();
+    this.authService.logout(true);
     this.authService.redirectToFyleOAuth();
   }
 
