@@ -91,6 +91,7 @@ export enum MappingState {
 export enum ErrorType {
   EMPLOYEE_MAPPING = 'EMPLOYEE_MAPPING',
   CATEGORY_MAPPING = 'CATEGORY_MAPPING',
+  TAX_MAPPING = 'TAX_MAPPING',
   QBO_ERROR = 'QBO_ERROR'
 }
 

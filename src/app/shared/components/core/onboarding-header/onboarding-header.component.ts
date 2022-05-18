@@ -79,6 +79,8 @@ export class OnboardingHeaderComponent implements OnInit {
       return 'Import Settings';
     } else if (currentPageUrl.indexOf('/configuration/advanced_settings') > -1) {
       return 'Advanced Settings';
+    } else if (currentPageUrl.indexOf('/onboarding') > -1) {
+      return '';
     }
 
     return 'Dashboard';

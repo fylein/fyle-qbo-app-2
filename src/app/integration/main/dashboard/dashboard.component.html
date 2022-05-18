@@ -124,21 +124,21 @@
     <!-- past export shimmer -->
 
     <div *ngIf="!isLoading && lastExport && errors" class="errors">
-      <div class="errors--section" [ngClass]="{'errors--zero-state-section': !errors || !errors?.EMPLOYEE_MAPPING?.length && !errors?.CATEGORY_MAPPING?.length && !errors?.QBO_ERROR?.length}">
+      <div class="errors--section" [ngClass]="{'errors--zero-state-section': !errors || !errors?.EMPLOYEE_MAPPING?.length && !errors?.CATEGORY_MAPPING?.length && !errors?.TAX_MAPPING?.length && !errors?.QBO_ERROR?.length}">
         <p class="errors--header" fxLayout="row">
           Errors
           <img src="assets/images/svgs/general/info.svg" class="errors--info-icon" width="16px" height="16px" matTooltip="Expenses failed to export due to the following errors. Resolve them before trying to re-export again." matTooltipPosition="right" />
         </p>
         <p class="errors--header-divider"></p>
 
-        <div *ngIf="errors?.EMPLOYEE_MAPPING?.length || groupedErrorStat?.EMPLOYEE_MAPPING || errors?.CATEGORY_MAPPING?.length || groupedErrorStat?.CATEGORY_MAPPING" class="errors--integration-error-section">
+        <div *ngIf="errors?.EMPLOYEE_MAPPING?.length || groupedErrorStat?.EMPLOYEE_MAPPING || errors?.CATEGORY_MAPPING?.length || groupedErrorStat?.CATEGORY_MAPPING || errors?.TAX_MAPPING?.length || groupedErrorStat?.TAX_MAPPING" class="errors--integration-error-section">
           <div class="errors--integration-error-contents">
             <p>Integration Errors</p>
             <h5 class="errors--integration-error-sub-header sub-text-color">Check and resolve these errors before trying to re-export them again.</h5>
           </div>
         </div>
 
-        <div *ngIf="errors?.EMPLOYEE_MAPPING?.length || groupedErrorStat?.EMPLOYEE_MAPPING || errors?.CATEGORY_MAPPING?.length || groupedErrorStat?.CATEGORY_MAPPING" class="errors--mapping-error-section">
+        <div *ngIf="errors?.EMPLOYEE_MAPPING?.length || groupedErrorStat?.EMPLOYEE_MAPPING || errors?.CATEGORY_MAPPING?.length || groupedErrorStat?.CATEGORY_MAPPING || errors?.TAX_MAPPING?.length || groupedErrorStat?.TAX_MAPPING" class="errors--mapping-error-section">
           <div *ngIf="errors?.EMPLOYEE_MAPPING?.length || groupedErrorStat?.EMPLOYEE_MAPPING" class="errors--mapping-error-contents" fxLayout="row" fxLayoutAlign="space-between center">
             <div>
               <p>Employee Mapping errors</p>
@@ -178,6 +178,26 @@
             </div>
           </div>
           <p class="errors--divider"></p>
+
+          <div *ngIf="errors?.TAX_MAPPING?.length || (groupedErrorStat && groupedErrorStat.TAX_MAPPING)" class="errors--mapping-error-contents" fxLayout="row" fxLayoutAlign="space-between center">
+            <div>
+              <p>Tax Mapping errors</p>
+              <h5 *ngIf="groupedErrorStat.TAX_MAPPING" class="errors--resolved-stat sub-text-color">{{ groupedErrorStat.TAX_MAPPING.resolvedCount }}/{{ groupedErrorStat.TAX_MAPPING.totalCount }} error(s) resolved</h5>
+            </div>
+            <div *ngIf="!groupedErrorStat.TAX_MAPPING || (groupedErrorStat.TAX_MAPPING && groupedErrorStat.TAX_MAPPING.resolvedCount !== groupedErrorStat.TAX_MAPPING.totalCount)" fxLayout="row" fxLayoutAlign="space-between center" class="errors--resolve-btn configuration--submit-btn pointer" (click)="resolveMappingError(errors.TAX_MAPPING)">
+              <p class="single-line-text btn-cta-text-without-icon">
+                Resolve
+              </p>
+            </div>
+
+            <div *ngIf="groupedErrorStat.TAX_MAPPING && groupedErrorStat.TAX_MAPPING.resolvedCount === groupedErrorStat.TAX_MAPPING.totalCount" fxLayout="row">
+              <img src="assets/images/svgs/general/tick-resolved.svg" class="errors--resolved-icon" width="16px" height="16px" />
+              <p class="errors--resolve-btn-text sub-text-color single-line-text">
+                Resolved
+              </p>
+            </div>
+          </div>
+          <p class="errors--divider"></p>
         </div>
 
         <div *ngIf="errors?.QBO_ERROR?.length" class="errors--integration-error-section">
@@ -199,7 +219,7 @@
           </div>
         </div>
 
-        <app-zero-state-with-illustration *ngIf="lastExport && !errors.EMPLOYEE_MAPPING.length && !errors.CATEGORY_MAPPING.length && !errors.QBO_ERROR.length && !groupedErrorStat.CATEGORY_MAPPING && !groupedErrorStat.EMPLOYEE_MAPPING" [page]="'dashboard_error'"></app-zero-state-with-illustration>
+        <app-zero-state-with-illustration *ngIf="lastExport && !errors.EMPLOYEE_MAPPING.length && !errors.CATEGORY_MAPPING.length && !errors.TAX_MAPPING.length && !errors.QBO_ERROR.length && !groupedErrorStat.CATEGORY_MAPPING && !groupedErrorStat.EMPLOYEE_MAPPING" [page]="'dashboard_error'"></app-zero-state-with-illustration>
       </div>
     </div>
 

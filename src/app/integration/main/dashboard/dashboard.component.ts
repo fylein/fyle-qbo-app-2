@@ -36,7 +36,8 @@ export class DashboardComponent implements OnInit {
   expenseGroupSetting: string;
   groupedErrorStat: GroupedErrorStat = {
     [ErrorType.EMPLOYEE_MAPPING]: null,
-    [ErrorType.CATEGORY_MAPPING]: null
+    [ErrorType.CATEGORY_MAPPING]: null,
+    [ErrorType.TAX_MAPPING]: null
   };
   ExportState = ExportState;
   employeeName: string = this.userService.getUserProfile().full_name;
@@ -69,7 +70,8 @@ export class DashboardComponent implements OnInit {
           this.errors = this.formatErrors(responses[0]);
           this.groupedErrorStat = {
             EMPLOYEE_MAPPING: null,
-            CATEGORY_MAPPING: null
+            CATEGORY_MAPPING: null,
+            TAX_MAPPING: null
           };
           this.lastExport = responses[1];
         });
@@ -94,6 +96,7 @@ export class DashboardComponent implements OnInit {
     }, {
       [ErrorType.EMPLOYEE_MAPPING]: [],
       [ErrorType.CATEGORY_MAPPING]: [],
+      [ErrorType.TAX_MAPPING]: [],
       [ErrorType.QBO_ERROR]: []
     });
   }
@@ -166,19 +169,41 @@ export class DashboardComponent implements OnInit {
         }
       }
 
+      if (this.errors.TAX_MAPPING.length !== newError.TAX_MAPPING.length) {
+        const totalCount = this.groupedErrorStat.TAX_MAPPING ? this.groupedErrorStat.TAX_MAPPING.totalCount : this.errors.TAX_MAPPING.length;
+
+        this.groupedErrorStat.TAX_MAPPING = {
+          resolvedCount: totalCount - newError.TAX_MAPPING.length,
+          totalCount: totalCount
+        }
+      }
+
       this.errors = newError;
     });
   }
 
   resolveMappingError(groupedError: Error[]): void {
     const errorType = groupedError[0].type;
+    let sourceType: FyleField | null = null;
+    let destinationType: QBOField | EmployeeFieldMapping | null = null;
+
+    if (errorType === ErrorType.EMPLOYEE_MAPPING) {
+      sourceType = FyleField.EMPLOYEE;
+      destinationType = this.employeeFieldMapping;
+    } else if (errorType === ErrorType.CATEGORY_MAPPING) {
+      sourceType = FyleField.CATEGORY;
+      destinationType = QBOField.ACCOUNT;
+    } else if (errorType === ErrorType.TAX_MAPPING) {
+      sourceType = FyleField.TAX_GROUP;
+      destinationType = QBOField.TAX_CODE;
+    }
 
     const dialogRef = this.dialog.open(DashboardResolveMappingErrorDialogComponent, {
       width: '784px',
       height: '974px',
       data: {
-        sourceType: errorType === ErrorType.EMPLOYEE_MAPPING ? EmployeeFieldMapping.EMPLOYEE : FyleField.CATEGORY,
-        destinationType: errorType === ErrorType.EMPLOYEE_MAPPING ? this.employeeFieldMapping : QBOField.ACCOUNT,
+        sourceType: sourceType,
+        destinationType: destinationType,
         fyleAttributes: groupedError,
         workspaceId: this.workspaceService.getWorkspaceId()
       },
