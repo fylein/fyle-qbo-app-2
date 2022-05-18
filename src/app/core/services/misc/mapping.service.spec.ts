@@ -1,14 +1,11 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { MappingService } from './mapping.service';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'environment.localhost';
-import { JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
-import { JwtInterceptor } from '../../interceptors/jwt.interceptor';
 import { EmployeeFieldMapping, FyleField, MappingState, QBOField } from '../../models/enum/enum.model';
 import { ExpenseField } from '../../models/misc/expense-field.model';
 import { MappingStats } from '../../models/db/mapping.model';
-import { ExtendedExpenseAttributeResponse } from '../../models/db/expense-attribute.model';
 import { MappingSettingResponse } from '../../models/db/mapping-setting.model';
 
 describe('MappingService', () => {
@@ -21,18 +18,7 @@ describe('MappingService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule,HttpClientTestingModule],
-      providers: [MappingService
-        // {
-        //   provide: JWT_OPTIONS,
-        //   useValue: JWT_OPTIONS
-        // },
-        // JwtHelperService,
-        // {
-        //   provide: HTTP_INTERCEPTORS,
-        //   useClass: JwtInterceptor,
-        //   multi: true
-        // },
-      ]
+      providers: [MappingService]
     });
     injector = getTestBed();
     service = injector.inject(MappingService);
@@ -94,7 +80,9 @@ describe('MappingService', () => {
       }
   ]
     service.getFyleExpenseFields().subscribe(value => {
-      expect(value).toEqual(response)
+      const responseKeys = Object.keys(response).sort();
+      const actualKeys = Object.keys(value).sort();
+      expect(actualKeys).toEqual(responseKeys)
     })
     const req = httpMock.expectOne({
       method: 'GET',
@@ -181,7 +169,9 @@ describe('MappingService', () => {
       unmapped_attributes_count:3
     };
     service.getMappingStats(EmployeeFieldMapping.EMPLOYEE,EmployeeFieldMapping.VENDOR).subscribe((value)=>{
-      expect(value).toEqual(response)
+      const responseKeys = Object.keys(response).sort();
+      const actualKeys = Object.keys(value).sort();
+      expect(actualKeys).toEqual(responseKeys)
     })
     const req = httpMock.expectOne({
       method: 'GET',
