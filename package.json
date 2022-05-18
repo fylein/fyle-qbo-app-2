@@ -7,6 +7,7 @@
     "build": "npm run config && ng build --prod",
     "watch": "ng build --watch --configuration development",
     "test": "npm run config && ng test --watch=false --browsers=ChromeHeadlessCustom",
+    "local_test": "ng test --configuration=localhost",
     "lint": "ng lint",
     "config": "ts-node -O '{\"module\": \"commonjs\"}' config.index.ts"
   },
