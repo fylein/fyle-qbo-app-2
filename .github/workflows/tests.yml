@@ -33,10 +33,10 @@ jobs:
         FYLE_APP_URL: ${{secrets.FYLE_APP_URL}} 
         TESTS_USER_REFRESH_TOKEN: ${{secrets.TESTS_USER_REFRESH_TOKEN}} 
         TESTS_WORKSPACEID: ${{secrets.TESTS_WORKSPACEID}}
-    - name: Dummy LS
-      run: ls
     - name: Comment Test Coverage
       uses: AthleticNet/comment-test-coverage@1.1
       with:
-        path: coverage/fyle/qbo-app/coverage-final.json
+        path: /home/runner/work/fyle-qbo-app-2/coverage/fyle-qbo-app/coverage-final.json
         title: Karma Test Coverage
+    - name: Dummy LS
+      run: cd coverage && ls
