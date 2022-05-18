@@ -36,7 +36,5 @@ jobs:
     - name: Comment Test Coverage
       uses: AthleticNet/comment-test-coverage@1.1
       with:
-        path: /home/runner/work/fyle-qbo-app-2/coverage/fyle-qbo-app/coverage-final.json
+        path: coverage/coverage-summary.json
         title: Karma Test Coverage
-    - name: Dummy LS
-      run: cd coverage && ls

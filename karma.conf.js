@@ -31,7 +31,7 @@ module.exports = function (config) {
         { type: 'html' },
         { type: 'text-summary' },
         { type: 'lcovonly'},
-        { type: 'json' }
+        { type: 'json-summary' }
       ]
     },
     reporters: ['progress', 'kjhtml'],
