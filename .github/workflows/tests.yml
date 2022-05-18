@@ -15,6 +15,7 @@ jobs:
         node-version: 14.18
     - name: Install dependencies
       run: npm install
+    # TODO: merge lint and tests
     - name: Test
       run: npm run test
       env:
@@ -34,7 +35,7 @@ jobs:
         TESTS_USER_REFRESH_TOKEN: ${{secrets.TESTS_USER_REFRESH_TOKEN}} 
         TESTS_WORKSPACEID: ${{secrets.TESTS_WORKSPACEID}}
     - name: Comment Test Coverage
-      uses: AthleticNet/comment-test-coverage@1.1
+      uses: AthleticNet/comment-test-coverage@1.2.2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         path: coverage/coverage-summary.json
