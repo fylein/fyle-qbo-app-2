@@ -14,23 +14,12 @@ export const environment = {
   sentry_dsn: '{{SENTRY_DSN}}',
   sentry_env: '{{SENTRY_ENV}}',
   release: '{{RELEASE}}',
-  fyle_app_url: '{{FYLE_APP_URL}}',
   clarity_project_id: '{{CLARITY_PROJECT_ID}}',
+  fyle_app_url: '{{FYLE_APP_URL}}',
   tests:{
     workspaceId: '{{TEST_WORKSPACE_ID}}',
     user: {
       refresh_token: '{{TEST_REFRESH_TOKEN}}'
     }
   }
-
 };
-
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
