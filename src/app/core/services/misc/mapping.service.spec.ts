@@ -2,7 +2,7 @@ import { getTestBed, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { MappingService } from './mapping.service';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
-import { environment } from 'environment.localhost';
+import { environment } from 'src/environments/environment';
 import { EmployeeFieldMapping, FyleField, MappingState, QBOField } from '../../models/enum/enum.model';
 import { ExpenseField } from '../../models/misc/expense-field.model';
 import { MappingStats } from '../../models/db/mapping.model';
