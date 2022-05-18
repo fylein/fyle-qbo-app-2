@@ -9,6 +9,7 @@ import { MinimalUser } from '../../models/db/user.model';
 import { UserService } from '../misc/user.service';
 import { WorkspaceService } from '../workspace/workspace.service';
 import * as Sentry from '@sentry/angular';
+import { TrackingService } from './tracking.service';
 
 
 @Injectable({
@@ -21,6 +22,7 @@ export class AuthService {
   constructor(
     private apiService: ApiService,
     private storageService: StorageService,
+    private trackingService: TrackingService,
     private userService: UserService,
     private windowReferenceService: WindowService,
     private workspaceService: WorkspaceService
@@ -49,7 +51,12 @@ export class AuthService {
     return this.userService.getUserProfile() != null;
   }
 
-  logout(): void {
+  logout(switchOrg: boolean | void): void {
+    if (switchOrg) {
+      this.trackingService.onSwitchWorkspace();
+    } else {
+      this.trackingService.onSignOut();
+    }
     Sentry.configureScope(scope => scope.setUser(null));
     this.storageService.remove('user');
   }

@@ -8,6 +8,7 @@ import { WindowService } from '../core/services/core/window.service';
 import { UserService } from '../core/services/misc/user.service';
 import { WorkspaceService } from '../core/services/workspace/workspace.service';
 import * as Sentry from '@sentry/angular';
+import { TrackingService } from '../core/services/core/tracking.service';
 
 @Component({
   selector: 'app-integration',
@@ -23,6 +24,7 @@ export class IntegrationComponent implements OnInit {
   constructor(
     private router: Router,
     private storageService: StorageService,
+    private trackingService: TrackingService,
     private userService: UserService,
     private windowService: WindowService,
     private workspaceService: WorkspaceService
@@ -50,9 +52,11 @@ export class IntegrationComponent implements OnInit {
   private getOrCreateWorkspace(): Promise<Workspace> {
     return this.workspaceService.getWorkspaces(this.user.org_id).toPromise().then(workspaces => {
       if (workspaces.length > 0) {
+        this.trackingService.onSignIn(this.user.email, workspaces[0].id, workspaces[0].name, workspaces[0].fyle_org_id);
         return workspaces[0];
       } else {
         return this.workspaceService.createWorkspace().toPromise().then(workspace => {
+          this.trackingService.onSignUp(this.user.email, workspace.id, workspace.name, workspace.fyle_org_id);
           return workspace;
         });
       }
