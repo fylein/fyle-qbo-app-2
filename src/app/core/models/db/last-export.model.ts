@@ -6,7 +6,8 @@ export type LastExport = {
   total_expense_groups_count: number;
   successful_expense_groups_count: number;
   failed_expense_groups_count: number;
-  workspace_id: number;
+  workspace: number;
   created_at: Date;
   updated_at: Date;
+  id?: number;
 };

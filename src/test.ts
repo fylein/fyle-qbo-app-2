@@ -30,9 +30,18 @@ fetch(`${API_BASE_URL}/auth/refresh/`, {
   headers: { 'Content-Type': 'application/json' }
 }).then(result => result.json()).then(jsonformat => {
   const accessToken: {access_token: string} = {
-    access_token: jsonformat.access_token
+    access_token: jsonformat.access_token,
   };
-  localStorage.setItem('user', JSON.stringify(accessToken));
+  fetch(`${API_BASE_URL}/user/profile/`, {
+    method: 'GET',
+    headers: { 'Authorization': `Bearer ${accessToken.access_token}` }
+  }).then(result => result.json()).then(jsonformat => {
+    const profile:{access_token: string,org_id:string} = {
+      org_id: jsonformat.data.org_id,
+      access_token: accessToken.access_token
+    };
+    localStorage.setItem('user', JSON.stringify(profile));
+  });
 });
 const context = require.context('./', true, /\.service.spec|.model.spec|.pipe.spec\.ts$/);
 // And load the modules.

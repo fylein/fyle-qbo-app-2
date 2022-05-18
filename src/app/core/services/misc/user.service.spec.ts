@@ -16,23 +16,8 @@ describe('UserService', () => {
   });
   const realuser = localStorage.getItem('user')
 
-  it('getUserdetails service', () => {
-    const response:MinimalUser = {
-      access_token: "fyle",
-      email: "sravan.kumar@fyle.in",
-      full_name: "sravan k",
-      org_id: "orunxXsIajSE",
-      org_name: "Test Sample Statement - GBP",
-      refresh_token: "fyle",
-      user_id: "ust5Ga9HC3qc",
-    };
-    const actualResponse:MinimalUser = service.getUserProfile();
-    actualResponse.access_token="fyle";
-    actualResponse.refresh_token='fyle';
-    expect(actualResponse).toEqual(response || null);
-  })
 
-  it('setUserDetails service', () => {
+  it('setUserDetails and getUserdetails service', () => {
     const user:MinimalUser = {
       access_token: "fyle",
       email: "sravan.kumar@fyle.in",
@@ -43,8 +28,10 @@ describe('UserService', () => {
       user_id: "ust5Ga9HC3qc",
     };
     service.storeUserProfile(user);
-    const response = localStorage.getItem('user');
-    expect(response).toBeDefined();
+    const actualResponse:MinimalUser = service.getUserProfile();
+    const responseKeys = Object.keys(user).sort();
+    const actualResponseKeys = Object.keys(actualResponse).sort();
+    expect(actualResponseKeys).toEqual(responseKeys || null);
   })
 
   it('storeFyleOrgsCount service', (done) => {
