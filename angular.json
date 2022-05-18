@@ -111,6 +111,18 @@
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
+          "configurations": {
+            "localhost": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "environment.localhost.ts"
+                }
+              ],
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "localhost",
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
