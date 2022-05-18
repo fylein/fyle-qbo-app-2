@@ -34,7 +34,8 @@ jobs:
         TESTS_USER_REFRESH_TOKEN: ${{secrets.TESTS_USER_REFRESH_TOKEN}} 
         TESTS_WORKSPACEID: ${{secrets.TESTS_WORKSPACEID}}
     - name: Comment Test Coverage
+      run: ls
       uses: AthleticNet/comment-test-coverage@1.1
       with:
-        path: coverage/coverage-final.json
+        path: coverage/fyle/qbo-app/coverage-final.json
         title: Karma Test Coverage

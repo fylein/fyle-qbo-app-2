@@ -15,6 +15,8 @@ describe('ExportLogService', () => {
   const workspace_id = environment.tests.workspaceId
   
   beforeEach(() => {
+    // TODO: remove this temp hack
+    localStorage.setItem('user', JSON.stringify({org_id: 'dummy'}));
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [ExportLogService]
