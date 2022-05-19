@@ -39,26 +39,29 @@
     padding-right: 8px;
   }
 
+  &--actionable-btn {
+    font-size: 12px;
+  }
+
   &--state-pill {
     height: 24px;
     border-radius: 13.5px;
   }
 
   &--state-pill-active {
-    width: 75px;
     background: #E7F7F2;
     color: #55B07D;
     @extend .profile--state-pill;
   }
 
   &--state-pill-inactive {
-    width: 89px;
     background: rgba(218, 30, 40, 0.1);
     color: #DA1E28;
     @extend .profile--state-pill;
   }
 
   &--state-pill-text {
+    font-size: 12px;
     padding: 5px 10px;
   }
 

@@ -194,6 +194,14 @@ table {
   padding: 4px 0px 0px 14px !important;
 }
 
+.mat-option.mat-selected:not(.mat-option-multiple):not(.mat-option-disabled), .mat-option:focus:not(.mat-selected), .mat-option:hover:not(.mat-selected) {
+  background: #0000000a !important;
+}
+
+.mat-option.mat-active {
+  background: none !important;
+}
+
 .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
   color: #5a5d72 !important;
 }

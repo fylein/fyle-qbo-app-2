@@ -13,7 +13,7 @@
               <h3 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">Sit back and relax!</h3>
               <h3 *ngIf="exportInProgress">Exporting {{ processedCount }} of {{ exportableExpenseGroupIds.length }} Transaction{{exportableExpenseGroupIds.length > 1 ? 's' : ''}} to your QBO account</h3>
               <h3 *ngIf="!exportInProgress && exportableExpenseGroupIds.length">{{ exportableExpenseGroupIds.length }} Transaction{{exportableExpenseGroupIds.length > 1 ? 's' : ''}} ready to export</h3>
-              <div class="export--info-text">
+              <div class="export--info-text paragraph">
                 <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">No new Transaction to export from the payment processing state in Fyle.</h5>
                 <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">Once you start processing payment for the expenses, they will be automatically available here to export.</h5>
                 <h5 *ngIf="!exportInProgress && exportableExpenseGroupIds.length">Click on <b>Export</b> to start exporting expenses from Fyle as QBO transactions.</h5>
@@ -69,7 +69,7 @@
           </h2>
           <p class="past-export--header-divider"></p>
           <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">
-            <p class="past-export--detail">Date & Time of export</p>
+            <p class="past-export--detail single-line-text">Date & Time of export</p>
             <p class="single-line-text">{{ lastExport.last_exported_at| date: 'dd MMM, yyyy' }} at {{ lastExport.last_exported_at | date: 'HH:mm' }}</p>
           </div>
           <p class="past-export--divider"></p>
@@ -123,7 +123,7 @@
     </div>
     <!-- past export shimmer -->
 
-    <div *ngIf="!isLoading && lastExport && errors" class="errors">
+    <div *ngIf="!isLoading && lastExport && errors" class="errors paragraph">
       <div class="errors--section" [ngClass]="{'errors--zero-state-section': !errors || !errors?.EMPLOYEE_MAPPING?.length && !errors?.CATEGORY_MAPPING?.length && !errors?.TAX_MAPPING?.length && !errors?.QBO_ERROR?.length}">
         <p class="errors--header" fxLayout="row">
           Errors

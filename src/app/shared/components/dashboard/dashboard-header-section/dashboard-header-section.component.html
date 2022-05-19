@@ -1,11 +1,12 @@
-<div class="dashboard-header-section--bg dashboard-header-section--greeting-section">
+<div class="dashboard-header-section--bg"></div>
+<div class="dashboard-header-section--greeting-section">
   <div fxLayout="row" fxLayoutAlign="space-between center">
-    <h3>👋 Hello {{ name }}!</h3>
+    <div class="dashboard-header-section--greeting-text">👋 Hello {{ name }}!</div>
 
     <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--back-btn pointer dashboard-header-section--sync-btn" (click)="refreshQBODimensions()"
       matTooltip="Instantly refresh and sync the dimensions from QBO and Fyle" matTooltipPosition="left">
-      <img src="assets/images/svgs/actions/sync.svg" class="btn-cta-text-with-icon" />
-      <h5 class="btn-icon align-center">Sync</h5>
+      <img width="12px" height="10px" src="assets/images/svgs/actions/sync.svg" class="dashboard-header-section--sync-icon" />
+      <h5 class="dashboard-header-section--sync-text align-center">Sync</h5>
     </div>
   </div>
 </div>

@@ -3,7 +3,7 @@
 <div class="export-log">
   <div class="export-log--content">
     <!-- header -->
-    <div [formGroup]="exportLogForm" class="export-log--header-section">
+    <div *ngIf="totalCount" [formGroup]="exportLogForm" class="export-log--header-section">
       <div fxLayout="row" class="export-log--simple-search" [class.active]="selectedDateFilter">
         <app-simple-search-select [form]="exportLogForm" [placeholder]="'Search by Employee Name or Reference ID'" [showBackgroundColor]="false"></app-simple-search-select>
 

@@ -1,14 +1,37 @@
 .dashboard-header-section {
   &--bg {
-    height: 140px;
     background: linear-gradient(97.33deg, #E1EEFF 26.8%, #FFE4FB 97.18%);
+    position: absolute;
+    height: 282px;
+    z-index: -1;
+    width: 86.4%;
+    @media only screen and (max-width: 1440px) {
+      width: 81.9%;
+    }
   }
 
   &--greeting-section {
+    height: 140px;
     padding: 31px 24px 28px 24px;
+    z-index: 101;
+  }
+
+  &--greeting-text {
+    font-size: 20px;
   }
 
   &--sync-btn {
     background: #FFFFFF;
+    width: 80px;
+    height: 32px;
+  }
+
+  &--sync-icon {
+    padding-left: 13px;
+  }
+
+  &--sync-text {
+    padding-left: 9px;
+    padding-right: 12px;
   }
 }
