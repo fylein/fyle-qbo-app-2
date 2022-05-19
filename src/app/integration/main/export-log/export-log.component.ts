@@ -162,6 +162,7 @@ export class ExportLogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // TODO: fix zero state
     this.getExpenseGroupsAndSetupPage();
   }
 
