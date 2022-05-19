@@ -43,6 +43,7 @@ fetch(`${API_BASE_URL}/auth/refresh/`, {
     localStorage.setItem('user', JSON.stringify(profile));
   });
 });
-const context = require.context('./', true, /\.service.spec|.model.spec|.pipe.spec\.ts$/);
+const context = require.context('./', true, /\.guard.spec|\.service.spec|.model.spec|.pipe.spec\.ts$/);
+//const context = require.context('./', true, /\.guard.spec\.ts$/);
 // And load the modules.
 context.keys().map(context);

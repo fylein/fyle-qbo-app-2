@@ -3,10 +3,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { WorkspacesGuard } from './workspaces.guard';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
+import { ActivatedRoute, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 describe('WorkspacesGuard', () => {
   let guard: WorkspacesGuard;
-
+  let act: ActivatedRouteSnapshot;
+  let route: RouterStateSnapshot;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule,HttpClientModule,MatSnackBarModule]
@@ -16,5 +18,12 @@ describe('WorkspacesGuard', () => {
 
   it('should be created', () => {
     expect(guard).toBeTruthy();
+  });
+
+  it('canActivate check', () =>{
+    const responseKeys =['_isScalar', 'source', 'operator'].sort();
+    const result = guard.canActivate(act, route);
+    const actualResponseKeys =Object.keys(result).sort();
+    expect(responseKeys).toEqual(actualResponseKeys);
   });
 });
