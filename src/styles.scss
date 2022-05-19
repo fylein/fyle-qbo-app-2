@@ -382,7 +382,6 @@ table {
     border: 1px solid #DFDFE2;
     box-sizing: border-box;
     border-radius: 4px;
-    width: 107px;
     height: 42px;
 
     &:hover {
@@ -529,10 +528,18 @@ table {
 
   &--page-name-with-back-btn {
     padding-left: 14px;
+    padding-right: 20px;
   }
 
   &--page-name {
     padding-left: 24px;
+    padding-right: 20px;
+  }
+
+  &--switcher-divider {
+    border-right: 1px solid #DFDFE2;
+    height: 28px;
+    margin-right: 20px;
   }
 
   &--back-btn {

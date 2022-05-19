@@ -9,9 +9,11 @@ import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
 import { AuthService } from 'src/app/core/services/core/auth.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
+import { StorageService } from 'src/app/core/services/core/storage.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
+import { environment } from 'src/environments/environment';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
@@ -29,6 +31,7 @@ export class OnboardingHeaderComponent implements OnInit {
   qboCompanyName: string;
   showBackButton: boolean;
   activePage: string;
+  showSwitchApp: boolean = false;
   @ViewChild('menuButton') menuButton: ElementRef;
   @ViewChild('helpButton') helpButton: ElementRef;
   @ViewChild('help') help: ElementRef;
@@ -44,6 +47,7 @@ export class OnboardingHeaderComponent implements OnInit {
     private qboConnectorService: QboConnectorService,
     private router: Router,
     private renderer: Renderer2,
+    private storageService: StorageService,
     private userService: UserService,
     private windowService: WindowService,
     private workspaceService: WorkspaceService
@@ -75,9 +79,11 @@ export class OnboardingHeaderComponent implements OnInit {
       return 'Import Settings';
     } else if (currentPageUrl.indexOf('/configuration/advanced_settings') > -1) {
       return 'Advanced Settings';
+    } else if (currentPageUrl.indexOf('/onboarding') > -1) {
+      return '';
     }
 
-    return '';
+    return 'Dashboard';
   }
 
   private setupPage(): void {
@@ -104,10 +110,39 @@ export class OnboardingHeaderComponent implements OnInit {
         this.activePage = this.getActivePageName(val.url);
       }
     });
+
+    const workspaceCreatedAt: Date = this.workspaceService.getWorkspaceCreatedAt();
+    const oldAppCutOffDate = new Date('2022-05-16T00:00:00.000Z');
+
+    if (workspaceCreatedAt.getTime() < oldAppCutOffDate.getTime()) {
+      this.showSwitchApp = true;
+    }
   }
 
   navigateBack() {
     this.location.back();
+  }
+
+  switchToOldApp(): void {
+    this.workspaceService.patchWorkspace().subscribe(() => {
+      const user = this.userService.getUserProfile();
+
+      const localStorageDump = {
+        email: user.email,
+        access_token: user.access_token,
+        refresh_token: user.refresh_token,
+        user: {
+          employee_email: user.email,
+          full_name: user.full_name,
+          user_id: user.user_id,
+          org_id: user.org_id,
+          org_name: user.org_name
+        },
+        orgsCount: this.storageService.get('refresh_token')
+      };
+
+      this.windowReference.location.href = `${environment.old_qbo_app_url}?local_storage_dump=${JSON.stringify(localStorageDump)}`;
+    });
   }
 
   switchFyleOrg(): void {

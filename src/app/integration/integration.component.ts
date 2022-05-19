@@ -73,6 +73,7 @@ export class IntegrationComponent implements OnInit {
       });
       this.storageService.set('currency', workspace.fyle_currency);
       this.storageService.set('onboardingState', workspace.onboarding_state);
+      this.storageService.set('workspaceCreatedAt', workspace.created_at);
       this.workspaceService.syncFyleDimensions().subscribe();
       this.workspaceService.syncQBODimensions().subscribe();
       this.navigate();

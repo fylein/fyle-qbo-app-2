@@ -25,12 +25,13 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/fyle-qbo-app'),
+      dir: require('path').join(__dirname, './coverage'),
       subdir: '.',
       reporters: [
         { type: 'html' },
         { type: 'text-summary' },
-        { type: 'lcovonly'}
+        { type: 'lcovonly'},
+        { type: 'json-summary' }
       ]
     },
     reporters: ['progress', 'kjhtml'],

@@ -5,6 +5,7 @@ export const environment = {
   callback_uri: '{{CALLBACK_URI}}',
   api_url: '{{API_URL}}',
   app_url: '{{APP_URL}}',
+  old_qbo_app_url: '{{OLD_QBO_APP_URL}}',
   qbo_client_id: '{{QBO_CLIENT_ID}}',
   qbo_scope: '{{QBO_SCOPE}}',
   qbo_authorize_uri: '{{QBO_AUTHORIZE_URI}}',
@@ -13,6 +14,7 @@ export const environment = {
   sentry_dsn: '{{SENTRY_DSN}}',
   sentry_env: '{{SENTRY_ENV}}',
   release: '{{RELEASE}}',
+  clarity_project_id: '{{CLARITY_PROJECT_ID}}',
   fyle_app_url: '{{FYLE_APP_URL}}',
   tests:{
     workspaceId: '{{TEST_WORKSPACE_ID}}',
@@ -20,15 +22,4 @@ export const environment = {
       refresh_token: '{{TEST_REFRESH_TOKEN}}'
     }
   }
-
 };
-
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.

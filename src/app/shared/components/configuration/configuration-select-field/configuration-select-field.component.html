@@ -30,7 +30,7 @@
       </mat-select>
       <div class="mat-select-arrow-closed"></div>
     </mat-form-field>
-    <app-mandatory-error-message *ngIf="isFieldMandatory && form.controls[formControllerName].touched && !form.controls[formControllerName].valid" [listName]="mandatoryErrorListName" [customErrorMessage]="customErrorMessage"></app-mandatory-error-message>
+    <app-mandatory-error-message *ngIf="isFieldMandatory && form.controls[formControllerName].touched && !form.controls[formControllerName].valid && !form.controls[formControllerName].disabled" [listName]="mandatoryErrorListName" [customErrorMessage]="customErrorMessage"></app-mandatory-error-message>
     <div *ngIf="(formControllerName === 'reimbursableExportType' && form.value.reimbursableExportType) || (formControllerName === 'creditCardExportType' && form.value.creditCardExportType)" class="configuration-select-field--preview-text sub-text-color">
       <p *ngIf="formControllerName === 'reimbursableExportType'">Click <span class="configuration-select-field--preview-btn pointer" (click)="showQBOExportPreview(form.value.reimbursableExportType, null)">here</span> to Preivew on how it looks on QBO</p>
       <p *ngIf="formControllerName === 'creditCardExportType'">Click <span class="configuration-select-field--preview-btn pointer" (click)="showQBOExportPreview(null, form.value.creditCardExportType)">here</span> to Preivew on how it looks on QBO</p>
