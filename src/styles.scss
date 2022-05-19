@@ -54,6 +54,56 @@ table {
   width: 100%;
 }
 
+tr {
+  border-radius: 4px !important;
+}
+
+tr.mat-header-row {
+  border-radius: 4px !important;
+}
+
+th {
+  color: #161528 !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  border-right: 1px solid #DFDFE2 !important;
+  height: 100%;
+}
+
+th.mat-header-cell {
+  color: #161528 !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  border-left: none !important;
+  border-top: 1px solid #DFDFE2 !important;
+  border-right: 1px solid #DFDFE2 !important;
+  border-bottom: 1px solid #DFDFE2 !important;
+}
+
+th.mat-header-cell:first-of-type {
+  border-left: 1px solid #DFDFE2 !important;
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+  padding-left: 44px !important;
+}
+
+td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+  padding-left: 44px !important;
+}
+
+th.mat-header-cell {
+  padding-left: 22px !important;
+}
+
+td.mat-cell, td.mat-footer-cell {
+  padding-left: 22px !important;
+}
+
+th.mat-header-cell:last-of-type {
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+}
+
 .bold { font-weight: bold; }
 
 .paragraph {
@@ -562,6 +612,10 @@ table {
 }
 
 .mapping {
+  td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+    padding-left: 19px !important;
+  }
+
   width: 1658px;
   @media only screen and (max-width: 1440px) {
     width: 1178px;
@@ -626,59 +680,6 @@ table {
 }
 
 .skeleton-loader-list-view {
-  &--table {
-    font-size: 12px;
-    border: 1px solid #DFDFE2;
-    border-radius: 4px;
-    height: 56px;
-    background: #F5F5F5;
-    text-align: left;
-  }
-
-  &--fyle {
-    padding-left: 54px;
-  }
-
-  &--export-log-col-1 {
-    margin-left: 24px;
-  }
-
-  &--export-log-col-2 {
-    margin-left: 66px;
-    @media only screen and (max-width: 1440px) {
-      margin-left: 30px;
-    }
-  }
-
-  &--export-log-col-3 {
-    margin-left: 90px;
-    @media only screen and (max-width: 1440px) {
-      margin-left: 40px;
-    }
-  }
-
-  &--export-log-col-4 {
-    margin-right: 36px;
-  }
-
-  &--export-log-col-6 {
-    margin-right: 136px;
-  }
-
-  &--qbo {
-    padding-right: 160px;
-    @media only screen and (max-width: 1440px) {
-      padding-right: 140px;
-    }
-  }
-
-  &--state {
-    padding-right: 490px;
-    @media only screen and (max-width: 1440px) {
-      padding-right: 320px;
-    }
-  }
-
   &--row-box {
     background: #FFFFFF;
     border-radius: 4px;

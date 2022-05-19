@@ -19,6 +19,7 @@ import { DateFilter, SelectedDateFilter } from 'src/app/core/models/misc/date-fi
 export class ExportLogComponent implements OnInit {
 
   expenseGroups: MatTableDataSource<ExpenseGroupList> = new MatTableDataSource<ExpenseGroupList>([]);
+  emptyExpenseGroup: MatTableDataSource<ExpenseGroupList> = new MatTableDataSource<ExpenseGroupList>([]);
   displayedColumns: string[] = ['exportedAt', 'name', 'fundSource', 'referenceID', 'exportType', 'link'];
   isLoading: boolean = true;
   exportLogForm: FormGroup;

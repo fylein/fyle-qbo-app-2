@@ -3,49 +3,58 @@
 <div class="export-log">
   <div class="export-log--content">
     <!-- header -->
-    <div *ngIf="totalCount" [formGroup]="exportLogForm" class="export-log--header-section">
+    <div class="export-log--header-section">
       <div fxLayout="row" class="export-log--simple-search" [class.active]="selectedDateFilter">
         <app-simple-search-select [form]="exportLogForm" [placeholder]="'Search by Employee Name or Reference ID'" [showBackgroundColor]="false"></app-simple-search-select>
 
-        <mat-form-field floatLabel="always" appearance="outline" class="export-log--date-filter">
-          <mat-select placeholder="Select date range" formControlName="dateRange">
-            <mat-select-trigger *ngIf="selectedDateFilter" class="export-log--selected-date">
-              {{ selectedDateFilter.startDate | date: 'MMM dd, yyyy' }} - {{ selectedDateFilter.endDate | date: 'MMM dd, yyyy' }}
-              <img src="assets/images/svgs/actions/clear-date-filter.svg" (click)="clearDateFilter()" class="export-log--clear-date-filter" width="12px" height="12px">
-            </mat-select-trigger>
-            <mat-option class="export-log--date-select-option" *ngFor="let dateOption of dateOptions" [value]="dateOption">
-              <div>
-                <div class="sub-text-color">{{ dateOption.dateRange }}</div>
-                <div class="export-log--date-range">{{ dateOption.startDate | date: 'MMM dd, yyyy' }} - {{ dateOption.endDate | date: 'MMM dd, yyyy' }}</div>
-              </div>
-            </mat-option>
-            <mat-option class="export-log--date-select-option" [value]="''" (click)="picker.open();">
-              <div fxLayout="row" fxLayoutAlign="space-between center">
-                <div class="sub-text-color">Custom dates</div>
-                <img src="assets/images/svgs/actions/arrow-right-export-log.svg" class="configuration--icon">
-              </div>
-            </mat-option>
-          </mat-select>
-          <div *ngIf="!selectedDateFilter" class="mat-select-arrow-closed"></div>
-        </mat-form-field>
-        <div class="export-log--date-field">
-          <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field export-log--date-filter">
-            <mat-date-range-input [formGroup]="exportLogForm" [rangePicker]="picker">
-              <input matStartDate formControlName="start" placeholder="Start date">
-              <input (dateChange)="dateFilterHandler()" matEndDate formControlName="end" placeholder="End date">
-            </mat-date-range-input>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-date-range-picker #picker>
-              <mat-date-range-picker-actions>
-                <div class="export-log--cancel-btn pointer" matDateRangePickerCancel>
-                  <h5 class="export-log--cancel-btn-text align-center">Cancel</h5>
-                </div>
-                <div class="export-log--done pointer" matDateRangePickerApply>
-                  <h5 class="export-log--done-text align-center">Done</h5>
-                </div>
-              </mat-date-range-picker-actions>
-            </mat-date-range-picker>
+        <div *ngIf="isLoading">
+          <mat-form-field floatLabel="always" appearance="outline" class="export-log--date-filter">
+            <mat-select placeholder="Select date range"></mat-select>
+            <div class="mat-select-arrow-closed"></div>
           </mat-form-field>
+        </div>
+
+        <div *ngIf="!isLoading">
+          <mat-form-field [formGroup]="exportLogForm" floatLabel="always" appearance="outline" class="export-log--date-filter">
+            <mat-select placeholder="Select date range" formControlName="dateRange">
+              <mat-select-trigger *ngIf="selectedDateFilter" class="export-log--selected-date">
+                {{ selectedDateFilter.startDate | date: 'MMM dd, yyyy' }} - {{ selectedDateFilter.endDate | date: 'MMM dd, yyyy' }}
+                <img src="assets/images/svgs/actions/clear-date-filter.svg" (click)="clearDateFilter()" class="export-log--clear-date-filter" width="12px" height="12px">
+              </mat-select-trigger>
+              <mat-option class="export-log--date-select-option" *ngFor="let dateOption of dateOptions" [value]="dateOption">
+                <div>
+                  <div class="sub-text-color">{{ dateOption.dateRange }}</div>
+                  <div class="export-log--date-range">{{ dateOption.startDate | date: 'MMM dd, yyyy' }} - {{ dateOption.endDate | date: 'MMM dd, yyyy' }}</div>
+                </div>
+              </mat-option>
+              <mat-option class="export-log--date-select-option" [value]="''" (click)="picker.open();">
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                  <div class="sub-text-color">Custom dates</div>
+                  <img src="assets/images/svgs/actions/arrow-right-export-log.svg" class="configuration--icon">
+                </div>
+              </mat-option>
+            </mat-select>
+            <div *ngIf="!selectedDateFilter" class="mat-select-arrow-closed"></div>
+          </mat-form-field>
+          <div class="export-log--date-field">
+            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field export-log--date-filter">
+              <mat-date-range-input [formGroup]="exportLogForm" [rangePicker]="picker">
+                <input matStartDate formControlName="start" placeholder="Start date">
+                <input (dateChange)="dateFilterHandler()" matEndDate formControlName="end" placeholder="End date">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker>
+                <mat-date-range-picker-actions>
+                  <div class="export-log--cancel-btn pointer" matDateRangePickerCancel>
+                    <h5 class="export-log--cancel-btn-text align-center">Cancel</h5>
+                  </div>
+                  <div class="export-log--done pointer" matDateRangePickerApply>
+                    <h5 class="export-log--done-text align-center">Done</h5>
+                  </div>
+                </mat-date-range-picker-actions>
+              </mat-date-range-picker>
+            </mat-form-field>
+          </div>
         </div>
       </div>
     </div>
@@ -53,16 +62,7 @@
 
     <!-- shimmers -->
     <div *ngIf="isLoading">
-      <table class="shimmers skeleton-loader-list-view--table">
-        <tr fxFlex="row" fxLayoutAlign="space-between center">
-          <th><span class="skeleton-loader-list-view--export-log-col-1">Date and Time of Export</span></th>
-          <th><span class="skeleton-loader-list-view--export-log-col-2">Employee Name and ID</span></th>
-          <th><span class="skeleton-loader-list-view--export-log-col-3">Expense Type</span></th>
-          <th><span class="skeleton-loader-list-view--export-log-col-4">Reference ID</span></th>
-          <th><span>Exported to QBO as</span></th>
-          <th><span class="skeleton-loader-list-view--export-log-col-6">Link to QBO</span></th>
-        </tr>
-      </table>
+      <app-export-log-table [displayedColumns]="displayedColumns" [expenseGroups]="emptyExpenseGroup"></app-export-log-table>
       <div *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" fxLayout="row" fxLayoutAlign="start center" class="skeleton-loader-list-view--row-box">
         <div class="skeleton-loader-list-view--init-box-section">
           <div class="shimmers skeleton-loader-list-view--init-box-export-log"></div>
@@ -75,7 +75,7 @@
     <!-- shimmers -->
 
     <div *ngIf="!isLoading" class="export-log--table">
-      <app-export-log-table [displayedColumns]="displayedColumns" [totalCount]="totalCount" [expenseGroups]="expenseGroups"></app-export-log-table>
+      <app-export-log-table [displayedColumns]="displayedColumns" [expenseGroups]="expenseGroups"></app-export-log-table>
       <app-zero-state-with-illustration [page]="'export_log'" [form]="exportLogForm" [data]="expenseGroups" [searchTerm]="'Employee Name or Expense ID'" [dateFilter]="selectedDateFilter"></app-zero-state-with-illustration>
     </div>
 

@@ -7,10 +7,6 @@
     text-decoration-line: underline;
   }
 
-  &--open-in-qbo {
-    padding-left: 20px;
-  }
-
   &--heading {
     background: #F5F5F5;
     border: 1px solid #DFDFE2;
@@ -24,9 +20,4 @@
       background: #FAFCFF;
     }
   }
-}
-
-th {
-  color: #2C304E;
-  font-weight: 500;
 }

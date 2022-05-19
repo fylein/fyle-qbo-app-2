@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 
@@ -86,7 +86,15 @@ export class PaginatorComponent implements OnInit {
     this.createWatchers();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!(changes.limit && changes.offset) && typeof(changes.totalCount) === 'number') {
+      this.totalCount = changes.totalCount;
+      this.setupForm();
+    }
+  }
+
   ngOnInit(): void {
+    // TODO: Fix pagination issue
     this.setupForm();
   }
 

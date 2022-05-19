@@ -31,6 +31,7 @@ export class EmployeeMappingComponent implements OnInit {
   employeeFieldMapping: EmployeeFieldMapping;
   qboData: DestinationAttribute[];
   mappings: MatTableDataSource<MappingList> = new MatTableDataSource<MappingList>([]);
+  emptyMapping: MatTableDataSource<MappingList> = new MatTableDataSource<MappingList>([]);
   fyleQboMappingFormArray: FormGroup[];
   filterOptions: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   form: FormGroup;

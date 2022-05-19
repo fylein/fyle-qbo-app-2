@@ -14,7 +14,6 @@ import { ExportLogChildDialogComponent } from 'src/app/integration/main/export-l
 })
 export class ExportLogTableComponent implements OnInit {
 
-  @Input() totalCount: number;
   @Input() displayedColumns: string[];
   @Input() expenseGroups: MatTableDataSource<ExpenseGroupList> = new MatTableDataSource<ExpenseGroupList>([]);
   @Input() externalUrlType: string = 'QBO';
