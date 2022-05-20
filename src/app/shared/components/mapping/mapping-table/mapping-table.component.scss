@@ -13,23 +13,11 @@
   }
 
   &--auto-mapped-row {
-    margin-right: 19px;
+    margin-right: 12px;
   }
 
   &--manually-mapped-row {
-    margin-left: 30px;
-  }
-
-  &--row-heading-fyle {
-    margin-left: 34px;
-  }
-
-  &--row-heading-qbo {
-    margin-left: 14px;
-  }
-
-  &--row-heading-state {
-    margin-left: 8px;
+    margin-left: 26px;
   }
 
   &--state-pill {
@@ -57,30 +45,12 @@
 
   &--form-field {
     width: 401px;
-    padding: 2px 0px 0px 0px;
+    // padding: 2px 0px 0px 0px;
+    padding-top: 2px;
     @media only screen and (max-width: 1440px) {
-      padding: 2px 8px 0px 10px;
+      // padding: 2px 8px 0px 10px;
+      padding-top: 2px;
       width: 228px;
     }
   }
-}
-
-th {
-  color: #161528;
-  font-weight: 500;
-}
-
-.mat-column-fyle {
-  flex: none;
-  width: 30%;
-}
-
-.mat-column-qbo {
-  flex: none;
-  width: 37%;
-}
-
-.mat-column-state {
-  flex: none;
-  width: 33%;
 }

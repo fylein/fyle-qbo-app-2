@@ -1,4 +1,12 @@
 .dashboard-resolve-mapping-dialog {
+  td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+    padding-left: 19px !important;
+  }
+
+  th.mat-header-cell:first-of-type {
+    padding-left: 12px !important;
+  }
+
   &--header-section {
     padding: 32px 0px 24px 32px;
   }
@@ -70,7 +78,7 @@
   }
 
   &--row-heading-qbo {
-    margin-left: 14px;
+    margin-left: 22px;
   }
 
   &--form-field {
@@ -81,20 +89,4 @@
       width: 228px;
     }
   }
-}
-
-
-th {
-  color: #161528;
-  font-weight: 500;
-}
-
-.mat-column-fyle {
-  flex: none;
-  width: 30%;
-}
-
-.mat-column-qbo {
-  flex: none;
-  width: 37%;
 }

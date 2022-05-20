@@ -13,15 +13,7 @@
 
       <!-- shimmers -->
       <div *ngIf="isLoading">
-        <table class="shimmers skeleton-loader-list-view--table">
-          <tr fxFlex="row" fxLayoutAlign="space-between center">
-            <th><span class="skeleton-loader-list-view--fyle">Employee in Fyle</span></th>
-            <th>
-              <span class="skeleton-loader-list-view--qbo">{{ employeeFieldMapping | titlecase | snakeCaseToSpaceCase }} in QBO</span>
-            </th>
-            <th><span class="skeleton-loader-list-view--state">State</span></th>
-          </tr>
-        </table>
+        <app-mapping-table [mappings]="emptyMapping" [sourceType]="'EMPLOYEE'" [destinationType]="employeeFieldMapping" [qboData]="[]" [mappingForm]="mappingForm"></app-mapping-table>
         <div *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" fxLayout="row" fxLayoutAlign="start center" class="skeleton-loader-list-view--row-box">
           <div class="skeleton-loader-list-view--init-box-section">
             <div class="shimmers skeleton-loader-list-view--init-box"></div>

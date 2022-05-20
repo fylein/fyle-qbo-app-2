@@ -19,6 +19,7 @@ import { DateFilter, SelectedDateFilter } from 'src/app/core/models/misc/date-fi
 export class ExportLogComponent implements OnInit {
 
   expenseGroups: MatTableDataSource<ExpenseGroupList> = new MatTableDataSource<ExpenseGroupList>([]);
+  emptyExpenseGroup: MatTableDataSource<ExpenseGroupList> = new MatTableDataSource<ExpenseGroupList>([]);
   displayedColumns: string[] = ['exportedAt', 'name', 'fundSource', 'referenceID', 'exportType', 'link'];
   isLoading: boolean = true;
   exportLogForm: FormGroup;
@@ -84,6 +85,7 @@ export class ExportLogComponent implements OnInit {
 
   clearDateFilter(): void {
     this.selectedDateFilter = null;
+    this.totalCount = 0;
     event?.stopPropagation();
     this.exportLogForm.controls.dateRange.patchValue(null);
     this.exportLogForm.controls.start.patchValue('');
@@ -161,6 +163,7 @@ export class ExportLogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // TODO: fix zero state
     this.getExpenseGroupsAndSetupPage();
   }
 
