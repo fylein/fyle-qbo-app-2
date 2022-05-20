@@ -716,7 +716,16 @@ th.mat-header-cell:last-of-type {
     height: 18px;
     width: 1372px;
     @media only screen and (max-width: 1440px) {
-      width: 849px;
+      width: 900px;
+    }
+  }
+
+  &--end-box-export-log-dashboard {
+    height: 18px;
+    // TODO: check this with monitor once
+    width: 1072px;
+    @media only screen and (max-width: 1440px) {
+      width: 550px;
     }
   }
 }

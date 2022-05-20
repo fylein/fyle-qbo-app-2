@@ -85,6 +85,7 @@ export class ExportLogComponent implements OnInit {
 
   clearDateFilter(): void {
     this.selectedDateFilter = null;
+    this.totalCount = 0;
     event?.stopPropagation();
     this.exportLogForm.controls.dateRange.patchValue(null);
     this.exportLogForm.controls.start.patchValue('');

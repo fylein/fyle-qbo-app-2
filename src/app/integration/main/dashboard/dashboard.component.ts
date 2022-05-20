@@ -63,6 +63,7 @@ export class DashboardComponent implements OnInit {
       this.exportProgressPercentage = Math.round((this.processedCount / exportableExpenseGroupIds.length) * 100);
 
       if (res.results.filter(task => (task.status === 'IN_PROGRESS' || task.status === 'ENQUEUED') && exportableExpenseGroupIds.includes(task.expense_group)).length === 0) {
+        this.isLoading = true;
         forkJoin([
           this.getExportErrors$,
           this.getLastExport$,
@@ -74,6 +75,7 @@ export class DashboardComponent implements OnInit {
             TAX_MAPPING: null
           };
           this.lastExport = responses[1];
+          this.isLoading = false;
         });
         this.dashboardService.getAllTasks([TaskLogState.FAILED, TaskLogState.FATAL]).subscribe((taskResponse) => {
           this.failedExpenseGroupCount = taskResponse.count;
