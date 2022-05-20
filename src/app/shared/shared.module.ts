@@ -170,11 +170,6 @@ import { MandatoryErrorMessageComponent } from './components/helpers/mandatory-e
     ExportLogChildTableComponent,
     MandatoryErrorMessageComponent
   ],
-  entryComponents: [
-    ExpenseFieldCreationDialogComponent,
-    PreviewDialogComponent,
-    ConfirmationDialogComponent
-  ],
   providers: []
 })
 export class SharedModule { }
