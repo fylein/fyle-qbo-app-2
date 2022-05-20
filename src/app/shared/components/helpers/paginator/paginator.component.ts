@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 
@@ -7,7 +7,7 @@ import { Paginator } from 'src/app/core/models/misc/paginator.model';
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss']
 })
-export class PaginatorComponent implements OnInit {
+export class PaginatorComponent implements OnInit, OnChanges {
 
   form: FormGroup;
   totalPageCount: number;
