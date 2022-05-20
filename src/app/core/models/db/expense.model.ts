@@ -22,6 +22,7 @@ export type Expense = {
   reimbursable: boolean;
   report_id: string;
   settlement_id: string;
+  payment_number: string;
   spent_at: Date;
   state: string;
   sub_category: string;
