@@ -38,9 +38,12 @@ describe('QboConnectorService', () => {
       updated_at: new Date("2022-05-06T13:13:25.893837Z"),
       workspace: 1,
     }
+    const errormas={
+      "message": "QBO credentials not found in workspace"
+  }
     service.getQBOCredentials().subscribe((value) => {
       value.refresh_token="AB";
-      expect(value).toEqual(response);
+      expect(value).toEqual(response || errormas);
     });
     const req = httpMock.expectOne({
       method: 'GET',
@@ -173,8 +176,11 @@ describe('QboConnectorService', () => {
         domain: "QBO",
         sparse: false
       }
+      const errormas={
+        "message": "QBO credentials not found in workspace"
+    }
     service.getPreferences().subscribe((value) => {
-        expect(value).toEqual(response);
+        expect(value).toEqual(response||errormas);
       })
       const req = httpMock.expectOne({
         method: 'GET',
