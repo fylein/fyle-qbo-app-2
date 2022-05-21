@@ -1,10 +1,9 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { Workspace } from '../../models/db/workspace.model';
 import { AutoMapEmployee, EmployeeFieldMapping, OnboardingState } from '../../models/enum/enum.model';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { environment } from 'environment.localhost';
+import { environment } from 'src/environments/environment';
 import { EmployeeSettingPost, EmployeeSettingGet } from '../../models/configuration/employee-setting.model';
 
 describe('ApiService', () => {
