@@ -13,7 +13,7 @@ export class PreviewDialogComponent implements OnInit {
   ReimbursableExpensesObject = ReimbursableExpensesObject;
 
   CorporateCreditCardExpensesObject = CorporateCreditCardExpensesObject;
-  
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: PreviewPage
   ) { }

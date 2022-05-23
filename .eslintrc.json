@@ -70,7 +70,7 @@
         "key-spacing": ["error", { "beforeColon": false }],
         "keyword-spacing": ["error", { "before": true }],
         "brace-style": "error",
-        // "no-trailing-spaces": "error",
+        "no-trailing-spaces": "error",
         // "no-console": ["error", {"allow": [""]}],
         // "no-debugger": "warn",
         // "@typescript-eslint/no-inferrable-types": "off",

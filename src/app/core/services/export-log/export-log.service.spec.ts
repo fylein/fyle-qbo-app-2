@@ -13,7 +13,7 @@ describe('ExportLogService', () => {
   let httpMock: HttpTestingController;
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
-  
+
   beforeEach(() => {
     // TODO: remove this temp hack
     localStorage.setItem('user', JSON.stringify({org_id: 'dummy'}));
@@ -39,7 +39,7 @@ describe('ExportLogService', () => {
       updated_at: new Date("2022-04-13T10:29:18.802749Z"),
       workspace: 1
     };
-    
+
     service.getExpenseGroupSettings().subscribe(result => {
       expect(result).toEqual(response);
     });

@@ -13,7 +13,7 @@ describe('DashboardService', () => {
   let httpMock: HttpTestingController;
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -31,7 +31,7 @@ describe('DashboardService', () => {
   it('getExportableGroupsIds() service check', () => {
     const response:ExportableExpenseGroup = {exportable_expense_group_ids: []};
     service.getExportableGroupsIds().subscribe((value) => {
-      
+
       expect(value).toEqual(response);
     });
     const req = httpMock.expectOne({

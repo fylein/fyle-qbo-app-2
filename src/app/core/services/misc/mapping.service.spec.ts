@@ -14,7 +14,7 @@ describe('MappingService', () => {
   let httpMock: HttpTestingController;
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule,HttpClientTestingModule],
@@ -222,7 +222,7 @@ describe('MappingService', () => {
     });
       req.flush(response);
   });
-  
+
   it('getQBOEmployees() service check', () => {
     service.triggerAutoMapEmployees().subscribe(value => {
       expect(value).toEqual({});

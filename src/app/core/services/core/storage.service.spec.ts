@@ -37,6 +37,6 @@ describe('StorageService', () => {
   it('remove in localstroage', () => {
     service.remove('test-data');
     const result = service.get('test-data');
-    expect(result).toBeNull(); 
-  });  
+    expect(result).toBeNull();
+  });
 });

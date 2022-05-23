@@ -10,7 +10,7 @@ describe('AdvancedSettingService', () => {
   let httpMock: HttpTestingController;
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -20,7 +20,7 @@ describe('AdvancedSettingService', () => {
     service = injector.inject(AdvancedSettingService);
     httpMock = injector.inject(HttpTestingController);
   });
- 
+
 
   it('should be created', () => {
     expect(service).toBeTruthy();
