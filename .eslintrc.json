@@ -71,10 +71,10 @@
         "keyword-spacing": ["error", { "before": true }],
         "brace-style": "error",
         "no-trailing-spaces": "error",
-        // "no-console": ["error", {"allow": [""]}],
-        // "no-debugger": "warn",
-        // "@typescript-eslint/no-inferrable-types": "off",
-        // "@typescript-eslint/no-namespace": "off",
+        "no-console": ["error", {"allow": ["error"]}],
+        "no-debugger": "warn",
+        "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/no-namespace": "off",
         "max-nested-callbacks": [2,3]
       }
     },
