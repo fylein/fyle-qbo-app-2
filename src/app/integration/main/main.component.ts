@@ -178,7 +178,9 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let summa = 'summa';
     this.setRouteWatcher();
+    console.log(summa)
   }
 
 }
