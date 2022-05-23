@@ -91,6 +91,8 @@
     padding-left: 30px;
     padding-top: 5px;
     width: 202px;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   &--child-contents {
