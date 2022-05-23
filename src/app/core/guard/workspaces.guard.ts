@@ -55,5 +55,5 @@ export class WorkspacesGuard implements CanActivate {
         })
       );
   }
-  
+
 }

@@ -11,9 +11,9 @@ describe('ExportLogService', () => {
   let service: ExportLogService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  const API_BASE_URL = environment.api_url
-  const workspace_id = environment.tests.workspaceId
-  
+  const API_BASE_URL = environment.api_url;
+  const workspace_id = environment.tests.workspaceId;
+
   beforeEach(() => {
     // TODO: remove this temp hack
     localStorage.setItem('user', JSON.stringify({org_id: 'dummy'}));
@@ -39,7 +39,7 @@ describe('ExportLogService', () => {
       updated_at: new Date("2022-04-13T10:29:18.802749Z"),
       workspace: 1
     };
-    
+
     service.getExpenseGroupSettings().subscribe(result => {
       expect(result).toEqual(response);
     });
@@ -59,7 +59,7 @@ describe('ExportLogService', () => {
     };
     service.getExpenseGroups('COMPLETE', 10, 5, null, ).subscribe(result => {
       expect(result).toEqual(response);
-    })
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE`,

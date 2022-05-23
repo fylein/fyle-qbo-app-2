@@ -12,6 +12,7 @@
   &--search-area {
     background: #FFFFFF;
     border: 1px solid #DDD;
+    border-radius: 4px;
   }
 
   &--search-icon {
@@ -29,6 +30,7 @@
 
   &--smaller-search-area {
     height: 36px;
+    border-radius: 4px;
   }
 }
 
@@ -42,4 +44,8 @@ input {
 input:focus-visible {
   border: none;
   outline: none;
+}
+
+::placeholder {
+  color: #A9ACBC;
 }

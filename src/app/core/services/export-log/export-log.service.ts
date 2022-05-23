@@ -17,6 +17,7 @@ import { WorkspaceService } from '../workspace/workspace.service';
 export class ExportLogService {
 
   workspaceId: string = this.workspaceService.getWorkspaceId();
+
   private org_id: string = this.userService.getUserProfile().org_id;
 
   constructor(

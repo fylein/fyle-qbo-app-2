@@ -15,9 +15,13 @@ import { UserService } from 'src/app/core/services/misc/user.service';
 export class ExportLogChildDialogComponent implements OnInit {
 
   form: FormGroup;
+
   displayedColumns: string[] = ['expenseID', 'merchant', 'category', 'amount'];
+
   isLoading: boolean = true;
+
   private org_id: string = this.userService.getUserProfile().org_id;
+
   expenses: MatTableDataSource<ExpenseList> = new MatTableDataSource<ExpenseList>([]);
 
   constructor(

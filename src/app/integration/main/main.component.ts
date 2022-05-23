@@ -13,6 +13,7 @@ import { MappingService } from 'src/app/core/services/misc/mapping.service';
 export class MainComponent implements OnInit {
 
   isLoading: boolean = true;
+
   modules: DashboardModule[] = [
     {
       name: 'Dashboard',
@@ -85,7 +86,7 @@ export class MainComponent implements OnInit {
         if (m.childPages) {
           m.childPages.forEach(c => {
             if (c.name !== module.name) {
-              c.isActive = false
+              c.isActive = false;
             }
           });
         }

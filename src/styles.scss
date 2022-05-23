@@ -1,7 +1,7 @@
 
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -52,6 +52,56 @@ h1, h2 {
 
 table {
   width: 100%;
+}
+
+tr {
+  border-radius: 4px !important;
+}
+
+tr.mat-header-row {
+  border-radius: 4px !important;
+}
+
+th {
+  color: #161528 !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  border-right: 1px solid #DFDFE2 !important;
+  height: 100%;
+}
+
+th.mat-header-cell {
+  color: #161528 !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  border-left: none !important;
+  border-top: 1px solid #DFDFE2 !important;
+  border-right: 1px solid #DFDFE2 !important;
+  border-bottom: 1px solid #DFDFE2 !important;
+}
+
+th.mat-header-cell:first-of-type {
+  border-left: 1px solid #DFDFE2 !important;
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+  padding-left: 44px !important;
+}
+
+td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+  padding-left: 44px !important;
+}
+
+th.mat-header-cell {
+  padding-left: 22px !important;
+}
+
+td.mat-cell, td.mat-footer-cell {
+  padding-left: 22px !important;
+}
+
+th.mat-header-cell:last-of-type {
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
 }
 
 .bold { font-weight: bold; }
@@ -194,6 +244,14 @@ table {
   padding: 4px 0px 0px 14px !important;
 }
 
+.mat-option.mat-selected:not(.mat-option-multiple):not(.mat-option-disabled), .mat-option:focus:not(.mat-selected), .mat-option:hover:not(.mat-selected) {
+  background: #0000000a !important;
+}
+
+.mat-option.mat-active {
+  background: none !important;
+}
+
 .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
   color: #5a5d72 !important;
 }
@@ -251,10 +309,6 @@ table {
 
 .mat-select-arrow {
   display: none !important;
-}
-
-.mat-select-value {
-  width: 96.7% !important;
 }
 
 .mat-slide-toggle-bar {
@@ -558,6 +612,10 @@ table {
 }
 
 .mapping {
+  td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+    padding-left: 19px !important;
+  }
+
   width: 1658px;
   @media only screen and (max-width: 1440px) {
     width: 1178px;
@@ -622,59 +680,6 @@ table {
 }
 
 .skeleton-loader-list-view {
-  &--table {
-    font-size: 12px;
-    border: 1px solid #DFDFE2;
-    border-radius: 4px;
-    height: 56px;
-    background: #F5F5F5;
-    text-align: left;
-  }
-
-  &--fyle {
-    padding-left: 54px;
-  }
-
-  &--export-log-col-1 {
-    margin-left: 24px;
-  }
-
-  &--export-log-col-2 {
-    margin-left: 66px;
-    @media only screen and (max-width: 1440px) {
-      margin-left: 30px;
-    }
-  }
-
-  &--export-log-col-3 {
-    margin-left: 90px;
-    @media only screen and (max-width: 1440px) {
-      margin-left: 40px;
-    }
-  }
-
-  &--export-log-col-4 {
-    margin-right: 36px;
-  }
-
-  &--export-log-col-6 {
-    margin-right: 136px;
-  }
-
-  &--qbo {
-    padding-right: 160px;
-    @media only screen and (max-width: 1440px) {
-      padding-right: 140px;
-    }
-  }
-
-  &--state {
-    padding-right: 490px;
-    @media only screen and (max-width: 1440px) {
-      padding-right: 320px;
-    }
-  }
-
   &--row-box {
     background: #FFFFFF;
     border-radius: 4px;
@@ -711,7 +716,16 @@ table {
     height: 18px;
     width: 1372px;
     @media only screen and (max-width: 1440px) {
-      width: 849px;
+      width: 900px;
+    }
+  }
+
+  &--end-box-export-log-dashboard {
+    height: 18px;
+    // TODO: check this with monitor once
+    width: 1072px;
+    @media only screen and (max-width: 1440px) {
+      width: 550px;
     }
   }
 }

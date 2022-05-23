@@ -7,7 +7,7 @@ import {
   platformBrowserDynamicTesting
 } from '@angular/platform-browser-dynamic/testing';
 import { environment } from 'src/environments/environment';
-const API_BASE_URL = environment.api_url
+const API_BASE_URL = environment.api_url;
 declare const require: {
   context(path: string, deep?: boolean, filter?: RegExp): {
     keys(): string[];
@@ -17,7 +17,9 @@ declare const require: {
 // First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting(),
+  platformBrowserDynamicTesting(), {
+    teardown: { destroyAfterEach: false }
+},
 );
 
 // Then we find all the tests.

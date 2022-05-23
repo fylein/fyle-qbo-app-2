@@ -15,7 +15,7 @@ describe('AdvancedSettingModel', () => {
   it('Should return AdvancedSettingModel[]', () => {
     const advancedSettingsForm= new FormGroup({
       paymentSync: new FormControl(true),
-      billPaymentAccount: new FormControl({id:'1',name:'Fyle'}),
+      billPaymentAccount: new FormControl({id: '1',name: 'Fyle'}),
       changeAccountingPeriod: new FormControl(true),
       singleCreditLineJE: new FormControl(true),
       autoCreateVendors: new FormControl(true),
@@ -23,7 +23,7 @@ describe('AdvancedSettingModel', () => {
       exportScheduleFrequency: new FormControl(10),
       memoStructure: new FormControl(['Fyle']),
       searchOption: new FormControl([])
-    })
+    });
 
     const advancedSettingPayload:AdvancedSettingPost = {
       workspace_general_settings: {
@@ -35,7 +35,7 @@ describe('AdvancedSettingModel', () => {
         memo_structure: ['Fyle']
       },
       general_mappings: {
-        bill_payment_account: {id:'1',name:'Fyle'}
+        bill_payment_account: {id: '1',name: 'Fyle'}
       },
       workspace_schedules: {
         enabled: true,

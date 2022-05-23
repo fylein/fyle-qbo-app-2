@@ -14,9 +14,15 @@ import { environment } from 'src/environments/environment';
 export class DashboardExportLogDialogComponent implements OnInit {
 
   isLoading: boolean = true;
+
   expenseGroups: MatTableDataSource<ExpenseGroupList> = new MatTableDataSource<ExpenseGroupList>([]);
+
+  emptyExpenseGroup: MatTableDataSource<ExpenseGroupList> = new MatTableDataSource<ExpenseGroupList>([]);
+
   displayedColumns: string[];
+
   ExportState = ExportState;
+
   externalUrlType: string;
 
   constructor(
@@ -49,6 +55,8 @@ export class DashboardExportLogDialogComponent implements OnInit {
 
         if (referenceType === FyleReferenceType.EXPENSE) {
           referenceNumber = expenseGroup.expenses[0].expense_number;
+        } else if (referenceType === FyleReferenceType.PAYMENT) {
+          referenceNumber = expenseGroup.expenses[0].payment_number;
         }
 
         const fyleUrl = this.exportLogService.generateFyleUrl(expenseGroup, referenceType);

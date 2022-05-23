@@ -11,6 +11,7 @@ import { HelperService } from 'src/app/core/services/core/helper.service';
 export class ExportLogChildTableComponent implements OnInit {
 
   @Input() expenses: MatTableDataSource<ExpenseList> = new MatTableDataSource<ExpenseList>([]);
+
   @Input() displayedColumns: string[];
 
   constructor(

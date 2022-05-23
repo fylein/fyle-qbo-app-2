@@ -1,4 +1,4 @@
-<table *ngIf="totalCount" mat-table [dataSource]="expenseGroups">
+<table mat-table [dataSource]="expenseGroups">
   <ng-container *ngIf="displayedColumns.indexOf('exportedAt') !== -1" matColumnDef="exportedAt">
     <th mat-header-cell *matHeaderCellDef>
       <h4>Date and Time of Export</h4>

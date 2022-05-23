@@ -14,11 +14,17 @@ import { HelperService } from 'src/app/core/services/core/helper.service';
 export class MappingTableComponent implements OnInit {
 
   @Input() mappings: MatTableDataSource<MappingList> = new MatTableDataSource<MappingList>([]);
-  @Input() sourceType: string;
-  @Input() destinationType: string;
+
+  @Input() sourceType: string | undefined;
+
+  @Input() destinationType: string | undefined;
+
   @Input() mappingForm: FormGroup[];
+
   @Input() qboData: DestinationAttribute[];
+
   @Output() mappingSaveHandler = new EventEmitter<MappingList>();
+
   displayedColumns: string[] = ['fyle', 'qbo', 'state'];
 
   constructor(
@@ -32,7 +38,7 @@ export class MappingTableComponent implements OnInit {
       source: searchForm.value.source
     });
 
-    if (this.sourceType.toUpperCase() === EmployeeFieldMapping.EMPLOYEE) {
+    if (this.sourceType?.toUpperCase() === EmployeeFieldMapping.EMPLOYEE) {
       selectedRow.qbo.id = selectedOption.id;
     } else {
       selectedRow.qbo.id = selectedOption.destination_id;

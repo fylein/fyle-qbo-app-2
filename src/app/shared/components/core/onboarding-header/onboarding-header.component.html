@@ -62,7 +62,7 @@
 
             <div fxLayout="row" fxLayoutAlign="space-between center">
               <div>Fyle Organization</div>
-              <div class="actionable-text" (click)="switchFyleOrg()">Switch Organization</div>
+              <div class="profile--actionable-btn actionable-text" (click)="switchFyleOrg()">Switch Organization</div>
             </div>
 
             <div>
@@ -83,7 +83,7 @@
 
             <div fxLayout="row" fxLayoutAlign="space-between center">
               <div>Quickbooks Online Company</div>
-              <div *ngIf="isQboConnected" class="actionable-text" (click)="disconnectQbo()">Disconnect</div>
+              <div *ngIf="isQboConnected" class="profile--actionable-btn actionable-text" (click)="disconnectQbo()">Disconnect</div>
             </div>
 
             <div>

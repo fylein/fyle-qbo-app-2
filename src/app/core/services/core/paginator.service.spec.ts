@@ -16,20 +16,19 @@ describe('PaginatorService', () => {
   });
 
   it('pageinator service', () => {
-    const limit = localStorage.getItem('page-size.export-log')
+    const limit = localStorage.getItem('page-size.export-log');
     const result = service.getPageSize(PaginatorPage.EXPORT_LOG);
-    if(limit){
+    if (limit){
       const expected = {
         offset: 0,
         limit: 1,
-      }
+      };
       expect(result).toEqual(expected);
-    }
-    else{
+    } else {
       const expected = {
         offset: 0,
         limit: 50,
-      }
+      };
       expect(result).toEqual(expected);
     }
   });
@@ -38,5 +37,5 @@ describe('PaginatorService', () => {
     service.storePageSize(PaginatorPage.EXPORT_LOG,1);
     const result = localStorage.getItem(`page-size.${PaginatorPage.EXPORT_LOG}`);
     expect(result).toEqual('1');
-  })
+  });
 });

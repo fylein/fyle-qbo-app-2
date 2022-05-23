@@ -9,9 +9,9 @@ describe('QboConnectorService', () => {
   let service: QboConnectorService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  const API_BASE_URL = environment.api_url
-  const workspace_id = environment.tests.workspaceId
-  
+  const API_BASE_URL = environment.api_url;
+  const workspace_id = environment.tests.workspaceId;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -37,20 +37,17 @@ describe('QboConnectorService', () => {
       refresh_token: "AB",
       updated_at: new Date("2022-05-06T13:13:25.893837Z"),
       workspace: 1,
-    }
-    const errormas={
-      "message": "QBO credentials not found in workspace"
-  }
+    };
     service.getQBOCredentials().subscribe((value) => {
       value.refresh_token="AB";
-      expect(value).toEqual(response || errormas);
+      expect(value).toEqual(response);
     });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/credentials/qbo/`,
     });
     req.flush(response);
-  })
+  });
 
   it('getPreferences Service attribute check', () => {
     const response:QBOPreference = {
@@ -175,13 +172,10 @@ describe('QboConnectorService', () => {
         },
         domain: "QBO",
         sparse: false
-      }
-      const errormas={
-        "message": "QBO credentials not found in workspace"
-    }
+      };
     service.getPreferences().subscribe((value) => {
-        expect(value).toEqual(response||errormas);
-      })
+        expect(value).toEqual(response);
+      });
       const req = httpMock.expectOne({
         method: 'GET',
         url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/preferences/`,

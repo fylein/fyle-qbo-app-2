@@ -30,7 +30,7 @@
           <div *ngIf="childPage.isActive && module.isExpanded" class="side-nav-bar--active-tag-module"></div>
           <div *ngIf="module.isExpanded" fxLayout="row" class="side-nav-bar--module-block-content single-line-text pointer"
             [ngClass]="[childPage.isActive ? 'side-nav-bar--active-child': '', childPage.isActive ? 'side-nav-bar--active-module-text': '', childPage.isActive && module.isExpanded ? 'side-nav-bar--active-module-block' : '']" (click)="navigate(childPage)">
-            <h4 class="side-nav-bar--module-block-text-inner side-nav-bar--text-properties capitalize"> {{ childPage.name | titlecase | snakeCaseToSpaceCase }}</h4>
+            <h4 matTooltip="{{childPage.name | titlecase | snakeCaseToSpaceCase}}" [matTooltipDisabled]="childPage.name.length > 25 === false" matTooltipPosition="right" class="side-nav-bar--module-block-text-inner side-nav-bar--text-properties capitalize"> {{ childPage.name | titlecase | snakeCaseToSpaceCase }}</h4>
           </div>
         </div>
       </div>
