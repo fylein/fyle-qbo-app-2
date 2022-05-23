@@ -23,12 +23,19 @@ import { ConfirmationDialogComponent } from '../../core/confirmation-dialog/conf
 export class EmployeeSettingsComponent implements OnInit {
 
   employeeSettingsForm: FormGroup;
+
   isLoading: boolean = true;
+
   isOnboarding: boolean = false;
+
   saveInProgress: boolean;
+
   liveEntityExample: {[EmployeeFieldMapping.EMPLOYEE]: string | undefined, [EmployeeFieldMapping.VENDOR]: string | undefined};
+
   reimbursableExportType: ReimbursableExpensesObject | undefined | null;
+
   existingEmployeeFieldMapping: EmployeeFieldMapping | undefined;
+
   employeeMappingOptions: EmployeeSettingFormOption[] = [
     {
       value: EmployeeFieldMapping.EMPLOYEE,
@@ -39,6 +46,7 @@ export class EmployeeSettingsComponent implements OnInit {
       label: 'Vendors'
     }
   ];
+
   autoMapEmployeeOptions: EmployeeSettingFormOption[] = [
     {
       value: null,
@@ -57,8 +65,11 @@ export class EmployeeSettingsComponent implements OnInit {
       label: 'Fyle Employee Code to QBO dispay name'
     }
   ];
+
   windowReference: Window;
+
   @Output() isLoaded = new EventEmitter<boolean>();
+
   ConfigurationCtaText = ConfigurationCtaText;
 
   constructor(

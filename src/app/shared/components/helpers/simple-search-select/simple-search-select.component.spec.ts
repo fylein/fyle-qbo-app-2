@@ -23,9 +23,9 @@ describe('SimpleSearchSelectComponent', () => {
     expect(component).toBeTruthy();
   });
   it('check form',() => {
-    if(component.form){
+    if (component.form){
       expect(component.form).toBeTruthy();
     }
     expect(component.form).toBeUndefined();
-  })
+  });
 });

@@ -10,13 +10,13 @@ export const environment = {
   qbo_scope: '{{QBO_SCOPE}}',
   qbo_authorize_uri: '{{QBO_AUTHORIZE_URI}}',
   qbo_app_url: '{{QBO_APP_URL}}',
-  hotjar_id : '{{HOTJAR_ID}}',
+  hotjar_id: '{{HOTJAR_ID}}',
   sentry_dsn: '{{SENTRY_DSN}}',
   sentry_env: '{{SENTRY_ENV}}',
   release: '{{RELEASE}}',
   clarity_project_id: '{{CLARITY_PROJECT_ID}}',
   fyle_app_url: '{{FYLE_APP_URL}}',
-  tests:{
+  tests: {
     workspaceId: '{{TEST_WORKSPACE_ID}}',
     user: {
       refresh_token: '{{TEST_REFRESH_TOKEN}}'

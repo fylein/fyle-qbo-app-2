@@ -19,12 +19,17 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
-        "@angular-eslint/directive-selector": [
+        "@angular-eslint/component-class-suffix": [
           "error",
           {
-            "type": "attribute",
-            "prefix": "app",
-            "style": "camelCase"
+            "suffixes": ["Page", "Component"]
+          }
+        ],
+        "@typescript-eslint/naming-convention": [
+          "off",
+          {
+            "selector": "variable",
+            "format": ["camelCase"]
           }
         ],
         "@angular-eslint/component-selector": [
@@ -35,7 +40,42 @@
             "style": "kebab-case"
           }
         ],
-        "@angular-eslint/no-empty-lifecycle-method": "off"
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app"
+          }
+        ],
+        "indent": "off",
+        "semi": "error",
+        "no-underscore-dangle": "off",
+        "@angular-eslint/template/no-negated-async": "off",
+        "@typescript-eslint/prefer-for-of": "off",
+        "prefer-arrow/prefer-arrow-functions": "off",
+        "@typescript-eslint/ban-types": "off",
+        "@typescript-eslint/consistent-type-assertions": "off",
+        "@angular-eslint/no-conflicting-lifecycle": "off",
+        "lines-between-class-members": ["error", "always"],
+        "@typescript-eslint/no-shadow": "off",
+        // TODO: change this to 10, important one
+        "complexity": [2, 16],
+        "max-depth": ["error", 4],
+        // "max-params-no-constructor/max-params-no-constructor": ["error", 4],
+        "max-len": "off",
+        "space-before-function-paren": "off",
+        "@typescript-eslint/quotes": "off",
+        "@angular-eslint/no-empty-lifecycle-method": "off",
+        "linebreak-style": "off",
+        "key-spacing": ["error", { "beforeColon": false }],
+        "keyword-spacing": ["error", { "before": true }],
+        "brace-style": "error",
+        "no-trailing-spaces": "error",
+        "no-console": ["error", {"allow": ["error"]}],
+        "no-debugger": "warn",
+        "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/no-namespace": "off",
+        "max-nested-callbacks": [2,3]
       }
     },
     {

@@ -23,15 +23,25 @@ import { ConfirmationDialogComponent } from '../../core/confirmation-dialog/conf
 export class QboConnectorComponent implements OnInit {
 
   isLoading: boolean = true;
+
   qboConnectionInProgress: boolean;
+
   isQboConnected: boolean = true;
+
   qboTokenExpired: boolean;
+
   showDisconnectQBO: boolean;
+
   isContinueDisabled: boolean = true;
+
   isOnboarding: boolean = false;
+
   qboCompanyName: string | null;
+
   fyleOrgName: string = this.userService.getUserProfile().org_name;
+
   windowReference: Window;
+
   ConfigurationCtaText = ConfigurationCtaText;
 
   constructor(

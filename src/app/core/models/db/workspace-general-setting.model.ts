@@ -20,7 +20,7 @@ export type WorkspaceGeneralSetting = {
   je_single_credit_line: boolean;
   change_accounting_period: boolean;
   memo_structure: string[];
-  category_sync_version?: string; 
+  category_sync_version?: string;
   map_fyle_cards_qbo_account?: boolean;
   map_merchant_to_vendor?: boolean;
   skip_cards_mapping?: boolean;

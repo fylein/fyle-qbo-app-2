@@ -13,6 +13,7 @@ import { WorkspaceService } from 'src/app/core/services/workspace/workspace.serv
 export class OnboardingStepperComponent implements OnInit {
 
   @Input() currentStep: string;
+
   onboardingSteps: OnboardingStepper[] = [
     {
       active: false,

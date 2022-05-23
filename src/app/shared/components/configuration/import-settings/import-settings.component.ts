@@ -27,20 +27,32 @@ import { WorkspaceService } from 'src/app/core/services/workspace/workspace.serv
 export class ImportSettingsComponent implements OnInit {
 
   isLoading: boolean = true;
+
   saveInProgress: boolean;
+
   isOnboarding: boolean = false;
+
   isTaxGroupSyncAllowed: boolean;
+
   importSettings: ImportSettingGet;
+
   importSettingsForm: FormGroup;
+
   taxCodes: DestinationAttribute[];
+
   fyleExpenseFields: string[];
+
   qboExpenseFields: ExpenseFieldsFormOption[];
+
   chartOfAccountTypesList: string[] = [
     'Expense', 'Other Expense', 'Fixed Asset', 'Cost of Goods Sold', 'Current Liability', 'Equity',
     'Other Current Asset', 'Other Current Liability', 'Long Term Liability', 'Current Asset'
   ];
+
   windowReference: Window;
+
   @Output() isLoaded = new EventEmitter<boolean>();
+
   ConfigurationCtaText = ConfigurationCtaText;
 
   constructor(
@@ -122,7 +134,7 @@ export class ImportSettingsComponent implements OnInit {
         import_to_fyle: [field.import_to_fyle, this.importToggleWatcher()],
         disable_import_to_fyle: [field.disable_import_to_fyle],
         source_placeholder: ['']
-      })
+      });
     });
 
     this.importSettingsForm = this.formBuilder.group({
@@ -160,7 +172,7 @@ export class ImportSettingsComponent implements OnInit {
           import_to_fyle: mappingSetting.length > 0 ? mappingSetting[0].import_to_fyle : false,
           disable_import_to_fyle: false,
           source_placeholder: ''
-        }
+        };
       });
 
       this.taxCodes = response[2];

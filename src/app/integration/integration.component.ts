@@ -18,7 +18,9 @@ import { TrackingService } from '../core/services/core/tracking.service';
 export class IntegrationComponent implements OnInit {
 
   user: MinimalUser;
+
   workspace: Workspace;
+
   windowReference: Window;
 
   constructor(

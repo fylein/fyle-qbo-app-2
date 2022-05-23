@@ -24,19 +24,33 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 export class OnboardingHeaderComponent implements OnInit {
 
   user: MinimalUser;
+
   isQboConnected: boolean = true;
+
   isProfileExpanded: boolean;
+
   isHelpSectionExpanded: boolean;
+
   currency: string = this.workspaceService.getFyleCurrency();
+
   qboCompanyName: string;
+
   showBackButton: boolean;
+
   activePage: string;
+
   showSwitchApp: boolean = false;
+
   @ViewChild('menuButton') menuButton: ElementRef;
+
   @ViewChild('helpButton') helpButton: ElementRef;
+
   @ViewChild('help') help: ElementRef;
+
   @ViewChild('menu') menu: ElementRef;
+
   RedirectLink = RedirectLink;
+
   windowReference: Window;
 
   constructor(

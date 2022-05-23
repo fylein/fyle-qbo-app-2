@@ -11,9 +11,9 @@ describe('DashboardService', () => {
   let service: DashboardService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  const API_BASE_URL = environment.api_url
-  const workspace_id = environment.tests.workspaceId
-  
+  const API_BASE_URL = environment.api_url;
+  const workspace_id = environment.tests.workspaceId;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -29,50 +29,50 @@ describe('DashboardService', () => {
   });
 
   it('getExportableGroupsIds() service check', () => {
-    const response:ExportableExpenseGroup = {exportable_expense_group_ids: []}
+    const response:ExportableExpenseGroup = {exportable_expense_group_ids: []};
     service.getExportableGroupsIds().subscribe((value) => {
-      
-      expect(value).toEqual(response)
-    })
+
+      expect(value).toEqual(response);
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/exportable_expense_groups/`,
     });
   req.flush(response);
-  })
+  });
 
   it('getExportErrors() service check', () => {
     service.getExportErrors().subscribe((value) => {
-      expect(value).toEqual([])
-    })
+      expect(value).toEqual([]);
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/errors/?is_resolved=false`,
     });
     req.flush([]);
-  })
+  });
 
   it('importExpenseGroups() service check', () => {
     service.importExpenseGroups().subscribe((value) => {
-      expect(value).toEqual({})
-    })
+      expect(value).toEqual({});
+    });
     const req = httpMock.expectOne({
       method: 'POST',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/sync/`,
     });
     req.flush({});
-  })
+  });
 
   it('exportExpenseGroups() service check', () => {
     service.exportExpenseGroups().subscribe((value) => {
-      expect(value).toEqual({})
-    })
+      expect(value).toEqual({});
+    });
     const req = httpMock.expectOne({
       method: 'POST',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/exports/trigger/`,
     });
     req.flush({});
-  })
+  });
 
   it('getLastExport() service check', () => {
     const response:LastExport={
@@ -85,18 +85,18 @@ describe('DashboardService', () => {
       total_expense_groups_count: 5,
       updated_at: new Date("2022-05-10T08:00:43.857641Z"),
       workspace: 216
-    }
+    };
     service.getLastExport().subscribe((value) => {
       const keys = Object.keys(value).sort();
       const responseKeys = Object.keys(response).sort();
-      expect(keys).toEqual(responseKeys)
-    })
+      expect(keys).toEqual(responseKeys);
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/export_detail/`,
     });
     req.flush(response);
-  })
+  });
 
 
   it('getTasks() service check', () => {
@@ -105,18 +105,18 @@ describe('DashboardService', () => {
       next: null,
       previous: null,
       results: []
-    }
+    };
     const taskType: TaskLogType[] = [TaskLogType.FETCHING_EXPENSE, TaskLogType.CREATING_BILL, TaskLogType.CREATING_EXPENSE, TaskLogType.CREATING_CHECK, TaskLogType.CREATING_CREDIT_CARD_PURCHASE, TaskLogType.CREATING_JOURNAL_ENTRY, TaskLogType.CREATING_CREDIT_CARD_CREDIT, TaskLogType.CREATING_DEBIT_CARD_EXPENSE];
     service.getTasks(500,[TaskLogState.ENQUEUED, TaskLogState.IN_PROGRESS], [], taskType, null).subscribe((value) => {
       const responseKeys = Object.keys(response).sort();
       const actualKeys = Object.keys(value).sort();
-      expect(actualKeys).toEqual(responseKeys)
-    })
+      expect(actualKeys).toEqual(responseKeys);
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/tasks/all/?limit=500&offset=0&status=ENQUEUED,IN_PROGRESS&task_type=FETCHING_EXPENSE,CREATING_BILL,CREATING_EXPENSE,CREATING_CHECK,CREATING_CREDIT_CARD_PURCHASE,CREATING_JOURNAL_ENTRY,CREATING_CREDIT_CARD_CREDIT,CREATING_DEBIT_CARD_EXPENSE`,
     });
     req.flush(response);
-  })
+  });
 
 });

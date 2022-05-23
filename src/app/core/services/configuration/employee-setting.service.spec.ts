@@ -9,9 +9,9 @@ describe('EmployeeSettingService', () => {
   let service: EmployeeSettingService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  const API_BASE_URL = environment.api_url
-  const workspace_id = environment.tests.workspaceId
-  
+  const API_BASE_URL = environment.api_url;
+  const workspace_id = environment.tests.workspaceId;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -30,16 +30,16 @@ describe('EmployeeSettingService', () => {
     const response: EmployeeSettingGet = {
       workspace_general_settings: { employee_field_mapping: EmployeeFieldMapping.EMPLOYEE, auto_map_employees: null },
       workspace_id: 1
-    }
+    };
     service.getEmployeeSettings().subscribe((value) => {
       expect(value).toEqual(response);
-    })
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/map_employees/`,
     });
     req.flush(response);
-  })
+  });
 
   it('postEmployeeSettings service check', () => {
     const employeeSettingPayload: EmployeeSettingPost = {
@@ -51,14 +51,14 @@ describe('EmployeeSettingService', () => {
     const response: EmployeeSettingGet = {
       workspace_general_settings: { employee_field_mapping: EmployeeFieldMapping.EMPLOYEE, auto_map_employees: AutoMapEmployee.EMPLOYEE_CODE },
       workspace_id: 1
-    }
+    };
     service.postEmployeeSettings(employeeSettingPayload).subscribe(value =>{
       expect(value).toEqual(response);
-    })
+    });
     const req = httpMock.expectOne({
       method: 'PUT',
       url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/map_employees/`,
     });
     req.flush(response);
-  })
+  });
 });

@@ -12,9 +12,13 @@ export class ZeroStateWithIllustrationComponent implements OnInit {
 
   // Having any here is okay, we get the data from the export log / mapping module
   @Input() data: MatTableDataSource<any> = new MatTableDataSource<any>([]);
+
   @Input() form: FormGroup;
+
   @Input() searchTerm: string;
+
   @Input() page: 'export_log' | 'mapping' | 'dashboard' | 'dashboard_error';
+
   @Input() dateFilter: SelectedDateFilter | null;
 
   constructor() { }

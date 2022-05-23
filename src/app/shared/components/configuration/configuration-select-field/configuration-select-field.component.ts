@@ -18,16 +18,27 @@ import { PreviewDialogComponent } from '../preview-dialog/preview-dialog.compone
 export class ConfigurationSelectFieldComponent implements OnInit {
 
   @Input() form: FormGroup;
+
   @Input() options: EmployeeSettingFormOption[] | ExportSettingFormOption[] | AdvancedSettingFormOption[] | any[];
+
   @Input() qboAttributes: DestinationAttribute[];
+
   @Input() iconPath: string;
+
   @Input() label: string;
+
   @Input() subLabel: string;
+
   @Input() placeholder: string;
+
   @Input() formControllerName: string;
+
   @Input() isFieldMandatory: boolean;
+
   @Input() liveEntityExample: {[EmployeeFieldMapping.EMPLOYEE]: string | undefined, [EmployeeFieldMapping.VENDOR]: string | undefined};
+
   @Input() mandatoryErrorListName: string;
+
   @Input() customErrorMessage: string;
 
   constructor(

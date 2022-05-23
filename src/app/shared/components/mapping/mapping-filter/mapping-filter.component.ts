@@ -9,8 +9,11 @@ import { FormGroup } from '@angular/forms';
 export class MappingFilterComponent implements OnInit {
 
   @Input() form: FormGroup;
+
   @Input() searchTerm: string;
+
   filterOptions: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
   @Output() mappingFilterUpdateHandler = new EventEmitter<{}>();
 
   constructor() { }

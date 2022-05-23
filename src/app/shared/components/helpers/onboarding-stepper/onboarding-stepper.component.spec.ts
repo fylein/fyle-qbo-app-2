@@ -24,6 +24,6 @@ describe('OnboardingStepperComponent', () => {
   it('should create', () => {
     expect(component).toBeDefined();
   });
-  
-  
+
+
 });

@@ -9,6 +9,7 @@ import { RedirectLink } from 'src/app/core/models/enum/enum.model';
 export class OnboardingFooterComponent implements OnInit {
 
   @Input() page: string;
+
   RedirectLink = RedirectLink;
 
   constructor() { }

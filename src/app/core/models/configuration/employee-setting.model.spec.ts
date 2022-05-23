@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup} from '@angular/forms';
 import { AutoMapEmployee, EmployeeFieldMapping } from '../enum/enum.model';
-import { EmployeeSettingModel, EmployeeSettingPost } from './employee-setting.model'
+import { EmployeeSettingModel, EmployeeSettingPost } from './employee-setting.model';
 describe(' EmployeeSettingModel', () => {
 
   beforeEach(async () => {
@@ -16,7 +16,7 @@ describe(' EmployeeSettingModel', () => {
     const employeeSettingsForm= new FormGroup({
       employeeMapping: new FormControl('EMPLOYEE'),
       autoMapEmployee: new FormControl('EMPLOYEE_CODE'),
-    })
+    });
     const employeeSettingPayload: EmployeeSettingPost= {
       workspace_general_settings: {
         employee_field_mapping: EmployeeFieldMapping.EMPLOYEE,

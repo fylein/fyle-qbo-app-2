@@ -14,7 +14,7 @@ if (environment.sentry_dsn && env) {
   Sentry.init({
     dsn: environment.sentry_dsn,
     release: env,
-    environment : env,
+    environment: env,
     // TODO: add safety 400 to this list
     ignoreErrors: [],
     integrations: [new TracingIntegrations.BrowserTracing({

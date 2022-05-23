@@ -7,7 +7,7 @@ import {
   platformBrowserDynamicTesting
 } from '@angular/platform-browser-dynamic/testing';
 import { environment } from 'src/environments/environment';
-const API_BASE_URL = environment.api_url
+const API_BASE_URL = environment.api_url;
 declare const require: {
   context(path: string, deep?: boolean, filter?: RegExp): {
     keys(): string[];

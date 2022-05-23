@@ -9,9 +9,13 @@ import { FormGroup } from '@angular/forms';
 export class ConfigurationToggleFieldComponent implements OnInit {
 
   @Input() form: FormGroup;
+
   @Input() label: string;
+
   @Input() subLabel: string;
+
   @Input() formControllerName: string;
+
   @Input() iconPath: string;
 
   constructor() { }

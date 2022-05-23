@@ -14,7 +14,9 @@ import { environment } from 'src/environments/environment';
 export class DashboardQboErrorDialogComponent implements OnInit {
 
   expenses: MatTableDataSource<ExpenseList> = new MatTableDataSource<ExpenseList>([]);
+
   private org_id: string = this.userService.getUserProfile().org_id;
+
   displayedColumns: string[] = ['expenseID', 'name', 'fundSource'];
 
   constructor(

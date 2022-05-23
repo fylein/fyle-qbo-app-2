@@ -10,10 +10,15 @@ import { Paginator } from 'src/app/core/models/misc/paginator.model';
 export class PaginatorComponent implements OnInit, OnChanges {
 
   form: FormGroup;
+
   totalPageCount: number;
+
   @Output() pageChangeEvent = new EventEmitter<Paginator>();
+
   @Input() limit: number;
+
   @Input() offset: number;
+
   @Input() totalCount: number;
 
   constructor(
