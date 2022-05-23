@@ -8,8 +8,8 @@ describe('AdvancedSettingService', () => {
   let service: AdvancedSettingService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  const API_BASE_URL = environment.api_url
-  const workspace_id = environment.tests.workspaceId
+  const API_BASE_URL = environment.api_url;
+  const workspace_id = environment.tests.workspaceId;
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -53,7 +53,7 @@ describe('AdvancedSettingService', () => {
 	      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/advanced_configurations/`,
 	    });
     req.flush(advancedSettingResponse);
-  })
+  });
 
   it('postAdvancedSettings service check', () => {
     const advancedSettingPayload: AdvancedSettingPost = {
@@ -94,11 +94,11 @@ describe('AdvancedSettingService', () => {
     };
     service.postAdvancedSettings(advancedSettingPayload).subscribe(value => {
       expect(value).toEqual(advancedSettingResponse);
-    })
+    });
     const req = httpMock.expectOne({
       method: 'PUT',
       url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/advanced_configurations/`,
     });
   req.flush(advancedSettingResponse);
-  })
+  });
 });

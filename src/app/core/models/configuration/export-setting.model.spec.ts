@@ -31,7 +31,7 @@ describe('ExportSettingModel', () => {
       qboExpenseAccount: new FormControl({id:'1',name:'Fyle'}),
       defaultDebitCardAccount: new FormControl({id:'1',name:'Fyle'}),
       searchOption: new FormControl([])
-    })
+    });
     const exportSettingPayload: ExportSettingPost = {
       expense_group_settings: {
         expense_state: ExpenseState.PAID,

@@ -12,8 +12,8 @@ describe('MappingService', () => {
   let service: MappingService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  const API_BASE_URL = environment.api_url
-  const workspace_id = environment.tests.workspaceId
+  const API_BASE_URL = environment.api_url;
+  const workspace_id = environment.tests.workspaceId;
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -31,8 +31,8 @@ describe('MappingService', () => {
 
   it('getQBODestinationAttributes() service check', () => {
     service.getDistinctQBODestinationAttributes([EmployeeFieldMapping.EMPLOYEE, EmployeeFieldMapping.VENDOR]).subscribe(value => {
-      expect(value).toEqual([])
-    })
+      expect(value).toEqual([]);
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/qbo_attributes/?attribute_types=EMPLOYEE,VENDOR`,
@@ -43,8 +43,8 @@ describe('MappingService', () => {
 
   it('getDistinctQBODestinationAttributes() service check', () => {
     service.getDistinctQBODestinationAttributes([EmployeeFieldMapping.EMPLOYEE, EmployeeFieldMapping.VENDOR]).subscribe(value => {
-      expect(value).toEqual([])
-    })
+      expect(value).toEqual([]);
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/qbo_attributes/?attribute_types=EMPLOYEE,VENDOR`,
@@ -78,18 +78,18 @@ describe('MappingService', () => {
           "attribute_type": "XERO_FIELD",
           "display_name": "Xero Field"
       }
-  ]
+  ];
     service.getFyleExpenseFields().subscribe(value => {
       const responseKeys = Object.keys(response).sort();
       const actualKeys = Object.keys(value).sort();
-      expect(actualKeys).toEqual(responseKeys)
-    })
+      expect(actualKeys).toEqual(responseKeys);
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_fields/`,
     });
       req.flush(response);
-  })
+  });
 
   it('getMappings() service check', () => {
     const response={
@@ -113,12 +113,12 @@ describe('MappingService', () => {
           "workspace": 1
       }
       ]
-  }
+  };
     service.getMappings(MappingState.ALL,true,1,1,[],FyleField.CATEGORY,QBOField.ACCOUNT).subscribe(value => {
       const responseKeys = Object.keys(response).sort();
       const actualResponseKeys = Object.keys(value).sort();
-      expect(actualResponseKeys).toEqual(responseKeys)
-    })
+      expect(actualResponseKeys).toEqual(responseKeys);
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?limit=1&offset=1&all_alphabets=true&mapped=ALL&mapping_source_alphabets=null&source_type=CATEGORY&destination_type=ACCOUNT`,
@@ -128,8 +128,8 @@ describe('MappingService', () => {
 
   it('getQBOEmployees() service check', () => {
     service.getQBOEmployees().subscribe(value => {
-      expect(value).toEqual([])
-    })
+      expect(value).toEqual([]);
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/employees/`,
@@ -139,8 +139,8 @@ describe('MappingService', () => {
 
   it('getQBOVendors() service check', () => {
     service.getQBOVendors().subscribe(value => {
-      expect(value).toEqual([])
-    })
+      expect(value).toEqual([]);
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/vendors/`,
@@ -150,12 +150,12 @@ describe('MappingService', () => {
 
   it('getMappingSettings() service check', () => {
     const response:MappingSettingResponse = {
-      count:0,next:'aa',previous:'aa',results:[]}
+      count:0,next:'aa',previous:'aa',results:[]};
     service.getMappingSettings().subscribe(value => {
       const responseKeys = Object.keys(response).sort();
       const actualResponseKeys = Object.keys(value).sort();
-      expect(actualResponseKeys).toEqual(responseKeys)
-    })
+      expect(actualResponseKeys).toEqual(responseKeys);
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/settings/`,
@@ -171,14 +171,14 @@ describe('MappingService', () => {
     service.getMappingStats(EmployeeFieldMapping.EMPLOYEE,EmployeeFieldMapping.VENDOR).subscribe((value)=>{
       const responseKeys = Object.keys(response).sort();
       const actualKeys = Object.keys(value).sort();
-      expect(actualKeys).toEqual(responseKeys)
-    })
+      expect(actualKeys).toEqual(responseKeys);
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/stats/?source_type=EMPLOYEE&destination_type=VENDOR`,
     });
       req.flush(response);
-  })
+  });
 
   it('getMappings() service check', () => {
     const response={
@@ -210,12 +210,12 @@ describe('MappingService', () => {
           "workspace": workspace_id
         }
       ]
-  }
+  };
     service.getEmployeeMappings(MappingState.ALL,true,1,1,[],EmployeeFieldMapping.EMPLOYEE).subscribe(value => {
       const responseKeys = Object.keys(response).sort();
       const actualResponseKeys = Object.keys(value).sort();
-      expect(actualResponseKeys).toEqual(responseKeys)
-    })
+      expect(actualResponseKeys).toEqual(responseKeys);
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?limit=1&offset=1&all_alphabets=true&mapped=ALL&mapping_source_alphabets=null&destination_type=EMPLOYEE`,
@@ -225,8 +225,8 @@ describe('MappingService', () => {
   
   it('getQBOEmployees() service check', () => {
     service.triggerAutoMapEmployees().subscribe(value => {
-      expect(value).toEqual({})
-    })
+      expect(value).toEqual({});
+    });
     const req = httpMock.expectOne({
       method: 'POST',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/auto_map_employees/trigger/`,

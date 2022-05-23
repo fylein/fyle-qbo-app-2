@@ -10,8 +10,8 @@ describe('WorkspaceService', () => {
   let service: WorkspaceService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  const API_BASE_URL = environment.api_url
-  const workspace_id = environment.tests.workspaceId
+  const API_BASE_URL = environment.api_url;
+  const workspace_id = environment.tests.workspaceId;
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -31,13 +31,13 @@ describe('WorkspaceService', () => {
   it('getFyleCurrency service', () => {
     const id = service.getFyleCurrency();
     const org = '';
-    expect(id).toBeNull()
+    expect(id).toBeNull();
   });
 
   it('setOnboardingState and getOnboardingState service', () => {
     service.setOnboardingState(OnboardingState.COMPLETE);
     const state = 'COMPLETE';
-    const response = service.getOnboardingState()
+    const response = service.getOnboardingState();
     expect(state).toEqual(response);
   });
 
@@ -56,10 +56,10 @@ describe('WorkspaceService', () => {
       destination_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       created_at: new Date("2022-04-13T10:29:18.796760Z"),
       updated_at: new Date("2022-04-13T10:29:18.796760Z"),
-    }
+    };
     service.createWorkspace().subscribe((value) => {
       expect(value).toEqual(responseKeys);
-    })
+    });
     const req = httpMock.expectOne({
       method: 'POST',
       url: `${API_BASE_URL}/workspaces/`,
@@ -85,7 +85,7 @@ describe('WorkspaceService', () => {
     }];
     service.getWorkspaces('1').subscribe(value => {
       expect(value).toEqual(responseKeys);
-    })
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/?org_id=1`,

@@ -122,7 +122,7 @@ export class ImportSettingsComponent implements OnInit {
         import_to_fyle: [field.import_to_fyle, this.importToggleWatcher()],
         disable_import_to_fyle: [field.disable_import_to_fyle],
         source_placeholder: ['']
-      })
+      });
     });
 
     this.importSettingsForm = this.formBuilder.group({
@@ -160,7 +160,7 @@ export class ImportSettingsComponent implements OnInit {
           import_to_fyle: mappingSetting.length > 0 ? mappingSetting[0].import_to_fyle : false,
           disable_import_to_fyle: false,
           source_placeholder: ''
-        }
+        };
       });
 
       this.taxCodes = response[2];

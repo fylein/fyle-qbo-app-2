@@ -36,5 +36,5 @@ describe('AuthService', () => {
       expect(result).toBeTrue();
     else
       expect(result).toBeFalse();
-  })
+  });
 });

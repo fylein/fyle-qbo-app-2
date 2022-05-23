@@ -37,7 +37,7 @@ export class ExpenseFieldCreationDialogComponent implements OnInit {
     const expenseField = {
       name: this.expenseFieldsCreationForm.get('name')?.value,
       source_placeholder: this.expenseFieldsCreationForm.get('placeholder')?.value
-    }
+    };
     this.dialogRef.close(expenseField);
   }
 

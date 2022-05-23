@@ -41,7 +41,7 @@ export class DashboardResolveMappingErrorDialogComponent implements OnInit {
       horizontalPosition: 'right',
       verticalPosition: 'bottom',
       panelClass: 'dashboard-snackbar'
-    })
+    });
   }
 
   private postMapping(selectedRow: MappingList): void {

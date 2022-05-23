@@ -264,7 +264,7 @@ export class ExportSettingsComponent implements OnInit {
         forbiddenOption: {
           value: control.value
         }
-      }
+      };
     };
   }
 

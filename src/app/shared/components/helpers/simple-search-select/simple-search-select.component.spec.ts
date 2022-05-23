@@ -27,5 +27,5 @@ describe('SimpleSearchSelectComponent', () => {
       expect(component.form).toBeTruthy();
     }
     expect(component.form).toBeUndefined();
-  })
+  });
 });

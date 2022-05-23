@@ -85,7 +85,7 @@ export class MainComponent implements OnInit {
         if (m.childPages) {
           m.childPages.forEach(c => {
             if (c.name !== module.name) {
-              c.isActive = false
+              c.isActive = false;
             }
           });
         }

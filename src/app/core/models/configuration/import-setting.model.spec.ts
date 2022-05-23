@@ -20,7 +20,7 @@ describe('ImportSettingModel', () => {
       import_to_fyle: true,
       is_custom: true,
       source_placeholder: 'Fyle'
-    }]
+    }];
     const importSettingsForm= new FormGroup({
       chartOfAccount: new FormControl(true),
       chartOfAccountTypes: new FormControl([{enabled: true, name: 'expence'}]),
@@ -29,7 +29,7 @@ describe('ImportSettingModel', () => {
       defaultTaxCode:new FormControl({id:'1',name:'Fyle'}),
       searchOption: new FormControl([]),
       importVendorsAsMerchants: new FormControl(true)
-    })
+    });
     const employeeSettingPayload: ImportSettingPost = {
       workspace_general_settings: {
         import_categories: true,

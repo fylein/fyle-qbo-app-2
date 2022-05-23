@@ -14,7 +14,7 @@ describe('UserService', () => {
     });
     service = TestBed.inject(UserService);
   });
-  const realuser = localStorage.getItem('user')
+  const realuser = localStorage.getItem('user');
 
 
   it('setUserDetails and getUserdetails service', () => {
@@ -32,15 +32,15 @@ describe('UserService', () => {
     const responseKeys = Object.keys(user).sort();
     const actualResponseKeys = Object.keys(actualResponse).sort();
     expect(actualResponseKeys).toEqual(responseKeys || null);
-  })
+  });
 
   it('storeFyleOrgsCount service', (done) => {
     service.storeFyleOrgsCount();
     const response = localStorage.getItem('orgsCount');
     if(response == 'null'){
-      expect(response).toBeNull()
+      expect(response).toBeNull();
     }
-    expect(response).toBeDefined()
+    expect(response).toBeDefined();
     done();
-  })
+  });
 });

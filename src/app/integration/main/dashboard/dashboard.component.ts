@@ -159,7 +159,7 @@ export class DashboardComponent implements OnInit {
         this.groupedErrorStat.CATEGORY_MAPPING = {
           resolvedCount: totalCount - newError.CATEGORY_MAPPING.length,
           totalCount: totalCount
-        }
+        };
       }
 
       if (this.errors.EMPLOYEE_MAPPING.length !== newError.EMPLOYEE_MAPPING.length) {
@@ -168,7 +168,7 @@ export class DashboardComponent implements OnInit {
         this.groupedErrorStat.EMPLOYEE_MAPPING = {
           resolvedCount: totalCount - newError.EMPLOYEE_MAPPING.length,
           totalCount: totalCount
-        }
+        };
       }
 
       if (this.errors.TAX_MAPPING.length !== newError.TAX_MAPPING.length) {
@@ -177,7 +177,7 @@ export class DashboardComponent implements OnInit {
         this.groupedErrorStat.TAX_MAPPING = {
           resolvedCount: totalCount - newError.TAX_MAPPING.length,
           totalCount: totalCount
-        }
+        };
       }
 
       this.errors = newError;

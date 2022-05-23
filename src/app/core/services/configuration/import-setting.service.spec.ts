@@ -9,8 +9,8 @@ describe('ImportSettingService', () => {
   let service: ImportSettingService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  const API_BASE_URL = environment.api_url
-  const workspace_id = environment.tests.workspaceId
+  const API_BASE_URL = environment.api_url;
+  const workspace_id = environment.tests.workspaceId;
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -39,13 +39,13 @@ describe('ImportSettingService', () => {
     };
     service.getImportSettings().subscribe((value) => {
       expect(value).toEqual(response);
-    })
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/import_settings/`,
     });
     req.flush(response);
-  })
+  });
 
   it('postImportSettings service check', () => {
     const employeeSettingPayload: ImportSettingPost = {
@@ -80,14 +80,14 @@ describe('ImportSettingService', () => {
       import_tax_codes: true,
       import_vendors_as_merchants: true},
       workspace_id: 1
-    }
+    };
     service.postImportSettings(employeeSettingPayload).subscribe(value => {
-      expect(value).toEqual(response)
-    })
+      expect(value).toEqual(response);
+    });
     const req = httpMock.expectOne({
       method: 'PUT',
       url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/import_settings/`,
     });
     req.flush(response);
-  })
+  });
 });

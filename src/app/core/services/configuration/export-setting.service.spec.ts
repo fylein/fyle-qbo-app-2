@@ -9,8 +9,8 @@ describe('ExportSettingService', () => {
   let service: ExportSettingService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  const API_BASE_URL = environment.api_url
-  const workspace_id = environment.tests.workspaceId
+  const API_BASE_URL = environment.api_url;
+  const workspace_id = environment.tests.workspaceId;
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -49,17 +49,17 @@ describe('ExportSettingService', () => {
         default_debit_card_account: { id: '1', name: 'Fyle' }
       },
       workspace_id:1
-    }
+    };
     service.getExportSettings().subscribe((value) => {
       expect(value).toEqual(response);
-    })
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/export_settings/`,
     });
     req.flush(response);
 
-  })
+  });
 
   it('postEmployeeSettings service check', () => {
     const exportSettingPayload: ExportSettingPost = {
@@ -104,16 +104,16 @@ describe('ExportSettingService', () => {
         default_debit_card_account: { id: '1', name: 'Fyle' }
       },
       workspace_id:1
-    }
+    };
     service.postExportSettings(exportSettingPayload).subscribe(value => {
-      expect(value).toEqual(response)
-    })
+      expect(value).toEqual(response);
+    });
     const req = httpMock.expectOne({
       method: 'PUT',
       url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/export_settings/`,
     });
     req.flush(response);
 
-  })
+  });
 
 });
