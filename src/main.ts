@@ -16,7 +16,9 @@ if (environment.sentry_dsn && env) {
     release: env,
     environment: env,
     // TODO: add safety 400 to this list
-    ignoreErrors: [],
+    ignoreErrors: [
+      'Non-Error exception captured'
+    ],
     integrations: [new TracingIntegrations.BrowserTracing({
       routingInstrumentation: Sentry.routingInstrumentation,
     })],
