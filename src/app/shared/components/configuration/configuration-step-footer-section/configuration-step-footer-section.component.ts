@@ -9,9 +9,13 @@ import { ConfigurationCtaText } from 'src/app/core/models/enum/enum.model';
 export class ConfigurationStepFooterSectionComponent implements OnInit {
 
   @Input() isButtonDisabled: boolean;
+
   @Input() ctaText: ConfigurationCtaText;
+
   @Input() showBackButton: boolean;
+
   @Output() save = new EventEmitter();
+
   @Output() navigateToPreviousStep = new EventEmitter();
 
   constructor() { }

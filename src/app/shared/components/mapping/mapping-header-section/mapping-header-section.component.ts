@@ -12,9 +12,13 @@ import { MappingService } from 'src/app/core/services/misc/mapping.service';
 export class MappingHeaderSectionComponent implements OnInit {
 
   @Input() totalCardActive: boolean;
+
   @Input() sourceType: string;
+
   @Input() mappingStats: MappingStats;
+
   @Input() autoMapEmployee: AutoMapEmployee | null;
+
   @Output() mappingCardUpdateHandler = new EventEmitter<boolean>();
 
   constructor(

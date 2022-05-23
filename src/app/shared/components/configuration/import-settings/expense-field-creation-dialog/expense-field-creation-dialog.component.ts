@@ -12,6 +12,7 @@ const SYSTEM_FIELDS: string[] = ['employee id', 'organisation name', 'employee n
 export class ExpenseFieldCreationDialogComponent implements OnInit {
 
   expenseFieldsCreationForm: FormGroup;
+
   existingFields: string[];
 
   constructor(

@@ -24,25 +24,41 @@ import { ExpenseGroupSetting } from 'src/app/core/models/db/expense-group-settin
 export class DashboardComponent implements OnInit {
 
   isLoading: boolean = true;
+
   importInProgress: boolean = true;
+
   processedCount: number = 0;
+
   failedExpenseGroupCount: number | null = null;
+
   exportInProgress: boolean = false;
+
   exportProgressPercentage: number = 0;
+
   exportableExpenseGroupIds: number[];
+
   lastExport: LastExport | null;
+
   errors: GroupedErrors;
+
   employeeFieldMapping: EmployeeFieldMapping;
+
   expenseGroupSetting: string;
+
   groupedErrorStat: GroupedErrorStat = {
     [ErrorType.EMPLOYEE_MAPPING]: null,
     [ErrorType.CATEGORY_MAPPING]: null,
     [ErrorType.TAX_MAPPING]: null
   };
+
   ExportState = ExportState;
+
   employeeName: string = this.userService.getUserProfile().full_name;
+
   getExportErrors$: Observable<Error[]> = this.dashboardService.getExportErrors();
+
   getLastExport$: Observable<LastExport> = this.dashboardService.getLastExport();
+
   private taskType: TaskLogType[] = [TaskLogType.FETCHING_EXPENSE, TaskLogType.CREATING_BILL, TaskLogType.CREATING_EXPENSE, TaskLogType.CREATING_CHECK, TaskLogType.CREATING_CREDIT_CARD_PURCHASE, TaskLogType.CREATING_JOURNAL_ENTRY, TaskLogType.CREATING_CREDIT_CARD_CREDIT, TaskLogType.CREATING_DEBIT_CARD_EXPENSE];
 
   constructor(

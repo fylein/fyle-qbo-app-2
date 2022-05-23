@@ -14,10 +14,15 @@ import { environment } from 'src/environments/environment';
 export class DashboardExportLogDialogComponent implements OnInit {
 
   isLoading: boolean = true;
+
   expenseGroups: MatTableDataSource<ExpenseGroupList> = new MatTableDataSource<ExpenseGroupList>([]);
+
   emptyExpenseGroup: MatTableDataSource<ExpenseGroupList> = new MatTableDataSource<ExpenseGroupList>([]);
+
   displayedColumns: string[];
+
   ExportState = ExportState;
+
   externalUrlType: string;
 
   constructor(

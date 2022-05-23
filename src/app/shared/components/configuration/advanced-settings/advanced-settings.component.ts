@@ -22,15 +22,25 @@ import { WindowService } from 'src/app/core/services/core/window.service';
 export class AdvancedSettingsComponent implements OnInit {
 
   isLoading: boolean = true;
+
   saveInProgress: boolean;
+
   isOnboarding: boolean = false;
+
   advancedSettings: AdvancedSettingGet;
+
   workspaceGeneralSettings: WorkspaceGeneralSetting;
+
   billPaymentAccounts: DestinationAttribute[];
+
   advancedSettingsForm: FormGroup;
+
   defaultMemoFields: string[] = ['employee_email', 'merchant', 'purpose', 'category', 'spent_on', 'report_number', 'expense_link'];
+
   memoStructure: string[] = [];
+
   memoPreviewText: string = '';
+
   paymentSyncOptions: AdvancedSettingFormOption[] = [
     {
       label: 'Export Fyle ACH Payments to Quickbooks Online',
@@ -41,9 +51,13 @@ export class AdvancedSettingsComponent implements OnInit {
       value: PaymentSyncDirection.QBO_TO_FYLE
     }
   ];
+
   frequencyIntervals: number[] = [...Array(24).keys()].map(day => day + 1);
+
   windowReference: Window;
+
   @Output() isLoaded = new EventEmitter<boolean>();
+
   ConfigurationCtaText = ConfigurationCtaText;
 
   constructor(

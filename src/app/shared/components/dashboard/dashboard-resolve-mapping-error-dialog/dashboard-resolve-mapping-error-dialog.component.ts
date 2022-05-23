@@ -20,11 +20,17 @@ import { MappingService } from 'src/app/core/services/misc/mapping.service';
 export class DashboardResolveMappingErrorDialogComponent implements OnInit {
 
   isLoading: boolean = true;
+
   mappings: MatTableDataSource<MappingList> = new MatTableDataSource<MappingList>([]);
+
   mappingForm: FormGroup[];
+
   qboData: DestinationAttribute[];
+
   displayedColumns: string[] = ['fyle', 'qbo'];
+
   form: FormGroup;
+
   fyleQboMappingFormArray: FormGroup[];
 
   constructor(

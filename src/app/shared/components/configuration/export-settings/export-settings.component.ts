@@ -23,17 +23,29 @@ import { ConfirmationDialogComponent } from '../../core/confirmation-dialog/conf
 export class ExportSettingsComponent implements OnInit {
 
   isLoading: boolean = true;
+
   saveInProgress: boolean;
+
   isOnboarding: boolean = false;
+
   employeeFieldMapping: EmployeeFieldMapping;
+
   exportSettingsForm: FormGroup;
+
   exportSettings: ExportSettingGet;
+
   bankAccounts: DestinationAttribute[];
+
   cccAccounts: DestinationAttribute[];
+
   accountsPayables: DestinationAttribute[];
+
   vendors: DestinationAttribute[];
+
   expenseAccounts: DestinationAttribute[];
+
   windowReference: Window;
+
   expenseStateOptions: ExportSettingFormOption[] = [
     {
       value: ExpenseState.PAYMENT_PROCESSING,
@@ -44,6 +56,7 @@ export class ExportSettingsComponent implements OnInit {
       label: 'Paid'
     }
   ];
+
   expenseGroupingFieldOptions: ExportSettingFormOption[] = [
     {
       label: 'Report',
@@ -58,6 +71,7 @@ export class ExportSettingsComponent implements OnInit {
       value: ExpenseGroupingFieldOption.EXPENSE_ID
     }
   ];
+
   reimbursableExpenseGroupingDateOptions: ExportSettingFormOption[] = [
     {
       label: 'Current Date',
@@ -80,7 +94,9 @@ export class ExportSettingsComponent implements OnInit {
       value: ExportDateType.LAST_SPENT_AT
     }
   ];
+
   cccExpenseGroupingDateOptions: ExportSettingFormOption[] = this.reimbursableExpenseGroupingDateOptions.concat();
+
   creditCardExportTypes: ExportSettingFormOption[] = [
     {
       label: 'Bill',
@@ -99,8 +115,11 @@ export class ExportSettingsComponent implements OnInit {
       value: CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE
     }
   ];
+
   reimbursableExportTypes: ExportSettingFormOption[];
+
   @Output() isLoaded = new EventEmitter<boolean>();
+
   ConfigurationCtaText = ConfigurationCtaText;
 
   constructor(

@@ -11,6 +11,7 @@ import { PreviewPage } from 'src/app/core/models/misc/preview-page.model';
 export class PreviewDialogComponent implements OnInit {
 
   ReimbursableExpensesObject = ReimbursableExpensesObject;
+
   CorporateCreditCardExpensesObject = CorporateCreditCardExpensesObject;
   
   constructor(

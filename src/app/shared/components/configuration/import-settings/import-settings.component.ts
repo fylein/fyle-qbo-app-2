@@ -27,20 +27,32 @@ import { WorkspaceService } from 'src/app/core/services/workspace/workspace.serv
 export class ImportSettingsComponent implements OnInit {
 
   isLoading: boolean = true;
+
   saveInProgress: boolean;
+
   isOnboarding: boolean = false;
+
   isTaxGroupSyncAllowed: boolean;
+
   importSettings: ImportSettingGet;
+
   importSettingsForm: FormGroup;
+
   taxCodes: DestinationAttribute[];
+
   fyleExpenseFields: string[];
+
   qboExpenseFields: ExpenseFieldsFormOption[];
+
   chartOfAccountTypesList: string[] = [
     'Expense', 'Other Expense', 'Fixed Asset', 'Cost of Goods Sold', 'Current Liability', 'Equity',
     'Other Current Asset', 'Other Current Liability', 'Long Term Liability', 'Current Asset'
   ];
+
   windowReference: Window;
+
   @Output() isLoaded = new EventEmitter<boolean>();
+
   ConfigurationCtaText = ConfigurationCtaText;
 
   constructor(

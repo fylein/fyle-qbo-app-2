@@ -13,6 +13,7 @@ import { MappingService } from 'src/app/core/services/misc/mapping.service';
 export class MainComponent implements OnInit {
 
   isLoading: boolean = true;
+
   modules: DashboardModule[] = [
     {
       name: 'Dashboard',

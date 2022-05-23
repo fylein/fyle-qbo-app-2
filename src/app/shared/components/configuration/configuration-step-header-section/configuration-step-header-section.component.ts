@@ -11,9 +11,13 @@ import { WorkspaceService } from 'src/app/core/services/workspace/workspace.serv
 export class ConfigurationStepHeaderSectionComponent implements OnInit {
 
   headerText: string;
+
   contentText: string;
+
   isStepOptional: boolean;
+
   activePage: string | undefined;
+
   @Input() showSyncButton: boolean;
 
   constructor(
