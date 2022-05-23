@@ -32,7 +32,7 @@ describe('AuthService', () => {
 
   it('isLoggedIn is working', () => {
     const result = service.isLoggedIn();
-    if(result == true)
+    if (result == true)
       expect(result).toBeTrue();
     else
       expect(result).toBeFalse();

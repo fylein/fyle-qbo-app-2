@@ -68,7 +68,7 @@
         "@angular-eslint/no-empty-lifecycle-method": "off",
         "linebreak-style": "off",
         "key-spacing": ["error", { "beforeColon": false }],
-        // "keyword-spacing": ["error", { "before": true }],
+        "keyword-spacing": ["error", { "before": true }],
         // "brace-style": "error",
         // "no-trailing-spaces": "error",
         // "no-console": ["error", {"allow": [""]}],
