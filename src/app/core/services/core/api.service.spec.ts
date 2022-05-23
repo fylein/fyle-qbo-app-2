@@ -71,7 +71,7 @@ describe('ApiService', () => {
     }
     service.get("/workspaces/",{org_id: 1}).subscribe(value => {
       expect(value).toEqual(responseKeys);
-    })
+    });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/?org_id=1`,
@@ -79,7 +79,7 @@ describe('ApiService', () => {
   req.flush(responseKeys);
   });
 
-  it('postEmployeeSettings service check', () => {
+  it('Put service check', () => {
     const employeeSettingPayload: EmployeeSettingPost = {
       workspace_general_settings: {
         employee_field_mapping: EmployeeFieldMapping.EMPLOYEE,
@@ -89,28 +89,28 @@ describe('ApiService', () => {
     const response: EmployeeSettingGet = {
       workspace_general_settings: { employee_field_mapping: EmployeeFieldMapping.EMPLOYEE, auto_map_employees: AutoMapEmployee.EMPLOYEE_CODE },
       workspace_id: 1
-    }
+    };
     service.put('/v2/workspaces/'+workspace_id+'/map_employees/',employeeSettingPayload).subscribe(value =>{
       expect(value).toEqual(response);
-    })
+    });
     const req = httpMock.expectOne({
       method: 'PUT',
       url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/map_employees/`,
     });
     req.flush(response);
-  })
+  });
 
   it('patch service check', () => {
     const response={
       app:'done'
-    }
+    };
     service.patch(`/workspaces/${workspace_id}/`,{app_version: 'v1'}).subscribe((value)=>{
       expect(value).toBeDefined()
-    })
+    });
     const req = httpMock.expectOne({
       method: 'PATCH',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/`,
     });
   req.flush(response);
-  })
+  });
 });

@@ -20,10 +20,4 @@ describe('WorkspacesGuard', () => {
     expect(guard).toBeTruthy();
   });
 
-  it('canActivate check', () =>{
-    const responseKeys =['_isScalar', 'source', 'operator'].sort();
-    const result = guard.canActivate(act, route);
-    const actualResponseKeys =Object.keys(result).sort();
-    expect(responseKeys).toEqual(actualResponseKeys);
-  });
 });
