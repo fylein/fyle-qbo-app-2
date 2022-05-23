@@ -19,10 +19,9 @@ describe('AuthGuard', () => {
 
   it('canActivate check', () => {
     const result = guard.canActivate().valueOf();
-    if(result){
+    if (result) {
       expect(result).toBeTrue();
-    }
-    else{
+    } else {
       expect(result).toBeFalse();
     }
   });

@@ -10,8 +10,8 @@ describe('ApiService', () => {
   let service: ApiService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  const API_BASE_URL = environment.api_url
-  const workspace_id = environment.tests.workspaceId
+  const API_BASE_URL = environment.api_url;
+  const workspace_id = environment.tests.workspaceId;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -33,7 +33,7 @@ describe('ApiService', () => {
       name: "Test Sample Statement - GBP",
       user: [1],
       fyle_org_id: "orunxXsIajSE",
-      fyle_currency:"ING",
+      fyle_currency: "ING",
       qbo_realm_id: "",
       cluster_domain: "",
       onboarding_state: OnboardingState.CONNECTION,
@@ -42,10 +42,10 @@ describe('ApiService', () => {
       destination_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       created_at: new Date("2022-04-13T10:29:18.796760Z"),
       updated_at: new Date("2022-04-13T10:29:18.796760Z"),
-    }
+    };
     service.post('/workspaces/',{}).subscribe((value) => {
       expect(value).toEqual(responseKeys);
-    })
+    });
     const req = httpMock.expectOne({
       method: 'POST',
       url: `${API_BASE_URL}/workspaces/`,
@@ -59,7 +59,7 @@ describe('ApiService', () => {
       name: "Test Sample Statement - GBP",
       user: [1],
       fyle_org_id: "orunxXsIajSE",
-      fyle_currency:"ING",
+      fyle_currency: "ING",
       qbo_realm_id: "",
       cluster_domain: "",
       onboarding_state: OnboardingState.CONNECTION,
@@ -68,7 +68,7 @@ describe('ApiService', () => {
       destination_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       created_at: new Date("2022-04-13T10:29:18.796760Z"),
       updated_at: new Date("2022-04-13T10:29:18.796760Z"),
-    }
+    };
     service.get("/workspaces/",{org_id: 1}).subscribe(value => {
       expect(value).toEqual(responseKeys);
     });
@@ -102,10 +102,10 @@ describe('ApiService', () => {
 
   it('patch service check', () => {
     const response={
-      app:'done'
+      app: 'done'
     };
     service.patch(`/workspaces/${workspace_id}/`,{app_version: 'v1'}).subscribe((value)=>{
-      expect(value).toBeDefined()
+      expect(value).toBeDefined();
     });
     const req = httpMock.expectOne({
       method: 'PATCH',

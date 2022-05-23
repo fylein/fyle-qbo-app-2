@@ -28,11 +28,11 @@ describe('HelperService', () => {
     const source_field:DefaultDestinationAttribute={
       id: '1',
       name: 'fyle'
-    }; 
+    };
     const destination_field:DefaultDestinationAttribute={
       id: '1',
       name: 'fyle'
-    }; 
+    };
     expect(service.compareObjects(source_field,destination_field)).toBeTrue();
   });
 
@@ -40,11 +40,11 @@ describe('HelperService', () => {
     const source_field:DefaultDestinationAttribute={
       id: '1',
       name: 'fyle'
-    }; 
+    };
     const destination_field:DefaultDestinationAttribute={
       id: '2',
       name: 'fyler'
-    }; 
+    };
     expect(service.compareObjects(source_field,destination_field)).toBeFalse();
   });
 

@@ -131,17 +131,17 @@ describe('WorkspaceService', () => {
 
   it('patchworkspace service check', () => {
     const response={
-      app:'done'
-    }
+      app: 'done'
+    };
     service.patchWorkspace().subscribe((value)=>{
-      expect(value).toBeDefined()
-    })
+      expect(value).toBeDefined();
+    });
     const req = httpMock.expectOne({
       method: 'PATCH',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/`,
     });
   req.flush(response);
-  })
+  });
   it('syncFyleDimensions service', () => {
     expect(service.syncFyleDimensions()).toBeTruthy();
   });
