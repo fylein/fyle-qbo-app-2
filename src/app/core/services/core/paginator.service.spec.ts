@@ -24,8 +24,7 @@ describe('PaginatorService', () => {
         limit: 1,
       };
       expect(result).toEqual(expected);
-    }
-    else {
+    } else {
       const expected = {
         offset: 0,
         limit: 50,
