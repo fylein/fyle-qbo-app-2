@@ -18,7 +18,7 @@
     <th mat-header-cell *matHeaderCellDef>
       <h4>Employee Name and ID</h4>
     </th>
-    <td [ngClass]="{'pointer': element.fyleReferenceType !== FyleReferenceType.EXPENSE}" (click)="openChildExpenses(element)" mat-cell *matCellDef="let element">
+    <td [ngClass]="{'pointer': element.fyleReferenceType !== FyleReferenceType.EXPENSE && allowChildViewing}" (click)="openChildExpenses(element)" mat-cell *matCellDef="let element">
       <h4>
         {{ element.employee[0] }}
       </h4>
@@ -32,7 +32,7 @@
     <th mat-header-cell *matHeaderCellDef>
       <h4>Expense Type</h4>
     </th>
-    <td [ngClass]="{'pointer': element.fyleReferenceType !== FyleReferenceType.EXPENSE}" (click)="openChildExpenses(element)" mat-cell *matCellDef="let element"> {{ element.expenseType }} </td>
+    <td [ngClass]="{'pointer': element.fyleReferenceType !== FyleReferenceType.EXPENSE && allowChildViewing}" (click)="openChildExpenses(element)" mat-cell *matCellDef="let element"> {{ element.expenseType }} </td>
   </ng-container>
 
   <ng-container matColumnDef="referenceID">
@@ -46,7 +46,7 @@
     <th mat-header-cell *matHeaderCellDef>
       <h4>Exported to QBO as</h4>
     </th>
-    <td [ngClass]="{'pointer': element.fyleReferenceType !== FyleReferenceType.EXPENSE}" (click)="openChildExpenses(element)" mat-cell *matCellDef="let element"> {{ element.exportedAs | titlecase }} </td>
+    <td [ngClass]="{'pointer': element.fyleReferenceType !== FyleReferenceType.EXPENSE && allowChildViewing}" (click)="openChildExpenses(element)" mat-cell *matCellDef="let element"> {{ element.exportedAs | titlecase }} </td>
   </ng-container>
 
   <ng-container matColumnDef="link">

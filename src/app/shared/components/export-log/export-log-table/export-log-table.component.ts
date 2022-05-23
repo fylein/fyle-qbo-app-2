@@ -20,6 +20,9 @@ export class ExportLogTableComponent implements OnInit {
 
   @Input() externalUrlType: string = 'QBO';
 
+  // Disable opening of child expenses when this component is used in dashboard export dialog
+  @Input() allowChildViewing: boolean = true;
+
   FyleReferenceType = FyleReferenceType;
 
   constructor(
@@ -28,7 +31,7 @@ export class ExportLogTableComponent implements OnInit {
   ) { }
 
   openChildExpenses(selectedRow: ExpenseGroupList): void {
-    if (selectedRow.fyleReferenceType !== FyleReferenceType.EXPENSE) {
+    if (selectedRow.fyleReferenceType !== FyleReferenceType.EXPENSE && this.allowChildViewing) {
       this.dialog.open(ExportLogChildDialogComponent, {
         width: '784px',
         height: '974px',

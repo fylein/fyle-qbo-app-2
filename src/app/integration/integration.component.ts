@@ -19,6 +19,8 @@ export class IntegrationComponent implements OnInit {
 
   user: MinimalUser;
 
+  isLoading: boolean = true;
+
   workspace: Workspace;
 
   windowReference: Window;
@@ -78,6 +80,7 @@ export class IntegrationComponent implements OnInit {
       this.storageService.set('workspaceCreatedAt', workspace.created_at);
       this.workspaceService.syncFyleDimensions().subscribe();
       this.workspaceService.syncQBODimensions().subscribe();
+      this.isLoading = false;
       this.navigate();
     });
   }
