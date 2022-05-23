@@ -150,7 +150,7 @@ describe('MappingService', () => {
 
   it('getMappingSettings() service check', () => {
     const response:MappingSettingResponse = {
-      count:0,next:'aa',previous:'aa',results:[]};
+      count: 0,next: 'aa',previous: 'aa',results: []};
     service.getMappingSettings().subscribe(value => {
       const responseKeys = Object.keys(response).sort();
       const actualResponseKeys = Object.keys(value).sort();
@@ -165,8 +165,8 @@ describe('MappingService', () => {
 
   it('getMappingStats() service check', () => {
     const response:MappingStats= {
-      all_attributes_count:3,
-      unmapped_attributes_count:3
+      all_attributes_count: 3,
+      unmapped_attributes_count: 3
     };
     service.getMappingStats(EmployeeFieldMapping.EMPLOYEE,EmployeeFieldMapping.VENDOR).subscribe((value)=>{
       const responseKeys = Object.keys(response).sort();

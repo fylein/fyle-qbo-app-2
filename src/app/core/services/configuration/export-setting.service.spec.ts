@@ -48,7 +48,7 @@ describe('ExportSettingService', () => {
         qbo_expense_account: { id: '1', name: 'Fyle' },
         default_debit_card_account: { id: '1', name: 'Fyle' }
       },
-      workspace_id:1
+      workspace_id: 1
     };
     service.getExportSettings().subscribe((value) => {
       expect(value).toEqual(response);
@@ -103,7 +103,7 @@ describe('ExportSettingService', () => {
         qbo_expense_account: { id: '1', name: 'Fyle' },
         default_debit_card_account: { id: '1', name: 'Fyle' }
       },
-      workspace_id:1
+      workspace_id: 1
     };
     service.postExportSettings(exportSettingPayload).subscribe(value => {
       expect(value).toEqual(response);

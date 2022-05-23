@@ -16,8 +16,8 @@ describe('StorageService', () => {
 
   it('Set in localstorage', () => {
     const data = {
-      id:'1',
-      name:'Fyle'
+      id: '1',
+      name: 'Fyle'
     };
     service.set('test-data',data);
     const result = service.get('test-data');
@@ -26,8 +26,8 @@ describe('StorageService', () => {
 
   it('Get in localstorage', () => {
     const data = {
-      id:'1',
-      name:'Fyle'
+      id: '1',
+      name: 'Fyle'
     };
     service.set('test-data',data);
     const result = service.get('test-data');

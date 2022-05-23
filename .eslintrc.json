@@ -57,15 +57,25 @@
         "@typescript-eslint/consistent-type-assertions": "off",
         "@angular-eslint/no-conflicting-lifecycle": "off",
         "lines-between-class-members": ["error", "always"],
-        // "@typescript-eslint/no-shadow": "off",
-        // "complexity": [2, 10],
-        // "max-depth": ["error", 4],
-        // "no-magic-numbers": "error",
+        "@typescript-eslint/no-shadow": "off",
+        // TODO: change this to 10, important one
+        "complexity": [2, 16],
+        "max-depth": ["error", 4],
         // "max-params-no-constructor/max-params-no-constructor": ["error", 4],
-        // "max-len": "off",
-        // "space-before-function-paren": "off",
-        // "@typescript-eslint/quotes": "off",
-        "@angular-eslint/no-empty-lifecycle-method": "off"
+        "max-len": "off",
+        "space-before-function-paren": "off",
+        "@typescript-eslint/quotes": "off",
+        "@angular-eslint/no-empty-lifecycle-method": "off",
+        "linebreak-style": "off",
+        "key-spacing": ["error", { "beforeColon": false }],
+        // "keyword-spacing": ["error", { "before": true }],
+        // "brace-style": "error",
+        // "no-trailing-spaces": "error",
+        // "no-console": ["error", {"allow": [""]}],
+        // "no-debugger": "warn",
+        // "@typescript-eslint/no-inferrable-types": "off",
+        // "@typescript-eslint/no-namespace": "off",
+        "max-nested-callbacks": [2,3]
       }
     },
     {

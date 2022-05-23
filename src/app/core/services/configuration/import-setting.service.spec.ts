@@ -53,7 +53,7 @@ describe('ImportSettingService', () => {
         import_categories: true,
         charts_of_accounts: ImportSettingModel.formatChartOfAccounts([{ enabled: true, name: 'expense' }]),
         import_tax_codes: true,
-        import_vendors_as_merchants:true
+        import_vendors_as_merchants: true
       },
       general_mappings: {
         default_tax_code: { id: '1', name: 'Fyle' }
