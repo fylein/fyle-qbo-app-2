@@ -50,6 +50,8 @@ export class DashboardExportLogDialogComponent implements OnInit {
 
         if (referenceType === FyleReferenceType.EXPENSE) {
           referenceNumber = expenseGroup.expenses[0].expense_number;
+        } else if (referenceType === FyleReferenceType.PAYMENT) {
+          referenceNumber = expenseGroup.expenses[0].payment_number;
         }
 
         const fyleUrl = this.exportLogService.generateFyleUrl(expenseGroup, referenceType);
