@@ -19,6 +19,8 @@ export class IntegrationComponent implements OnInit {
 
   user: MinimalUser;
 
+  isLoading: boolean = true;
+
   workspace: Workspace;
 
   windowReference: Window;
@@ -36,7 +38,6 @@ export class IntegrationComponent implements OnInit {
 
   private navigate(): void {
     const pathName = this.windowReference.location.pathname;
-    this.storageService.set('workspaceId', this.workspace.id);
     if (pathName === '/workspaces') {
       const onboardingStateComponentMap = {
         [OnboardingState.CONNECTION]: '/workspaces/onboarding/landing',
@@ -73,11 +74,13 @@ export class IntegrationComponent implements OnInit {
         email: this.user.email,
         workspaceId: workspace.id
       });
+      this.storageService.set('workspaceId', this.workspace.id);
       this.storageService.set('currency', workspace.fyle_currency);
       this.storageService.set('onboardingState', workspace.onboarding_state);
       this.storageService.set('workspaceCreatedAt', workspace.created_at);
       this.workspaceService.syncFyleDimensions().subscribe();
       this.workspaceService.syncQBODimensions().subscribe();
+      this.isLoading = false;
       this.navigate();
     });
   }

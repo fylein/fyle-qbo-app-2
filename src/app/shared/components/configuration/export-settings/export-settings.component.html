@@ -113,8 +113,8 @@
 
       <app-configuration-toggle-field
         [form]="exportSettingsForm"
-        [label]="'Export Credit Card Expenses'"
-        [subLabel]="'Enable this to export the credit card expenses from Fyle. If not enabled, any expenses <span class=bold>Paid by Corporate Card</span> will not be exported to QBO.'"
+        [label]="'Export Corporate Card Expenses'"
+        [subLabel]="'Enable this to export the corporate card expenses from Fyle. If not enabled, any expenses <span class=bold>Paid by Corporate Card</span> will not be exported to QBO.'"
         [formControllerName]="'creditCardExpense'"
       >
       </app-configuration-toggle-field>
@@ -127,7 +127,7 @@
           [mandatoryErrorListName]="'expense export type'"
           [iconPath]="'assets/images/svgs/general/expense.svg'"
           [label]="'How should the expense be exported?'"
-          [subLabel]="'Choose the type of transaction in Quickbooks Online to export your credit card expense from Fyle.'"
+          [subLabel]="'Choose the type of transaction in Quickbooks Online to export your corporate card expense from Fyle.'"
           [placeholder]="'Select expense export type'"
           [formControllerName]="'creditCardExportType'"
           >
@@ -140,7 +140,7 @@
             [isFieldMandatory]="true"
             [mandatoryErrorListName]="'credit card account'"
             [label]="'Set Default Credit Card Account as'"
-            [subLabel]="'Post all your company credit card transactions to a default credit card account.'"
+            [subLabel]="'Post all your company corporate card transactions to a default credit card account.'"
             [placeholder]="'Select Default Credit Card Account'"
             [formControllerName]="'defaultCCCAccount'"
             >
@@ -168,10 +168,10 @@
             [form]="exportSettingsForm"
             [qboAttributes]="vendors"
             [isFieldMandatory]="true"
-            [mandatoryErrorListName]="'credit card vendor'"
-            [label]="'Set default Credit Card Vendor as'"
-            [subLabel]="'The default vendor will apply to all credit card transactions upon export.'"
-            [placeholder]="'Select default credit card vendor'"
+            [mandatoryErrorListName]="'corporate card vendor'"
+            [label]="'Set default corporate Card Vendor as'"
+            [subLabel]="'The default vendor will apply to all corporate card transactions upon export.'"
+            [placeholder]="'Select default corporate card vendor'"
             [formControllerName]="'defaultCreditCardVendor'"
             >
           </app-configuration-select-field>
@@ -215,7 +215,7 @@
             [mandatoryErrorListName]="'date'"
             [iconPath]="'assets/images/svgs/general/calendar.svg'"
             [label]="'Set the ' + getExportType(exportSettingsForm.value.creditCardExportType) + ' date as'"
-            [subLabel]="'The selected date will reflect in the credit card expenses exported to QBO.'"
+            [subLabel]="'The selected date will reflect in the corporate card expenses exported to QBO.'"
             [placeholder]="'Select the date of the ' + getExportType(exportSettingsForm.value.creditCardExportType)"
             [formControllerName]="'creditCardExportDate'"
             >
