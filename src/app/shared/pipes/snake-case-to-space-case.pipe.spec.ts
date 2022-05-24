@@ -11,4 +11,10 @@ describe('SnakeCaseToSpaceCase', () => {
     const pipe = new SnakeCaseToSpaceCase();
     expect(pipe.transform(name)).toEqual('Fyle Integration QBO');
   });
+
+  it('SnakeCaseToSpaceCasePipe Transform function check 2',() => {
+    const name = 22;
+    const pipe = new SnakeCaseToSpaceCase();
+    expect(pipe.transform(name)).toEqual('');
+  });
 });
