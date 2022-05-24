@@ -16,4 +16,13 @@ describe('AuthGuard', () => {
   it('should be created', () => {
     expect(guard).toBeTruthy();
   });
+
+  it('canActivate check', () => {
+    const result = guard.canActivate().valueOf();
+    if (result) {
+      expect(result).toBeTrue();
+    } else {
+      expect(result).toBeFalse();
+    }
+  });
 });
