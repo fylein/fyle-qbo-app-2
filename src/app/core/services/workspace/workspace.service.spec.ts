@@ -157,4 +157,14 @@ describe('WorkspaceService', () => {
   it('refreshQBODimensions service', () => {
     expect(service.refreshQBODimensions()).toBeTruthy();
   });
+
+  it('getFyleCurrency service', () => {
+    const date = service.getWorkspaceCreatedAt();
+    const yyyy = date.getFullYear();
+    var dd = String(date.getDate()).padStart(2, '0');
+    var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const resultdate = dd + '-' + mm + '-' + yyyy;
+    expect(resultdate).toMatch(/(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)/)
+  });
+ 
 });
