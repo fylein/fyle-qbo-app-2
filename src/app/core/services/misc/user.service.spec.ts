@@ -45,7 +45,7 @@ describe('UserService', () => {
   });
 
   it('storeFyleOrgsCount count == 0 service', () => {
-    localStorage.removeItem('orgsCount')
+    localStorage.removeItem('orgsCount');
     service.storeFyleOrgsCount();
     const response = localStorage.getItem('orgsCount');
     expect(response).toBeNull();

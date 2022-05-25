@@ -38,22 +38,10 @@ describe('AuthService', () => {
       expect(result).toBeFalse();
   });
 
-  // it('login() service check', () => {
-  //   const response = {"refresh_token":"fyle","access_token":"fyle","expires_in":3600,"token_type":"Bearer","user":{"id":3,"password":"","last_login":null,"email":"sravan.kumar@fyle.in","user_id":"ust5Ga9HC3qc","full_name":"sravan k","active":true,"staff":false,"admin":false,"org_id":"orunxXsIajSE","org_name":"Test Sample Statement - GBP"}};
-  //   const code = 'sssss';
-  //   expect(service.login(code)).toBeTruthy();
-
-  //   const req = httpMock.expectOne({
-  //     method: 'POST',
-  //     url: `${API_BASE_URL}/auth/login/`,
-  //   });
-  //   req.flush(response);
+  // it('logout() service check', () => {
+  //   const result = service.logout();
+  //   expect(result).toBeUndefined();
   // });
-
-  it('logout() service check', () => {
-    const result = service.logout();
-    expect(result).toBeUndefined()
-  });
 
   it('refreshAccessToken() service check', () => {
     const response ={
@@ -61,7 +49,7 @@ describe('AuthService', () => {
       expires_in: 3600,
       refresh_token: "ffff",
       token_type: "Bearer"
-    }
+    };
     service.refreshAccessToken('fyle').subscribe(value => {
       const responseKeys = Object.keys(response).sort();
       const actualResponseKeys = Object.keys(value).sort();
@@ -76,7 +64,7 @@ describe('AuthService', () => {
 
   it('getAccessToken() service check', () => {
     const user = {
-      access_token:'fyle'
+      access_token: 'fyle'
     };
     localStorage.setItem('user', JSON.stringify(user));
     const actualrespons = 'fyle';
@@ -93,7 +81,7 @@ describe('AuthService', () => {
 
   it('getRefreshToken() service check', () => {
     const user = {
-      refresh_token:'fyle'
+      refresh_token: 'fyle'
     };
     localStorage.setItem('user', JSON.stringify(user));
     const actualrespons = 'fyle';

@@ -345,7 +345,7 @@ describe('MappingService', () => {
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_types=BANK_ACCOUNT,CREDIT_CARD_ACCOUNT,ACCOUNTS_PAYABLE,VENDOR`,
     });
-      req.flush([{"id":45531,"attribute_type":"CREDIT_CARD_ACCOUNT","display_name":"Credit Card Account","value":"2285 Fyle Credit Card","destination_id":"106","auto_created":false,"active":null,"detail":{"account_type":"Credit Card","fully_qualified_name":"2285 Fyle Credit Card"},"created_at":"2022-04-14T06:09:07.537182Z","updated_at":"2022-04-14T06:09:07.537205Z","workspace":216}]);
+      req.flush([{"id": 45531,"attribute_type": "CREDIT_CARD_ACCOUNT","display_name": "Credit Card Account","value": "2285 Fyle Credit Card","destination_id": "106","auto_created": false,"active": null,"detail": {"account_type": "Credit Card","fully_qualified_name": "2285 Fyle Credit Card"},"created_at": "2022-04-14T06:09:07.537182Z","updated_at": "2022-04-14T06:09:07.537205Z","workspace": 216}]);
   });
 
   it('getGroupedQBODestinationAttributes() without data service check', () => {
@@ -421,10 +421,10 @@ describe('MappingService', () => {
       created_at: new Date(),
       updated_at: new Date(),
       workspace: +workspace_id
-    }; 
+    };
 
     service.postMapping(payload).subscribe((value) => {
-      expect(value).toEqual(response)
+      expect(value).toEqual(response);
     });
     const req = httpMock.expectOne({
       method: 'POST',

@@ -79,7 +79,7 @@ describe('ExportLogService', () => {
     const dates = {
       startDate: new Date((new Date().getTime()) - (24*60*60*1000)),
       endDate: new Date()
-    }
+    };
     service.getExpenseGroups('COMPLETE', 10, 5, dates, ).subscribe(result => {
       expect(result).toEqual(response);
     });
@@ -101,12 +101,12 @@ describe('ExportLogService', () => {
     const dates = {
       startDate: new Date((new Date().getTime()) - (24*60*60*1000)),
       endDate: new Date()
-    }
+    };
     const exportAt = new Date();
     service.getExpenseGroups('COMPLETE', 10, 5, dates, exportAt).subscribe(result => {
       expect(result).toEqual(response);
     });
-    const time = exportAt.toString().replace(/\s/g, '%20')
+    const time = exportAt.toString().replace(/\s/g, '%20');
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE&start_date=2022-05-24T00:00:00&end_date=2022-05-25T23:59:59&exported_at=${time}`,
@@ -199,10 +199,10 @@ describe('ExportLogService', () => {
       employee_email: 'employee@gmail.com',
       expense_id: FyleReferenceType.EXPENSE,
       settlement_id: FyleReferenceType.PAYMENT
-    }
+    };
     const response = 'expense_id';
-    const actualResponse = service.getReferenceNumber(payload)
-    expect(actualResponse).toEqual(response)
+    const actualResponse = service.getReferenceNumber(payload);
+    expect(actualResponse).toEqual(response);
   });
 
   it('generateExportTypeAndId() service null check', () => {
@@ -226,9 +226,9 @@ describe('ExportLogService', () => {
       workspace: +workspace_id,
       expenses: []
     };
-    const actualresponse = [null, null, null]
-    const reponse = service.generateExportTypeAndId(expencegroup)
-    expect(reponse).toEqual(actualresponse)
+    const actualresponse = [null, null, null];
+    const reponse = service.generateExportTypeAndId(expencegroup);
+    expect(reponse).toEqual(actualresponse);
   });
 
   it('generateExportTypeAndId() service bill check', () => {
@@ -243,7 +243,7 @@ describe('ExportLogService', () => {
         settlement_id: FyleReferenceType.PAYMENT
       },
       // having any here is okay, different qbo exports has different structures
-      response_logs: {Bill:{name:'Bill', Id:1}},
+      response_logs: {Bill: {name: 'Bill', Id: 1}},
       export_type: 'Expence',
       employee_name: 'Fyle',
       exported_at: new Date(),
@@ -252,9 +252,9 @@ describe('ExportLogService', () => {
       workspace: +workspace_id,
       expenses: []
     };
-    const actualresponse = ['bill', 1, 'bill']
-    const reponse = service.generateExportTypeAndId(expencegroup)
-    expect(reponse).toEqual(actualresponse)
+    const actualresponse = ['bill', 1, 'bill'];
+    const reponse = service.generateExportTypeAndId(expencegroup);
+    expect(reponse).toEqual(actualresponse);
   });
 
   it('generateExportTypeAndId() service JournalEntry check', () => {
@@ -269,7 +269,7 @@ describe('ExportLogService', () => {
         settlement_id: FyleReferenceType.PAYMENT
       },
       // having any here is okay, different qbo exports has different structures
-      response_logs: {JournalEntry:{name:'JournalEntry', Id:1}},
+      response_logs: {JournalEntry: {name: 'JournalEntry', Id: 1}},
       export_type: 'Expence',
       employee_name: 'Fyle',
       exported_at: new Date(),
@@ -278,9 +278,9 @@ describe('ExportLogService', () => {
       workspace: +workspace_id,
       expenses: []
     };
-    const actualresponse = ['journal', 1, 'Journal Entry']
-    const reponse = service.generateExportTypeAndId(expencegroup)
-    expect(reponse).toEqual(actualresponse)
+    const actualresponse = ['journal', 1, 'Journal Entry'];
+    const reponse = service.generateExportTypeAndId(expencegroup);
+    expect(reponse).toEqual(actualresponse);
   });
 
   it('generateExportTypeAndId() service Purchase check check', () => {
@@ -295,7 +295,7 @@ describe('ExportLogService', () => {
         settlement_id: FyleReferenceType.PAYMENT
       },
       // having any here is okay, different qbo exports has different structures
-      response_logs: {Purchase:{name:'Purchase', Id:1, PaymentType:'Check'}},
+      response_logs: {Purchase: {name: 'Purchase', Id: 1, PaymentType: 'Check'}},
       export_type: 'Expence',
       employee_name: 'Fyle',
       exported_at: new Date(),
@@ -304,9 +304,9 @@ describe('ExportLogService', () => {
       workspace: +workspace_id,
       expenses: []
     };
-    const actualresponse = ['check', 1, 'check']
-    const reponse = service.generateExportTypeAndId(expencegroup)
-    expect(reponse).toEqual(actualresponse)
+    const actualresponse = ['check', 1, 'check'];
+    const reponse = service.generateExportTypeAndId(expencegroup);
+    expect(reponse).toEqual(actualresponse);
   });
 
   it('generateExportTypeAndId() service Purchase CreditCard purcase check', () => {
@@ -321,7 +321,7 @@ describe('ExportLogService', () => {
         settlement_id: FyleReferenceType.PAYMENT
       },
       // having any here is okay, different qbo exports has different structures
-      response_logs: {Purchase:{name:'Purchase', Id:1, PaymentType: 'CreditCard', Credit:false}},
+      response_logs: {Purchase: {name: 'Purchase', Id: 1, PaymentType: 'CreditCard', Credit: false}},
       export_type: 'Expence',
       employee_name: 'Fyle',
       exported_at: new Date(),
@@ -330,9 +330,9 @@ describe('ExportLogService', () => {
       workspace: +workspace_id,
       expenses: []
     };
-    const actualresponse = ['expense', 1, 'Credit Card Purchase']
-    const reponse = service.generateExportTypeAndId(expencegroup)
-    expect(reponse).toEqual(actualresponse)
+    const actualresponse = ['expense', 1, 'Credit Card Purchase'];
+    const reponse = service.generateExportTypeAndId(expencegroup);
+    expect(reponse).toEqual(actualresponse);
   });
 
   it('generateExportTypeAndId() service Purchase CreditCard Credit check', () => {
@@ -347,7 +347,7 @@ describe('ExportLogService', () => {
         settlement_id: FyleReferenceType.PAYMENT
       },
       // having any here is okay, different qbo exports has different structures
-      response_logs: {Purchase:{name:'Purchase', Id:1, PaymentType: 'CreditCard', Credit:true}},
+      response_logs: {Purchase: {name: 'Purchase', Id: 1, PaymentType: 'CreditCard', Credit: true}},
       export_type: 'Expence',
       employee_name: 'Fyle',
       exported_at: new Date(),
@@ -356,9 +356,9 @@ describe('ExportLogService', () => {
       workspace: +workspace_id,
       expenses: []
     };
-    const actualresponse = ['creditcardcredit', 1, 'Credit Card Credit']
-    const reponse = service.generateExportTypeAndId(expencegroup)
-    expect(reponse).toEqual(actualresponse)
+    const actualresponse = ['creditcardcredit', 1, 'Credit Card Credit'];
+    const reponse = service.generateExportTypeAndId(expencegroup);
+    expect(reponse).toEqual(actualresponse);
   });
 
   it('generateExportTypeAndId() service Purchase cash check', () => {
@@ -373,7 +373,7 @@ describe('ExportLogService', () => {
         settlement_id: FyleReferenceType.PAYMENT
       },
       // having any here is okay, different qbo exports has different structures
-      response_logs: {Purchase:{name:'Purchase', Id:1, PaymentType: 'Cash', Credit:true}},
+      response_logs: {Purchase: {name: 'Purchase', Id: 1, PaymentType: 'Cash', Credit: true}},
       export_type: 'Expence',
       employee_name: 'Fyle',
       exported_at: new Date(),
@@ -382,9 +382,9 @@ describe('ExportLogService', () => {
       workspace: +workspace_id,
       expenses: []
     };
-    const actualresponse = ['expense', 1, 'Debit Card Expense']
-    const reponse = service.generateExportTypeAndId(expencegroup)
-    expect(reponse).toEqual(actualresponse)
+    const actualresponse = ['expense', 1, 'Debit Card Expense'];
+    const reponse = service.generateExportTypeAndId(expencegroup);
+    expect(reponse).toEqual(actualresponse);
   });
 
   it('generateExportTypeAndId() service Purchase ccc check', () => {
@@ -399,7 +399,7 @@ describe('ExportLogService', () => {
         settlement_id: FyleReferenceType.PAYMENT
       },
       // having any here is okay, different qbo exports has different structures
-      response_logs: {Purchase:{name:'Purchase', Id:1}},
+      response_logs: {Purchase: {name: 'Purchase', Id: 1}},
       export_type: 'Expence',
       employee_name: 'Fyle',
       exported_at: new Date(),
@@ -408,8 +408,8 @@ describe('ExportLogService', () => {
       workspace: +workspace_id,
       expenses: []
     };
-    const actualresponse = ['expense', 1, 'expense']
-    const reponse = service.generateExportTypeAndId(expencegroup)
-    expect(reponse).toEqual(actualresponse)
+    const actualresponse = ['expense', 1, 'expense'];
+    const reponse = service.generateExportTypeAndId(expencegroup);
+    expect(reponse).toEqual(actualresponse);
   });
 });
