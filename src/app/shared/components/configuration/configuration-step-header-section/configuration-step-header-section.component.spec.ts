@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConfigurationStepHeaderSectionComponent } from './configuration-step-header-section.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-describe('ConfigurationStepHeaderSectionComponent', () => {
+xdescribe('ConfigurationStepHeaderSectionComponent', () => {
   let component: ConfigurationStepHeaderSectionComponent;
   let fixture: ComponentFixture<ConfigurationStepHeaderSectionComponent>;
 

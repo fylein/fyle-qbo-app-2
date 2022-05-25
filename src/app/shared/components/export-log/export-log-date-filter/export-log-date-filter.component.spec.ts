@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ExportLogDateFilterComponent } from './export-log-date-filter.component';
 
-describe('ExportLogDateFilterComponent', () => {
+xdescribe('ExportLogDateFilterComponent', () => {
   let component: ExportLogDateFilterComponent;
   let fixture: ComponentFixture<ExportLogDateFilterComponent>;
 

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MappingShimmersComponent } from './mapping-shimmers.component';
 
-describe('MappingShimmersComponent', () => {
+xdescribe('MappingShimmersComponent', () => {
   let component: MappingShimmersComponent;
   let fixture: ComponentFixture<MappingShimmersComponent>;
 

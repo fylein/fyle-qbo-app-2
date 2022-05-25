@@ -8,7 +8,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-describe('ExportLogChildDialogComponent', () => {
+xdescribe('ExportLogChildDialogComponent', () => {
   let component: ExportLogChildDialogComponent;
   let fixture: ComponentFixture<ExportLogChildDialogComponent>;
 

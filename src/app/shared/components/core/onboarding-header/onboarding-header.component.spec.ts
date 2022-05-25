@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { OnboardingHeaderComponent } from './onboarding-header.component';
 import { TrimCharacterPipe } from '../../../pipes/trim-character.pipe';
 
-describe('OnboardingHeaderComponent', () => {
+xdescribe('OnboardingHeaderComponent', () => {
   let component: OnboardingHeaderComponent;
   let fixture: ComponentFixture<OnboardingHeaderComponent>;
 

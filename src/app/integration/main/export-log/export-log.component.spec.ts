@@ -10,7 +10,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MatDialogModule } from "@angular/material/dialog";
 
 
-describe('ExportLogComponent', () => {
+xdescribe('ExportLogComponent', () => {
   let component: ExportLogComponent;
   let fixture: ComponentFixture<ExportLogComponent>;
 

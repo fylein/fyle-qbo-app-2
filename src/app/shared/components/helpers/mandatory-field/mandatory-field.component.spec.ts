@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MandatoryFieldComponent } from './mandatory-field.component';
 
-describe('MandatoryFieldComponent', () => {
+xdescribe('MandatoryFieldComponent', () => {
   let component: MandatoryFieldComponent;
   let fixture: ComponentFixture<MandatoryFieldComponent>;
 

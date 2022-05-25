@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConfigurationAdvancedSettingsComponent } from './configuration-advanced-settings.component';
 
-describe('ConfigurationAdvancedSettingsComponent', () => {
+xdescribe('ConfigurationAdvancedSettingsComponent', () => {
   let component: ConfigurationAdvancedSettingsComponent;
   let fixture: ComponentFixture<ConfigurationAdvancedSettingsComponent>;
 

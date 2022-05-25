@@ -75,7 +75,9 @@
         "no-debugger": "warn",
         "@typescript-eslint/no-inferrable-types": "off",
         "@typescript-eslint/no-namespace": "off",
-        "max-nested-callbacks": [2,3]
+        "max-nested-callbacks": [2,3],
+        "prefer-const": ["error"]
+        // "no-use-before-define": ["error"]
       }
     },
     {

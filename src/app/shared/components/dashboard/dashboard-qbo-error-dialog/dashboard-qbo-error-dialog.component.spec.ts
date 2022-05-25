@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardQboErrorDialogComponent } from './dashboard-qbo-error-dialog.component';
 
-describe('DashboardQboErrorDialogComponent', () => {
+xdescribe('DashboardQboErrorDialogComponent', () => {
   let component: DashboardQboErrorDialogComponent;
   let fixture: ComponentFixture<DashboardQboErrorDialogComponent>;
 
