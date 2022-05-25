@@ -56,6 +56,8 @@ export class ExportLogComponent implements OnInit {
     }
   ];
 
+  PaginatorPage = PaginatorPage;
+
   constructor(
     public dialog: MatDialog,
     private exportLogService: ExportLogService,

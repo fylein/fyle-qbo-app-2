@@ -5,9 +5,10 @@ import { AdvancedSettingFormOption } from 'src/app/core/models/configuration/adv
 import { EmployeeSettingFormOption } from 'src/app/core/models/configuration/employee-setting.model';
 import { ExportSettingFormOption } from 'src/app/core/models/configuration/export-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { ClickEvent, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ProgressPhase, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { PreviewPage } from 'src/app/core/models/misc/preview-page.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
 import { PreviewDialogComponent } from '../preview-dialog/preview-dialog.component';
 
 @Component({
@@ -41,9 +42,12 @@ export class ConfigurationSelectFieldComponent implements OnInit {
 
   @Input() customErrorMessage: string;
 
+  @Input() phase: ProgressPhase;
+
   constructor(
     private dialog: MatDialog,
-    public helperService: HelperService
+    public helperService: HelperService,
+    private trackingService: TrackingService
   ) { }
 
   showQBOExportPreview(reimbursableExportType: ReimbursableExpensesObject | null, creditCardExportType: CorporateCreditCardExpensesObject | null): void {
@@ -51,6 +55,8 @@ export class ConfigurationSelectFieldComponent implements OnInit {
       qboReimburse: reimbursableExportType,
       qboCCC: creditCardExportType
     };
+
+    this.trackingService.onClickEvent(ClickEvent.PREVIEW_QBO_EXPORT, {phase: this.phase, exportType: reimbursableExportType || creditCardExportType});
 
     this.dialog.open(PreviewDialogComponent, {
       width: '960px',

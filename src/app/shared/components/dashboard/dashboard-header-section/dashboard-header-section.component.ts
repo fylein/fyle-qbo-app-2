@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ClickEvent, ProgressPhase } from 'src/app/core/models/enum/enum.model';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 @Component({
@@ -13,10 +15,12 @@ export class DashboardHeaderSectionComponent implements OnInit {
 
   constructor(
     private snackBar: MatSnackBar,
+    private trackingService: TrackingService,
     private workspaceService: WorkspaceService
   ) { }
 
   refreshQBODimensions(): void {
+    this.trackingService.onClickEvent(ClickEvent.SYNC_DIMENSION, {phase: ProgressPhase.POST_ONBOARDING});
     this.workspaceService.refreshQBODimensions().subscribe();
     this.snackBar.open('Refreshing data dimensions from QBO...');
     }

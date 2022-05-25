@@ -153,3 +153,25 @@ export enum RedirectLink {
   FYLE_WEBSITE = 'https://fylehq.com/',
   FYLE_HELP = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks'
 }
+
+export enum ClickEvent {
+  CONNECT_QBO = 'Connect QBO',
+  ONBOARDING_DONE = 'Onboarding Done',
+  PREVIEW_QBO_EXPORT = 'Preview QBO Export',
+  PREVIEW_FYLE_EXPENSE_FORM = 'Preview Fyle Expense Form',
+  HELP_SECTION = 'Help Section',
+  EXPORT = 'Export',
+  FAILED_EXPORTS = 'Failed Exports',
+  SUCCESSFUL_EXPORTS = 'Successful Exports',
+  EXPORT_LOG_PAGE_NAVIGATION = 'Export Log Page Navigation',
+  MAPPING_PAGE_NAVIGATION = 'Mapping Page Navigation',
+  UNMAPPED_MAPPINGS_FILTER = 'Unmapped Mappings Filter',
+  MAPPED_MAPPINGS_FILTER = 'Mapped Mappings Filter',
+  DISCONNECT_QBO = 'Disconnect QBO',
+  SYNC_DIMENSION = 'Sync Dimension'
+}
+
+export enum ProgressPhase {
+  ONBOARDING = 'Onboarding',
+  POST_ONBOARDING = 'Post Onboarding'
+}

@@ -4,12 +4,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { NavigationStart, Router } from '@angular/router';
 import { QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
 import { MinimalUser } from 'src/app/core/models/db/user.model';
-import { RedirectLink } from 'src/app/core/models/enum/enum.model';
+import { ClickEvent, ProgressPhase, RedirectLink } from 'src/app/core/models/enum/enum.model';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
 import { AuthService } from 'src/app/core/services/core/auth.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { StorageService } from 'src/app/core/services/core/storage.service';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
@@ -53,6 +54,8 @@ export class OnboardingHeaderComponent implements OnInit {
 
   windowReference: Window;
 
+  private phase: ProgressPhase;
+
   constructor(
     private authService: AuthService,
     private dialog: MatDialog,
@@ -62,6 +65,7 @@ export class OnboardingHeaderComponent implements OnInit {
     private router: Router,
     private renderer: Renderer2,
     private storageService: StorageService,
+    private trackingService: TrackingService,
     private userService: UserService,
     private windowService: WindowService,
     private workspaceService: WorkspaceService
@@ -101,6 +105,7 @@ export class OnboardingHeaderComponent implements OnInit {
   }
 
   private setupPage(): void {
+    this.phase = this.windowReference.location.pathname.includes('onboarding') ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING;
     this.user = this.userService.getUserProfile();
 
     this.qboConnectorService.getQBOCredentials().subscribe((credentials: QBOCredentials) => {
@@ -182,6 +187,7 @@ export class OnboardingHeaderComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((disconnect) => {
       if (disconnect) {
+        this.trackingService.onClickEvent(ClickEvent.DISCONNECT_QBO, {phase: this.phase});
         this.qboConnectorService.disconnectQBOConnection().subscribe(() => {
           this.authService.redirectToOnboardingLanding();
         });
@@ -201,8 +207,11 @@ export class OnboardingHeaderComponent implements OnInit {
   }
 
   showOrHideHelpDropdown(): void {
-    this.isHelpSectionExpanded = !this.isHelpSectionExpanded;
+    if (!this.isHelpSectionExpanded) {
+      this.trackingService.onClickEvent(ClickEvent.HELP_SECTION, {phase: this.phase});
+    }
 
+    this.isHelpSectionExpanded = !this.isHelpSectionExpanded;
     event?.stopPropagation();
   }
 

@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ClickEvent, ProgressPhase } from 'src/app/core/models/enum/enum.model';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 @Component({
@@ -20,13 +22,17 @@ export class ConfigurationStepHeaderSectionComponent implements OnInit {
 
   @Input() showSyncButton: boolean;
 
+  @Input() phase: ProgressPhase;
+
   constructor(
     private router: Router,
     private snackBar: MatSnackBar,
+    private trackingService: TrackingService,
     private workspaceService: WorkspaceService
   ) { }
 
   refreshQBODimensions(): void {
+    this.trackingService.onClickEvent(ClickEvent.SYNC_DIMENSION, {phase: this.phase});
     this.workspaceService.refreshQBODimensions().subscribe();
     this.snackBar.open('Refreshing data dimensions from QBO...');
   }

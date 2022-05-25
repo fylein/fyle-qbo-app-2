@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { ClickEvent, CorporateCreditCardExpensesObject, FyleField, ProgressPhase, ReimbursableExpensesObject } from '../../models/enum/enum.model';
+import { ClickEventAdditionalProperty } from '../../models/misc/tracking.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class TrackingService {
     return (window as any).analytics;
   }
 
-  eventTrack(action: string, properties = {}) {
+  eventTrack(action: string, properties: any = {}): void {
     properties = {
       ...properties,
       Asset: 'QBO-2 Web'
@@ -23,7 +25,7 @@ export class TrackingService {
     }
   }
 
-  onSignIn(email: string, workspaceId: number, workspaceName: string, orgId: string) {
+  onSignIn(email: string, workspaceId: number, workspaceName: string, orgId: string): void {
     if (this.tracking) {
       this.tracking.identify(email, {
         workspaceId,
@@ -35,7 +37,7 @@ export class TrackingService {
     this.eventTrack('Sign In');
   }
 
-  onSignUp(email: string, workspaceId: number, workspaceName: string, orgId: string) {
+  onSignUp(email: string, workspaceId: number, workspaceName: string, orgId: string): void {
     if (this.tracking) {
       this.tracking.identify(email, {
         workspaceId,
@@ -47,11 +49,19 @@ export class TrackingService {
     this.eventTrack('Sign Up');
   }
 
-  onSignOut() {
+  onSignOut(): void {
     this.eventTrack('Sign Out');
   }
 
-  onSwitchWorkspace() {
+  onSwitchWorkspace(): void {
     this.eventTrack('Switching Workspace');
+  }
+
+  onQBOLanding(phase: ProgressPhase): void {
+    this.eventTrack('Landed in QBO', {phase});
+  }
+
+  onClickEvent(eventName: ClickEvent, additionalProperties: Partial<ClickEventAdditionalProperty> | void): void {
+    this.eventTrack(`Click event: ${eventName}`, additionalProperties);
   }
 }

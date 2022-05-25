@@ -1,17 +1,19 @@
+import { TitleCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { ExtendedExpenseAttribute, ExtendedExpenseAttributeResponse } from 'src/app/core/models/db/expense-attribute.model';
 import { MappingSettingResponse, MinimalMappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { MappingList, MappingModel, MappingStats } from 'src/app/core/models/db/mapping.model';
-import { FyleField, MappingState, PaginatorPage, QBOField } from 'src/app/core/models/enum/enum.model';
+import { ClickEvent, FyleField, MappingState, PaginatorPage, QBOField } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
+import { SnakeCaseToSpaceCase } from 'src/app/shared/pipes/snake-case-to-space-case.pipe';
 
 @Component({
   selector: 'app-generic-mapping',
@@ -50,15 +52,25 @@ export class GenericMappingComponent implements OnInit {
 
   mappingForm: FormGroup[];
 
+  PaginatorPage = PaginatorPage;
+
   constructor(
     private formBuilder: FormBuilder,
     private mappingService: MappingService,
     private paginatorService: PaginatorService,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private trackingService: TrackingService
   ) { }
 
   mappingCardUpdateHandler(totalCardActive: boolean): void {
+    let eventName = ClickEvent.MAPPED_MAPPINGS_FILTER;
+    if (!totalCardActive) {
+      eventName = ClickEvent.UNMAPPED_MAPPINGS_FILTER;
+    }
+    // TODO: test this
+    this.trackingService.onClickEvent(eventName, {page: `${new TitleCasePipe().transform(new SnakeCaseToSpaceCase().transform(this.mappingSetting.source_field))} Mapping`});
+
     this.totalCardActive = totalCardActive;
     this.form.controls.sourceUpdated.patchValue(true);
 

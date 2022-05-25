@@ -7,10 +7,11 @@ import { DestinationAttribute } from 'src/app/core/models/db/destination-attribu
 import { EmployeeMappingModel, ExtendedEmployeeAttribute, ExtendedEmployeeAttributeResponse } from 'src/app/core/models/db/employee-mapping.model';
 import { MappingList, MappingStats } from 'src/app/core/models/db/mapping.model';
 import { WorkspaceGeneralSetting } from 'src/app/core/models/db/workspace-general-setting.model';
-import { AutoMapEmployee, EmployeeFieldMapping, MappingState, PaginatorPage } from 'src/app/core/models/enum/enum.model';
+import { AutoMapEmployee, ClickEvent, EmployeeFieldMapping, MappingState, PaginatorPage } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
@@ -51,16 +52,25 @@ export class EmployeeMappingComponent implements OnInit {
 
   mappingForm: FormGroup[];
 
+  PaginatorPage = PaginatorPage;
+
   constructor(
     private formBuilder: FormBuilder,
     public helperService: HelperService,
     private mappingService: MappingService,
     private paginatorService: PaginatorService,
     private snackBar: MatSnackBar,
+    private trackingService: TrackingService,
     private workspaceService: WorkspaceService
   ) { }
 
   mappingCardUpdateHandler(totalCardActive: boolean): void {
+    let eventName = ClickEvent.MAPPED_MAPPINGS_FILTER;
+    if (!totalCardActive) {
+      eventName = ClickEvent.UNMAPPED_MAPPINGS_FILTER;
+    }
+    this.trackingService.onClickEvent(eventName, {page: 'Employee Mapping'});
+
     this.totalCardActive = totalCardActive;
     this.form.controls.cardUpdated.patchValue(true);
 
