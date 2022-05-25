@@ -4,7 +4,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
 import { AuthService } from './auth.service';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
-import { environment } from 'environment.localhost';
+import { environment } from 'src/environments/environment';
 import { Token } from '../../models/misc/token.model';
 
 
