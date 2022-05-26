@@ -196,7 +196,7 @@ describe('QboConnectorService', () => {
         workspace: +workspace_id
       };
       const payload={
-        code: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjbGllbnRfaWQiOiJ0cGFZZlU3Vkx5ckVOIiwicmVzcG9uc2VfdHlwZSI6ImNvZGUiLCJjbHVzdGVyX2RvbWFpbiI6Imh0dHBzOi8vc3RhZ2luZy5meWxlLnRlY2giLCJvcmdfdXNlcl9pZCI6Im91RXRsSElKNmNhaSIsImV4cCI6MTY1MzQ3ODk5NH0.EiBlfYttzKd5ZPL2nGAYui6692Q3sn9QFMIXsbsinyk',
+        code: 'yyyyyyy',
       realm_id: "realmId",
       redirect_uri: `${environment.app_url}/qbo_callback`
       };

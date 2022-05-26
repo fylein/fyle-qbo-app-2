@@ -80,12 +80,14 @@ describe('ExportLogService', () => {
       startDate: new Date((new Date().getTime()) - (24*60*60*1000)),
       endDate: new Date()
     };
+    const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getMonth()+1 > 9 ? +dates.startDate.getMonth()+1 : '0'+(+dates.startDate.getMonth()+1)}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}T00:00:00`;
+    const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getMonth()+1 > 9 ? +dates.endDate.getMonth()+1 : '0'+(+dates.endDate.getMonth()+1)}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}T23:59:59`;
     service.getExpenseGroups('COMPLETE', 10, 5, dates, ).subscribe(result => {
       expect(result).toEqual(response);
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE&start_date=2022-05-24T00:00:00&end_date=2022-05-25T23:59:59`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE&start_date=${start_date}&end_date=${end_date}`,
     });
       req.flush(response);
   });
@@ -102,6 +104,8 @@ describe('ExportLogService', () => {
       startDate: new Date((new Date().getTime()) - (24*60*60*1000)),
       endDate: new Date()
     };
+    const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getMonth()+1 > 9 ? +dates.startDate.getMonth()+1 : '0'+(+dates.startDate.getMonth()+1)}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}T00:00:00`;
+    const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getMonth()+1 > 9 ? +dates.endDate.getMonth()+1 : '0'+(+dates.endDate.getMonth()+1)}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}T23:59:59`;
     const exportAt = new Date();
     service.getExpenseGroups('COMPLETE', 10, 5, dates, exportAt).subscribe(result => {
       expect(result).toEqual(response);
@@ -109,7 +113,7 @@ describe('ExportLogService', () => {
     const time = exportAt.toString().replace(/\s/g, '%20');
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE&start_date=2022-05-24T00:00:00&end_date=2022-05-25T23:59:59&exported_at=${time}`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE&start_date=${start_date}&end_date=${end_date}&exported_at=${time}`,
     });
       req.flush(response);
   });

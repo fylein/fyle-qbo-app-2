@@ -48,17 +48,4 @@ describe('HelperService', () => {
     expect(service.compareObjects(source_field,destination_field)).toBeFalse();
   });
 
-  // it('compareObjects service check for false', () => {
-  //   const source_field:DefaultDestinationAttribute={
-  //     id: '1',
-  //     name: 'fyle'
-  //   };
-  //   const destination_field:DefaultDestinationAttribute={
-  //     id: '1',
-  //     name: 'fyle'
-  //   };
-  //   console.log(source_field === destination_field)
-  //   expect(service.compareObjects(source_field,destination_field)).toBeFalse();
-  // });
-
 });

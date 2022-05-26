@@ -159,7 +159,7 @@ describe('DashboardService', () => {
     req.flush(response);
   });
 
-  it('getAllTask() service check', () => {
+  xit('getAllTask() service check', () => {
     const taskType: TaskLogType[] = [TaskLogType.FETCHING_EXPENSE, TaskLogType.CREATING_BILL, TaskLogType.CREATING_EXPENSE, TaskLogType.CREATING_CHECK, TaskLogType.CREATING_CREDIT_CARD_PURCHASE, TaskLogType.CREATING_JOURNAL_ENTRY, TaskLogType.CREATING_CREDIT_CARD_CREDIT, TaskLogType.CREATING_DEBIT_CARD_EXPENSE];
     const response:TaskResponse = {
       count: 0,
@@ -179,7 +179,7 @@ describe('DashboardService', () => {
     req.flush(response);
   });
 
-  it('getAllTask() service check', () => {
+  xit('getAllTask() service check', () => {
     const response:TaskResponse = {
       count: 0,
       next: null,
@@ -199,7 +199,7 @@ describe('DashboardService', () => {
     req.flush(response);
   });
 
-  it('getAllTask() service check', () => {
+  xit('getAllTask() service check', () => {
     const response:TaskResponse = {
       count: 1,
       next: null,
@@ -210,7 +210,6 @@ describe('DashboardService', () => {
       const responseKeys = Object.keys(response).sort();
       const actualKeys = Object.keys(value).sort();
       expect(responseKeys).toEqual(actualKeys);
-      // expect(value).toEqual(response);
     });
     const req = httpMock.expectOne({
       method: 'GET',
