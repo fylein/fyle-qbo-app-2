@@ -152,9 +152,9 @@ describe('DashboardService', () => {
       const actualKeys = Object.keys(value).sort();
       expect(actualKeys).toEqual(responseKeys);
     });
-    const req = httpMock.expectOne({
+      const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/tasks/all/?limit=500&offset=0&status=ENQUEUED,IN_PROGRESS&expense_group_ids=3&task_type=FETCHING_EXPENSE,CREATING_BILL,CREATING_EXPENSE,CREATING_CHECK,CREATING_CREDIT_CARD_PURCHASE,CREATING_JOURNAL_ENTRY,CREATING_CREDIT_CARD_CREDIT,CREATING_DEBIT_CARD_EXPENSE`,
+      url: `${API_BASE_URL}/`,
     });
     req.flush(response);
   });
