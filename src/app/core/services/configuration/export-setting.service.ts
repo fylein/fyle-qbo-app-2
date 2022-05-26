@@ -14,11 +14,11 @@ export class ExportSettingService {
     private workspaceService: WorkspaceService
   ) { }
 
-  getExportSettings(){
+  getExportSettings(): Observable<ExportSettingGet>{
     return this.apiService.get(`/v2/workspaces/${this.workspaceService.getWorkspaceId()}/export_settings/`, {});
   }
 
-  postExportSettings(exportSettingsPayload: ExportSettingPost){
+  postExportSettings(exportSettingsPayload: ExportSettingPost): Observable<ExportSettingGet> {
     return this.apiService.put(`/v2/workspaces/${this.workspaceService.getWorkspaceId()}/export_settings/`, exportSettingsPayload);
   }
 }

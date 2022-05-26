@@ -3,8 +3,8 @@ import { AdvancedSettingPost } from '../../models/configuration/advanced-setting
 import { EmployeeSettingPost } from '../../models/configuration/employee-setting.model';
 import { ExportSettingPost } from '../../models/configuration/export-setting.model';
 import { ImportSettingPost } from '../../models/configuration/import-setting.model';
-import { ClickEvent, CorporateCreditCardExpensesObject, FyleField, OnboardingStep, ProgressPhase, ReimbursableExpensesObject } from '../../models/enum/enum.model';
-import { ClickEventAdditionalProperty } from '../../models/misc/tracking.model';
+import { ClickEvent, CorporateCreditCardExpensesObject, FyleField, OnboardingStep, ProgressPhase, ReimbursableExpensesObject, UpdateEvent } from '../../models/enum/enum.model';
+import { ClickEventAdditionalProperty, UpdateEventAdditionalProperty } from '../../models/misc/tracking.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ import { ClickEventAdditionalProperty } from '../../models/misc/tracking.model';
 export class TrackingService {
 
   private identityEmail: string;
+
   private readonly onboardingStepEnum = OnboardingStep;
 
   constructor() { }
@@ -72,5 +73,9 @@ export class TrackingService {
 
   onOnboardingStepCompletion(eventName: OnboardingStep, stepNumber: number, additionalProperties: EmployeeSettingPost | ExportSettingPost | ImportSettingPost | AdvancedSettingPost | void): void {
     this.eventTrack(`Step ${stepNumber} completed: ${eventName}`, additionalProperties);
+  }
+
+  onUpdateEvent(eventName: UpdateEvent, additionalProperties: Partial<UpdateEventAdditionalProperty> | void): void {
+    this.eventTrack(`Update event: ${eventName}`, additionalProperties);
   }
 }

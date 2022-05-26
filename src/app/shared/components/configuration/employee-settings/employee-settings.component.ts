@@ -4,9 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { EmployeeSettingFormOption, EmployeeSettingModel } from 'src/app/core/models/configuration/employee-setting.model';
+import { EmployeeSettingFormOption, EmployeeSettingGet, EmployeeSettingModel } from 'src/app/core/models/configuration/employee-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { AutoMapEmployee, ConfigurationCtaText, EmployeeFieldMapping, OnboardingState, OnboardingStep, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { AutoMapEmployee, ConfigurationCtaText, EmployeeFieldMapping, OnboardingState, OnboardingStep, ProgressPhase, ReimbursableExpensesObject, UpdateEvent } from 'src/app/core/models/enum/enum.model';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { EmployeeSettingService } from 'src/app/core/services/configuration/employee-setting.service';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
@@ -73,6 +73,8 @@ export class EmployeeSettingsComponent implements OnInit {
 
   ConfigurationCtaText = ConfigurationCtaText;
 
+  private employeeSetting: EmployeeSettingGet;
+
   constructor(
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
@@ -121,9 +123,18 @@ export class EmployeeSettingsComponent implements OnInit {
     const employeeSettingPayload = EmployeeSettingModel.constructPayload(this.employeeSettingsForm);
     this.saveInProgress = true;
 
-    this.employeeSettingService.postEmployeeSettings(employeeSettingPayload).subscribe(() => {
+    this.employeeSettingService.postEmployeeSettings(employeeSettingPayload).subscribe((response: EmployeeSettingGet) => {
       if (!this.existingEmployeeFieldMapping) {
-        this.trackingService.onOnboardingStepCompletion(OnboardingStep.MAP_EMPLOYEES, 2, employeeSettingPayload)
+        this.trackingService.onOnboardingStepCompletion(OnboardingStep.MAP_EMPLOYEES, 2, employeeSettingPayload);
+      } else {
+        this.trackingService.onUpdateEvent(
+          UpdateEvent.MAP_EMPLOYEES,
+          {
+            phase: this.isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING,
+            oldState: this.employeeSetting,
+            newState: response
+          }
+        );
       }
 
       this.saveInProgress = false;
@@ -172,6 +183,7 @@ export class EmployeeSettingsComponent implements OnInit {
       this.mappingService.getDistinctQBODestinationAttributes([EmployeeFieldMapping.EMPLOYEE, EmployeeFieldMapping.VENDOR]),
       this.exportSettingService.getExportSettings()
     ]).subscribe((responses) => {
+      this.employeeSetting = responses[0];
       this.existingEmployeeFieldMapping = responses[0].workspace_general_settings?.employee_field_mapping;
       this.setLiveEntityExample(responses[1]);
       this.employeeSettingsForm = this.formBuilder.group({

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ClickEvent, PaginatorPage } from 'src/app/core/models/enum/enum.model';
+import { ClickEvent, PaginatorPage, UpdateEvent } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { TrackingService } from 'src/app/core/services/core/tracking.service';
 
@@ -32,6 +32,14 @@ export class PaginatorComponent implements OnInit, OnChanges {
 
   private onPageSizeChangeWatcher(): void {
     this.form.controls.pageLimit.valueChanges.subscribe(limit => {
+      this.trackingService.onUpdateEvent(
+        UpdateEvent.PAGE_SIZE,
+        {
+          page: this.page,
+          oldState: this.limit,
+          newState: limit
+        }
+      );
       this.pageChangeEvent.emit({
         limit: limit,
         offset: 0,

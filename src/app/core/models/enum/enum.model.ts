@@ -183,3 +183,12 @@ export enum OnboardingStep {
   IMPORT_SETTINGS = 'Import Settings',
   ADVANCED_SETTINGS = 'Advanced Settings'
 }
+
+export enum UpdateEvent {
+  CONNECT_QBO = 'Connect QBO',
+  MAP_EMPLOYEES = 'Map Employees',
+  EXPORT_SETTINGS = 'Export Settings',
+  IMPORT_SETTINGS = 'Import Settings',
+  ADVANCED_SETTINGS = 'Advanced Settings',
+  PAGE_SIZE = 'Page Size'
+}
