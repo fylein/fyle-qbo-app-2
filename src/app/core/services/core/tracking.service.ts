@@ -3,7 +3,7 @@ import { AdvancedSettingPost } from '../../models/configuration/advanced-setting
 import { EmployeeSettingPost } from '../../models/configuration/employee-setting.model';
 import { ExportSettingPost } from '../../models/configuration/export-setting.model';
 import { ImportSettingPost } from '../../models/configuration/import-setting.model';
-import { ClickEvent, CorporateCreditCardExpensesObject, FyleField, OnboardingStep, ProgressPhase, ReimbursableExpensesObject, UpdateEvent } from '../../models/enum/enum.model';
+import { ClickEvent, CorporateCreditCardExpensesObject, FyleField, OnboardingStep, PaginatorPage, ProgressPhase, ReimbursableExpensesObject, UpdateEvent } from '../../models/enum/enum.model';
 import { ClickEventAdditionalProperty, UpdateEventAdditionalProperty } from '../../models/misc/tracking.model';
 
 @Injectable({
@@ -78,4 +78,16 @@ export class TrackingService {
   onUpdateEvent(eventName: UpdateEvent, additionalProperties: Partial<UpdateEventAdditionalProperty> | void): void {
     this.eventTrack(`Update event: ${eventName}`, additionalProperties);
   }
+
+  onDateFilter(properties: {filterType: 'existing' | 'custom', startDate: Date, endDate: Date}): void {
+    this.eventTrack('Date filter', properties);
+  }
+
+  onQBOAccountDisconnect(): void {
+    this.eventTrack('QBO account disconnected');
+  }
+
+  // onSimpleSearch(properties: {page: PaginatorPage | 'export-log-child'}): void {
+  //   this.eventTrack('Simple search', properties);
+  // }
 }

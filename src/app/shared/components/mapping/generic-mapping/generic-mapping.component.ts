@@ -172,7 +172,7 @@ export class GenericMappingComponent implements OnInit {
     });
   }
 
-  private searchByText(mapping: MappingList, filterText: string) {
+  private searchByText(mapping: MappingList, filterText: string): boolean {
     return mapping.fyle.value.toLowerCase().includes(filterText.toLowerCase());
   }
 

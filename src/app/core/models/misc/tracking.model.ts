@@ -9,7 +9,8 @@ export type ClickEventAdditionalProperty = {
   exportType: ReimbursableExpensesObject | CorporateCreditCardExpensesObject | null,
   previousPageNumber: number,
   newPageNumber: number,
-  page: string
+  page: string,
+  oldCompanyName: string | null
 };
 
 export type UpdateEventAdditionalProperty = {

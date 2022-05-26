@@ -157,6 +157,7 @@ export enum RedirectLink {
 export enum ClickEvent {
   CONNECT_QBO = 'Connect QBO',
   ONBOARDING_DONE = 'Onboarding Done',
+  RECONNECT_QBO = 'Reconnect QBO with different company',
   PREVIEW_QBO_EXPORT = 'Preview QBO Export',
   PREVIEW_FYLE_EXPENSE_FORM = 'Preview Fyle Expense Form',
   HELP_SECTION = 'Help Section',

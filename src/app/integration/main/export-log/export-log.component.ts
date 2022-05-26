@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { DateFilter, SelectedDateFilter } from 'src/app/core/models/misc/date-filter.model';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
 
 @Component({
   selector: 'app-export-log',
@@ -63,8 +64,17 @@ export class ExportLogComponent implements OnInit {
     private exportLogService: ExportLogService,
     private formBuilder: FormBuilder,
     public helperService: HelperService,
-    private paginatorService: PaginatorService
+    private paginatorService: PaginatorService,
+    private trackingService: TrackingService
   ) { }
+
+  private trackDateFilter(filterType: 'existing' | 'custom', selectedDateFilter: SelectedDateFilter): void {
+    const trackingProperty = {
+      filterType,
+      ...selectedDateFilter
+    };
+    this.trackingService.onDateFilter(trackingProperty);
+  }
 
   private setupForm(): void {
     this.exportLogForm = this.formBuilder.group({
@@ -89,6 +99,8 @@ export class ExportLogComponent implements OnInit {
           endDate: dateRange.endDate
         };
 
+        this.trackDateFilter('existing', this.selectedDateFilter);
+
         const paginator: Paginator = this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
         this.getExpenseGroups(paginator);
       }
@@ -112,6 +124,8 @@ export class ExportLogComponent implements OnInit {
       startDate: this.exportLogForm.controls.start.value,
       endDate: this.exportLogForm.controls.end.value
     };
+
+    this.trackDateFilter('custom', this.selectedDateFilter);
 
     const paginator: Paginator = this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
     this.getExpenseGroups(paginator);

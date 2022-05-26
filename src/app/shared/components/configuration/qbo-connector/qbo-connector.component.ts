@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/core/services/core/auth.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
-import { ConfigurationCtaText, OnboardingState, OnboardingStep } from 'src/app/core/models/enum/enum.model';
+import { ClickEvent, ConfigurationCtaText, OnboardingState, OnboardingStep } from 'src/app/core/models/enum/enum.model';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../core/confirmation-dialog/confirmation-dialog.component';
@@ -81,6 +81,7 @@ export class QboConnectorComponent implements OnInit {
   disconnectQbo(): void {
     this.isLoading = true;
     this.qboConnectorService.disconnectQBOConnection().subscribe(() => {
+      this.trackingService.onClickEvent(ClickEvent.RECONNECT_QBO, {oldCompanyName: this.qboCompanyName});
       this.showDisconnectQBO = false;
       this.qboCompanyName = null;
       this.getSettings();
