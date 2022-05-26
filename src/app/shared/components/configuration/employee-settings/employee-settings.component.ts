@@ -6,10 +6,11 @@ import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { EmployeeSettingFormOption, EmployeeSettingModel } from 'src/app/core/models/configuration/employee-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { AutoMapEmployee, ConfigurationCtaText, EmployeeFieldMapping, OnboardingState, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { AutoMapEmployee, ConfigurationCtaText, EmployeeFieldMapping, OnboardingState, OnboardingStep, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { EmployeeSettingService } from 'src/app/core/services/configuration/employee-setting.service';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
@@ -80,6 +81,7 @@ export class EmployeeSettingsComponent implements OnInit {
     private mappingService: MappingService,
     private router: Router,
     private snackBar: MatSnackBar,
+    private trackingService: TrackingService,
     private windowService: WindowService,
     private workspaceService: WorkspaceService
   ) {
@@ -120,6 +122,10 @@ export class EmployeeSettingsComponent implements OnInit {
     this.saveInProgress = true;
 
     this.employeeSettingService.postEmployeeSettings(employeeSettingPayload).subscribe(() => {
+      if (!this.existingEmployeeFieldMapping) {
+        this.trackingService.onOnboardingStepCompletion(OnboardingStep.MAP_EMPLOYEES, 2, employeeSettingPayload)
+      }
+
       this.saveInProgress = false;
       this.snackBar.open('Employee settings saved successfully');
       if (this.isOnboarding) {

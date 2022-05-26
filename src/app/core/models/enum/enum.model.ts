@@ -175,3 +175,11 @@ export enum ProgressPhase {
   ONBOARDING = 'Onboarding',
   POST_ONBOARDING = 'Post Onboarding'
 }
+
+export enum OnboardingStep {
+  CONNECT_QBO = 'Connect QBO',
+  MAP_EMPLOYEES = 'Map Employees',
+  EXPORT_SETTINGS = 'Export Settings',
+  IMPORT_SETTINGS = 'Import Settings',
+  ADVANCED_SETTINGS = 'Advanced Settings'
+}

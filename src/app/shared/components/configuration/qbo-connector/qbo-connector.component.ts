@@ -10,10 +10,11 @@ import { AuthService } from 'src/app/core/services/core/auth.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
-import { ConfigurationCtaText, OnboardingState } from 'src/app/core/models/enum/enum.model';
+import { ConfigurationCtaText, OnboardingState, OnboardingStep } from 'src/app/core/models/enum/enum.model';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../core/confirmation-dialog/confirmation-dialog.component';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
 
 @Component({
   selector: 'app-qbo-connector',
@@ -52,6 +53,7 @@ export class QboConnectorComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar,
+    private trackingService: TrackingService,
     private userService: UserService,
     private windowService: WindowService,
     private workspaceService: WorkspaceService
@@ -130,6 +132,7 @@ export class QboConnectorComponent implements OnInit {
 
     this.qboConnectorService.connectQBO(qboAuthResponse).subscribe((qboCredentials: QBOCredentials) => {
       this.workspaceService.refreshQBODimensions().subscribe(() => {
+        this.trackingService.onOnboardingStepCompletion(OnboardingStep.CONNECT_QBO, 1);
         this.workspaceService.setOnboardingState(OnboardingState.MAP_EMPLOYEES);
         this.qboConnectionInProgress = false;
         this.qboCompanyName = qboCredentials.company_name;

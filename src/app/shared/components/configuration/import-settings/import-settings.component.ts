@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NavigationExtras, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { ClickEvent, ConfigurationCtaText, MappingDestinationField, OnboardingState, ProgressPhase } from 'src/app/core/models/enum/enum.model';
+import { ClickEvent, ConfigurationCtaText, MappingDestinationField, OnboardingState, OnboardingStep, ProgressPhase } from 'src/app/core/models/enum/enum.model';
 import { ExpenseFieldsFormOption, ImportSettingGet, ImportSettingModel } from 'src/app/core/models/configuration/import-setting.model';
 import { MappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
@@ -241,6 +241,10 @@ export class ImportSettingsComponent implements OnInit {
       this.saveInProgress = true;
 
       this.importSettingService.postImportSettings(importSettingsPayload).subscribe(() => {
+        if (this.workspaceService.getOnboardingState() === OnboardingState.IMPORT_SETTINGS) {
+          this.trackingService.onOnboardingStepCompletion(OnboardingStep.IMPORT_SETTINGS, 4, importSettingsPayload)
+        }
+
         this.saveInProgress = false;
         this.snackBar.open('Import settings saved successfully');
         if (this.isOnboarding) {
