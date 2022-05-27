@@ -114,7 +114,8 @@
         "comma-dangle": ["error"],
         "comma-spacing": ["error"],
         "comma-style": ["error"],
-        "computed-property-spacing": ["error"]
+        "computed-property-spacing": ["error"],
+        "switch-colon-spacing": ["error"]
       }
     },
     {
