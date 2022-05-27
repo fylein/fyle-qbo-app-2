@@ -1,3 +1,8 @@
+export type DestinationAttributeDetail = {
+  email: string;
+  fully_qualified_name: string;
+};
+
 export type DestinationAttribute = {
   id: number;
   attribute_type: string;
@@ -9,11 +14,6 @@ export type DestinationAttribute = {
   updated_at: Date;
   workspace: number;
   detail: DestinationAttributeDetail;
-};
-
-export type DestinationAttributeDetail = {
-  email: string;
-  fully_qualified_name: string;
 };
 
 export type GroupedDestinationAttribute = {

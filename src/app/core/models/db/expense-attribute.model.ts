@@ -1,5 +1,14 @@
 import { Mapping } from "./mapping.model";
 
+export type ExpenseAttributeDetail = {
+  location: string;
+  full_name: string;
+  department_id: string;
+  department: string;
+  department_code: string;
+  employee_code: string;
+};
+
 export type ExpenseAttribute = {
   id: number;
   attribute_type: string;
@@ -16,15 +25,6 @@ export type ExpenseAttribute = {
 
 export type MinimalExpenseAttribute = {
   id: number
-};
-
-export type ExpenseAttributeDetail = {
-  location: string;
-  full_name: string;
-  department_id: string;
-  department: string;
-  department_code: string;
-  employee_code: string;
 };
 
 export interface ExtendedExpenseAttribute extends ExpenseAttribute {

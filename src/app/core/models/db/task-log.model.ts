@@ -1,5 +1,12 @@
 import { TaskLogState, TaskLogType } from "../enum/enum.model";
 
+export type QuickbooksError = {
+  expense_group_id: number;
+  short_description: string;
+  long_description: string;
+  type: string;
+};
+
 export type Task = {
   bill: number;
   cheque: number;
@@ -24,13 +31,6 @@ export type TaskResponse = {
   next: string | null;
   previous: string | null;
   results: Task[];
-};
-
-export type QuickbooksError = {
-  expense_group_id: number;
-  short_description: string;
-  long_description: string;
-  type: string;
 };
 
 export type TaskGetParams = {

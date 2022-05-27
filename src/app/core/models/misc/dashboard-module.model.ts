@@ -1,3 +1,11 @@
+export type DashboardModuleChild = {
+  name: string,
+  route: string,
+  isActive: boolean,
+  isExpanded?: boolean,
+  iconPath?: string
+};
+
 export type DashboardModule = {
   name: string,
   route: string,
@@ -5,13 +13,4 @@ export type DashboardModule = {
   isExpanded: boolean,
   isActive: boolean,
   childPages: DashboardModuleChild[]
-};
-
-
-export type DashboardModuleChild = {
-  name: string,
-  route: string,
-  isActive: boolean,
-  isExpanded?: boolean,
-  iconPath?: string
 };
