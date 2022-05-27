@@ -8,7 +8,7 @@ import { EmployeeMappingModel } from 'src/app/core/models/db/employee-mapping.mo
 import { Error } from 'src/app/core/models/db/error.model';
 import { MinimalMappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { MappingList, MappingModel, ResolveMappingError } from 'src/app/core/models/db/mapping.model';
-import { EmployeeFieldMapping, MappingState } from 'src/app/core/models/enum/enum.model';
+import { EmployeeFieldMapping, MappingState, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 
@@ -32,6 +32,10 @@ export class DashboardResolveMappingErrorDialogComponent implements OnInit {
   form: FormGroup;
 
   fyleQboMappingFormArray: FormGroup[];
+
+  SimpleSearchPage = SimpleSearchPage;
+
+  SimpleSearchType = SimpleSearchType;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ResolveMappingError,

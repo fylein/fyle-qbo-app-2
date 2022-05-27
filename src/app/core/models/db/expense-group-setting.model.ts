@@ -19,3 +19,5 @@ export type ExpenseGroupSettingPost = {
   corporate_credit_card_expense_group_fields: string[] | null;
   ccc_export_date_type: ExportDateType | null;
 }
+
+export interface ExpenseGroupSettingGet extends ExpenseGroupSettingPost {}

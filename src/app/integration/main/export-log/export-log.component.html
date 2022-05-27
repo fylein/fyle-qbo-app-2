@@ -5,7 +5,7 @@
     <!-- header -->
     <div class="export-log--header-section">
       <div fxLayout="row" class="export-log--simple-search" [class.active]="selectedDateFilter">
-        <app-simple-search-select *ngIf="isLoading || totalCount || selectedDateFilter" [form]="exportLogForm" [placeholder]="'Search by Employee Name or Reference ID'" [showBackgroundColor]="false"></app-simple-search-select>
+        <app-simple-search-select *ngIf="isLoading || totalCount || selectedDateFilter" [page]="SimpleSearchPage.EXPORT_LOG" [searchType]="SimpleSearchType.TEXT_FIELD" [form]="exportLogForm" [placeholder]="'Search by Employee Name or Reference ID'" [showBackgroundColor]="false"></app-simple-search-select>
 
         <div *ngIf="isLoading && !totalCount">
           <mat-form-field floatLabel="always" appearance="outline" class="export-log--date-filter">
@@ -79,6 +79,6 @@
       <app-zero-state-with-illustration [page]="'export_log'" [form]="exportLogForm" [data]="expenseGroups" [searchTerm]="'Employee Name or Expense ID'" [dateFilter]="selectedDateFilter"></app-zero-state-with-illustration>
     </div>
 
-    <app-paginator *ngIf="expenseGroups.filteredData.length" [totalCount]="totalCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getExpenseGroups($event)"></app-paginator>
+    <app-paginator *ngIf="expenseGroups.filteredData.length" [page]="PaginatorPage.EXPORT_LOG" [totalCount]="totalCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getExpenseGroups($event)"></app-paginator>
   </div>
 </div>

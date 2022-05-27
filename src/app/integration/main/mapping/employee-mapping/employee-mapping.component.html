@@ -25,7 +25,7 @@
       </div>
       <!-- shimmers -->
 
-      <app-paginator *ngIf="mappings.filteredData.length" [totalCount]="totalCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getMappings($event)"></app-paginator>
+      <app-paginator *ngIf="mappings.filteredData.length" [page]="PaginatorPage.MAPPING" [totalCount]="totalCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getMappings($event)"></app-paginator>
     </div>
   </div>
 </div>

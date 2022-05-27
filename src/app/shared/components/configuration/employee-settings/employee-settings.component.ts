@@ -1,15 +1,16 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { EmployeeSettingFormOption, EmployeeSettingModel } from 'src/app/core/models/configuration/employee-setting.model';
+import { EmployeeSettingFormOption, EmployeeSettingGet, EmployeeSettingModel } from 'src/app/core/models/configuration/employee-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { AutoMapEmployee, ConfigurationCtaText, EmployeeFieldMapping, OnboardingState, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { AutoMapEmployee, ConfigurationCtaText, EmployeeFieldMapping, OnboardingState, OnboardingStep, ProgressPhase, ReimbursableExpensesObject, UpdateEvent } from 'src/app/core/models/enum/enum.model';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { EmployeeSettingService } from 'src/app/core/services/configuration/employee-setting.service';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
@@ -20,7 +21,7 @@ import { ConfirmationDialogComponent } from '../../core/confirmation-dialog/conf
   templateUrl: './employee-settings.component.html',
   styleUrls: ['./employee-settings.component.scss']
 })
-export class EmployeeSettingsComponent implements OnInit {
+export class EmployeeSettingsComponent implements OnInit, OnDestroy {
 
   employeeSettingsForm: FormGroup;
 
@@ -72,6 +73,12 @@ export class EmployeeSettingsComponent implements OnInit {
 
   ConfigurationCtaText = ConfigurationCtaText;
 
+  private employeeSetting: EmployeeSettingGet;
+
+  private readonly sessionStartTime = new Date();
+
+  private timeSpentEventRecorded: boolean = false;
+
   constructor(
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
@@ -80,6 +87,7 @@ export class EmployeeSettingsComponent implements OnInit {
     private mappingService: MappingService,
     private router: Router,
     private snackBar: MatSnackBar,
+    private trackingService: TrackingService,
     private windowService: WindowService,
     private workspaceService: WorkspaceService
   ) {
@@ -115,13 +123,38 @@ export class EmployeeSettingsComponent implements OnInit {
     });
   }
 
+  private getPhase(): ProgressPhase {
+    return this.isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING;
+  }
+
+  private trackSessionTime(eventState: 'success' | 'navigated'): void {
+    const differenceInMs = new Date().getTime() - this.sessionStartTime.getTime();
+
+    this.timeSpentEventRecorded = true;
+    this.trackingService.trackTimeSpent(OnboardingStep.MAP_EMPLOYEES, {phase: this.getPhase(), durationInSeconds: Math.floor(differenceInMs / 1000), eventState: eventState});
+  }
+
   private constructPayloadAndSave(): void {
     const employeeSettingPayload = EmployeeSettingModel.constructPayload(this.employeeSettingsForm);
     this.saveInProgress = true;
 
-    this.employeeSettingService.postEmployeeSettings(employeeSettingPayload).subscribe(() => {
+    this.employeeSettingService.postEmployeeSettings(employeeSettingPayload).subscribe((response: EmployeeSettingGet) => {
+      if (!this.existingEmployeeFieldMapping) {
+        this.trackingService.onOnboardingStepCompletion(OnboardingStep.MAP_EMPLOYEES, 2, employeeSettingPayload);
+      } else {
+        this.trackingService.onUpdateEvent(
+          UpdateEvent.MAP_EMPLOYEES,
+          {
+            phase: this.getPhase(),
+            oldState: this.employeeSetting,
+            newState: response
+          }
+        );
+      }
+
       this.saveInProgress = false;
       this.snackBar.open('Employee settings saved successfully');
+      this.trackSessionTime('success');
       if (this.isOnboarding) {
         this.workspaceService.setOnboardingState(OnboardingState.EXPORT_SETTINGS);
         this.router.navigate(['/workspaces/onboarding/export_settings']);
@@ -166,6 +199,7 @@ export class EmployeeSettingsComponent implements OnInit {
       this.mappingService.getDistinctQBODestinationAttributes([EmployeeFieldMapping.EMPLOYEE, EmployeeFieldMapping.VENDOR]),
       this.exportSettingService.getExportSettings()
     ]).subscribe((responses) => {
+      this.employeeSetting = responses[0];
       this.existingEmployeeFieldMapping = responses[0].workspace_general_settings?.employee_field_mapping;
       this.setLiveEntityExample(responses[1]);
       this.employeeSettingsForm = this.formBuilder.group({
@@ -176,6 +210,12 @@ export class EmployeeSettingsComponent implements OnInit {
       this.isLoading = false;
       this.isLoaded.emit(true);
     });
+  }
+
+  ngOnDestroy(): void {
+    if (!this.timeSpentEventRecorded) {
+      this.trackSessionTime('navigated');
+    }
   }
 
   ngOnInit(): void {

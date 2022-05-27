@@ -4,7 +4,7 @@ import { catchError, map, switchMap, takeWhile } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { Error, GroupedErrors, GroupedErrorStat } from 'src/app/core/models/db/error.model';
 import { LastExport } from 'src/app/core/models/db/last-export.model';
-import { EmployeeFieldMapping, ErrorType, ExportState, FyleField, FyleReferenceType, QBOField, TaskLogState, TaskLogType } from 'src/app/core/models/enum/enum.model';
+import { ClickEvent, EmployeeFieldMapping, ErrorType, ExportState, FyleField, FyleReferenceType, QBOField, TaskLogState, TaskLogType } from 'src/app/core/models/enum/enum.model';
 import { DashboardService } from 'src/app/core/services/dashboard/dashboard.service';
 import { DashboardResolveMappingErrorDialogComponent } from 'src/app/shared/components/dashboard/dashboard-resolve-mapping-error-dialog/dashboard-resolve-mapping-error-dialog.component';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
@@ -15,6 +15,7 @@ import { UserService } from 'src/app/core/services/misc/user.service';
 import { ExportableExpenseGroup } from 'src/app/core/models/db/expense-group.model';
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
 import { ExpenseGroupSetting } from 'src/app/core/models/db/expense-group-setting.model';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -65,6 +66,7 @@ export class DashboardComponent implements OnInit {
     private dashboardService: DashboardService,
     private dialog: MatDialog,
     private exportLogService: ExportLogService,
+    private trackingService: TrackingService,
     private userService: UserService,
     private workspaceService: WorkspaceService
   ) { }
@@ -237,6 +239,9 @@ export class DashboardComponent implements OnInit {
   }
 
   showDashboardExportLog(exportState: ExportState): void {
+    const event = exportState === ExportState.SUCCESS ? ClickEvent.SUCCESSFUL_EXPORTS : ClickEvent.FAILED_EXPORTS;
+    this.trackingService.onClickEvent(event);
+
     this.dialog.open(DashboardExportLogDialogComponent, {
       width: '784px',
       height: '974px',
@@ -266,6 +271,7 @@ export class DashboardComponent implements OnInit {
   export(): void {
     if (!this.exportInProgress && this.exportableExpenseGroupIds.length) {
       this.exportInProgress = true;
+      this.trackingService.onClickEvent(ClickEvent.EXPORT);
       this.dashboardService.exportExpenseGroups().subscribe(() => {
         this.pollExportStatus(this.exportableExpenseGroupIds);
       });

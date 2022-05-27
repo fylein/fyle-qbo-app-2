@@ -15,7 +15,6 @@ jobs:
         node-version: 14.18
     - name: Install dependencies
       run: npm install
-    # TODO: merge lint and tests
     - name: Test
       run: npm run test
       env:

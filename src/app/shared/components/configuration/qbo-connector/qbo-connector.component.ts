@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -10,17 +10,18 @@ import { AuthService } from 'src/app/core/services/core/auth.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
-import { ConfigurationCtaText, OnboardingState } from 'src/app/core/models/enum/enum.model';
+import { ClickEvent, ConfigurationCtaText, OnboardingState, OnboardingStep, ProgressPhase } from 'src/app/core/models/enum/enum.model';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../core/confirmation-dialog/confirmation-dialog.component';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
 
 @Component({
   selector: 'app-qbo-connector',
   templateUrl: './qbo-connector.component.html',
   styleUrls: ['./qbo-connector.component.scss']
 })
-export class QboConnectorComponent implements OnInit {
+export class QboConnectorComponent implements OnInit, OnDestroy {
 
   isLoading: boolean = true;
 
@@ -44,6 +45,10 @@ export class QboConnectorComponent implements OnInit {
 
   ConfigurationCtaText = ConfigurationCtaText;
 
+  private readonly sessionStartTime = new Date();
+
+  private timeSpentEventRecorded: boolean = false;
+
   constructor(
     private authService: AuthService,
     private dialog: MatDialog,
@@ -52,6 +57,7 @@ export class QboConnectorComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar,
+    private trackingService: TrackingService,
     private userService: UserService,
     private windowService: WindowService,
     private workspaceService: WorkspaceService
@@ -59,11 +65,19 @@ export class QboConnectorComponent implements OnInit {
     this.windowReference = this.windowService.nativeWindow;
   }
 
+  private trackSessionTime(eventState: 'success' | 'navigated'): void {
+    const differenceInMs = new Date().getTime() - this.sessionStartTime.getTime();
+
+    this.timeSpentEventRecorded = true;
+    this.trackingService.trackTimeSpent(OnboardingStep.CONNECT_QBO, {phase: ProgressPhase.ONBOARDING, durationInSeconds: Math.floor(differenceInMs / 1000), eventState: eventState});
+  }
+
   continueToNextStep(): void {
     if (this.isContinueDisabled) {
       return;
     }
 
+    this.trackSessionTime('success');
     this.router.navigate([`/workspaces/onboarding/employee_settings`]);
   }
 
@@ -79,6 +93,7 @@ export class QboConnectorComponent implements OnInit {
   disconnectQbo(): void {
     this.isLoading = true;
     this.qboConnectorService.disconnectQBOConnection().subscribe(() => {
+      this.trackingService.onClickEvent(ClickEvent.RECONNECT_QBO, {oldCompanyName: this.qboCompanyName});
       this.showDisconnectQBO = false;
       this.qboCompanyName = null;
       this.getSettings();
@@ -130,6 +145,7 @@ export class QboConnectorComponent implements OnInit {
 
     this.qboConnectorService.connectQBO(qboAuthResponse).subscribe((qboCredentials: QBOCredentials) => {
       this.workspaceService.refreshQBODimensions().subscribe(() => {
+        this.trackingService.onOnboardingStepCompletion(OnboardingStep.CONNECT_QBO, 1);
         this.workspaceService.setOnboardingState(OnboardingState.MAP_EMPLOYEES);
         this.qboConnectionInProgress = false;
         this.qboCompanyName = qboCredentials.company_name;
@@ -176,6 +192,12 @@ export class QboConnectorComponent implements OnInit {
       this.postQboCredentials(code, realmId);
     } else {
       this.getSettings();
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (!this.timeSpentEventRecorded) {
+      this.trackSessionTime('navigated');
     }
   }
 
