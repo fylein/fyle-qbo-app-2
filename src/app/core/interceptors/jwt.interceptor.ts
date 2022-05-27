@@ -36,10 +36,10 @@ export class JwtInterceptor implements HttpInterceptor {
           return this.executeHttpRequest(request, next, accessToken);
         })
       );
-    } else {
-      request = request.clone({ url: request.url });
-      return next.handle(request);
     }
+
+    request = request.clone({ url: request.url });
+    return next.handle(request);
   }
 
   // Certain api's do not require token in headers.
@@ -79,13 +79,13 @@ export class JwtInterceptor implements HttpInterceptor {
           return of(newAccessToken);
         })
       );
-    } else {
-      return this.refreshTokenSubject.pipe(
-        filter((result) => result !== null),
-        take(1),
-        map(() => this.authService.getAccessToken())
-      );
     }
+
+    return this.refreshTokenSubject.pipe(
+      filter((result) => result !== null),
+      take(1),
+      map(() => this.authService.getAccessToken())
+    );
   }
 
   private isTokenExpiring(accessToken: string): boolean {
@@ -111,9 +111,9 @@ export class JwtInterceptor implements HttpInterceptor {
         catchError((error) => this.handleError(error)),
         map((token: Token) => this.authService.updateAccessToken(token.access_token))
       );
-    } else {
-      return of(null);
     }
+
+    return of(null);
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {

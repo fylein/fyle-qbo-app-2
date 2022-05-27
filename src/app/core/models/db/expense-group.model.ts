@@ -13,7 +13,7 @@ export type ExpenseGroup = {
   id: number;
   fund_source: string;
   description: ExpenseGroupDescription;
-  // having any here is okay, different qbo exports has different structures
+  // Having any here is okay, different qbo exports has different structures
   response_logs: any;
   export_type: string;
   employee_name: string;

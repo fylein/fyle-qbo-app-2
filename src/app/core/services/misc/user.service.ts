@@ -20,7 +20,7 @@ export class UserService {
   storeFyleOrgsCount(): void {
     const currentOrgsCount = this.storageService.get('orgsCount');
     if (currentOrgsCount && currentOrgsCount > 1) {
-      // do nothing - we already have the orgs count to show switch org button
+      // Do nothing - we already have the orgs count to show switch org button
       return;
     }
     this.apiService.get(`/user/orgs/`, {}).subscribe((count: number) => {

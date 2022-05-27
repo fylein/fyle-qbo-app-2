@@ -48,7 +48,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean | null {
-    return this.userService.getUserProfile() != null;
+    return this.userService.getUserProfile() !== null;
   }
 
   logout(switchOrg: boolean | void): void {
