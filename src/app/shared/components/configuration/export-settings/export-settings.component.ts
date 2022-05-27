@@ -422,12 +422,15 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
     this.setGeneralMappingsValidator();
   }
 
-  private getExportGroup(exportGroups: string[]): string {
-    const exportGroup = exportGroups.find((exportGroup) => {
-      return exportGroup === ExpenseGroupingFieldOption.EXPENSE_ID || exportGroup === ExpenseGroupingFieldOption.CLAIM_NUMBER || exportGroup === ExpenseGroupingFieldOption.SETTLEMENT_ID;
-    });
+  private getExportGroup(exportGroups: string[] | null): string {
+    if (exportGroups) {
+      const exportGroup = exportGroups.find((exportGroup) => {
+        return exportGroup === ExpenseGroupingFieldOption.EXPENSE_ID || exportGroup === ExpenseGroupingFieldOption.CLAIM_NUMBER || exportGroup === ExpenseGroupingFieldOption.SETTLEMENT_ID;
+      });
+      return exportGroup ? exportGroup : ExpenseGroupingFieldOption.CLAIM_NUMBER;
+    }
 
-    return exportGroup ? exportGroup : ExpenseGroupingFieldOption.CLAIM_NUMBER;
+    return '';
   }
 
   private getSettingsAndSetupForm(): void {
