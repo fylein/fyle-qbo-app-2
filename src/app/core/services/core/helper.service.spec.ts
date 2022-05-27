@@ -48,4 +48,10 @@ describe('HelperService', () => {
     expect(service.compareObjects(source_field,destination_field)).toBeFalse();
   });
 
+  it('compareObjects service check for true for type', () => {
+    const source_field = 'Fyle';
+    const destination_field= 'Fyle';
+    expect(service.compareObjects(source_field,destination_field)).toBeTrue();
+  });
+
 });

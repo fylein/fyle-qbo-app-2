@@ -1,12 +1,7 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
 import { AuthService } from './auth.service';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
-import { Token } from '../../models/misc/token.model';
-
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -28,7 +23,6 @@ describe('AuthService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-
 
   it('isLoggedIn is working', () => {
     const result = service.isLoggedIn();

@@ -80,8 +80,11 @@ describe('ExportLogService', () => {
       startDate: new Date((new Date().getTime()) - (24*60*60*1000)),
       endDate: new Date()
     };
+    // const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getMonth()+1 > 9 ? +dates.startDate.getMonth()+1 : '0'+(+dates.startDate.getMonth()+1)}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}T00:00:00`;
+    // const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getMonth()+1 > 9 ? +dates.endDate.getMonth()+1 : '0'+(+dates.endDate.getMonth()+1)}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}T23:59:59`;
     const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}-${+dates.startDate.getMonth()+1}T00:00:00`;
     const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}-${+dates.endDate.getMonth()+1 }T23:59:59`;
+
     service.getExpenseGroups('COMPLETE', 10, 5, dates, ).subscribe(result => {
       expect(result).toEqual(response);
     });
@@ -104,6 +107,10 @@ describe('ExportLogService', () => {
       startDate: new Date((new Date().getTime()) - (24*60*60*1000)),
       endDate: new Date()
     };
+    //local
+    // const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getMonth()+1 > 9 ? +dates.startDate.getMonth()+1 : '0'+(+dates.startDate.getMonth()+1)}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}T00:00:00`;
+    // const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getMonth()+1 > 9 ? +dates.endDate.getMonth()+1 : '0'+(+dates.endDate.getMonth()+1)}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}T23:59:59`;
+    //while pushing
     const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}-${+dates.startDate.getMonth()+1}T00:00:00`;
     const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}-${+dates.endDate.getMonth()+1 }T23:59:59`;
     const exportAt = new Date();
@@ -196,16 +203,24 @@ describe('ExportLogService', () => {
     expect(actualResponse).toEqual(response);
   });
 
-  it('getReferenceNumber() service check', () => {
-    const payload:ExpenseGroupDescription = {
-      claim_number: FyleReferenceType.EXPENSE_REPORT,
-      report_id: FyleReferenceType.EXPENSE_REPORT,
-      employee_email: 'employee@gmail.com',
-      expense_id: FyleReferenceType.EXPENSE,
-      settlement_id: FyleReferenceType.PAYMENT
-    };
+  it('getReferenceType() service claim_number check', () => {
+    const payload:Partial<ExpenseGroupDescription> = {report_id: "rp3YxnytLrgS", claim_number: "C/2022/05/R/11", employee_email: "sravan.kumar@fyle.in"};
+    const response = 'claim_number';
+    const actualResponse = service.getReferenceType(payload);
+    expect(actualResponse).toEqual(response);
+  });
+
+  it('getReferenceType() service expense_id check', () => {
+    const payload:Partial<ExpenseGroupDescription> = { "expense_id": "txiLJWdg9cZc", "employee_email": "ashwin.t@fyle.in"};
     const response = 'expense_id';
-    const actualResponse = service.getReferenceNumber(payload);
+    const actualResponse = service.getReferenceType(payload);
+    expect(actualResponse).toEqual(response);
+  });
+
+  it('getReferenceType() service settlement_id check', () => {
+    const payload:Partial<ExpenseGroupDescription> = { "settlement_id": "setUwjAkWcafS", "employee_email": "ashwin.t@fyle.in"};
+    const response = 'settlement_id';
+    const actualResponse = service.getReferenceType(payload);
     expect(actualResponse).toEqual(response);
   });
 

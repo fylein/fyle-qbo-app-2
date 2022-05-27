@@ -89,18 +89,18 @@ export class ExportLogService {
     return [exportRedirection, exportId, exportType];
   }
 
-  getReferenceNumber(description: ExpenseGroupDescription): FyleReferenceType {
-    let referenceNumber = FyleReferenceType.EXPENSE_REPORT;
+  getReferenceType(description: Partial<ExpenseGroupDescription>): FyleReferenceType {
+    let referenceType = FyleReferenceType.EXPENSE_REPORT;
 
     if (FyleReferenceType.EXPENSE in description) {
-      referenceNumber = FyleReferenceType.EXPENSE;
+      referenceType = FyleReferenceType.EXPENSE;
     } else if (FyleReferenceType.EXPENSE_REPORT in description) {
-      referenceNumber = FyleReferenceType.EXPENSE_REPORT;
+      referenceType = FyleReferenceType.EXPENSE_REPORT;
     } else if (FyleReferenceType.PAYMENT in description) {
-      referenceNumber = FyleReferenceType.PAYMENT;
+      referenceType = FyleReferenceType.PAYMENT;
     }
 
-    return referenceNumber;
+    return referenceType;
   }
 
   generateFyleUrl(expenseGroup: ExpenseGroup, referenceType: FyleReferenceType) : string {
