@@ -26,7 +26,7 @@ describe('ImportSettingModel', () => {
       chartOfAccountTypes: new FormControl([{enabled: true, name: 'expence'}]),
       expenseFields: new FormControl(expence_Field),
       taxCode: new FormControl(true),
-      defaultTaxCode: new FormControl({id: '1',name: 'Fyle'}),
+      defaultTaxCode: new FormControl({id: '1', name: 'Fyle'}),
       searchOption: new FormControl([]),
       importVendorsAsMerchants: new FormControl(true)
     });
@@ -38,7 +38,7 @@ describe('ImportSettingModel', () => {
         import_vendors_as_merchants: true
       },
       general_mappings: {
-        default_tax_code: {id: '1',name: 'Fyle'}
+        default_tax_code: {id: '1', name: 'Fyle'}
       },
       mapping_settings: [{
         source_field: MappingSourceField.PROJECT,

@@ -10,7 +10,7 @@ xdescribe('MappingHeaderSectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ HttpClientModule,MatSnackBarModule ],
+      imports: [ HttpClientModule, MatSnackBarModule ],
       declarations: [ MappingHeaderSectionComponent ]
     })
     .compileComponents();

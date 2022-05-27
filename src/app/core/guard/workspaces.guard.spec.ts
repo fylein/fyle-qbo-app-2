@@ -11,7 +11,7 @@ describe('WorkspacesGuard', () => {
   let route: RouterStateSnapshot;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule,HttpClientModule,MatSnackBarModule]
+      imports: [RouterTestingModule, HttpClientModule, MatSnackBarModule]
     });
     guard = TestBed.inject(WorkspacesGuard);
   });

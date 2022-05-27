@@ -14,7 +14,7 @@ xdescribe('ImportSettingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatDialogModule,RouterTestingModule,HttpClientModule,FormsModule,ReactiveFormsModule,MatDialogModule,MatSnackBarModule],
+      imports: [MatDialogModule, RouterTestingModule, HttpClientModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatSnackBarModule],
       declarations: [ ImportSettingsComponent ],
       providers: [{
         provide: JWT_OPTIONS,

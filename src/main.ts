@@ -20,7 +20,7 @@ if (environment.sentry_dsn && env) {
       'Non-Error exception captured'
     ],
     integrations: [new TracingIntegrations.BrowserTracing({
-      routingInstrumentation: Sentry.routingInstrumentation,
+      routingInstrumentation: Sentry.routingInstrumentation
     })],
     // TODO: decrease the sample rate to 0.1 later
     tracesSampleRate: 1

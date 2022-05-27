@@ -13,7 +13,7 @@ xdescribe('ExportSettingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsModule,ReactiveFormsModule,HttpClientModule,RouterTestingModule,MatSnackBarModule],
+      imports: [FormsModule, ReactiveFormsModule, HttpClientModule, RouterTestingModule, MatSnackBarModule],
       declarations: [ ExportSettingsComponent ],
       providers: [{
         provide: JWT_OPTIONS,

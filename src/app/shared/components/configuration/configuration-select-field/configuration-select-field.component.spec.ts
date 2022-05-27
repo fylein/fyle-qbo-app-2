@@ -8,7 +8,7 @@ xdescribe('ConfigurationSelectFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConfigurationSelectFieldComponent,SearchPipe ]
+      declarations: [ ConfigurationSelectFieldComponent, SearchPipe ]
     })
     .compileComponents();
   });

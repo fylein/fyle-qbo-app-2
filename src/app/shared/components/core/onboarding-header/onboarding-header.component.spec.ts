@@ -10,8 +10,8 @@ xdescribe('OnboardingHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule,HttpClientModule],
-      declarations: [ OnboardingHeaderComponent,TrimCharacterPipe ]
+      imports: [RouterTestingModule, HttpClientModule],
+      declarations: [ OnboardingHeaderComponent, TrimCharacterPipe ]
     })
     .compileComponents();
   });

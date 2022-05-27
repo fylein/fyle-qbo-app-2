@@ -84,7 +84,7 @@ export class DashboardComponent implements OnInit {
         this.isLoading = true;
         forkJoin([
           this.getExportErrors$,
-          this.getLastExport$,
+          this.getLastExport$
         ]).subscribe(responses => {
           this.errors = this.formatErrors(responses[0]);
           this.groupedErrorStat = {

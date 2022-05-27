@@ -108,7 +108,13 @@
         "no-mixed-operators": ["error"],
         "no-multi-str": ["error"],
         "spaced-comment": ["error"],
-        "vars-on-top": ["error"]
+        "vars-on-top": ["error"],
+        "arrow-spacing": ["error"],
+        "block-spacing": ["error"],
+        "comma-dangle": ["error"],
+        "comma-spacing": ["error"],
+        "comma-style": ["error"],
+        "computed-property-spacing": ["error"]
       }
     },
     {

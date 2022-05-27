@@ -42,7 +42,7 @@ describe('ImportSettingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/import_settings/`,
+      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/import_settings/`
     });
     req.flush(response);
   });
@@ -86,7 +86,7 @@ describe('ImportSettingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'PUT',
-      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/import_settings/`,
+      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/import_settings/`
     });
     req.flush(response);
   });

@@ -19,7 +19,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
   constructor(
     private jwtHelpter: JwtHelperService,
-    private authService: AuthService,
+    private authService: AuthService
   ) { }
 
   private refreshTokenInProgress = false;
@@ -51,7 +51,7 @@ export class JwtInterceptor implements HttpInterceptor {
   private executeHttpRequest(request: HttpRequest<any>, next: HttpHandler, accessToken: string) {
     request = request.clone({
       url: request.url,
-      headers: request.headers.set('Authorization', `Bearer ${accessToken}`),
+      headers: request.headers.set('Authorization', `Bearer ${accessToken}`)
     });
     return next.handle(request).pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
   }

@@ -24,12 +24,12 @@ describe('ExportSettingModel', () => {
       creditCardExportType: new FormControl('BILL'),
       creditCardExportGroup: new FormControl('sipper'),
       creditCardExportDate: new FormControl(null),
-      bankAccount: new FormControl({id: '1',name: 'Fyle'}),
-      defaultCCCAccount: new FormControl({id: '1',name: 'Fyle'}),
-      accountsPayable: new FormControl({id: '1',name: 'Fyle'}),
-      defaultCreditCardVendor: new FormControl({id: '1',name: 'Fyle'}),
-      qboExpenseAccount: new FormControl({id: '1',name: 'Fyle'}),
-      defaultDebitCardAccount: new FormControl({id: '1',name: 'Fyle'}),
+      bankAccount: new FormControl({id: '1', name: 'Fyle'}),
+      defaultCCCAccount: new FormControl({id: '1', name: 'Fyle'}),
+      accountsPayable: new FormControl({id: '1', name: 'Fyle'}),
+      defaultCreditCardVendor: new FormControl({id: '1', name: 'Fyle'}),
+      qboExpenseAccount: new FormControl({id: '1', name: 'Fyle'}),
+      defaultDebitCardAccount: new FormControl({id: '1', name: 'Fyle'}),
       searchOption: new FormControl([])
     });
     const exportSettingPayload: ExportSettingPost = {
@@ -45,12 +45,12 @@ describe('ExportSettingModel', () => {
         corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL
       },
       general_mappings: {
-        bank_account: {id: '1',name: 'Fyle'} ,
-        default_ccc_account: {id: '1',name: 'Fyle'} ,
-        accounts_payable: {id: '1',name: 'Fyle'},
-        default_ccc_vendor: {id: '1',name: 'Fyle'} ,
-        qbo_expense_account: {id: '1',name: 'Fyle'} ,
-        default_debit_card_account: {id: '1',name: 'Fyle'}
+        bank_account: {id: '1', name: 'Fyle'},
+        default_ccc_account: {id: '1', name: 'Fyle'},
+        accounts_payable: {id: '1', name: 'Fyle'},
+        default_ccc_vendor: {id: '1', name: 'Fyle'},
+        qbo_expense_account: {id: '1', name: 'Fyle'},
+        default_debit_card_account: {id: '1', name: 'Fyle'}
       }
     };
     expect(ExportSettingModel.constructPayload(exportSettingsForm)).toEqual(exportSettingPayload);

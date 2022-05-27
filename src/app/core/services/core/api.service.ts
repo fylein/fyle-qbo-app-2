@@ -10,8 +10,8 @@ import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  }),
+    'Content-Type': 'application/json'
+  })
 };
 
 const API_BASE_URL = environment.api_url;

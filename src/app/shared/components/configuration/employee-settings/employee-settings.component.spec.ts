@@ -13,7 +13,7 @@ xdescribe('EmployeeSettingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule,HttpClientModule,MatSnackBarModule,FormsModule,ReactiveFormsModule],
+      imports: [RouterTestingModule, HttpClientModule, MatSnackBarModule, FormsModule, ReactiveFormsModule],
       declarations: [ EmployeeSettingsComponent ],
       providers: [{
         provide: JWT_OPTIONS,

@@ -108,7 +108,7 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
         <br><br>This will impact the configuration in the <b>Export settings</b> on How the export of expenses
         can be exported from Fyle to Quickbooks Online.<br><br>
         Would you like to continue? If yes, you will be redirected to <b>Export settings</b> to revisit the configuration and complete it.`,
-      primaryCtaText: 'Continue',
+      primaryCtaText: 'Continue'
     };
 
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {

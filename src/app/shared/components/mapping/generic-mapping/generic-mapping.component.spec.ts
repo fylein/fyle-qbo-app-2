@@ -13,7 +13,7 @@ xdescribe('GenericMappingComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ GenericMappingComponent ],
-      imports: [ RouterTestingModule,FormsModule,ReactiveFormsModule,HttpClientModule,MatSnackBarModule ]
+      imports: [ RouterTestingModule, FormsModule, ReactiveFormsModule, HttpClientModule, MatSnackBarModule ]
     })
     .compileComponents();
   });

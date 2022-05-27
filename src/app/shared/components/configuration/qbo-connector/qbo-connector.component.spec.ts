@@ -12,7 +12,7 @@ xdescribe('QboConnectorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule,HttpClientModule,MatSnackBarModule],
+      imports: [RouterTestingModule, HttpClientModule, MatSnackBarModule],
       declarations: [ QboConnectorComponent ],
       providers: [{
         provide: JWT_OPTIONS,
