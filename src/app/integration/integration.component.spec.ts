@@ -11,7 +11,7 @@ xdescribe('IntegrationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule,HttpClientModule],
+      imports: [RouterTestingModule, HttpClientModule],
       declarations: [ IntegrationComponent ],
       providers: [{
         provide: JWT_OPTIONS,

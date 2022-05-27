@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './jwt.interceptor';
 describe('JwtInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule,HttpClientModule],
+    imports: [RouterTestingModule, HttpClientModule],
     providers: [
       {
         provide: JWT_OPTIONS,

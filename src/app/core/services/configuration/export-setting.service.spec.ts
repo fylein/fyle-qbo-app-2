@@ -55,7 +55,7 @@ describe('ExportSettingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/export_settings/`,
+      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/export_settings/`
     });
     req.flush(response);
 
@@ -110,7 +110,7 @@ describe('ExportSettingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'PUT',
-      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/export_settings/`,
+      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/export_settings/`
     });
     req.flush(response);
 

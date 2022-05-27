@@ -18,7 +18,7 @@ getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting(), {
     teardown: { destroyAfterEach: false }
-},
+}
 );
 // Then we find all the tests.
 localStorage.setItem('workspaceId', environment.tests.workspaceId);

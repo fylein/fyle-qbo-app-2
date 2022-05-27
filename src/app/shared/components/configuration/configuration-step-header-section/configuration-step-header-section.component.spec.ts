@@ -10,7 +10,7 @@ xdescribe('ConfigurationStepHeaderSectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule,HttpClientModule,MatSnackBarModule],
+      imports: [RouterTestingModule, HttpClientModule, MatSnackBarModule],
       declarations: [ ConfigurationStepHeaderSectionComponent ]
     })
     .compileComponents();

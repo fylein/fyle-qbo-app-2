@@ -21,20 +21,20 @@ describe('PaginatorService', () => {
     if (limit){
       const expected = {
         offset: 0,
-        limit: 1,
+        limit: 1
       };
       expect(result).toEqual(expected);
     } else {
       const expected = {
         offset: 0,
-        limit: 50,
+        limit: 50
       };
       expect(result).toEqual(expected);
     }
   });
 
   it('storePageSize service', () => {
-    service.storePageSize(PaginatorPage.EXPORT_LOG,1);
+    service.storePageSize(PaginatorPage.EXPORT_LOG, 1);
     const result = localStorage.getItem(`page-size.${PaginatorPage.EXPORT_LOG}`);
     expect(result).toEqual('1');
   });

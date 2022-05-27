@@ -9,7 +9,7 @@ xdescribe('OnboardingLandingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule,HttpClientModule],
+      imports: [RouterTestingModule, HttpClientModule],
       declarations: [ OnboardingLandingComponent ]
     })
     .compileComponents();

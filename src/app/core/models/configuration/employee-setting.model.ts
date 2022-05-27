@@ -2,14 +2,13 @@ import { FormGroup } from "@angular/forms";
 import { AutoMapEmployee, EmployeeFieldMapping } from "../enum/enum.model";
 import { SelectFormOption } from "../misc/select-form-option.model";
 
-
-export type EmployeeSettingPost = {
-  workspace_general_settings: EmployeeSettingWorkspaceGeneralSetting;
-}
-
 export type EmployeeSettingWorkspaceGeneralSetting = {
   employee_field_mapping: EmployeeFieldMapping,
   auto_map_employees: AutoMapEmployee | null
+}
+
+export type EmployeeSettingPost = {
+  workspace_general_settings: EmployeeSettingWorkspaceGeneralSetting;
 }
 
 export type EmployeeSettingGet = {

@@ -25,7 +25,7 @@ describe('UserService', () => {
       org_id: "orunxXsIajSE",
       org_name: "Test Sample Statement - GBP",
       refresh_token: "fyle",
-      user_id: "ust5Ga9HC3qc",
+      user_id: "ust5Ga9HC3qc"
     };
     service.storeUserProfile(user);
     const actualResponse:MinimalUser = service.getUserProfile();
@@ -37,7 +37,7 @@ describe('UserService', () => {
   it('storeFyleOrgsCount service', (done) => {
     service.storeFyleOrgsCount();
     const response = localStorage.getItem('orgsCount');
-    if (response == 'null'){
+    if (response === 'null'){
       expect(response).toBeNull();
     }
     expect(response).toBeDefined();

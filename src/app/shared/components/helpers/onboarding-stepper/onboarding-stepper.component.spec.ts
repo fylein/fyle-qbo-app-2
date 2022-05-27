@@ -9,7 +9,7 @@ xdescribe('OnboardingStepperComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule,HttpClientModule],
+      imports: [RouterTestingModule, HttpClientModule],
       declarations: [ OnboardingStepperComponent ]
     })
     .compileComponents();

@@ -1,4 +1,4 @@
-// having any here is okay
+// Having any here is okay
 export type QBOPreference = {
   AccountingInfoPrefs: any;
   ProductAndServicesPrefs: any;

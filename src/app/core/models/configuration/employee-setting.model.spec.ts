@@ -15,7 +15,7 @@ describe(' EmployeeSettingModel', () => {
   it('Should return EmployeeSettingModel[]', () => {
     const employeeSettingsForm= new FormGroup({
       employeeMapping: new FormControl('EMPLOYEE'),
-      autoMapEmployee: new FormControl('EMPLOYEE_CODE'),
+      autoMapEmployee: new FormControl('EMPLOYEE_CODE')
     });
     const employeeSettingPayload: EmployeeSettingPost= {
       workspace_general_settings: {

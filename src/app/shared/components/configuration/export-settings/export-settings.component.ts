@@ -160,9 +160,9 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
     if (exportType === ReimbursableExpensesObject.EXPENSE) {
       return 'How should the expenses be grouped?';
-    } else {
-      return `How should the expense in ${this.getExportType(exportType)} be grouped?`;
     }
+
+    return `How should the expense in ${this.getExportType(exportType)} be grouped?`;
   }
 
   getReimbursableExportTypes(employeeFieldMapping: EmployeeFieldMapping): ExportSettingFormOption[] {
@@ -275,7 +275,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
               forbidden = false;
             }
           }
-        } else if ((control.value === ExpenseState.PAID || control.value === ExpenseState.PAYMENT_PROCESSING) && control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value) {
+        } else if ((control.value === ExpenseState.PAID || control.value === ExpenseState.PAYMENT_PROCESSING) && (control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value)) {
           forbidden = false;
         }
 
@@ -515,9 +515,9 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
     if (updatedConfiguration !== 'None' && existingConfiguration !== 'None') {
       return configurationUpdate.replace('$exportType', exportType).replace('$existingExportType', existingConfiguration.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())).replace('$updatedExportType', updatedConfiguration.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase()));
-    } else {
-      return newConfiguration.replace('$exportType', exportType);
     }
+
+    return newConfiguration.replace('$exportType', exportType);
   }
 
   private constructWarningMessage(): string {

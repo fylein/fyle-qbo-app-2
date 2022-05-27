@@ -45,7 +45,7 @@ describe('ExportLogService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_group_settings/`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_group_settings/`
     });
       req.flush(response);
   });
@@ -57,12 +57,12 @@ describe('ExportLogService', () => {
       previous: "xxx",
       results: []
     };
-    service.getExpenseGroups('COMPLETE', 10, 5, null, ).subscribe(result => {
+    service.getExpenseGroups('COMPLETE', 10, 5, null ).subscribe(result => {
       expect(result).toEqual(response);
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE`
     });
       req.flush(response);
   });

@@ -49,9 +49,9 @@ export class WorkspacesGuard implements CanActivate {
 
             if (onboardingState !== OnboardingState.COMPLETE) {
               return this.router.navigateByUrl('workspaces/onboarding/qbo_connector');
-            } else {
-              return this.router.navigateByUrl('workspaces/onboarding/landing');
             }
+
+            return this.router.navigateByUrl('workspaces/onboarding/landing');
           }
 
           return throwError(error);

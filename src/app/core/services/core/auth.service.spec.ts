@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
 import { AuthService } from './auth.service';
@@ -32,9 +32,10 @@ describe('AuthService', () => {
 
   it('isLoggedIn is working', () => {
     const result = service.isLoggedIn();
-    if (result == true)
+    if (result) {
       expect(result).toBeTrue();
-    else
+    } else {
       expect(result).toBeFalse();
+    }
   });
 });

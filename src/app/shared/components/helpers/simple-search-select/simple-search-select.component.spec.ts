@@ -22,7 +22,7 @@ xdescribe('SimpleSearchSelectComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('check form',() => {
+  it('check form', () => {
     if (component.form){
       expect(component.form).toBeTruthy();
     }

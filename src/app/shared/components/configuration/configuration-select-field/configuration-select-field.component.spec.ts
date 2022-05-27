@@ -8,7 +8,7 @@ xdescribe('ConfigurationSelectFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConfigurationSelectFieldComponent,SearchPipe ]
+      declarations: [ ConfigurationSelectFieldComponent, SearchPipe ]
     })
     .compileComponents();
   });
@@ -20,7 +20,7 @@ xdescribe('ConfigurationSelectFieldComponent', () => {
   });
 
   // Figure out a way to send the data to the component [@Input()]
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

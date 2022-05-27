@@ -50,7 +50,7 @@ describe('AdvancedSettingService', () => {
     });
     const req = httpMock.expectOne({
 	      method: 'GET',
-	      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/advanced_configurations/`,
+	      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/advanced_configurations/`
 	    });
     req.flush(advancedSettingResponse);
   });
@@ -97,7 +97,7 @@ describe('AdvancedSettingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'PUT',
-      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/advanced_configurations/`,
+      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/advanced_configurations/`
     });
   req.flush(advancedSettingResponse);
   });

@@ -57,12 +57,12 @@ export class IntegrationComponent implements OnInit {
       if (workspaces.length > 0) {
         this.trackingService.onSignIn(this.user.email, workspaces[0].id, workspaces[0].name, workspaces[0].fyle_org_id);
         return workspaces[0];
-      } else {
-        return this.workspaceService.createWorkspace().toPromise().then(workspace => {
-          this.trackingService.onSignUp(this.user.email, workspace.id, workspace.name, workspace.fyle_org_id);
-          return workspace;
-        });
       }
+
+      return this.workspaceService.createWorkspace().toPromise().then(workspace => {
+        this.trackingService.onSignUp(this.user.email, workspace.id, workspace.name, workspace.fyle_org_id);
+        return workspace;
+      });
     });
   }
 

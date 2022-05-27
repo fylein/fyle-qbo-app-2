@@ -1,14 +1,8 @@
 import { FormGroup } from "@angular/forms";
 import { CorporateCreditCardExpensesObject, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, ReimbursableExpensesObject } from "../enum/enum.model";
-import { ExpenseGroupSetting, ExpenseGroupSettingGet, ExpenseGroupSettingPost } from "../db/expense-group-setting.model";
+import { ExpenseGroupSettingGet, ExpenseGroupSettingPost } from "../db/expense-group-setting.model";
 import { DefaultDestinationAttribute, GeneralMapping } from "../db/general-mapping.model";
 import { SelectFormOption } from "../misc/select-form-option.model";
-
-export type ExportSettingPost = {
-  expense_group_settings: ExpenseGroupSettingPost,
-  workspace_general_settings: ExportSettingWorkspaceGeneralSetting,
-  general_mappings: ExportSettingGeneralMapping
-}
 
 export type ExportSettingWorkspaceGeneralSetting = {
   reimbursable_expenses_object: ReimbursableExpensesObject | null,
@@ -22,6 +16,12 @@ export type ExportSettingGeneralMapping = {
   default_ccc_vendor: DefaultDestinationAttribute,
   qbo_expense_account: DefaultDestinationAttribute,
   default_debit_card_account: DefaultDestinationAttribute
+}
+
+export type ExportSettingPost = {
+  expense_group_settings: ExpenseGroupSettingPost,
+  workspace_general_settings: ExportSettingWorkspaceGeneralSetting,
+  general_mappings: ExportSettingGeneralMapping
 }
 
 export type ExportSettingGet = {
