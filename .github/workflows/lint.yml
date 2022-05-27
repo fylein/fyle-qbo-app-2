@@ -1,4 +1,4 @@
-name: Lint and Tests
+name: TypeScript Lint Check
 
 on:
   pull_request:
