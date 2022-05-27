@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { MappingList } from 'src/app/core/models/db/mapping.model';
-import { EmployeeFieldMapping } from 'src/app/core/models/enum/enum.model';
+import { EmployeeFieldMapping, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 
 @Component({
@@ -26,6 +26,10 @@ export class MappingTableComponent implements OnInit {
   @Output() mappingSaveHandler = new EventEmitter<MappingList>();
 
   displayedColumns: string[] = ['fyle', 'qbo', 'state'];
+
+  SimpleSearchPage = SimpleSearchPage;
+
+  SimpleSearchType = SimpleSearchType;
 
   constructor(
     public helperService: HelperService

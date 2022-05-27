@@ -19,3 +19,9 @@ export type UpdateEventAdditionalProperty = {
   oldState: EmployeeSettingGet | ExportSettingGet | ImportSettingGet | AdvancedSettingGet | number,
   newState: EmployeeSettingGet | ExportSettingGet | ImportSettingGet | AdvancedSettingGet | number
 };
+
+export type TimeTakenAdditionalProperty = {
+  durationInSeconds: number,
+  phase: ProgressPhase,
+  eventState: 'success' | 'navigated'
+};

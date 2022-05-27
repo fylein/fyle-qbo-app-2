@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/core/services/core/auth.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
-import { ClickEvent, ConfigurationCtaText, OnboardingState, OnboardingStep } from 'src/app/core/models/enum/enum.model';
+import { ClickEvent, ConfigurationCtaText, OnboardingState, OnboardingStep, ProgressPhase } from 'src/app/core/models/enum/enum.model';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../core/confirmation-dialog/confirmation-dialog.component';
@@ -21,7 +21,7 @@ import { TrackingService } from 'src/app/core/services/core/tracking.service';
   templateUrl: './qbo-connector.component.html',
   styleUrls: ['./qbo-connector.component.scss']
 })
-export class QboConnectorComponent implements OnInit {
+export class QboConnectorComponent implements OnInit, OnDestroy {
 
   isLoading: boolean = true;
 
@@ -45,6 +45,10 @@ export class QboConnectorComponent implements OnInit {
 
   ConfigurationCtaText = ConfigurationCtaText;
 
+  private readonly sessionStartTime = new Date();
+
+  private timeSpentEventRecorded: boolean = false;
+
   constructor(
     private authService: AuthService,
     private dialog: MatDialog,
@@ -61,11 +65,19 @@ export class QboConnectorComponent implements OnInit {
     this.windowReference = this.windowService.nativeWindow;
   }
 
+  private trackSessionTime(eventState: 'success' | 'navigated'): void {
+    const differenceInMs = new Date().getTime() - this.sessionStartTime.getTime();
+
+    this.timeSpentEventRecorded = true;
+    this.trackingService.trackTimeSpent(OnboardingStep.CONNECT_QBO, {phase: ProgressPhase.ONBOARDING, durationInSeconds: Math.floor(differenceInMs / 1000), eventState: eventState});
+  }
+
   continueToNextStep(): void {
     if (this.isContinueDisabled) {
       return;
     }
 
+    this.trackSessionTime('success');
     this.router.navigate([`/workspaces/onboarding/employee_settings`]);
   }
 
@@ -180,6 +192,12 @@ export class QboConnectorComponent implements OnInit {
       this.postQboCredentials(code, realmId);
     } else {
       this.getSettings();
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (!this.timeSpentEventRecorded) {
+      this.trackSessionTime('navigated');
     }
   }
 

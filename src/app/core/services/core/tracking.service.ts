@@ -3,8 +3,8 @@ import { AdvancedSettingPost } from '../../models/configuration/advanced-setting
 import { EmployeeSettingPost } from '../../models/configuration/employee-setting.model';
 import { ExportSettingPost } from '../../models/configuration/export-setting.model';
 import { ImportSettingPost } from '../../models/configuration/import-setting.model';
-import { ClickEvent, CorporateCreditCardExpensesObject, FyleField, OnboardingStep, PaginatorPage, ProgressPhase, ReimbursableExpensesObject, UpdateEvent } from '../../models/enum/enum.model';
-import { ClickEventAdditionalProperty, UpdateEventAdditionalProperty } from '../../models/misc/tracking.model';
+import { Action, ClickEvent, CorporateCreditCardExpensesObject, FyleField, OnboardingStep, PaginatorPage, ProgressPhase, ReimbursableExpensesObject, SimpleSearchPage, SimpleSearchType, UpdateEvent } from '../../models/enum/enum.model';
+import { ClickEventAdditionalProperty, TimeTakenAdditionalProperty, UpdateEventAdditionalProperty } from '../../models/misc/tracking.model';
 
 @Injectable({
   providedIn: 'root'
@@ -87,7 +87,12 @@ export class TrackingService {
     this.eventTrack('QBO account disconnected');
   }
 
-  // onSimpleSearch(properties: {page: PaginatorPage | 'export-log-child'}): void {
-  //   this.eventTrack('Simple search', properties);
-  // }
+  onSimpleSearch(properties: {page: SimpleSearchPage, searchType: SimpleSearchType}): void {
+    this.eventTrack('Simple search', properties);
+  }
+
+  trackTimeSpent(event: OnboardingStep | Action, additionalProperties: Partial<TimeTakenAdditionalProperty>): void {
+    const eventName = event !== Action.RESOLVE_ERROR ? `${event} Page` : event;
+    this.eventTrack(`Time Spent on ${eventName}`, additionalProperties);
+  }
 }

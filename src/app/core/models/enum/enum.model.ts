@@ -178,11 +178,13 @@ export enum ProgressPhase {
 }
 
 export enum OnboardingStep {
+  LANDING = 'Landing',
   CONNECT_QBO = 'Connect QBO',
   MAP_EMPLOYEES = 'Map Employees',
   EXPORT_SETTINGS = 'Export Settings',
   IMPORT_SETTINGS = 'Import Settings',
-  ADVANCED_SETTINGS = 'Advanced Settings'
+  ADVANCED_SETTINGS = 'Advanced Settings',
+  ONBOARDING_DONE = 'Onboarding Done'
 }
 
 export enum UpdateEvent {
@@ -192,4 +194,20 @@ export enum UpdateEvent {
   IMPORT_SETTINGS = 'Import Settings',
   ADVANCED_SETTINGS = 'Advanced Settings',
   PAGE_SIZE = 'Page Size'
+}
+
+export enum Action {
+  RESOLVE_ERROR = 'Resolving Error'
+}
+
+export enum SimpleSearchPage {
+  DASHBOARD = 'Dashboard',
+  EXPORT_LOG = 'Export Log',
+  MAPPING = 'Mapping',
+  CONFIGURATION = 'Configuration',
+}
+
+export enum SimpleSearchType {
+  TEXT_FIELD = 'Text Field',
+  SELECT_FIELD = 'Select Field'
 }

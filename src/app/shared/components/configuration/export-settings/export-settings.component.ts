@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
@@ -21,7 +21,7 @@ import { TrackingService } from 'src/app/core/services/core/tracking.service';
   templateUrl: './export-settings.component.html',
   styleUrls: ['./export-settings.component.scss']
 })
-export class ExportSettingsComponent implements OnInit {
+export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   isLoading: boolean = true;
 
@@ -124,6 +124,10 @@ export class ExportSettingsComponent implements OnInit {
   ConfigurationCtaText = ConfigurationCtaText;
 
   ProgressPhase = ProgressPhase;
+
+  private readonly sessionStartTime = new Date();
+
+  private timeSpentEventRecorded: boolean = false;
 
   constructor(
     private dialog: MatDialog,
@@ -556,6 +560,17 @@ export class ExportSettingsComponent implements OnInit {
     });
   }
 
+  private getPhase(): ProgressPhase {
+    return this.isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING
+  }
+
+  private trackSessionTime(eventState: 'success' | 'navigated'): void {
+    const differenceInMs = new Date().getTime() - this.sessionStartTime.getTime();
+
+    this.timeSpentEventRecorded = true;
+    this.trackingService.trackTimeSpent(OnboardingStep.EXPORT_SETTINGS, {phase: this.getPhase(), durationInSeconds: Math.floor(differenceInMs / 1000), eventState: eventState});
+  }
+
   private constructPayloadAndSave(): void {
     this.saveInProgress = true;
     const exportSettingPayload = ExportSettingModel.constructPayload(this.exportSettingsForm);
@@ -567,7 +582,7 @@ export class ExportSettingsComponent implements OnInit {
         this.trackingService.onUpdateEvent(
           UpdateEvent.EXPORT_SETTINGS,
           {
-            phase: this.isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING,
+            phase: this.getPhase(),
             oldState: this.exportSettings,
             newState: response
           }
@@ -576,6 +591,7 @@ export class ExportSettingsComponent implements OnInit {
 
       this.saveInProgress = false;
       this.snackBar.open('Export settings saved successfully');
+      this.trackSessionTime('success');
       if (this.isOnboarding) {
         this.workspaceService.setOnboardingState(OnboardingState.IMPORT_SETTINGS);
         this.router.navigate([`/workspaces/onboarding/import_settings`]);
@@ -603,6 +619,12 @@ export class ExportSettingsComponent implements OnInit {
         return;
       }
       this.constructPayloadAndSave();
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (!this.timeSpentEventRecorded) {
+      this.trackSessionTime('navigated');
     }
   }
 

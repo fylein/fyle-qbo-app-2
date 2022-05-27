@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -21,7 +21,7 @@ import { ConfirmationDialogComponent } from '../../core/confirmation-dialog/conf
   templateUrl: './employee-settings.component.html',
   styleUrls: ['./employee-settings.component.scss']
 })
-export class EmployeeSettingsComponent implements OnInit {
+export class EmployeeSettingsComponent implements OnInit, OnDestroy {
 
   employeeSettingsForm: FormGroup;
 
@@ -75,6 +75,10 @@ export class EmployeeSettingsComponent implements OnInit {
 
   private employeeSetting: EmployeeSettingGet;
 
+  private readonly sessionStartTime = new Date();
+
+  private timeSpentEventRecorded: boolean = false;
+
   constructor(
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
@@ -119,6 +123,17 @@ export class EmployeeSettingsComponent implements OnInit {
     });
   }
 
+  private getPhase(): ProgressPhase {
+    return this.isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING
+  }
+
+  private trackSessionTime(eventState: 'success' | 'navigated'): void {
+    const differenceInMs = new Date().getTime() - this.sessionStartTime.getTime();
+
+    this.timeSpentEventRecorded = true;
+    this.trackingService.trackTimeSpent(OnboardingStep.MAP_EMPLOYEES, {phase: this.getPhase(), durationInSeconds: Math.floor(differenceInMs / 1000), eventState: eventState});
+  }
+
   private constructPayloadAndSave(): void {
     const employeeSettingPayload = EmployeeSettingModel.constructPayload(this.employeeSettingsForm);
     this.saveInProgress = true;
@@ -130,7 +145,7 @@ export class EmployeeSettingsComponent implements OnInit {
         this.trackingService.onUpdateEvent(
           UpdateEvent.MAP_EMPLOYEES,
           {
-            phase: this.isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING,
+            phase: this.getPhase(),
             oldState: this.employeeSetting,
             newState: response
           }
@@ -139,6 +154,7 @@ export class EmployeeSettingsComponent implements OnInit {
 
       this.saveInProgress = false;
       this.snackBar.open('Employee settings saved successfully');
+      this.trackSessionTime('success');
       if (this.isOnboarding) {
         this.workspaceService.setOnboardingState(OnboardingState.EXPORT_SETTINGS);
         this.router.navigate(['/workspaces/onboarding/export_settings']);
@@ -194,6 +210,12 @@ export class EmployeeSettingsComponent implements OnInit {
       this.isLoading = false;
       this.isLoaded.emit(true);
     });
+  }
+
+  ngOnDestroy(): void {
+    if (!this.timeSpentEventRecorded) {
+      this.trackSessionTime('navigated');
+    }
   }
 
   ngOnInit(): void {

@@ -36,11 +36,11 @@ export type ExpenseGroup = {
 };
 
 export type ExpenseGroupDescription = {
-  claim_number: FyleReferenceType.EXPENSE_REPORT;
-  report_id: FyleReferenceType.EXPENSE_REPORT;
+  [FyleReferenceType.EXPENSE_REPORT]: string;
+  [FyleReferenceType.REPORT_ID]: string;
   employee_email: string;
-  expense_id: FyleReferenceType.EXPENSE;
-  settlement_id: FyleReferenceType.PAYMENT;
+  [FyleReferenceType.EXPENSE]: string;
+  [FyleReferenceType.PAYMENT]: string;
 };
 
 export type ExportableExpenseGroup = {
