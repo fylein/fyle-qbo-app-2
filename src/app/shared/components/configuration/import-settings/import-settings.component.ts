@@ -244,7 +244,7 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
   }
 
   private getPhase(): ProgressPhase {
-    return this.isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING
+    return this.isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING;
   }
 
   private trackSessionTime(eventState: 'success' | 'navigated'): void {

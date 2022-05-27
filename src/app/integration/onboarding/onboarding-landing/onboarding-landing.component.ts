@@ -12,7 +12,9 @@ import { WorkspaceService } from 'src/app/core/services/workspace/workspace.serv
 export class OnboardingLandingComponent implements OnInit, OnDestroy {
 
   phase: ProgressPhase;
+
   private readonly sessionStartTime = new Date();
+
   private timeSpentEventRecorded: boolean = false;
 
   constructor(
