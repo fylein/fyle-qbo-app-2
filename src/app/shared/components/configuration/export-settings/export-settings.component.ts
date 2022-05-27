@@ -275,7 +275,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
               forbidden = false;
             }
           }
-        } else if ((control.value === ExpenseState.PAID || control.value === ExpenseState.PAYMENT_PROCESSING) && control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value) {
+        } else if ((control.value === ExpenseState.PAID || control.value === ExpenseState.PAYMENT_PROCESSING) && (control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value)) {
           forbidden = false;
         }
 

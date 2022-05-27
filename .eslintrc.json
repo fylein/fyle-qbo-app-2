@@ -100,7 +100,15 @@
         "eqeqeq": ["error"],
         "no-confusing-arrow": ["error"],
         "no-else-return": ["error"],
-        "no-empty": ["error"]
+        "no-empty": ["error"],
+        "no-eq-null": ["error"],
+        "no-extra-semi": ["error"],
+        "no-global-assign": ["error"],
+        "no-implicit-globals": ["error"],
+        "no-mixed-operators": ["error"],
+        "no-multi-str": ["error"],
+        "spaced-comment": ["error"],
+        "vars-on-top": ["error"]
       }
     },
     {

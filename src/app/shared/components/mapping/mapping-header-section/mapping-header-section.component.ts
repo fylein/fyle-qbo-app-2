@@ -29,7 +29,6 @@ export class MappingHeaderSectionComponent implements OnInit {
   switchView(totalCardActive: boolean = false): void {
     this.totalCardActive = totalCardActive;
 
-
     this.mappingCardUpdateHandler.emit(this.totalCardActive);
   }
 

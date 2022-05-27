@@ -19,7 +19,7 @@ export interface Mapping extends MappingPost {
   created_at: Date;
   updated_at: Date;
   workspace: number;
-};
+}
 
 export type MappingResponse = {
   count: number;

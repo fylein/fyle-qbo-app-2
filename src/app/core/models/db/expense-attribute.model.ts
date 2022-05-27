@@ -29,7 +29,7 @@ export type MinimalExpenseAttribute = {
 
 export interface ExtendedExpenseAttribute extends ExpenseAttribute {
   mapping: Mapping[];
-};
+}
 
 export type ExtendedExpenseAttributeResponse = {
   count: number;

@@ -18,6 +18,6 @@ export interface ExpenseGroupSetting extends ExpenseGroupSettingPost {
   created_at: Date;
   updated_at: Date;
   workspace: number;
-};
+}
 
 export interface ExpenseGroupSettingGet extends ExpenseGroupSettingPost {}
