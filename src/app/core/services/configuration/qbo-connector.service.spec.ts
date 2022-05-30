@@ -36,7 +36,7 @@ describe('QboConnectorService', () => {
       realm_id: "123146326950399",
       refresh_token: "AB",
       updated_at: new Date("2022-05-06T13:13:25.893837Z"),
-      workspace: 1,
+      workspace: 1
     };
     service.getQBOCredentials().subscribe((value) => {
       value.refresh_token="AB";
@@ -44,7 +44,7 @@ describe('QboConnectorService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/credentials/qbo/`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/credentials/qbo/`
     });
     req.flush(response);
   });
@@ -81,7 +81,7 @@ describe('QboConnectorService', () => {
         },
         StatementMessage: {
           Message: "Your statement is attached.  Please remit payment at your earliest convenience.\r\nThank you for your business - we appreciate it very much.\r\n\r\nHave a great day!\r\nSandbox Company_FAE",
-          Subject: "Statement from Sandbox Company_FAE",
+          Subject: "Statement from Sandbox Company_FAE"
         }
       },
         Id: "1",
@@ -178,7 +178,7 @@ describe('QboConnectorService', () => {
       });
       const req = httpMock.expectOne({
         method: 'GET',
-        url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/preferences/`,
+        url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/preferences/`
       });
       req.flush(response);
     });
@@ -206,7 +206,7 @@ describe('QboConnectorService', () => {
       });
       const req = httpMock.expectOne({
         method: 'POST',
-        url: `${API_BASE_URL}/workspaces/${workspace_id}/connect_qbo/authorization_code/`,
+        url: `${API_BASE_URL}/workspaces/${workspace_id}/connect_qbo/authorization_code/`
       });
       req.flush(response);
     });
@@ -228,7 +228,7 @@ describe('QboConnectorService', () => {
       });
       const req = httpMock.expectOne({
         method: 'PATCH',
-        url: `${API_BASE_URL}/workspaces/${workspace_id}/credentials/qbo/`,
+        url: `${API_BASE_URL}/workspaces/${workspace_id}/credentials/qbo/`
       });
       req.flush(response);
     });

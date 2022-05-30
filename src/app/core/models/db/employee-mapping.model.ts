@@ -32,7 +32,7 @@ export type EmployeeMappingPost = {
 
 export interface ExtendedEmployeeAttribute extends ExpenseAttribute {
   employeemapping: EmployeeMapping[];
-};
+}
 
 export type ExtendedEmployeeAttributeResponse = {
   count: number;

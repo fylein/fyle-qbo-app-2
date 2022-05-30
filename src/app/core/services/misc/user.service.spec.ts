@@ -16,7 +16,7 @@ describe('UserService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule,HttpClientTestingModule],
+      imports: [HttpClientModule, HttpClientTestingModule],
       providers: [UserService]
     });
     injector = getTestBed();
@@ -35,7 +35,7 @@ describe('UserService', () => {
       org_id: "orunxXsIajSE",
       org_name: "Test Sample Statement - GBP",
       refresh_token: "fyle",
-      user_id: "ust5Ga9HC3qc",
+      user_id: "ust5Ga9HC3qc"
     };
     service.storeUserProfile(user);
     const actualResponse:MinimalUser = service.getUserProfile();
@@ -51,7 +51,7 @@ describe('UserService', () => {
     expect(response).toBeNull();
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/user/orgs/`,
+      url: `${API_BASE_URL}/user/orgs/`
     });
       req.flush(2);
   });

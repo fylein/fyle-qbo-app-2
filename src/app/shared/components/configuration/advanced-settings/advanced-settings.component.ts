@@ -1,11 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { AdvancedSettingFormOption, AdvancedSettingGet, AdvancedSettingModel } from 'src/app/core/models/configuration/advanced-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { AutoMapEmployee, ConfigurationCtaText, CorporateCreditCardExpensesObject, EmployeeFieldMapping, OnboardingState, PaymentSyncDirection, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { AutoMapEmployee, ConfigurationCtaText, CorporateCreditCardExpensesObject, EmployeeFieldMapping, OnboardingState, OnboardingStep, PaymentSyncDirection, ProgressPhase, ReimbursableExpensesObject, UpdateEvent } from 'src/app/core/models/enum/enum.model';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
@@ -13,13 +13,14 @@ import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WorkspaceGeneralSetting } from 'src/app/core/models/db/workspace-general-setting.model';
 import { WindowService } from 'src/app/core/services/core/window.service';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
 
 @Component({
   selector: 'app-advanced-settings',
   templateUrl: './advanced-settings.component.html',
   styleUrls: ['./advanced-settings.component.scss']
 })
-export class AdvancedSettingsComponent implements OnInit {
+export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   isLoading: boolean = true;
 
@@ -60,6 +61,12 @@ export class AdvancedSettingsComponent implements OnInit {
 
   ConfigurationCtaText = ConfigurationCtaText;
 
+  ProgressPhase = ProgressPhase;
+
+  private readonly sessionStartTime = new Date();
+
+  private timeSpentEventRecorded: boolean = false;
+
   constructor(
     private advancedSettingService: AdvancedSettingService,
     private formBuilder: FormBuilder,
@@ -67,6 +74,7 @@ export class AdvancedSettingsComponent implements OnInit {
     private mappingService: MappingService,
     private router: Router,
     private snackBar: MatSnackBar,
+    private trackingService: TrackingService,
     private windowService: WindowService,
     private workspaceService: WorkspaceService
   ) {
@@ -201,14 +209,39 @@ export class AdvancedSettingsComponent implements OnInit {
     this.router.navigate([`/workspaces/onboarding/import_settings`]);
   }
 
+  private getPhase(): ProgressPhase {
+    return this.isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING;
+  }
+
+  private trackSessionTime(eventState: 'success' | 'navigated'): void {
+    const differenceInMs = new Date().getTime() - this.sessionStartTime.getTime();
+
+    this.timeSpentEventRecorded = true;
+    this.trackingService.trackTimeSpent(OnboardingStep.ADVANCED_SETTINGS, {phase: this.getPhase(), durationInSeconds: Math.floor(differenceInMs / 1000), eventState: eventState});
+  }
+
   save(): void {
     if (this.advancedSettingsForm.valid && !this.saveInProgress) {
       const advancedSettingPayload = AdvancedSettingModel.constructPayload(this.advancedSettingsForm);
       this.saveInProgress = true;
 
-      this.advancedSettingService.postAdvancedSettings(advancedSettingPayload).subscribe(() => {
+      this.advancedSettingService.postAdvancedSettings(advancedSettingPayload).subscribe((response: AdvancedSettingGet) => {
+        if (this.workspaceService.getOnboardingState() === OnboardingState.ADVANCED_CONFIGURATION) {
+          this.trackingService.onOnboardingStepCompletion(OnboardingStep.ADVANCED_SETTINGS, 5, advancedSettingPayload);
+        } else {
+          this.trackingService.onUpdateEvent(
+            UpdateEvent.ADVANCED_SETTINGS,
+            {
+              phase: this.getPhase(),
+              oldState: this.advancedSettings,
+              newState: response
+            }
+          );
+        }
+
         this.saveInProgress = false;
         this.snackBar.open('Advanced settings saved successfully');
+        this.trackSessionTime('success');
         if (this.isOnboarding) {
           this.workspaceService.setOnboardingState(OnboardingState.COMPLETE);
           this.router.navigate([`/workspaces/onboarding/done`]);
@@ -219,6 +252,12 @@ export class AdvancedSettingsComponent implements OnInit {
         this.saveInProgress = false;
         this.snackBar.open('Error saving advanced settings, please try again later');
       });
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (!this.timeSpentEventRecorded) {
+      this.trackSessionTime('navigated');
     }
   }
 

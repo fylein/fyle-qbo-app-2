@@ -47,7 +47,7 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
     {
       provide: ErrorHandler,
       useValue: Sentry.createErrorHandler({
-        showDialog: false,
+        showDialog: false
       })
     }
   ],

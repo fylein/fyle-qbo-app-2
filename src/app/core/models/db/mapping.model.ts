@@ -4,15 +4,6 @@ import { Error } from "./error.model";
 import { ExpenseAttribute, ExtendedExpenseAttribute } from "./expense-attribute.model";
 import { MinimalMappingSetting } from "./mapping-setting.model";
 
-export interface Mapping extends MappingPost {
-  id: number;
-  source: ExpenseAttribute;
-  destination: DestinationAttribute;
-  created_at: Date;
-  updated_at: Date;
-  workspace: number;
-};
-
 export type MappingPost = {
   source_type: string;
   source_value: string;
@@ -20,6 +11,15 @@ export type MappingPost = {
   destination_id: string;
   destination_value: string;
 };
+
+export interface Mapping extends MappingPost {
+  id: number;
+  source: ExpenseAttribute;
+  destination: DestinationAttribute;
+  created_at: Date;
+  updated_at: Date;
+  workspace: number;
+}
 
 export type MappingResponse = {
   count: number;

@@ -2,22 +2,6 @@ import { FormGroup } from "@angular/forms";
 import { PaymentSyncDirection } from "../enum/enum.model";
 import { DefaultDestinationAttribute, GeneralMapping } from "../db/general-mapping.model";
 import { SelectFormOption } from "../misc/select-form-option.model";
-import { WorkspaceGeneralSetting } from "../db/workspace-general-setting.model";
-import { WorkspaceSchedule } from "../db/workspace-schedule.model";
-
-
-export type AdvancedSettingPost = {
-  workspace_general_settings: AdvancedSettingWorkspaceGeneralSetting,
-  general_mappings: AdvancedSettingGeneralMapping,
-  workspace_schedules: AdvancedSettingWorkspaceSchedule,
-}
-
-export type AdvancedSettingGet = {
-  workspace_general_settings: AdvancedSettingWorkspaceGeneralSetting,
-  general_mappings: AdvancedSettingGeneralMapping,
-  workspace_schedules: AdvancedSettingWorkspaceSchedule,
-  workspace_id:number
-}
 
 export type AdvancedSettingWorkspaceGeneralSetting = {
   sync_fyle_to_qbo_payments: boolean,
@@ -32,13 +16,26 @@ export type AdvancedSettingGeneralMapping = {
   bill_payment_account: DefaultDestinationAttribute
 }
 
-export interface AdvancedSettingFormOption extends SelectFormOption {
-  value: PaymentSyncDirection;
-}
-
 export type AdvancedSettingWorkspaceSchedule = {
   enabled: boolean,
   interval_hours: number
+}
+
+export type AdvancedSettingPost = {
+  workspace_general_settings: AdvancedSettingWorkspaceGeneralSetting,
+  general_mappings: AdvancedSettingGeneralMapping,
+  workspace_schedules: AdvancedSettingWorkspaceSchedule,
+}
+
+export type AdvancedSettingGet = {
+  workspace_general_settings: AdvancedSettingWorkspaceGeneralSetting,
+  general_mappings: AdvancedSettingGeneralMapping,
+  workspace_schedules: AdvancedSettingWorkspaceSchedule,
+  workspace_id:number
+}
+
+export interface AdvancedSettingFormOption extends SelectFormOption {
+  value: PaymentSyncDirection;
 }
 
 export class AdvancedSettingModel {

@@ -67,9 +67,9 @@ export class DashboardService {
 
       if (taskResponse.next) {
         return that.getAllTasksInternal(limit, status, expenseGroupIds, taskType, allTasks);
-      } else {
-        return allTasks;
       }
+
+      return allTasks;
     });
   }
 
@@ -93,11 +93,11 @@ export class DashboardService {
 
     if (next) {
       return this.apiService.get(next.split('api')[1], {});
-    } else {
-      return this.apiService.get(
-        `/workspaces/${this.workspaceId}/tasks/all/`, apiParams
-      );
     }
+
+    return this.apiService.get(
+      `/workspaces/${this.workspaceId}/tasks/all/`, apiParams
+    );
   }
 
 }

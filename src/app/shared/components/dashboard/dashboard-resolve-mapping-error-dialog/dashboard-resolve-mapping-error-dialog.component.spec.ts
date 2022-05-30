@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardResolveMappingErrorDialogComponent } from './dashboard-resolve-mapping-error-dialog.component';
 
-describe('DashboardResolveMappingErrorDialogComponent', () => {
+xdescribe('DashboardResolveMappingErrorDialogComponent', () => {
   let component: DashboardResolveMappingErrorDialogComponent;
   let fixture: ComponentFixture<DashboardResolveMappingErrorDialogComponent>;
 

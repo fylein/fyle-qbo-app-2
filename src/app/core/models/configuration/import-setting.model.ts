@@ -5,13 +5,6 @@ import { MappingSetting } from "../db/mapping-setting.model";
 import { SelectFormOption } from "../misc/select-form-option.model";
 import { WorkspaceGeneralSetting } from "../db/workspace-general-setting.model";
 
-
-export type ImportSettingPost = {
-  workspace_general_settings: ImportSettingWorkspaceGeneralSetting,
-  general_mappings: ImportSettingGeneralMapping,
-  mapping_settings: ImportSettingMappingSetting[]
-}
-
 export type ImportSettingWorkspaceGeneralSetting = {
   import_categories: boolean,
   import_vendors_as_merchants: boolean,
@@ -29,6 +22,12 @@ export type ImportSettingMappingSetting = {
   import_to_fyle: boolean,
   is_custom: boolean,
   source_placeholder: string | null
+}
+
+export type ImportSettingPost = {
+  workspace_general_settings: ImportSettingWorkspaceGeneralSetting,
+  general_mappings: ImportSettingGeneralMapping,
+  mapping_settings: ImportSettingMappingSetting[]
 }
 
 export type ExpenseFieldsFormOption = {

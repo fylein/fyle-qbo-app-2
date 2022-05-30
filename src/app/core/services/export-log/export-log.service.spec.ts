@@ -46,7 +46,7 @@ describe('ExportLogService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_group_settings/`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_group_settings/`
     });
       req.flush(response);
   });
@@ -58,12 +58,12 @@ describe('ExportLogService', () => {
       previous: "xxx",
       results: []
     };
-    service.getExpenseGroups('COMPLETE', 10, 5, null, ).subscribe(result => {
+    service.getExpenseGroups('COMPLETE', 10, 5, null ).subscribe(result => {
       expect(result).toEqual(response);
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE`
     });
       req.flush(response);
   });
@@ -80,17 +80,17 @@ describe('ExportLogService', () => {
       startDate: new Date((new Date().getTime()) - (24*60*60*1000)),
       endDate: new Date()
     };
-    // const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getMonth()+1 > 9 ? +dates.startDate.getMonth()+1 : '0'+(+dates.startDate.getMonth()+1)}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}T00:00:00`;
-    // const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getMonth()+1 > 9 ? +dates.endDate.getMonth()+1 : '0'+(+dates.endDate.getMonth()+1)}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}T23:59:59`;
+    // Const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getMonth()+1 > 9 ? +dates.startDate.getMonth()+1 : '0'+(+dates.startDate.getMonth()+1)}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}T00:00:00`;
+    // Const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getMonth()+1 > 9 ? +dates.endDate.getMonth()+1 : '0'+(+dates.endDate.getMonth()+1)}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}T23:59:59`;
     const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}-${+dates.startDate.getMonth()+1}T00:00:00`;
     const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}-${+dates.endDate.getMonth()+1 }T23:59:59`;
 
-    service.getExpenseGroups('COMPLETE', 10, 5, dates, ).subscribe(result => {
+    service.getExpenseGroups('COMPLETE', 10, 5, dates ).subscribe(result => {
       expect(result).toEqual(response);
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE&start_date=${start_date}&end_date=${end_date}`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE&start_date=${start_date}&end_date=${end_date}`
     });
       req.flush(response);
   });
@@ -107,10 +107,10 @@ describe('ExportLogService', () => {
       startDate: new Date((new Date().getTime()) - (24*60*60*1000)),
       endDate: new Date()
     };
-    //local
-    // const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getMonth()+1 > 9 ? +dates.startDate.getMonth()+1 : '0'+(+dates.startDate.getMonth()+1)}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}T00:00:00`;
-    // const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getMonth()+1 > 9 ? +dates.endDate.getMonth()+1 : '0'+(+dates.endDate.getMonth()+1)}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}T23:59:59`;
-    //while pushing
+    // Local
+    // Const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getMonth()+1 > 9 ? +dates.startDate.getMonth()+1 : '0'+(+dates.startDate.getMonth()+1)}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}T00:00:00`;
+    // Const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getMonth()+1 > 9 ? +dates.endDate.getMonth()+1 : '0'+(+dates.endDate.getMonth()+1)}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}T23:59:59`;
+    // While pushing
     const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}-${+dates.startDate.getMonth()+1}T00:00:00`;
     const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}-${+dates.endDate.getMonth()+1 }T23:59:59`;
     const exportAt = new Date();
@@ -120,7 +120,7 @@ describe('ExportLogService', () => {
     const time = exportAt.toString().replace(/\s/g, '%20');
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE&start_date=${start_date}&end_date=${end_date}&exported_at=${time}`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE&start_date=${start_date}&end_date=${end_date}&exported_at=${time}`
     });
       req.flush(response);
   });
@@ -137,7 +137,7 @@ describe('ExportLogService', () => {
         expense_id: FyleReferenceType.EXPENSE,
         settlement_id: FyleReferenceType.PAYMENT
       },
-      // having any here is okay, different qbo exports has different structures
+      // Having any here is okay, different qbo exports has different structures
       response_logs: [],
       export_type: 'Expence',
       employee_name: 'Fyle',
@@ -147,7 +147,7 @@ describe('ExportLogService', () => {
       workspace: +workspace_id,
       expenses: []
     };
-    const actualResponse:string = service.generateFyleUrl(expencegroup,FyleReferenceType.EXPENSE);
+    const actualResponse:string = service.generateFyleUrl(expencegroup, FyleReferenceType.EXPENSE);
     expect(actualResponse).toEqual(response);
   });
 
@@ -163,7 +163,7 @@ describe('ExportLogService', () => {
         expense_id: FyleReferenceType.EXPENSE,
         settlement_id: FyleReferenceType.PAYMENT
       },
-      // having any here is okay, different qbo exports has different structures
+      // Having any here is okay, different qbo exports has different structures
       response_logs: [],
       export_type: 'Expence',
       employee_name: 'Fyle',
@@ -173,7 +173,7 @@ describe('ExportLogService', () => {
       workspace: +workspace_id,
       expenses: []
     };
-    const actualResponse:string = service.generateFyleUrl(expencegroup,FyleReferenceType.EXPENSE_REPORT);
+    const actualResponse:string = service.generateFyleUrl(expencegroup, FyleReferenceType.EXPENSE_REPORT);
     expect(actualResponse).toEqual(response);
   });
 
@@ -189,7 +189,7 @@ describe('ExportLogService', () => {
         expense_id: FyleReferenceType.EXPENSE,
         settlement_id: FyleReferenceType.PAYMENT
       },
-      // having any here is okay, different qbo exports has different structures
+      // Having any here is okay, different qbo exports has different structures
       response_logs: [],
       export_type: 'Expence',
       employee_name: 'Fyle',
@@ -199,7 +199,7 @@ describe('ExportLogService', () => {
       workspace: +workspace_id,
       expenses: []
     };
-    const actualResponse:string = service.generateFyleUrl(expencegroup,FyleReferenceType.PAYMENT);
+    const actualResponse:string = service.generateFyleUrl(expencegroup, FyleReferenceType.PAYMENT);
     expect(actualResponse).toEqual(response);
   });
 
@@ -235,7 +235,7 @@ describe('ExportLogService', () => {
         expense_id: FyleReferenceType.EXPENSE,
         settlement_id: FyleReferenceType.PAYMENT
       },
-      // having any here is okay, different qbo exports has different structures
+      // Having any here is okay, different qbo exports has different structures
       response_logs: {},
       export_type: 'Expence',
       employee_name: 'Fyle',
@@ -261,7 +261,7 @@ describe('ExportLogService', () => {
         expense_id: FyleReferenceType.EXPENSE,
         settlement_id: FyleReferenceType.PAYMENT
       },
-      // having any here is okay, different qbo exports has different structures
+      // Having any here is okay, different qbo exports has different structures
       response_logs: {Bill: {name: 'Bill', Id: 1}},
       export_type: 'Expence',
       employee_name: 'Fyle',
@@ -287,7 +287,7 @@ describe('ExportLogService', () => {
         expense_id: FyleReferenceType.EXPENSE,
         settlement_id: FyleReferenceType.PAYMENT
       },
-      // having any here is okay, different qbo exports has different structures
+      // Having any here is okay, different qbo exports has different structures
       response_logs: {JournalEntry: {name: 'JournalEntry', Id: 1}},
       export_type: 'Expence',
       employee_name: 'Fyle',
@@ -313,7 +313,7 @@ describe('ExportLogService', () => {
         expense_id: FyleReferenceType.EXPENSE,
         settlement_id: FyleReferenceType.PAYMENT
       },
-      // having any here is okay, different qbo exports has different structures
+      // Having any here is okay, different qbo exports has different structures
       response_logs: {Purchase: {name: 'Purchase', Id: 1, PaymentType: 'Check'}},
       export_type: 'Expence',
       employee_name: 'Fyle',
@@ -339,7 +339,7 @@ describe('ExportLogService', () => {
         expense_id: FyleReferenceType.EXPENSE,
         settlement_id: FyleReferenceType.PAYMENT
       },
-      // having any here is okay, different qbo exports has different structures
+      // Having any here is okay, different qbo exports has different structures
       response_logs: {Purchase: {name: 'Purchase', Id: 1, PaymentType: 'CreditCard', Credit: false}},
       export_type: 'Expence',
       employee_name: 'Fyle',
@@ -365,7 +365,7 @@ describe('ExportLogService', () => {
         expense_id: FyleReferenceType.EXPENSE,
         settlement_id: FyleReferenceType.PAYMENT
       },
-      // having any here is okay, different qbo exports has different structures
+      // Having any here is okay, different qbo exports has different structures
       response_logs: {Purchase: {name: 'Purchase', Id: 1, PaymentType: 'CreditCard', Credit: true}},
       export_type: 'Expence',
       employee_name: 'Fyle',
@@ -391,7 +391,7 @@ describe('ExportLogService', () => {
         expense_id: FyleReferenceType.EXPENSE,
         settlement_id: FyleReferenceType.PAYMENT
       },
-      // having any here is okay, different qbo exports has different structures
+      // Having any here is okay, different qbo exports has different structures
       response_logs: {Purchase: {name: 'Purchase', Id: 1, PaymentType: 'Cash', Credit: true}},
       export_type: 'Expence',
       employee_name: 'Fyle',
@@ -417,7 +417,7 @@ describe('ExportLogService', () => {
         expense_id: FyleReferenceType.EXPENSE,
         settlement_id: FyleReferenceType.PAYMENT
       },
-      // having any here is okay, different qbo exports has different structures
+      // Having any here is okay, different qbo exports has different structures
       response_logs: {Purchase: {name: 'Purchase', Id: 1}},
       export_type: 'Expence',
       employee_name: 'Fyle',

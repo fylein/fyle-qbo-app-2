@@ -1,7 +1,7 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
 import { ExportSettingService } from './export-setting.service';
-import { ExportSettingPost } from '../../models/configuration/export-setting.model';
-import { ExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject } from '../../models/enum/enum.model';
+import { ExportSettingGet, ExportSettingPost } from '../../models/configuration/export-setting.model';
+import { ExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, ExportDateType } from '../../models/enum/enum.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
 
@@ -28,13 +28,13 @@ describe('ExportSettingService', () => {
 
 
   it('getExportSettings service check attributes check', () => {
-    const response={
+    const response: ExportSettingGet = {
       expense_group_settings: {
         expense_state: ExpenseState.PAID,
         reimbursable_expense_group_fields: ['sample'],
-        reimbursable_export_date_type: null,
+        reimbursable_export_date_type: ExportDateType.APPROVED_AT,
         corporate_credit_card_expense_group_fields: ['sipper'],
-        ccc_export_date_type: null
+        ccc_export_date_type: ExportDateType.SPENT_AT
       },
       workspace_general_settings: {
         reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
@@ -55,7 +55,7 @@ describe('ExportSettingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/export_settings/`,
+      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/export_settings/`
     });
     req.flush(response);
 
@@ -110,7 +110,7 @@ describe('ExportSettingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'PUT',
-      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/export_settings/`,
+      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/export_settings/`
     });
     req.flush(response);
 

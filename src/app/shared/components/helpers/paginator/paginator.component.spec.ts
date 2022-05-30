@@ -4,7 +4,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { PaginatorComponent } from './paginator.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('PaginatorComponent', () => {
+xdescribe('PaginatorComponent', () => {
   let component: PaginatorComponent;
   let fixture: ComponentFixture<PaginatorComponent>;
 

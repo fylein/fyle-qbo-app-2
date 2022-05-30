@@ -153,3 +153,61 @@ export enum RedirectLink {
   FYLE_WEBSITE = 'https://fylehq.com/',
   FYLE_HELP = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks'
 }
+
+export enum ClickEvent {
+  CONNECT_QBO = 'Connect QBO',
+  ONBOARDING_DONE = 'Onboarding Done',
+  RECONNECT_QBO = 'Reconnect QBO with different company',
+  PREVIEW_QBO_EXPORT = 'Preview QBO Export',
+  PREVIEW_FYLE_EXPENSE_FORM = 'Preview Fyle Expense Form',
+  HELP_SECTION = 'Help Section',
+  EXPORT = 'Export',
+  FAILED_EXPORTS = 'Failed Exports',
+  SUCCESSFUL_EXPORTS = 'Successful Exports',
+  EXPORT_LOG_PAGE_NAVIGATION = 'Export Log Page Navigation',
+  MAPPING_PAGE_NAVIGATION = 'Mapping Page Navigation',
+  UNMAPPED_MAPPINGS_FILTER = 'Unmapped Mappings Filter',
+  MAPPED_MAPPINGS_FILTER = 'Mapped Mappings Filter',
+  DISCONNECT_QBO = 'Disconnect QBO',
+  SYNC_DIMENSION = 'Sync Dimension'
+}
+
+export enum ProgressPhase {
+  ONBOARDING = 'Onboarding',
+  POST_ONBOARDING = 'Post Onboarding'
+}
+
+export enum OnboardingStep {
+  LANDING = 'Landing',
+  CONNECT_QBO = 'Connect QBO',
+  MAP_EMPLOYEES = 'Map Employees',
+  EXPORT_SETTINGS = 'Export Settings',
+  IMPORT_SETTINGS = 'Import Settings',
+  ADVANCED_SETTINGS = 'Advanced Settings',
+  ONBOARDING_DONE = 'Onboarding Done'
+}
+
+export enum UpdateEvent {
+  CONNECT_QBO = 'Connect QBO',
+  MAP_EMPLOYEES = 'Map Employees',
+  EXPORT_SETTINGS = 'Export Settings',
+  IMPORT_SETTINGS = 'Import Settings',
+  ADVANCED_SETTINGS = 'Advanced Settings',
+  PAGE_SIZE = 'Page Size'
+}
+
+export enum Action {
+  RESOLVE_ERROR = 'Resolving Error'
+}
+
+export enum SimpleSearchPage {
+  DASHBOARD = 'Dashboard',
+  EXPORT_LOG = 'Export Log',
+  MAPPING = 'Mapping',
+  CONFIGURATION = 'Configuration',
+}
+
+export enum SimpleSearchType {
+  TEXT_FIELD = 'Text Field',
+  SELECT_FIELD = 'Select Field'
+}

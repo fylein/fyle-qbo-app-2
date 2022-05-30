@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 
 @Component({
   selector: 'app-mapping-filter',
@@ -15,6 +16,10 @@ export class MappingFilterComponent implements OnInit {
   filterOptions: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
   @Output() mappingFilterUpdateHandler = new EventEmitter<{}>();
+
+  SimpleSearchPage = SimpleSearchPage;
+
+  SimpleSearchType = SimpleSearchType;
 
   constructor() { }
 

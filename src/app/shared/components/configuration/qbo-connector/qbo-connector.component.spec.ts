@@ -6,13 +6,13 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-describe('QboConnectorComponent', () => {
+xdescribe('QboConnectorComponent', () => {
   let component: QboConnectorComponent;
   let fixture: ComponentFixture<QboConnectorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule,HttpClientModule,MatSnackBarModule],
+      imports: [RouterTestingModule, HttpClientModule, MatSnackBarModule],
       declarations: [ QboConnectorComponent ],
       providers: [{
         provide: JWT_OPTIONS,

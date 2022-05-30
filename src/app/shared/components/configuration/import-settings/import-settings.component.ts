@@ -1,10 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { NavigationExtras, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { ConfigurationCtaText, MappingDestinationField, OnboardingState } from 'src/app/core/models/enum/enum.model';
+import { ClickEvent, ConfigurationCtaText, MappingDestinationField, OnboardingState, OnboardingStep, ProgressPhase, SimpleSearchPage, SimpleSearchType, UpdateEvent } from 'src/app/core/models/enum/enum.model';
 import { ExpenseFieldsFormOption, ImportSettingGet, ImportSettingModel } from 'src/app/core/models/configuration/import-setting.model';
 import { MappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
@@ -18,13 +18,15 @@ import { WindowService } from 'src/app/core/services/core/window.service';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { PreviewDialogComponent } from '../preview-dialog/preview-dialog.component';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
+import { ClickEventAdditionalProperty } from 'src/app/core/models/misc/tracking.model';
 
 @Component({
   selector: 'app-import-settings',
   templateUrl: './import-settings.component.html',
   styleUrls: ['./import-settings.component.scss']
 })
-export class ImportSettingsComponent implements OnInit {
+export class ImportSettingsComponent implements OnInit, OnDestroy {
 
   isLoading: boolean = true;
 
@@ -55,6 +57,16 @@ export class ImportSettingsComponent implements OnInit {
 
   ConfigurationCtaText = ConfigurationCtaText;
 
+  ProgressPhase = ProgressPhase;
+
+  private readonly sessionStartTime = new Date();
+
+  private timeSpentEventRecorded: boolean = false;
+
+  SimpleSearchPage = SimpleSearchPage;
+
+  SimpleSearchType = SimpleSearchType;
+
   constructor(
     public dialog: MatDialog,
     private importSettingService: ImportSettingService,
@@ -64,6 +76,7 @@ export class ImportSettingsComponent implements OnInit {
     private mappingService: MappingService,
     private qboConnectorService: QboConnectorService,
     private snackBar: MatSnackBar,
+    private trackingService: TrackingService,
     private windowService: WindowService,
     private workspaceService: WorkspaceService
   ) {
@@ -194,6 +207,11 @@ export class ImportSettingsComponent implements OnInit {
   }
 
   showFyleExpenseFormPreview(): void {
+    const additionalProperties: Partial<ClickEventAdditionalProperty> = {
+      phase: this.isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING
+    };
+
+    this.trackingService.onClickEvent(ClickEvent.PREVIEW_FYLE_EXPENSE_FORM, additionalProperties);
     this.dialog.open(PreviewDialogComponent, {
       width: '560px',
       height: '770px',
@@ -225,14 +243,39 @@ export class ImportSettingsComponent implements OnInit {
     this.router.navigate([`/workspaces/onboarding/export_settings`]);
   }
 
+  private getPhase(): ProgressPhase {
+    return this.isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING;
+  }
+
+  private trackSessionTime(eventState: 'success' | 'navigated'): void {
+    const differenceInMs = new Date().getTime() - this.sessionStartTime.getTime();
+
+    this.timeSpentEventRecorded = true;
+    this.trackingService.trackTimeSpent(OnboardingStep.IMPORT_SETTINGS, {phase: this.getPhase(), durationInSeconds: Math.floor(differenceInMs / 1000), eventState: eventState});
+  }
+
   save(): void {
     if (this.importSettingsForm.valid && !this.saveInProgress) {
       const importSettingsPayload = ImportSettingModel.constructPayload(this.importSettingsForm);
       this.saveInProgress = true;
 
-      this.importSettingService.postImportSettings(importSettingsPayload).subscribe(() => {
+      this.importSettingService.postImportSettings(importSettingsPayload).subscribe((response: ImportSettingGet) => {
+        if (this.workspaceService.getOnboardingState() === OnboardingState.IMPORT_SETTINGS) {
+          this.trackingService.onOnboardingStepCompletion(OnboardingStep.IMPORT_SETTINGS, 4, importSettingsPayload);
+        } else {
+          this.trackingService.onUpdateEvent(
+            UpdateEvent.IMPORT_SETTINGS,
+            {
+              phase: this.getPhase(),
+              oldState: this.importSettings,
+              newState: response
+            }
+          );
+        }
+
         this.saveInProgress = false;
         this.snackBar.open('Import settings saved successfully');
+        this.trackSessionTime('success');
         if (this.isOnboarding) {
           this.workspaceService.setOnboardingState(OnboardingState.ADVANCED_CONFIGURATION);
           this.router.navigate([`/workspaces/onboarding/advanced_settings`]);
@@ -248,6 +291,12 @@ export class ImportSettingsComponent implements OnInit {
         this.saveInProgress = false;
         this.snackBar.open('Error saving import settings, please try again later');
       });
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (!this.timeSpentEventRecorded) {
+      this.trackSessionTime('navigated');
     }
   }
 

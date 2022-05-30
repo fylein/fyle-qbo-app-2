@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MappingFilterComponent } from './mapping-filter.component';
 
-describe('MappingFilterComponent', () => {
+xdescribe('MappingFilterComponent', () => {
   let component: MappingFilterComponent;
   let fixture: ComponentFixture<MappingFilterComponent>;
 

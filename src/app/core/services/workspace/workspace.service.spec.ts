@@ -51,18 +51,18 @@ describe('WorkspaceService', () => {
       qbo_realm_id: "",
       cluster_domain: "",
       onboarding_state: OnboardingState.CONNECTION,
-      last_synced_at: new Date("2022-04-13T10:29:18.796760Z") ,
+      last_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       source_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       destination_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       created_at: new Date("2022-04-13T10:29:18.796760Z"),
-      updated_at: new Date("2022-04-13T10:29:18.796760Z"),
+      updated_at: new Date("2022-04-13T10:29:18.796760Z")
     };
     service.createWorkspace().subscribe((value) => {
       expect(value).toEqual(responseKeys);
     });
     const req = httpMock.expectOne({
       method: 'POST',
-      url: `${API_BASE_URL}/workspaces/`,
+      url: `${API_BASE_URL}/workspaces/`
     });
   req.flush(responseKeys);
   });
@@ -77,18 +77,18 @@ describe('WorkspaceService', () => {
       qbo_realm_id: "",
       cluster_domain: "",
       onboarding_state: OnboardingState.CONNECTION,
-      last_synced_at: new Date("2022-04-13T10:29:18.796760Z") ,
+      last_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       source_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       destination_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       created_at: new Date("2022-04-13T10:29:18.796760Z"),
-      updated_at: new Date("2022-04-13T10:29:18.796760Z"),
+      updated_at: new Date("2022-04-13T10:29:18.796760Z")
     }];
     service.getWorkspaces('1').subscribe(value => {
       expect(value).toEqual(responseKeys);
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/?org_id=1`,
+      url: `${API_BASE_URL}/workspaces/?org_id=1`
     });
   req.flush(responseKeys);
   });
@@ -124,7 +124,7 @@ describe('WorkspaceService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/settings/general/`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/settings/general/`
     });
   req.flush(response);
   });
@@ -133,12 +133,12 @@ describe('WorkspaceService', () => {
     const response={
       app: 'done'
     };
-    service.patchWorkspace().subscribe((value)=>{
+    service.patchWorkspace().subscribe((value) => {
       expect(value).toBeDefined();
     });
     const req = httpMock.expectOne({
       method: 'PATCH',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/`,
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/`
     });
   req.flush(response);
   });
@@ -162,7 +162,7 @@ describe('WorkspaceService', () => {
     const date = service.getWorkspaceCreatedAt();
     const yyyy = date.getFullYear();
     var dd = String(date.getDate()).padStart(2, '0');
-    var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var mm = String(date.getMonth() + 1).padStart(2, '0'); // January is 0!
     const resultdate = dd + '-' + mm + '-' + yyyy;
     expect(resultdate).toMatch(/(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)/);
   });

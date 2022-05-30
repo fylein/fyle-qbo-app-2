@@ -19,7 +19,7 @@ describe('StorageService', () => {
       id: '1',
       name: 'Fyle'
     };
-    service.set('test-data',data);
+    service.set('test-data', data);
     const result = service.get('test-data');
     expect(result).toBeDefined();
   });
@@ -29,7 +29,7 @@ describe('StorageService', () => {
       id: '1',
       name: 'Fyle'
     };
-    service.set('test-data',data);
+    service.set('test-data', data);
     const result = service.get('test-data');
     expect(result).toEqual(data);
   });

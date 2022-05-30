@@ -1,9 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { ConfigurationCtaText, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, OnboardingState, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { ConfigurationCtaText, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, OnboardingState, OnboardingStep, ProgressPhase, ReimbursableExpensesObject, UpdateEvent } from 'src/app/core/models/enum/enum.model';
 import { ExportSettingGet, ExportSettingFormOption, ExportSettingModel } from 'src/app/core/models/configuration/export-setting.model';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
@@ -14,13 +14,14 @@ import { WorkspaceService } from 'src/app/core/services/workspace/workspace.serv
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../core/confirmation-dialog/confirmation-dialog.component';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
 
 @Component({
   selector: 'app-export-settings',
   templateUrl: './export-settings.component.html',
   styleUrls: ['./export-settings.component.scss']
 })
-export class ExportSettingsComponent implements OnInit {
+export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   isLoading: boolean = true;
 
@@ -122,6 +123,12 @@ export class ExportSettingsComponent implements OnInit {
 
   ConfigurationCtaText = ConfigurationCtaText;
 
+  ProgressPhase = ProgressPhase;
+
+  private readonly sessionStartTime = new Date();
+
+  private timeSpentEventRecorded: boolean = false;
+
   constructor(
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
@@ -130,6 +137,7 @@ export class ExportSettingsComponent implements OnInit {
     private mappingService: MappingService,
     private router: Router,
     private snackBar: MatSnackBar,
+    private trackingService: TrackingService,
     private windowService: WindowService,
     private workspaceService: WorkspaceService
   ) {
@@ -152,9 +160,9 @@ export class ExportSettingsComponent implements OnInit {
 
     if (exportType === ReimbursableExpensesObject.EXPENSE) {
       return 'How should the expenses be grouped?';
-    } else {
-      return `How should the expense in ${this.getExportType(exportType)} be grouped?`;
     }
+
+    return `How should the expense in ${this.getExportType(exportType)} be grouped?`;
   }
 
   getReimbursableExportTypes(employeeFieldMapping: EmployeeFieldMapping): ExportSettingFormOption[] {
@@ -267,7 +275,7 @@ export class ExportSettingsComponent implements OnInit {
               forbidden = false;
             }
           }
-        } else if ((control.value === ExpenseState.PAID || control.value === ExpenseState.PAYMENT_PROCESSING) && control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value) {
+        } else if ((control.value === ExpenseState.PAID || control.value === ExpenseState.PAYMENT_PROCESSING) && (control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value)) {
           forbidden = false;
         }
 
@@ -414,12 +422,15 @@ export class ExportSettingsComponent implements OnInit {
     this.setGeneralMappingsValidator();
   }
 
-  private getExportGroup(exportGroups: string[]): string {
-    const exportGroup = exportGroups.find((exportGroup) => {
-      return exportGroup === ExpenseGroupingFieldOption.EXPENSE_ID || exportGroup === ExpenseGroupingFieldOption.CLAIM_NUMBER || exportGroup === ExpenseGroupingFieldOption.SETTLEMENT_ID;
-    });
+  private getExportGroup(exportGroups: string[] | null): string {
+    if (exportGroups) {
+      const exportGroup = exportGroups.find((exportGroup) => {
+        return exportGroup === ExpenseGroupingFieldOption.EXPENSE_ID || exportGroup === ExpenseGroupingFieldOption.CLAIM_NUMBER || exportGroup === ExpenseGroupingFieldOption.SETTLEMENT_ID;
+      });
+      return exportGroup ? exportGroup : ExpenseGroupingFieldOption.CLAIM_NUMBER;
+    }
 
-    return exportGroup ? exportGroup : ExpenseGroupingFieldOption.CLAIM_NUMBER;
+    return '';
   }
 
   private getSettingsAndSetupForm(): void {
@@ -504,9 +515,9 @@ export class ExportSettingsComponent implements OnInit {
 
     if (updatedConfiguration !== 'None' && existingConfiguration !== 'None') {
       return configurationUpdate.replace('$exportType', exportType).replace('$existingExportType', existingConfiguration.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())).replace('$updatedExportType', updatedConfiguration.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase()));
-    } else {
-      return newConfiguration.replace('$exportType', exportType);
     }
+
+    return newConfiguration.replace('$exportType', exportType);
   }
 
   private constructWarningMessage(): string {
@@ -552,13 +563,38 @@ export class ExportSettingsComponent implements OnInit {
     });
   }
 
+  private getPhase(): ProgressPhase {
+    return this.isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING;
+  }
+
+  private trackSessionTime(eventState: 'success' | 'navigated'): void {
+    const differenceInMs = new Date().getTime() - this.sessionStartTime.getTime();
+
+    this.timeSpentEventRecorded = true;
+    this.trackingService.trackTimeSpent(OnboardingStep.EXPORT_SETTINGS, {phase: this.getPhase(), durationInSeconds: Math.floor(differenceInMs / 1000), eventState: eventState});
+  }
+
   private constructPayloadAndSave(): void {
     this.saveInProgress = true;
     const exportSettingPayload = ExportSettingModel.constructPayload(this.exportSettingsForm);
 
-    this.exportSettingService.postExportSettings(exportSettingPayload).subscribe(() => {
+    this.exportSettingService.postExportSettings(exportSettingPayload).subscribe((response: ExportSettingGet) => {
+      if (this.workspaceService.getOnboardingState() === OnboardingState.EXPORT_SETTINGS) {
+        this.trackingService.onOnboardingStepCompletion(OnboardingStep.EXPORT_SETTINGS, 3, exportSettingPayload);
+      } else {
+        this.trackingService.onUpdateEvent(
+          UpdateEvent.EXPORT_SETTINGS,
+          {
+            phase: this.getPhase(),
+            oldState: this.exportSettings,
+            newState: response
+          }
+        );
+      }
+
       this.saveInProgress = false;
       this.snackBar.open('Export settings saved successfully');
+      this.trackSessionTime('success');
       if (this.isOnboarding) {
         this.workspaceService.setOnboardingState(OnboardingState.IMPORT_SETTINGS);
         this.router.navigate([`/workspaces/onboarding/import_settings`]);
@@ -586,6 +622,12 @@ export class ExportSettingsComponent implements OnInit {
         return;
       }
       this.constructPayloadAndSave();
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (!this.timeSpentEventRecorded) {
+      this.trackSessionTime('navigated');
     }
   }
 

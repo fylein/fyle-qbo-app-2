@@ -18,10 +18,10 @@ getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting(), {
     teardown: { destroyAfterEach: false }
-},
+}
 );
 // Then we find all the tests.
 localStorage.setItem('workspaceId', environment.tests.workspaceId);
-const context = require.context('./', true, /\.guard.spec|\.service.spec|.model.spec|.pipe.spec\.ts$/);
+const context = require.context('./', true, /\.spec\.ts$/);
 // And load the modules.
 context.keys().map(context);

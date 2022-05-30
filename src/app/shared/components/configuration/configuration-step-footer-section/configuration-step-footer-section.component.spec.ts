@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConfigurationStepFooterSectionComponent } from './configuration-step-footer-section.component';
 
-describe('ConfigurationStepFooterSectionComponent', () => {
+xdescribe('ConfigurationStepFooterSectionComponent', () => {
   let component: ConfigurationStepFooterSectionComponent;
   let fixture: ComponentFixture<ConfigurationStepFooterSectionComponent>;
 

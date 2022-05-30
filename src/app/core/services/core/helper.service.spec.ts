@@ -18,7 +18,7 @@ describe('HelperService', () => {
 
   it('clearSearchText service check', () => {
     const form=new FormGroup({
-      searchOption: new FormControl('fyle'),
+      searchOption: new FormControl('fyle')
     });
     service.clearSearchText(form);
     expect(form.controls.searchOption.value).toBeNull();
@@ -33,7 +33,7 @@ describe('HelperService', () => {
       id: '1',
       name: 'fyle'
     };
-    expect(service.compareObjects(source_field,destination_field)).toBeTrue();
+    expect(service.compareObjects(source_field, destination_field)).toBeTrue();
   });
 
   it('compareObjects service check for false', () => {
@@ -45,13 +45,13 @@ describe('HelperService', () => {
       id: '2',
       name: 'fyler'
     };
-    expect(service.compareObjects(source_field,destination_field)).toBeFalse();
+    expect(service.compareObjects(source_field, destination_field)).toBeFalse();
   });
 
   it('compareObjects service check for true for type', () => {
     const source_field = 'Fyle';
     const destination_field= 'Fyle';
-    expect(service.compareObjects(source_field,destination_field)).toBeTrue();
+    expect(service.compareObjects(source_field, destination_field)).toBeTrue();
   });
 
 });

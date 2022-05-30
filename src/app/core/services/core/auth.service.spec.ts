@@ -26,10 +26,11 @@ describe('AuthService', () => {
 
   it('isLoggedIn is working', () => {
     const result = service.isLoggedIn();
-    if (result == true)
+    if (result) {
       expect(result).toBeTrue();
-    else
+    } else {
       expect(result).toBeFalse();
+    }
   });
 
   it('logout() service check', () => {
@@ -64,7 +65,7 @@ describe('AuthService', () => {
     });
     const req = httpMock.expectOne({
       method: 'POST',
-      url: `${API_BASE_URL}/auth/login/`,
+      url: `${API_BASE_URL}/auth/login/`
     });
     req.flush(response);
   });
@@ -83,7 +84,7 @@ describe('AuthService', () => {
     });
     const req = httpMock.expectOne({
       method: 'POST',
-      url: `${API_BASE_URL}/auth/refresh/`,
+      url: `${API_BASE_URL}/auth/refresh/`
     });
     req.flush(response);
   });

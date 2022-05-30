@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { ExpenseGroup, ExpenseGroupList, ExpenseGroupResponse } from 'src/app/core/models/db/expense-group.model';
-import { FyleReferenceType, PaginatorPage } from 'src/app/core/models/enum/enum.model';
+import { FyleReferenceType, PaginatorPage, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { DateFilter, SelectedDateFilter } from 'src/app/core/models/misc/date-filter.model';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
 
 @Component({
   selector: 'app-export-log',
@@ -56,13 +57,28 @@ export class ExportLogComponent implements OnInit {
     }
   ];
 
+  PaginatorPage = PaginatorPage;
+
+  SimpleSearchPage = SimpleSearchPage;
+
+  SimpleSearchType = SimpleSearchType;
+
   constructor(
     public dialog: MatDialog,
     private exportLogService: ExportLogService,
     private formBuilder: FormBuilder,
     public helperService: HelperService,
-    private paginatorService: PaginatorService
+    private paginatorService: PaginatorService,
+    private trackingService: TrackingService
   ) { }
+
+  private trackDateFilter(filterType: 'existing' | 'custom', selectedDateFilter: SelectedDateFilter): void {
+    const trackingProperty = {
+      filterType,
+      ...selectedDateFilter
+    };
+    this.trackingService.onDateFilter(trackingProperty);
+  }
 
   private setupForm(): void {
     this.exportLogForm = this.formBuilder.group({
@@ -87,6 +103,8 @@ export class ExportLogComponent implements OnInit {
           endDate: dateRange.endDate
         };
 
+        this.trackDateFilter('existing', this.selectedDateFilter);
+
         const paginator: Paginator = this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
         this.getExpenseGroups(paginator);
       }
@@ -110,6 +128,8 @@ export class ExportLogComponent implements OnInit {
       startDate: this.exportLogForm.controls.start.value,
       endDate: this.exportLogForm.controls.end.value
     };
+
+    this.trackDateFilter('custom', this.selectedDateFilter);
 
     const paginator: Paginator = this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
     this.getExpenseGroups(paginator);

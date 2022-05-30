@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="center center" class="configuration--section" [ngClass]="[isOnboarding ? 'configuration--onboarding-section' : '', !isOnboarding ? 'configuration--post-onboarding-section': '']">
   <app-loader [ngClass]="{'loader-main': !isOnboarding}" [phase]="'pre_onboarding'" *ngIf="isLoading"></app-loader>
   <div *ngIf="!isLoading" class="configuration--contents">
-    <app-configuration-step-header-section [showSyncButton]="isOnboarding"></app-configuration-step-header-section>
+    <app-configuration-step-header-section [showSyncButton]="isOnboarding" [phase]="isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING"></app-configuration-step-header-section>
     <form [formGroup]="exportSettingsForm">
       <app-configuration-select-field
         [form]="exportSettingsForm"
@@ -35,6 +35,7 @@
           [subLabel]="'Choose the type of transaction in Quickbooks Online to export your Fyle expenses.'"
           [placeholder]="'Select expense export type'"
           [formControllerName]="'reimbursableExportType'"
+          [phase]="isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING"
           >
         </app-configuration-select-field>
 
@@ -130,6 +131,7 @@
           [subLabel]="'Choose the type of transaction in Quickbooks Online to export your corporate card expense from Fyle.'"
           [placeholder]="'Select expense export type'"
           [formControllerName]="'creditCardExportType'"
+          [phase]="isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING"
           >
         </app-configuration-select-field>
 

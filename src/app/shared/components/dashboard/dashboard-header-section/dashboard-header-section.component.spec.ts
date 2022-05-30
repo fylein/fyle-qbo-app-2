@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardHeaderSectionComponent } from './dashboard-header-section.component';
 
-describe('DashboardHeaderSectionComponent', () => {
+xdescribe('DashboardHeaderSectionComponent', () => {
   let component: DashboardHeaderSectionComponent;
   let fixture: ComponentFixture<DashboardHeaderSectionComponent>;
 

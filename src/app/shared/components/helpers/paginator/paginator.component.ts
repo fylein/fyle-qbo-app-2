@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ClickEvent, PaginatorPage, UpdateEvent } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
 
 @Component({
   selector: 'app-paginator',
@@ -21,12 +23,23 @@ export class PaginatorComponent implements OnInit, OnChanges {
 
   @Input() totalCount: number;
 
+  @Input() page: PaginatorPage;
+
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private trackingService: TrackingService
   ) { }
 
   private onPageSizeChangeWatcher(): void {
     this.form.controls.pageLimit.valueChanges.subscribe(limit => {
+      this.trackingService.onUpdateEvent(
+        UpdateEvent.PAGE_SIZE,
+        {
+          page: this.page,
+          oldState: this.limit,
+          newState: limit
+        }
+      );
       this.pageChangeEvent.emit({
         limit: limit,
         offset: 0,
@@ -35,19 +48,20 @@ export class PaginatorComponent implements OnInit, OnChanges {
     });
   }
 
-  onPageChangeHandler(event: 'CHANGE' | 'FORWARD' | 'BACKWARD'): void {
+  onPageChangeHandler(event: 'CHANGE' | 'FORWARD' | 'BACKWARD'): void | false {
+    const eventName: ClickEvent = this.page === PaginatorPage.EXPORT_LOG ? ClickEvent.EXPORT_LOG_PAGE_NAVIGATION : ClickEvent.MAPPING_PAGE_NAVIGATION;
     if (event === 'CHANGE') {
       if (this.form.controls.page.value) {
         if (this.form.controls.page.value > this.totalPageCount || this.form.controls.page.value < 1) {
-          return;
+          return false;
         }
         return this.pageChangeEvent.emit({
           limit: this.limit,
           offset: (this.form.controls.page.value *  this.limit) - this.limit
         });
-      } else {
-        return;
       }
+
+      return false;
     }
 
     let offset: number = this.form.get('offset')?.value;
@@ -55,17 +69,18 @@ export class PaginatorComponent implements OnInit, OnChanges {
     let newPage: number = 0;
     if (event === 'FORWARD') {
       if (this.form.value.page >= this.totalPageCount) {
-        return;
+        return false;
       }
       newPage = currentPage + 1;
       offset = this.form.get('offset')?.value + this.limit;
     } else if (event === 'BACKWARD') {
       if (this.form.value.page <= 1) {
-        return;
+        return false;
       }
       newPage = currentPage - 1;
       offset = this.form.get('offset')?.value - this.limit;
     }
+    this.trackingService.onClickEvent(eventName, {previousPageNumber: currentPage, newPageNumber: newPage});
 
     if (event === 'BACKWARD' || event === 'FORWARD') {
       this.form.get('offset')?.setValue(offset);
@@ -76,6 +91,8 @@ export class PaginatorComponent implements OnInit, OnChanges {
       limit: this.form.get('pageLimit')?.value,
       offset: offset
     });
+
+    return false;
   }
 
   private createWatchers(): void {
