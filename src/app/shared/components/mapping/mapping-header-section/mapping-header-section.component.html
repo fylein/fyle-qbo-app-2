@@ -1,4 +1,3 @@
-<div class="mapping--bg"></div>
 <div fxLayout="row" fxLayoutAlign="space-between center" class="mapping--stats-section">
   <div fxLayout="row" fxLayoutAlign="space-around center">
     <div class="mapping-header-section--card pointer" [ngClass]="{'mapping-header-section--card-active': totalCardActive}" (click)="switchView(true)">
@@ -27,7 +26,7 @@
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="space-between center" class="mapping-header-section--auto-map-btn-section">
-    <div matTooltip="Instantly sync and automap the employees in Fyle and QBO by {{ autoMapEmployee | titlecase | snakeCaseToSpaceCase }}" matTooltipPosition="left" *ngIf="autoMapEmployee" class="mapping-header-section--auto-map-btn pointer" fxLayout="row" fxLayoutAlign="space-between center" (click)="triggerAutoMapEmployee()">
+    <div matTooltip="Instantly sync and automap the employees in Fyle and QBO by {{ autoMapEmployee | titlecase | snakeCaseToSpaceCase }}" matTooltipPosition="left" matTooltipClass="left" *ngIf="autoMapEmployee" class="mapping-header-section--auto-map-btn pointer" fxLayout="row" fxLayoutAlign="space-between center" (click)="triggerAutoMapEmployee()">
       <img src="assets/images/svgs/general/auto-map.svg" width="16px" height="16px" class="btn-cta-text-with-icon">
       <h5 class="btn-icon mapping-header-section--auto-map-btn-text align-center">
         Automap Employee(s)

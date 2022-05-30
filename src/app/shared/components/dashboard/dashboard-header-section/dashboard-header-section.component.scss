@@ -1,8 +1,20 @@
 .dashboard-header-section {
-  &--bg {
+  &--bg-top {
     background: linear-gradient(97.33deg, #E1EEFF 26.8%, #FFE4FB 97.18%);
     position: absolute;
     height: 282px;
+    z-index: -1;
+    width: 86.4%;
+    @media only screen and (max-width: 1440px) {
+      width: 81.9%;
+    }
+  }
+
+  &--bg-bottom {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FAFAFA 100%);
+    position: absolute;
+    top: 162px;
+    height: 192px;
     z-index: -1;
     width: 86.4%;
     @media only screen and (max-width: 1440px) {

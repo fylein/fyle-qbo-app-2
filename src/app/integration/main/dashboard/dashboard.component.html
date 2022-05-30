@@ -127,7 +127,7 @@
       <div class="errors--section" [ngClass]="{'errors--zero-state-section': !errors || !errors?.EMPLOYEE_MAPPING?.length && !errors?.CATEGORY_MAPPING?.length && !errors?.TAX_MAPPING?.length && !errors?.QBO_ERROR?.length}">
         <p class="errors--header" fxLayout="row">
           Errors
-          <img src="assets/images/svgs/general/info.svg" class="errors--info-icon" width="16px" height="16px" matTooltip="Expenses failed to export due to the following errors. Resolve them before trying to re-export again." matTooltipPosition="right" />
+          <img src="assets/images/svgs/general/info.svg" class="errors--info-icon" width="16px" height="16px" matTooltip="Expenses failed to export due to the following errors. Resolve them before trying to re-export again." matTooltipPosition="right" matTooltipClass="right" />
         </p>
         <p class="errors--header-divider"></p>
 
