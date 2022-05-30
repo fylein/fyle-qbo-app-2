@@ -5,6 +5,7 @@ import { AutoMapEmployee, EmployeeFieldMapping, OnboardingState } from '../../mo
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
 import { EmployeeSettingPost, EmployeeSettingGet } from '../../models/configuration/employee-setting.model';
+import { HttpErrorResponse, HttpEventType, HttpHeaders } from '@angular/common/http';
 
 describe('ApiService', () => {
   let service: ApiService;
@@ -37,20 +38,35 @@ describe('ApiService', () => {
       qbo_realm_id: "",
       cluster_domain: "",
       onboarding_state: OnboardingState.CONNECTION,
-      last_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
+      last_synced_at: new Date("2022-04-13T10:29:18.796760Z") ,
       source_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       destination_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       created_at: new Date("2022-04-13T10:29:18.796760Z"),
-      updated_at: new Date("2022-04-13T10:29:18.796760Z")
+      updated_at: new Date("2022-04-13T10:29:18.796760Z"),
     };
-    service.post('/workspaces/', {}).subscribe((value) => {
+    service.post('/workspaces/',{}).subscribe((value) => {
       expect(value).toEqual(responseKeys);
     });
     const req = httpMock.expectOne({
       method: 'POST',
-      url: `${API_BASE_URL}/workspaces/`
+      url: `${API_BASE_URL}/workspaces/`,
     });
   req.flush(responseKeys);
+  });
+
+  it('Post service error', () => {
+    const responseKeys = { status: 404, statusText: "Not Found" };
+    service.post('/workspaces/',{}).subscribe((value) => {
+      expect(value).toEqual(responseKeys);
+    },
+    error => {
+      expect(error.status).toBe(404);
+    });
+    const req = httpMock.expectOne({
+      method: 'POST',
+      url: `${API_BASE_URL}/workspaces/`,
+    });
+  req.flush('',responseKeys);
   });
 
   it('Get service', () => {
@@ -63,20 +79,35 @@ describe('ApiService', () => {
       qbo_realm_id: "",
       cluster_domain: "",
       onboarding_state: OnboardingState.CONNECTION,
-      last_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
+      last_synced_at: new Date("2022-04-13T10:29:18.796760Z") ,
       source_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       destination_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       created_at: new Date("2022-04-13T10:29:18.796760Z"),
-      updated_at: new Date("2022-04-13T10:29:18.796760Z")
+      updated_at: new Date("2022-04-13T10:29:18.796760Z"),
     };
-    service.get("/workspaces/", {org_id: 1}).subscribe(value => {
+    service.get("/workspaces/",{org_id: 1}).subscribe(value => {
       expect(value).toEqual(responseKeys);
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/?org_id=1`
+      url: `${API_BASE_URL}/workspaces/?org_id=1`,
     });
   req.flush(responseKeys);
+  });
+
+  it('Get service error', () => {
+    const responseKeys = { status: 404, statusText: "Not Found" };
+    service.get("/workspaces/",{org_id: 1}).subscribe(value => {
+      console.log("ss");
+    },
+    error=>{
+      expect(error.status).toBe(404);
+    });
+    const req = httpMock.expectOne({
+      method: 'GET',
+      url: `${API_BASE_URL}/workspaces/?org_id=1`,
+    });
+  req.flush('',responseKeys);
   });
 
   it('Put service check', () => {
@@ -90,27 +121,88 @@ describe('ApiService', () => {
       workspace_general_settings: { employee_field_mapping: EmployeeFieldMapping.EMPLOYEE, auto_map_employees: AutoMapEmployee.EMPLOYEE_CODE },
       workspace_id: 1
     };
-    service.put('/v2/workspaces/'+workspace_id+'/map_employees/', employeeSettingPayload).subscribe(value => {
+    service.put('/v2/workspaces/'+workspace_id+'/map_employees/',employeeSettingPayload).subscribe(value =>{
       expect(value).toEqual(response);
     });
     const req = httpMock.expectOne({
       method: 'PUT',
-      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/map_employees/`
+      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/map_employees/`,
     });
     req.flush(response);
+  });
+
+  it('Put service error', () => {
+    const employeeSettingPayload: EmployeeSettingPost = {
+      workspace_general_settings: {
+        employee_field_mapping: EmployeeFieldMapping.EMPLOYEE,
+        auto_map_employees: AutoMapEmployee.EMPLOYEE_CODE
+      }
+    };
+    const responseKeys = { status: 404, statusText: "Not Found" };
+    service.put('/v2/workspaces/'+workspace_id+'/map_employees/',employeeSettingPayload).subscribe(value =>{
+      expect(value).toEqual(responseKeys);
+    },
+    error => {
+      expect(error.status).toBe(404);
+    });
+    const req = httpMock.expectOne({
+      method: 'PUT',
+      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/map_employees/`,
+    });
+  req.flush('',responseKeys);
   });
 
   it('patch service check', () => {
     const response={
       app: 'done'
     };
-    service.patch(`/workspaces/${workspace_id}/`, {app_version: 'v1'}).subscribe((value) => {
+    service.patch(`/workspaces/${workspace_id}/`,{app_version: 'v1'}).subscribe((value)=>{
       expect(value).toBeDefined();
     });
     const req = httpMock.expectOne({
       method: 'PATCH',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/`,
     });
   req.flush(response);
   });
+
+  it('patch service error check', () => {
+    const response={ status: 404, statusText: "Not Found" };
+    service.patch(`/workspaces/${workspace_id}/`,{app_version: 'v1'}).subscribe((value)=>{
+      expect(value).toBeDefined();
+    },
+    error => {
+      expect(error.status).toBe(404);
+    });
+    const req = httpMock.expectOne({
+      method: 'PATCH',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/`,
+    });
+  req.flush('',response);
+  });
+
+  it('Handel error service error check', () => {
+    const errors = new ErrorEvent("error in back end");
+    const response:HttpErrorResponse ={
+      error: errors, status: 404, statusText: "Not Found",
+      name: 'HttpErrorResponse',
+      message: '',
+      ok: false,
+      headers: new HttpHeaders,
+      url: null,
+      type: HttpEventType.ResponseHeader
+    };
+    service.patch(`/workspaces/${workspace_id}/`,{app_version: 'v1'}).subscribe((value)=>{
+      expect(value).toBeDefined();
+    },
+    error => {
+      expect(error.status).toBe(404);
+    });
+    const req = httpMock.expectOne({
+      method: 'PATCH',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/`,
+    });
+  req.flush('',response);
+  });
+
 });

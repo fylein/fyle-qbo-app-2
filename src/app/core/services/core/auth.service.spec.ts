@@ -9,7 +9,7 @@ describe('AuthService', () => {
   let httpMock: HttpTestingController;
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
-
+  let spy: any;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -18,6 +18,7 @@ describe('AuthService', () => {
     injector = getTestBed();
     service = injector.inject(AuthService);
     httpMock = injector.inject(HttpTestingController);
+    
   });
 
   it('should be created', () => {
@@ -28,8 +29,10 @@ describe('AuthService', () => {
     const result = service.isLoggedIn();
     if (result) {
       expect(result).toBeTrue();
-    } else {
+    } else if(!result){
       expect(result).toBeFalse();
+    } else {
+      expect(result).toBeUndefined();
     }
   });
 
@@ -37,6 +40,14 @@ describe('AuthService', () => {
     const result = service.logout();
     expect(result).toBeUndefined();
   });
+
+  it('logout(false) service check', () => {
+    const result = service.logout(true);
+    expect(result).toBeUndefined();
+    // expect(service.logout).toHaveBeenCalled();
+  });
+
+
 
   it('login() service check', () => {
     const response = {
@@ -123,7 +134,17 @@ describe('AuthService', () => {
   });
 
   it('checkLoginStatusAndLogout() service check', () => {
-    expect(service.checkLoginStatusAndLogout()).toBeUndefined();
+    spy = spyOn(service, 'logout');
+    const user = {
+      id:2
+    }
+    localStorage.setItem('user',JSON.stringify(user));
+    service.checkLoginStatusAndLogout();
+    if (service.isLoggedIn()) {
+      expect(service.logout).toHaveBeenCalled();
+    } else {
+      expect(service.checkLoginStatusAndLogout()).toBeUndefined();
+    }
   });
 
 });
