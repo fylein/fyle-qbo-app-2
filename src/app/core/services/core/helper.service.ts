@@ -18,10 +18,10 @@ export class HelperService {
     form.controls.searchOption.patchValue(null);
   }
 
-  compareObjects(selectedOption: DefaultDestinationAttribute, listedOption: DefaultDestinationAttribute): boolean {
+  compareObjects(selectedOption: DefaultDestinationAttribute | string, listedOption: DefaultDestinationAttribute | string): boolean {
     if (selectedOption === listedOption) {
       return true;
-    } else if (selectedOption.id.toString() === listedOption.id && selectedOption.name === listedOption.name) {
+    } else if (typeof selectedOption === 'object' && typeof listedOption === 'object' && selectedOption.id.toString() === listedOption.id && selectedOption.name === listedOption.name) {
       return true;
     }
 

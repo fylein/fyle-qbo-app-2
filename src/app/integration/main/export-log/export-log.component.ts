@@ -151,7 +151,7 @@ export class ExportLogComponent implements OnInit {
       this.totalCount = expenseGroupResponse.count;
       expenseGroupResponse.results.forEach((expenseGroup: ExpenseGroup) => {
         const [type, id, exportType] = this.exportLogService.generateExportTypeAndId(expenseGroup);
-        const referenceType: FyleReferenceType = this.exportLogService.getReferenceNumber(expenseGroup.description);
+        const referenceType: FyleReferenceType = this.exportLogService.getReferenceType(expenseGroup.description);
         let referenceNumber: string = expenseGroup.description[referenceType];
 
         if (referenceType === FyleReferenceType.EXPENSE) {

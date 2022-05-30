@@ -182,4 +182,54 @@ describe('QboConnectorService', () => {
       });
       req.flush(response);
     });
+
+    it('connectQBO service check', () => {
+      const response={
+        id: 1,
+        refresh_token: 'fyle',
+        is_expired: false,
+        realm_id: 'realmId',
+        country: 'india',
+        company_name: 'Fyle',
+        created_at: new Date(),
+        updated_at: new Date(),
+        workspace: +workspace_id
+      };
+      const payload={
+        code: 'yyyyyyy',
+      realm_id: "realmId",
+      redirect_uri: `${environment.app_url}/qbo_callback`
+      };
+
+      service.connectQBO(payload).subscribe(value => {
+        expect(value).toEqual(response);
+      });
+      const req = httpMock.expectOne({
+        method: 'POST',
+        url: `${API_BASE_URL}/workspaces/${workspace_id}/connect_qbo/authorization_code/`
+      });
+      req.flush(response);
+    });
+
+    it('disconnectQBOConnection service check', () => {
+      const response={
+        id: 1,
+        refresh_token: 'fyle',
+        is_expired: false,
+        realm_id: 'realmId',
+        country: 'india',
+        company_name: 'Fyle',
+        created_at: new Date(),
+        updated_at: new Date(),
+        workspace: +workspace_id
+      };
+      service.disconnectQBOConnection().subscribe(value => {
+        expect(value).toEqual(response);
+      });
+      const req = httpMock.expectOne({
+        method: 'PATCH',
+        url: `${API_BASE_URL}/workspaces/${workspace_id}/credentials/qbo/`
+      });
+      req.flush(response);
+    });
 });
