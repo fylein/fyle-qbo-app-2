@@ -24,6 +24,7 @@ do
     sed -i $SED_EXTRA_ARGS "s?{{SENTRY_ENV}}?${SENTRY_ENV}?g" $f;
     sed -i $SED_EXTRA_ARGS "s?{{RELEASE}}?${RELEASE}?g" $f;
     sed -i $SED_EXTRA_ARGS "s?{{CLARITY_PROJECT_ID}}?${CLARITY_PROJECT_ID}?g" $f;
+    sed -i $SED_EXTRA_ARGS "s?{{REFINER_PROJECT_ID}}?${REFINER_PROJECT_ID}?g" $f;
 
 done
 

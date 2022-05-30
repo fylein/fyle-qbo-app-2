@@ -211,3 +211,8 @@ export enum SimpleSearchType {
   TEXT_FIELD = 'Text Field',
   SELECT_FIELD = 'Select Field'
 }
+
+export enum RefinerSurveyType {
+  ONBOARDING_DONE = 'Onboarding Done',
+  EXPORT_DONE = 'Export Done'
+}

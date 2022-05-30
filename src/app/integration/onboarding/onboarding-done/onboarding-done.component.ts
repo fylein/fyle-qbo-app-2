@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ClickEvent, OnboardingStep, ProgressPhase } from 'src/app/core/models/enum/enum.model';
+import { ClickEvent, OnboardingStep, ProgressPhase, RefinerSurveyType } from 'src/app/core/models/enum/enum.model';
+import { RefinerService } from 'src/app/core/services/core/refiner.service';
 import { TrackingService } from 'src/app/core/services/core/tracking.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class OnboardingDoneComponent implements OnInit {
   private readonly sessionStartTime = new Date();
 
   constructor(
+    private refinerService: RefinerService,
     private router: Router,
     private trackingService: TrackingService
   ) { }
@@ -26,6 +28,7 @@ export class OnboardingDoneComponent implements OnInit {
   navigateToDashboard(): void {
     this.trackSessionTime();
     this.trackingService.onClickEvent(ClickEvent.CONNECT_QBO);
+    this.refinerService.triggerSurvey(RefinerSurveyType.ONBOARDING_DONE);
     this.router.navigate([`/workspaces/main/dashboard`]);
   }
 
