@@ -1,4 +1,8 @@
 .advanced-settings {
+  ::ng-deep .mat-select-value {
+    width: 91%;
+  }
+
   &--schedule-frequency-section {
     padding: 32px 0 24px 0px;
     padding-left: 40px;
@@ -33,10 +37,6 @@
   }
 
   &--memo-preview-select {
-    ::ng-deep .mat-select-value {
-      width: 96.7%;
-    }
-
     ::ng-deep .mat-select-panel-wrap {
       // TODO: check this
       margin-left: 7% !important;
