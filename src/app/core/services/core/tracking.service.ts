@@ -18,15 +18,19 @@ export class TrackingService {
   constructor() { }
 
   private flattenObject(ob: any): any {
-    let toReturn: any = {};
+    const toReturn: any = {};
 
-    for (let i in ob) {
-        if (!ob.hasOwnProperty(i)) continue;
+    for (const i in ob) {
+        if (!ob.hasOwnProperty(i)) {
+          continue;
+        }
 
-        if ((typeof ob[i]) == 'object' && ob[i] !== null) {
-          let flatObject = this.flattenObject(ob[i]);
-            for (let x in flatObject) {
-                if (!flatObject.hasOwnProperty(x)) continue;
+        if ((typeof ob[i]) === 'object' && ob[i] !== null) {
+          const flatObject = this.flattenObject(ob[i]);
+            for (const x in flatObject) {
+                if (!flatObject.hasOwnProperty(x)) {
+                  continue;
+                }
 
                 toReturn[i + '.' + x] = flatObject[x];
             }
