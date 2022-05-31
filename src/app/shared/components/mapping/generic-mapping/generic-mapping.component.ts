@@ -52,6 +52,8 @@ export class GenericMappingComponent implements OnInit {
 
   mappingForm: FormGroup[];
 
+  page: string;
+
   PaginatorPage = PaginatorPage;
 
   constructor(
@@ -68,8 +70,7 @@ export class GenericMappingComponent implements OnInit {
     if (!totalCardActive) {
       eventName = ClickEvent.UNMAPPED_MAPPINGS_FILTER;
     }
-    // TODO: test this
-    this.trackingService.onClickEvent(eventName, {page: `${new TitleCasePipe().transform(new SnakeCaseToSpaceCase().transform(this.mappingSetting.source_field))} Mapping`});
+    this.trackingService.onClickEvent(eventName, {page: this.page});
 
     this.totalCardActive = totalCardActive;
     this.form.controls.sourceUpdated.patchValue(true);
@@ -181,6 +182,7 @@ export class GenericMappingComponent implements OnInit {
     this.mappingService.getMappingSettings().subscribe((mappingSettingResponse: MappingSettingResponse) => {
       const mappingSetting = mappingSettingResponse.results.filter((mappingSetting) => mappingSetting.source_field === this.sourceType.toUpperCase());
       this.mappingSetting = mappingSetting.length ? mappingSetting[0] : {source_field: FyleField.CATEGORY, destination_field: QBOField.ACCOUNT};
+      this.page = `${new TitleCasePipe().transform(new SnakeCaseToSpaceCase().transform(this.mappingSetting.source_field))} Mapping`;
       this.mappingService.getMappingStats(this.sourceType.toUpperCase(), this.mappingSetting.destination_field).subscribe((mappingStats: MappingStats) => {
         this.mappingStats = mappingStats;
 
