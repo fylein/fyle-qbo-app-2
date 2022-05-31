@@ -3,7 +3,7 @@ import { AdvancedSettingPost } from '../../models/configuration/advanced-setting
 import { EmployeeSettingPost } from '../../models/configuration/employee-setting.model';
 import { ExportSettingPost } from '../../models/configuration/export-setting.model';
 import { ImportSettingPost } from '../../models/configuration/import-setting.model';
-import { Action, ClickEvent, CorporateCreditCardExpensesObject, ErrorType, FyleField, OnboardingStep, PaginatorPage, ProgressPhase, ReimbursableExpensesObject, SimpleSearchPage, SimpleSearchType, UpdateEvent } from '../../models/enum/enum.model';
+import { Action, ClickEvent, OnboardingStep, ProgressPhase, SimpleSearchPage, SimpleSearchType, UpdateEvent } from '../../models/enum/enum.model';
 import { ClickEventAdditionalProperty, MappingAlphabeticalFilterAdditionalProperty, ResolveMappingErrorProperty, TimeTakenAdditionalProperty, UpdateEventAdditionalProperty } from '../../models/misc/tracking.model';
 
 @Injectable({
@@ -17,13 +17,34 @@ export class TrackingService {
 
   constructor() { }
 
+  private flattenObject(ob: any): any {
+    let toReturn: any = {};
+
+    for (let i in ob) {
+        if (!ob.hasOwnProperty(i)) continue;
+
+        if ((typeof ob[i]) == 'object' && ob[i] !== null) {
+          let flatObject = this.flattenObject(ob[i]);
+            for (let x in flatObject) {
+                if (!flatObject.hasOwnProperty(x)) continue;
+
+                toReturn[i + '.' + x] = flatObject[x];
+            }
+        } else {
+            toReturn[i] = ob[i];
+        }
+    }
+    return toReturn;
+}
+
   get tracking() {
     return (window as any).analytics;
   }
 
   eventTrack(action: string, properties: any = {}): void {
+    const flattenObject = this.flattenObject(properties);
     properties = {
-      ...properties,
+      ...flattenObject,
       Asset: 'QBO-2 Web'
     };
     if (this.tracking) {
