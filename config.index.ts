@@ -23,6 +23,10 @@ const envConfigFile = `export const environment = {
       refresh_token: '${process.env.TESTS_USER_REFRESH_TOKEN}',
     },
     workspaceId: '${process.env.TESTS_WORKSPACEID}'
+  },
+  refiner_survey: {
+    onboarding_done_survery_id: 'xyz',
+    export_done_survery_id: 'xyz'
   }
 };
 `;
