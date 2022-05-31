@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
+import { MappingAlphabeticalFilterAdditionalProperty } from 'src/app/core/models/misc/tracking.model';
+import { TrackingService } from 'src/app/core/services/core/tracking.service';
 
 @Component({
   selector: 'app-mapping-filter',
@@ -13,6 +15,8 @@ export class MappingFilterComponent implements OnInit {
 
   @Input() searchTerm: string;
 
+  @Input() page: string;
+
   filterOptions: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
   @Output() mappingFilterUpdateHandler = new EventEmitter<{}>();
@@ -21,10 +25,23 @@ export class MappingFilterComponent implements OnInit {
 
   SimpleSearchType = SimpleSearchType;
 
-  constructor() { }
+  constructor(
+    private trackingService: TrackingService
+  ) { }
+
+  private trackAlphabeticalFilter(allSelected: boolean = false): void {
+    const properties: MappingAlphabeticalFilterAdditionalProperty = {
+      alphabetList: allSelected ? [] : this.form.value.filterOption,
+      allSelected: allSelected,
+      page: this.page
+    };
+    this.trackingService.onMappingsAlphabeticalFilter(properties);
+  }
 
   addAllFilterHandler(): void {
     this.form.controls.filterOption.patchValue([]);
+
+    this.trackAlphabeticalFilter(true);
 
     this.mappingFilterUpdateHandler.emit({});
   }
@@ -38,6 +55,7 @@ export class MappingFilterComponent implements OnInit {
       this.form.value.filterOption.push(alphabet);
     }
 
+    this.trackAlphabeticalFilter();
     this.mappingFilterUpdateHandler.emit({});
   }
 

@@ -3,7 +3,7 @@
 
   <div class="mapping--core-section">
     <div class="mapping--core-section-content">
-      <app-mapping-filter [form]="form" [searchTerm]="'Employee Email'" (mappingFilterUpdateHandler)="getMappings()"></app-mapping-filter>
+      <app-mapping-filter [page]="'Employee Mapping'" [form]="form" [searchTerm]="'Employee Email'" (mappingFilterUpdateHandler)="getMappings()"></app-mapping-filter>
 
       <div *ngIf="!isLoading" class="mapping--table">
         <app-mapping-table [mappings]="mappings" [sourceType]="'EMPLOYEE'" [destinationType]="employeeFieldMapping" [qboData]="qboData" [mappingForm]="mappingForm" (mappingSaveHandler)="save($event)"></app-mapping-table>

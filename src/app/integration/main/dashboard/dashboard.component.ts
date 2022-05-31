@@ -16,6 +16,7 @@ import { ExportableExpenseGroup } from 'src/app/core/models/db/expense-group.mod
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
 import { ExpenseGroupSetting } from 'src/app/core/models/db/expense-group-setting.model';
 import { TrackingService } from 'src/app/core/services/core/tracking.service';
+import { ResolveMappingErrorProperty } from 'src/app/core/models/misc/tracking.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -167,7 +168,28 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  private showErrorStats(): void {
+  private trackTimeTakenForResolvingMappingErrors(eventStartTime: Date, errorType: ErrorType): void {
+    if (errorType === ErrorType.CATEGORY_MAPPING || errorType === ErrorType.EMPLOYEE_MAPPING || errorType === ErrorType.TAX_MAPPING) {
+      const error = this.groupedErrorStat[errorType];
+
+      if (error?.totalCount && error?.totalCount > 0) {
+        const properties: ResolveMappingErrorProperty = {
+          resolvedCount: error?.resolvedCount ? error?.resolvedCount : 0,
+          totalCount: error?.totalCount ? error?.totalCount : 0,
+          unresolvedCount: error?.totalCount - error?.resolvedCount,
+          resolvedAllErrors: error.resolvedCount === error.totalCount,
+          startTime: eventStartTime,
+          endTime: new Date(),
+          durationInSeconds: Math.floor((new Date().getTime() - eventStartTime.getTime()) / 1000),
+          errorType: errorType
+        };
+
+        this.trackingService.onErrorResolve(properties);
+      }
+    }
+  }
+
+  private showErrorStats(eventStartTime: Date, errorType: ErrorType): void {
     this.getExportErrors$.subscribe((errors) => {
       const newError: GroupedErrors = this.formatErrors(errors);
 
@@ -199,10 +221,12 @@ export class DashboardComponent implements OnInit {
       }
 
       this.errors = newError;
+      this.trackTimeTakenForResolvingMappingErrors(eventStartTime, errorType);
     });
   }
 
   resolveMappingError(groupedError: Error[]): void {
+    const eventStartTime = new Date();
     const errorType = groupedError[0].type;
     let sourceType: FyleField | null = null;
     let destinationType: QBOField | EmployeeFieldMapping | null = null;
@@ -234,7 +258,7 @@ export class DashboardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.showErrorStats();
+      this.showErrorStats(eventStartTime, errorType);
     });
   }
 
