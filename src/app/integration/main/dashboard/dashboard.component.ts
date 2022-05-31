@@ -4,7 +4,7 @@ import { catchError, map, switchMap, takeWhile } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { Error, GroupedErrors, GroupedErrorStat } from 'src/app/core/models/db/error.model';
 import { LastExport } from 'src/app/core/models/db/last-export.model';
-import { ClickEvent, EmployeeFieldMapping, ErrorType, ExportState, FyleField, FyleReferenceType, QBOField, TaskLogState, TaskLogType } from 'src/app/core/models/enum/enum.model';
+import { ClickEvent, EmployeeFieldMapping, ErrorType, ExportState, FyleField, FyleReferenceType, QBOField, RefinerSurveyType, TaskLogState, TaskLogType } from 'src/app/core/models/enum/enum.model';
 import { DashboardService } from 'src/app/core/services/dashboard/dashboard.service';
 import { DashboardResolveMappingErrorDialogComponent } from 'src/app/shared/components/dashboard/dashboard-resolve-mapping-error-dialog/dashboard-resolve-mapping-error-dialog.component';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
@@ -17,6 +17,7 @@ import { ExportLogService } from 'src/app/core/services/export-log/export-log.se
 import { ExpenseGroupSetting } from 'src/app/core/models/db/expense-group-setting.model';
 import { TrackingService } from 'src/app/core/services/core/tracking.service';
 import { ResolveMappingErrorProperty } from 'src/app/core/models/misc/tracking.model';
+import { RefinerService } from 'src/app/core/services/core/refiner.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -67,6 +68,7 @@ export class DashboardComponent implements OnInit {
     private dashboardService: DashboardService,
     private dialog: MatDialog,
     private exportLogService: ExportLogService,
+    private refinerService: RefinerService,
     private trackingService: TrackingService,
     private userService: UserService,
     private workspaceService: WorkspaceService
@@ -102,6 +104,10 @@ export class DashboardComponent implements OnInit {
           this.exportInProgress = false;
           this.exportProgressPercentage = 0;
           this.processedCount = 0;
+
+          if (this.failedExpenseGroupCount === 0) {
+            this.refinerService.triggerSurvey(RefinerSurveyType.EXPORT_DONE);
+          }
         });
       }
     });

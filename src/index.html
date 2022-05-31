@@ -19,8 +19,9 @@
       })(window, document, "clarity", "script", "{{CLARITY_PROJECT_ID}}");
     }
   </script>
+
+  <!-- segment.io -->
   <script type="text/javascript">
-    // segment.io
     if (window.location.hostname !== "localhost") {
       const segmentId = '{{SEGMENT_ID}}';
 
@@ -28,6 +29,13 @@
         analytics.load(segmentId);
         analytics.page();
       }}();
+    }
+  </script>
+
+  <!-- refiner.io -->
+  <script type="text/javascript">
+    if (window.location.hostname !== "localhost") {
+      window._refinerQueue = window._refinerQueue || []; function _refiner(){_refinerQueue.push(arguments);} _refiner('setProject', '{{REFINER_PROJECT_ID}}'); (function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src="https://js.refiner.io/v001/client.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();
     }
   </script>
 </head>

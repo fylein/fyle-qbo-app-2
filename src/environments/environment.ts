@@ -20,5 +20,9 @@ export const environment = {
     user: {
       refresh_token: '{{TEST_REFRESH_TOKEN}}'
     }
+  },
+  refiner_survey: {
+    onboarding_done_survery_id: '{{REFINER_ONBOARDING_DONE_SURVEY_ID}}',
+    export_done_survery_id: '{{REFINER_EXPORT_DONE_SURVEY_ID}}'
   }
 };
