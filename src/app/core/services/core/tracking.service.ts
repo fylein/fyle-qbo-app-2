@@ -42,9 +42,9 @@ export class TrackingService {
   }
 
   eventTrack(action: string, properties: any = {}): void {
-    const flattenObject = this.flattenObject(properties);
+    const flattenedObject = this.flattenObject(properties);
     properties = {
-      ...flattenObject,
+      ...flattenedObject,
       Asset: 'QBO-2 Web'
     };
     if (this.tracking) {
