@@ -37,10 +37,10 @@
 
       <div class="navbar--profile-section">
         <div (click)="showOrHideProfileDropdown()">
-          <div class="pointer">
+          <div class="pointer" [matTooltip]="user.full_name" [matTooltipDisabled]="user.full_name.length > 20 === false" matTooltipPosition="below" matTooltipClass="below profile-tooltip">
             {{ user.full_name | trimCharacter: 20 }}
           </div>
-          <div class="navbar--user-org navbar--small-text sub-text-color pointer">
+          <div class="navbar--user-org navbar--small-text sub-text-color pointer" [matTooltip]="user.org_name" [matTooltipDisabled]="user.org_name.length > 26 === false" matTooltipPosition="below" matTooltipClass="below">
             {{ user.org_name | trimCharacter: 26 }}
           </div>
         </div>
@@ -53,7 +53,7 @@
                 </p>
               </div>
 
-              <h3 class="profile--name">
+              <h3 class="profile--name" [matTooltip]="user.full_name" [matTooltipDisabled]="user.full_name.length > 20 === false" matTooltipPosition="below" matTooltipClass="below">
                 {{ user.full_name | trimCharacter: 20 }}
               </h3>
             </div>
@@ -67,7 +67,7 @@
 
             <div>
               <div fxLayout="row" fxLayoutAlign="start center" class="profile--org-section">
-                <div class="profile--org-name">
+                <div class="profile--org-name" [matTooltip]="user.org_name" [matTooltipDisabled]="user.org_name.length > 26 === false" matTooltipPosition="below" matTooltipClass="below">
                   {{ user.org_name | trimCharacter: 26 }}
                 </div>
                 <div class="profile--state-pill profile--state-pill-active">
@@ -88,7 +88,7 @@
 
             <div>
               <div fxLayout="row" fxLayoutAlign="start center" class="profile--org-section">
-                <div *ngIf="qboCompanyName" class="profile--org-name">
+                <div *ngIf="qboCompanyName" class="profile--org-name" [matTooltip]="qboCompanyName" [matTooltipDisabled]="qboCompanyName.length > 26 === false" matTooltipPosition="below" matTooltipClass="below">
                   {{ qboCompanyName | trimCharacter: 26 }}
                 </div>
                 <div class="profile--state-pill" [ngClass]="isQboConnected ? 'profile--state-pill-active' : 'profile--state-pill-inactive'">
