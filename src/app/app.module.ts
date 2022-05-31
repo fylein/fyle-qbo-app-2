@@ -11,6 +11,7 @@ import * as Sentry from '@sentry/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
+import { GlobalErrorHandler } from './app.errorhandling';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,10 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
         verticalPosition: 'top'
       }
     },
-    // TODO: handle loading chunk failed -> https://stackoverflow.com/questions/44034039/angular-2-error-loading-chunk-failed
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
+    },
     {
       provide: ErrorHandler,
       useValue: Sentry.createErrorHandler({
