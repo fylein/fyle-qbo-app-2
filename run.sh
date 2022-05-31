@@ -18,7 +18,6 @@ do
     sed -i $SED_EXTRA_ARGS "s?{{QBO_AUTHORIZE_URI}}?${QBO_AUTHORIZE_URI}?g" $f;
     sed -i $SED_EXTRA_ARGS "s?{{QBO_CLIENT_ID}}?${QBO_CLIENT_ID}?g" $f;
     sed -i $SED_EXTRA_ARGS "s?{{QBO_SCOPE}}?${QBO_SCOPE}?g" $f;
-    sed -i $SED_EXTRA_ARGS "s?{{HOTJAR_ID}}?${HOTJAR_ID}?g" $f;
     sed -i $SED_EXTRA_ARGS "s?{{SEGMENT_ID}}?${SEGMENT_ID}?g" $f;
     sed -i $SED_EXTRA_ARGS "s?{{SENTRY_DSN}}?${SENTRY_DSN}?g" $f;
     sed -i $SED_EXTRA_ARGS "s?{{SENTRY_ENV}}?${SENTRY_ENV}?g" $f;

@@ -3,7 +3,7 @@
 
   <div class="mapping--core-section">
     <div class="mapping--core-section-content">
-      <app-mapping-filter [form]="form" [searchTerm]="(sourceType | titlecase | snakeCaseToSpaceCase) + ' name'" (mappingFilterUpdateHandler)="getMappings()"></app-mapping-filter>
+      <app-mapping-filter [page]="page" [form]="form" [searchTerm]="(sourceType | titlecase | snakeCaseToSpaceCase) + ' name'" (mappingFilterUpdateHandler)="getMappings()"></app-mapping-filter>
 
       <div *ngIf="!isLoading" class="mapping--table">
         <app-mapping-table [mappings]="mappings" [sourceType]="mappingSetting.source_field" [destinationType]="mappingSetting.destination_field" [qboData]="qboData" [mappingForm]="mappingForm" (mappingSaveHandler)="save($event)"></app-mapping-table>

@@ -27,7 +27,6 @@ jobs:
         QBO_SCOPE: ${{secrets.QBO_SCOPE}} 
         QBO_AUTHORIZE_URI: ${{secrets.QBO_AUTHORIZE_URI}} 
         QBO_APP_URL: ${{secrets.QBO_APP_URL}} 
-        HOTJAR_ID: ${{secrets.HOTJAR_ID}} 
         SENTRY_DSN: ${{secrets.SENTRY_DSN}} 
         RELEASE: ${{secrets.RELEASE}} 
         FYLE_APP_URL: ${{secrets.FYLE_APP_URL}} 

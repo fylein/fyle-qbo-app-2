@@ -3,8 +3,8 @@ import { AdvancedSettingPost } from '../../models/configuration/advanced-setting
 import { EmployeeSettingPost } from '../../models/configuration/employee-setting.model';
 import { ExportSettingPost } from '../../models/configuration/export-setting.model';
 import { ImportSettingPost } from '../../models/configuration/import-setting.model';
-import { Action, ClickEvent, CorporateCreditCardExpensesObject, FyleField, OnboardingStep, PaginatorPage, ProgressPhase, ReimbursableExpensesObject, SimpleSearchPage, SimpleSearchType, UpdateEvent } from '../../models/enum/enum.model';
-import { ClickEventAdditionalProperty, TimeTakenAdditionalProperty, UpdateEventAdditionalProperty } from '../../models/misc/tracking.model';
+import { Action, ClickEvent, OnboardingStep, ProgressPhase, SimpleSearchPage, SimpleSearchType, UpdateEvent } from '../../models/enum/enum.model';
+import { ClickEventAdditionalProperty, MappingAlphabeticalFilterAdditionalProperty, ResolveMappingErrorProperty, TimeTakenAdditionalProperty, UpdateEventAdditionalProperty } from '../../models/misc/tracking.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +17,38 @@ export class TrackingService {
 
   constructor() { }
 
+  private flattenObject(ob: any): any {
+    const toReturn: any = {};
+
+    for (const i in ob) {
+        if (!ob.hasOwnProperty(i)) {
+          continue;
+        }
+
+        if ((typeof ob[i]) === 'object' && ob[i] !== null) {
+          const flatObject = this.flattenObject(ob[i]);
+            for (const x in flatObject) {
+                if (!flatObject.hasOwnProperty(x)) {
+                  continue;
+                }
+
+                toReturn[i + '.' + x] = flatObject[x];
+            }
+        } else {
+            toReturn[i] = ob[i];
+        }
+    }
+    return toReturn;
+}
+
   get tracking() {
     return (window as any).analytics;
   }
 
   eventTrack(action: string, properties: any = {}): void {
+    const flattenedObject = this.flattenObject(properties);
     properties = {
-      ...properties,
+      ...flattenedObject,
       Asset: 'QBO-2 Web'
     };
     if (this.tracking) {
@@ -94,5 +119,13 @@ export class TrackingService {
   trackTimeSpent(event: OnboardingStep | Action, additionalProperties: Partial<TimeTakenAdditionalProperty>): void {
     const eventName = event !== Action.RESOLVE_ERROR ? `${event} Page` : event;
     this.eventTrack(`Time Spent on ${eventName}`, additionalProperties);
+  }
+
+  onErrorResolve(properties: ResolveMappingErrorProperty): void {
+    this.eventTrack('Resolve Mapping Error', properties);
+  }
+
+  onMappingsAlphabeticalFilter(properties: MappingAlphabeticalFilterAdditionalProperty): void {
+    this.eventTrack('Mappings Alphabetical Filter', properties);
   }
 }
