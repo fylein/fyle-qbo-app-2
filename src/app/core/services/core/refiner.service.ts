@@ -11,8 +11,11 @@ import { WorkspaceService } from '../workspace/workspace.service';
 export class RefinerService {
 
   private readonly onboardingDoneSurveryID: string = environment.refiner_survey.onboarding_done_survery_id;
+
   private readonly exportDoneSurveryID: string = environment.refiner_survey.export_done_survery_id;
+
   private readonly user: MinimalUser = this.userService.getUserProfile();
+
   private readonly workspaceId: string = this.workspaceService.getWorkspaceId();
 
   constructor(
