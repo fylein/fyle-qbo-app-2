@@ -80,10 +80,10 @@ describe('ExportLogService', () => {
       startDate: new Date((new Date().getTime()) - (24*60*60*1000)),
       endDate: new Date()
     };
-    const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getMonth()+1 > 9 ? +dates.startDate.getMonth()+1 : '0'+(+dates.startDate.getMonth()+1)}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}T00:00:00`;
-    const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getMonth()+1 > 9 ? +dates.endDate.getMonth()+1 : '0'+(+dates.endDate.getMonth()+1)}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}T23:59:59`;
-    // Const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}-${+dates.startDate.getMonth()+1}T00:00:00`;
-    // Const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}-${+dates.endDate.getMonth()+1 }T23:59:59`;
+    // Const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getMonth()+1 > 9 ? +dates.startDate.getMonth()+1 : '0'+(+dates.startDate.getMonth()+1)}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}T00:00:00`;
+    // Const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getMonth()+1 > 9 ? +dates.endDate.getMonth()+1 : '0'+(+dates.endDate.getMonth()+1)}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}T23:59:59`;
+    const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}-${+dates.startDate.getMonth()+1}T00:00:00`;
+    const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}-${+dates.endDate.getMonth()+1 }T23:59:59`;
 
     service.getExpenseGroups('COMPLETE', 10, 5, dates ).subscribe(result => {
       expect(result).toEqual(response);
@@ -108,11 +108,11 @@ describe('ExportLogService', () => {
       endDate: new Date()
     };
     // Local
-    const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getMonth()+1 > 9 ? +dates.startDate.getMonth()+1 : '0'+(+dates.startDate.getMonth()+1)}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}T00:00:00`;
-    const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getMonth()+1 > 9 ? +dates.endDate.getMonth()+1 : '0'+(+dates.endDate.getMonth()+1)}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}T23:59:59`;
+    // Const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getMonth()+1 > 9 ? +dates.startDate.getMonth()+1 : '0'+(+dates.startDate.getMonth()+1)}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}T00:00:00`;
+    // Const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getMonth()+1 > 9 ? +dates.endDate.getMonth()+1 : '0'+(+dates.endDate.getMonth()+1)}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}T23:59:59`;
     // While pushing
-    // Const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}-${+dates.startDate.getMonth()+1}T00:00:00`;
-    // Const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}-${+dates.endDate.getMonth()+1 }T23:59:59`;
+    const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}-${+dates.startDate.getMonth()+1}T00:00:00`;
+    const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}-${+dates.endDate.getMonth()+1 }T23:59:59`;
     const exportAt = new Date();
     service.getExpenseGroups('COMPLETE', 10, 5, dates, exportAt).subscribe(result => {
       expect(result).toEqual(response);

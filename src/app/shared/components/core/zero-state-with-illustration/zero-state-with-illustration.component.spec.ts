@@ -12,7 +12,7 @@ import { EXPENSE_GROUP_LISTS } from '../../export-log/export-log-table/export-lo
 
 import { ZeroStateWithIllustrationComponent } from './zero-state-with-illustration.component';
 
-xdescribe('ZeroStateWithIllustrationComponent', () => {
+describe('ZeroStateWithIllustrationComponent', () => {
   let component: ZeroStateWithIllustrationComponent;
   let fixture: ComponentFixture<ZeroStateWithIllustrationComponent>;
   let el: DebugElement;
@@ -30,18 +30,10 @@ xdescribe('ZeroStateWithIllustrationComponent', () => {
     fixture = TestBed.createComponent(ZeroStateWithIllustrationComponent);
     component = fixture.componentInstance;
     el = fixture.debugElement;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('table data testing', () => {
     const form= new FormGroup({
       dateRange: new FormControl([3]),
       start: new FormControl(['12/1/2021']),
-      searchOption: new FormControl(['come']),
+      searchOption: new FormControl('come'),
       end: new FormControl(['12/2/2021'])
     });
     const datefilter: SelectedDateFilter = {
@@ -55,26 +47,146 @@ xdescribe('ZeroStateWithIllustrationComponent', () => {
     component.data = new MatTableDataSource<ExpenseGroupList>(EXPENSE_GROUP_LISTS);
     fixture.detectChanges();
 
-    const expectedExpenseGroupRow = EXPENSE_GROUP_LISTS[0];
+  });
 
-    const exportLogRow = fixture.debugElement.query(By.css('*'));
-    // Const exportedAtDate = exportLogRow[0].children[0].nativeElement.innerText;
-    // Const exportedAtTime = exportLogRow[0].children[1].nativeElement.innerText;
-    // Const employeeName = exportLogRow[1].children[0].nativeElement.innerText;
-    // Const employeeEmail = exportLogRow[1].children[1].nativeElement.innerText;
-    // Const fundSource = exportLogRow[2].nativeElement.innerText;
-    // Const referenceID = exportLogRow[3].nativeElement.innerText;
-    // Const exportType = exportLogRow[4].nativeElement.innerText;
-    // Const qboUrl = exportLogRow[5].nativeElement;
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('Zero state with page = export_log and with dateFilter data testing', () => {
+    const form= new FormGroup({
+      dateRange: new FormControl([3]),
+      start: new FormControl(['12/1/2021']),
+      searchOption: new FormControl('come'),
+      end: new FormControl(['12/2/2021'])
+    });
+    const datefilter: SelectedDateFilter = {
+      startDate: new Date(),
+      endDate: new Date()
+    };
+    component.form = form;
+    component.page = 'export_log';
+    component.searchTerm = 'string';
+    component.dateFilter = datefilter;
+    component.data = new MatTableDataSource<any>([]);
+    fixture.detectChanges();
+
+    const exportLogRow = el.queryAll(By.css('h4'));
+    const exportedText1 = exportLogRow[0].nativeElement.innerHTML;
+    const exportLogRow1 = el.queryAll(By.css('h5'));
+    const exportedText2 = exportLogRow1[0].nativeElement.innerHTML;
 
     expect(exportLogRow).toBeTruthy();
-    // Expect(exportedAtDate).toBeTruthy();
-    // Expect(exportedAtTime).toBeTruthy();
-    // Expect(employeeName).toBe(expectedExpenseGroupRow.employee[0]);
-    // Expect(employeeEmail).toBe(expectedExpenseGroupRow.employee[1]);
-    // Expect(fundSource).toBe(expectedExpenseGroupRow.expenseType);
-    // Expect(referenceID).toBe(expectedExpenseGroupRow.referenceNumber);
-    // Expect(exportType).toBe(expectedExpenseGroupRow.exportedAs);
-    // Expect(qboUrl).toBeTruthy();
+    expect(' Sorry, no results found! ' || ' No records to show yet! ').toEqual(exportedText1);
+    expect(exportedText2).toEqual(' We could not find any exports done on timeline that you have selected ');
+  });
+
+  it('Zero state with page = export_log and with !dateFilter data testing', () => {
+    const form= new FormGroup({
+      dateRange: new FormControl([3]),
+      start: new FormControl(['12/1/2021']),
+      searchOption: new FormControl('come'),
+      end: new FormControl(['12/2/2021'])
+    });
+    component.form = form;
+    component.page = 'export_log';
+    component.searchTerm = 'string';
+    component.dateFilter = null;
+    component.data = new MatTableDataSource<any>([]);
+    fixture.detectChanges();
+
+    const expectedExpenseGroupRow = EXPENSE_GROUP_LISTS[0];
+
+    const exportLogRow = el.queryAll(By.css('h4'));
+    const exportedText1 = exportLogRow[0].nativeElement.innerHTML;
+    const exportLogRow1 = el.queryAll(By.css('h5'));
+    const exportedText2 = exportLogRow1[0].nativeElement.innerHTML;
+
+    expect(exportLogRow).toBeTruthy();
+    expect(exportedText1).toEqual(' Sorry, no results found! ');
+    expect(exportedText2).toEqual(' Looks like your search term does not match any ' +
+    component.searchTerm + ' ');
+  });
+
+  it('Zero state with page = mapping and with dateFilter data testing', () => {
+    const form= new FormGroup({
+      dateRange: new FormControl([3]),
+      start: new FormControl(['12/1/2021']),
+      searchOption: new FormControl('come'),
+      end: new FormControl(['12/2/2021'])
+    });
+    const datefilter: SelectedDateFilter = {
+      startDate: new Date(),
+      endDate: new Date()
+    };
+    component.form = form;
+    component.page = 'mapping';
+    component.searchTerm = 'string';
+    component.dateFilter = datefilter;
+    component.data = new MatTableDataSource<any>([]);
+    fixture.detectChanges();
+
+    const exportLogRow = el.queryAll(By.css('h4'));
+    const exportedText1 = exportLogRow[0].nativeElement.innerHTML;
+    const exportLogRow1 = el.queryAll(By.css('h5'));
+    const exportedText2 = exportLogRow1[0].nativeElement.innerHTML;
+
+    expect(exportLogRow).toBeTruthy();
+    expect(exportedText1).toEqual(' Sorry, no results found! ');
+    expect(exportedText2).toEqual(' Looks like your search term does not match any ' +
+    component.searchTerm + ' ');
+  });
+
+  it('Zero state with page = dashboard and with dateFilter data testing', () => {
+    const form= new FormGroup({
+      dateRange: new FormControl([3]),
+      start: new FormControl(['12/1/2021']),
+      searchOption: new FormControl('come'),
+      end: new FormControl(['12/2/2021'])
+    });
+    const datefilter: SelectedDateFilter = {
+      startDate: new Date(),
+      endDate: new Date()
+    };
+    component.form = form;
+    component.page = 'dashboard';
+    component.searchTerm = 'string';
+    component.dateFilter = datefilter;
+    component.data = new MatTableDataSource<ExpenseGroupList>(EXPENSE_GROUP_LISTS);
+    fixture.detectChanges();
+
+    const exportLogRow = el.query(By.css('div > div > h4'));
+    const exportedText1 = exportLogRow.nativeElement.innerHTML;
+
+    expect(exportLogRow).toBeTruthy();
+    expect('Curious on how exports work in Fyle-QBO integrations?').toEqual(exportedText1);
+  });
+
+  it('Zero state with page = dashboard_error and with dateFilter data testing', () => {
+    const form= new FormGroup({
+      dateRange: new FormControl([3]),
+      start: new FormControl(['12/1/2021']),
+      searchOption: new FormControl('come'),
+      end: new FormControl(['12/2/2021'])
+    });
+    const datefilter: SelectedDateFilter = {
+      startDate: new Date(),
+      endDate: new Date()
+    };
+    component.form = form;
+    component.page = 'dashboard_error';
+    component.searchTerm = 'string';
+    component.dateFilter = datefilter;
+    component.data = new MatTableDataSource<ExpenseGroupList>(EXPENSE_GROUP_LISTS);
+    fixture.detectChanges();
+
+    const exportLogRow = el.query(By.css('div > div > h4'));
+    const exportedText1 = exportLogRow.nativeElement.innerHTML;
+    const exportLogRow1 = el.query(By.css('h5'));
+    const exportedText2 = exportLogRow1.nativeElement.innerHTML;
+
+    expect(exportLogRow).toBeTruthy();
+    expect('Congratulations, you are winning!').toEqual(exportedText1);
+    expect(exportedText2).toEqual(' You exports did not face any error. If they do, you can resolve them right here and re-export successfully. ');
   });
 });
