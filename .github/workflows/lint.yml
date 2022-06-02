@@ -15,9 +15,7 @@ jobs:
         node-version: 14.18
     - name: Install dependencies
       run: npm install
-    - name: Lint
-      run: npm run lint
-    - name: Run linters
+    - name: Run linting checks
       uses: wearerequired/lint-action@v2
       with:
         eslint: true
