@@ -8,7 +8,7 @@ import { WindowService } from '../core/services/core/window.service';
 import { UserService } from '../core/services/misc/user.service';
 import { WorkspaceService } from '../core/services/workspace/workspace.service';
 import * as Sentry from '@sentry/angular';
-import { TrackingService } from '../core/services/core/tracking.service';
+import { TrackingService } from '../core/services/integration/tracking.service';
 import { AppcuesService } from '../core/services/integration/appcues.service';
 
 @Component({

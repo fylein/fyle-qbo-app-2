@@ -11,7 +11,7 @@ import { AutoMapEmployee, ClickEvent, EmployeeFieldMapping, MappingState, Pagina
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
-import { TrackingService } from 'src/app/core/services/core/tracking.service';
+import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 

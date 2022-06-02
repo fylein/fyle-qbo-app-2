@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 import { MappingAlphabeticalFilterAdditionalProperty } from 'src/app/core/models/misc/tracking.model';
-import { TrackingService } from 'src/app/core/services/core/tracking.service';
+import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 
 @Component({
   selector: 'app-mapping-filter',

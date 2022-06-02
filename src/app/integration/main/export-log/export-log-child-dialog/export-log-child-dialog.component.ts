@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import { Expense, ExpenseList } from 'src/app/core/models/db/expense.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { UserService } from 'src/app/core/services/misc/user.service';
-import { TrackingService } from 'src/app/core/services/core/tracking.service';
+import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 
 @Component({
   selector: 'app-export-log-child-dialog',

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angu
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ClickEvent, PaginatorPage, UpdateEvent } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
-import { TrackingService } from 'src/app/core/services/core/tracking.service';
+import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 
 @Component({
   selector: 'app-paginator',

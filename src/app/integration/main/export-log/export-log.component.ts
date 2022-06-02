@@ -10,7 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { DateFilter, SelectedDateFilter } from 'src/app/core/models/misc/date-filter.model';
-import { TrackingService } from 'src/app/core/services/core/tracking.service';
+import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 
 @Component({
   selector: 'app-export-log',
