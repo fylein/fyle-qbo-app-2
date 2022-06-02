@@ -9,7 +9,7 @@ import { MinimalUser } from '../../models/db/user.model';
 import { UserService } from '../misc/user.service';
 import { WorkspaceService } from '../workspace/workspace.service';
 import * as Sentry from '@sentry/angular';
-import { TrackingService } from './tracking.service';
+import { TrackingService } from '../integration/tracking.service';
 
 
 @Injectable({

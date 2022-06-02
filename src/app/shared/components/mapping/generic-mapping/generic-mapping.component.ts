@@ -11,7 +11,7 @@ import { MappingList, MappingModel, MappingStats } from 'src/app/core/models/db/
 import { ClickEvent, FyleField, MappingState, PaginatorPage, QBOField } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
-import { TrackingService } from 'src/app/core/services/core/tracking.service';
+import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { SnakeCaseToSpaceCase } from 'src/app/shared/pipes/snake-case-to-space-case.pipe';
 

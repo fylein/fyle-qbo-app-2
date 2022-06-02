@@ -15,9 +15,9 @@ import { UserService } from 'src/app/core/services/misc/user.service';
 import { ExportableExpenseGroup } from 'src/app/core/models/db/expense-group.model';
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
 import { ExpenseGroupSetting } from 'src/app/core/models/db/expense-group-setting.model';
-import { TrackingService } from 'src/app/core/services/core/tracking.service';
+import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { ResolveMappingErrorProperty } from 'src/app/core/models/misc/tracking.model';
-import { RefinerService } from 'src/app/core/services/core/refiner.service';
+import { RefinerService } from 'src/app/core/services/integration/refiner.service';
 
 @Component({
   selector: 'app-dashboard',

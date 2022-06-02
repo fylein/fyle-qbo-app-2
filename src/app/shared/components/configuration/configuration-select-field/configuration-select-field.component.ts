@@ -8,7 +8,7 @@ import { DestinationAttribute } from 'src/app/core/models/db/destination-attribu
 import { ClickEvent, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ProgressPhase, ReimbursableExpensesObject, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 import { PreviewPage } from 'src/app/core/models/misc/preview-page.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
-import { TrackingService } from 'src/app/core/services/core/tracking.service';
+import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { PreviewDialogComponent } from '../preview-dialog/preview-dialog.component';
 
 @Component({

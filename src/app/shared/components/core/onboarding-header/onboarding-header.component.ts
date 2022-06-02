@@ -10,7 +10,7 @@ import { QboConnectorService } from 'src/app/core/services/configuration/qbo-con
 import { AuthService } from 'src/app/core/services/core/auth.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { StorageService } from 'src/app/core/services/core/storage.service';
-import { TrackingService } from 'src/app/core/services/core/tracking.service';
+import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
