@@ -151,7 +151,12 @@ export enum ConfigurationCtaText {
 
 export enum RedirectLink {
   FYLE_WEBSITE = 'https://fylehq.com/',
-  FYLE_HELP = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks'
+  FYLE_HELP = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks',
+  CONFIGURATION_QBO_CONNECTOR = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks',
+  CONFIGURATION_EMPLOYEE_SETTING = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks',
+  CONFIGURATION_EXPORT_SETTING = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks',
+  CONFIGURATION_IMPORT_SETTING = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks',
+  CONFIGURATION_ADVANCED_SETTING = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks'
 }
 
 export enum ClickEvent {

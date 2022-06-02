@@ -29,8 +29,7 @@
 
     <h4 *ngIf="page === 'dashboard'" class="zero-state-with-illustration--sub-info-section sub-text-color">
       Learn more here
-      <!-- TODO: add link -->
-      <img *ngIf="page === 'dashboard'" class="pointer" src="assets/images/svgs/actions/open-in-new-tab-dashboard.svg" height="12px" width="12px"/>
+      <img *ngIf="page === 'dashboard'" class="pointer" src="assets/images/svgs/actions/open-in-new-tab-dashboard.svg" height="12px" width="12px" (click)="helperService.openExternalLink(RedirectLink.FYLE_HELP)"/>
     </h4>
     <h5 *ngIf="page === 'dashboard_error'" class="zero-state-with-illustration--sub-info-section sub-text-color" [ngClass]="{'zero-state-with-illustration--sub-info-section-error': page === 'dashboard_error'}">
       You exports did not face any error. If they do, you can resolve them right here and re-export successfully.
