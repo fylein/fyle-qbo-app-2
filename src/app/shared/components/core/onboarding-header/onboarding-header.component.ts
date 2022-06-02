@@ -160,6 +160,7 @@ export class OnboardingHeaderComponent implements OnInit {
         orgsCount: this.storageService.get('refresh_token')
       };
 
+      this.trackingService.onSwitchToOldApp();
       this.windowReference.location.href = `${environment.old_qbo_app_url}?local_storage_dump=${JSON.stringify(localStorageDump)}`;
     });
   }
