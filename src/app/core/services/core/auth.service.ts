@@ -48,6 +48,10 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean | null {
+    if (true)
+    {
+      // 
+    }
     return this.userService.getUserProfile() !== null;
   }
 
