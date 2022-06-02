@@ -9,6 +9,7 @@ import { UserService } from '../core/services/misc/user.service';
 import { WorkspaceService } from '../core/services/workspace/workspace.service';
 import * as Sentry from '@sentry/angular';
 import { TrackingService } from '../core/services/core/tracking.service';
+import { AppcuesService } from '../core/services/integration/appcues.service';
 
 @Component({
   selector: 'app-integration',
@@ -26,6 +27,7 @@ export class IntegrationComponent implements OnInit {
   windowReference: Window;
 
   constructor(
+    private appcuesService: AppcuesService,
     private router: Router,
     private storageService: StorageService,
     private trackingService: TrackingService,
@@ -78,6 +80,7 @@ export class IntegrationComponent implements OnInit {
       this.storageService.set('currency', workspace.fyle_currency);
       this.storageService.set('onboardingState', workspace.onboarding_state);
       this.storageService.set('workspaceCreatedAt', workspace.created_at);
+      this.appcuesService.initialiseAppcues();
       this.workspaceService.syncFyleDimensions().subscribe();
       this.workspaceService.syncQBODimensions().subscribe();
       this.isLoading = false;
