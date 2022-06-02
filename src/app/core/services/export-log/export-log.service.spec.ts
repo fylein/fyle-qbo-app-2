@@ -77,22 +77,29 @@ describe('ExportLogService', () => {
     };
 
     const dates = {
-      startDate: new Date((new Date().getTime()) - (24*60*60*1000)),
+      startDate: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
       endDate: new Date()
     };
-    // Const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getMonth()+1 > 9 ? +dates.startDate.getMonth()+1 : '0'+(+dates.startDate.getMonth()+1)}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}T00:00:00`;
-    // Const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getMonth()+1 > 9 ? +dates.endDate.getMonth()+1 : '0'+(+dates.endDate.getMonth()+1)}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}T23:59:59`;
-    const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}-${+dates.startDate.getMonth()+1}T00:00:00`;
-    const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}-${+dates.endDate.getMonth()+1 }T23:59:59`;
 
-    service.getExpenseGroups('COMPLETE', 10, 5, dates ).subscribe(result => {
+    service.getExpenseGroups('COMPLETE', 10, 5, dates).subscribe(result => {
       expect(result).toEqual(response);
     });
-    const req = httpMock.expectOne({
-      method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE&start_date=${start_date}&end_date=${end_date}`
-    });
-      req.flush(response);
+
+    const req = httpMock.expectOne(
+      req => req.method === 'GET' && req.url.includes(`${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/`)
+    );
+
+    expect(req.request.params.get('limit')).toBe('10');
+    expect(req.request.params.get('state')).toBe('COMPLETE');
+    expect(req.request.params.get('offset')).toBe('5');
+
+    const startDate = dates.startDate.toLocaleDateString().split('/');
+    const endDate = dates.endDate.toLocaleDateString().split('/');
+
+    expect(req.request.params.get('start_date')).toBe(`${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00`);
+    expect(req.request.params.get('end_date')).toBe(`${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59`);
+
+    req.flush(response);
   });
 
   it('getExpenseGroups service export Date check', () => {
@@ -104,25 +111,30 @@ describe('ExportLogService', () => {
     };
 
     const dates = {
-      startDate: new Date((new Date().getTime()) - (24*60*60*1000)),
+      startDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - new Date().getDay()),
       endDate: new Date()
     };
-    // Local
-    // Const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getMonth()+1 > 9 ? +dates.startDate.getMonth()+1 : '0'+(+dates.startDate.getMonth()+1)}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}T00:00:00`;
-    // Const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getMonth()+1 > 9 ? +dates.endDate.getMonth()+1 : '0'+(+dates.endDate.getMonth()+1)}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}T23:59:59`;
-    // While pushing
-    const start_date = `${dates.startDate.getFullYear()}-${+dates.startDate.getDate() > 9 ? +dates.startDate.getDate() : '0'+(+dates.startDate.getDate())}-${+dates.startDate.getMonth()+1}T00:00:00`;
-    const end_date = `${dates.endDate.getFullYear()}-${+dates.endDate.getDate() > 9 ? +dates.endDate.getDate() : '0'+(+dates.endDate.getDate())}-${+dates.endDate.getMonth()+1 }T23:59:59`;
+
     const exportAt = new Date();
     service.getExpenseGroups('COMPLETE', 10, 5, dates, exportAt).subscribe(result => {
       expect(result).toEqual(response);
     });
-    const time = exportAt.toString().replace(/\s/g, '%20');
-    const req = httpMock.expectOne({
-      method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE&start_date=${start_date}&end_date=${end_date}&exported_at=${time}`
-    });
-      req.flush(response);
+    const req = httpMock.expectOne(
+      req => req.method === 'GET' && req.url.includes(`${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/`)
+    );
+
+    expect(req.request.params.get('limit')).toBe('10');
+    expect(req.request.params.get('state')).toBe('COMPLETE');
+    expect(req.request.params.get('offset')).toBe('5');
+
+    const startDate = dates.startDate.toLocaleDateString().split('/');
+    const endDate = dates.endDate.toLocaleDateString().split('/');
+
+    expect(req.request.params.get('start_date')).toBe(`${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00`);
+    expect(req.request.params.get('end_date')).toBe(`${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59`);
+
+    expect(req.request.params.get('exported_at')).toBeTruthy();
+    req.flush(response);
   });
 
   it('generateFyleUrl() EXPENCE service check', () => {
