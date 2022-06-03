@@ -18,11 +18,11 @@ import { environment } from 'src/environments/environment';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
-  selector: 'app-onboarding-header',
-  templateUrl: './onboarding-header.component.html',
-  styleUrls: ['./onboarding-header.component.scss']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class OnboardingHeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit {
 
   user: MinimalUser;
 

@@ -19,7 +19,7 @@
           <img *ngIf="form.value[formControllerName] === option.value" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
         </mat-option>
 
-        <app-simple-search-select *ngIf="qboAttributes" [page]="SimpleSearchPage.CONFIGURATION" [searchType]="SimpleSearchType.SELECT_FIELD" [form]="form"></app-simple-search-select>
+        <app-simple-text-search *ngIf="qboAttributes" [page]="SimpleSearchPage.CONFIGURATION" [searchType]="SimpleSearchType.SELECT_FIELD" [form]="form"></app-simple-text-search>
         <div *ngFor="let option of qboAttributes | search : form.value.searchOption">
           <mat-option [ngClass]="{'search-zero-state': option && option.value === 'No result found'}" [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" matTooltipClass="above" (click)="helperService.clearSearchText(form)" [value]="{name: option.value, id: option.destination_id}">
             <p (click)="$event.stopPropagation()" *ngIf="option.value === 'No result found'" class="align-center italic">{{ option.value }}</p>
