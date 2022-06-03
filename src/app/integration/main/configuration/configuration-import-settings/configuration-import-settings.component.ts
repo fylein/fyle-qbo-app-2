@@ -7,13 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfigurationImportSettingsComponent implements OnInit {
 
-  isLoading: boolean = true;
-
   constructor() { }
-
-  isLoaded(isLoaded: boolean): void {
-    this.isLoading = !isLoaded;
-  }
 
   ngOnInit(): void {
   }

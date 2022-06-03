@@ -119,8 +119,6 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   reimbursableExportTypes: ExportSettingFormOption[];
 
-  @Output() isLoaded = new EventEmitter<boolean>();
-
   ConfigurationCtaText = ConfigurationCtaText;
 
   ProgressPhase = ProgressPhase;
@@ -477,7 +475,6 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
     this.setCustomValidatorsAndWatchers();
     this.isLoading = false;
-    this.isLoaded.emit(true);
   }
 
   navigateToPreviousStep(): void {

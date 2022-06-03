@@ -53,8 +53,6 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
 
   windowReference: Window;
 
-  @Output() isLoaded = new EventEmitter<boolean>();
-
   ConfigurationCtaText = ConfigurationCtaText;
 
   ProgressPhase = ProgressPhase;
@@ -162,7 +160,6 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
 
     this.setCustomValidatorsAndWatchers();
     this.isLoading = false;
-    this.isLoaded.emit(true);
   }
 
   private getSettingsAndSetupForm(): void {
