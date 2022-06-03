@@ -33,11 +33,11 @@ import { AdvancedSettingsComponent } from './components/configuration/advanced-s
 import { OnboardingFooterComponent } from './components/core/onboarding-footer/onboarding-footer.component';
 import { ConfigurationStepHeaderSectionComponent } from './components/configuration/configuration-step-header-section/configuration-step-header-section.component';
 import { MandatoryFieldComponent } from './components/helpers/mandatory-field/mandatory-field.component';
-import { SimpleSearchSelectComponent } from './components/helpers/simple-search-select/simple-search-select.component';
+import { SimpleTextSearchComponent } from './components/helpers/simple-text-search/simple-text-search.component';
 import { QboConnectorComponent } from './components/configuration/qbo-connector/qbo-connector.component';
 import { ExpenseFieldCreationDialogComponent } from './components/configuration/import-settings/expense-field-creation-dialog/expense-field-creation-dialog.component';
 import { ConfigurationStepFooterSectionComponent } from './components/configuration/configuration-step-footer-section/configuration-step-footer-section.component';
-import { OnboardingHeaderComponent } from './components/core/onboarding-header/onboarding-header.component';
+import { HeaderComponent } from './components/core/header/header.component';
 import { ZeroStateWithIllustrationComponent } from './components/core/zero-state-with-illustration/zero-state-with-illustration.component';
 import { PaginatorComponent } from './components/helpers/paginator/paginator.component';
 import { MappingHeaderSectionComponent } from './components/mapping/mapping-header-section/mapping-header-section.component';
@@ -65,7 +65,7 @@ import { MandatoryErrorMessageComponent } from './components/helpers/mandatory-e
     OnboardingFooterComponent,
     ConfigurationStepHeaderSectionComponent,
     MandatoryFieldComponent,
-    SimpleSearchSelectComponent,
+    SimpleTextSearchComponent,
     QboConnectorComponent,
     TrimCharacterPipe,
     SearchPipe,
@@ -74,7 +74,7 @@ import { MandatoryErrorMessageComponent } from './components/helpers/mandatory-e
     ConfigurationStepFooterSectionComponent,
     ConfigurationSelectFieldComponent,
     ConfigurationToggleFieldComponent,
-    OnboardingHeaderComponent,
+    HeaderComponent,
     ZeroStateWithIllustrationComponent,
     PaginatorComponent,
     MappingHeaderSectionComponent,
@@ -117,7 +117,7 @@ import { MandatoryErrorMessageComponent } from './components/helpers/mandatory-e
     ExportSettingsComponent,
     AdvancedSettingsComponent,
     ConfigurationStepHeaderSectionComponent,
-    SimpleSearchSelectComponent,
+    SimpleTextSearchComponent,
     MandatoryFieldComponent,
     OnboardingFooterComponent,
     TrimCharacterPipe,
@@ -126,8 +126,7 @@ import { MandatoryErrorMessageComponent } from './components/helpers/mandatory-e
     ConfigurationStepFooterSectionComponent,
     ConfigurationSelectFieldComponent,
     ConfigurationToggleFieldComponent,
-    OnboardingHeaderComponent,
-    OnboardingHeaderComponent,
+    HeaderComponent,
     ZeroStateWithIllustrationComponent,
     PaginatorComponent,
     MappingHeaderSectionComponent,

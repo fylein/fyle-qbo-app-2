@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SimpleSearchSelectComponent } from './simple-search-select.component';
+import { SimpleTextSearchComponent } from './simple-text-search.component';
 
-xdescribe('SimpleSearchSelectComponent', () => {
-  let component: SimpleSearchSelectComponent;
-  let fixture: ComponentFixture<SimpleSearchSelectComponent>;
+xdescribe('SimpleTextSearchComponent', () => {
+  let component: SimpleTextSearchComponent;
+  let fixture: ComponentFixture<SimpleTextSearchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SimpleSearchSelectComponent ]
+      declarations: [ SimpleTextSearchComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SimpleSearchSelectComponent);
+    fixture = TestBed.createComponent(SimpleTextSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

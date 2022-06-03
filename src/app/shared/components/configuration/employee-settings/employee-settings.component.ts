@@ -69,8 +69,6 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
 
   windowReference: Window;
 
-  @Output() isLoaded = new EventEmitter<boolean>();
-
   ConfigurationCtaText = ConfigurationCtaText;
 
   private employeeSetting: EmployeeSettingGet;
@@ -208,7 +206,6 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
       });
       this.reimbursableExportType = responses[2].workspace_general_settings?.reimbursable_expenses_object;
       this.isLoading = false;
-      this.isLoaded.emit(true);
     });
   }
 

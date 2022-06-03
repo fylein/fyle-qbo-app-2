@@ -4,11 +4,11 @@ import { SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enu
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 
 @Component({
-  selector: 'app-simple-search-select',
-  templateUrl: './simple-search-select.component.html',
-  styleUrls: ['./simple-search-select.component.scss']
+  selector: 'app-simple-text-search',
+  templateUrl: './simple-text-search.component.html',
+  styleUrls: ['./simple-text-search.component.scss']
 })
-export class SimpleSearchSelectComponent implements OnInit, OnChanges {
+export class SimpleTextSearchComponent implements OnInit, OnChanges {
 
   @Input() form: FormGroup;
 

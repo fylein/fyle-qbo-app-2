@@ -57,8 +57,6 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   windowReference: Window;
 
-  @Output() isLoaded = new EventEmitter<boolean>();
-
   ConfigurationCtaText = ConfigurationCtaText;
 
   ProgressPhase = ProgressPhase;
@@ -178,7 +176,6 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
     this.setCustomValidators();
     this.isLoading = false;
-    this.isLoaded.emit(true);
   }
 
   private getSettingsAndSetupForm(): void {
