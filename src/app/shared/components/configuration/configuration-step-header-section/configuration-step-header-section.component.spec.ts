@@ -48,23 +48,6 @@ describe('ConfigurationStepHeaderSectionComponent', () => {
   });
 
   it('refreshQBODimensions() function check', () => {
-    // SpyOn(component, 'refreshQBODimensions').and.callThrough()
-    // Component.refreshQBODimensions()
-    const responseKeys = {
-      id: 1,
-      name: "Test Sample Statement - GBP",
-      user: [1],
-      fyle_org_id: "orunxXsIajSE",
-      fyle_currency: "ING",
-      qbo_realm_id: "",
-      cluster_domain: "",
-      onboarding_state: OnboardingState.CONNECTION,
-      last_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
-      source_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
-      destination_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
-      created_at: new Date("2022-04-13T10:29:18.796760Z"),
-      updated_at: new Date("2022-04-13T10:29:18.796760Z")
-    };
     expect(component.refreshQBODimensions()).toBeUndefined();
     expect(dialogSpy).toHaveBeenCalled();
 
@@ -72,7 +55,7 @@ describe('ConfigurationStepHeaderSectionComponent', () => {
       method: 'POST',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/refresh_dimensions/`
     });
-  req.flush(responseKeys);
+  req.flush({});
   });
 
 });

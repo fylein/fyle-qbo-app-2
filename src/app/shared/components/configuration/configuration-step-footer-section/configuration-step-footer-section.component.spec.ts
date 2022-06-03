@@ -36,7 +36,7 @@ describe('ConfigurationStepFooterSectionComponent', () => {
     component.showBackButton = true;
     spyOn(component.navigateToPreviousStep, 'emit');
     fixture.detectChanges();
-    const button = fixture.nativeElement.querySelector('.navigate');
+    const button = fixture.nativeElement.querySelector('.configuration--field-section > div');
     button.click();
     expect(component.navigateToPreviousStep.emit).toHaveBeenCalled();
   });

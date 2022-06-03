@@ -4,10 +4,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { By } from '@angular/platform-browser';
 import { ExpenseGroupList } from 'src/app/core/models/db/expense-group.model';
-import { Expense, ExpenseList } from 'src/app/core/models/db/expense.model';
 import { SelectedDateFilter } from 'src/app/core/models/misc/date-filter.model';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { environment } from 'src/environments/environment';
 import { EXPENSE_GROUP_LISTS } from '../../export-log/export-log-table/export-log-table.fixture';
 
 import { ZeroStateWithIllustrationComponent } from './zero-state-with-illustration.component';
@@ -16,8 +14,6 @@ describe('ZeroStateWithIllustrationComponent', () => {
   let component: ZeroStateWithIllustrationComponent;
   let fixture: ComponentFixture<ZeroStateWithIllustrationComponent>;
   let el: DebugElement;
-  const API_BASE_URL = environment.api_url;
-  const workspace_id = environment.tests.workspaceId;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SharedModule],
@@ -71,14 +67,14 @@ describe('ZeroStateWithIllustrationComponent', () => {
     component.data = new MatTableDataSource<any>([]);
     fixture.detectChanges();
 
-    const exportLogRow = el.queryAll(By.css('h4'));
-    const exportedText1 = exportLogRow[0].nativeElement.innerHTML;
-    const exportLogRow1 = el.queryAll(By.css('h5'));
-    const exportedText2 = exportLogRow1[0].nativeElement.innerHTML;
+    const zeroState = el.queryAll(By.css('h4'));
+    const zeroStateText1 = zeroState[0].nativeElement.innerHTML;
+    const zeroState1 = el.queryAll(By.css('h5'));
+    const zeroStateText2 = zeroState1[0].nativeElement.innerHTML;
 
-    expect(exportLogRow).toBeTruthy();
-    expect(' Sorry, no results found! ' || ' No records to show yet! ').toEqual(exportedText1);
-    expect(exportedText2).toEqual(' We could not find any exports done on timeline that you have selected ');
+    expect(zeroState).toBeTruthy();
+    expect(zeroStateText1).toEqual(' Sorry, no results found! ');
+    expect(zeroStateText2).toEqual(' We could not find any exports done on timeline that you have selected ');
   });
 
   it('Zero state with page = export_log and with !dateFilter data testing', () => {
@@ -95,16 +91,14 @@ describe('ZeroStateWithIllustrationComponent', () => {
     component.data = new MatTableDataSource<any>([]);
     fixture.detectChanges();
 
-    const expectedExpenseGroupRow = EXPENSE_GROUP_LISTS[0];
+    const zeroState = el.queryAll(By.css('h4'));
+    const zeroStateText1 = zeroState[0].nativeElement.innerHTML;
+    const zeroState1 = el.queryAll(By.css('h5'));
+    const zeroStateText2 = zeroState1[0].nativeElement.innerHTML;
 
-    const exportLogRow = el.queryAll(By.css('h4'));
-    const exportedText1 = exportLogRow[0].nativeElement.innerHTML;
-    const exportLogRow1 = el.queryAll(By.css('h5'));
-    const exportedText2 = exportLogRow1[0].nativeElement.innerHTML;
-
-    expect(exportLogRow).toBeTruthy();
-    expect(exportedText1).toEqual(' Sorry, no results found! ');
-    expect(exportedText2).toEqual(' Looks like your search term does not match any ' +
+    expect(zeroState).toBeTruthy();
+    expect(zeroStateText1).toEqual(' Sorry, no results found! ');
+    expect(zeroStateText2).toEqual(' Looks like your search term does not match any ' +
     component.searchTerm + ' ');
   });
 
@@ -126,14 +120,14 @@ describe('ZeroStateWithIllustrationComponent', () => {
     component.data = new MatTableDataSource<any>([]);
     fixture.detectChanges();
 
-    const exportLogRow = el.queryAll(By.css('h4'));
-    const exportedText1 = exportLogRow[0].nativeElement.innerHTML;
-    const exportLogRow1 = el.queryAll(By.css('h5'));
-    const exportedText2 = exportLogRow1[0].nativeElement.innerHTML;
+    const zeroState = el.queryAll(By.css('h4'));
+    const zeroStateText1 = zeroState[0].nativeElement.innerHTML;
+    const zeroState1 = el.queryAll(By.css('h5'));
+    const zeroStateText2 = zeroState1[0].nativeElement.innerHTML;
 
-    expect(exportLogRow).toBeTruthy();
-    expect(exportedText1).toEqual(' Sorry, no results found! ');
-    expect(exportedText2).toEqual(' Looks like your search term does not match any ' +
+    expect(zeroState).toBeTruthy();
+    expect(zeroStateText1).toEqual(' Sorry, no results found! ');
+    expect(zeroStateText2).toEqual(' Looks like your search term does not match any ' +
     component.searchTerm + ' ');
   });
 
@@ -155,11 +149,11 @@ describe('ZeroStateWithIllustrationComponent', () => {
     component.data = new MatTableDataSource<ExpenseGroupList>(EXPENSE_GROUP_LISTS);
     fixture.detectChanges();
 
-    const exportLogRow = el.query(By.css('div > div > h4'));
-    const exportedText1 = exportLogRow.nativeElement.innerHTML;
+    const zeroState = el.query(By.css('div > div > h4'));
+    const zeroStateText1 = zeroState.nativeElement.innerHTML;
 
-    expect(exportLogRow).toBeTruthy();
-    expect('Curious on how exports work in Fyle-QBO integrations?').toEqual(exportedText1);
+    expect(zeroState).toBeTruthy();
+    expect(zeroStateText1).toEqual('Curious on how exports work in Fyle-QBO integrations?');
   });
 
   it('Zero state with page = dashboard_error and with dateFilter data testing', () => {
@@ -180,13 +174,13 @@ describe('ZeroStateWithIllustrationComponent', () => {
     component.data = new MatTableDataSource<ExpenseGroupList>(EXPENSE_GROUP_LISTS);
     fixture.detectChanges();
 
-    const exportLogRow = el.query(By.css('div > div > h4'));
-    const exportedText1 = exportLogRow.nativeElement.innerHTML;
-    const exportLogRow1 = el.query(By.css('h5'));
-    const exportedText2 = exportLogRow1.nativeElement.innerHTML;
+    const zeroState = el.query(By.css('div > div > h4'));
+    const zeroStateText1 = zeroState.nativeElement.innerHTML;
+    const zeroState1 = el.query(By.css('h5'));
+    const zeroStateText2 = zeroState1.nativeElement.innerHTML;
 
-    expect(exportLogRow).toBeTruthy();
-    expect('Congratulations, you are winning!').toEqual(exportedText1);
-    expect(exportedText2).toEqual(' You exports did not face any error. If they do, you can resolve them right here and re-export successfully. ');
+    expect(zeroState).toBeTruthy();
+    expect(zeroStateText1).toEqual('Congratulations, you are winning!');
+    expect(zeroStateText2).toEqual(' You exports did not face any error. If they do, you can resolve them right here and re-export successfully. ');
   });
 });

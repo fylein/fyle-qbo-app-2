@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="space-between center"
   class="configuration--field-section configuration--footer-contents">
   <div *ngIf="!showBackButton"></div>
-  <div fxLayout="row" class="navigate" *ngIf="showBackButton" (click)="navigate()">
+  <div fxLayout="row" *ngIf="showBackButton" (click)="navigate()">
     <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--back-btn pointer">
       <img src="assets/images/svgs/actions/arrow-mark-left.svg" class="configuration--back-btn-arrow" width="13.5px" height="11.25px" />
       <h5 class="btn-icon align-center">Back</h5>
