@@ -151,12 +151,13 @@ export enum ConfigurationCtaText {
 
 export enum RedirectLink {
   FYLE_WEBSITE = 'https://fylehq.com/',
-  FYLE_HELP = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks',
-  CONFIGURATION_QBO_CONNECTOR = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks',
-  CONFIGURATION_EMPLOYEE_SETTING = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks',
-  CONFIGURATION_EXPORT_SETTING = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks',
-  CONFIGURATION_IMPORT_SETTING = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks',
-  CONFIGURATION_ADVANCED_SETTING = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks'
+  FYLE_HELP = 'https://help.fylehq.com/en/collections/215867-integrations-with-fyle#quickbooks-2-0',
+  EXPORT = 'https://help.fylehq.com/en/articles/6240421-how-to-export-expenses-from-fyle-to-qbo-via-the-integration',
+  CONFIGURATION_QBO_CONNECTOR = 'https://help.fylehq.com/en/articles/6208620-how-to-set-up-the-fyle-quickbooks-online-integration-v2-0',
+  CONFIGURATION_EMPLOYEE_SETTING = 'https://help.fylehq.com/en/articles/6208620-how-to-set-up-the-fyle-quickbooks-online-integration-v2-0#h_d70f1d54cc',
+  CONFIGURATION_EXPORT_SETTING = 'https://help.fylehq.com/en/articles/6208620-how-to-set-up-the-fyle-quickbooks-online-integration-v2-0#h_dca1353686',
+  CONFIGURATION_IMPORT_SETTING = 'https://help.fylehq.com/en/articles/6208620-how-to-set-up-the-fyle-quickbooks-online-integration-v2-0#h_b8a2df129f',
+  CONFIGURATION_ADVANCED_SETTING = 'https://help.fylehq.com/en/articles/6208620-how-to-set-up-the-fyle-quickbooks-online-integration-v2-0#h_18c28de6c7'
 }
 
 export enum ClickEvent {
