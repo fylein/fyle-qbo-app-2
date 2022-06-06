@@ -58,6 +58,8 @@ export class DashboardComponent implements OnInit {
 
   importState: ExpenseState;
 
+  ExpenseState = ExpenseState;
+
   employeeName: string = this.userService.getUserProfile().full_name;
 
   getExportErrors$: Observable<Error[]> = this.dashboardService.getExportErrors();
