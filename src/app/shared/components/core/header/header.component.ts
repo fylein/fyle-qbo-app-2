@@ -10,7 +10,7 @@ import { QboConnectorService } from 'src/app/core/services/configuration/qbo-con
 import { AuthService } from 'src/app/core/services/core/auth.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { StorageService } from 'src/app/core/services/core/storage.service';
-import { TrackingService } from 'src/app/core/services/core/tracking.service';
+import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
@@ -18,11 +18,11 @@ import { environment } from 'src/environments/environment';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
-  selector: 'app-onboarding-header',
-  templateUrl: './onboarding-header.component.html',
-  styleUrls: ['./onboarding-header.component.scss']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class OnboardingHeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit {
 
   user: MinimalUser;
 
@@ -131,7 +131,8 @@ export class OnboardingHeaderComponent implements OnInit {
     });
 
     const workspaceCreatedAt: Date = this.workspaceService.getWorkspaceCreatedAt();
-    const oldAppCutOffDate = new Date('2022-05-16T00:00:00.000Z');
+    // Cut off date to be 6th June 2022 3.30pm IST
+    const oldAppCutOffDate = new Date('2022-06-06T09:30:00.000Z');
 
     if (workspaceCreatedAt.getTime() < oldAppCutOffDate.getTime()) {
       this.showSwitchApp = true;
@@ -160,6 +161,7 @@ export class OnboardingHeaderComponent implements OnInit {
         orgsCount: this.storageService.get('refresh_token')
       };
 
+      this.trackingService.onSwitchToOldApp();
       this.windowReference.location.href = `${environment.old_qbo_app_url}?local_storage_dump=${JSON.stringify(localStorageDump)}`;
     });
   }

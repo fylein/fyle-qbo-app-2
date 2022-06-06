@@ -33,30 +33,20 @@ import { AdvancedSettingsComponent } from './components/configuration/advanced-s
 import { OnboardingFooterComponent } from './components/core/onboarding-footer/onboarding-footer.component';
 import { ConfigurationStepHeaderSectionComponent } from './components/configuration/configuration-step-header-section/configuration-step-header-section.component';
 import { MandatoryFieldComponent } from './components/helpers/mandatory-field/mandatory-field.component';
-import { SimpleSearchSelectComponent } from './components/helpers/simple-search-select/simple-search-select.component';
+import { SimpleTextSearchComponent } from './components/helpers/simple-text-search/simple-text-search.component';
 import { QboConnectorComponent } from './components/configuration/qbo-connector/qbo-connector.component';
 import { ExpenseFieldCreationDialogComponent } from './components/configuration/import-settings/expense-field-creation-dialog/expense-field-creation-dialog.component';
 import { ConfigurationStepFooterSectionComponent } from './components/configuration/configuration-step-footer-section/configuration-step-footer-section.component';
-import { OnboardingHeaderComponent } from './components/core/onboarding-header/onboarding-header.component';
+import { HeaderComponent } from './components/core/header/header.component';
 import { ZeroStateWithIllustrationComponent } from './components/core/zero-state-with-illustration/zero-state-with-illustration.component';
-import { SimpleSearchTextComponent } from './components/helpers/simple-search-text/simple-search-text.component';
-import { AdvancedSearchSelectComponent } from './components/helpers/advanced-search-select/advanced-search-select.component';
 import { PaginatorComponent } from './components/helpers/paginator/paginator.component';
 import { MappingHeaderSectionComponent } from './components/mapping/mapping-header-section/mapping-header-section.component';
-import { MappingStatsComponent } from './components/mapping/mapping-stats/mapping-stats.component';
 import { MappingFilterComponent } from './components/mapping/mapping-filter/mapping-filter.component';
 import { MappingTableComponent } from './components/mapping/mapping-table/mapping-table.component';
-import { MappingShimmersComponent } from './components/mapping/mapping-shimmers/mapping-shimmers.component';
 import { GenericMappingComponent } from './components/mapping/generic-mapping/generic-mapping.component';
-import { ExportLogHeaderSectionComponent } from './components/export-log/export-log-header-section/export-log-header-section.component';
-import { ExportLogDateFilterComponent } from './components/export-log/export-log-date-filter/export-log-date-filter.component';
 import { ExportLogTableComponent } from './components/export-log/export-log-table/export-log-table.component';
 import { DashboardHeaderSectionComponent } from './components/dashboard/dashboard-header-section/dashboard-header-section.component';
-import { DashboardExportComponent } from './components/dashboard/dashboard-export/dashboard-export.component';
-import { DashboardExportStatsComponent } from './components/dashboard/dashboard-export-stats/dashboard-export-stats.component';
-import { DashboardExportErrorsComponent } from './components/dashboard/dashboard-export-errors/dashboard-export-errors.component';
 import { DashboardResolveMappingErrorDialogComponent } from './components/dashboard/dashboard-resolve-mapping-error-dialog/dashboard-resolve-mapping-error-dialog.component';
-import { DashboardShimmersComponent } from './components/dashboard/dashboard-shimmers/dashboard-shimmers.component';
 import { DashboardExportLogDialogComponent } from './components/dashboard/dashboard-export-log-dialog/dashboard-export-log-dialog.component';
 import { DashboardQboErrorDialogComponent } from './components/dashboard/dashboard-qbo-error-dialog/dashboard-qbo-error-dialog.component';
 import { ExportLogChildTableComponent } from './components/export-log/export-log-child-table/export-log-child-table.component';
@@ -75,7 +65,7 @@ import { MandatoryErrorMessageComponent } from './components/helpers/mandatory-e
     OnboardingFooterComponent,
     ConfigurationStepHeaderSectionComponent,
     MandatoryFieldComponent,
-    SimpleSearchSelectComponent,
+    SimpleTextSearchComponent,
     QboConnectorComponent,
     TrimCharacterPipe,
     SearchPipe,
@@ -84,26 +74,16 @@ import { MandatoryErrorMessageComponent } from './components/helpers/mandatory-e
     ConfigurationStepFooterSectionComponent,
     ConfigurationSelectFieldComponent,
     ConfigurationToggleFieldComponent,
-    OnboardingHeaderComponent,
+    HeaderComponent,
     ZeroStateWithIllustrationComponent,
-    SimpleSearchTextComponent,
-    AdvancedSearchSelectComponent,
     PaginatorComponent,
     MappingHeaderSectionComponent,
-    MappingStatsComponent,
     MappingFilterComponent,
     MappingTableComponent,
-    MappingShimmersComponent,
     GenericMappingComponent,
-    ExportLogHeaderSectionComponent,
-    ExportLogDateFilterComponent,
     ExportLogTableComponent,
     DashboardHeaderSectionComponent,
-    DashboardExportComponent,
-    DashboardExportStatsComponent,
-    DashboardExportErrorsComponent,
     DashboardResolveMappingErrorDialogComponent,
-    DashboardShimmersComponent,
     DashboardExportLogDialogComponent,
     DashboardQboErrorDialogComponent,
     ExportLogChildTableComponent,
@@ -137,7 +117,7 @@ import { MandatoryErrorMessageComponent } from './components/helpers/mandatory-e
     ExportSettingsComponent,
     AdvancedSettingsComponent,
     ConfigurationStepHeaderSectionComponent,
-    SimpleSearchSelectComponent,
+    SimpleTextSearchComponent,
     MandatoryFieldComponent,
     OnboardingFooterComponent,
     TrimCharacterPipe,
@@ -146,27 +126,16 @@ import { MandatoryErrorMessageComponent } from './components/helpers/mandatory-e
     ConfigurationStepFooterSectionComponent,
     ConfigurationSelectFieldComponent,
     ConfigurationToggleFieldComponent,
-    OnboardingHeaderComponent,
-    OnboardingHeaderComponent,
+    HeaderComponent,
     ZeroStateWithIllustrationComponent,
-    SimpleSearchTextComponent,
-    AdvancedSearchSelectComponent,
     PaginatorComponent,
     MappingHeaderSectionComponent,
-    MappingStatsComponent,
     MappingFilterComponent,
     MappingTableComponent,
-    MappingShimmersComponent,
     GenericMappingComponent,
-    ExportLogHeaderSectionComponent,
-    ExportLogDateFilterComponent,
     ExportLogTableComponent,
     DashboardHeaderSectionComponent,
-    DashboardExportComponent,
-    DashboardExportStatsComponent,
-    DashboardExportErrorsComponent,
     DashboardResolveMappingErrorDialogComponent,
-    DashboardShimmersComponent,
     ExportLogChildTableComponent,
     MandatoryErrorMessageComponent
   ],

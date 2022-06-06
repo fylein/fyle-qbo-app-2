@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClickEvent, OnboardingStep, ProgressPhase, RefinerSurveyType } from 'src/app/core/models/enum/enum.model';
-import { RefinerService } from 'src/app/core/services/core/refiner.service';
-import { TrackingService } from 'src/app/core/services/core/tracking.service';
+import { RefinerService } from 'src/app/core/services/integration/refiner.service';
+import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 
 @Component({
   selector: 'app-onboarding-done',

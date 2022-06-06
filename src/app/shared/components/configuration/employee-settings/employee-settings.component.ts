@@ -10,7 +10,7 @@ import { AutoMapEmployee, ConfigurationCtaText, EmployeeFieldMapping, Onboarding
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { EmployeeSettingService } from 'src/app/core/services/configuration/employee-setting.service';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
-import { TrackingService } from 'src/app/core/services/core/tracking.service';
+import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
@@ -68,8 +68,6 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
   ];
 
   windowReference: Window;
-
-  @Output() isLoaded = new EventEmitter<boolean>();
 
   ConfigurationCtaText = ConfigurationCtaText;
 
@@ -208,7 +206,6 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
       });
       this.reimbursableExportType = responses[2].workspace_general_settings?.reimbursable_expenses_object;
       this.isLoading = false;
-      this.isLoaded.emit(true);
     });
   }
 

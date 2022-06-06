@@ -6,13 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./configuration-export-settings.component.scss']
 })
 export class ConfigurationExportSettingsComponent implements OnInit {
-  isLoading: boolean = true;
 
   constructor() { }
-
-  isLoaded(isLoaded: boolean): void {
-    this.isLoading = !isLoaded;
-  }
 
   ngOnInit(): void {
   }

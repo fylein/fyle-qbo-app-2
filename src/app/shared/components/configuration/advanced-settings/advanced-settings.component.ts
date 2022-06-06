@@ -13,7 +13,7 @@ import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WorkspaceGeneralSetting } from 'src/app/core/models/db/workspace-general-setting.model';
 import { WindowService } from 'src/app/core/services/core/window.service';
-import { TrackingService } from 'src/app/core/services/core/tracking.service';
+import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 
 @Component({
   selector: 'app-advanced-settings',
@@ -56,8 +56,6 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   frequencyIntervals: number[] = [...Array(24).keys()].map(day => day + 1);
 
   windowReference: Window;
-
-  @Output() isLoaded = new EventEmitter<boolean>();
 
   ConfigurationCtaText = ConfigurationCtaText;
 
@@ -178,7 +176,6 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
     this.setCustomValidators();
     this.isLoading = false;
-    this.isLoaded.emit(true);
   }
 
   private getSettingsAndSetupForm(): void {

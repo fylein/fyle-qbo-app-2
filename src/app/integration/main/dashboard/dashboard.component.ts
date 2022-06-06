@@ -4,7 +4,7 @@ import { catchError, map, switchMap, takeWhile } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { Error, GroupedErrors, GroupedErrorStat } from 'src/app/core/models/db/error.model';
 import { LastExport } from 'src/app/core/models/db/last-export.model';
-import { ClickEvent, EmployeeFieldMapping, ErrorType, ExportState, FyleField, FyleReferenceType, QBOField, RefinerSurveyType, TaskLogState, TaskLogType } from 'src/app/core/models/enum/enum.model';
+import { ClickEvent, EmployeeFieldMapping, ErrorType, ExpenseState, ExportState, FyleField, FyleReferenceType, QBOField, RefinerSurveyType, TaskLogState, TaskLogType } from 'src/app/core/models/enum/enum.model';
 import { DashboardService } from 'src/app/core/services/dashboard/dashboard.service';
 import { DashboardResolveMappingErrorDialogComponent } from 'src/app/shared/components/dashboard/dashboard-resolve-mapping-error-dialog/dashboard-resolve-mapping-error-dialog.component';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
@@ -15,9 +15,9 @@ import { UserService } from 'src/app/core/services/misc/user.service';
 import { ExportableExpenseGroup } from 'src/app/core/models/db/expense-group.model';
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
 import { ExpenseGroupSetting } from 'src/app/core/models/db/expense-group-setting.model';
-import { TrackingService } from 'src/app/core/services/core/tracking.service';
+import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { ResolveMappingErrorProperty } from 'src/app/core/models/misc/tracking.model';
-import { RefinerService } from 'src/app/core/services/core/refiner.service';
+import { RefinerService } from 'src/app/core/services/integration/refiner.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -55,6 +55,10 @@ export class DashboardComponent implements OnInit {
   };
 
   ExportState = ExportState;
+
+  importState: ExpenseState;
+
+  ExpenseState = ExpenseState;
 
   employeeName: string = this.userService.getUserProfile().full_name;
 
@@ -153,6 +157,7 @@ export class DashboardComponent implements OnInit {
       this.errors = this.formatErrors(responses[1]);
       this.employeeFieldMapping = responses[2].employee_field_mapping;
       this.expenseGroupSetting = this.getExpenseGroupingSetting(responses[4]);
+      this.importState = responses[4].expense_state;
 
       const queuedTasks: Task[] = responses[3].results.filter((task: Task) => task.status === TaskLogState.ENQUEUED || task.status === TaskLogState.IN_PROGRESS);
       this.failedExpenseGroupCount = responses[3].results.filter((task: Task) => task.status === TaskLogState.FAILED).length;

@@ -106,7 +106,7 @@
               <div>
                 <mat-form-field floatLabel="always" appearance="outline" class="import-settings--default-tax-input">
                   <mat-select placeholder="Select Default Tax Code" formControlName="defaultTaxCode" (closed)="helperService.clearSearchText(importSettingsForm)" [compareWith]="helperService.compareObjects">
-                    <app-simple-search-select [form]="importSettingsForm" [page]="SimpleSearchPage.CONFIGURATION" [searchType]="SimpleSearchType.SELECT_FIELD"></app-simple-search-select>
+                    <app-simple-text-search [form]="importSettingsForm" [page]="SimpleSearchPage.CONFIGURATION" [searchType]="SimpleSearchType.SELECT_FIELD"></app-simple-text-search>
                     <div *ngFor="let option of taxCodes | search : importSettingsForm.value.searchOption">
                       <mat-option [ngClass]="{'search-zero-state': option && option.value === 'No result found'}" [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" matTooltipClass="above" (click)="helperService.clearSearchText(importSettingsForm)" [value]="{name: option.value, id: option.destination_id}">
                         <p (click)="$event.stopPropagation()" *ngIf="option.value === 'No result found'" class="align-center italic">{{ option.value }}</p>

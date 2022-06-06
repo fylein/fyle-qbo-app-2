@@ -6,7 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 import { globalCacheBusterNotifier } from 'ts-cacheable';
 import { OnboardingState } from '../models/enum/enum.model';
 import { QboConnectorService } from '../services/configuration/qbo-connector.service';
-import { TrackingService } from '../services/core/tracking.service';
+import { TrackingService } from '../services/integration/tracking.service';
 import { WorkspaceService } from '../services/workspace/workspace.service';
 
 @Injectable({

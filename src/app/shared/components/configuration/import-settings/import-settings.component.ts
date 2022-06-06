@@ -18,7 +18,7 @@ import { WindowService } from 'src/app/core/services/core/window.service';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { PreviewDialogComponent } from '../preview-dialog/preview-dialog.component';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
-import { TrackingService } from 'src/app/core/services/core/tracking.service';
+import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { ClickEventAdditionalProperty } from 'src/app/core/models/misc/tracking.model';
 
 @Component({
@@ -52,8 +52,6 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
   ];
 
   windowReference: Window;
-
-  @Output() isLoaded = new EventEmitter<boolean>();
 
   ConfigurationCtaText = ConfigurationCtaText;
 
@@ -162,7 +160,6 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
 
     this.setCustomValidatorsAndWatchers();
     this.isLoading = false;
-    this.isLoaded.emit(true);
   }
 
   private getSettingsAndSetupForm(): void {
