@@ -23,7 +23,7 @@ export class RefinerService {
     private workspaceService: WorkspaceService
   ) { }
 
-  triggerSurvey(actionName: RefinerSurveyType): void {
+  initialise(actionName: RefinerSurveyType): void {
     (window as any)._refiner('identifyUser', {
       id: this.user.org_id,
       email: this.user.email,
@@ -35,6 +35,9 @@ export class RefinerService {
       source: 'Fyle Quickbooks Integration',
       action_name: actionName
     });
+  }
+
+  triggerSurvey(actionName: RefinerSurveyType): void {
     (window as any)._refiner('showForm', actionName === RefinerSurveyType.ONBOARDING_DONE ? this.onboardingDoneSurveryID : this.exportDoneSurveryID);
   }
 }

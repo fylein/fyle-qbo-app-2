@@ -33,6 +33,7 @@ export class OnboardingDoneComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.refinerService.initialise(RefinerSurveyType.ONBOARDING_DONE);
   }
 
 }

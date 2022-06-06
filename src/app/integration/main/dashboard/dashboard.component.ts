@@ -146,6 +146,7 @@ export class DashboardComponent implements OnInit {
   }
 
   private setupPage(): void {
+    this.refinerService.initialise(RefinerSurveyType.EXPORT_DONE);
     forkJoin([
       this.getLastExport$.pipe(map((res) => res), catchError(() => of(null))),
       this.getExportErrors$,
