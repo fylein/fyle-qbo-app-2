@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { RedirectLink } from 'src/app/core/models/enum/enum.model';
 import { SelectedDateFilter } from 'src/app/core/models/misc/date-filter.model';
+import { HelperService } from 'src/app/core/services/core/helper.service';
 
 @Component({
   selector: 'app-zero-state-with-illustration',
@@ -21,7 +23,11 @@ export class ZeroStateWithIllustrationComponent implements OnInit {
 
   @Input() dateFilter: SelectedDateFilter | null;
 
-  constructor() { }
+  RedirectLink = RedirectLink;
+
+  constructor(
+    public helperService: HelperService
+  ) { }
 
   ngOnInit(): void {
   }
