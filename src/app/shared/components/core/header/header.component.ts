@@ -131,7 +131,8 @@ export class HeaderComponent implements OnInit {
     });
 
     const workspaceCreatedAt: Date = this.workspaceService.getWorkspaceCreatedAt();
-    const oldAppCutOffDate = new Date('2022-05-16T00:00:00.000Z');
+    // Cut off date to be 6th June 2022 3.30pm IST
+    const oldAppCutOffDate = new Date('2022-06-06T09:30:00.000Z');
 
     if (workspaceCreatedAt.getTime() < oldAppCutOffDate.getTime()) {
       this.showSwitchApp = true;
