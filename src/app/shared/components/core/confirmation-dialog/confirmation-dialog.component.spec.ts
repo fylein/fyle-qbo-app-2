@@ -12,7 +12,7 @@ describe('ConfirmationDialogComponent', () => {
     primaryCtaText: 'FYLE',
     contents: 'Added successfully',
     hideSecondaryCTA: false
-  }
+  };
   let component: ConfirmationDialogComponent;
   let fixture: ComponentFixture<ConfirmationDialogComponent>;
   beforeEach(async () => {

@@ -9,4 +9,4 @@ export const expenseList:ExpenseList[] = [{
   expenseType: 'Credit Card',
   name: ['Ashwin', 'ashwin.t@fyle.in'],
   fundSource: 'personal'
-}]
+}];

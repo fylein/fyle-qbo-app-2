@@ -70,7 +70,7 @@ export const modelData: Error = {
       department_id: "string",
       department: "string",
       department_code: "string",
-      employee_code: "string",
+      employee_code: "string"
     }
   },
   is_resolved: true,

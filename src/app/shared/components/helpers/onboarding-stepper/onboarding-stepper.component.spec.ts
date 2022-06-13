@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
 describe('OnboardingStepperComponent', () => {
   let component: OnboardingStepperComponent;
   let fixture: ComponentFixture<OnboardingStepperComponent>;
-  let router = {
+  const router = {
     navigate: jasmine.createSpy('navigate')
-  }
+  };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientModule],
@@ -26,7 +26,7 @@ describe('OnboardingStepperComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(OnboardingStepperComponent);
     component = fixture.componentInstance;
-    component.currentStep = 'Connect to QBO'
+    component.currentStep = 'Connect to QBO';
     fixture.detectChanges();
   });
 
@@ -46,7 +46,7 @@ describe('OnboardingStepperComponent', () => {
   });
 
   it('Navigation function check', () => {
-    component.navigate(true,'/login');
+    component.navigate(true, '/login');
     expect(component.navigate).toBeTruthy();
   });
 });

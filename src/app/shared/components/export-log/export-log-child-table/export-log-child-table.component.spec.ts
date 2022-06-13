@@ -11,7 +11,7 @@ describe('ExportLogChildTableComponent', () => {
   let component: ExportLogChildTableComponent;
   let fixture: ComponentFixture<ExportLogChildTableComponent>;
   let el: DebugElement;
-  
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SharedModule],
@@ -57,7 +57,7 @@ describe('ExportLogChildTableComponent', () => {
     const amount = exportLogRow[5].nativeElement.innerText;
 
     expect(exportLogRow).toBeTruthy();
-    expect(exportedId).toBe(expectedExpenseListRow.expenseID)
+    expect(exportedId).toBe(expectedExpenseListRow.expenseID);
     expect(employeeName).toBe(expectedExpenseListRow.name?.[0]);
     expect(employeeEmail).toBe(expectedExpenseListRow.name?.[1]);
     expect(fundSource).toBe(expectedExpenseListRow.fundSource);

@@ -53,13 +53,13 @@ describe('SimpleTextSearchComponent', () => {
     });
     fixture.detectChanges();
     const placeholder = fixture.debugElement.query(By.css('input')).nativeElement;
-    expect(placeholder.placeholder).toEqual(component.placeholder)
+    expect(placeholder.placeholder).toEqual(component.placeholder);
     component.ngOnChanges({
       placeholder: new SimpleChange(null, 'fyle', true)
     });
     fixture.detectChanges();
     const placeholder2 = fixture.debugElement.query(By.css('input')).nativeElement;
-    expect(placeholder2.placeholder).toEqual(component.placeholder)
+    expect(placeholder2.placeholder).toEqual(component.placeholder);
   });
 
   it('search function check', () => {
@@ -68,6 +68,6 @@ describe('SimpleTextSearchComponent', () => {
     });
     fixture.detectChanges();
     const placeholder2 = fixture.debugElement.query(By.css('input')).nativeElement;
-    expect(placeholder2.placeholder).toEqual(component.placeholder)
+    expect(placeholder2.placeholder).toEqual(component.placeholder);
   });
 });

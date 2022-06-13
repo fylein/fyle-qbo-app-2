@@ -21,7 +21,7 @@ describe('MappingHeaderSectionComponent', () => {
   let httpMock: HttpTestingController;
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
-  
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ HttpClientModule, MatSnackBarModule, SharedModule, RouterTestingModule, MatSnackBarModule, BrowserAnimationsModule, HttpClientTestingModule ],
@@ -64,7 +64,7 @@ describe('MappingHeaderSectionComponent', () => {
     expect(component.mappingCardUpdateHandler.emit).toHaveBeenCalledWith(component.totalCardActive);
   });
 
-  it('trigger function check', () =>{
+  it('trigger function check', () => {
     expect(component.triggerAutoMapEmployee()).toBeUndefined();
     const req = httpMock.expectOne({
       method: 'POST',
@@ -77,7 +77,7 @@ describe('MappingHeaderSectionComponent', () => {
     const mapping: MappingStats = {
       all_attributes_count: 2,
       unmapped_attributes_count: 3
-  }
+  };
     component.totalCardActive = true;
     component.sourceType = 'category';
     component.mappingStats = mapping;
@@ -92,7 +92,7 @@ describe('MappingHeaderSectionComponent', () => {
     const mapping: MappingStats = {
       all_attributes_count: 2,
       unmapped_attributes_count: 3
-  }
+  };
     component.totalCardActive = false;
     component.sourceType = 'empoyee';
     component.mappingStats = mapping;
@@ -104,9 +104,9 @@ describe('MappingHeaderSectionComponent', () => {
   });
 
   it('AutoMap empoyee check', () => {
-    component.autoMapEmployee = AutoMapEmployee.NAME
+    component.autoMapEmployee = AutoMapEmployee.NAME;
     fixture.detectChanges();
     const autoMapEmployee = fixture.debugElement.queryAll(By.css('h5'))[2].nativeElement.innerText;
     expect(autoMapEmployee).toBe('Automap Employee(s)');
-  })
+  });
 });
