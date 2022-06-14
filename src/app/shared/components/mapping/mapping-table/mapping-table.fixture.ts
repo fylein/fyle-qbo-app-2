@@ -3,7 +3,7 @@ import { DestinationAttribute } from "src/app/core/models/db/destination-attribu
 import { MappingList } from "src/app/core/models/db/mapping.model";
 import { MappingState } from "src/app/core/models/enum/enum.model";
 
-let formBuilder: FormBuilder
+let formBuilder: FormBuilder;
 export const mappingList: MappingList[] = [{
   fyle: {
     id: 1,

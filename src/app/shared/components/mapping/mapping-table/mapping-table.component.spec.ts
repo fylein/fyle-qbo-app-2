@@ -18,7 +18,7 @@ describe('MappingTableComponent', () => {
     await TestBed.configureTestingModule({
       imports: [SharedModule, BrowserAnimationsModule],
       declarations: [MappingTableComponent],
-      providers: [FormBuilder], 
+      providers: [FormBuilder],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();
@@ -27,7 +27,7 @@ describe('MappingTableComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MappingTableComponent);
     component = fixture.componentInstance;
-    component.mappings = new MatTableDataSource<MappingList>(mappingList)
+    component.mappings = new MatTableDataSource<MappingList>(mappingList);
     formBuilder = TestBed.inject(FormBuilder);
     const fyleQboMappingFormArray = mappingList.map((mapping: MappingList) => {
       return formBuilder.group({
@@ -56,13 +56,13 @@ describe('MappingTableComponent', () => {
   });
 
   it('save function check', () => {
-    expect(component.saveMapping(mappingList[0],destinationAttribute[0],component.mappingForm[0])).toBeUndefined();
+    expect(component.saveMapping(mappingList[0], destinationAttribute[0], component.mappingForm[0])).toBeUndefined();
     component.sourceType = 'Vendor';
     fixture.detectChanges();
-    expect(component.saveMapping(mappingList[0],destinationAttribute[0],component.mappingForm[0])).toBeUndefined();
+    expect(component.saveMapping(mappingList[0], destinationAttribute[0], component.mappingForm[0])).toBeUndefined();
     component.sourceType = undefined;
     fixture.detectChanges();
-    expect(component.saveMapping(mappingList[0],destinationAttribute[0],component.mappingForm[0])).toBeUndefined();
+    expect(component.saveMapping(mappingList[0], destinationAttribute[0], component.mappingForm[0])).toBeUndefined();
   });
 
   it('Table data testing', () => {
