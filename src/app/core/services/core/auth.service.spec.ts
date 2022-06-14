@@ -18,7 +18,7 @@ describe('AuthService', () => {
     injector = getTestBed();
     service = injector.inject(AuthService);
     httpMock = injector.inject(HttpTestingController);
-    
+
   });
 
   it('should be created', () => {
@@ -29,7 +29,7 @@ describe('AuthService', () => {
     const result = service.isLoggedIn();
     if (result) {
       expect(result).toBeTrue();
-    } else if(!result){
+    } else if (!result){
       expect(result).toBeFalse();
     } else {
       expect(result).toBeUndefined();
@@ -44,7 +44,7 @@ describe('AuthService', () => {
   it('logout(false) service check', () => {
     const result = service.logout(true);
     expect(result).toBeUndefined();
-    // expect(service.logout).toHaveBeenCalled();
+    // Expect(service.logout).toHaveBeenCalled();
   });
 
 
@@ -136,9 +136,9 @@ describe('AuthService', () => {
   it('checkLoginStatusAndLogout() service check', () => {
     spy = spyOn(service, 'logout');
     const user = {
-      id:2
-    }
-    localStorage.setItem('user',JSON.stringify(user));
+      id: 2
+    };
+    localStorage.setItem('user', JSON.stringify(user));
     service.checkLoginStatusAndLogout();
     if (service.isLoggedIn()) {
       expect(service.logout).toHaveBeenCalled();
