@@ -42,8 +42,7 @@ export class PaginatorComponent implements OnInit, OnChanges {
       );
       this.pageChangeEvent.emit({
         limit: limit,
-        offset: 0,
-        pageSizeChange: true
+        offset: 0
       });
     });
   }

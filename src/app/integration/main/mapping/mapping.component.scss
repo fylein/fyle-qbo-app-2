@@ -1,3 +1,7 @@
 .parent-mapping {
   padding-top: 240px;
 }
+
+::ng-deep .mat-select-value {
+  width: 85% !important;
+}

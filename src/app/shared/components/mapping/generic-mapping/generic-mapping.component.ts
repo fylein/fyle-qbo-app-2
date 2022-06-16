@@ -82,12 +82,12 @@ export class GenericMappingComponent implements OnInit {
     return this.paginatorService.getPageSize(PaginatorPage.MAPPING);
   }
 
-  private setupForm(): void {
+  private setupForm(filterOption: string[] = []): void {
     this.form = this.formBuilder.group({
       map: [''],
       fyleQboMapping: this.formBuilder.array(this.fyleQboMappingFormArray),
       searchOption: [''],
-      filterOption: [[]],
+      filterOption: [filterOption],
       sourceUpdated: [false]
     });
 
@@ -115,7 +115,7 @@ export class GenericMappingComponent implements OnInit {
 
   getMappings(data: Paginator | void): void {
     this.isLoading = true;
-    if (this.form && data?.pageSizeChange) {
+    if (this.form) {
       this.form.controls.sourceUpdated.patchValue(true);
     }
     const paginator: Paginator = data ? data : this.getPaginator();
@@ -134,7 +134,7 @@ export class GenericMappingComponent implements OnInit {
     let alphabetsFilter: string[] = [];
     let allAlphabets: boolean = true;
 
-    if (this.form && !this.form.value.sourceUpdated) {
+    if (this.form) {
       allAlphabets = this.form.value.filterOption.length === 0;
 
       if (!allAlphabets) {
@@ -167,7 +167,7 @@ export class GenericMappingComponent implements OnInit {
 
       // Reinitialize form when source type changes or when the component is loaded for first time
       if ((this.form && this.form.value.sourceUpdated) || !this.form) {
-        this.setupForm();
+        this.setupForm(alphabetsFilter);
       }
 
       this.isLoading = false;
@@ -221,6 +221,7 @@ export class GenericMappingComponent implements OnInit {
 
       // If source type is changed, reinitialize the form by maintaining sourceUpdated flag
       if (this.form) {
+        this.form.controls.filterOption.patchValue([]);
         this.form.controls.sourceUpdated.patchValue(true);
       }
       this.getMappingsAndSetupPage();
