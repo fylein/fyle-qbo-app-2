@@ -221,6 +221,7 @@ export class GenericMappingComponent implements OnInit {
 
       // If source type is changed, reinitialize the form by maintaining sourceUpdated flag
       if (this.form) {
+        this.form.controls.filterOption.patchValue([]);
         this.form.controls.sourceUpdated.patchValue(true);
       }
       this.getMappingsAndSetupPage();
