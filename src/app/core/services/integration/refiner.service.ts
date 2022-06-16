@@ -40,7 +40,7 @@ export class RefinerService {
         source: 'Fyle Quickbooks Integration',
         action_name: actionName
       });
-      (window as any)._refiner('showForm', actionName === RefinerSurveyType.ONBOARDING_DONE ? this.onboardingDoneSurveryID : this.exportDoneSurveryID);
+      this.refiner('showForm', actionName === RefinerSurveyType.ONBOARDING_DONE ? this.onboardingDoneSurveryID : this.exportDoneSurveryID);
     }
   }
 }
