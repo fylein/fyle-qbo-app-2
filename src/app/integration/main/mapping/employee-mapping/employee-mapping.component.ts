@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
-import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { EmployeeMappingModel, ExtendedEmployeeAttribute, ExtendedEmployeeAttributeResponse } from 'src/app/core/models/db/employee-mapping.model';
 import { MappingList, MappingStats } from 'src/app/core/models/db/mapping.model';
@@ -87,12 +86,12 @@ export class EmployeeMappingComponent implements OnInit {
     });
   }
 
-  private setupForm(): void {
+  private setupForm(filterOption: string[] = []): void {
     this.form = this.formBuilder.group({
       map: [''],
       fyleQboMapping: this.formBuilder.array(this.fyleQboMappingFormArray),
       searchOption: [''],
-      filterOption: [[]],
+      filterOption: [filterOption],
       cardUpdated: [false]
     });
 
@@ -110,7 +109,7 @@ export class EmployeeMappingComponent implements OnInit {
 
   getMappings(data: Paginator | void): void {
     this.isLoading = true;
-    if (this.form && data?.pageSizeChange) {
+    if (this.form) {
       this.form.controls.cardUpdated.patchValue(true);
     }
     const paginator: Paginator = data ? data : this.getPaginator();
@@ -129,7 +128,7 @@ export class EmployeeMappingComponent implements OnInit {
     let alphabetsFilter: string[] = [];
     let allAlphabets: boolean = true;
 
-    if (this.form && !this.form.value.cardUpdated) {
+    if (this.form) {
       allAlphabets = this.form.value.filterOption.length === 0;
 
       if (!allAlphabets) {
@@ -181,7 +180,7 @@ export class EmployeeMappingComponent implements OnInit {
 
       // Reinitialize form when the card changes or when the component is loaded for first time
       if (!this.form || (this.form && this.form.value.cardUpdated)) {
-        this.setupForm();
+        this.setupForm(alphabetsFilter);
       }
 
       this.isLoading = false;
