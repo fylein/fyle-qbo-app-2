@@ -17,14 +17,16 @@ export class AppcuesService {
   }
 
   initialiseAppcues(): void {
-    const user = this.userService.getUserProfile();
-    this.appcues.identify(user.user_id, {
-      email: user.email,
-      name: user.full_name,
-      'Org ID': user.org_id,
-      'Workspace ID': this.workspaceService.getWorkspaceId(),
-      'Workspace Name': user.org_name,
-      source: 'Fyle Quickbooks Integration - 2'
-    });
+    if (this.appcues) {
+      const user = this.userService.getUserProfile();
+      this.appcues.identify(user.user_id, {
+        email: user.email,
+        name: user.full_name,
+        'Org ID': user.org_id,
+        'Workspace ID': this.workspaceService.getWorkspaceId(),
+        'Workspace Name': user.org_name,
+        source: 'Fyle Quickbooks Integration - 2'
+      });
+    }
   }
 }

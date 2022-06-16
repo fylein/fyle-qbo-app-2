@@ -22,6 +22,7 @@ export class DashboardHeaderSectionComponent implements OnInit {
   refreshQBODimensions(): void {
     this.trackingService.onClickEvent(ClickEvent.SYNC_DIMENSION, {phase: ProgressPhase.POST_ONBOARDING});
     this.workspaceService.refreshQBODimensions().subscribe();
+    this.workspaceService.refreshFyleDimensions().subscribe();
     this.snackBar.open('Refreshing data dimensions from QBO...');
     }
 
