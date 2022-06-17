@@ -40,7 +40,7 @@ describe('HeaderComponent', () => {
       user_id: '12',
       org_id: '12',
       org_name: 'Fyle Integration'
-    }
+    };
     localStorage.setItem('user', JSON.stringify(localStorageDump));
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientModule, SharedModule, MatDialogModule, HttpClientTestingModule],
@@ -74,7 +74,7 @@ describe('HeaderComponent', () => {
     fixture.detectChanges();
     component.showOrHideProfileDropdown();
     fixture.detectChanges();
-    expect(component.isProfileExpanded).toBeFalse()
+    expect(component.isProfileExpanded).toBeFalse();
 
     component.isProfileExpanded = false;
     fixture.detectChanges();
@@ -95,5 +95,5 @@ describe('HeaderComponent', () => {
     component.showOrHideHelpDropdown();
     fixture.detectChanges();
     expect(component.isHelpSectionExpanded).toBeTrue();
-  }); 
+  });
 });

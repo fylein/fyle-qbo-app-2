@@ -36,7 +36,7 @@ describe('ExpenseFieldCreationDialogComponent', () => {
           provide: MatDialogRef,
           useValue: dialogMock
         }
-      ],
+      ]
     })
       .compileComponents();
   });
@@ -54,7 +54,7 @@ describe('ExpenseFieldCreationDialogComponent', () => {
   });
 
   it('Save function check', () => {
-    let spy = spyOn(component.dialogRef, 'close').and.callThrough();
+    const spy = spyOn(component.dialogRef, 'close').and.callThrough();
     component.save();
     expect(spy).toHaveBeenCalled();
     expect(component.save()).toBeUndefined();

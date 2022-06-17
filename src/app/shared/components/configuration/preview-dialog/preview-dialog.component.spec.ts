@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialog, MatDialogModule,MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { By } from '@angular/platform-browser';
 import { CorporateCreditCardExpensesObject, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { PreviewPage } from 'src/app/core/models/misc/preview-page.model';
@@ -11,19 +11,19 @@ describe('PreviewDialogComponent', () => {
   let fixture: ComponentFixture<PreviewDialogComponent>;
   const preview: PreviewPage = {
     fyleExpense: true,
-    qboReimburse: ReimbursableExpensesObject.BILL ,
+    qboReimburse: ReimbursableExpensesObject.BILL,
     qboCCC: CorporateCreditCardExpensesObject.BILL
-  }
+  };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SharedModule,MatDialogModule],
+      imports: [SharedModule, MatDialogModule],
       declarations: [ PreviewDialogComponent ],
       providers: [
         {
           // I was expecting this will pass the desired value
           provide: MAT_DIALOG_DATA,
           useValue: preview
-        },
+        }
       ]
     })
     .compileComponents();

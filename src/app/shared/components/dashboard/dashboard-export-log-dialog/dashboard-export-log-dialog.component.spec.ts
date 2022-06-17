@@ -19,7 +19,7 @@ describe('DashboardExportLogDialogComponent', () => {
   beforeEach(async () => {
     localStorage.setItem('user', JSON.stringify({org_id: 'dummy'}));
     await TestBed.configureTestingModule({
-      imports:[MatDialogModule, SharedModule, HttpClientTestingModule],
+      imports: [MatDialogModule, SharedModule, HttpClientTestingModule],
       declarations: [ DashboardExportLogDialogComponent ],
       providers: [{
         // I was expecting this will pass the desired value
@@ -32,7 +32,7 @@ describe('DashboardExportLogDialogComponent', () => {
         // I was expecting this will pass the desired value
         provide: MatDialogRef,
         useValue: {}
-      },ExportLogService]
+      }, ExportLogService]
     })
     .compileComponents();
   });
@@ -62,6 +62,6 @@ describe('DashboardExportLogDialogComponent', () => {
     const req = httpMock.expectNone(
       req => req.method === 'GET' && req.url.includes(`${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_group_settings/`)
     );
-    //req.flush(response);
-  })
+    // Req.flush(response);
+  });
 });

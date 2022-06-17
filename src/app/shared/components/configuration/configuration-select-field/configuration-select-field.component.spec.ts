@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SearchPipe } from '../../../pipes/search.pipe';
 import { ConfigurationSelectFieldComponent } from './configuration-select-field.component';
-import { MatDialog, MatDialogModule,MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { EmployeeSettingFormOption } from 'src/app/core/models/configuration/employee-setting.model';
@@ -17,7 +17,7 @@ describe('ConfigurationSelectFieldComponent', () => {
   let formBuilder: FormBuilder;
   let dialogSpy: jasmine.Spy;
   const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({}), close: null });
-  dialogRefSpyObj.componentInstance = { body: '' }; 
+  dialogRefSpyObj.componentInstance = { body: '' };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SharedModule, MatDialogModule, NoopAnimationsModule],
@@ -44,7 +44,7 @@ describe('ConfigurationSelectFieldComponent', () => {
         label: 'Vendors'
       }
     ];
-    const liveEntityExample = {EMPLOYEE: 'FYLE',VENDOR: 'Integration'};
+    const liveEntityExample = {EMPLOYEE: 'FYLE', VENDOR: 'Integration'};
     component.form = form;
     component.options = employeeMappingOptions;
     component.liveEntityExample = liveEntityExample;
@@ -65,7 +65,7 @@ describe('ConfigurationSelectFieldComponent', () => {
   });
 
   it('showQBOExportPreview function check', () => {
-    component.showQBOExportPreview(null,null);
+    component.showQBOExportPreview(null, null);
     expect(dialogSpy).toHaveBeenCalled();
   });
 

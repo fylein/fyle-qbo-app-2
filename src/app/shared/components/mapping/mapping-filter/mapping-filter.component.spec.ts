@@ -51,14 +51,14 @@ describe('MappingFilterComponent', () => {
   });
 
   it('addAllFilterHandler function check', () => {
-    spyOn(component.mappingFilterUpdateHandler,'emit');
+    spyOn(component.mappingFilterUpdateHandler, 'emit');
     component.addAllFilterHandler();
     expect(component.mappingFilterUpdateHandler.emit).toHaveBeenCalled();
     expect(component.mappingFilterUpdateHandler.emit).toHaveBeenCalledWith({});
   });
 
   it('filterOptionUpdateHandler function check', () => {
-    spyOn(component.mappingFilterUpdateHandler,'emit');
+    spyOn(component.mappingFilterUpdateHandler, 'emit');
     component.filterOptionUpdateHandler('F');
     fixture.detectChanges();
     expect(component.mappingFilterUpdateHandler.emit).toHaveBeenCalled();
