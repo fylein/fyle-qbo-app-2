@@ -4,10 +4,10 @@ import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/materia
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DashboardResolveMappingErrorDialogComponent } from './dashboard-resolve-mapping-error-dialog.component';
-import { environment } from 'environment.localhost';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { ResolveMappingError } from 'src/app/core/models/db/mapping.model';
 import { EmployeeFieldMapping, QBOField } from 'src/app/core/models/enum/enum.model';
+import { environment } from 'src/environments/environment';
 
 describe('DashboardResolveMappingErrorDialogComponent', () => {
   let component: DashboardResolveMappingErrorDialogComponent;
@@ -22,11 +22,11 @@ describe('DashboardResolveMappingErrorDialogComponent', () => {
     destinationType: EmployeeFieldMapping.VENDOR,
     fyleAttributes: [],
     workspaceId: "string"
-}
+};
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MatDialogModule, SharedModule, HttpClientTestingModule, MatSnackBarModule],
-      providers: [MappingService,{
+      providers: [MappingService, {
         // I was expecting this will pass the desired value
         provide: MAT_DIALOG_DATA,
         useValue: model
