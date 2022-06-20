@@ -3,7 +3,7 @@
     <th mat-header-cell *matHeaderCellDef>
       <h4>Expense ID</h4>
     </th>
-    <td class="export-log-child-table--reference-id pointer" [matTooltip]="'View in Fyle'" matTooltipClass="export-log-child-tooltip" mat-cell *matCellDef="let element" (click)="helperService.openExternalLink(element.fyleUrl)"> {{element.expenseID}} </td>
+    <td class="export-log-child-table--reference-id pointer" [matTooltip]="'View in Fyle'" matTooltipClass="below export-log-child-tooltip" mat-cell *matCellDef="let element" (click)="helperService.openExternalLink(element.fyleUrl)"> {{element.expenseID}} </td>
   </ng-container>
 
   <ng-container *ngIf="displayedColumns.indexOf('name') !== -1" matColumnDef="name">

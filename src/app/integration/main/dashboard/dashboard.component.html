@@ -14,7 +14,7 @@
                 <h3 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">Sit back and relax!</h3>
                 <h3 *ngIf="exportInProgress">Exporting {{ processedCount }} of {{ exportableExpenseGroupIds.length }} Transaction{{exportableExpenseGroupIds.length > 1 ? 's' : ''}} to your QBO account</h3>
                 <h3 *ngIf="!exportInProgress && exportableExpenseGroupIds.length">{{ exportableExpenseGroupIds.length }} Transaction{{exportableExpenseGroupIds.length > 1 ? 's' : ''}} ready to export</h3>
-                <img src="assets/images/svgs/general/info.svg" class="errors--info-icon" width="16px" height="16px" matTooltip="All expenses from {{ importState === ExpenseState.PAYMENT_PROCESSING ? 'your' : 'the' }} {{ importState | titlecase | snakeCaseToSpaceCase }} state in Fyle will be automatically imported" matTooltipPosition="right" matTooltipClass="right" />
+                <img src="assets/images/svgs/general/info.svg" class="export--info-icon" width="16px" height="16px" matTooltip="All expenses from {{ importState === ExpenseState.PAYMENT_PROCESSING ? 'your' : 'the' }} {{ importState | titlecase | snakeCaseToSpaceCase }} state in Fyle will be automatically imported" matTooltipPosition="right" matTooltipClass="right" />
               </span>
               <div class="export--info-text paragraph">
                 <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">No new Transaction to export from the payment processing state in Fyle.</h5>
@@ -64,7 +64,7 @@
 
 
   <div fxLayout="row" fxLayoutAlign="start start">
-    <div class="past-export" *ngIf="lastExport && !isLoading">
+    <div class="past-export paragraph" *ngIf="lastExport && !isLoading">
       <div class="past-export--section">
         <div class="past-export--content-section">
           <h2 class="past-export--header">
