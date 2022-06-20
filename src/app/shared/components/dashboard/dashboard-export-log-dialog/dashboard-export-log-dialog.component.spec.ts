@@ -7,17 +7,19 @@ import { DashboardExportLogDialogComponent } from './dashboard-export-log-dialog
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
 import { ExpenseGroupResponse } from 'src/app/core/models/db/expense-group.model';
+import { of } from 'rxjs';
 
 describe('DashboardExportLogDialogComponent', () => {
   let component: DashboardExportLogDialogComponent;
   let fixture: ComponentFixture<DashboardExportLogDialogComponent>;
-  let service; ExportLogService;
+  let service: any;
   let injector: TestBed;
   let httpMock: HttpTestingController;
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
   beforeEach(async () => {
     localStorage.setItem('user', JSON.stringify({org_id: 'dummy'}));
+    const serviceSpy = jasmine.createSpyObj('ExportLogService', ['getExpenseGroups', 'generateExportTypeAndId', 'getReferenceType', 'generateFyleUrl'])
     await TestBed.configureTestingModule({
       imports: [MatDialogModule, SharedModule, HttpClientTestingModule],
       declarations: [ DashboardExportLogDialogComponent ],
@@ -32,14 +34,14 @@ describe('DashboardExportLogDialogComponent', () => {
         // I was expecting this will pass the desired value
         provide: MatDialogRef,
         useValue: {}
-      }, ExportLogService]
+      }]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
     injector = getTestBed();
-    service = injector.inject(ExportLogService);
+    service = TestBed.get(ExportLogService);
     httpMock = injector.inject(HttpTestingController);
     fixture = TestBed.createComponent(DashboardExportLogDialogComponent);
     component = fixture.componentInstance;
@@ -48,20 +50,5 @@ describe('DashboardExportLogDialogComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('setup function', () => {
-    component.ngOnInit();
-    const response: ExpenseGroupResponse= {
-      count: 0,
-      next: 'null',
-      previous: "xxx",
-      results: []
-    };
-    const exportAt = new Date();
-    const req = httpMock.expectNone(
-      req => req.method === 'GET' && req.url.includes(`${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_group_settings/`)
-    );
-    // Req.flush(response);
   });
 });
