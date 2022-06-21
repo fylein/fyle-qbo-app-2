@@ -17,6 +17,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { environment } from 'src/environments/environment';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
+import { QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -63,6 +64,35 @@ describe('HeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  xit('should create', () => {
+    expect(component).toBeTruthy();
+    const response: QBOCredentials = {
+      company_name: "Sandbox Company_FAE",
+      country: "GB",
+      created_at: new Date("2021-10-05T11:56:13.883015Z"),
+      id: 219,
+      is_expired: false,
+      realm_id: "123146326950399",
+      refresh_token: "AB",
+      updated_at: new Date("2022-05-06T13:13:25.893837Z"),
+      workspace: 1
+    };
+    const req = httpMock.expectOne({
+      method: 'GET',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/credentials/qbo/`
+    });
+    req.flush(response);
+  });
+
+  xit('component failure response', () => {
+    expect(component).toBeTruthy();
+    const response={ status: 404, statusText: "Not Found", error: {id: 2, company_name: 'QBO'} };
+    const req = httpMock.expectOne({
+      method: 'GET',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/credentials/qbo/`
+    });
+    req.flush('', response);
   });
 
   it('navigate function check', () => {

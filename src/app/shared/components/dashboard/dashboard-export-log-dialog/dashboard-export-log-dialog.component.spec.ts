@@ -6,7 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { DashboardExportLogDialogComponent } from './dashboard-export-log-dialog.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
-import { ExpenseGroupResponse } from 'src/app/core/models/db/expense-group.model';
+import { ExpenseGroupDescription, ExpenseGroupResponse } from 'src/app/core/models/db/expense-group.model';
 import { of } from 'rxjs';
 
 describe('DashboardExportLogDialogComponent', () => {
@@ -27,7 +27,7 @@ describe('DashboardExportLogDialogComponent', () => {
         // I was expecting this will pass the desired value
         provide: MAT_DIALOG_DATA,
         useValue: {
-          exportState: ExportState, lastExportedAt: new Date()
+          exportState: ExportState.SUCCESS, lastExportedAt: new Date()
         }
       },
       {
@@ -49,6 +49,30 @@ describe('DashboardExportLogDialogComponent', () => {
   });
 
   it('should create', () => {
+    const response = {
+      count: 0,
+      next: 'null',
+      previous: "xxx",
+      results: [
+        {
+          id: 1,
+          fund_source: "string",
+          description: {settlement_id: "setUwjAkWcafS", expense_id: "txiLJWdg9cZc", report_id: "rp3YxnytLrgS", claim_number: "C/2022/05/R/11", employee_email: "sravan.kumar@fyle.in"},
+          response_logs: [],
+          export_type: 'string',
+          employee_name: 'string',
+          exported_at: new Date(),
+          created_at: new Date(),
+          updated_at: new Date(),
+          workspace: 2,
+          expenses: [{expense_number: 'swswsw', payment_number: 'ewewewew'}]
+      }
+      ]
+    };
     expect(component).toBeTruthy();
+    const req = httpMock.expectOne(
+      req => req.method === 'GET' && req.url.includes(`${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/`)
+    );
+      req.flush(response);
   });
 });

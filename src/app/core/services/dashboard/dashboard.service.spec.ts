@@ -139,7 +139,7 @@ describe('DashboardService', () => {
     req.flush(response);
   });
 
-  xit('getTasks() service number check', () => {
+  it('getTasks() service number check', () => {
     const response:TaskResponse = {
       count: 0,
       next: null,
