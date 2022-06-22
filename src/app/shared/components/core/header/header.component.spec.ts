@@ -44,17 +44,15 @@ describe('HeaderComponent', () => {
     };
     localStorage.setItem('user', JSON.stringify(localStorageDump));
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientModule, SharedModule, MatDialogModule, HttpClientTestingModule],
+      imports: [RouterTestingModule, SharedModule, MatDialogModule, HttpClientTestingModule],
       declarations: [HeaderComponent, TrimCharacterPipe],
-      providers: [AuthService, HelperService, StorageService, TrackingService, WindowService, UserService, WorkspaceService, QboConnectorService]
+      providers: []
     })
       .compileComponents();
   });
 
   beforeEach(() => {
     injector = getTestBed();
-    workspace = injector.inject(WorkspaceService);
-    qboConnectorService = injector.inject(QboConnectorService);
     httpMock = injector.inject(HttpTestingController);
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
@@ -65,6 +63,7 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  //Error: Expected one matching request for criteria "Match method: GET, URL: http://localhost:8002/api/workspaces/2/credentials/qbo/", found none
   xit('should create', () => {
     expect(component).toBeTruthy();
     const response: QBOCredentials = {
@@ -87,7 +86,7 @@ describe('HeaderComponent', () => {
 
   xit('component failure response', () => {
     expect(component).toBeTruthy();
-    const response={ status: 404, statusText: "Not Found", error: {id: 2, company_name: 'QBO'} };
+    const response = { status: 404, statusText: "Not Found", error: { id: 2, company_name: 'QBO' } };
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/credentials/qbo/`
