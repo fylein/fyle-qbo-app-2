@@ -179,7 +179,7 @@ describe('GenericMappingComponent', () => {
     };
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?limit=10&offset=3&all_alphabets=false&mapped=ALL&mapping_source_alphabets=dh,fy&source_type=${minimaMappingSetting.source_field}&destination_type=${minimaMappingSetting.destination_field}`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?limit=50&offset=3&all_alphabets=false&mapped=ALL&mapping_source_alphabets=dh,fy&source_type=${minimaMappingSetting.source_field}&destination_type=${minimaMappingSetting.destination_field}`
     });
     req.flush(response);
   });
