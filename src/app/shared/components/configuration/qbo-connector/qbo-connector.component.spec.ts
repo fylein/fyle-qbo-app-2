@@ -38,7 +38,7 @@ describe('QboConnectorComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create, export ervice fails', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
   xit('should create, export ervice fails', () => {
