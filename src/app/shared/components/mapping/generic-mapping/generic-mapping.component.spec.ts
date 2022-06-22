@@ -242,7 +242,7 @@ describe('GenericMappingComponent', () => {
   };
   const req = httpMock.expectOne({
     method: 'GET',
-    url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?limit=10&offset=0&all_alphabets=true&mapped=ALL&mapping_source_alphabets=null&source_type=PROJECT&destination_type=CUSTOMER`
+    url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?limit=50&offset=0&all_alphabets=true&mapped=ALL&mapping_source_alphabets=null&source_type=PROJECT&destination_type=CUSTOMER`
   });
   req.flush(response);
 });
