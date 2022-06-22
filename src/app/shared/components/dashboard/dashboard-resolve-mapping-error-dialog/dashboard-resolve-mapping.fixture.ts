@@ -22,7 +22,7 @@ export   const expenseAttribute: ExpenseAttribute = {
     department_id: 'string',
     department: 'string',
     department_code: 'string',
-    employee_code: 'string',
+    employee_code: 'string'
   }
 };
 export const expencegroup:ExpenseGroup = {
@@ -57,25 +57,25 @@ export const model: ResolveMappingError = {
     error_detail: 'string',
     workspace_id: 1,
     created_at: new Date(),
-    updated_at: new Date(),
+    updated_at: new Date()
   }],
   workspaceId: "string"
 };
 export const mappinglist: MappingList[] = [{
   fyle: {
       id: 1,
-      value: 'string',
+      value: 'string'
   },
   qbo: {
       id: 'string',
-      value: 'string',
+      value: 'string'
   },
   preserveDestination: {
-      id: 'string',
+      id: 'string'
   },
   autoMapped: true,
   state: MappingState.ALL,
-  index: 1,
+  index: 1
 }];
 export const destinationAttributes: DestinationAttribute = {
   id: 1,

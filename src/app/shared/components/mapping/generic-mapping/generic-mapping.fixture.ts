@@ -18,34 +18,34 @@ export const mappingSetting:MappingSetting[] = [{
 export const mappinglist: MappingList[] = [{
   fyle: {
       id: 1,
-      value: 'string',
+      value: 'string'
   },
   qbo: {
       id: 'string',
-      value: 'string',
+      value: 'string'
   },
   preserveDestination: {
-      id: 'string',
+      id: 'string'
   },
   autoMapped: true,
   state: MappingState.ALL,
-  index: 0,
+  index: 0
 },
 {
   fyle: {
       id: 1,
-      value: 'string',
+      value: 'string'
   },
   qbo: {
       id: 'string',
-      value: 'string',
+      value: 'string'
   },
   preserveDestination: {
-      id: 'string',
+      id: 'string'
   },
   autoMapped: true,
   state: MappingState.UNMAPPED,
-  index: 1,
+  index: 1
 }];
 export const minimaMappingSetting:MinimalMappingSetting = {
   source_field: MappingSourceField.PROJECT,

@@ -63,7 +63,7 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  //Error: Expected one matching request for criteria "Match method: GET, URL: http://localhost:8002/api/workspaces/2/credentials/qbo/", found none
+  // Error: Expected one matching request for criteria "Match method: GET, URL: http://localhost:8002/api/workspaces/2/credentials/qbo/", found none
   xit('should create', () => {
     expect(component).toBeTruthy();
     const response: QBOCredentials = {

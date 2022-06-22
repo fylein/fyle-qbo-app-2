@@ -17,7 +17,7 @@ describe('DashboardResolveMappingErrorDialogComponent', () => {
   let service: MappingService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  let formBuilder: FormBuilder
+  let formBuilder: FormBuilder;
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
   let dialogSpy: jasmine.Spy;
@@ -77,12 +77,12 @@ describe('DashboardResolveMappingErrorDialogComponent', () => {
     const mappingForm = form.controls.fyleQboMapping as FormArray;
     component.mappingForm = mappingForm.controls as FormGroup[];
     fixture.detectChanges();
-    component.saveMapping(mappinglist[0],destinationAttributes,component.mappingForm[0]);
+    component.saveMapping(mappinglist[0], destinationAttributes, component.mappingForm[0]);
     const req = httpMock.expectOne({
       method: 'POST',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee/`
     });
       req.flush(response);
     expect(dialogSpy).toHaveBeenCalled();
-  })
+  });
 });

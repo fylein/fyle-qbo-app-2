@@ -29,7 +29,7 @@ describe('GenericMappingComponent', () => {
   const mappingState: MappingStats = {
     all_attributes_count: 5,
     unmapped_attributes_count: 4
-  }
+  };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [GenericMappingComponent],
@@ -128,7 +128,7 @@ describe('GenericMappingComponent', () => {
 
   it('Save function check 2', () => {
     component.mappingSetting = minimaMappingSetting;
-    component.mappingStats = mappingState
+    component.mappingStats = mappingState;
     fixture.detectChanges();
     component.save(mappinglist[1]);
     fixture.detectChanges();
@@ -151,7 +151,7 @@ describe('GenericMappingComponent', () => {
     const page = {
       limit: 10,
       offset: 3
-    }
+    };
     component.mappingSetting = minimaMappingSetting;
     fixture.detectChanges();
     expect(component.getMappings(page)).toBeUndefined();
@@ -196,7 +196,7 @@ describe('GenericMappingComponent', () => {
         {
           mapping: [{
             id: 1,
-            source:  {
+            source: {
               id: 1,
               attribute_type: 'string',
               display_name: 'string',
@@ -213,7 +213,7 @@ describe('GenericMappingComponent', () => {
                 department_id: 'string',
                 department: 'string',
                 department_code: 'string',
-                employee_code: 'string',
+                employee_code: 'string'
               }
             },
             destination: {
