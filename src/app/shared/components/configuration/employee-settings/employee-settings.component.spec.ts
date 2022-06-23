@@ -12,29 +12,54 @@ import { EmployeeSettingService } from 'src/app/core/services/configuration/empl
 import { EmployeeSettingGet } from 'src/app/core/models/configuration/employee-setting.model';
 import { environment } from 'src/environments/environment';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { ExportSettingGet } from 'src/app/core/models/configuration/export-setting.model';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
+import { response, response1, response2 } from './employee-settings.fixture';
+import { errorResponse } from '../qbo-connector/qbo-connector.fixture';
 
 describe('EmployeeSettingsComponent', () => {
   let component: EmployeeSettingsComponent;
   let fixture: ComponentFixture<EmployeeSettingsComponent>;
-  const routerSpy = { navigate: jasmine.createSpy('navigate') };
+  const routerSpy = { navigate: jasmine.createSpy('navigate'), url: '/path' };
   let formBuilder: FormBuilder;
   let injector: TestBed;
   let httpMock: HttpTestingController;
+  let service:any;
+  let service1:any;
+  let service2:any;
+  let mappingService: MappingService;
+  let exportSettingService: ExportSettingService;
+  let employeeSettingService: EmployeeSettingService;
+  let router: Router;
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
   let dialogSpy: jasmine.Spy;
   const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({}), close: null });
   dialogRefSpyObj.componentInstance = { body: '' };
   beforeEach(async () => {
+    service = {
+      getDistinctQBODestinationAttributes: () => of(response2)
+    };
+
+    service1 = {
+      getEmployeeSettings: () => of(response),
+      postEmployeeSettings: () => of(response)
+    };
+
+    service2 = {
+      getExportSettings: () => of(response1)
+    };
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientTestingModule, MatSnackBarModule, NoopAnimationsModule, FormsModule, ReactiveFormsModule, MatDialogModule, SharedModule],
       declarations: [EmployeeSettingsComponent],
-      providers: [{ provide: Router, useValue: routerSpy }, EmployeeSettingService, FormBuilder, ExportSettingService, MappingService]
+      providers: [{ provide: Router, useValue: routerSpy },
+        { provide: EmployeeSettingService, useValue: service1}, FormBuilder,
+        { provide: ExportSettingService, useValue: service2},
+        { provide: MappingService, useValue: service}
+      ]
     })
       .compileComponents();
   });
@@ -45,6 +70,10 @@ describe('EmployeeSettingsComponent', () => {
     formBuilder = TestBed.inject(FormBuilder);
     injector = getTestBed();
     httpMock = injector.inject(HttpTestingController);
+    mappingService = TestBed.inject(MappingService);
+    employeeSettingService = TestBed.inject(EmployeeSettingService);
+    exportSettingService = TestBed.inject(ExportSettingService);
+    router = TestBed.inject(Router);
     const form = formBuilder.group({
       employeeMapping: ['EMPLOYEE'],
       autoMapEmployee: [true]
@@ -55,79 +84,16 @@ describe('EmployeeSettingsComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-    const response: EmployeeSettingGet = {
-      workspace_general_settings: { employee_field_mapping: EmployeeFieldMapping.EMPLOYEE, auto_map_employees: AutoMapEmployee.EMPLOYEE_CODE },
-      workspace_id: 1
-    };
-    const response1: ExportSettingGet = {
-      expense_group_settings: {
-        expense_state: ExpenseState.PAID,
-        reimbursable_expense_group_fields: ['sample'],
-        reimbursable_export_date_type: ExportDateType.APPROVED_AT,
-        corporate_credit_card_expense_group_fields: ['sipper'],
-        ccc_export_date_type: ExportDateType.SPENT_AT
-      },
-      workspace_general_settings: {
-        reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
-        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL
-      },
-      general_mappings: {
-        bank_account: { id: '1', name: 'Fyle' },
-        default_ccc_account: { id: '1', name: 'Fyle' },
-        accounts_payable: { id: '1', name: 'Fyle' },
-        default_ccc_vendor: { id: '1', name: 'Fyle' },
-        qbo_expense_account: { id: '1', name: 'Fyle' },
-        default_debit_card_account: { id: '1', name: 'Fyle' }
-      },
-      workspace_id: 1
-    };
-
-    const response2: DestinationAttribute[] = [{
-      id: 1,
-      attribute_type: 'EMPLOYEE',
-      display_name: "string",
-      value: "string",
-      destination_id: "string",
-      active: true,
-      created_at: new Date(),
-      updated_at: new Date(),
-      workspace: 2,
-      detail: {
-        email: 'String',
-        fully_qualified_name: 'string'
-      }
-    },
-    {
-      id: 1,
-      attribute_type: 'VENDOR',
-      display_name: "string",
-      value: "string",
-      destination_id: "string",
-      active: true,
-      created_at: new Date(),
-      updated_at: new Date(),
-      workspace: 2,
-      detail: {
-        email: 'String',
-        fully_qualified_name: 'string'
-      }
-    }];
-    const req1 = httpMock.expectOne({
-      method: 'GET',
-      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/map_employees/`
-    });
-    const req2 = httpMock.expectOne({
-      method: 'GET',
-      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/export_settings/`
-    });
-    const req3 = httpMock.expectOne({
-      method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/qbo_attributes/?attribute_types=EMPLOYEE,VENDOR`
-    });
-    req1.flush(response);
-    req2.flush(response1);
-    req3.flush(response2);
+    // @ts-ignore: force this private property value for testing.
+    router.url = '/path/to/realmId';
+    spyOn(mappingService, 'getDistinctQBODestinationAttributes').and.callThrough();
+    spyOn(employeeSettingService, 'getEmployeeSettings').and.callThrough();
+    spyOn(exportSettingService, 'getExportSettings').and.callThrough();
+    expect(component.ngOnInit()).toBeUndefined();
+    fixture.detectChanges();
+    expect(mappingService.getDistinctQBODestinationAttributes).toHaveBeenCalled();
+    expect(employeeSettingService.getEmployeeSettings).toHaveBeenCalled();
+    expect(exportSettingService.getExportSettings).toHaveBeenCalled();
   });
 
   it('Navigate function check', () => {
@@ -136,50 +102,44 @@ describe('EmployeeSettingsComponent', () => {
   });
 
   it('Save function check', () => {
+    spyOn(employeeSettingService, 'postEmployeeSettings').and.callThrough();
     component.saveInProgress = false;
     component.existingEmployeeFieldMapping = EmployeeFieldMapping.EMPLOYEE;
     component.isOnboarding = true;
-    fixture.detectChanges();
     expect(component.save()).toBeUndefined();
-    const response: EmployeeSettingGet = {
-      workspace_general_settings: { employee_field_mapping: EmployeeFieldMapping.EMPLOYEE, auto_map_employees: AutoMapEmployee.EMPLOYEE_CODE },
-      workspace_id: 1
-    };
-    const req = httpMock.expectOne({
-      method: 'PUT',
-      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/map_employees/`
-    });
-    req.flush(response);
+    fixture.detectChanges();
+    expect(employeeSettingService.postEmployeeSettings).toHaveBeenCalled();
   });
 
   it('Save function check', () => {
+    spyOn(employeeSettingService, 'postEmployeeSettings').and.callThrough();
     component.saveInProgress = false;
     component.existingEmployeeFieldMapping = undefined;
-    fixture.detectChanges();
+    component.isOnboarding = true;
     expect(component.save()).toBeUndefined();
-    const response: EmployeeSettingGet = {
-      workspace_general_settings: { employee_field_mapping: EmployeeFieldMapping.EMPLOYEE, auto_map_employees: AutoMapEmployee.EMPLOYEE_CODE },
-      workspace_id: 1
-    };
-    const req = httpMock.expectOne({
-      method: 'PUT',
-      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/map_employees/`
-    });
-    req.flush(response);
+    fixture.detectChanges();
+    expect(employeeSettingService.postEmployeeSettings).toHaveBeenCalled();
   });
 
   it('Save function check', () => {
+    spyOn(employeeSettingService, 'postEmployeeSettings').and.returnValue(throwError(errorResponse));
     component.saveInProgress = false;
     component.existingEmployeeFieldMapping = undefined;
-    fixture.detectChanges();
+    component.isOnboarding = true;
     expect(component.save()).toBeUndefined();
-    const responseKeys = { status: 404, statusText: "Not Found" };
-    const req = httpMock.expectOne({
-      method: 'PUT',
-      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/map_employees/`
-    });
-    req.flush('', responseKeys);
     fixture.detectChanges();
+    expect(employeeSettingService.postEmployeeSettings).toHaveBeenCalled();
+    expect(component.saveInProgress).toBeFalse();
+  });
+
+  it('Save function check', () => {
+    spyOn(employeeSettingService, 'postEmployeeSettings').and.callThrough();
+    component.saveInProgress = false;
+    component.existingEmployeeFieldMapping = undefined;
+    component.isOnboarding = false;
+    expect(component.save()).toBeUndefined();
+    fixture.detectChanges();
+    expect(employeeSettingService.postEmployeeSettings).toHaveBeenCalled();
     expect(component.saveInProgress).toBeFalse();
   });
 

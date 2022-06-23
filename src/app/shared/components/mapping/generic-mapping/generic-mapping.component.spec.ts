@@ -235,48 +235,54 @@ describe('GenericMappingComponent', () => {
             updated_at: new Date(),
             workspace: 2
           }
-        ]
+          ]
 
-    }
+        }
       ]
-  };
-  const limit = localStorage.getItem(`page-size.${PaginatorPage.MAPPING}`) || 50;
-  const req = httpMock.expectOne({
-    method: 'GET',
-    url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?limit=${limit}&offset=0&all_alphabets=true&mapped=ALL&mapping_source_alphabets=null&source_type=PROJECT&destination_type=CUSTOMER`
+    };
+    const limit = localStorage.getItem(`page-size.${PaginatorPage.MAPPING}`) || 50;
+    const req = httpMock.expectOne({
+      method: 'GET',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?limit=${limit}&offset=0&all_alphabets=true&mapped=ALL&mapping_source_alphabets=null&source_type=PROJECT&destination_type=CUSTOMER`
+    });
+    req.flush(response);
   });
-  req.flush(response);
-});
 
-it('mappingCardUpdateHandler function check', () => {
-  const form = formBuilder.group({
-    filterOption: [['dh', 'fy']],
-    sourceUpdated: [true],
-    searchOption: [['fyle']]
+  it('mappingCardUpdateHandler function check', () => {
+    const form = formBuilder.group({
+      filterOption: [['dh', 'fy']],
+      sourceUpdated: [true],
+      searchOption: [['fyle']]
+    });
+    component.form = form;
+    component.mappingSetting = minimaMappingSetting;
+    component.page = 'Onboarding';
+    fixture.detectChanges();
+    component.mappingCardUpdateHandler(true);
+    fixture.detectChanges();
+    expect(component.totalCardActive).toBeTrue();
+    expect(component.form.value.sourceUpdated).toBeTrue();
   });
-  component.form = form;
-  component.mappingSetting = minimaMappingSetting;
-  component.page = 'Onboarding';
-  fixture.detectChanges();
-  component.mappingCardUpdateHandler(true);
-  fixture.detectChanges();
-  expect(component.totalCardActive).toBeTrue();
-  expect(component.form.value.sourceUpdated).toBeTrue();
-});
 
-it('mappingCardUpdateHandler function check', () => {
-  const form = formBuilder.group({
-    filterOption: [['dh', 'fy']],
-    sourceUpdated: [true],
-    searchOption: [['fyle']]
+  it('mappingCardUpdateHandler function check', () => {
+    const form = formBuilder.group({
+      filterOption: [['dh', 'fy']],
+      sourceUpdated: [true],
+      searchOption: [['fyle']]
+    });
+    component.form = form;
+    component.mappingSetting = minimaMappingSetting;
+    component.page = 'Onboarding';
+    fixture.detectChanges();
+    component.mappingCardUpdateHandler(false);
+    fixture.detectChanges();
+    expect(component.totalCardActive).toBeFalse();
+    expect(component.form.value.sourceUpdated).toBeTrue();
   });
-  component.form = form;
-  component.mappingSetting = minimaMappingSetting;
-  component.page = 'Onboarding';
-  fixture.detectChanges();
-  component.mappingCardUpdateHandler(false);
-  fixture.detectChanges();
-  expect(component.totalCardActive).toBeFalse();
-  expect(component.form.value.sourceUpdated).toBeTrue();
-});
+  it('searchByText function check', () => {
+    const ans = (component as any).searchByText(mappinglist[0], 'string');
+    expect(ans).toBeTrue();
+    const ans1 = (component as any).searchByText(mappinglist[0], 'fyle');
+    expect(ans1).toBeFalse();
+  });
 });

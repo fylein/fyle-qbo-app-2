@@ -18,16 +18,12 @@ describe('QboConnectorComponent', () => {
   let router: Router;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  let req: any;
   let qboService:QboConnectorService;
   let exportService:ExportSettingService;
   let workspaceService: WorkspaceService;
   let service: any;
   let service2: any;
   let service3: any;
-  const spyobj:any[]=[];
-  const API_BASE_URL = environment.api_url;
-  const workspace_id = environment.tests.workspaceId;
   beforeEach(async () => {
     localStorage.setItem('user', JSON.stringify({ org_id: 'dummy', org_name: 'Fyle' }));
     service = {
@@ -58,8 +54,6 @@ describe('QboConnectorComponent', () => {
     fixture = TestBed.createComponent(QboConnectorComponent);
     component = fixture.componentInstance;
     router = TestBed.get(Router);
-    injector = getTestBed();
-    httpMock = injector.inject(HttpTestingController);
     qboService = TestBed.inject(QboConnectorService);
     exportService = TestBed.inject(ExportSettingService);
     workspaceService = TestBed.inject(WorkspaceService);
