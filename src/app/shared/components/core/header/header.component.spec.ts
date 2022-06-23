@@ -16,7 +16,6 @@ import { WorkspaceService } from 'src/app/core/services/workspace/workspace.serv
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
 import { of } from 'rxjs';
-import { By } from '@angular/platform-browser';
 import { QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
 
 describe('HeaderComponent', () => {
@@ -124,5 +123,17 @@ describe('HeaderComponent', () => {
     component.showOrHideHelpDropdown();
     fixture.detectChanges();
     expect(component.isHelpSectionExpanded).toBeTrue();
+  });
+
+  it('get active page name', () => {
+    expect((component as any).getActivePageName('/workspaces/main/dashboard')).toBe('Dashboard');
+    expect((component as any).getActivePageName('/workspaces/main/export_log')).toBe('Export Log');
+    expect((component as any).getActivePageName('/workspaces/main/mapping/project')).toBe('project mapping');
+    expect((component as any).getActivePageName('/workspaces/main/configuration/employee_settings')).toBe('Map Employees');
+    expect((component as any).getActivePageName('/workspaces/main/configuration/export_settings')).toBe('Export Settings');
+    expect((component as any).getActivePageName('/workspaces/main/configuration/import_settings')).toBe('Import Settings');
+    expect((component as any).getActivePageName('/workspaces/main/configuration/advanced_settings')).toBe('Advanced Settings');
+    expect((component as any).getActivePageName('/workspaces/onboarding/advanced_settings')).toBe('');
+    expect((component as any).getActivePageName('/')).toBe('Dashboard');
   });
 });
