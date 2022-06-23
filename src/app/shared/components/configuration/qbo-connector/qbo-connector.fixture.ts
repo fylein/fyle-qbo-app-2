@@ -14,7 +14,7 @@ export const response = {
 };
 
 export const errorResponse = {
-  status: 404, 
+  status: 404,
   statusText: "Not Found",
   error: {
     id: 1,

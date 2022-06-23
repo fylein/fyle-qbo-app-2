@@ -25,7 +25,7 @@ describe('QboConnectorComponent', () => {
   let service: any;
   let service2: any;
   let service3: any;
-  let spyobj:any[]=[];
+  const spyobj:any[]=[];
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
   beforeEach(async () => {
@@ -41,7 +41,7 @@ describe('QboConnectorComponent', () => {
     service3 = {
       refreshQBODimensions: () => of({}),
       setOnboardingState: () => undefined
-    }
+    };
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientTestingModule, SharedModule, MatSnackBarModule],
       declarations: [QboConnectorComponent],
@@ -71,7 +71,7 @@ describe('QboConnectorComponent', () => {
   });
   it('should create, export ervice fails', () => {
     spyOn(qboService, 'getQBOCredentials').and.callThrough();
-    spyOn(exportService,'getExportSettings').and.returnValue(throwError(errorResponse));
+    spyOn(exportService, 'getExportSettings').and.returnValue(throwError(errorResponse));
     expect(component.ngOnInit()).toBeUndefined();
     fixture.detectChanges();
     expect(component.isLoading).toBeFalse();
@@ -82,7 +82,7 @@ describe('QboConnectorComponent', () => {
 
   it('should create', () => {
     spyOn(qboService, 'getQBOCredentials').and.callThrough();
-    spyOn(exportService,"getExportSettings").and.callThrough();
+    spyOn(exportService, "getExportSettings").and.callThrough();
     expect(component.ngOnInit()).toBeUndefined();
     fixture.detectChanges();
     expect(component.showDisconnectQBO).toBeTrue();
@@ -128,7 +128,7 @@ describe('QboConnectorComponent', () => {
     component.qboConnectionInProgress = true;
     spyOn(qboService, 'connectQBO').and.callThrough();
     spyOn(workspaceService, 'refreshQBODimensions').and.returnValue(throwError(errorResponse));
-    expect((component as any).postQboCredentials('ssdsdsdsdsd','dsdsdsdsdsds')).toBeUndefined();
+    expect((component as any).postQboCredentials('ssdsdsdsdsd', 'dsdsdsdsdsds')).toBeUndefined();
     fixture.detectChanges();
     expect(qboService.connectQBO).toHaveBeenCalled();
     expect(workspaceService.refreshQBODimensions).toHaveBeenCalled();

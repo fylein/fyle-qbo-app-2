@@ -240,7 +240,7 @@ describe('GenericMappingComponent', () => {
     }
       ]
   };
-  const limit = localStorage.getItem(`page-size.${PaginatorPage.MAPPING}`) || 50
+  const limit = localStorage.getItem(`page-size.${PaginatorPage.MAPPING}`) || 50;
   const req = httpMock.expectOne({
     method: 'GET',
     url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?limit=${limit}&offset=0&all_alphabets=true&mapped=ALL&mapping_source_alphabets=null&source_type=PROJECT&destination_type=CUSTOMER`
