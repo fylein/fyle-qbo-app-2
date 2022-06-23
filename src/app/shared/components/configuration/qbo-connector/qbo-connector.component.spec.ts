@@ -7,8 +7,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
-import { ExportSettingGet } from 'src/app/core/models/configuration/export-setting.model';
-import { ExpenseState, ExportDateType, ReimbursableExpensesObject, CorporateCreditCardExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { of, throwError } from 'rxjs';
+import { errorResponse, exportResponse, response } from './qbo-connector.fixture';
+import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
+import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 describe('QboConnectorComponent', () => {
   let component: QboConnectorComponent;
@@ -17,14 +19,37 @@ describe('QboConnectorComponent', () => {
   let injector: TestBed;
   let httpMock: HttpTestingController;
   let req: any;
+  let qboService:QboConnectorService;
+  let exportService:ExportSettingService;
+  let workspaceService: WorkspaceService;
+  let service: any;
+  let service2: any;
+  let service3: any;
+  let spyobj:any[]=[];
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
   beforeEach(async () => {
-    localStorage.setItem('user', JSON.stringify({ org_id: 'dummy' }));
+    localStorage.setItem('user', JSON.stringify({ org_id: 'dummy', org_name: 'Fyle' }));
+    service = {
+      getQBOCredentials: () => of(response),
+      connectQBO: () => of(response),
+      disconnectQBOConnection: () => of(response)
+    };
+    service2 = {
+      getExportSettings: () => of(exportResponse)
+    };
+    service3 = {
+      refreshQBODimensions: () => of({}),
+      setOnboardingState: () => undefined
+    }
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientTestingModule, SharedModule, MatSnackBarModule],
       declarations: [QboConnectorComponent],
-      providers: [QboConnectorService]
+      providers: [
+        { provide: QboConnectorService, useValue: service },
+      { provide: ExportSettingService, useValue: service2 },
+      { provide: workspaceService, useValue: service3}
+    ]
     })
       .compileComponents();
   });
@@ -35,103 +60,46 @@ describe('QboConnectorComponent', () => {
     router = TestBed.get(Router);
     injector = getTestBed();
     httpMock = injector.inject(HttpTestingController);
+    qboService = TestBed.inject(QboConnectorService);
+    exportService = TestBed.inject(ExportSettingService);
+    workspaceService = TestBed.inject(WorkspaceService);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  xit('should create, export ervice fails', () => {
-    expect(component).toBeTruthy();
-    const response = {
-      id: 1,
-      refresh_token: 'fyle',
-      is_expired: false,
-      realm_id: 'realmId',
-      country: 'india',
-      company_name: 'Fyle',
-      created_at: new Date(),
-      updated_at: new Date(),
-      workspace: +workspace_id
-    };
-    req = httpMock.expectOne({
-      method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/credentials/qbo/`
-    });
-    req.flush(response);
-    const response1={status: 404, statusText: "Not Found"};
-    const req1 = httpMock.expectOne({
-      method: 'GET',
-      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/export_settings/`
-    });
-    req1.flush(response1);
+  it('should create, export ervice fails', () => {
+    spyOn(qboService, 'getQBOCredentials').and.callThrough();
+    spyOn(exportService,'getExportSettings').and.returnValue(throwError(errorResponse));
+    expect(component.ngOnInit()).toBeUndefined();
+    fixture.detectChanges();
     expect(component.isLoading).toBeFalse();
     expect(component.showDisconnectQBO).toBeTrue();
+    expect(qboService.getQBOCredentials).toHaveBeenCalled();
+    expect(exportService.getExportSettings).toHaveBeenCalled();
   });
 
-  xit('should create', () => {
-    expect(component).toBeTruthy();
-    const response = {
-      id: 1,
-      refresh_token: 'fyle',
-      is_expired: false,
-      realm_id: 'realmId',
-      country: 'india',
-      company_name: 'Fyle',
-      created_at: new Date(),
-      updated_at: new Date(),
-      workspace: +workspace_id
-    };
-    req = httpMock.expectOne({
-      method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/credentials/qbo/`
-    });
-    req.flush(response);
-    const response1: ExportSettingGet = {
-      expense_group_settings: {
-        expense_state: ExpenseState.PAID,
-        reimbursable_expense_group_fields: ['sample'],
-        reimbursable_export_date_type: ExportDateType.APPROVED_AT,
-        corporate_credit_card_expense_group_fields: ['sipper'],
-        ccc_export_date_type: ExportDateType.SPENT_AT
-      },
-      workspace_general_settings: {
-        reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
-        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL
-      },
-      general_mappings: {
-        bank_account: { id: '1', name: 'Fyle' },
-        default_ccc_account: { id: '1', name: 'Fyle' },
-        accounts_payable: { id: '1', name: 'Fyle' },
-        default_ccc_vendor: { id: '1', name: 'Fyle' },
-        qbo_expense_account: { id: '1', name: 'Fyle' },
-        default_debit_card_account: { id: '1', name: 'Fyle' }
-      },
-      workspace_id: 1
-    };
-    const req1 = httpMock.expectOne({
-      method: 'GET',
-      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/export_settings/`
-    });
-    req1.flush(response1);
+  it('should create', () => {
+    spyOn(qboService, 'getQBOCredentials').and.callThrough();
+    spyOn(exportService,"getExportSettings").and.callThrough();
+    expect(component.ngOnInit()).toBeUndefined();
+    fixture.detectChanges();
+    expect(component.showDisconnectQBO).toBeTrue();
     expect(component.isLoading).toBeFalse();
     expect(component.isContinueDisabled).toBeFalse();
+    expect(qboService.getQBOCredentials).toHaveBeenCalled();
+    expect(exportService.getExportSettings).toHaveBeenCalled();
   });
 
-  xit('should create in failure', () => {
-    expect(component).toBeTruthy();
-    const response = {
-      status: 404, statusText: "Not Found", error: { id: '2', is_expired: false, company_name: 'QBO-Fyle' }
-    };
-    req = httpMock.expectOne({
-      method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/credentials/qbo/`
-    });
-    req.flush(response);
+  it('should create in failure', () => {
+    spyOn(qboService, 'getQBOCredentials').and.returnValue(throwError(errorResponse));
+    expect(component.ngOnInit()).toBeUndefined();
     fixture.detectChanges();
     expect(component.isLoading).toBeFalse();
     expect(component.isQboConnected).toBeFalsy();
     expect(component.isContinueDisabled).toBeTrue();
+    expect(qboService.getQBOCredentials).toHaveBeenCalled();
   });
 
   it('continueToNextStep=> isContinueDisabled = false function check', () => {
@@ -149,24 +117,20 @@ describe('QboConnectorComponent', () => {
   });
 
   it('disconnectQBO function check', () => {
+    spyOn(qboService, 'disconnectQBOConnection').and.callThrough();
     component.qboCompanyName = 'QBO-Fyle';
     fixture.detectChanges();
     expect(component.disconnectQbo()).toBeUndefined();
-    const response = {
-      id: 1,
-      refresh_token: 'fyle',
-      is_expired: false,
-      realm_id: 'realmId',
-      country: 'india',
-      company_name: 'Fyle',
-      created_at: new Date(),
-      updated_at: new Date(),
-      workspace: +workspace_id
-    };
-    req = httpMock.expectOne({
-      method: 'PATCH',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/credentials/qbo/`
-    });
-    req.flush(response);
+    expect(qboService.disconnectQBOConnection).toHaveBeenCalled();
+  });
+
+  it('postQBOCredential function check', () => {
+    component.qboConnectionInProgress = true;
+    spyOn(qboService, 'connectQBO').and.callThrough();
+    spyOn(workspaceService, 'refreshQBODimensions').and.returnValue(throwError(errorResponse));
+    expect((component as any).postQboCredentials('ssdsdsdsdsd','dsdsdsdsdsds')).toBeUndefined();
+    fixture.detectChanges();
+    expect(qboService.connectQBO).toHaveBeenCalled();
+    expect(workspaceService.refreshQBODimensions).toHaveBeenCalled();
   });
 });
