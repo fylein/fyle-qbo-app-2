@@ -27,9 +27,9 @@ describe('EmployeeSettingsComponent', () => {
   let formBuilder: FormBuilder;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  let service:any;
-  let service1:any;
-  let service2:any;
+  let service: any;
+  let service1: any;
+  let service2: any;
   let mappingService: MappingService;
   let exportSettingService: ExportSettingService;
   let employeeSettingService: EmployeeSettingService;
@@ -56,9 +56,9 @@ describe('EmployeeSettingsComponent', () => {
       imports: [RouterTestingModule, HttpClientTestingModule, MatSnackBarModule, NoopAnimationsModule, FormsModule, ReactiveFormsModule, MatDialogModule, SharedModule],
       declarations: [EmployeeSettingsComponent],
       providers: [{ provide: Router, useValue: routerSpy },
-        { provide: EmployeeSettingService, useValue: service1}, FormBuilder,
-        { provide: ExportSettingService, useValue: service2},
-        { provide: MappingService, useValue: service}
+      { provide: EmployeeSettingService, useValue: service1 }, FormBuilder,
+      { provide: ExportSettingService, useValue: service2 },
+      { provide: MappingService, useValue: service }
       ]
     })
       .compileComponents();

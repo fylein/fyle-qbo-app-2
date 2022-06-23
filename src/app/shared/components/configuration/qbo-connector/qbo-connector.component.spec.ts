@@ -18,8 +18,8 @@ describe('QboConnectorComponent', () => {
   let router: Router;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  let qboService:QboConnectorService;
-  let exportService:ExportSettingService;
+  let qboService: QboConnectorService;
+  let exportService: ExportSettingService;
   let workspaceService: WorkspaceService;
   let service: any;
   let service2: any;
@@ -43,9 +43,9 @@ describe('QboConnectorComponent', () => {
       declarations: [QboConnectorComponent],
       providers: [
         { provide: QboConnectorService, useValue: service },
-      { provide: ExportSettingService, useValue: service2 },
-      { provide: workspaceService, useValue: service3}
-    ]
+        { provide: ExportSettingService, useValue: service2 },
+        { provide: workspaceService, useValue: service3 }
+      ]
     })
       .compileComponents();
   });
