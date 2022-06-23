@@ -206,11 +206,6 @@ th.mat-header-cell:last-of-type {
 
 .export-log-tooltip {
   margin-top: -10px !important;
-  // TODO: test with monitor
-  // margin-right: 150px !important;
-  // @media only screen and (max-width: 1440px) {
-  //   margin-right: 80px !important;
-  // }
 }
 
 .export-log-child-tooltip {
@@ -740,10 +735,12 @@ th.mat-header-cell:last-of-type {
 
   &--table {
     overflow: scroll;
-    height: 580px;
-    @media only screen and (max-width: 1440px) {
-      height: 400px;
-    }
+    // TODO: check in monitor
+    height: 51vh;
+    // height: 580px;
+    // @media only screen and (max-width: 1440px) {
+      // height: 400px;
+    // }
   }
 }
 
