@@ -162,7 +162,7 @@ export class HeaderComponent implements OnInit {
       };
 
       this.trackingService.onSwitchToOldApp();
-      this.windowReference.location.href = `${environment.old_qbo_app_url}?local_storage_dump=${JSON.stringify(localStorageDump)}`;
+      this.windowReference.location.href = `${environment.old_qbo_app_url}?local_storage_dump=${encodeURIComponent(JSON.stringify(localStorageDump))}`;
     });
   }
 
