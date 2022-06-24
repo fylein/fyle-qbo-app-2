@@ -3,7 +3,7 @@ import { EmployeeMapping } from "src/app/core/models/db/employee-mapping.model";
 import { ExpenseAttribute } from "src/app/core/models/db/expense-attribute.model";
 import { ExpenseGroup } from "src/app/core/models/db/expense-group.model";
 import { MappingList, ResolveMappingError } from "src/app/core/models/db/mapping.model";
-import { FyleReferenceType, EmployeeFieldMapping, ErrorType, MappingState } from "src/app/core/models/enum/enum.model";
+import { FyleReferenceType, EmployeeFieldMapping, ErrorType, MappingState, QBOField } from "src/app/core/models/enum/enum.model";
 
 export   const expenseAttribute: ExpenseAttribute = {
   id: 1,
@@ -47,6 +47,24 @@ export const expencegroup:ExpenseGroup = {
 export const model: ResolveMappingError = {
   sourceType: EmployeeFieldMapping.EMPLOYEE,
   destinationType: EmployeeFieldMapping.VENDOR,
+  fyleAttributes: [{
+    id: 1,
+    type: ErrorType.CATEGORY_MAPPING,
+    expense_group: expencegroup,
+    expense_attribute: expenseAttribute,
+    is_resolved: true,
+    error_title: 'string',
+    error_detail: 'string',
+    workspace_id: 1,
+    created_at: new Date(),
+    updated_at: new Date()
+  }],
+  workspaceId: "string"
+};
+
+export const model2: ResolveMappingError = {
+  sourceType: EmployeeFieldMapping.VENDOR,
+  destinationType: QBOField.ACCOUNT,
   fyleAttributes: [{
     id: 1,
     type: ErrorType.CATEGORY_MAPPING,

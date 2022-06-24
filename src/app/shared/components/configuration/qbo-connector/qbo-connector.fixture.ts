@@ -23,6 +23,17 @@ export const errorResponse = {
   }
 };
 
+export const errorResponse2 = {
+  status: 404,
+  statusText: "Not Found",
+  error: {
+    id: 1,
+    is_expired: true,
+    company_name: 'QBO',
+    message: 'Please choose the correct Quickbooks online account'
+  }
+};
+
 export const exportResponse: ExportSettingGet = {
   expense_group_settings: {
     expense_state: ExpenseState.PAID,

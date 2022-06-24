@@ -73,4 +73,38 @@ describe('DashboardExportLogDialogComponent', () => {
     );
       req.flush(response);
   });
+  it('setup function check', () => {
+    component.data = {
+      exportState: ExportState.FAILED, lastExportedAt: new Date()
+    };
+    fixture.detectChanges();
+    const response = {
+      count: 0,
+      next: 'null',
+      previous: "xxx",
+      results: [
+        {
+          id: 1,
+          fund_source: "CCC",
+          description: { "settlement_id": "setUwjAkWcafS", "employee_email": "ashwin.t@fyle.in"},
+          response_logs: [],
+          export_type: 'string',
+          employee_name: 'string',
+          exported_at: new Date(),
+          created_at: new Date(),
+          updated_at: new Date(),
+          workspace: 2,
+          expenses: [{expense_number: 'swswsw', payment_number: 'ewewewew'}]
+      }
+      ]
+    };
+    const req = httpMock.match(
+      req => req.method === 'GET' && req.url.includes(`${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/`)
+    );
+      req[0].flush(response);
+
+      expect((component as any).setupPage()).toBeUndefined();
+      expect(component.displayedColumns).toEqual(['referenceID', 'name', 'link']);
+      expect(component.externalUrlType).toEqual('Fyle');
+  });
 });

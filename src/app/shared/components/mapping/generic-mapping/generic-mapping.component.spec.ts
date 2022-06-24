@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
@@ -9,11 +9,13 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MappingSettingResponse } from 'src/app/core/models/db/mapping-setting.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
-import { MappingStats } from 'src/app/core/models/db/mapping.model';
+import { MappingList, MappingStats } from 'src/app/core/models/db/mapping.model';
 import { ActivatedRoute } from '@angular/router';
 import { mappinglist, mappingSetting, minimaMappingSetting, response } from './generic-mapping.fixture';
 import { of } from 'rxjs';
 import { PaginatorPage } from 'src/app/core/models/enum/enum.model';
+import { MappingService } from 'src/app/core/services/misc/mapping.service';
+import { PaginatorService } from 'src/app/core/services/core/paginator.service';
 
 describe('GenericMappingComponent', () => {
   let component: GenericMappingComponent;
@@ -21,6 +23,7 @@ describe('GenericMappingComponent', () => {
   let injector: TestBed;
   let httpMock: HttpTestingController;
   let formBuilder: FormBuilder;
+  let activatedRoute: ActivatedRoute;
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
   let dialogSpy: jasmine.Spy;
@@ -34,7 +37,7 @@ describe('GenericMappingComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [GenericMappingComponent],
       imports: [RouterTestingModule, FormsModule, ReactiveFormsModule, HttpClientModule, MatSnackBarModule, SharedModule, HttpClientTestingModule],
-      providers: [FormBuilder, Validators]
+      providers: [FormBuilder, Validators, MappingService, PaginatorService]
     })
       .compileComponents();
   });
@@ -45,6 +48,7 @@ describe('GenericMappingComponent', () => {
     formBuilder = TestBed.inject(FormBuilder);
     injector = getTestBed();
     httpMock = injector.inject(HttpTestingController);
+    activatedRoute = TestBed.inject(ActivatedRoute);
     dialogSpy = spyOn(TestBed.get(MatSnackBar), 'open').and.returnValue(dialogRefSpyObj);
     fixture.detectChanges();
   });
@@ -83,6 +87,7 @@ describe('GenericMappingComponent', () => {
 
   it('nqOninte with form function', () => {
     component.sourceType = 'project';
+    activatedRoute.snapshot.params = { source_field: 'project'};
     const form = formBuilder.group({
       filterOption: [['dh', 'fy']],
       sourceUpdated: [true],
@@ -90,7 +95,7 @@ describe('GenericMappingComponent', () => {
     });
     component.form = form;
     fixture.detectChanges();
-    expect(component).toBeTruthy();
+    expect(component.ngOnInit()).toBeUndefined();
     const response: MappingSettingResponse = {
       count: 0, next: 'aa', previous: 'aa', results: []
     };
@@ -98,11 +103,11 @@ describe('GenericMappingComponent', () => {
       all_attributes_count: 3,
       unmapped_attributes_count: 3
     };
-    const req = httpMock.expectOne({
+    const req = httpMock.match({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/settings/`
     });
-    req.flush(response);
+    req[0].flush(response);
     const req2 = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/stats/?source_type=PROJECT&destination_type=ACCOUNT`
@@ -284,5 +289,22 @@ describe('GenericMappingComponent', () => {
     expect(ans).toBeTrue();
     const ans1 = (component as any).searchByText(mappinglist[0], 'fyle');
     expect(ans1).toBeFalse();
+  });
+  it('setupForm function check', () => {
+    component.fyleQboMappingFormArray = mappinglist.map((mapping: MappingList) => {
+      return formBuilder.group({
+        searchOption: [''],
+        source: [mapping.fyle.value],
+        destination: [mapping.qbo.value]
+      });
+    });
+    fixture.detectChanges();
+    expect((component as any).setupForm(['dh'])).toBeUndefined();
+    fixture.detectChanges();
+    component.form.controls.searchOption.patchValue(['dh']);
+    expect((component as any).setupForm(['dh'])).toBeUndefined();
+    fixture.detectChanges();
+    component.form.controls.searchOption.patchValue('');
+    expect((component as any).setupForm(['dh'])).toBeUndefined();
   });
 });

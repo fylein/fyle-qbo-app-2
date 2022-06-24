@@ -6,7 +6,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { DashboardResolveMappingErrorDialogComponent } from './dashboard-resolve-mapping-error-dialog.component';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { environment } from 'src/environments/environment';
-import { destinationAttributes, expenseAttribute, mappinglist, model, response } from './dashboard-resolve-mapping.fixture';
+import { destinationAttributes, expenseAttribute, mappinglist, model, model2, response } from './dashboard-resolve-mapping.fixture';
 import { of } from 'rxjs';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MappingList } from 'src/app/core/models/db/mapping.model';
@@ -84,5 +84,42 @@ describe('DashboardResolveMappingErrorDialogComponent', () => {
     });
       req.flush(response);
     expect(dialogSpy).toHaveBeenCalled();
+  });
+
+  it('saveMapping function check', () => {
+    component.data = model2;
+    component.fyleQboMappingFormArray = mappinglist.map((mapping: MappingList) => {
+      return formBuilder.group({
+        searchOption: [''],
+        source: [mapping.fyle.value],
+        destination: [mapping.qbo.value]
+      });
+    });
+    const form = formBuilder.group({
+      map: [''],
+      fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray)
+    });
+
+    const mappingForm = form.controls.fyleQboMapping as FormArray;
+    component.mappingForm = mappingForm.controls as FormGroup[];
+    fixture.detectChanges();
+    component.saveMapping(mappinglist[0], destinationAttributes, component.mappingForm[0]);
+    const req = httpMock.expectOne({
+      method: 'POST',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/`
+    });
+      req.flush(response);
+    expect(dialogSpy).toHaveBeenCalled();
+  });
+
+  it('PostMapping function check', () => {
+    component.data = model2;
+    fixture.detectChanges();
+    expect((component as any).postMapping(mappinglist[0])).toBeUndefined();
+    const req = httpMock.expectOne({
+      method: 'POST',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/`
+    });
+      req.flush(response);
   });
 });

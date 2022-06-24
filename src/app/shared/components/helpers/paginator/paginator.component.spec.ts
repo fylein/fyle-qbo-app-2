@@ -28,6 +28,7 @@ describe('PaginatorComponent', () => {
     component.limit = 10;
     component.offset = 2;
     component. totalCount = 10;
+    component.totalPageCount = 10;
     form = formBuilder.group({
       pageLimit: [component.limit],
       offset: [component.offset],
@@ -51,11 +52,30 @@ describe('PaginatorComponent', () => {
     expect(component.pageChangeEvent.emit).toHaveBeenCalled();
   });
 
+  it('onpageChangeHadler function with CHANGE false check', () => {
+    component.form = form;
+    component.form.controls.page.patchValue(0);
+    fixture.detectChanges();
+    const funreturn = component.onPageChangeHandler('CHANGE');
+    expect(funreturn).toBeFalse();
+  });
+
   it('onpageChangeHadler function with FORWARD check', () => {
     component.form = form;
     fixture.detectChanges();
     const funreturn = component.onPageChangeHandler('FORWARD');
     expect(funreturn).toBeFalse();
+  });
+
+  it('onpageChangeHadler function with FORWARD check', () => {
+    component.form = form;
+    component.form.controls.page.patchValue(7);
+    component.totalPageCount = 10;
+    fixture.detectChanges();
+    const funreturn = component.onPageChangeHandler('FORWARD');
+    expect(funreturn).toBeFalse();
+    expect(component.form.controls.offset.value).toBeGreaterThanOrEqual(12);
+    expect(component.form.controls.page.value).toBeGreaterThanOrEqual(8);
   });
 
   it('onP', () => {
@@ -72,5 +92,14 @@ describe('PaginatorComponent', () => {
 
   it('ngOnchange function check', () => {
     expect(component.ngOnChanges()).toBeUndefined();
+  });
+
+  it('onPageSizeChangeWatcher function check', () => {
+    component.form = form;
+    fixture.detectChanges();
+    expect((component as any).onPageSizeChangeWatcher()).toBeUndefined();
+    fixture.detectChanges();
+    component.form.controls.pageLimit.patchValue(11);
+    expect((component as any).onPageSizeChangeWatcher()).toBeUndefined();
   });
 });

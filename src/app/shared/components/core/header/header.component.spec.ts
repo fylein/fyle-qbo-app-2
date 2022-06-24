@@ -1,36 +1,59 @@
 import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header.component';
 import { TrimCharacterPipe } from '../../../pipes/trim-character.pipe';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
 import { AuthService } from 'src/app/core/services/core/auth.service';
-import { HelperService } from 'src/app/core/services/core/helper.service';
-import { StorageService } from 'src/app/core/services/core/storage.service';
-import { TrackingService } from 'src/app/core/services/integration/tracking.service';
-import { WindowService } from 'src/app/core/services/core/window.service';
-import { UserService } from 'src/app/core/services/misc/user.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
-import { of } from 'rxjs';
-import { QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
+import { of, ReplaySubject, throwError } from 'rxjs';
+import { response } from '../../configuration/qbo-connector/qbo-connector.fixture';
+import { NavigationStart, Router, RouterEvent } from '@angular/router';
+import { Renderer2, Type } from '@angular/core';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let injector: TestBed;
-  let httpMock: HttpTestingController;
-  let workspace: WorkspaceService;
   let qboConnectorService: QboConnectorService;
+  let authService: AuthService;
+  let service1: any;
+  let service2: any;
+  let service3: any;
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
+  let renderer2: Renderer2;
+  const rendererMock = jasmine.createSpyObj('rendererMock', ['listen']);
   let dialogSpy: jasmine.Spy;
+  // Let methodSpy: jasmine.Spy;
+  const eventSubject = new ReplaySubject<RouterEvent>(1);
   const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({}), close: null });
   dialogRefSpyObj.componentInstance = { body: '' };
+  const routerMock = {
+    navigate: jasmine.createSpy('navigate'),
+        events: eventSubject.asObservable(),
+        url: 'test/url'
+  };
   beforeEach(async () => {
+    service1 = {
+      logout: () => undefined,
+      redirectToFyleOAuth: () => undefined,
+      redirectToQboOAuth: () => undefined,
+      redirectToOnboardingLogin: () => undefined,
+      redirectToOnboardingLanding: () => undefined
+    };
+
+    service2 = {
+      disconnectQBOConnection: () => of(response),
+      getQBOCredentials: () => of(response)
+    };
+
+    service3 = {
+      listen: () => of({})
+    };
     const localStorageDump = {
       email: 'fyle@fyle.in',
       access_token: 'kkk',
@@ -45,16 +68,24 @@ describe('HeaderComponent', () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, SharedModule, MatDialogModule, HttpClientTestingModule],
       declarations: [HeaderComponent, TrimCharacterPipe],
-      providers: []
+      providers: [
+        { provide: AuthService, useValue: service1},
+        { provide: QboConnectorService, useValue: service2},
+        { provide: Router, useValue: routerMock},
+        { provide: Renderer2, useValue: service3}
+      ]
     })
       .compileComponents();
   });
 
   beforeEach(() => {
     injector = getTestBed();
-    httpMock = injector.inject(HttpTestingController);
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
+    authService = TestBed.inject(AuthService);
+    qboConnectorService = TestBed.inject(QboConnectorService);
+    renderer2 = fixture.componentRef.injector.get<Renderer2>(Renderer2 as Type<Renderer2>);
+    spyOn(renderer2, 'listen').and.callThrough();
     fixture.detectChanges();
     dialogSpy = spyOn(TestBed.get(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
   });
@@ -62,35 +93,23 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  // Error: Expected one matching request for criteria "Match method: GET, URL: http://localhost:8002/api/workspaces/2/credentials/qbo/", found none
-  xit('should create', () => {
-    expect(component).toBeTruthy();
-    const response: QBOCredentials = {
-      company_name: "Sandbox Company_FAE",
-      country: "GB",
-      created_at: new Date("2021-10-05T11:56:13.883015Z"),
-      id: 219,
-      is_expired: false,
-      realm_id: "123146326950399",
-      refresh_token: "AB",
-      updated_at: new Date("2022-05-06T13:13:25.893837Z"),
-      workspace: 1
-    };
-    const req = httpMock.expectOne({
-      method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/credentials/qbo/`
-    });
-    req.flush(response);
+  it('should create', () => {
+    spyOn(qboConnectorService, 'getQBOCredentials').and.callThrough();
+    expect(component.ngOnInit()).toBeUndefined();
+    eventSubject.next(new NavigationStart(1, 'export_log'));
+    fixture.detectChanges();
+    expect(qboConnectorService.getQBOCredentials).toHaveBeenCalled();
+    expect(component.showBackButton).toBeTrue();
+    expect(component.activePage).toEqual('Export Log');
   });
 
-  xit('component failure response', () => {
-    expect(component).toBeTruthy();
+  it('component failure response', () => {
     const response = { status: 404, statusText: "Not Found", error: { id: 2, company_name: 'QBO' } };
-    const req = httpMock.expectOne({
-      method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/credentials/qbo/`
-    });
-    req.flush('', response);
+    spyOn(qboConnectorService, 'getQBOCredentials').and.returnValue(throwError(response));
+    expect(component.ngOnInit()).toBeUndefined();
+    fixture.detectChanges();
+    expect(qboConnectorService.getQBOCredentials).toHaveBeenCalled();
+    expect(component.isQboConnected).toBeFalse();
   });
 
   it('navigate function check', () => {
@@ -135,5 +154,39 @@ describe('HeaderComponent', () => {
     expect((component as any).getActivePageName('/workspaces/main/configuration/advanced_settings')).toBe('Advanced Settings');
     expect((component as any).getActivePageName('/workspaces/onboarding/advanced_settings')).toBe('');
     expect((component as any).getActivePageName('/')).toBe('Dashboard');
+  });
+
+  it('logout function check', () => {
+    spyOn(authService, 'logout').and.callThrough();
+    spyOn(authService, 'redirectToOnboardingLogin').and.callThrough();
+    expect(component.logout()).toBeUndefined();
+    fixture.detectChanges();
+    expect(authService.logout).toHaveBeenCalled();
+    expect(authService.redirectToOnboardingLogin).toHaveBeenCalled();
+  });
+
+  it('switchFyleOrg() function check', () => {
+    spyOn(authService, 'logout').and.callThrough();
+    spyOn(authService, 'redirectToFyleOAuth').and.callThrough();
+    expect(component.switchFyleOrg()).toBeUndefined();
+    fixture.detectChanges();
+    expect(authService.logout).toHaveBeenCalled();
+    expect(authService.redirectToFyleOAuth).toHaveBeenCalled();
+  });
+
+  it('DisconnectQBO function check', () => {
+    spyOn(qboConnectorService, 'disconnectQBOConnection').and.callThrough();
+    spyOn(authService, 'redirectToOnboardingLanding').and.callThrough();
+    component.disconnectQbo();
+    fixture.detectChanges();
+    expect(qboConnectorService.disconnectQBOConnection).toHaveBeenCalled();
+    expect(authService.redirectToOnboardingLanding).toHaveBeenCalled();
+    expect(dialogSpy).toHaveBeenCalled();
+  });
+
+  it('makes expected calls', () => {
+    component.ngOnInit();
+     fixture.detectChanges();
+    expect(renderer2.listen).toHaveBeenCalled();
   });
 });

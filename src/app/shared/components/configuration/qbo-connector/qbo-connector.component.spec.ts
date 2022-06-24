@@ -1,29 +1,42 @@
-import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { QboConnectorComponent } from './qbo-connector.component';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
 import { of, throwError } from 'rxjs';
-import { errorResponse, exportResponse, response } from './qbo-connector.fixture';
+import { errorResponse, errorResponse2, exportResponse, response } from './qbo-connector.fixture';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
+import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AuthService } from 'src/app/core/services/core/auth.service';
 
 describe('QboConnectorComponent', () => {
   let component: QboConnectorComponent;
   let fixture: ComponentFixture<QboConnectorComponent>;
   let router: Router;
-  let injector: TestBed;
-  let httpMock: HttpTestingController;
   let qboService: QboConnectorService;
   let exportService: ExportSettingService;
-  let workspaceService: WorkspaceService;
+  let workspaceService: WorkspaceService ;
+  let authService: AuthService;
   let service: any;
   let service2: any;
   let service3: any;
+  let service4: any;
+  let activatedRoute: ActivatedRoute;
+  const model: ConfirmationDialog = {
+    title: 'FYLE',
+    primaryCtaText: 'FYLE',
+    contents: 'Added successfully',
+    hideSecondaryCTA: false
+  };
+  let dialogSpy: jasmine.Spy;
+  let dialogSpy1: jasmine.Spy;
+  const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({}), close: '' });
+  dialogRefSpyObj.componentInstance = { body: '' };
   beforeEach(async () => {
     localStorage.setItem('user', JSON.stringify({ org_id: 'dummy', org_name: 'Fyle' }));
     service = {
@@ -38,13 +51,20 @@ describe('QboConnectorComponent', () => {
       refreshQBODimensions: () => of({}),
       setOnboardingState: () => undefined
     };
+    service4 = {
+      logout: () => undefined,
+      redirectToFyleOAuth: () => undefined,
+      redirectToQboOAuth: () => undefined
+    };
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientTestingModule, SharedModule, MatSnackBarModule],
       declarations: [QboConnectorComponent],
       providers: [
         { provide: QboConnectorService, useValue: service },
         { provide: ExportSettingService, useValue: service2 },
-        { provide: workspaceService, useValue: service3 }
+        { provide: WorkspaceService, useValue: service3 },
+        { provide: AuthService, useValue: service4},
+        { provide: MAT_DIALOG_DATA, useValue: model }
       ]
     })
       .compileComponents();
@@ -57,6 +77,11 @@ describe('QboConnectorComponent', () => {
     qboService = TestBed.inject(QboConnectorService);
     exportService = TestBed.inject(ExportSettingService);
     workspaceService = TestBed.inject(WorkspaceService);
+    authService = TestBed.inject(AuthService);
+    router = TestBed.inject(Router);
+    activatedRoute = TestBed.inject(ActivatedRoute);
+    dialogSpy = spyOn(TestBed.get(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
+    dialogSpy1 = spyOn(TestBed.get(MatSnackBar), 'open').and.returnValue(dialogRefSpyObj);
     fixture.detectChanges();
   });
 
@@ -118,13 +143,66 @@ describe('QboConnectorComponent', () => {
     expect(qboService.disconnectQBOConnection).toHaveBeenCalled();
   });
 
-  it('postQBOCredential function check', () => {
+  it('postQBOCredential function connectQBO success check', () => {
     component.qboConnectionInProgress = true;
     spyOn(qboService, 'connectQBO').and.callThrough();
-    spyOn(workspaceService, 'refreshQBODimensions').and.returnValue(throwError(errorResponse));
+    spyOn(workspaceService, 'refreshQBODimensions').and.callThrough();
     expect((component as any).postQboCredentials('ssdsdsdsdsd', 'dsdsdsdsdsds')).toBeUndefined();
     fixture.detectChanges();
     expect(qboService.connectQBO).toHaveBeenCalled();
     expect(workspaceService.refreshQBODimensions).toHaveBeenCalled();
+  });
+
+  it('postQBOCredential function connectQBO failure check', () => {
+    component.qboConnectionInProgress = true;
+    spyOn(qboService, 'connectQBO').and.returnValue(throwError(errorResponse));
+    spyOn(router, 'navigate');
+    expect((component as any).postQboCredentials('ssdsdsdsdsd', 'dsdsdsdsdsds')).toBeUndefined();
+    fixture.detectChanges();
+    expect(qboService.connectQBO).toHaveBeenCalled();
+    expect(dialogSpy1).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith(['/workspaces/onboarding/landing']);
+  });
+
+  it('postQBOCredential function connectQBO failure with message check', () => {
+    component.qboConnectionInProgress = true;
+    spyOn(qboService, 'connectQBO').and.returnValue(throwError(errorResponse2));
+    spyOn(router, 'navigate');
+    expect((component as any).postQboCredentials('ssdsdsdsdsd', 'dsdsdsdsdsds')).toBeUndefined();
+    fixture.detectChanges();
+    expect(qboService.connectQBO).toHaveBeenCalled();
+    expect(dialogSpy).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith(['/workspaces/onboarding/landing']);
+  });
+
+  it('showWarningDialog function check', () => {
+    spyOn(router, 'navigate');
+    expect((component as any).showWarningDialog()).toBeUndefined();
+    fixture.detectChanges();
+    expect(dialogSpy).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith(['/workspaces/onboarding/landing']);
+  });
+
+  it('switchFyleOrg() function check', () => {
+    spyOn(authService, 'logout').and.callThrough();
+    spyOn(authService, 'redirectToFyleOAuth').and.callThrough();
+    expect(component.switchFyleOrg()).toBeUndefined();
+    fixture.detectChanges();
+    expect(authService.logout).toHaveBeenCalled();
+    expect(authService.redirectToFyleOAuth).toHaveBeenCalled();
+  });
+
+  it('connectQbo() function check', () => {
+    spyOn(authService, 'redirectToQboOAuth').and.callThrough();
+    expect(component.connectQbo()).toBeUndefined();
+    fixture.detectChanges();
+    expect(authService.redirectToQboOAuth).toHaveBeenCalled();
+  });
+
+  it('Activerouter values', () => {
+    activatedRoute.snapshot.queryParams = { code: 'bar', realmId: 'bar' };
+    expect(component.ngOnInit()).toBeUndefined();
+    fixture.detectChanges();
+    expect(component.isLoading).toBeFalse();
   });
 });
