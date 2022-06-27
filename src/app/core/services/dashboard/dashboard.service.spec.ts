@@ -154,7 +154,7 @@ describe('DashboardService', () => {
       expect(actualKeys).toEqual(responseKeys);
     });
       const req = httpMock.expectOne(
-      req => req.method === 'GET' && req.url.includes(`${API_BASE_URL}/workspaces/${workspace_id}/tasks/all/`)
+      req => req.method === 'GET' && req.url.includes(`${API_BASE_URL}/workspaces/${workspace_id}/tasks/all/?limit=500`)
     );
     expect(req.request.params.get('limit')).toBeNull();
     req.flush(response);
