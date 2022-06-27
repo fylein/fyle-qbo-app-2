@@ -6,6 +6,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { environment } from 'src/environments/environment';
 import { EmployeeSettingPost, EmployeeSettingGet } from '../../models/configuration/employee-setting.model';
 import { HttpErrorResponse, HttpEventType, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 
 describe('ApiService', () => {
   let service: ApiService;
@@ -181,7 +182,7 @@ describe('ApiService', () => {
   });
 
   it('Handel error service error check', () => {
-    const errors = new ErrorEvent("error in back end");
+    const errors = new ErrorEvent("error in back end", {message: 'error in back end', error: new Error("Error")});
     const response:HttpErrorResponse ={
       error: errors, status: 404, statusText: "Not Found",
       name: 'HttpErrorResponse',
@@ -191,17 +192,9 @@ describe('ApiService', () => {
       url: null,
       type: HttpEventType.ResponseHeader
     };
-    service.patch(`/workspaces/${workspace_id}/`, {app_version: 'v1'}).subscribe((value) => {
-      expect(value).toBeDefined();
-    },
-    error => {
-      expect(error.status).toBe(404);
-    });
-    const req = httpMock.expectOne({
-      method: 'PATCH',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/`
-    });
-  req.flush('', response);
+    const error = (service as any).handleError(response, 'GET');
+    expect(response.error.message).toEqual('error in back end');
+    expect(error).toBeInstanceOf(Observable);
   });
 
 });

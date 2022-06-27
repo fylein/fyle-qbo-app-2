@@ -326,7 +326,7 @@ describe('MappingService', () => {
       req.flush({});
   });
 
-  xit('getGroupedQBODestinationAttributes() withdata service check', () => {
+  it('getGroupedQBODestinationAttributes() withdata service check', () => {
     const destinationAttributes = ['BANK_ACCOUNT', 'CREDIT_CARD_ACCOUNT', 'ACCOUNTS_PAYABLE', 'VENDOR'];
     const response = {
       BANK_ACCOUNT: [],
@@ -336,11 +336,13 @@ describe('MappingService', () => {
       ACCOUNT: [],
       TAX_CODE: []
     };
+    let responseKeys;
+    let actualResponseKeys;
     service.getGroupedQBODestinationAttributes(destinationAttributes).subscribe((value) => {
-      const responseKeys = Object.keys(response).sort();
-      const actualResponseKeys = Object.keys(value).sort();
-      expect(actualResponseKeys).toEqual(responseKeys);
+      responseKeys = Object.keys(response).sort();
+      actualResponseKeys = Object.keys(value).sort();
     });
+    expect(actualResponseKeys).toEqual(responseKeys);
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_types=BANK_ACCOUNT,CREDIT_CARD_ACCOUNT,ACCOUNTS_PAYABLE,VENDOR`

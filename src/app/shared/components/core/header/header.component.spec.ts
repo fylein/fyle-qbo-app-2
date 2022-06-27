@@ -13,6 +13,7 @@ import { of, ReplaySubject, throwError } from 'rxjs';
 import { response } from '../../configuration/qbo-connector/qbo-connector.fixture';
 import { NavigationStart, Router, RouterEvent } from '@angular/router';
 import { Renderer2, Type } from '@angular/core';
+import { WindowService } from 'src/app/core/services/core/window.service';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -20,9 +21,13 @@ describe('HeaderComponent', () => {
   let injector: TestBed;
   let qboConnectorService: QboConnectorService;
   let authService: AuthService;
+  let windowService: WindowService;
+  let workspace: WorkspaceService;
   let service1: any;
   let service2: any;
   let service3: any;
+  let service4: any;
+  let service5: any;
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
   let renderer2: Renderer2;
@@ -50,9 +55,16 @@ describe('HeaderComponent', () => {
       disconnectQBOConnection: () => of(response),
       getQBOCredentials: () => of(response)
     };
-
+    const eve = new Event('click', {});
     service3 = {
-      listen: () => of({})
+      listen: () => of({eve})
+    };
+
+    service4 = {
+      getFyleCurrency: () => 'USD',
+      patchWorkspace: () => of({ app: 'done' }),
+      getWorkspaceCreatedAt: () => new Date('2022-06-05T09:30:00.000Z')
+
     };
     const localStorageDump = {
       email: 'fyle@fyle.in',
@@ -72,7 +84,8 @@ describe('HeaderComponent', () => {
         { provide: AuthService, useValue: service1},
         { provide: QboConnectorService, useValue: service2},
         { provide: Router, useValue: routerMock},
-        { provide: Renderer2, useValue: service3}
+        { provide: Renderer2, useValue: service3},
+        { provide: WorkspaceService, useValue: service4}
       ]
     })
       .compileComponents();
@@ -85,6 +98,7 @@ describe('HeaderComponent', () => {
     authService = TestBed.inject(AuthService);
     qboConnectorService = TestBed.inject(QboConnectorService);
     renderer2 = fixture.componentRef.injector.get<Renderer2>(Renderer2 as Type<Renderer2>);
+    workspace = TestBed.inject(WorkspaceService);
     spyOn(renderer2, 'listen').and.callThrough();
     fixture.detectChanges();
     dialogSpy = spyOn(TestBed.get(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
@@ -186,7 +200,14 @@ describe('HeaderComponent', () => {
 
   it('makes expected calls', () => {
     component.ngOnInit();
-     fixture.detectChanges();
+    fixture.detectChanges();
     expect(renderer2.listen).toHaveBeenCalled();
+  });
+
+  xit('switchToOldApp function check', () => {
+    spyOn(workspace, 'patchWorkspace').and.callThrough();
+    expect(component.switchToOldApp()).toBeUndefined();
+    fixture.detectChanges();
+    expect(workspace.patchWorkspace).toHaveBeenCalled();
   });
 });
