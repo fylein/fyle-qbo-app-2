@@ -40,7 +40,7 @@ describe('AdvancedSettingsComponent', () => {
       getWorkspaceGeneralSettings: () => of(response),
       getOnboardingState: () => 'COMPLETE',
       setOnboardingState: () => undefined
-    }
+    };
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientModule, FormsModule, ReactiveFormsModule, MatSnackBarModule, SharedModule, NoopAnimationsModule],
       declarations: [ AdvancedSettingsComponent ],
@@ -48,7 +48,7 @@ describe('AdvancedSettingsComponent', () => {
         { provide: Router, useValue: routerSpy },
         { provide: AdvancedSettingService, useValue: service1 },
         { provide: MappingService, useValue: service2 },
-        { provide: WorkspaceService, useValue: service3 },
+        { provide: WorkspaceService, useValue: service3 }
       ]
     })
     .compileComponents();
@@ -73,7 +73,7 @@ describe('AdvancedSettingsComponent', () => {
   it('showPaymentSyncField function check', () => {
     expect(component.showPaymentSyncField()).toBeTrue();
   });
-  
+
   it('showSingleCreditLineJEField function check', () => {
     expect(component.showSingleCreditLineJEField()).toBeTrue();
   });
@@ -97,7 +97,7 @@ describe('AdvancedSettingsComponent', () => {
   it('formatememopreview function check', () => {
     component.memoStructure = ['employee_email', 'merchant', 'purpose', 'category', 'spent_on', 'report_number', 'expense_link'];
     fixture.detectChanges();
-    (component as any).formatMemoPreview()
+    (component as any).formatMemoPreview();
     expect(component.memoPreviewText).toEqual(previewResponse);
   });
 });
