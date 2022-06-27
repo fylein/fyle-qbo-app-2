@@ -153,10 +153,10 @@ describe('DashboardService', () => {
       const actualKeys = Object.keys(value).sort();
       expect(actualKeys).toEqual(responseKeys);
     });
-      const req = httpMock.expectOne({
-      method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/tasks/all/?limit=500`
-    });
+      const req = httpMock.expectOne(
+      req => req.method === 'GET' && req.url.includes(`${API_BASE_URL}/workspaces/${workspace_id}/tasks/all/`)
+    );
+    expect(req.request.params.get('limit')).toBeNull();
     req.flush(response);
   });
 
