@@ -155,7 +155,7 @@ describe('DashboardService', () => {
     });
       const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/tasks/all/?limit=500`
     });
     req.flush(response);
   });
@@ -206,7 +206,7 @@ describe('DashboardService', () => {
     }];
     const allTasks: TaskResponse = {
       count: 3,
-      next: `${API_BASE_URL}/workspaces/${workspace_id}/tasks/all/?limit=500`,
+      next: null,
       previous: `${API_BASE_URL}/workspaces/${workspace_id}/tasks/all/?limit=500`,
       results: task
     };
@@ -220,7 +220,7 @@ describe('DashboardService', () => {
     expect(response).toBeTruthy();
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/tasks/all/?limit=500&offset=0&status=ENQUEUED,IN_PROGRESS,FAILED&expense_group_ids=3&task_type=FETCHING_EXPENSE,CREATING_BILL,CREATING_EXPENSE,CREATING_CHECK,CREATING_CREDIT_CARD_PURCHASE,CREATING_JOURNAL_ENTRY,CREATING_CREDIT_CARD_CREDIT,CREATING_DEBIT_CARD_EXPENSE`
     });
     req.flush(response1);
   });
