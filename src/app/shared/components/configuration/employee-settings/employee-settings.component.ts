@@ -63,7 +63,7 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
     },
     {
       value: AutoMapEmployee.EMPLOYEE_CODE,
-      label: 'Fyle Employee Code to QBO dispay name'
+      label: 'Fyle Employee Code to QBO Display name'
     }
   ];
 
