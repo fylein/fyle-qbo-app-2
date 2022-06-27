@@ -155,7 +155,7 @@ describe('DashboardService', () => {
     });
       const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/tasks/all/?limit=500`
+      url: `${API_BASE_URL}`
     });
     req.flush(response);
   });
@@ -220,7 +220,7 @@ describe('DashboardService', () => {
     expect(response).toBeTruthy();
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/tasks/all/?limit=500`
+      url: `${API_BASE_URL}`
     });
     req.flush(response1);
   });
