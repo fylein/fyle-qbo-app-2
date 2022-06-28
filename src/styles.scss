@@ -585,7 +585,7 @@ th.mat-header-cell:last-of-type {
 
   &--bg-bottom {
     @extend .configuration-main--main;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FAFAFA 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);
     top: 162px;
     height: 192px;
   }
@@ -706,7 +706,7 @@ th.mat-header-cell:last-of-type {
 
   &--bg-bottom {
     @extend .mapping--main;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FAFAFA 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);
     position: absolute;
     top: 162px;
     height: 192px;
@@ -735,12 +735,10 @@ th.mat-header-cell:last-of-type {
 
   &--table {
     overflow: scroll;
-    // TODO: check in monitor
-    height: 51vh;
-    // height: 580px;
-    // @media only screen and (max-width: 1440px) {
-      // height: 400px;
-    // }
+    height: 580px;
+    @media only screen and (max-width: 1440px) {
+      height: 400px;
+    }
   }
 }
 
