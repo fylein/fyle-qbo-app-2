@@ -14,15 +14,18 @@
       </div>
     </div>
     <div *ngFor="let module of modules" class="side-nav-bar--default-text-color">
-      <div fxLayout="row" class="pointer" [ngClass]="[module.isActive && !module.childPages.length ? 'side-nav-bar--active-module' : '', module.isActive ? 'side-nav-bar--active-module-text' : '']" (click)="navigate(module)">
-        <div *ngIf="module.isActive && (!module.childPages.length || !module.isExpanded)" class="side-nav-bar--active-tag-module"></div>
-        <div fxLayout="row" [ngClass]="[module.childPages.length ? 'side-nav-bar--module-block-content-expandable' : 'side-nav-bar--module-block-content', module.isActive && (!module.childPages.length || !module.isExpanded) ? 'side-nav-bar--active-module-block' : '', module.isActive && (!module.childPages.length || !module.isExpanded) ? 'side-nav-bar--active-module-block-expandable' : '']">
-          <img height="22px" width="22px" src="{{ module.isActive ? module.iconPath + '-active.svg' :  module.iconPath + '.svg' }}">
-          <h4 class="side-nav-bar--module-block-text side-nav-bar--text-properties capitalize">{{ module.name }}</h4>
-          <img *ngIf="module.childPages.length && !module.isActive" height="22px" width="22px"
-            src='{{ "assets/images/svgs/actions/arrow-mark-" + (module.isExpanded ? "up" : "down") + ".svg"}}'>
-          <img *ngIf="module.childPages.length && module.isActive" height="22px" width="22px"
-            src='{{ "assets/images/svgs/actions/arrow-mark-" + (module.isExpanded ? "up-active" : "down-active") + ".svg"}}'>
+      <div class="pointer" [ngClass]="[module.isActive && !module.childPages.length ? 'side-nav-bar--active-module' : '', module.isActive ? 'side-nav-bar--active-module-text' : '']" (click)="navigate(module)">
+        <div *ngIf="module.name === 'Mappings' || module.name === 'Configuration'" style="border-top: 1px solid #DFDFE2; width: 212px; margin-left: 24px; opacity: 0.1;"></div>
+        <div fxLayout="row">
+          <div *ngIf="module.isActive && (!module.childPages.length || !module.isExpanded)" class="side-nav-bar--active-tag-module"></div>
+          <div fxLayout="row" [ngClass]="[module.childPages.length ? 'side-nav-bar--module-block-content-expandable' : 'side-nav-bar--module-block-content', module.isActive && (!module.childPages.length || !module.isExpanded) ? 'side-nav-bar--active-module-block' : '', module.isActive && (!module.childPages.length || !module.isExpanded) ? 'side-nav-bar--active-module-block-expandable' : '']">
+            <img height="22px" width="22px" src="{{ module.isActive ? module.iconPath + '-active.svg' :  module.iconPath + '.svg' }}">
+            <h4 class="side-nav-bar--module-block-text side-nav-bar--text-properties capitalize">{{ module.name }}</h4>
+            <img *ngIf="module.childPages.length && !module.isActive" height="22px" width="22px"
+              src='{{ "assets/images/svgs/actions/arrow-mark-" + (module.isExpanded ? "up" : "down") + ".svg"}}'>
+            <img *ngIf="module.childPages.length && module.isActive" height="22px" width="22px"
+              src='{{ "assets/images/svgs/actions/arrow-mark-" + (module.isExpanded ? "up-active" : "down-active") + ".svg"}}'>
+          </div>
         </div>
       </div>
       <div *ngFor="let childPage of module.childPages">

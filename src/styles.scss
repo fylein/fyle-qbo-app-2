@@ -205,16 +205,12 @@ th.mat-header-cell:last-of-type {
 }
 
 .export-log-tooltip {
-  margin-top: -20px !important;
-  margin-right: 150px !important;
-  @media only screen and (max-width: 1440px) {
-    margin-right: 80px !important;
-  }
+  margin-top: -10px !important;
 }
 
 .export-log-child-tooltip {
   @extend .export-log-tooltip;
-  margin-right: 200px !important;
+  margin-right: 100px !important;
 }
 
 .mat-select-arrow-closed {
@@ -589,7 +585,7 @@ th.mat-header-cell:last-of-type {
 
   &--bg-bottom {
     @extend .configuration-main--main;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FAFAFA 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);
     top: 162px;
     height: 192px;
   }
@@ -710,7 +706,7 @@ th.mat-header-cell:last-of-type {
 
   &--bg-bottom {
     @extend .mapping--main;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FAFAFA 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);
     position: absolute;
     top: 162px;
     height: 192px;
