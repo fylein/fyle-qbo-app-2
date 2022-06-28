@@ -1,4 +1,4 @@
-import { AdvancedSettingGet } from "src/app/core/models/configuration/advanced-setting.model";
+import { AdvancedSettingGet, AdvancedSettingPost } from "src/app/core/models/configuration/advanced-setting.model";
 import { DestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
 import { AutoMapEmployee, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
@@ -114,4 +114,14 @@ export const getadvancedSettingResponse2:AdvancedSettingGet = {
   },
   workspace_id: 1
 };
-export const previewResponse = 'john.doe@acme.com - Pizza Hut - Client Meeting - Meals and Entertainment - 27/06/2022 - C/2021/12/R/1 - https://app.fylehq.com/app/main/#/enterprise/view_expense/';
+export const previewResponse = 'john.doe@acme.com - Pizza Hut - Client Meeting - Meals and Entertainment - C/2021/12/R/1 - https://app.fylehq.com/app/main/#/enterprise/view_expense/';
+export const errorResponse = {
+  status: 404,
+  statusText: "Not Found",
+  error: {
+    id: 1,
+    is_expired: true,
+    company_name: 'QBO'
+  }
+};
+export const memo = ['employee_email', 'merchant', 'purpose', 'category', 'report_number', 'expense_link'];
