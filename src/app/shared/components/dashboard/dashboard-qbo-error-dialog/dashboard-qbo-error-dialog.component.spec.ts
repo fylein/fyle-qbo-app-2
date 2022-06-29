@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { DashboardQboErrorDialogComponent } from './dashboard-qbo-error-dialog.component';
-import { modelData } from './dashboard-qbo-error-dialog.fixture';
+import { modelData, modelData1 } from './dashboard-qbo-error-dialog.fixture';
 
 describe('DashboardQboErrorDialogComponent', () => {
   let component: DashboardQboErrorDialogComponent;
@@ -49,6 +49,16 @@ describe('DashboardQboErrorDialogComponent', () => {
   });
 
   it('setup function', fakeAsync(() => {
+    component.ngOnInit();
+    fixture.detectChanges();
+    const popUpHeader = document.getElementsByTagName('h3')[0] as HTMLHeadElement;
+    const popUpSubHeader = document.getElementsByTagName('h5')[0] as HTMLHeadElement;
+    expect(popUpHeader.innerText).toBe(modelData.error_title);
+    expect(popUpSubHeader.innerText).toBe(modelData.error_detail);
+  }));
+
+  it('setup function', fakeAsync(() => {
+    component.data = modelData1;
     component.ngOnInit();
     fixture.detectChanges();
     const popUpHeader = document.getElementsByTagName('h3')[0] as HTMLHeadElement;

@@ -21,17 +21,12 @@ describe('HeaderComponent', () => {
   let injector: TestBed;
   let qboConnectorService: QboConnectorService;
   let authService: AuthService;
-  let windowService: WindowService;
   let workspace: WorkspaceService;
   let service1: any;
   let service2: any;
   let service3: any;
   let service4: any;
-  let service5: any;
-  const API_BASE_URL = environment.api_url;
-  const workspace_id = environment.tests.workspaceId;
   let renderer2: Renderer2;
-  const rendererMock = jasmine.createSpyObj('rendererMock', ['listen']);
   let dialogSpy: jasmine.Spy;
   // Let methodSpy: jasmine.Spy;
   const eventSubject = new ReplaySubject<RouterEvent>(1);
