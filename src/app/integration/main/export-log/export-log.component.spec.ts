@@ -19,6 +19,7 @@ describe('ExportLogComponent', () => {
   let fixture: ComponentFixture<ExportLogComponent>;
   let formBuilder: FormBuilder;
   beforeEach(async () => {
+    localStorage.setItem('user', JSON.stringify({org_id: 'dummy'}));
     await TestBed.configureTestingModule({
       declarations: [ ExportLogComponent ],
       imports: [FormsModule, ReactiveFormsModule, MatDialogModule, RouterTestingModule, HttpClientTestingModule, HttpClientModule, ExportLogModule, NoopAnimationsModule],
