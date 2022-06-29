@@ -6,7 +6,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { EmployeeSettingFormOption } from 'src/app/core/models/configuration/employee-setting.model';
 import { EmployeeFieldMapping } from 'src/app/core/models/enum/enum.model';
-import { COMPILER_OPTIONS } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';

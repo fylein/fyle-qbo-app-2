@@ -54,4 +54,8 @@ describe('HelperService', () => {
     expect(service.compareObjects(source_field, destination_field)).toBeTrue();
   });
 
+  it('openExternalLink function check', () => {
+      expect(service.openExternalLink('https://www.google.co.in/')).toBeUndefined();
+  });
+
 });
