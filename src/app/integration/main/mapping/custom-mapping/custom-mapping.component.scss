@@ -1,0 +1,31 @@
+.custom-mapping {
+  padding: 24px 24px 31px 24px;
+
+  &--content {
+    background: #FFFFFF;
+    border-radius: 8px;
+    height: 540px;
+  }
+
+  &--title-section {
+    padding: 32px;
+    border-bottom: 1px solid #DFDFE2;
+  }
+
+  &--title {
+    font-weight: 700;
+    padding-bottom: 8px;
+  }
+
+  &--create-btn {
+    padding-top: 24px;
+  }
+
+  &--mapping-section {
+    padding-top: 32px;
+  }
+}
+
+p {
+  margin: 0;
+}

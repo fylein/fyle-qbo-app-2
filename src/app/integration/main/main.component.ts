@@ -160,6 +160,13 @@ export class MainComponent implements OnInit {
         }
       });
 
+      // TODO: do this conditionally only if QBO fields are not mapped already
+      this.modules[2].childPages.push({
+        name: 'Custom Mapping',
+        route: 'mapping/custom',
+        isActive: false
+      });
+
       this.markModuleActive(this.router.url);
       this.isLoading = false;
     });

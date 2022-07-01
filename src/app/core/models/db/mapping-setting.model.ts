@@ -23,3 +23,11 @@ export type MappingSettingResponse = {
   previous: string;
   results: MappingSetting[];
 };
+
+export type MappingSettingList = {
+  qboField: MappingDestinationField | string,
+  fyleField: MappingSourceField | string,
+  index: number,
+  existingMapping: boolean,
+  isDeleteButtonAllowed: boolean
+};

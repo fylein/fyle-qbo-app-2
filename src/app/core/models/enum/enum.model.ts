@@ -222,3 +222,11 @@ export enum RefinerSurveyType {
   ONBOARDING_DONE = 'Onboarding Done',
   EXPORT_DONE = 'Export Done'
 }
+
+export enum ZeroStatePage {
+  export_log = 'export_log',
+  mapping = 'mapping',
+  dashboard = 'dashboard',
+  dashboard_error = 'dashboard_error',
+  custom_mapping = 'custom_mapping'
+}

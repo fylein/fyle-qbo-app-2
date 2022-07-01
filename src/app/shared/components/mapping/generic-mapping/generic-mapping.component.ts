@@ -8,7 +8,7 @@ import { DestinationAttribute } from 'src/app/core/models/db/destination-attribu
 import { ExtendedExpenseAttribute, ExtendedExpenseAttributeResponse } from 'src/app/core/models/db/expense-attribute.model';
 import { MappingSettingResponse, MinimalMappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { MappingList, MappingModel, MappingStats } from 'src/app/core/models/db/mapping.model';
-import { ClickEvent, FyleField, MappingState, PaginatorPage, QBOField } from 'src/app/core/models/enum/enum.model';
+import { ClickEvent, FyleField, MappingState, PaginatorPage, QBOField, ZeroStatePage } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
@@ -55,6 +55,8 @@ export class GenericMappingComponent implements OnInit {
   page: string;
 
   PaginatorPage = PaginatorPage;
+
+  ZeroStatePage = ZeroStatePage;
 
   constructor(
     private formBuilder: FormBuilder,
