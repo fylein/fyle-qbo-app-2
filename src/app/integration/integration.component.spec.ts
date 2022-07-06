@@ -1,28 +1,34 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IntegrationComponent } from './integration.component';
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { WorkspaceService } from '../core/services/workspace/workspace.service';
+import { of, throwError } from 'rxjs';
+import { errorResponse, workspaceResponse } from './integration.fixture';
 
-xdescribe('IntegrationComponent', () => {
+describe('IntegrationComponent', () => {
   let component: IntegrationComponent;
   let fixture: ComponentFixture<IntegrationComponent>;
-
+  let workspace: WorkspaceService;
   beforeEach(async () => {
+    const localStorageDump = {
+      email: 'fyle@fyle.in',
+      org_id: '2',
+    };
+    localStorage.setItem('user', JSON.stringify(localStorageDump));
+    const service1 = {
+      getWorkspaces: () => of(workspaceResponse),
+      createWorkspace: () => of(workspaceResponse),
+      syncFyleDimensions: () => of({}),
+      syncQBODimensions: () => of({})
+    }
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientModule],
+      imports: [RouterTestingModule, HttpClientModule, HttpClientTestingModule],
       declarations: [ IntegrationComponent ],
-      providers: [{
-        provide: JWT_OPTIONS,
-        useValue: JWT_OPTIONS
-      },
-      JwtHelperService,
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: JwtInterceptor,
-        multi: true
-      }]
+      providers: [
+        { provide: WorkspaceService, useValue: service1 }
+      ]
     })
     .compileComponents();
   });
@@ -30,10 +36,17 @@ xdescribe('IntegrationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(IntegrationComponent);
     component = fixture.componentInstance;
+    workspace = TestBed.inject(WorkspaceService);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('ngOnIng function check', async () => {
+    spyOn(workspace, 'getWorkspaces').and.returnValue(await Promise.resolve(of([])));
+    spyOn(workspace, 'createWorkspace').and.returnValue(await Promise.resolve(of(workspaceResponse[0])));
+    expect(await (component as any).getOrCreateWorkspace()).toBeTruthy();
+  })
 });

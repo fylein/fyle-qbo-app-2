@@ -31,7 +31,7 @@ describe('WorkspaceService', () => {
   it('getFyleCurrency service', () => {
     const id = service.getFyleCurrency();
     const org = '';
-    expect(id).toBeNull();
+    expect(id).toBe("IND" || null);
   });
 
   it('setOnboardingState and getOnboardingState service', () => {
