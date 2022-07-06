@@ -1,8 +1,9 @@
+import { environment } from "src/environments/environment";
 import { Workspace } from "../core/models/db/workspace.model";
 import { OnboardingState } from "../core/models/enum/enum.model";
 
 export const workspaceResponse:Workspace[] = [{
-  id: 2,
+  id: +environment.tests.workspaceId,
   name: "Test Sample Statement - GBP",
   user: [1],
   fyle_org_id: "orunxXsIajSE",
