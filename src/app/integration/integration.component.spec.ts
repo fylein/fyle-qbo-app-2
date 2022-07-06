@@ -14,7 +14,7 @@ describe('IntegrationComponent', () => {
   beforeEach(async () => {
     const localStorageDump = {
       email: 'fyle@fyle.in',
-      org_id: '2',
+      org_id: '2'
     };
     localStorage.setItem('user', JSON.stringify(localStorageDump));
     const service1 = {
@@ -22,7 +22,7 @@ describe('IntegrationComponent', () => {
       createWorkspace: () => of(workspaceResponse),
       syncFyleDimensions: () => of({}),
       syncQBODimensions: () => of({})
-    }
+    };
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientModule, HttpClientTestingModule],
       declarations: [ IntegrationComponent ],
@@ -48,5 +48,5 @@ describe('IntegrationComponent', () => {
     spyOn(workspace, 'getWorkspaces').and.returnValue(await Promise.resolve(of([])));
     spyOn(workspace, 'createWorkspace').and.returnValue(await Promise.resolve(of(workspaceResponse[0])));
     expect(await (component as any).getOrCreateWorkspace()).toBeTruthy();
-  })
+  });
 });

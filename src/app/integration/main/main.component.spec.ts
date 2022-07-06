@@ -16,18 +16,18 @@ describe('MainComponent', () => {
   let router: Router;
   let mappingService: MappingService;
   const eventSubject = new ReplaySubject<RouterEvent>(1);
-  const routerSpy = { navigate: jasmine.createSpy('navigate'), url: '/onboarding', events: eventSubject.asObservable(), };
+  const routerSpy = { navigate: jasmine.createSpy('navigate'), url: '/onboarding', events: eventSubject.asObservable() };
   beforeEach(async () => {
     const service1 = {
       getMappingSettings: () => of(mappingResponse)
-    }
+    };
     await TestBed.configureTestingModule({
       imports: [ RouterTestingModule, HttpClientModule, NoopAnimationsModule ],
       declarations: [ MainComponent, SnakeCaseToSpaceCase ],
       providers: [
         { provide: MappingService, useValue: service1 },
-        { provide: Router, useValue: routerSpy},
-      ],
+        { provide: Router, useValue: routerSpy}
+      ]
     })
     .compileComponents();
   });

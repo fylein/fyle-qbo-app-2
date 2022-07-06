@@ -34,8 +34,8 @@ describe('ExportLogComponent', () => {
     };
     const service2 = {
       storePageSize: () => '2',
-      getPageSize: () => of(pageinatorResponse),
-    }
+      getPageSize: () => of(pageinatorResponse)
+    };
     await TestBed.configureTestingModule({
       declarations: [ ExportLogComponent ],
       imports: [FormsModule, ReactiveFormsModule, MatDialogModule, RouterTestingModule, HttpClientTestingModule, HttpClientModule, ExportLogModule, NoopAnimationsModule],
@@ -76,7 +76,7 @@ describe('ExportLogComponent', () => {
     component.exportLogForm.controls.searchOption.patchValue('');
     expect((component as any).setupForm()).toBeUndefined();
     fixture.detectChanges();
-    component.exportLogForm.controls.dateRange.patchValue([{startDate: new Date(), endDate: new Date(new Date().getTime() + 24 * 60 * 60 * 1000)}]);
+    component.exportLogForm.controls.dateRange.patchValue([{startDate: new Date(), endDate: new Date((new Date().getTime() + 24) * (60 * 60 * 1000))}]);
     expect((component as any).setupForm()).toBeUndefined();
     fixture.detectChanges();
     component.exportLogForm.controls.dateRange.patchValue('');
@@ -89,7 +89,7 @@ describe('ExportLogComponent', () => {
 
   it('dateFilterHandler function check', () => {
     component.exportLogForm.controls.start.patchValue(new Date());
-    component.exportLogForm.controls.end.patchValue(new Date(new Date().getTime() + 24 * 60 * 60 * 1000));
+    component.exportLogForm.controls.end.patchValue(new Date((new Date().getTime() + 24) * (60 * 60 * 1000)));
     fixture.detectChanges();
     expect(component.dateFilterHandler()).toBeUndefined();
   });
@@ -102,7 +102,7 @@ describe('ExportLogComponent', () => {
     const perameter = {
       limit: 0,
       offset: 50
-  }
+  };
     spyOn(exportService, 'getExpenseGroups').and.callThrough();
     spyOn(exportService, 'generateExportTypeAndId').and.callThrough();
     spyOn(exportService, 'getReferenceType').and.callThrough();
@@ -117,7 +117,7 @@ describe('ExportLogComponent', () => {
     const perameter = {
       limit: 0,
       offset: 50
-  }
+  };
     spyOn(exportService, 'getExpenseGroups').and.returnValue(of(expenseGroupresponse1));
     spyOn(exportService, 'generateExportTypeAndId').and.callThrough();
     spyOn(exportService, 'getReferenceType').and.returnValue(FyleReferenceType.EXPENSE);

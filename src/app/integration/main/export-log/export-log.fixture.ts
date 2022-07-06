@@ -33,7 +33,7 @@ export const expenseGroupresponse: ExpenseGroupResponse= {
         expense_id: FyleReferenceType.EXPENSE,
         settlement_id: FyleReferenceType.PAYMENT,
         claim_number: FyleReferenceType.EXPENSE_REPORT,
-        report_id: FyleReferenceType.EXPENSE_REPORT,
+        report_id: FyleReferenceType.EXPENSE_REPORT
       },
       response_logs: [],
       export_type: 'Expence',
@@ -95,7 +95,7 @@ export const expenseGroupresponse1: ExpenseGroupResponse= {
         expense_id: FyleReferenceType.EXPENSE,
         settlement_id: FyleReferenceType.PAYMENT,
         claim_number: FyleReferenceType.EXPENSE_REPORT,
-        report_id: FyleReferenceType.EXPENSE_REPORT,
+        report_id: FyleReferenceType.EXPENSE_REPORT
       },
       response_logs: [],
       export_type: 'Expence',
