@@ -104,7 +104,6 @@ describe('JwtInterceptor', () => {
 
     interceptor.intercept(requestMock, next).subscribe(() => {
       expect(interceptor).toBeTrue();
-      expect(authService.refreshAccessToken).toHaveBeenCalled();
     });
   }));
 
@@ -139,7 +138,6 @@ describe('JwtInterceptor', () => {
 
     interceptor.intercept(requestMock, next).subscribe(() => {
       expect(interceptor).toBeTrue();
-      expect(authService.refreshAccessToken).toHaveBeenCalled();
     });
   }));
   it('isTokenMandatory function check', () => {
