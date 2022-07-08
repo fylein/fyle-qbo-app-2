@@ -9,6 +9,10 @@ describe('TrackingService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(TrackingService);
+    (window as any).analytics = {
+      track: () => undefined,
+      identify: () => undefined
+    };
   });
 
   it('should be created', () => {

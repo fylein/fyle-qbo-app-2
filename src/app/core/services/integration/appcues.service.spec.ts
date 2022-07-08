@@ -20,6 +20,9 @@ describe('AppcuesService', () => {
       ]
     });
     service = TestBed.inject(AppcuesService);
+    (window as any).Appcues = {
+      identify: () => undefined
+    };
   });
 
   it('should be created', () => {
@@ -27,10 +30,11 @@ describe('AppcuesService', () => {
   });
 
   it('get function check', () => {
-    expect(service.appcues).toBeUndefined();
+    expect(service.appcues).toBeDefined();
   });
 
   it('initialiseAppcues function check', () => {
+    // @ts-ignore: force this private property value for testing.
     expect(service.initialiseAppcues()).toBeUndefined();
   });
 });
