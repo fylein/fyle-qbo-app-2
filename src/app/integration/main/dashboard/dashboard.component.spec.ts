@@ -143,7 +143,7 @@ describe('DashboardComponent', () => {
       expect(result).toBeUndefined();
       expect(component.isLoading).toBeFalse();
     });
-    discardPeriodicTasks(); 
+    discardPeriodicTasks();
   }));
 
   it('trackTimeTakenForResolvingMappingErrors function check', () => {

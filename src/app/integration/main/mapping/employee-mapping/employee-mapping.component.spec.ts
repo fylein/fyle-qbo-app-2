@@ -81,6 +81,21 @@ describe('EmployeeMappingComponent', () => {
   });
 
   it('should create', () => {
+    component.fyleQboMappingFormArray = mappingList.map((mapping: MappingList) => {
+      return formBuilder.group({
+        searchOption: [[' fyle ']],
+        source: [mapping.fyle.value],
+        destination: [mapping.qbo.value]
+      });
+    });
+    component.form = formBuilder.group({
+      map: [''],
+      fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray),
+      searchOption: [[' fyle ']],
+      filterOption: [''],
+      cardUpdated: [false]
+    });
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
@@ -115,6 +130,7 @@ describe('EmployeeMappingComponent', () => {
       searchOption: [[' fyle ']],
       cardUpdated: [false]
     });
+    fixture.detectChanges();
     expect(component.mappingCardUpdateHandler(true)).toBeUndefined();
     expect(component.mappingCardUpdateHandler(false)).toBeUndefined();
   });
@@ -145,6 +161,7 @@ describe('EmployeeMappingComponent', () => {
       filterOption: [[' dh ', 'fyle']],
       cardUpdated: [false]
     });
+    fixture.detectChanges();
     const parameter:Paginator = {
       limit: 3,
       offset: 3
