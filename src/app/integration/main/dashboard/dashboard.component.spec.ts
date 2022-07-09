@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { of, throwError } from 'rxjs';
@@ -143,7 +143,7 @@ describe('DashboardComponent', () => {
       expect(result).toBeUndefined();
       expect(component.isLoading).toBeFalse();
     });
-    flush();
+    discardPeriodicTasks(); 
   }));
 
   it('trackTimeTakenForResolvingMappingErrors function check', () => {
