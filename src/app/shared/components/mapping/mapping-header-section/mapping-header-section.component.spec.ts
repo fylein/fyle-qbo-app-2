@@ -1,8 +1,9 @@
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { By } from '@angular/platform-browser';
+import { BrowserModule, By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MappingStats } from 'src/app/core/models/db/mapping.model';
@@ -24,11 +25,12 @@ describe('MappingHeaderSectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ HttpClientModule, MatSnackBarModule, SharedModule, RouterTestingModule, MatSnackBarModule, BrowserAnimationsModule, HttpClientTestingModule ],
-      declarations: [ MappingHeaderSectionComponent ],
-      providers: [ MappingService ]
+      imports: [BrowserModule, HttpClientModule, HttpClientTestingModule, MatSnackBarModule, SharedModule, RouterTestingModule, MatSnackBarModule, BrowserAnimationsModule, HttpClientTestingModule],
+      declarations: [MappingHeaderSectionComponent],
+      providers: [MappingService],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -37,6 +39,13 @@ describe('MappingHeaderSectionComponent', () => {
     httpMock = injector.inject(HttpTestingController);
     fixture = TestBed.createComponent(MappingHeaderSectionComponent);
     component = fixture.componentInstance;
+    component.mappingStats = {
+      all_attributes_count: 2,
+      unmapped_attributes_count: 3
+    };
+    component.totalCardActive = true;
+    component.sourceType = 'category';
+    component.autoMapEmployee = null;
     fixture.detectChanges();
   });
 
@@ -70,14 +79,14 @@ describe('MappingHeaderSectionComponent', () => {
       method: 'POST',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/auto_map_employees/trigger/`
     });
-      req.flush({});
+    req.flush({});
   });
 
   it('Source type and totalCardActive is true check', () => {
     const mapping: MappingStats = {
       all_attributes_count: 2,
       unmapped_attributes_count: 3
-  };
+    };
     component.totalCardActive = true;
     component.sourceType = 'category';
     component.mappingStats = mapping;
@@ -92,7 +101,7 @@ describe('MappingHeaderSectionComponent', () => {
     const mapping: MappingStats = {
       all_attributes_count: 2,
       unmapped_attributes_count: 3
-  };
+    };
     component.totalCardActive = false;
     component.sourceType = 'empoyee';
     component.mappingStats = mapping;
