@@ -1,3 +1,4 @@
+import { NavigationExtras } from "@angular/router";
 import { ExportSettingFormOption, ExportSettingGet } from "src/app/core/models/configuration/export-setting.model";
 import { DestinationAttribute, GroupedDestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
@@ -128,4 +129,30 @@ export const exportResponse: ExportSettingGet = {
     default_debit_card_account: { id: '1', name: 'Fyle' }
   },
   workspace_id: 1
+};
+export const replacecontent1 = `You have changed the export type of reimbursable expense from <b>Check</b> to <b>Bill</b>,
+which would impact a few configurations in the <b>Advanced settings</b>. <br><br>Please revisit the <b>Advanced settings</b> to check and enable the
+features that could help customize and automate your integration workflows.`;
+
+export const replacecontent2 = `You have changed the export type of reimbursable expense from <b></b> to <b></b>,
+which would impact a few configurations in the <b>Advanced settings</b>. <br><br>Please revisit the <b>Advanced settings</b> to check and enable the
+features that could help customize and automate your integration workflows.`;
+
+export const replacecontent3 = `You have changed the export type of credit card expense from <b>CREDIT CARD PURCHASE</b> to <b>Bill</b>,
+which would impact a few configurations in the <b>Advanced settings</b>. <br><br>Please revisit the <b>Advanced settings</b> to check and enable the
+features that could help customize and automate your integration workflows.`;
+
+export const errorResponse = {
+  status: 404,
+  statusText: "Not Found",
+  error: {
+    id: 1,
+    is_expired: true,
+    company_name: 'QBO'
+  }
+};
+export const navigationExtras: NavigationExtras = {
+  queryParams: {
+    refreshMappings: true
+  }
 };

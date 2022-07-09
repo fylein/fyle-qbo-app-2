@@ -42,6 +42,7 @@ describe('PaginatorComponent', () => {
   });
 
   it('onpageChangeHadler function with CHANGE check', () => {
+    component.page = PaginatorPage.MAPPING;
     spyOn(component.pageChangeEvent, 'emit');
     const funreturn = component.onPageChangeHandler('CHANGE');
     expect(funreturn).toBeFalse();
@@ -51,6 +52,7 @@ describe('PaginatorComponent', () => {
     expect(funreturn1).toBeUndefined();
     expect(component.pageChangeEvent.emit).toHaveBeenCalled();
   });
+
 
   it('onpageChangeHadler function with CHANGE false check', () => {
     component.form = form;
@@ -78,7 +80,7 @@ describe('PaginatorComponent', () => {
     expect(component.form.controls.page.value).toBeGreaterThanOrEqual(8);
   });
 
-  it('onP', () => {
+  it('onpageChangeHadler function with BACKWARD check', () => {
     spyOn(component.pageChangeEvent, 'emit');
     const funreturn = component.onPageChangeHandler('BACKWARD');
     expect(funreturn).toBeFalse();
