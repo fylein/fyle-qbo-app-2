@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConfigurationImportSettingsComponent } from './configuration-import-settings.component';
 
-xdescribe('ConfigurationImportSettingsComponent', () => {
+describe('ConfigurationImportSettingsComponent', () => {
   let component: ConfigurationImportSettingsComponent;
   let fixture: ComponentFixture<ConfigurationImportSettingsComponent>;
 

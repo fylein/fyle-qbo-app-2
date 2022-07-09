@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { of, throwError } from 'rxjs';
@@ -134,14 +134,15 @@ describe('DashboardComponent', () => {
     expect((component as any).getExpenseGroupingSetting(expenseGroupSettingResponse1)).toEqual('expense');
   });
 
-  xit("pollExportStatus function check", fakeAsync(() => {
+  it("pollExportStatus function check", fakeAsync(() => {
     allTasksResponse.count = 0;
     const result = (component as any).pollExportStatus([1, 2, 4]);
-    tick(1000);
+    tick(15000);
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       expect(result).toBeUndefined();
     });
+    flush();
   }));
 
   it('trackTimeTakenForResolvingMappingErrors function check', () => {

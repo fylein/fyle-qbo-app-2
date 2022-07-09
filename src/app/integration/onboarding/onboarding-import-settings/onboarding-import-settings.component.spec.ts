@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OnboardingImportSettingsComponent } from './onboarding-import-settings.component';
 
-xdescribe('OnboardingImportSettingsComponent', () => {
+describe('OnboardingImportSettingsComponent', () => {
   let component: OnboardingImportSettingsComponent;
   let fixture: ComponentFixture<OnboardingImportSettingsComponent>;
 

@@ -65,7 +65,7 @@ describe('EmployeeMappingComponent', () => {
     dialogSpy = spyOn(TestBed.get(MatSnackBar), 'open').and.returnValue(dialogRefSpyObj);
     component.fyleQboMappingFormArray = mappingList.map((mapping: MappingList) => {
       return formBuilder.group({
-        searchOption: [''],
+        searchOption: [[' fyle ']],
         source: [mapping.fyle.value],
         destination: [mapping.qbo.value]
       });
@@ -73,7 +73,7 @@ describe('EmployeeMappingComponent', () => {
     component.form = formBuilder.group({
       map: [''],
       fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray),
-      searchOption: [''],
+      searchOption: [[' fyle ']],
       filterOption: [''],
       cardUpdated: [false]
     });
@@ -103,11 +103,18 @@ describe('EmployeeMappingComponent', () => {
   it('searchByText function check', () => {
     const ans = (component as any).searchByText(mappinglist[0], 'string');
     expect(ans).toBeTrue();
-    const ans1 = (component as any).searchByText(mappinglist[0], 'fyle');
+    const ans1 = (component as any).searchByText(mappinglist[0], ' fyle ');
     expect(ans1).toBeFalse();
   });
 
   it('mappingCardUpdateHandler function check', () => {
+    component.form = formBuilder.group({
+      map: [''],
+      fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray),
+      filterOption: [['dh', 'fy']],
+      searchOption: [[' fyle ']],
+      cardUpdated: [false]
+    });
     expect(component.mappingCardUpdateHandler(true)).toBeUndefined();
     expect(component.mappingCardUpdateHandler(false)).toBeUndefined();
   });
@@ -134,7 +141,7 @@ describe('EmployeeMappingComponent', () => {
     component.form = formBuilder.group({
       map: [''],
       fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray),
-      searchOption: [''],
+      searchOption: [[' fyle ']],
       filterOption: [[' dh ', 'fyle']],
       cardUpdated: [false]
     });

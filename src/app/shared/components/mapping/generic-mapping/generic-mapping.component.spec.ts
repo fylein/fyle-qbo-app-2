@@ -299,12 +299,12 @@ describe('GenericMappingComponent', () => {
       });
     });
     fixture.detectChanges();
-    expect((component as any).setupForm(['dh'])).toBeUndefined();
+    expect((component as any).setupForm([' dh '])).toBeUndefined();
     fixture.detectChanges();
-    component.form.controls.searchOption.patchValue(['dh']);
-    expect((component as any).setupForm(['dh'])).toBeUndefined();
+    component.form.controls.searchOption.patchValue([' dh ']);
+    expect((component as any).setupForm([' dh '])).toBeUndefined();
     fixture.detectChanges();
     component.form.controls.searchOption.patchValue('');
-    expect((component as any).setupForm(['dh'])).toBeUndefined();
+    expect((component as any).setupForm([])).toBeUndefined();
   });
 });
