@@ -137,10 +137,11 @@ describe('DashboardComponent', () => {
   it("pollExportStatus function check", fakeAsync(() => {
     allTasksResponse.count = 0;
     const result = (component as any).pollExportStatus([1, 2, 4]);
-    tick(15000);
+    tick(3002);
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       expect(result).toBeUndefined();
+      expect(component.isLoading).toBeFalse();
     });
     flush();
   }));
