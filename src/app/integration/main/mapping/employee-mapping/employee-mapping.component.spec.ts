@@ -121,13 +121,13 @@ describe('EmployeeMappingComponent', () => {
       });
     });
     fixture.detectChanges();
-    expect((component as any).setupForm(['dh'])).toBeUndefined();
+    expect((component as any).setupForm([' dh '])).toBeUndefined();
     fixture.detectChanges();
-    component.form.controls.searchOption.patchValue(['dh']);
-    expect((component as any).setupForm(['dh'])).toBeUndefined();
+    component.form.controls.searchOption.patchValue([' dh ']);
+    expect((component as any).setupForm([' dh '])).toBeUndefined();
     fixture.detectChanges();
     component.form.controls.searchOption.patchValue('');
-    expect((component as any).setupForm(['dh'])).toBeUndefined();
+    expect((component as any).setupForm([])).toBeUndefined();
   });
 
   it('getMappings function check', () => {
@@ -135,7 +135,7 @@ describe('EmployeeMappingComponent', () => {
       map: [''],
       fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray),
       searchOption: [''],
-      filterOption: [['dh', 'fyle']],
+      filterOption: [[' dh ', 'fyle']],
       cardUpdated: [false]
     });
     const parameter:Paginator = {
