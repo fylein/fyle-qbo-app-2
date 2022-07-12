@@ -30,10 +30,9 @@ describe('WorkspaceService', () => {
   });
   it('getFyleCurrency service', () => {
     const id = service.getFyleCurrency();
-    if(id !== null){
+    if (id !== null){
       expect(id).toEqual('IND');
-    }
-    else{
+    } else {
       expect(id).toBeNull();
     }
   });
