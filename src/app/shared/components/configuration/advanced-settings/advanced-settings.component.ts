@@ -72,7 +72,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   schduleSetting: ScheduleSettings;
 
-  adminEmails: any[];
+  adminEmails: any[] = [{name: 'fyle', email: 'fyle@fyle.in'}, {name: 'fyle1', email: 'fyle1@fyle.in'}];
 
   private readonly sessionStartTime = new Date();
 
@@ -186,7 +186,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       exportScheduleFrequency: [this.advancedSettings.workspace_schedules?.enabled ? this.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [this.advancedSettings.workspace_general_settings.memo_structure],
       searchOption: [],
-      emails: [this.schduleSetting.emails_selected ? this.schduleSetting.emails_selected : ['fyle@fyle.in']]
+      emails: [['fyle@fyle.in']]
     });
 
     this.setCustomValidators();
@@ -199,15 +199,15 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       this.advancedSettingService.getAdvancedSettings(),
       this.mappingService.getQBODestinationAttributes('BANK_ACCOUNT'),
       this.workspaceService.getWorkspaceGeneralSettings(),
-      this.workspaceService.getScheduleSettings(),
-      this.workspaceService.getWorkspaceAdmins()
+      // this.workspaceService.getScheduleSettings(),
+      // this.workspaceService.getWorkspaceAdmins()
     ]).subscribe(response => {
       this.advancedSettings = response[0];
       this.billPaymentAccounts = response[1];
       this.workspaceGeneralSettings = response[2];
-      this.schduleSetting = response[3];
-      this.adminEmails = response[4];
-      this.schduleSetting.additional_email_options.length > 0 ? this.schduleSetting.additional_email_options.map(mail => this.adminEmails.push(mail)) : '';
+      // this.schduleSetting = response[3];
+      // this.adminEmails = response[4];
+      // this.schduleSetting.additional_email_options.length > 0 ? this.schduleSetting.additional_email_options.map(mail => this.adminEmails.push(mail)) : '';
       this.setupForm();
     });
   }

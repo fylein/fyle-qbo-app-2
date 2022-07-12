@@ -1,76 +1,113 @@
-$fy-settings-background: #f2f2f2;
-
-body {
-  background-color: $fy-settings-background;
-}
-
-.mappings {
-  &--header {
-    border-bottom: 1px solid #f4f4f4;
+.expense-field-creation-dialog {
+  &--header-section {
+    background: #FFFFFF;
+    border-radius: 8px 8px 0px 0px;
+    height: 64px;
   }
-}
-.header-name {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 18px;
 
-    color: #5a5d72;
-}
-
-.admin-info {
-    margin-bottom: 20px;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 24px;
-    letter-spacing: 0.0016em;
-    color: #414562;
-}
-.mappings-dialog {
-    &--header {
-      color: #5a6169;
-    }
-  
-    &--form {
-      color: #5a6169;
-      font-size: 14px;
-    }
-  
-    &--field {
-      margin: 12px 0;
-    }
-  
-    &--label {
-      font-weight: 500;
-    }
-  
-    &--error {
-      font-size: 14px;
-    }
-  
-    &--save-btn[disabled] {
-        background-color: rgba(0,0,0,.26);
-        color: rgba(0,0,0,.12);
-    }
-
-    &--save-btn {
-        background-color: #f36;
-        color: white;
-      }
+  &--header-text {
+    padding: 24px 165px 24px 24px;
+    font-weight: 500;
   }
-  .internal-loader {
-    margin-top: 300px;
+
+  &--close-icon {
+    width: 12px;
+    height: 12px;
+    padding: 26px 24px 27px 40px;
   }
-  .mat-dialog-container {
-    display: block;
-    padding: 24px;
-    border-radius: 4px;
+
+  &--horizontal-separator {
+    border-top: 1px solid #F5F5F5;
+    width: 451px;
+    align-self: center;
+  }
+
+  &--error-section {
+    padding: 24px 24px;
+  }
+
+  &--error-contents {
+    background: rgba(218, 30, 40, 0.02);
+    border: 1px solid rgba(218, 30, 40, 0.04);
     box-sizing: border-box;
-    overflow: auto;
-    outline: 0;
-    width: 100%;
-    height: 100%;
-    min-height: inherit;
-    max-height: inherit;
+    border-radius: 4px;
+    height: 56px;
+  }
+
+  &--error-icon {
+    width: 20px;
+    height: 20px;
+    padding: 8px 12px 28px 12px;
+  }
+
+  &--error-text {
+    padding: 8px 8px 12px 0px;
+  }
+
+  &--name-text {
+    padding: 12px 0px 8px 24px;
+  }
+
+  &--form-field {
+    padding: 8px 24px 22px 24px;
+  }
+
+  &--form-input {
+    padding: 11px 0px 11px 14px;
+    width: 417px;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1px solid #DFDFE2;
+    box-sizing: border-box;
+  }
+
+  &--form-input-disabled {
+    @extend .expense-field-creation-dialog--form-input;
+    background: #F5F5F5;
+  }
+
+  &--label-section {
+    padding: 0px 16px 16px 16px;
+  }
+
+  &--label-content {
+    background: #F5F5F5;
+    border: 1px solid #DFDFE2;
+    box-sizing: border-box;
+    border-radius: 8px;
+    height: 100px;
+  }
+
+  &--label {
+    width: 487px;
+  }
+
+  &--btn-section {
+    padding: 16px 24px 16px 0px;
+  }
+
+  &--cancel-btn {
+    padding-right: 16px;
+  }
+
+  &--cancel-btn-text {
+    &:hover {
+      box-shadow: 0px 4px 4px rgba(44, 48, 78, 0.1);
+    }
+  }
+
+  &--cta-btn {
+    &:hover {
+      box-shadow: 0px 4px 4px rgba(44, 48, 78, 0.1);
+    }
+  }
+}
+.admin-info {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.0016em;
+  color: #414562;
+  padding: 24px 24px 14px 24px;
 }

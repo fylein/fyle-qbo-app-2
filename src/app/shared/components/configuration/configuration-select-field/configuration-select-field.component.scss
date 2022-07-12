@@ -18,6 +18,7 @@
   &--preview-text {
     font-size: 12px;
     padding-top: 4px;
+
     @media only screen and (max-width: 1440px) {
       padding-left: 10px;
     }
@@ -31,6 +32,7 @@
 p {
   margin: 0;
 }
+
 .selected-email {
   height: 22px;
   background-color: #ffffff;
@@ -42,30 +44,88 @@ p {
   line-height: 20px;
   margin-top: 2px;
 }
+
 .vertical {
   border-left: 1px solid #dfdfe2;
   height: 20px;
   margin-left: 10px;
 }
+
 .display-email {
-  display: block; 
-  max-width: 160px; 
+  display: block;
+  max-width: 160px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .mat-icon-close {
   color: #a9acbc;
   padding-left: 5px;
   padding-top: 5px;
 }
+
 .email-number {
   margin-top: 5px;
 }
+
 .delele-all-icon {
   margin-top: 5px;
   color: #5a5d72;
 }
+
 .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
   color: #e91e63;
+}
+
+.multiline-mat-option.mat-option {
+  white-space: normal;
+  line-height: normal;
+  height: auto !important;
+  font-size: none !important;
+}
+
+.schedule {
+  &--add-btn {
+    margin-bottom: 8px;
+    height: 16px;
+    width: 16px;
+    font-style: bold;
+  }
+
+  &--span-or {
+    margin-left: 5px;
+    margin-bottom: 8px;
+    margin-right: 25px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color: #2c304e;
+  }
+
+  &--bottom-name {
+    font-family: 'Aktiv Grotesk';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #A9ACBC;
+  }
+
+  &--head-name {
+    font-family: 'Aktiv Grotesk';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #414562;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
+}
+.mat-option{
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin: 10px;
 }
