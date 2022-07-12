@@ -336,7 +336,7 @@ describe('GenericMappingComponent', () => {
       fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray),
       filterOption: [['dh', 'fy']],
       sourceUpdated: [true],
-      searchOption: [[' fyle ']]
+      searchOption: ['']
     });
     component.form = form;
     fixture.detectChanges();
@@ -344,8 +344,5 @@ describe('GenericMappingComponent', () => {
     fixture.detectChanges();
     component.form.controls.searchOption.patchValue([' dh ']);
     expect((component as any).setupForm([' dh '])).toBeUndefined();
-    fixture.detectChanges();
-    component.form.controls.searchOption.patchValue('');
-    expect((component as any).setupForm([])).toBeUndefined();
   });
 });
