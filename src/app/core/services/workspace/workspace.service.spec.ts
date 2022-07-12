@@ -172,7 +172,7 @@ describe('WorkspaceService', () => {
   });
 
   it('getWorkspaceAdmins function check', () => {
-    const response: any[] = [ 'fyle@fyle.in', 'integrations@fyle.in' ]
+    const response: any[] = [ 'fyle@fyle.in', 'integrations@fyle.in' ];
     service.getWorkspaceAdmins().subscribe((value) => {
       expect(value).toEqual(response);
     });

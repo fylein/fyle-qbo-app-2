@@ -58,7 +58,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   frequencyIntervals: any[] = [...Array(24).keys()].map(day => {
     var date = {
-      label: +day+1 == 1 ? +day+1 + ' Hour' : +day+1 + ' Hours',
+      label: +day+1 === 1 ? +day+1 + ' Hour' : +day+1 + ' Hours',
       value: day+1
     };
     return date;

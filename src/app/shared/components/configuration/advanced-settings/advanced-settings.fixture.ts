@@ -133,7 +133,7 @@ export const emailResponse = {
   interval_hours: 1,
   schedule: 1,
   emails_selected: ['fyle@fyle.in', 'integrations@fyle.in' ],
-  additional_email_options: [{name:'fyle3',email: 'fyle3@fyle.in'}]
+  additional_email_options: [{name: 'fyle3', email: 'fyle3@fyle.in'}]
 };
-export const adminEmails: any[] = [ {name:'fyle',email: 'fyle@fyle.in'}, {name:'fyle2',email: 'fyle2@fyle.in'}]
+export const adminEmails: any[] = [ {name: 'fyle', email: 'fyle@fyle.in'}, {name: 'fyle2', email: 'fyle2@fyle.in'}];
 export const memo = ['employee_email', 'merchant', 'purpose', 'category', 'report_number', 'expense_link'];

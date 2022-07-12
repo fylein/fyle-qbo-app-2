@@ -81,7 +81,7 @@ export class ConfigurationSelectFieldComponent implements OnInit {
       this.form.controls.emails.patchValue(emails);
     }
   }
-  
+
   ngOnInit(): void {
   }
 

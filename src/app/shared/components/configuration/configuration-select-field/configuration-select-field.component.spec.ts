@@ -78,11 +78,11 @@ describe('ConfigurationSelectFieldComponent', () => {
   });
 
   it('delete function check', () => {
-    const event = new Event("click",undefined);
-    expect(component.delete(event,'fyle@fyle.in')).toBeUndefined();
+    const event = new Event("click", undefined);
+    expect(component.delete(event, 'fyle@fyle.in')).toBeUndefined();
     fixture.detectChanges();
     expect(component.form.controls.emails.value).toEqual(['integrations@fyle.in']);
-    expect(component.delete(event,'fyle@fyle.in',true)).toBeUndefined();
+    expect(component.delete(event, 'fyle@fyle.in', true)).toBeUndefined();
     fixture.detectChanges();
     expect(component.form.controls.emails.value).toBeNull();
   });
