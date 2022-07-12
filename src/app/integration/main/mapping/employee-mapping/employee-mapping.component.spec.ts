@@ -65,7 +65,7 @@ describe('EmployeeMappingComponent', () => {
     dialogSpy = spyOn(TestBed.get(MatSnackBar), 'open').and.returnValue(dialogRefSpyObj);
     component.fyleQboMappingFormArray = mappingList.map((mapping: MappingList) => {
       return formBuilder.group({
-        searchOption: [''],
+        searchOption: [[' fyle ']],
         source: [mapping.fyle.value],
         destination: [mapping.qbo.value]
       });
@@ -73,7 +73,7 @@ describe('EmployeeMappingComponent', () => {
     component.form = formBuilder.group({
       map: [''],
       fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray),
-      searchOption: [''],
+      searchOption: [[' fyle ']],
       filterOption: [''],
       cardUpdated: [false]
     });
@@ -81,6 +81,21 @@ describe('EmployeeMappingComponent', () => {
   });
 
   it('should create', () => {
+    component.fyleQboMappingFormArray = mappingList.map((mapping: MappingList) => {
+      return formBuilder.group({
+        searchOption: [[' fyle ']],
+        source: [mapping.fyle.value],
+        destination: [mapping.qbo.value]
+      });
+    });
+    component.form = formBuilder.group({
+      map: [''],
+      fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray),
+      searchOption: [[' fyle ']],
+      filterOption: [''],
+      cardUpdated: [false]
+    });
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
@@ -103,11 +118,19 @@ describe('EmployeeMappingComponent', () => {
   it('searchByText function check', () => {
     const ans = (component as any).searchByText(mappinglist[0], 'string');
     expect(ans).toBeTrue();
-    const ans1 = (component as any).searchByText(mappinglist[0], 'fyle');
+    const ans1 = (component as any).searchByText(mappinglist[0], ' fyle ');
     expect(ans1).toBeFalse();
   });
 
   it('mappingCardUpdateHandler function check', () => {
+    component.form = formBuilder.group({
+      map: [''],
+      fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray),
+      filterOption: [['dh', 'fy']],
+      searchOption: [[' fyle ']],
+      cardUpdated: [false]
+    });
+    fixture.detectChanges();
     expect(component.mappingCardUpdateHandler(true)).toBeUndefined();
     expect(component.mappingCardUpdateHandler(false)).toBeUndefined();
   });
@@ -120,17 +143,6 @@ describe('EmployeeMappingComponent', () => {
         destination: [mapping.qbo.value]
       });
     });
-    fixture.detectChanges();
-    expect((component as any).setupForm([' dh '])).toBeUndefined();
-    fixture.detectChanges();
-    component.form.controls.searchOption.patchValue([' dh ']);
-    expect((component as any).setupForm([' dh '])).toBeUndefined();
-    fixture.detectChanges();
-    component.form.controls.searchOption.patchValue('');
-    expect((component as any).setupForm([])).toBeUndefined();
-  });
-
-  it('getMappings function check', () => {
     component.form = formBuilder.group({
       map: [''],
       fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray),
@@ -138,6 +150,22 @@ describe('EmployeeMappingComponent', () => {
       filterOption: [[' dh ', 'fyle']],
       cardUpdated: [false]
     });
+    fixture.detectChanges();
+    expect((component as any).setupForm([' dh '])).toBeUndefined();
+    fixture.detectChanges();
+    component.form.controls.searchOption.patchValue([' dh ']);
+    expect((component as any).setupForm([' dh '])).toBeUndefined();
+  });
+
+  it('getMappings function check', () => {
+    component.form = formBuilder.group({
+      map: [''],
+      fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray),
+      searchOption: [[' fyle ']],
+      filterOption: [[' dh ', 'fyle']],
+      cardUpdated: [false]
+    });
+    fixture.detectChanges();
     const parameter:Paginator = {
       limit: 3,
       offset: 3

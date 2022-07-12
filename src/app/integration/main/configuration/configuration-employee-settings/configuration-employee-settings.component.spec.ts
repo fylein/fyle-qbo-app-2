@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConfigurationEmployeeSettingsComponent } from './configuration-employee-settings.component';
 
-xdescribe('ConfigurationEmployeeSettingsComponent', () => {
+describe('ConfigurationEmployeeSettingsComponent', () => {
   let component: ConfigurationEmployeeSettingsComponent;
   let fixture: ComponentFixture<ConfigurationEmployeeSettingsComponent>;
 

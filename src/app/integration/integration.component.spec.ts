@@ -6,6 +6,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { WorkspaceService } from '../core/services/workspace/workspace.service';
 import { of, throwError } from 'rxjs';
 import { errorResponse, workspaceResponse } from './integration.fixture';
+import { environment } from 'src/environments/environment';
 
 describe('IntegrationComponent', () => {
   let component: IntegrationComponent;
@@ -21,7 +22,8 @@ describe('IntegrationComponent', () => {
       getWorkspaces: () => of(workspaceResponse),
       createWorkspace: () => of(workspaceResponse),
       syncFyleDimensions: () => of({}),
-      syncQBODimensions: () => of({})
+      syncQBODimensions: () => of({}),
+      getWorkspaceId: () => environment.tests.workspaceId
     };
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientModule, HttpClientTestingModule],

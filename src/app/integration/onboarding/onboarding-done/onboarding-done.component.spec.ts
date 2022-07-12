@@ -10,6 +10,7 @@ describe('OnboardingDoneComponent', () => {
   let router: Router;
   const routerSpy = { navigate: jasmine.createSpy('navigate'), url: '/path' };
   beforeEach(async () => {
+    localStorage.setItem('user', JSON.stringify({org_id: 'dummy'}));
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientModule],
       declarations: [ OnboardingDoneComponent ],

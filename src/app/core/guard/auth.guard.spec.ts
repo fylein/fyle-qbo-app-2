@@ -2,14 +2,27 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
+import { AuthService } from '../services/core/auth.service';
+import { Router } from '@angular/router';
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;
-
+  let authService: AuthService;
+  const router = {
+    navigate: jasmine.createSpy('navigate')
+};
   beforeEach(() => {
+    const service1 = {
+      isLoggedIn: () => true
+    };
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientModule]
+      imports: [RouterTestingModule, HttpClientModule],
+      providers: [
+        {provide: AuthService, useValue: service1},
+        {provide: Router, useValue: router}
+      ]
     });
+    authService = TestBed.inject(AuthService);
     guard = TestBed.inject(AuthGuard);
   });
 
@@ -17,12 +30,18 @@ describe('AuthGuard', () => {
     expect(guard).toBeTruthy();
   });
 
-  xit('canActivate check', () => {
+  it('canActivate check', () => {
+    spyOn(authService, 'isLoggedIn').and.callThrough();
     const result = guard.canActivate().valueOf();
-    if (result) {
-      expect(result).toBeTrue();
-    } else {
-      expect(result).toBeFalse();
-    }
+    expect(result).toBeTrue();
+    expect(authService.isLoggedIn).toHaveBeenCalled();
+  });
+
+  it('canActivate check', () => {
+    spyOn(authService, 'isLoggedIn').and.returnValue(false);
+    const result = guard.canActivate().valueOf();
+    expect(result).toBeFalse();
+    expect(authService.isLoggedIn).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith(['/auth/login']);
   });
 });

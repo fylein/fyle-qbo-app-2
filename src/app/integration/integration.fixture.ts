@@ -18,7 +18,7 @@ export const workspaceResponse:Workspace[] = [{
   updated_at: new Date("2022-04-13T10:29:18.796760Z")
 }];
 export const errorResponse = {
-  status: 404,
+  status: 400,
   statusText: "Not Found",
   error: {
     id: 1,

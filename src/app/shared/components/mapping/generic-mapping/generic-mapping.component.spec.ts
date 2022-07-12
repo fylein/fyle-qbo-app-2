@@ -50,10 +50,41 @@ describe('GenericMappingComponent', () => {
     httpMock = injector.inject(HttpTestingController);
     activatedRoute = TestBed.inject(ActivatedRoute);
     dialogSpy = spyOn(TestBed.get(MatSnackBar), 'open').and.returnValue(dialogRefSpyObj);
+    component.fyleQboMappingFormArray = mappinglist.map((mapping: MappingList) => {
+      return formBuilder.group({
+        searchOption: [''],
+        source: [mapping.fyle.value],
+        destination: [mapping.qbo.value]
+      });
+    });
+    const form = formBuilder.group({
+      map: [''],
+      fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray),
+      filterOption: [['dh', 'fy']],
+      sourceUpdated: [true],
+      searchOption: [[' fyle ']]
+    });
+    component.form = form;
     fixture.detectChanges();
   });
 
   it('should create', () => {
+    component.fyleQboMappingFormArray = mappinglist.map((mapping: MappingList) => {
+      return formBuilder.group({
+        searchOption: [''],
+        source: [mapping.fyle.value],
+        destination: [mapping.qbo.value]
+      });
+    });
+    const form = formBuilder.group({
+      map: [''],
+      fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray),
+      filterOption: [['dh', 'fy']],
+      sourceUpdated: [true],
+      searchOption: [[' fyle ']]
+    });
+    component.form = form;
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
@@ -91,11 +122,12 @@ describe('GenericMappingComponent', () => {
     const form = formBuilder.group({
       filterOption: [['dh', 'fy']],
       sourceUpdated: [true],
-      searchOption: [['fyle']]
+      searchOption: [[' fyle ']]
     });
     component.form = form;
     fixture.detectChanges();
     expect(component.ngOnInit()).toBeUndefined();
+    fixture.detectChanges();
     const response: MappingSettingResponse = {
       count: 0, next: 'aa', previous: 'aa', results: []
     };
@@ -122,6 +154,7 @@ describe('GenericMappingComponent', () => {
 
   it('Save function check', () => {
     component.mappingSetting = minimaMappingSetting;
+    fixture.detectChanges();
     component.save(mappinglist[0]);
     const req = httpMock.expectOne({
       method: 'POST',
@@ -149,7 +182,7 @@ describe('GenericMappingComponent', () => {
     const form = formBuilder.group({
       filterOption: [['dh', 'fy']],
       sourceUpdated: [true],
-      searchOption: [['fyle']]
+      searchOption: [[' fyle ']]
     });
     component.PaginatorPage = PaginatorPage;
     component.form = form;
@@ -257,7 +290,7 @@ describe('GenericMappingComponent', () => {
     const form = formBuilder.group({
       filterOption: [['dh', 'fy']],
       sourceUpdated: [true],
-      searchOption: [['fyle']]
+      searchOption: [[' fyle ']]
     });
     component.form = form;
     component.mappingSetting = minimaMappingSetting;
@@ -273,7 +306,7 @@ describe('GenericMappingComponent', () => {
     const form = formBuilder.group({
       filterOption: [['dh', 'fy']],
       sourceUpdated: [true],
-      searchOption: [['fyle']]
+      searchOption: [[' fyle ']]
     });
     component.form = form;
     component.mappingSetting = minimaMappingSetting;
@@ -298,13 +331,18 @@ describe('GenericMappingComponent', () => {
         destination: [mapping.qbo.value]
       });
     });
+    const form = formBuilder.group({
+      map: [''],
+      fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray),
+      filterOption: [['dh', 'fy']],
+      sourceUpdated: [true],
+      searchOption: ['']
+    });
+    component.form = form;
     fixture.detectChanges();
-    expect((component as any).setupForm(['dh'])).toBeUndefined();
+    expect((component as any).setupForm([' dh '])).toBeUndefined();
     fixture.detectChanges();
-    component.form.controls.searchOption.patchValue(['dh']);
-    expect((component as any).setupForm(['dh'])).toBeUndefined();
-    fixture.detectChanges();
-    component.form.controls.searchOption.patchValue('');
-    expect((component as any).setupForm(['dh'])).toBeUndefined();
+    component.form.controls.searchOption.patchValue([' dh ']);
+    expect((component as any).setupForm([' dh '])).toBeUndefined();
   });
 });
