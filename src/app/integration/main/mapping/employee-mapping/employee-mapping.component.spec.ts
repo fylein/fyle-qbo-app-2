@@ -143,14 +143,18 @@ describe('EmployeeMappingComponent', () => {
         destination: [mapping.qbo.value]
       });
     });
+    component.form = formBuilder.group({
+      map: [''],
+      fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray),
+      searchOption: [''],
+      filterOption: [[' dh ', 'fyle']],
+      cardUpdated: [false]
+    });
     fixture.detectChanges();
     expect((component as any).setupForm([' dh '])).toBeUndefined();
     fixture.detectChanges();
     component.form.controls.searchOption.patchValue([' dh ']);
     expect((component as any).setupForm([' dh '])).toBeUndefined();
-    fixture.detectChanges();
-    component.form.controls.searchOption.patchValue('');
-    expect((component as any).setupForm([])).toBeUndefined();
   });
 
   it('getMappings function check', () => {
