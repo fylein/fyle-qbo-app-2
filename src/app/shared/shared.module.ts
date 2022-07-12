@@ -53,6 +53,7 @@ import { ExportLogChildTableComponent } from './components/export-log/export-log
 import { PreviewDialogComponent } from './components/configuration/preview-dialog/preview-dialog.component';
 import { ConfirmationDialogComponent } from './components/core/confirmation-dialog/confirmation-dialog.component';
 import { MandatoryErrorMessageComponent } from './components/helpers/mandatory-error-message/mandatory-error-message.component';
+import { AddEmailDialogComponent } from './components/configuration/advanced-settings/add-email-dialog/add-email-dialog.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { MandatoryErrorMessageComponent } from './components/helpers/mandatory-e
     PreviewDialogComponent,
     ConfirmationDialogComponent,
     ConfirmationDialogComponent,
-    MandatoryErrorMessageComponent
+    MandatoryErrorMessageComponent,
+    AddEmailDialogComponent
   ],
   imports: [
     CommonModule,

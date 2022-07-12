@@ -5,6 +5,7 @@ import { EmployeeFieldMapping, OnboardingState } from '../../models/enum/enum.mo
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { WorkspaceGeneralSetting } from '../../models/db/workspace-general-setting.model';
 import { environment } from 'src/environments/environment';
+import { ScheduleSettings } from '../../models/db/schedule-setting.model';
 
 describe('WorkspaceService', () => {
   let service: WorkspaceService;
@@ -168,5 +169,40 @@ describe('WorkspaceService', () => {
     var mm = String(date.getMonth() + 1).padStart(2, '0'); // January is 0!
     const resultdate = dd + '-' + mm + '-' + yyyy;
     expect(resultdate).toMatch(/(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)/);
+  });
+
+  it('getWorkspaceAdmins function check', () => {
+    const response: any[] = [ 'fyle@fyle.in', 'integrations@fyle.in' ]
+    service.getWorkspaceAdmins().subscribe((value) => {
+      expect(value).toEqual(response);
+    });
+    const req = httpMock.expectOne({
+      method: 'GET',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/admins/`
+    });
+  req.flush(response);
+
+  });
+
+  it('getScheduleSettings function check', () => {
+    const response: ScheduleSettings = {
+      id: 1,
+      workspace: 1,
+      enabled: false,
+      start_datetime: new Date(),
+      interval_hours: 1,
+      schedule: 1,
+      emails_selected: [],
+      additional_email_options: []
+  };
+    service.getScheduleSettings().subscribe((value) => {
+      expect(value).toEqual(response);
+    });
+    const req = httpMock.expectOne({
+      method: 'GET',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/schedule/`
+    });
+  req.flush(response);
+
   });
 });

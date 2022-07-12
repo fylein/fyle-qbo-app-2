@@ -20,6 +20,8 @@ export class ConfigurationSelectFieldComponent implements OnInit {
 
   @Input() form: FormGroup;
 
+  @Input() enableTextsearch: boolean;
+
   @Input() options: EmployeeSettingFormOption[] | ExportSettingFormOption[] | AdvancedSettingFormOption[] | any[];
 
   @Input() qboAttributes: DestinationAttribute[];
@@ -69,6 +71,17 @@ export class ConfigurationSelectFieldComponent implements OnInit {
     });
   }
 
+  delete(event: Event, email: string, deleteAll: boolean = false) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (deleteAll) {
+      this.form.controls.emails.patchValue(null);
+    } else {
+      const emails = this.form.value.emails.filter((value: string) => value !== email);
+      this.form.controls.emails.patchValue(emails);
+    }
+  }
+  
   ngOnInit(): void {
   }
 

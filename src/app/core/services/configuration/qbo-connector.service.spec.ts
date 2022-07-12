@@ -4,6 +4,9 @@ import { QBOCredentials } from '../../models/configuration/qbo-connector.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { QBOPreference } from '../../models/misc/qbo-preference.model';
 import { environment } from 'src/environments/environment';
+import { of } from 'rxjs';
+import { ScheduleSettings } from '../../models/db/schedule-setting.model';
+import { WorkspaceService } from '../workspace/workspace.service';
 
 describe('QboConnectorService', () => {
   let service: QboConnectorService;
@@ -13,9 +16,14 @@ describe('QboConnectorService', () => {
   const workspace_id = environment.tests.workspaceId;
 
   beforeEach(() => {
+    const service1 = {
+      getWorkspaceId: () => workspace_id
+    };
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [QboConnectorService]
+      providers: [QboConnectorService,
+        { provide: WorkspaceService, useValue: service1 }
+      ]
     });
     injector = getTestBed();
     service = injector.inject(QboConnectorService);
@@ -229,6 +237,27 @@ describe('QboConnectorService', () => {
       const req = httpMock.expectOne({
         method: 'PATCH',
         url: `${API_BASE_URL}/workspaces/${workspace_id}/credentials/qbo/`
+      });
+      req.flush(response);
+    });
+
+    it('postScheduleSettings function check', () => {
+      const response: ScheduleSettings = {
+        id: 1,
+        workspace: 1,
+        enabled: false,
+        start_datetime: new Date(),
+        interval_hours: 1,
+        schedule: 1,
+        emails_selected: [],
+        additional_email_options: []
+    };
+      service.postScheduleSettings(1, false, [], {}).subscribe(value => {
+        expect(value).toEqual(response);
+      });
+      const req = httpMock.expectOne({
+        method: 'POST',
+        url: `${API_BASE_URL}/workspaces/${workspace_id}/schedule/`
       });
       req.flush(response);
     });

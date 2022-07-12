@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cacheable, globalCacheBusterNotifier } from 'ts-cacheable';
+import { ScheduleSettings } from '../../models/db/schedule-setting.model';
 import { WorkspaceGeneralSetting } from '../../models/db/workspace-general-setting.model';
 import { Workspace } from '../../models/db/workspace.model';
 import { OnboardingState } from '../../models/enum/enum.model';
@@ -74,5 +75,13 @@ export class WorkspaceService {
   // TODO: Cache this call safely
   getWorkspaceGeneralSettings(): Observable<WorkspaceGeneralSetting> {
     return this.apiService.get(`/workspaces/${this.getWorkspaceId()}/settings/general/`, {});
+  }
+
+  getWorkspaceAdmins(): Observable<[]> {
+    return this.apiService.get(`/workspaces/${this.getWorkspaceId()}/admins/`, {});
+  }
+
+  getScheduleSettings(): Observable<ScheduleSettings> {
+    return this.apiService.get(`/workspaces/${this.getWorkspaceId()}/schedule/`, {});
   }
 }

@@ -11,18 +11,37 @@
           [subLabel]="'Set up a schedule to frequently automate the export of expenses from Fyle to Quickbooks Online'"
           [formControllerName]="'exportSchedule'">
         </app-configuration-toggle-field>
+      </div>
+        <div *ngIf="advancedSettingsForm.value.exportSchedule">
+          <app-configuration-select-field
+          [form]="advancedSettingsForm"
+          [options]="frequencyIntervals"
+          [isFieldMandatory]="true"
+          [mandatoryErrorListName]="'frequency'"
+          [label]="'Select frequancy of export'"
+          [subLabel]="'Select the frequancy at which you want your Automated import-export to happen'"
+          [placeholder]="'Select Frequancy'"
+          [formControllerName]="'exportScheduleFrequency'"
+          >
+        </app-configuration-select-field>
+        <app-configuration-select-field
+          [form]="advancedSettingsForm"
+          [options]="adminEmails"
+          [isFieldMandatory]="false"
+          [mandatoryErrorListName]="'frequency'"
+          [label]="'Select an email address to notify upon export failure'"
+          [subLabel]="'You can select one or more email address from the given list, or add new one to get email notifications on.'"
+          [placeholder]="'Select Email Address'"
+          [formControllerName]="'emails'"
+          [enableTextsearch]="true"
+          >
+        </app-configuration-select-field>
+        <div *ngIf="advancedSettingsForm.controls.exportScheduleFrequency.value" fxLayout="row" class="cursor-pointer" fxLayoutAlign="end center"
+              (click)="open()">
+              <img class="schedule--add-btn" src="../../../../../assets/images/pngs/Vector.png">
+              <span class="schedule--span-or">Add new email address</span>
+            </div>
 
-        <div *ngIf="advancedSettingsForm.value.exportSchedule" class="advanced-settings--schedule-frequency-section">
-          <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
-            <mat-select placeholder="Select frequency" formControlName="exportScheduleFrequency">
-              <mat-option *ngFor="let option of frequencyIntervals" [value]="option">
-                {{ option }} {{ option === 1 ? 'Hour' : 'Hours' }}
-                <img *ngIf="advancedSettingsForm.value.exportScheduleFrequency === option" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-              </mat-option>
-            </mat-select>
-            <div class="mat-select-arrow-closed"></div>
-          </mat-form-field>
-          <app-mandatory-error-message *ngIf="advancedSettingsForm.controls.exportScheduleFrequency.touched && !advancedSettingsForm.controls.exportScheduleFrequency.valid" [listName]="'frequency'"></app-mandatory-error-message>
         </div>
 
         <div fxLayout="row" fxLayoutAlign="space-between start">
@@ -32,7 +51,7 @@
             </h5>
           </div>
         </div>
-      </div>
+      <!-- </div> -->
 
       <div class="configuration--field-section">
         <div fxLayout="row" fxLayoutAlign="space-between center">

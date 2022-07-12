@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Cacheable, CacheBuster, globalCacheBusterNotifier } from 'ts-cacheable';
 import { QboConnector, QboConnectorPost, QBOCredentials } from '../../models/configuration/qbo-connector.model';
+import { ScheduleSettings } from '../../models/db/schedule-setting.model';
 import { QBOPreference } from '../../models/misc/qbo-preference.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
@@ -48,5 +49,15 @@ export class QboConnectorService {
   @Cacheable()
   getPreferences(): Observable<QBOPreference> {
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/preferences/`, {});
+  }
+
+  postScheduleSettings(hours: number, scheduleEnabled: boolean, selectedEmail: [], addedEmail: {}): Observable<ScheduleSettings> {
+    const workspaceId =  this.workspaceService.getWorkspaceId();
+    return this.apiService.post(`/workspaces/${workspaceId}/schedule/`, {
+      hours,
+      schedule_enabled: scheduleEnabled,
+      added_email: addedEmail,
+      selected_email: selectedEmail
+    });
   }
 }

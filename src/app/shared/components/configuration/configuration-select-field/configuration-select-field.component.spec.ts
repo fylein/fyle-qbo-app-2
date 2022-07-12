@@ -31,7 +31,8 @@ describe('ConfigurationSelectFieldComponent', () => {
     component = fixture.componentInstance;
     const form = new FormGroup({
       employeeMapping: new FormControl(['EMPLOYEE']),
-      autoMapEmployee: new FormControl([true])
+      autoMapEmployee: new FormControl([true]),
+      emails: new FormControl(['fyle@fyle.in', 'integrations@fyle.in' ])
     });
     const employeeMappingOptions: EmployeeSettingFormOption[] = [
       {
@@ -54,6 +55,7 @@ describe('ConfigurationSelectFieldComponent', () => {
     component.label = 'How are your Employees represented in Quickbooks Online?';
     component.subLabel = 'Select how you represent your employees in QBO. This would help to export the expenses from Fyle to the correct employee/vendor record in QBO.';
     component.placeholder = 'Select representation';
+    component.enableTextsearch = false;
     fixture.detectChanges();
     dialogSpy = spyOn(TestBed.get(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
   });
@@ -73,5 +75,15 @@ describe('ConfigurationSelectFieldComponent', () => {
     const configurationH5 = fixture.debugElement.queryAll(By.css('h5'));
     expect(configurationHeaderdiv.nativeElement.innerText).toBe(component.label+' *');
     expect(configurationH5[0].nativeElement.innerText).toBe(component.subLabel);
+  });
+
+  it('delete function check', () => {
+    const event = new Event("click",undefined);
+    expect(component.delete(event,'fyle@fyle.in')).toBeUndefined();
+    fixture.detectChanges();
+    expect(component.form.controls.emails.value).toEqual(['integrations@fyle.in']);
+    expect(component.delete(event,'fyle@fyle.in',true)).toBeUndefined();
+    fixture.detectChanges();
+    expect(component.form.controls.emails.value).toBeNull();
   });
 });
