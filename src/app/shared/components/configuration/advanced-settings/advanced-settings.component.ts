@@ -198,16 +198,16 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     forkJoin([
       this.advancedSettingService.getAdvancedSettings(),
       this.mappingService.getQBODestinationAttributes('BANK_ACCOUNT'),
-      this.workspaceService.getWorkspaceGeneralSettings(),
-      // this.workspaceService.getScheduleSettings(),
-      // this.workspaceService.getWorkspaceAdmins()
+      this.workspaceService.getWorkspaceGeneralSettings()
+      // This.workspaceService.getScheduleSettings(),
+      // This.workspaceService.getWorkspaceAdmins()
     ]).subscribe(response => {
       this.advancedSettings = response[0];
       this.billPaymentAccounts = response[1];
       this.workspaceGeneralSettings = response[2];
-      // this.schduleSetting = response[3];
-      // this.adminEmails = response[4];
-      // this.schduleSetting.additional_email_options.length > 0 ? this.schduleSetting.additional_email_options.map(mail => this.adminEmails.push(mail)) : '';
+      // This.schduleSetting = response[3];
+      // This.adminEmails = response[4];
+      // This.schduleSetting.additional_email_options.length > 0 ? this.schduleSetting.additional_email_options.map(mail => this.adminEmails.push(mail)) : '';
       this.setupForm();
     });
   }
