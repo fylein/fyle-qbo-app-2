@@ -3,14 +3,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { of } from 'rxjs';
-import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
+import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { emailResponse } from '../advanced-settings.fixture';
 import { AddEmailDialogComponent } from './add-email-dialog.component';
 
 describe('AddEmailDialogComponent', () => {
   let component: AddEmailDialogComponent;
   let fixture: ComponentFixture<AddEmailDialogComponent>;
-  let qboService: QboConnectorService;
+  let advancedSettingService: AdvancedSettingService;
   let formBuilder: FormBuilder;
   const dialogMock = {
     close: () => of({ workspaceId: 1,
@@ -46,7 +46,7 @@ describe('AddEmailDialogComponent', () => {
             }
           }
         },
-        { provide: QboConnectorService, useValue: service1}
+        { provide: AdvancedSettingService, useValue: service1}
       ]
     })
     .compileComponents();
@@ -55,7 +55,7 @@ describe('AddEmailDialogComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AddEmailDialogComponent);
     component = fixture.componentInstance;
-    qboService = TestBed.inject(QboConnectorService);
+    advancedSettingService = TestBed.inject(AdvancedSettingService);
     formBuilder = TestBed.inject(FormBuilder);
     component.form = formBuilder.group({
       name: 'Fyle',
@@ -69,11 +69,11 @@ describe('AddEmailDialogComponent', () => {
   });
 
   it('Submit function check', () => {
-    spyOn(qboService, 'postScheduleSettings').and.callThrough();
+    spyOn(advancedSettingService, 'postScheduleSettings').and.callThrough();
     const spy = spyOn(component.dialogRef, 'close').and.callThrough();
     expect(component.submit()).toBeUndefined();
     fixture.detectChanges();
-    expect(qboService.postScheduleSettings).toHaveBeenCalled();
+    expect(advancedSettingService.postScheduleSettings).toHaveBeenCalled();
     expect(spy).toHaveBeenCalled();
     expect(component.isLoading).toBeFalse();
   });
@@ -85,11 +85,11 @@ describe('AddEmailDialogComponent', () => {
       schedulEnabled: false,
       selectedEmails: []
     };
-    spyOn(qboService, 'postScheduleSettings').and.callThrough();
+    spyOn(advancedSettingService, 'postScheduleSettings').and.callThrough();
     const spy = spyOn(component.dialogRef, 'close').and.callThrough();
     expect(component.submit()).toBeUndefined();
     fixture.detectChanges();
-    expect(qboService.postScheduleSettings).toHaveBeenCalled();
+    expect(advancedSettingService.postScheduleSettings).toHaveBeenCalled();
     expect(spy).toHaveBeenCalled();
     expect(component.isLoading).toBeFalse();
   });

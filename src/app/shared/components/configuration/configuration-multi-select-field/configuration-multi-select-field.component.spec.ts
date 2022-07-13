@@ -24,24 +24,15 @@ describe('ConfigurationMultiSelectFieldComponent', () => {
     fixture = TestBed.createComponent(ConfigurationMultiSelectFieldComponent);
     component = fixture.componentInstance;
     formBuilder = TestBed.inject(FormBuilder);
-    const form = new FormGroup({
-      employeeMapping: new FormControl(['EMPLOYEE']),
-      autoMapEmployee: new FormControl([true]),
-      emails: new FormControl(['fyle@fyle.in', 'integrations@fyle.in' ])
+    const form = formBuilder.group({
+      searchOption: [],
+      emails: [['fyle@fyle.in', 'integrations@fyle.in']],
+      employeeMapping: [['EMPLOYEE']]
     });
-    const employeeMappingOptions: EmployeeSettingFormOption[] = [
-      {
-        value: EmployeeFieldMapping.EMPLOYEE,
-        label: 'Employees'
-      },
-      {
-        value: EmployeeFieldMapping.VENDOR,
-        label: 'Vendors'
-      }
-    ];
-    const liveEntityExample = {EMPLOYEE: 'FYLE', VENDOR: 'Integration'};
     component.form = form;
-    component.options = employeeMappingOptions;
+    const adminEmails: any[] = [{name: 'fyle', email: 'fyle@fyle.in'}, {name: 'dhaara', email: 'fyle1@fyle.in'}];
+    const liveEntityExample = {EMPLOYEE: 'FYLE', VENDOR: 'Integration'};
+    component.options = adminEmails;
     component.liveEntityExample = liveEntityExample;
     component.formControllerName = 'employeeMapping';
     component.isFieldMandatory = true;
