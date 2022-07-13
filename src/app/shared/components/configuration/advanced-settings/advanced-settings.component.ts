@@ -16,7 +16,7 @@ import { WindowService } from 'src/app/core/services/core/window.service';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { AddEmailDialogComponent } from './add-email-dialog/add-email-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { ScheduleSettings } from 'src/app/core/models/db/schedule-setting.model';
+import { WorkspaceSchedule } from 'src/app/core/models/db/schedule-setting.model';
 
 @Component({
   selector: 'app-advanced-settings',
@@ -57,11 +57,10 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   ];
 
   frequencyIntervals: any[] = [...Array(24).keys()].map(day => {
-    var date = {
-      label: +day+1 === 1 ? +day+1 + ' Hour' : +day+1 + ' Hours',
-      value: day+1
+     return {
+      label: +(day + 1) === 1 ? +(day + 1) + ' Hour' : +(day + 1) + ' Hours',
+      value: day + 1
     };
-    return date;
   });
 
   windowReference: Window;
@@ -70,9 +69,9 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   ProgressPhase = ProgressPhase;
 
-  schduleSetting: ScheduleSettings;
+  scheduleSetting: WorkspaceSchedule;
 
-  adminEmails: any[] = [{name: 'fyle', email: 'fyle@fyle.in'}, {name: 'fyle1', email: 'fyle1@fyle.in'}];
+  adminEmails: any[] = [{name: 'fyle', email: 'fyle@fyle.in'}, {name: 'dhaara', email: 'fyle1@fyle.in'}];
 
   private readonly sessionStartTime = new Date();
 
@@ -205,18 +204,17 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       this.advancedSettings = response[0];
       this.billPaymentAccounts = response[1];
       this.workspaceGeneralSettings = response[2];
-      // This.schduleSetting = response[3];
+      // This.scheduleSetting = response[3];
       // This.adminEmails = response[4];
-      // This.schduleSetting.additional_email_options.length > 0 ? this.schduleSetting.additional_email_options.map(mail => this.adminEmails.push(mail)) : '';
+      // This.scheduleSetting.additional_email_options.length > 0 ? this.scheduleSetting.additional_email_options.map(mail => this.adminEmails.push(mail)) : '';
       this.setupForm();
     });
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    const that = this;
-    moveItemInArray(that.defaultMemoFields, event.previousIndex, event.currentIndex);
-    const selectedMemoFields = that.defaultMemoFields.filter(memoOption => this.advancedSettingsForm.value.memoStructure.indexOf(memoOption) !== -1);
-    const memoStructure = selectedMemoFields ? selectedMemoFields : that.defaultMemoFields;
+    moveItemInArray(this.defaultMemoFields, event.previousIndex, event.currentIndex);
+    const selectedMemoFields = this.defaultMemoFields.filter(memoOption => this.advancedSettingsForm.value.memoStructure.indexOf(memoOption) !== -1);
+    const memoStructure = selectedMemoFields ? selectedMemoFields : this.defaultMemoFields;
     this.memoStructure = memoStructure;
     this.formatMemoPreview();
   }
@@ -271,21 +269,19 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     }
   }
 
-  open() {
-    const that = this;
-
-    const dialogRef = that.dialog.open(AddEmailDialogComponent, {
+  openAddemailDialog(): void {
+    const dialogRef = this.dialog.open(AddEmailDialogComponent, {
       width: '467px',
       data: {
-        workspaceId: that.workspaceGeneralSettings.workspace,
-        hours: that.advancedSettingsForm.value.hours,
-        schedulEnabled: that.advancedSettingsForm.value.scheduleEnabled,
-        selectedEmails: that.advancedSettingsForm.value.emails
+        workspaceId: this.workspaceGeneralSettings.workspace,
+        hours: this.advancedSettingsForm.value.hours,
+        schedulEnabled: this.advancedSettingsForm.value.scheduleEnabled,
+        selectedEmails: this.advancedSettingsForm.value.emails
       }
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      that.getSettingsAndSetupForm();
+      this.getSettingsAndSetupForm();
     });
   }
 

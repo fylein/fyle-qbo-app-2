@@ -54,6 +54,7 @@ import { PreviewDialogComponent } from './components/configuration/preview-dialo
 import { ConfirmationDialogComponent } from './components/core/confirmation-dialog/confirmation-dialog.component';
 import { MandatoryErrorMessageComponent } from './components/helpers/mandatory-error-message/mandatory-error-message.component';
 import { AddEmailDialogComponent } from './components/configuration/advanced-settings/add-email-dialog/add-email-dialog.component';
+import { ConfigurationMultiSelectFieldComponent } from './components/configuration/configuration-multi-select-field/configuration-multi-select-field.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { AddEmailDialogComponent } from './components/configuration/advanced-set
     ConfirmationDialogComponent,
     ConfirmationDialogComponent,
     MandatoryErrorMessageComponent,
-    AddEmailDialogComponent
+    AddEmailDialogComponent,
+    ConfigurationMultiSelectFieldComponent
   ],
   imports: [
     CommonModule,

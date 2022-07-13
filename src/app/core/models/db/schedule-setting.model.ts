@@ -1,6 +1,4 @@
-/* Tslint:disable */
-// TODO: Use something for serialization / deserialization
-export type ScheduleSettings = {
+export type WorkspaceSchedule = {
   id: number;
   workspace: number;
   enabled: boolean;

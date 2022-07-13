@@ -1,34 +1,29 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SearchPipe } from '../../../pipes/search.pipe';
-import { ConfigurationSelectFieldComponent } from './configuration-select-field.component';
-import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeeSettingFormOption } from 'src/app/core/models/configuration/employee-setting.model';
 import { EmployeeFieldMapping } from 'src/app/core/models/enum/enum.model';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { of } from 'rxjs';
-import { By } from '@angular/platform-browser';
+import { SharedModule } from 'src/app/shared/shared.module';
 
-describe('ConfigurationSelectFieldComponent', () => {
-  let component: ConfigurationSelectFieldComponent;
-  let fixture: ComponentFixture<ConfigurationSelectFieldComponent>;
+import { ConfigurationMultiSelectFieldComponent } from './configuration-multi-select-field.component';
+
+describe('ConfigurationMultiSelectFieldComponent', () => {
+  let component: ConfigurationMultiSelectFieldComponent;
+  let fixture: ComponentFixture<ConfigurationMultiSelectFieldComponent>;
   let formBuilder: FormBuilder;
-  let dialogSpy: jasmine.Spy;
-  const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({}), close: null });
-  dialogRefSpyObj.componentInstance = { body: '' };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SharedModule, MatDialogModule, NoopAnimationsModule],
-      declarations: [ ConfigurationSelectFieldComponent, SearchPipe ]
+      declarations: [ ConfigurationMultiSelectFieldComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConfigurationSelectFieldComponent);
-    formBuilder = TestBed.inject(FormBuilder);
+    fixture = TestBed.createComponent(ConfigurationMultiSelectFieldComponent);
     component = fixture.componentInstance;
+    formBuilder = TestBed.inject(FormBuilder);
     const form = new FormGroup({
       employeeMapping: new FormControl(['EMPLOYEE']),
       autoMapEmployee: new FormControl([true]),
@@ -56,23 +51,19 @@ describe('ConfigurationSelectFieldComponent', () => {
     component.subLabel = 'Select how you represent your employees in QBO. This would help to export the expenses from Fyle to the correct employee/vendor record in QBO.';
     component.placeholder = 'Select representation';
     fixture.detectChanges();
-    dialogSpy = spyOn(TestBed.get(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
   });
 
-  // Figure out a way to send the data to the component [@Input()]
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('showQBOExportPreview function check', () => {
-    component.showQBOExportPreview(null, null);
-    expect(dialogSpy).toHaveBeenCalled();
-  });
-
-  it('HTML check', () => {
-    const configurationHeaderdiv = fixture.debugElement.query(By.css('.configuration--field-header'));
-    const configurationH5 = fixture.debugElement.queryAll(By.css('h5'));
-    expect(configurationHeaderdiv.nativeElement.innerText).toBe(component.label+' *');
-    expect(configurationH5[0].nativeElement.innerText).toBe(component.subLabel);
+  it('delete function check', () => {
+    const event = new Event("click", undefined);
+    expect(component.delete(event, 'fyle@fyle.in')).toBeUndefined();
+    fixture.detectChanges();
+    expect(component.form.controls.emails.value).toEqual(['integrations@fyle.in']);
+    expect(component.delete(event, 'fyle@fyle.in', true)).toBeUndefined();
+    fixture.detectChanges();
+    expect(component.form.controls.emails.value).toBeNull();
   });
 });

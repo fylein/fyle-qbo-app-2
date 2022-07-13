@@ -3,6 +3,7 @@ import { AdvancedSettingService } from './advanced-setting.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AdvancedSettingGet, AdvancedSettingPost } from '../../models/configuration/advanced-setting.model';
 import { environment } from 'src/environments/environment';
+import { WorkspaceSchedule } from '../../models/db/schedule-setting.model';
 
 describe('AdvancedSettingService', () => {
   let service: AdvancedSettingService;
@@ -100,5 +101,61 @@ describe('AdvancedSettingService', () => {
       url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/advanced_configurations/`
     });
   req.flush(advancedSettingResponse);
+  });
+
+  it('postScheduleSettings function check', () => {
+    const response: WorkspaceSchedule = {
+      id: 1,
+      workspace: 1,
+      enabled: false,
+      start_datetime: new Date(),
+      interval_hours: 1,
+      schedule: 1,
+      emails_selected: [],
+      additional_email_options: []
+  };
+    service.postScheduleSettings(1, false, [], {}).subscribe(value => {
+      expect(value).toEqual(response);
+    });
+    const req = httpMock.expectOne({
+      method: 'POST',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/schedule/`
+    });
+    req.flush(response);
+  });
+
+  it('getWorkspaceAdmins function check', () => {
+    const response: any[] = [ 'fyle@fyle.in', 'integrations@fyle.in' ];
+    service.getWorkspaceAdmins().subscribe((value) => {
+      expect(value).toEqual(response);
+    });
+    const req = httpMock.expectOne({
+      method: 'GET',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/admins/`
+    });
+  req.flush(response);
+
+  });
+
+  it('getScheduleSettings function check', () => {
+    const response: WorkspaceSchedule = {
+      id: 1,
+      workspace: 1,
+      enabled: false,
+      start_datetime: new Date(),
+      interval_hours: 1,
+      schedule: 1,
+      emails_selected: [],
+      additional_email_options: []
+  };
+    service.getScheduleSettings().subscribe((value) => {
+      expect(value).toEqual(response);
+    });
+    const req = httpMock.expectOne({
+      method: 'GET',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/schedule/`
+    });
+  req.flush(response);
+
   });
 });

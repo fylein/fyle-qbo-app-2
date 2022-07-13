@@ -1,6 +1,6 @@
 import { AdvancedSettingGet, AdvancedSettingPost } from "src/app/core/models/configuration/advanced-setting.model";
 import { DestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
-import { ScheduleSettings } from "src/app/core/models/db/schedule-setting.model";
+import { WorkspaceSchedule } from "src/app/core/models/db/schedule-setting.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
 import { AutoMapEmployee, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
 

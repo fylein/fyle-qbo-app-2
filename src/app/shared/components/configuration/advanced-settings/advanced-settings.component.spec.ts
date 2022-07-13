@@ -238,8 +238,8 @@ describe('AdvancedSettingsComponent', () => {
     expect(component.drop(event)).toBeUndefined();
   });
 
-  it('Open function check', () => {
-    expect(component.open()).toBeUndefined();
+  it('openAddemailDialog function check', () => {
+    expect(component.openAddemailDialog()).toBeUndefined();
     fixture.detectChanges();
     expect(dialogSpy1).toHaveBeenCalled();
   });

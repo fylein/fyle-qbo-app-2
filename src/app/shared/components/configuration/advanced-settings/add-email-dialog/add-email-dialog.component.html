@@ -1,48 +1,54 @@
-<div class="container">
-  <div fxLayout="row" class="expense-field-creation-dialog--header-section">
-    <h3 class="expense-field-creation-dialog--header-text single-line-text">
+<div>
+  <div fxLayout="row" class="add-email-dialog--header-section">
+    <h3 class="add-email-dialog--header-text single-line-text">
       Add new Email Address
     </h3>
     <img src="assets/images/svgs/actions/close.svg" mat-dialog-close
-      class="expense-field-creation-dialog--close-icon sub-text-color pointer" />
+      class="add-email-dialog--close-icon sub-text-color pointer" />
   </div>
 
-  <div class="expense-field-creation-dialog--horizontal-separator"></div>
+  <div class="add-email-dialog--horizontal-separator"></div>
 
-  <div class="admin-info">
+  <div class="add-email-dialog--admin-info">
     Add an email address on which you would like to recieve your integration notification mails.
   </div>
 
   <form [formGroup]="form">
     <div>
-      <h5 class="expense-field-creation-dialog--name-text sub-text-color">
+      <h5 class="add-email-dialog--name-text sub-text-color">
         Name
         <app-mandatory-field></app-mandatory-field>
       </h5>
-      <div class="expense-field-creation-dialog--form-field">
-        <input class="expense-field-creation-dialog--form-input" type="text" formControlName="adminName"
+      <div class="add-email-dialog--form-field">
+        <input class="add-email-dialog--form-input" type="text" formControlName="adminName"
           placeholder="Enter Name" matInput>
+          <app-mandatory-error-message
+      *ngIf="form.controls.adminName.touched && !form.controls.adminName.valid"
+      [customErrorMessage]="'Please enter a name'"></app-mandatory-error-message>
       </div>
     </div>
 
     <div>
-      <h5 class="expense-field-creation-dialog--name-text sub-text-color">
+      <h5 class="add-email-dialog--name-text sub-text-color">
         Email
         <app-mandatory-field></app-mandatory-field>
       </h5>
-      <div class="expense-field-creation-dialog--form-field">
-        <input class="expense-field-creation-dialog--form-input" type="text" formControlName="adminEmail"
+      <div class="add-email-dialog--form-field">
+        <input class="add-email-dialog--form-input" type="text" formControlName="adminEmail"
           placeholder="Type email address here (ex- john@acme.com)" matInput>
+          <app-mandatory-error-message
+      *ngIf="form.controls.adminEmail.touched && !form.controls.adminEmail.valid"
+      [customErrorMessage]="'Please enter a proper email'"></app-mandatory-error-message>
       </div>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="end center" class="expense-field-creation-dialog--btn-section">
-      <div class="expense-field-creation-dialog--cancel-btn">
-        <a mat-stroked-button mat-dialog-close class="expense-field-creation-dialog--cancel-btn-text">Cancel</a>
+    <div fxLayout="row" fxLayoutAlign="end center" class="add-email-dialog--btn-section">
+      <div class="add-email-dialog--cancel-btn">
+        <a mat-stroked-button mat-dialog-close class="add-email-dialog--cancel-btn-text">Cancel</a>
       </div>
       <button
         [disabled]="!form.valid"
-        mat-flat-button color="accent" (click)="submit()" mat-flat-button color="primary" [ngClass]="{'expense-field-creation-dialog--cta-btn': !(!form.valid)}">Save</button>
+        mat-flat-button color="accent" (click)="submit()" mat-flat-button color="primary" [ngClass]="{'add-email-dialog--cta-btn': form.valid}">Save</button>
     </div>
   </form>
 </div>

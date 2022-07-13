@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="configuration--input-section">
-    <mat-form-field *ngIf="!enableTextsearch" floatLabel="always" appearance="outline" class="configuration--form-field">
+    <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
       <mat-select [placeholder]="placeholder" [formControlName]="formControllerName"
         [compareWith]="helperService.compareObjects">
         <mat-option *ngFor="let option of options" [value]="option.value">
@@ -37,55 +37,6 @@
               src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
           </mat-option>
         </div>
-      </mat-select>
-      <div class="mat-select-arrow-closed"></div>
-    </mat-form-field>
-    <mat-form-field *ngIf="enableTextsearch" floatLabel="always" appearance="outline" class="configuration--form-field">
-      <mat-select [placeholder]="placeholder" [formControlName]="formControllerName"
-        [compareWith]="helperService.compareObjects" multiple>
-        <app-simple-text-search *ngIf="enableTextsearch" [page]="SimpleSearchPage.CONFIGURATION"
-          [searchType]="SimpleSearchType.SELECT_FIELD" [form]="form"></app-simple-text-search>
-        <mat-select-trigger fxLayout="row" fxLayoutAlign="space-between center">
-          <div fxLayout="row">
-            <div fxLayout="row" fxLayoutAlign="space-between center" class="selected-email">
-              <div class="display-email">
-                {{form.value.emails ? form.value.emails[0] : ''}}
-              </div>
-              <div fxLayout="column" class="vertical"></div>
-              <div class="mat-icon-close" (click)="delete($event, form.value.emails[0])">
-                <img src="assets/images/pngs/close.png" alt="" srcset="">
-              </div>
-            </div>
-            <div *ngIf="form.value.emails?.length > 1" class="example-additional-selection">
-              <div class="email-number">
-                +{{form.value.emails.length - 1}}
-              </div>
-            </div>
-          </div>
-          <div *ngIf="form.value.emails?.length > 1" class="delele-all-icon"
-            (click)="delete($event, form.value.emails[0], true)">
-            <img src="assets/images/pngs/close.png" alt="" srcset="">
-          </div>
-        </mat-select-trigger>
-        <div *ngFor="let option of options | search : form.value.searchOption">
-          <mat-option [matTooltip]="option.email" [matTooltipDisabled]="option.email.length <= 40"
-            matTooltipPosition="above" matTooltipClass="above" (click)="helperService.clearSearchText(form)"
-            [value]="option.email" class="multiline-mat-option" fxLayout="row" fxLayoutAlign="start">
-            <p (click)="$event.stopPropagation()" *ngIf="options.length === 0 " class="align-center italic">No result
-              found</p>
-              <div>
-                <div class="schedule--head-name ">
-                  {{option.name}}
-                </div>
-                <div class="schedule--bottom-name">
-                  {{option.email}}
-                </div>
-              </div>
-            <img *ngIf="(form.value[formControllerName] | json) === ({name: option.name, id: option.email} | json)"
-              src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-          </mat-option>
-        </div>
-
       </mat-select>
       <div class="mat-select-arrow-closed"></div>
     </mat-form-field>

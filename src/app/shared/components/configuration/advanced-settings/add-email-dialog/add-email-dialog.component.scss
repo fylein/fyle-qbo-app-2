@@ -1,4 +1,4 @@
-.expense-field-creation-dialog {
+.add-email-dialog {
   &--header-section {
     background: #FFFFFF;
     border-radius: 8px 8px 0px 0px;
@@ -22,28 +22,6 @@
     align-self: center;
   }
 
-  &--error-section {
-    padding: 24px 24px;
-  }
-
-  &--error-contents {
-    background: rgba(218, 30, 40, 0.02);
-    border: 1px solid rgba(218, 30, 40, 0.04);
-    box-sizing: border-box;
-    border-radius: 4px;
-    height: 56px;
-  }
-
-  &--error-icon {
-    width: 20px;
-    height: 20px;
-    padding: 8px 12px 28px 12px;
-  }
-
-  &--error-text {
-    padding: 8px 8px 12px 0px;
-  }
-
   &--name-text {
     padding: 12px 0px 8px 24px;
   }
@@ -59,27 +37,6 @@
     background: #FFFFFF;
     border: 1px solid #DFDFE2;
     box-sizing: border-box;
-  }
-
-  &--form-input-disabled {
-    @extend .expense-field-creation-dialog--form-input;
-    background: #F5F5F5;
-  }
-
-  &--label-section {
-    padding: 0px 16px 16px 16px;
-  }
-
-  &--label-content {
-    background: #F5F5F5;
-    border: 1px solid #DFDFE2;
-    box-sizing: border-box;
-    border-radius: 8px;
-    height: 100px;
-  }
-
-  &--label {
-    width: 487px;
   }
 
   &--btn-section {
@@ -101,13 +58,14 @@
       box-shadow: 0px 4px 4px rgba(44, 48, 78, 0.1);
     }
   }
-}
-.admin-info {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 0.0016em;
-  color: #414562;
-  padding: 24px 24px 14px 24px;
+
+  &--admin-info {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.0016em;
+    color: #414562;
+    padding: 24px 24px 14px 24px;
+  }
 }
