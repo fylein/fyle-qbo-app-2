@@ -2,6 +2,7 @@ import { FormGroup } from "@angular/forms";
 import { PaymentSyncDirection } from "../enum/enum.model";
 import { DefaultDestinationAttribute, GeneralMapping } from "../db/general-mapping.model";
 import { SelectFormOption } from "../misc/select-form-option.model";
+import { WorkspaceScheduleEmailOptions } from "../db/workspace-schedule.model";
 
 export type AdvancedSettingWorkspaceGeneralSetting = {
   sync_fyle_to_qbo_payments: boolean,
@@ -21,6 +22,13 @@ export type AdvancedSettingWorkspaceSchedule = {
   interval_hours: number
 }
 
+export type AdvancedSettingWorkspaceSchedulePost = {
+  hours: number;
+  schedulEnabled: boolean;
+  selectedEmails: string[];
+  addedEmail: WorkspaceScheduleEmailOptions
+}
+
 export type AdvancedSettingPost = {
   workspace_general_settings: AdvancedSettingWorkspaceGeneralSetting,
   general_mappings: AdvancedSettingGeneralMapping,
@@ -34,8 +42,16 @@ export type AdvancedSettingGet = {
   workspace_id:number
 }
 
+export type AdvancedSettingAddEmailModel = {
+  workspaceId?: number;
+  hours: number;
+  schedulEnabled: boolean;
+  selectedEmails: string[];
+  addedEmail?: WorkspaceScheduleEmailOptions
+}
+
 export interface AdvancedSettingFormOption extends SelectFormOption {
-  value: PaymentSyncDirection;
+  value: PaymentSyncDirection | number;
 }
 
 export class AdvancedSettingModel {

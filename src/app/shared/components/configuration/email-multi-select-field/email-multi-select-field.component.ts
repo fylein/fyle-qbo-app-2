@@ -4,15 +4,15 @@ import { AdvancedSettingFormOption } from 'src/app/core/models/configuration/adv
 import { EmployeeSettingFormOption } from 'src/app/core/models/configuration/employee-setting.model';
 import { ExportSettingFormOption } from 'src/app/core/models/configuration/export-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { EmployeeFieldMapping, ProgressPhase, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
+import { ProgressPhase, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 
 @Component({
-  selector: 'app-configuration-multi-select-field',
-  templateUrl: './configuration-multi-select-field.component.html',
-  styleUrls: ['./configuration-multi-select-field.component.scss']
+  selector: 'app-email-multi-select-field',
+  templateUrl: './email-multi-select-field.component.html',
+  styleUrls: ['./email-multi-select-field.component.scss']
 })
-export class ConfigurationMultiSelectFieldComponent implements OnInit {
+export class EmailMultiSelectFieldComponent implements OnInit {
 
   @Input() form: FormGroup;
 
@@ -31,8 +31,6 @@ export class ConfigurationMultiSelectFieldComponent implements OnInit {
   @Input() formControllerName: string;
 
   @Input() isFieldMandatory: boolean;
-
-  @Input() liveEntityExample: {[EmployeeFieldMapping.EMPLOYEE]: string | undefined, [EmployeeFieldMapping.VENDOR]: string | undefined};
 
   @Input() mandatoryErrorListName: string;
 

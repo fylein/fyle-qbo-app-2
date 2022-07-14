@@ -19,15 +19,15 @@
           [subLabel]="'Select the frequency at which you want your Automated import-export to happen'"
           [placeholder]="'Select Frequency'" [formControllerName]="'exportScheduleFrequency'">
         </app-configuration-select-field>
-        <app-configuration-multi-select-field [form]="advancedSettingsForm" [options]="adminEmails" [isFieldMandatory]="false"
-          [mandatoryErrorListName]="'frequency'" [label]="'Select an email address to notify upon export failure'"
+        <app-email-multi-select-field [form]="advancedSettingsForm" [options]="adminEmails" [isFieldMandatory]="false"
+          [label]="'Select an email address to notify upon export failure'"
           [subLabel]="'You can select one or more email address from the given list, or add new one to get email notifications on.'"
           [placeholder]="'Select Email Address'" [formControllerName]="'emails'">
-        </app-configuration-multi-select-field>
+        </app-email-multi-select-field>
         <div *ngIf="advancedSettingsForm.controls.exportScheduleFrequency.value" fxLayout="row" class="pointer"
           fxLayoutAlign="end center" (click)="openAddemailDialog()">
           <span class="advanced-settings--span-or">or</span>
-          <img class="advanced-settings--add-btn" src="assets/images/svgs/general/add.svg">
+          <img class="advanced-settings--add-btn" src="assets/images/svgs/actions/add.svg">
           <span class="advanced-settings--span-or">Add new email address</span>
         </div>
 

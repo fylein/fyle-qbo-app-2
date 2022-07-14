@@ -1,4 +1,4 @@
-.configuration-select-field {
+.email-multi-select-field {
   &--field-label-text-section-without-img {
     padding-left: 35px;
   }
@@ -27,36 +27,44 @@
   &--preview-btn {
     color: #0660F6;
   }
+
+  &--email-number {
+    margin-top: 5px;
+  }
+  
+  &--delele-all-icon {
+    margin-right: 5px;
+    color: #5a5d72;
+  }
+
+  &--selected-email {
+    height: auto;
+    background-color: #ffffff;
+    border: 1px solid #dfdfe2;
+    border-radius: 12px;
+    padding: 10px 10px 10px 10px;
+    height: 15px;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+  
+  &--vertical {
+    border-left: 1px solid #dfdfe2;
+    height: 20px;
+    margin-left: 10px;
+  }
+  
+  &--display-email {
+    display: block;
+    max-width: 160px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 
 p {
   margin: 0;
-}
-
-.selected-email {
-  height: auto;
-  background-color: #ffffff;
-  border: 1px solid #dfdfe2;
-  border-radius: 12px;
-  padding: 10px 10px 10px 10px;
-  height: 15px;
-  font-size: 12px;
-  line-height: 20px;
-  margin-top: 2px;
-}
-
-.vertical {
-  border-left: 1px solid #dfdfe2;
-  height: 20px;
-  margin-left: 10px;
-}
-
-.display-email {
-  display: block;
-  max-width: 160px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .mat-icon-close {
@@ -65,14 +73,6 @@ p {
   padding-top: 5px;
 }
 
-.email-number {
-  margin-top: 5px;
-}
-
-.delele-all-icon {
-  margin-right: 5px;
-  color: #5a5d72;
-}
 
 .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
   color: #e91e63;
@@ -80,7 +80,6 @@ p {
 
 .multiline-mat-option.mat-option {
   white-space: normal;
-  line-height: normal;
   height: auto !important;
   font-size: none !important;
 }
@@ -90,7 +89,7 @@ p {
     margin-bottom: 8px;
     height: 16px;
     width: 16px;
-    font-style: bold;
+    ;
   }
 
   &--span-or {
@@ -99,25 +98,20 @@ p {
     margin-right: 25px;
     font-weight: 500;
     font-size: 14px;
-    line-height: 18px;
     color: #2c304e;
   }
 
   &--bottom-name {
     font-family: 'Aktiv Grotesk';
-    font-style: normal;
     font-weight: 400;
     font-size: 12px;
-    line-height: 15px;
     color: #A9ACBC;
   }
 
   &--head-name {
     font-family: 'Aktiv Grotesk';
-    font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    line-height: 18px;
     color: #414562;
     flex: none;
     order: 1;

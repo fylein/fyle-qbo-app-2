@@ -1,9 +1,9 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
 import { AdvancedSettingService } from './advanced-setting.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { AdvancedSettingGet, AdvancedSettingPost } from '../../models/configuration/advanced-setting.model';
+import { AdvancedSettingGet, AdvancedSettingPost, AdvancedSettingWorkspaceSchedulePost } from '../../models/configuration/advanced-setting.model';
 import { environment } from 'src/environments/environment';
-import { WorkspaceSchedule } from '../../models/db/schedule-setting.model';
+import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from '../../models/db/workspace-schedule.model';
 
 describe('AdvancedSettingService', () => {
   let service: AdvancedSettingService;
@@ -103,7 +103,7 @@ describe('AdvancedSettingService', () => {
   req.flush(advancedSettingResponse);
   });
 
-  it('postScheduleSettings function check', () => {
+  it('postWorkspaceSchedule function check', () => {
     const response: WorkspaceSchedule = {
       id: 1,
       workspace: 1,
@@ -111,10 +111,16 @@ describe('AdvancedSettingService', () => {
       start_datetime: new Date(),
       interval_hours: 1,
       schedule: 1,
-      emails_selected: [],
-      additional_email_options: []
+      emails_selected: ['fyle@fyle.in'],
+      additional_email_options: [{name: 'fyle', email: 'fyle@fyle.in'}]
   };
-    service.postScheduleSettings(1, false, [], {}).subscribe(value => {
+  const payloade: AdvancedSettingWorkspaceSchedulePost = {
+    hours: 1,
+    schedulEnabled: false,
+    addedEmail: {name: 'fyle', email: 'fyle@fyle.in'},
+    selectedEmails: []
+  };
+    service.postWorkspaceSchedule(payloade).subscribe(value => {
       expect(value).toEqual(response);
     });
     const req = httpMock.expectOne({
@@ -125,7 +131,7 @@ describe('AdvancedSettingService', () => {
   });
 
   it('getWorkspaceAdmins function check', () => {
-    const response: any[] = [ 'fyle@fyle.in', 'integrations@fyle.in' ];
+    const response: WorkspaceScheduleEmailOptions[] = [{name: 'fyle', email: 'fyle@fyle.in'}, {name: 'dhaara', email: 'fyle1@fyle.in'}];
     service.getWorkspaceAdmins().subscribe((value) => {
       expect(value).toEqual(response);
     });
@@ -137,7 +143,7 @@ describe('AdvancedSettingService', () => {
 
   });
 
-  it('getScheduleSettings function check', () => {
+  it('getWorkspaceSchedule function check', () => {
     const response: WorkspaceSchedule = {
       id: 1,
       workspace: 1,
@@ -145,10 +151,10 @@ describe('AdvancedSettingService', () => {
       start_datetime: new Date(),
       interval_hours: 1,
       schedule: 1,
-      emails_selected: [],
-      additional_email_options: []
+      emails_selected: ['fyle@fyle.in'],
+      additional_email_options: [{name: 'fyle', email: 'fyle@fyle.in'}]
   };
-    service.getScheduleSettings().subscribe((value) => {
+    service.getWorkspaceSchedule().subscribe((value) => {
       expect(value).toEqual(response);
     });
     const req = httpMock.expectOne({

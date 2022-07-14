@@ -20,11 +20,10 @@
         <app-mandatory-field></app-mandatory-field>
       </h5>
       <div class="add-email-dialog--form-field">
-        <input class="add-email-dialog--form-input" type="text" formControlName="adminName"
-          placeholder="Enter Name" matInput>
-          <app-mandatory-error-message
-      *ngIf="form.controls.adminName.touched && !form.controls.adminName.valid"
-      [customErrorMessage]="'Please enter a name'"></app-mandatory-error-message>
+        <input class="add-email-dialog--form-input" type="text" formControlName="adminName" placeholder="Enter Name"
+          matInput>
+        <app-mandatory-error-message *ngIf="form.controls.adminName.touched && !form.controls.adminName.valid"
+          [customErrorMessage]="'Please enter a name'"></app-mandatory-error-message>
       </div>
     </div>
 
@@ -36,9 +35,8 @@
       <div class="add-email-dialog--form-field">
         <input class="add-email-dialog--form-input" type="text" formControlName="adminEmail"
           placeholder="Type email address here (ex- john@acme.com)" matInput>
-          <app-mandatory-error-message
-      *ngIf="form.controls.adminEmail.touched && !form.controls.adminEmail.valid"
-      [customErrorMessage]="'Please enter a proper email'"></app-mandatory-error-message>
+        <app-mandatory-error-message *ngIf="form.controls.adminEmail.touched && !form.controls.adminEmail.valid"
+          [customErrorMessage]="'Please enter a proper email'"></app-mandatory-error-message>
       </div>
     </div>
 
@@ -46,9 +44,8 @@
       <div class="add-email-dialog--cancel-btn">
         <a mat-stroked-button mat-dialog-close class="add-email-dialog--cancel-btn-text">Cancel</a>
       </div>
-      <button
-        [disabled]="!form.valid"
-        mat-flat-button color="accent" (click)="submit()" mat-flat-button color="primary" [ngClass]="{'add-email-dialog--cta-btn': form.valid}">Save</button>
+      <button [disabled]="!form.valid" mat-flat-button color="accent" (click)="submit()" mat-flat-button color="primary"
+        [ngClass]="{'add-email-dialog--cta-btn': form.valid}">Save</button>
     </div>
   </form>
 </div>

@@ -38,7 +38,9 @@ describe('AdvancedSettingsComponent', () => {
   beforeEach(async () => {
     service1 = {
       postAdvancedSettings: () => of(advancedSettingResponse),
-      getAdvancedSettings: () => of(getadvancedSettingResponse)
+      getAdvancedSettings: () => of(getadvancedSettingResponse),
+      getWorkspaceSchedule: () => of(emailResponse),
+      getWorkspaceAdmins: () => of(adminEmails)
     };
 
     service2 = {
@@ -49,9 +51,7 @@ describe('AdvancedSettingsComponent', () => {
       getWorkspaceGeneralSettings: () => of(response),
       getOnboardingState: () => 'ADVANCED_CONFIGURATION',
       setOnboardingState: () => undefined,
-      getWorkspaceId: () => environment.tests.workspaceId,
-      getScheduleSettings: () => of(emailResponse),
-      getWorkspaceAdmins: () => of(adminEmails)
+      getWorkspaceId: () => environment.tests.workspaceId
     };
     await TestBed.configureTestingModule({
       imports: [ RouterTestingModule, HttpClientModule, FormsModule, ReactiveFormsModule, MatSnackBarModule, SharedModule, NoopAnimationsModule],

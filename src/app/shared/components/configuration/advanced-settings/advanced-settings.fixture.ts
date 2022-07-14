@@ -1,6 +1,6 @@
 import { AdvancedSettingGet, AdvancedSettingPost } from "src/app/core/models/configuration/advanced-setting.model";
 import { DestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
-import { WorkspaceSchedule } from "src/app/core/models/db/schedule-setting.model";
+import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from "src/app/core/models/db/workspace-schedule.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
 import { AutoMapEmployee, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
 
@@ -125,7 +125,7 @@ export const errorResponse = {
     company_name: 'QBO'
   }
 };
-export const emailResponse = {
+export const emailResponse: WorkspaceSchedule = {
   id: 1,
   workspace: 1,
   enabled: false,
@@ -135,5 +135,5 @@ export const emailResponse = {
   emails_selected: ['fyle@fyle.in', 'integrations@fyle.in' ],
   additional_email_options: [{name: 'fyle3', email: 'fyle3@fyle.in'}]
 };
-export const adminEmails: any[] = [ {name: 'fyle', email: 'fyle@fyle.in'}, {name: 'fyle2', email: 'fyle2@fyle.in'}];
+export const adminEmails: WorkspaceScheduleEmailOptions[] = [ {name: 'fyle', email: 'fyle@fyle.in'}, {name: 'fyle2', email: 'fyle2@fyle.in'}];
 export const memo = ['employee_email', 'merchant', 'purpose', 'category', 'report_number', 'expense_link'];

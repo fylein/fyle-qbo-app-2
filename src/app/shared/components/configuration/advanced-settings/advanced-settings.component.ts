@@ -16,7 +16,7 @@ import { WindowService } from 'src/app/core/services/core/window.service';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { AddEmailDialogComponent } from './add-email-dialog/add-email-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { WorkspaceSchedule } from 'src/app/core/models/db/schedule-setting.model';
+import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from 'src/app/core/models/db/workspace-schedule.model';
 
 @Component({
   selector: 'app-advanced-settings',
@@ -56,9 +56,9 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     }
   ];
 
-  frequencyIntervals: any[] = [...Array(24).keys()].map(day => {
+  frequencyIntervals: AdvancedSettingFormOption[] = [...Array(24).keys()].map(day => {
      return {
-      label: +(day + 1) === 1 ? +(day + 1) + ' Hour' : +(day + 1) + ' Hours',
+      label: (day + 1) === 1 ? (day + 1) + ' Hour' : (day + 1) + ' Hours',
       value: day + 1
     };
   });
@@ -71,7 +71,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   scheduleSetting: WorkspaceSchedule;
 
-  adminEmails: any[] = [{name: 'fyle', email: 'fyle@fyle.in'}, {name: 'dhaara', email: 'fyle1@fyle.in'}];
+  adminEmails: WorkspaceScheduleEmailOptions[] = [{name: 'fyle', email: 'fyle@fyle.in'}, {name: 'dhaara', email: 'fyle1@fyle.in'}];
 
   private readonly sessionStartTime = new Date();
 
@@ -197,15 +197,15 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     forkJoin([
       this.advancedSettingService.getAdvancedSettings(),
       this.mappingService.getQBODestinationAttributes('BANK_ACCOUNT'),
-      this.workspaceService.getWorkspaceGeneralSettings()
-      // This.workspaceService.getScheduleSettings(),
-      // This.workspaceService.getWorkspaceAdmins()
+      this.workspaceService.getWorkspaceGeneralSettings(),
+      // This.advancedSettingService.getWorkspaceSchedule(),
+      this.advancedSettingService.getWorkspaceAdmins()
     ]).subscribe(response => {
       this.advancedSettings = response[0];
       this.billPaymentAccounts = response[1];
       this.workspaceGeneralSettings = response[2];
       // This.scheduleSetting = response[3];
-      // This.adminEmails = response[4];
+      this.adminEmails = response[3];
       // This.scheduleSetting.additional_email_options.length > 0 ? this.scheduleSetting.additional_email_options.map(mail => this.adminEmails.push(mail)) : '';
       this.setupForm();
     });

@@ -24,7 +24,7 @@ describe('AddEmailDialogComponent', () => {
   };
   beforeEach(async(() => {
     const service1 = {
-      postScheduleSettings: () => of(emailResponse)
+      postWorkspaceSchedule: () => of(emailResponse)
     };
     TestBed.configureTestingModule({
       imports: [ MatDialogModule, HttpClientTestingModule ],
@@ -69,13 +69,12 @@ describe('AddEmailDialogComponent', () => {
   });
 
   it('Submit function check', () => {
-    spyOn(advancedSettingService, 'postScheduleSettings').and.callThrough();
+    spyOn(advancedSettingService, 'postWorkspaceSchedule').and.callThrough();
     const spy = spyOn(component.dialogRef, 'close').and.callThrough();
     expect(component.submit()).toBeUndefined();
     fixture.detectChanges();
-    expect(advancedSettingService.postScheduleSettings).toHaveBeenCalled();
+    expect(advancedSettingService.postWorkspaceSchedule).toHaveBeenCalled();
     expect(spy).toHaveBeenCalled();
-    expect(component.isLoading).toBeFalse();
   });
 
   it('Submit function check', () => {
@@ -85,12 +84,11 @@ describe('AddEmailDialogComponent', () => {
       schedulEnabled: false,
       selectedEmails: []
     };
-    spyOn(advancedSettingService, 'postScheduleSettings').and.callThrough();
+    spyOn(advancedSettingService, 'postWorkspaceSchedule').and.callThrough();
     const spy = spyOn(component.dialogRef, 'close').and.callThrough();
     expect(component.submit()).toBeUndefined();
     fixture.detectChanges();
-    expect(advancedSettingService.postScheduleSettings).toHaveBeenCalled();
+    expect(advancedSettingService.postWorkspaceSchedule).toHaveBeenCalled();
     expect(spy).toHaveBeenCalled();
-    expect(component.isLoading).toBeFalse();
   });
 });

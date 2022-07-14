@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Cacheable, CacheBuster } from 'ts-cacheable';
-import { AdvancedSettingGet, AdvancedSettingPost } from '../../models/configuration/advanced-setting.model';
-import { WorkspaceSchedule } from '../../models/db/schedule-setting.model';
+import { AdvancedSettingGet, AdvancedSettingPost, AdvancedSettingWorkspaceSchedulePost } from '../../models/configuration/advanced-setting.model';
+import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from '../../models/db/workspace-schedule.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
 
@@ -31,21 +31,16 @@ export class AdvancedSettingService {
     return this.apiService.put(`/v2/workspaces/${this.workspaceService.getWorkspaceId()}/advanced_configurations/`, exportSettingsPayload);
   }
 
-  postScheduleSettings(hours: number, scheduleEnabled: boolean, selectedEmail: [], addedEmail: {}): Observable<WorkspaceSchedule> {
+  postWorkspaceSchedule(data: AdvancedSettingWorkspaceSchedulePost): Observable<WorkspaceSchedule> {
     const workspaceId =  this.workspaceService.getWorkspaceId();
-    return this.apiService.post(`/workspaces/${workspaceId}/schedule/`, {
-      hours,
-      schedule_enabled: scheduleEnabled,
-      added_email: addedEmail,
-      selected_email: selectedEmail
-    });
+    return this.apiService.post(`/workspaces/${workspaceId}/schedule/`, data);
   }
 
-  getWorkspaceAdmins(): Observable<[]> {
+  getWorkspaceAdmins(): Observable<[WorkspaceScheduleEmailOptions]> {
     return this.apiService.get(`/workspaces/${this.workspaceService.getWorkspaceId()}/admins/`, {});
   }
 
-  getScheduleSettings(): Observable<WorkspaceSchedule> {
+  getWorkspaceSchedule(): Observable<WorkspaceSchedule> {
     return this.apiService.get(`/workspaces/${this.workspaceService.getWorkspaceId()}/schedule/`, {});
   }
 }

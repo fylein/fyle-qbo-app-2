@@ -1,43 +1,43 @@
-<div [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
-  <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-    <img *ngIf="iconPath" src="{{ iconPath }}" class="configuration--icon">
-    <div class="configuration--field-label-text-section"
-      [ngClass]="{'configuration-select-field--field-label-text-section-without-img': !iconPath}">
-      <div class="configuration--field-header">
+<div [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between center" class="email-multi--field-section">
+  <div fxLayout="row" fxLayoutAlign="space-between start" class="email-multi--field-label-section">
+    <img *ngIf="iconPath" src="{{ iconPath }}" class="email-multi--icon">
+    <div class="email-multi--field-label-text-section"
+      [ngClass]="{'email-multi-select-field--field-label-text-section-without-img': !iconPath}">
+      <div class="email-multi--field-header">
         {{ label }}
         <app-mandatory-field *ngIf="isFieldMandatory"></app-mandatory-field>
       </div>
-      <h5 class="configuration--field-label sub-text-color paragraph">
+      <h5 class="email-multi--field-label sub-text-color paragraph">
         {{ subLabel }}
       </h5>
     </div>
   </div>
-  <div class="configuration--input-section">
-    <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
+  <div class="email-multi--input-section">
+    <mat-form-field floatLabel="always" appearance="outline" class="email-multi--form-field">
       <mat-select [placeholder]="placeholder" [formControlName]="formControllerName"
         [compareWith]="helperService.compareObjects" multiple>
         <app-simple-text-search [page]="SimpleSearchPage.CONFIGURATION"
           [searchType]="SimpleSearchType.SELECT_FIELD" [form]="form"></app-simple-text-search>
         <mat-select-trigger fxLayout="row" fxLayoutAlign="space-between center">
           <div fxLayout="row">
-            <div fxLayout="row" fxLayoutAlign="space-between center" class="selected-email">
-              <div class="display-email">
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="email-multi-select-field--selected-email">
+              <div class="email-multi-select-field--display-email">
                 {{form.value.emails ? form.value.emails[0] : ''}}
               </div>
-              <div fxLayout="column" class="vertical"></div>
+              <div fxLayout="column" class="email-multi-select-field--vertical"></div>
               <div class="mat-icon-close" (click)="delete($event, form.value.emails[0])">
-                <img src="assets/images/svgs/general/close.svg">
+                <img src="assets/images/svgs/actions/close.svg">
               </div>
             </div>
             <div *ngIf="form.value.emails?.length > 1" class="example-additional-selection">
-              <div class="email-number">
+              <div class="email-multi-select-field--email-number">
                 +{{form.value.emails.length - 1}}
               </div>
             </div>
           </div>
-          <div *ngIf="form.value.emails?.length > 1" class="delele-all-icon"
+          <div *ngIf="form.value.emails?.length > 1" class="email-multi-select-field--delele-all-icon"
             (click)="delete($event, form.value.emails[0], true)">
-            <img src="assets/images/svgs/general/close.svg">
+            <img src="assets/images/svgs/actions/close.svg">
           </div>
         </mat-select-trigger>
         <div *ngFor="let option of options | search : form.value.searchOption">

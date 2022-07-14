@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AdvancedSettingAddEmailModel, AdvancedSettingWorkspaceSchedulePost } from 'src/app/core/models/configuration/advanced-setting.model';
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 
 @Component({
@@ -12,17 +13,14 @@ export class AddEmailDialogComponent implements OnInit {
 
   form: FormGroup;
 
-  isLoading: boolean;
-
   constructor(
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<AddEmailDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: AdvancedSettingAddEmailModel,
     private settingsService: AdvancedSettingService
   ) { }
 
   submit() {
-    this.isLoading = true;
 
     const adminData = {
       name: this.form.value.adminName,
@@ -34,9 +32,14 @@ export class AddEmailDialogComponent implements OnInit {
     } else {
       this.data.selectedEmails = [this.form.value.adminEmail];
     }
+    const data: AdvancedSettingWorkspaceSchedulePost = {
+      hours: this.data.hours,
+      schedulEnabled: this.data.schedulEnabled,
+      selectedEmails: this.data.selectedEmails,
+      addedEmail: adminData
+    };
 
-    this.settingsService.postScheduleSettings(this.data.hours, this.data.schedulEnabled, this.data.selectedEmails, adminData).subscribe(() => {
-      this.isLoading = false;
+    this.settingsService.postWorkspaceSchedule(data).subscribe(() => {
       this.dialogRef.close();
     });
 
