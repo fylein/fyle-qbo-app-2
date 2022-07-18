@@ -20,7 +20,6 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           record: true
-        run: npx cypress run --record --key ae7516a8-0029-49c1-bdb2-f51b51d19246
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
