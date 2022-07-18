@@ -18,7 +18,7 @@ jobs:
         run: npm install
       - name: Cypress run
         uses: cypress-io/github-action@v4
-        run: npx cypress run --record --key 8b7a826a-a127-42a5-bcab-04b0585c0b66
+        run: npx cypress run --record --key ae7516a8-0029-49c1-bdb2-f51b51d19246
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
