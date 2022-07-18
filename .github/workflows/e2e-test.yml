@@ -1,0 +1,19 @@
+name: End to End Tests - Cypress
+
+on:
+  pull_request:
+    types: [assigned, opened, synchronize, reopened]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
+        with:
+          install: npm i
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
