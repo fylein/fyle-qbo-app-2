@@ -71,7 +71,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   scheduleSetting: WorkspaceSchedule;
 
-  adminEmails: WorkspaceScheduleEmailOptions[] = [{name: 'fyle', email: 'fyle@fyle.in'}, {name: 'dhaara', email: 'fyle1@fyle.in'}];
+  adminEmails: WorkspaceScheduleEmailOptions[];
 
   private readonly sessionStartTime = new Date();
 
@@ -185,7 +185,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       exportScheduleFrequency: [this.advancedSettings.workspace_schedules?.enabled ? this.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [this.advancedSettings.workspace_general_settings.memo_structure],
       searchOption: [],
-      emails: [['fyle@fyle.in']]
+      emails: [this.advancedSettings.workspace_schedules.emails_selected ? this.advancedSettings.workspace_schedules.emails_selected : null],
     });
 
     this.setCustomValidators();
@@ -198,15 +198,15 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       this.advancedSettingService.getAdvancedSettings(),
       this.mappingService.getQBODestinationAttributes('BANK_ACCOUNT'),
       this.workspaceService.getWorkspaceGeneralSettings(),
-      // This.advancedSettingService.getWorkspaceSchedule(),
+      this.advancedSettingService.getWorkspaceSchedule(),
       this.advancedSettingService.getWorkspaceAdmins()
     ]).subscribe(response => {
       this.advancedSettings = response[0];
       this.billPaymentAccounts = response[1];
       this.workspaceGeneralSettings = response[2];
-      // This.scheduleSetting = response[3];
-      this.adminEmails = response[3];
-      // This.scheduleSetting.additional_email_options.length > 0 ? this.scheduleSetting.additional_email_options.map(mail => this.adminEmails.push(mail)) : '';
+      this.scheduleSetting = response[3];
+      this.adminEmails = response[4];
+      this.scheduleSetting.additional_email_options.length > 0 ? this.scheduleSetting.additional_email_options.map(mail => this.adminEmails.push(mail)) : '';
       this.setupForm();
     });
   }
@@ -274,8 +274,8 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       width: '467px',
       data: {
         workspaceId: this.workspaceGeneralSettings.workspace,
-        hours: this.advancedSettingsForm.value.hours,
-        schedulEnabled: this.advancedSettingsForm.value.scheduleEnabled,
+        hours: this.advancedSettingsForm.value.exportScheduleFrequency,
+        schedulEnabled: this.advancedSettingsForm.value.exportSchedule,
         selectedEmails: this.advancedSettingsForm.value.emails
       }
     });

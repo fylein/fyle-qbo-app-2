@@ -37,6 +37,11 @@
     color: #5a5d72;
   }
 
+  &--delele-all-icon img{
+    height: 10px;
+    width: 10px;
+  }
+
   &--selected-email {
     height: auto;
     background-color: #ffffff;
@@ -63,6 +68,12 @@
   }
 }
 
+.email-configuration{
+  &--field-section {
+    padding-bottom: 0px ;
+  }
+}
+
 p {
   margin: 0;
 }
@@ -73,6 +84,10 @@ p {
   padding-top: 5px;
 }
 
+.mat-icon-close img{
+  height: 10px;
+  width: 10px;
+}
 
 .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
   color: #e91e63;
@@ -80,6 +95,7 @@ p {
 
 .multiline-mat-option.mat-option {
   white-space: normal;
+  line-height: normal;
   height: auto !important;
   font-size: none !important;
 }
@@ -103,15 +119,19 @@ p {
 
   &--bottom-name {
     font-family: 'Aktiv Grotesk';
+    font-style: normal;
     font-weight: 400;
     font-size: 12px;
+    line-height: 15px;
     color: #A9ACBC;
   }
 
   &--head-name {
     font-family: 'Aktiv Grotesk';
+    font-style: normal;
     font-weight: 400;
     font-size: 14px;
+    line-height: 18px;
     color: #414562;
     flex: none;
     order: 1;

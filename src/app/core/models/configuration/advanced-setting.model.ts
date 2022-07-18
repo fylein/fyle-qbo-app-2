@@ -19,7 +19,8 @@ export type AdvancedSettingGeneralMapping = {
 
 export type AdvancedSettingWorkspaceSchedule = {
   enabled: boolean,
-  interval_hours: number
+  interval_hours: number,
+  emails_selected: string[]
 }
 
 export type AdvancedSettingWorkspaceSchedulePost = {
@@ -71,7 +72,8 @@ export class AdvancedSettingModel {
       },
       workspace_schedules: {
         enabled: advancedSettingsForm.get('exportSchedule')?.value ? true : false,
-        interval_hours: advancedSettingsForm.get('exportScheduleFrequency')?.value ? advancedSettingsForm.get('exportScheduleFrequency')?.value : null
+        interval_hours: advancedSettingsForm.get('exportScheduleFrequency')?.value ? advancedSettingsForm.get('exportScheduleFrequency')?.value : null,
+        emails_selected: advancedSettingsForm.get('emails')?.value ? advancedSettingsForm.get('emails')?.value : null
       }
     };
     return advancedSettingPayload;

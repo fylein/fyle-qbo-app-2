@@ -1,19 +1,19 @@
-<div [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between center" class="email-multi--field-section">
-  <div fxLayout="row" fxLayoutAlign="space-between start" class="email-multi--field-label-section">
-    <img *ngIf="iconPath" src="{{ iconPath }}" class="email-multi--icon">
-    <div class="email-multi--field-label-text-section"
+<div [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between center" class="email-configuration--field-section">
+  <div fxLayout="row" fxLayoutAlign="space-between start" class="email-configuration--field-label-section">
+    <img *ngIf="iconPath" src="{{ iconPath }}" class="email-configuration--icon">
+    <div class="email-configuration--field-label-text-section"
       [ngClass]="{'email-multi-select-field--field-label-text-section-without-img': !iconPath}">
-      <div class="email-multi--field-header">
+      <div class="email-configuration--field-header">
         {{ label }}
         <app-mandatory-field *ngIf="isFieldMandatory"></app-mandatory-field>
       </div>
-      <h5 class="email-multi--field-label sub-text-color paragraph">
+      <h5 class="email-configuration--field-label sub-text-color paragraph">
         {{ subLabel }}
       </h5>
     </div>
   </div>
-  <div class="email-multi--input-section">
-    <mat-form-field floatLabel="always" appearance="outline" class="email-multi--form-field">
+  <div class="email-configuration--input-section">
+    <mat-form-field floatLabel="always" appearance="outline" class="email-configuration--form-field">
       <mat-select [placeholder]="placeholder" [formControlName]="formControllerName"
         [compareWith]="helperService.compareObjects" multiple>
         <app-simple-text-search [page]="SimpleSearchPage.CONFIGURATION"
