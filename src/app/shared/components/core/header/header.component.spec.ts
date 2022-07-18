@@ -198,11 +198,4 @@ describe('HeaderComponent', () => {
     fixture.detectChanges();
     expect(renderer2.listen).toHaveBeenCalled();
   });
-
-  xit('switchToOldApp function check', () => {
-    spyOn(workspace, 'patchWorkspace').and.callThrough();
-    expect(component.switchToOldApp()).toBeUndefined();
-    fixture.detectChanges();
-    expect(workspace.patchWorkspace).toHaveBeenCalled();
-  });
 });

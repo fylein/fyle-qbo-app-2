@@ -40,8 +40,6 @@ export class HeaderComponent implements OnInit {
 
   activePage: string;
 
-  showSwitchApp: boolean = false;
-
   @ViewChild('menuButton') menuButton: ElementRef;
 
   @ViewChild('helpButton') helpButton: ElementRef;
@@ -129,41 +127,10 @@ export class HeaderComponent implements OnInit {
         this.activePage = this.getActivePageName(val.url);
       }
     });
-
-    const workspaceCreatedAt: Date = this.workspaceService.getWorkspaceCreatedAt();
-    // Cut off date to be 6th June 2022 3.30pm IST
-    const oldAppCutOffDate = new Date('2022-06-06T09:30:00.000Z');
-
-    if (workspaceCreatedAt.getTime() < oldAppCutOffDate.getTime()) {
-      this.showSwitchApp = true;
-    }
   }
 
   navigateBack() {
     this.location.back();
-  }
-
-  switchToOldApp(): void {
-    this.workspaceService.patchWorkspace().subscribe(() => {
-      const user = this.userService.getUserProfile();
-
-      const localStorageDump = {
-        email: user.email,
-        access_token: user.access_token,
-        refresh_token: user.refresh_token,
-        user: {
-          employee_email: user.email,
-          full_name: user.full_name,
-          user_id: user.user_id,
-          org_id: user.org_id,
-          org_name: user.org_name
-        },
-        orgsCount: this.storageService.get('refresh_token')
-      };
-
-      this.trackingService.onSwitchToOldApp();
-      this.windowReference.location.href = `${environment.old_qbo_app_url}?local_storage_dump=${encodeURIComponent(JSON.stringify(localStorageDump))}`;
-    });
   }
 
   switchFyleOrg(): void {
