@@ -5,7 +5,7 @@ on:
     types: [assigned, opened, synchronize, reopened]
 
 jobs:
-  cypress-run:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
