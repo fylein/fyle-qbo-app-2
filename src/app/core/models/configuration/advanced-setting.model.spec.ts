@@ -23,7 +23,7 @@ describe('AdvancedSettingModel', () => {
       exportScheduleFrequency: new FormControl(10),
       memoStructure: new FormControl(['Fyle']),
       searchOption: new FormControl([]),
-      emails: new FormControl([]),
+      emails: new FormControl([])
     });
 
     const advancedSettingPayload:AdvancedSettingPost = {
