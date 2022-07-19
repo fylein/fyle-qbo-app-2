@@ -22,7 +22,8 @@ describe('AdvancedSettingModel', () => {
       exportSchedule: new FormControl(true),
       exportScheduleFrequency: new FormControl(10),
       memoStructure: new FormControl(['Fyle']),
-      searchOption: new FormControl([])
+      searchOption: new FormControl([]),
+      emails: new FormControl([]),
     });
 
     const advancedSettingPayload:AdvancedSettingPost = {
@@ -39,7 +40,8 @@ describe('AdvancedSettingModel', () => {
       },
       workspace_schedules: {
         enabled: true,
-        interval_hours: 10
+        interval_hours: 10,
+        emails_selected: []
       }
     };
     expect(AdvancedSettingModel.constructPayload(advancedSettingsForm)).toEqual(advancedSettingPayload);

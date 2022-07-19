@@ -42,7 +42,8 @@ describe('AdvancedSettingService', () => {
       },
       workspace_schedules: {
         enabled: true,
-        interval_hours: 10
+        interval_hours: 10,
+        emails_selected: []
       },
       workspace_id: 1
     };
@@ -71,7 +72,8 @@ describe('AdvancedSettingService', () => {
       },
       workspace_schedules: {
         enabled: true,
-        interval_hours: 10
+        interval_hours: 10,
+        emails_selected: []
       }
     };
 
@@ -89,7 +91,8 @@ describe('AdvancedSettingService', () => {
       },
       workspace_schedules: {
         enabled: true,
-        interval_hours: 10
+        interval_hours: 10,
+        emails_selected: []
       },
       workspace_id: 1
     };
