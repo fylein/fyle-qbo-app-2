@@ -34,9 +34,9 @@ export class AddEmailDialogComponent implements OnInit {
     }
     const data: AdvancedSettingWorkspaceSchedulePost = {
       hours: this.data.hours,
-      schedulEnabled: this.data.schedulEnabled,
-      selectedEmails: this.data.selectedEmails,
-      addedEmail: adminData
+      schedule_enabled: this.data.schedulEnabled,
+      emails_selected: this.data.selectedEmails,
+      email_added: adminData
     };
 
     this.settingsService.postWorkspaceSchedule(data).subscribe(() => {

@@ -25,9 +25,9 @@ export type AdvancedSettingWorkspaceSchedule = {
 
 export type AdvancedSettingWorkspaceSchedulePost = {
   hours: number;
-  schedulEnabled: boolean;
-  selectedEmails: string[];
-  addedEmail: WorkspaceScheduleEmailOptions
+  schedule_enabled: boolean;
+  emails_selected: string[];
+  email_added: WorkspaceScheduleEmailOptions
 }
 
 export type AdvancedSettingPost = {

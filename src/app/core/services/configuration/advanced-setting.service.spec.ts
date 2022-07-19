@@ -119,9 +119,9 @@ describe('AdvancedSettingService', () => {
   };
   const payloade: AdvancedSettingWorkspaceSchedulePost = {
     hours: 1,
-    schedulEnabled: false,
-    addedEmail: {name: 'fyle', email: 'fyle@fyle.in'},
-    selectedEmails: []
+    schedule_enabled: false,
+    email_added: {name: 'fyle', email: 'fyle@fyle.in'},
+    emails_selected: []
   };
     service.postWorkspaceSchedule(payloade).subscribe(value => {
       expect(value).toEqual(response);
