@@ -30,8 +30,11 @@ describe('WorkspaceService', () => {
   });
   it('getFyleCurrency service', () => {
     const id = service.getFyleCurrency();
-    const org = '';
-    expect(id).toBeNull();
+    if (id !== null){
+      expect(id).toEqual('IND');
+    } else {
+      expect(id).toBeNull();
+    }
   });
 
   it('setOnboardingState and getOnboardingState service', () => {
