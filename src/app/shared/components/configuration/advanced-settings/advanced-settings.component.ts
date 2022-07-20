@@ -14,6 +14,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { WorkspaceGeneralSetting } from 'src/app/core/models/db/workspace-general-setting.model';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
+import { AddEmailDialogComponent } from './add-email-dialog/add-email-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from 'src/app/core/models/db/workspace-schedule.model';
 
 @Component({
   selector: 'app-advanced-settings',
@@ -53,13 +56,22 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     }
   ];
 
-  frequencyIntervals: number[] = [...Array(24).keys()].map(day => day + 1);
+  frequencyIntervals: AdvancedSettingFormOption[] = [...Array(24).keys()].map(day => {
+     return {
+      label: (day + 1) === 1 ? (day + 1) + ' Hour' : (day + 1) + ' Hours',
+      value: day + 1
+    };
+  });
 
   windowReference: Window;
 
   ConfigurationCtaText = ConfigurationCtaText;
 
   ProgressPhase = ProgressPhase;
+
+  scheduleSetting: WorkspaceSchedule;
+
+  adminEmails: WorkspaceScheduleEmailOptions[];
 
   private readonly sessionStartTime = new Date();
 
@@ -74,7 +86,8 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     private trackingService: TrackingService,
     private windowService: WindowService,
-    private workspaceService: WorkspaceService
+    private workspaceService: WorkspaceService,
+    public dialog: MatDialog
   ) {
     this.windowReference = this.windowService.nativeWindow;
   }
@@ -171,7 +184,8 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       exportSchedule: [this.advancedSettings.workspace_schedules?.enabled ? this.advancedSettings.workspace_schedules.interval_hours : false],
       exportScheduleFrequency: [this.advancedSettings.workspace_schedules?.enabled ? this.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [this.advancedSettings.workspace_general_settings.memo_structure],
-      searchOption: []
+      searchOption: [],
+      emails: [this.advancedSettings.workspace_schedules.emails_selected ? this.advancedSettings.workspace_schedules.emails_selected : null]
     });
 
     this.setCustomValidators();
@@ -183,21 +197,24 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     forkJoin([
       this.advancedSettingService.getAdvancedSettings(),
       this.mappingService.getQBODestinationAttributes('BANK_ACCOUNT'),
-      this.workspaceService.getWorkspaceGeneralSettings()
+      this.workspaceService.getWorkspaceGeneralSettings(),
+      this.advancedSettingService.getWorkspaceSchedule(),
+      this.advancedSettingService.getWorkspaceAdmins()
     ]).subscribe(response => {
       this.advancedSettings = response[0];
       this.billPaymentAccounts = response[1];
       this.workspaceGeneralSettings = response[2];
-
+      this.scheduleSetting = response[3];
+      this.adminEmails = response[4];
+      this.scheduleSetting.additional_email_options.length > 0 ? this.scheduleSetting.additional_email_options.map(mail => this.adminEmails.push(mail)) : '';
       this.setupForm();
     });
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    const that = this;
-    moveItemInArray(that.defaultMemoFields, event.previousIndex, event.currentIndex);
-    const selectedMemoFields = that.defaultMemoFields.filter(memoOption => this.advancedSettingsForm.value.memoStructure.indexOf(memoOption) !== -1);
-    const memoStructure = selectedMemoFields ? selectedMemoFields : that.defaultMemoFields;
+    moveItemInArray(this.defaultMemoFields, event.previousIndex, event.currentIndex);
+    const selectedMemoFields = this.defaultMemoFields.filter(memoOption => this.advancedSettingsForm.value.memoStructure.indexOf(memoOption) !== -1);
+    const memoStructure = selectedMemoFields ? selectedMemoFields : this.defaultMemoFields;
     this.memoStructure = memoStructure;
     this.formatMemoPreview();
   }
@@ -250,6 +267,22 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
         this.snackBar.open('Error saving advanced settings, please try again later');
       });
     }
+  }
+
+  openAddemailDialog(): void {
+    const dialogRef = this.dialog.open(AddEmailDialogComponent, {
+      width: '467px',
+      data: {
+        workspaceId: this.workspaceGeneralSettings.workspace,
+        hours: this.advancedSettingsForm.value.exportScheduleFrequency,
+        schedulEnabled: this.advancedSettingsForm.value.exportSchedule,
+        selectedEmails: this.advancedSettingsForm.value.emails
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.getSettingsAndSetupForm();
+    });
   }
 
   ngOnDestroy(): void {

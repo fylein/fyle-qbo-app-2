@@ -75,4 +75,6 @@ export class WorkspaceService {
   getWorkspaceGeneralSettings(): Observable<WorkspaceGeneralSetting> {
     return this.apiService.get(`/workspaces/${this.getWorkspaceId()}/settings/general/`, {});
   }
+
+
 }

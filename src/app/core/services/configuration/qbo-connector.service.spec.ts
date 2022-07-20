@@ -4,6 +4,8 @@ import { QBOCredentials } from '../../models/configuration/qbo-connector.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { QBOPreference } from '../../models/misc/qbo-preference.model';
 import { environment } from 'src/environments/environment';
+import { of } from 'rxjs';
+import { WorkspaceService } from '../workspace/workspace.service';
 
 describe('QboConnectorService', () => {
   let service: QboConnectorService;
@@ -13,9 +15,14 @@ describe('QboConnectorService', () => {
   const workspace_id = environment.tests.workspaceId;
 
   beforeEach(() => {
+    const service1 = {
+      getWorkspaceId: () => workspace_id
+    };
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [QboConnectorService]
+      providers: [QboConnectorService,
+        { provide: WorkspaceService, useValue: service1 }
+      ]
     });
     injector = getTestBed();
     service = injector.inject(QboConnectorService);
