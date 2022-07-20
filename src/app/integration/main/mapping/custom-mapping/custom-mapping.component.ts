@@ -124,7 +124,6 @@ export class CustomMappingComponent implements OnInit {
 
   saveMappingSetting(index: number): void {
     if (this.mappingSettingForm.valid) {
-      console.log(this.mappingSettingForm.value.mappingSetting, index);
       const mappingRow: MappingSettingList = this.mappingSettingForm.value.mappingSetting[index];
       const qboField: string = this.helperService.getSpaceCasedTitleCase(mappingRow.qboField);
       const fyleField: string = this.helperService.getSpaceCasedTitleCase(mappingRow.qboField);

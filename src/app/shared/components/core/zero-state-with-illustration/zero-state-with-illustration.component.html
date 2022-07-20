@@ -21,6 +21,7 @@
 
 
 <div *ngIf="page === 'dashboard' || page === 'dashboard_error' || page === 'custom_mapping'" fxLayout="column" fxLayoutAlign="center center">
+  <!-- TODO: download svg -->
   <img *ngIf="page === 'custom_mapping'" class="zero-state-with-illustration--zero-state-img-custom-mapping" src="assets/images/pngs/zero-state/custom-mappings-zero-state.svg" width="300px" height="200px">
   <img *ngIf="page === 'dashboard'" class="zero-state-with-illustration--zero-state-img" src="assets/images/pngs/zero-state/dashboard-zero-state.svg" width="350px" height="250px">
   <img *ngIf="page === 'dashboard_error'" class="zero-state-with-illustration--zero-state-img" src="assets/images/pngs/zero-state/dashboard-error-zero-state.svg" width="48px" height="48px">
