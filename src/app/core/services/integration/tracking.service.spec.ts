@@ -19,10 +19,6 @@ describe('TrackingService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('onSwitchToOldApp function check', () => {
-    expect(service.onSwitchToOldApp()).toBeUndefined();
-  });
-
   it('onQBOLanding function check', () => {
     expect(service.onQBOLanding(ProgressPhase.ONBOARDING)).toBeUndefined();
   });
