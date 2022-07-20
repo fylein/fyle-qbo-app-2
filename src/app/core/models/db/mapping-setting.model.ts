@@ -6,7 +6,15 @@ export type MappingSetting = {
   updated_at: Date;
   workspace: number;
   source_field: MappingSourceField | string;
-  destination_field: MappingDestinationField;
+  destination_field: MappingDestinationField | string;
+  import_to_fyle: boolean;
+  is_custom: boolean;
+  source_placeholder: string | null
+}
+
+export type MappingSettingPost = {
+  source_field: MappingSourceField | string;
+  destination_field: MappingDestinationField | string;
   import_to_fyle: boolean;
   is_custom: boolean;
   source_placeholder: string | null
@@ -14,7 +22,7 @@ export type MappingSetting = {
 
 export type MinimalMappingSetting = {
   source_field: MappingSourceField | string;
-  destination_field: MappingDestinationField | QBOField;
+  destination_field: MappingDestinationField | QBOField | string;
 };
 
 export type MappingSettingResponse = {
@@ -25,6 +33,7 @@ export type MappingSettingResponse = {
 };
 
 export type MappingSettingList = {
+  id?: number;
   qboField: MappingDestinationField | string,
   fyleField: MappingSourceField | string,
   index: number,

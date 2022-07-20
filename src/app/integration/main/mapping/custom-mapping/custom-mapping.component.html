@@ -1,4 +1,4 @@
-<div class="mapping">
+<div *ngIf="!isLoading" class="mapping">
   <app-mapping-header-section [mappingStats]="mappingStats" [totalCardActive]="true" [customMapping]="true"></app-mapping-header-section>
   
   <div class="custom-mapping">
@@ -61,16 +61,14 @@
             <th mat-header-cell *matHeaderCellDef></th>
             <td (mouseover)="showDeleteButton(element, true)" (mouseout)="showDeleteButton(element, false)" mat-cell *matCellDef="let element">
               <!-- TODO: dark version -->
-              <img *ngIf="!element.existingMapping" width="12px" height="12px" src="assets/images/svgs/actions/clear-search.svg" class="search-select--clear-icon pointer" [ngClass]="{'search-select--clear-icon-smaller-area': true}" (click)="clearMappingRow(element.index)">
+              <img *ngIf="!element.existingMapping" width="18px" height="18px" src="assets/images/svgs/actions/clear-mapping.svg" class="search-select--clear-icon pointer" [ngClass]="{'search-select--clear-icon-smaller-area': true}" (click)="clearMappingRow(element.index)">
             </td>
           </ng-container>
 
           <ng-container matColumnDef="delete">
             <th mat-header-cell *matHeaderCellDef></th>
             <td (mouseover)="showDeleteButton(element, true)" mat-cell *matCellDef="let element">
-              <!-- TODO: dark version -->
-              delete
-              <img *ngIf="element.isDeleteButtonAllowed && element.existingMapping" width="12px" height="12px" src="assets/images/svgs/actions/clear-search.svg" class="search-select--clear-icon pointer" [ngClass]="{'search-select--clear-icon-smaller-area': true}" (click)="clearMappingRow(element.index)">
+              <img *ngIf="element.isDeleteButtonAllowed && element.existingMapping" width="18px" height="20px" src="assets/images/svgs/actions/delete.svg" class="search-select--clear-icon pointer" [ngClass]="{'search-select--clear-icon-smaller-area': true}" (click)="deleteMappingSetting(element.index)">
             </td>
           </ng-container>
       
@@ -79,9 +77,8 @@
         </table>
       </div>
 
-      <button *ngIf="qboFields.length > mappingRows.data.length" (click)="displayMappingList()">Add</button>
+      <button *ngIf="showMappingList && qboFields.length > mappingRows.data.length && fyleFields.length > mappingRows.data.length && isExistingRowMapped" (click)="displayMappingList()">Add</button>
 
-      <!-- TODO: update ngif -->
       <app-zero-state-with-illustration *ngIf="!showMappingList" [page]="ZeroStatePage.custom_mapping"></app-zero-state-with-illustration>
 
       <div *ngIf="!showMappingList" fxLayout="row" fxLayoutAlign="center center" class="custom-mapping--create-btn">
