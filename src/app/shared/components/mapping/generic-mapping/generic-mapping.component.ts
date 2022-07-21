@@ -144,7 +144,7 @@ export class GenericMappingComponent implements OnInit {
 
     this.mappingService.getMappings(mappingState, allAlphabets, paginator.limit, paginator.offset, alphabetsFilter, this.mappingSetting.source_field, this.mappingSetting.destination_field).subscribe((extendedExpenseAttributeResponse: ExtendedExpenseAttributeResponse) => {
       this.totalCount = extendedExpenseAttributeResponse.count;
-      const attributeToBeDeleted: number = extendedExpenseAttributeResponse.results.findIndex(expenseAttribute => expenseAttribute.value === "Activity" && expenseAttribute.attribute_type === 'CATEGORY');
+      const attributeToBeDeleted: number = extendedExpenseAttributeResponse.results.findIndex(expenseAttribute => expenseAttribute.value === 'Activity' && expenseAttribute.attribute_type === 'CATEGORY');
       if (attributeToBeDeleted >= 0) {
         extendedExpenseAttributeResponse.results.splice(attributeToBeDeleted, 1);
       }
