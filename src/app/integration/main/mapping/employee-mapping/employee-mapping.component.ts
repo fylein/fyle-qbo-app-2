@@ -6,7 +6,7 @@ import { DestinationAttribute } from 'src/app/core/models/db/destination-attribu
 import { EmployeeMappingModel, ExtendedEmployeeAttribute, ExtendedEmployeeAttributeResponse } from 'src/app/core/models/db/employee-mapping.model';
 import { MappingList, MappingStats } from 'src/app/core/models/db/mapping.model';
 import { WorkspaceGeneralSetting } from 'src/app/core/models/db/workspace-general-setting.model';
-import { AutoMapEmployee, ClickEvent, EmployeeFieldMapping, MappingState, PaginatorPage } from 'src/app/core/models/enum/enum.model';
+import { AutoMapEmployee, ClickEvent, EmployeeFieldMapping, MappingState, PaginatorPage, ZeroStatePage } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
@@ -52,6 +52,8 @@ export class EmployeeMappingComponent implements OnInit {
   mappingForm: FormGroup[];
 
   PaginatorPage = PaginatorPage;
+
+  ZeroStatePage = ZeroStatePage;
 
   constructor(
     private formBuilder: FormBuilder,

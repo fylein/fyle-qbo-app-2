@@ -78,7 +78,7 @@
 
     <div *ngIf="!isLoading" class="export-log--table">
       <app-export-log-table *ngIf="totalCount || selectedDateFilter" [displayedColumns]="displayedColumns" [expenseGroups]="expenseGroups"></app-export-log-table>
-      <app-zero-state-with-illustration [page]="'export_log'" [form]="exportLogForm" [data]="expenseGroups" [searchTerm]="'Employee Name or Expense ID'" [dateFilter]="selectedDateFilter"></app-zero-state-with-illustration>
+      <app-zero-state-with-illustration [page]="ZeroStatePage.export_log" [form]="exportLogForm" [data]="expenseGroups" [searchTerm]="'Employee Name or Expense ID'" [dateFilter]="selectedDateFilter"></app-zero-state-with-illustration>
     </div>
 
     <app-paginator *ngIf="expenseGroups.filteredData.length" [page]="PaginatorPage.EXPORT_LOG" [totalCount]="totalCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getExpenseGroups($event)"></app-paginator>

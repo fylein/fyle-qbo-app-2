@@ -4,7 +4,7 @@ import { catchError, map, switchMap, takeWhile } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { Error, GroupedErrors, GroupedErrorStat } from 'src/app/core/models/db/error.model';
 import { LastExport } from 'src/app/core/models/db/last-export.model';
-import { ClickEvent, EmployeeFieldMapping, ErrorType, ExpenseState, ExportState, FyleField, FyleReferenceType, QBOField, RefinerSurveyType, TaskLogState, TaskLogType } from 'src/app/core/models/enum/enum.model';
+import { ClickEvent, EmployeeFieldMapping, ErrorType, ExpenseState, ExportState, FyleField, FyleReferenceType, QBOField, RefinerSurveyType, TaskLogState, TaskLogType, ZeroStatePage } from 'src/app/core/models/enum/enum.model';
 import { DashboardService } from 'src/app/core/services/dashboard/dashboard.service';
 import { DashboardResolveMappingErrorDialogComponent } from 'src/app/shared/components/dashboard/dashboard-resolve-mapping-error-dialog/dashboard-resolve-mapping-error-dialog.component';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
@@ -67,6 +67,8 @@ export class DashboardComponent implements OnInit {
   getLastExport$: Observable<LastExport> = this.dashboardService.getLastExport();
 
   private taskType: TaskLogType[] = [TaskLogType.FETCHING_EXPENSE, TaskLogType.CREATING_BILL, TaskLogType.CREATING_EXPENSE, TaskLogType.CREATING_CHECK, TaskLogType.CREATING_CREDIT_CARD_PURCHASE, TaskLogType.CREATING_JOURNAL_ENTRY, TaskLogType.CREATING_CREDIT_CARD_CREDIT, TaskLogType.CREATING_DEBIT_CARD_EXPENSE];
+
+  ZeroStatePage = ZeroStatePage;
 
   constructor(
     private dashboardService: DashboardService,

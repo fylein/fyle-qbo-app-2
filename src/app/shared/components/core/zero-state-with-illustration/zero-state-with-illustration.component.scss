@@ -6,6 +6,13 @@
     }
   }
 
+  &--zero-state-img-custom-mapping {
+    padding-top: 160px;
+    @media only screen and (max-width: 1440px) {
+      padding-top: 80px;
+    }
+  }
+
   &--zero-state-text {
     color: #2C304E;
   }

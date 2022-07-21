@@ -8,7 +8,7 @@
       <div *ngIf="!isLoading" class="mapping--table">
         <app-mapping-table [mappings]="mappings" [sourceType]="'EMPLOYEE'" [destinationType]="employeeFieldMapping" [qboData]="qboData" [mappingForm]="mappingForm" (mappingSaveHandler)="save($event)"></app-mapping-table>
 
-        <app-zero-state-with-illustration [page]="'mapping'" [form]="form" [data]="mappings" [searchTerm]="'Employee Email'"></app-zero-state-with-illustration>
+        <app-zero-state-with-illustration [page]="ZeroStatePage.mapping" [form]="form" [data]="mappings" [searchTerm]="'Employee Email'"></app-zero-state-with-illustration>
       </div>
 
       <!-- shimmers -->

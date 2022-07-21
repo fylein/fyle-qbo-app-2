@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { ExpenseGroup, ExpenseGroupList, ExpenseGroupResponse } from 'src/app/core/models/db/expense-group.model';
-import { FyleReferenceType, PaginatorPage, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
+import { FyleReferenceType, PaginatorPage, SimpleSearchPage, SimpleSearchType, ZeroStatePage } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
@@ -62,6 +62,8 @@ export class ExportLogComponent implements OnInit {
   SimpleSearchPage = SimpleSearchPage;
 
   SimpleSearchType = SimpleSearchType;
+
+  ZeroStatePage = ZeroStatePage;
 
   constructor(
     public dialog: MatDialog,

@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { By } from '@angular/platform-browser';
 import { ExpenseGroupList } from 'src/app/core/models/db/expense-group.model';
+import { ZeroStatePage } from 'src/app/core/models/enum/enum.model';
 import { SelectedDateFilter } from 'src/app/core/models/misc/date-filter.model';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EXPENSE_GROUP_LISTS } from '../../export-log/export-log-table/export-log-table.fixture';
@@ -37,7 +38,7 @@ describe('ZeroStateWithIllustrationComponent', () => {
       endDate: new Date()
     };
     component.form = form;
-    component.page = 'export_log';
+    component.page = ZeroStatePage.export_log;
     component.searchTerm = 'string';
     component.dateFilter = datefilter;
     component.data = new MatTableDataSource<ExpenseGroupList>(EXPENSE_GROUP_LISTS);
@@ -61,7 +62,7 @@ describe('ZeroStateWithIllustrationComponent', () => {
       endDate: new Date()
     };
     component.form = form;
-    component.page = 'export_log';
+    component.page = ZeroStatePage.export_log;
     component.searchTerm = 'string';
     component.dateFilter = datefilter;
     component.data = new MatTableDataSource<any>([]);
@@ -85,7 +86,7 @@ describe('ZeroStateWithIllustrationComponent', () => {
       end: new FormControl(['12/2/2021'])
     });
     component.form = form;
-    component.page = 'export_log';
+    component.page = ZeroStatePage.export_log;
     component.searchTerm = 'string';
     component.dateFilter = null;
     component.data = new MatTableDataSource<any>([]);
@@ -114,7 +115,7 @@ describe('ZeroStateWithIllustrationComponent', () => {
       endDate: new Date()
     };
     component.form = form;
-    component.page = 'mapping';
+    component.page = ZeroStatePage.mapping;
     component.searchTerm = 'string';
     component.dateFilter = datefilter;
     component.data = new MatTableDataSource<any>([]);
@@ -143,7 +144,7 @@ describe('ZeroStateWithIllustrationComponent', () => {
       endDate: new Date()
     };
     component.form = form;
-    component.page = 'dashboard';
+    component.page = ZeroStatePage.dashboard;
     component.searchTerm = 'string';
     component.dateFilter = datefilter;
     component.data = new MatTableDataSource<ExpenseGroupList>(EXPENSE_GROUP_LISTS);
@@ -168,7 +169,7 @@ describe('ZeroStateWithIllustrationComponent', () => {
       endDate: new Date()
     };
     component.form = form;
-    component.page = 'dashboard_error';
+    component.page = ZeroStatePage.dashboard_error;
     component.searchTerm = 'string';
     component.dateFilter = datefilter;
     component.data = new MatTableDataSource<ExpenseGroupList>(EXPENSE_GROUP_LISTS);

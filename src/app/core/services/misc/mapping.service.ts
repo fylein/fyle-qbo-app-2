@@ -4,7 +4,7 @@ import { Cacheable } from 'ts-cacheable';
 import { DestinationAttribute, GroupedDestinationAttribute } from '../../models/db/destination-attribute.model';
 import { EmployeeMapping, EmployeeMappingPost, ExtendedEmployeeAttributeResponse } from '../../models/db/employee-mapping.model';
 import { ExtendedExpenseAttributeResponse } from '../../models/db/expense-attribute.model';
-import { MappingSettingResponse } from '../../models/db/mapping-setting.model';
+import { MappingSettingPost, MappingSettingResponse } from '../../models/db/mapping-setting.model';
 import { MappingPost, MappingStats } from '../../models/db/mapping.model';
 import { EmployeeFieldMapping, MappingState } from '../../models/enum/enum.model';
 import { ExpenseField } from '../../models/misc/expense-field.model';
@@ -117,5 +117,13 @@ export class MappingService {
   // TODO: cache this safely later
   getMappingSettings(): Observable<MappingSettingResponse> {
     return this.apiService.get(`/workspaces/${this.workspaceId}/mappings/settings/`, {});
+  }
+
+  postMappingSettings(mappingSettingPayload: MappingSettingPost[]): Observable<MappingSettingResponse> {
+    return this.apiService.post(`/workspaces/${this.workspaceId}/mappings/settings/`, mappingSettingPayload);
+  }
+
+  deleteMappingSetting(mappingSettingId: number): Observable<MappingSettingResponse> {
+    return this.apiService.delete(`/workspaces/${this.workspaceId}/mappings/settings/${mappingSettingId}/`);
   }
 }

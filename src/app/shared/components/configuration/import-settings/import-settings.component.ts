@@ -253,6 +253,7 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
 
   save(): void {
     if (this.importSettingsForm.valid && !this.saveInProgress) {
+      // TODO: handle preserving of custom mapping
       const importSettingsPayload = ImportSettingModel.constructPayload(this.importSettingsForm);
       this.saveInProgress = true;
 

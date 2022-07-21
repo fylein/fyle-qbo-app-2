@@ -68,4 +68,11 @@ export class ApiService {
       return this.handleError(error, 'PATCH');
     }));
   }
+
+  // Having any here is ok
+  delete(endpoint: string): Observable<any> {
+    return this.http.delete(API_BASE_URL + endpoint, httpOptions).pipe(catchError(error => {
+      return this.handleError(error, 'DELETE');
+    }));
+  }
 }
