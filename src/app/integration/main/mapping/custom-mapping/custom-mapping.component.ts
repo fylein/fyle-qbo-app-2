@@ -131,6 +131,7 @@ export class CustomMappingComponent implements OnInit {
           if (this.mappingSettingForm.value.mappingSetting.length === 1) {
             this.showMappingList = false;
           }
+
           this.snackBar.open('Custom Mapping Deleted Successfully');
           this.redirectToDashboard();
         });
