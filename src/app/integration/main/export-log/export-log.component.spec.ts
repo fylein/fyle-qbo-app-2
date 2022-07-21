@@ -69,7 +69,7 @@ describe('ExportLogComponent', () => {
 
   it('setupform function check', () => {
     component.exportLogForm = formBuilder.group({
-      searchOption: [''],
+      searchOption: ['expense'],
       dateRange: [null],
       start: [''],
       end: ['']
