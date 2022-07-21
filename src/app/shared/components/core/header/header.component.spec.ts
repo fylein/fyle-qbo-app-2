@@ -192,10 +192,4 @@ describe('HeaderComponent', () => {
     expect(authService.redirectToOnboardingLanding).toHaveBeenCalled();
     expect(dialogSpy).toHaveBeenCalled();
   });
-
-  it('makes expected calls', () => {
-    component.ngOnInit();
-    fixture.detectChanges();
-    expect(renderer2.listen).toHaveBeenCalled();
-  });
 });
