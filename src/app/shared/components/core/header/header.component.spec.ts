@@ -15,7 +15,7 @@ import { NavigationStart, Router, RouterEvent } from '@angular/router';
 import { Renderer2, Type } from '@angular/core';
 import { WindowService } from 'src/app/core/services/core/window.service';
 
-describe('HeaderComponent', () => {
+fdescribe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let injector: TestBed;
@@ -191,11 +191,5 @@ describe('HeaderComponent', () => {
     expect(qboConnectorService.disconnectQBOConnection).toHaveBeenCalled();
     expect(authService.redirectToOnboardingLanding).toHaveBeenCalled();
     expect(dialogSpy).toHaveBeenCalled();
-  });
-
-  it('makes expected calls', () => {
-    component.ngOnInit();
-    fixture.detectChanges();
-    expect(renderer2.listen).toHaveBeenCalled();
   });
 });
