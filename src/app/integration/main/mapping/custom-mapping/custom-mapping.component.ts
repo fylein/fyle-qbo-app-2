@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NavigationExtras, Router } from '@angular/router';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { forkJoin } from 'rxjs';
 import { MappingSetting, MappingSettingList } from 'src/app/core/models/db/mapping-setting.model';
@@ -32,7 +33,7 @@ export class CustomMappingComponent implements OnInit {
 
   ZeroStatePage = ZeroStatePage;
 
-  mappingRows: MatTableDataSource<MappingSettingList> = new MatTableDataSource<MappingSettingList>([]);
+  mappingRows:MappingSettingList[];
 
   qboFields: MappingDestinationField[] = [MappingDestinationField.CLASS, MappingDestinationField.DEPARTMENT, MappingDestinationField.CUSTOMER];
 
@@ -48,16 +49,18 @@ export class CustomMappingComponent implements OnInit {
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
     private helperService: HelperService,
-    private mappingService: MappingService
+    private mappingService: MappingService,
+    private router: Router,
+    private snackBar: MatSnackBar
   ) { }
 
   displayMappingList(): void {
-    this.mappingRows.data = this.mappingRows.data.concat([{ qboField: '', fyleField: '', index: this.mappingRows.data.length, existingMapping: false, isDeleteButtonAllowed: false }]);
+    this.mappingRows = this.mappingRows.concat([{ qboField: '', fyleField: '', index: this.mappingRows.length, existingMapping: false, isDeleteButtonAllowed: false }]);
 
     const row = this.formBuilder.group({
       qboField: ['', [Validators.required, RxwebValidators.unique()]],
       fyleField: ['', [Validators.required, RxwebValidators.unique()]],
-      index: [this.mappingRows.data.length],
+      index: [this.mappingRows.length],
       existingMapping: [false]
     });
     this.mappingSetting.push(row);
@@ -66,17 +69,26 @@ export class CustomMappingComponent implements OnInit {
 
   updateMappingRow(index: number, qboField: MappingDestinationField | '' = '', fyleField: MappingSourceField | string | '' = ''): void {
     if (qboField) {
-      this.mappingRows.data[index].qboField = qboField;
+      this.mappingRows[index].qboField = qboField;
     } else if (fyleField) {
-      this.mappingRows.data[index].fyleField = fyleField;
+      this.mappingRows[index].fyleField = fyleField;
     }
   }
 
   clearMappingRow(index: number): void {
     this.mappingSetting.controls[index].get('qboField')?.setValue('');
     this.mappingSetting.controls[index].get('fyleField')?.setValue('');
-    this.mappingRows.data[index].qboField = '';
-    this.mappingRows.data[index].fyleField = '';
+    this.mappingRows[index].qboField = '';
+    this.mappingRows[index].fyleField = '';
+  }
+
+  private redirectToDashboard(): void {
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        refreshMappings: true
+      }
+    };
+    this.router.navigate(['/workspaces/main/dashboard'], navigationExtras);
   }
 
   private constructPayloadAndSave(mappingRow: MappingSettingList): void {
@@ -89,7 +101,8 @@ export class CustomMappingComponent implements OnInit {
     }];
 
     this.mappingService.postMappingSettings(mappingSettingPayload).subscribe(() => {
-      this.setupPage();
+      this.snackBar.open('Custom Mapping Created Successfully');
+      this.redirectToDashboard();
     });
   }
 
@@ -114,9 +127,12 @@ export class CustomMappingComponent implements OnInit {
     dialogRef.afterClosed().subscribe((ctaClicked) => {
       if (ctaClicked && mappingRow.id) {
         this.mappingService.deleteMappingSetting(mappingRow.id).subscribe(() => {
-          // TODO: update showMappingList no row exist
-          // TODO: update this.mappingStats.all_attributes_count
-          this.setupPage();
+          // Hide mapping table if there are no more mappings
+          if (this.mappingSettingForm.value.mappingSetting.length === 1) {
+            this.showMappingList = false;
+          }
+          this.snackBar.open('Custom Mapping Deleted Successfully');
+          this.redirectToDashboard();
         });
       }
     });
@@ -146,7 +162,6 @@ export class CustomMappingComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe((ctaClicked) => {
         if (ctaClicked) {
-          // TODO: update this.mappingStats.all_attributes_count
           this.constructPayloadAndSave(mappingRow);
         }
       });
@@ -158,7 +173,7 @@ export class CustomMappingComponent implements OnInit {
   }
 
   get isExistingRowMapped(): boolean {
-   return this.mappingRows.data.filter(row => row.existingMapping).length > 0;
+   return this.mappingRows.filter(row => row.existingMapping).length > 0;
   }
 
   get mappingSetting() {
@@ -166,6 +181,7 @@ export class CustomMappingComponent implements OnInit {
   }
 
   private setupPage(): void {
+    // TODO: loader
     forkJoin([
       this.mappingService.getMappingSettings(),
       this.mappingService.getFyleExpenseFields()
@@ -193,7 +209,7 @@ export class CustomMappingComponent implements OnInit {
           fyleField: mappingSetting.source_field,
           index: index,
           existingMapping: true,
-          isDeleteButtonAllowed: true
+          isDeleteButtonAllowed: false
         };
         return mappedRow;
       });
@@ -214,9 +230,9 @@ export class CustomMappingComponent implements OnInit {
         mappingSetting: this.formBuilder.array(mappedRowsFormArray)
       });
 
-      this.mappingRows = new MatTableDataSource(mappedRows);
+      this.mappingRows = mappedRows;
 
-      if (this.mappingRows.data.length) {
+      if (this.mappingRows.length) {
         this.showMappingList = true;
       }
 

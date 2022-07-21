@@ -24,6 +24,106 @@
   &--mapping-section {
     padding-top: 32px;
   }
+
+  &--table-header {
+    height: 40px;
+    background: #F5F5F5;
+    border: 1px solid #DFDFE2;
+    border-radius: 4px 0px 0px 4px;
+  }
+
+  &--table-header-text {
+    color: #2C304E;
+  }
+
+  &--table-header-col-1 {
+    padding-left: 31px;
+    border-right: 1px solid #DFDFE2;
+    width: 338px;
+  }
+
+  &--table-header-col-2 {
+    padding-left: 22px;
+    width: 338px;
+  }
+
+  &--form-field {
+    width: 280px;
+  }
+
+  &--qbo-field {
+    padding: 22px 0px 21px 33px;
+  }
+
+  &--fields-separator {
+    border-top: 1px solid #DFDFE2;
+    width: 48px;
+    margin-top: 44px;
+  }
+
+  &--fyle-field {
+    width: 338px;
+    padding: 22px 0px 21px 0px;
+  }
+
+  &--create-mapping-setting-cta {
+    margin-top: -5px;
+  }
+
+  &--delete-section {
+    padding-right: 36px;
+  }
+
+  &--mapping-row-separator {
+    border-top: 1px solid #DFDFE2;
+  }
+
+  &--add-section {
+    padding: 33px 0px 0px 22px;
+    font-size: 14px;
+  }
+
+  &--add-icon {
+    margin-top: -4px;
+    padding-right: 10px;
+  }
+
+  &--mapped-row {
+    background: #F5F5F5;
+    border: 1px solid #DFDFE2;
+    border-radius: 4px;
+    width: 280px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  &--mapped-field-text {
+    padding-left: 13px;
+  }
+
+  &--limit-exceeded-section {
+    padding-top: 32px;
+  }
+
+  &--limit-exceeded-content {
+    background: #FBE8E9;
+    border: 1px solid rgba(218, 30, 40, 0.1);
+    border-radius: 4px;
+    width: 510px;
+    font-size: 12px;
+  }
+
+  &--error-icon {
+    padding: 10px 0px 0px 14px;
+  }
+
+  &--limit-exceeded-text {
+    padding: 11px 0px 4px 14px;
+  }
+
+  &--limit-exceeded-caption {
+    padding-left: 11px;
+  }
 }
 
 p {
