@@ -145,7 +145,7 @@ export class GenericMappingComponent implements OnInit {
     this.mappingService.getMappings(mappingState, allAlphabets, paginator.limit, paginator.offset, alphabetsFilter, this.mappingSetting.source_field, this.mappingSetting.destination_field).subscribe((extendedExpenseAttributeResponse: ExtendedExpenseAttributeResponse) => {
       this.totalCount = extendedExpenseAttributeResponse.count;
 
-      if (this.mappingSetting.source_field == 'CATEGORY') {
+      if (this.mappingSetting.source_field === 'CATEGORY') {
         extendedExpenseAttributeResponse.results = extendedExpenseAttributeResponse.results.filter(expenseAttribute => expenseAttribute.value !== 'Activity');
       }
 
