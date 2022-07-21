@@ -66,3 +66,4 @@ Frontend Repository for Fyle &lt;> Quickbooks Online Integration
     ```
     docker-compose exec app /bin/bash
     ```
+
