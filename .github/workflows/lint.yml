@@ -5,7 +5,7 @@ on:
     types: [assigned, opened, synchronize, reopened]
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -17,7 +17,3 @@ jobs:
       run: npm install
     - name: Lint
       run: npm run lint
-    - name: Run linting checks
-      uses: wearerequired/lint-action@v2
-      with:
-        eslint: true
