@@ -1,14 +1,14 @@
-<div *ngIf="!isLoading" class="mapping">
+<div class="mapping">
   <app-mapping-header-section [mappingStats]="mappingStats" [totalCardActive]="true" [customMapping]="true"></app-mapping-header-section>
 
-  <div [formGroup]="mappingSettingForm" class="custom-mapping">
-    <div formArrayName="mappingSetting" class="custom-mapping--content">
+  <div class="custom-mapping">
+    <div class="custom-mapping--content">
       <div class="custom-mapping--title-section">
         <p class="custom-mapping--title">Select a dimension in QBO that you want to map to an expense field in Fyle</p>
         <h5 class="sub-text-color">Mapping would help you export Fyle expenses with the correct dimension value to QBO.</h5>
       </div>
 
-      <div class="custom-mapping--mapping-section" *ngIf="showMappingList">
+      <div class="custom-mapping--mapping-section" *ngIf="showMappingList || isLoading">
         <div>
           <div class="custom-mapping--table-header" fxLayout="row">
             <h5 fxLayoutAlign=" center" class="custom-mapping--table-header-text custom-mapping--table-header-col-1">
@@ -19,66 +19,76 @@
             </h5>
           </div>
 
-          <div *ngFor="let element of mappingRows; let i = index">
-            <div fxLayout="column">
-              <div fxLayout="row" fxLayoutAlign="space-between center" (mouseenter)="showDeleteButton(element, true)" (mouseleave)="showDeleteButton(element, false)">
-                <div fxLayout="row">
-                  <div class="custom-mapping--qbo-field">
-                    <mat-form-field *ngIf="!element.existingMapping" [formGroupName]="i" floatLabel="always" appearance="outline" class="custom-mapping--form-field">
-                      <mat-select formControlName="qboField" placeholder="Select a Dimension from QBO">
-                        <mat-option *ngFor="let option of qboFields" [matTooltip]="option" [matTooltipDisabled]="option.length <= 40" matTooltipPosition="above" matTooltipClass="above" (click)="updateMappingRow(i, option)" [value]="option">
-                          <p>{{ option | titlecase | trimCharacter: 38 }}</p>
-                          <img *ngIf="option === mappingSetting.value[i].qboField" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-                        </mat-option>
-                      </mat-select>
-                      <div class="mat-select-arrow-closed"></div>
-                    </mat-form-field>
-                    <div fxLayoutAlign=" center" *ngIf="element.existingMapping" class="custom-mapping--mapped-row sub-text-color">
-                      <p class="custom-mapping--mapped-field-text">{{ element.qboField | titlecase | snakeCaseToSpaceCase }}</p>
+          <div *ngIf="!isLoading">
+            <div [formGroup]="mappingSettingForm" *ngFor="let element of mappingRows; let i = index">
+              <div formArrayName="mappingSetting" fxLayout="column">
+                <div fxLayout="row" fxLayoutAlign="space-between center" (mouseenter)="showDeleteButton(element, true)" (mouseleave)="showDeleteButton(element, false)">
+                  <div fxLayout="row">
+                    <div class="custom-mapping--qbo-field">
+                      <mat-form-field *ngIf="!element.existingMapping" [formGroupName]="i" floatLabel="always" appearance="outline" class="custom-mapping--form-field">
+                        <mat-select formControlName="qboField" placeholder="Select a Dimension from QBO">
+                          <mat-option *ngFor="let option of qboFields" [matTooltip]="option" [matTooltipDisabled]="option.length <= 40" matTooltipPosition="above" matTooltipClass="above" (click)="updateMappingRow(i, option)" [value]="option">
+                            <p>{{ option | titlecase | trimCharacter: 38 }}</p>
+                            <img *ngIf="option === mappingSetting.value[i].qboField" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
+                          </mat-option>
+                        </mat-select>
+                        <div class="mat-select-arrow-closed"></div>
+                      </mat-form-field>
+                      <div fxLayoutAlign=" center" *ngIf="element.existingMapping" class="custom-mapping--mapped-row sub-text-color">
+                        <p class="custom-mapping--mapped-field-text">{{ element.qboField | titlecase | snakeCaseToSpaceCase }}</p>
+                      </div>
+                    </div>
+
+                    <div class="custom-mapping--fields-separator"></div>
+
+                    <div class="custom-mapping--fyle-field">
+                      <mat-form-field *ngIf="!element.existingMapping" [formGroupName]="i" floatLabel="always" appearance="outline" class="custom-mapping--form-field">
+                        <mat-select formControlName="fyleField" placeholder="Select an Expense field from Fyle">
+                          <mat-option *ngFor="let option of fyleFields" [matTooltip]="option.display_name" [matTooltipDisabled]="option.display_name.length <= 40" matTooltipPosition="above" matTooltipClass="above" (click)="updateMappingRow(i, '', option.attribute_type)" [value]="option.attribute_type">
+                            <p>{{ option.display_name | titlecase | trimCharacter: 38 }}</p>
+                            <img *ngIf="option.attribute_type === mappingSetting.value[i].fyleField" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
+                          </mat-option>
+                        </mat-select>
+                        <div class="mat-select-arrow-closed"></div>
+                      </mat-form-field>
+                      <div fxLayoutAlign=" center" *ngIf="element.existingMapping" class="custom-mapping--mapped-row sub-text-color">
+                        <p class="custom-mapping--mapped-field-text">{{ element.fyleField | titlecase | snakeCaseToSpaceCase }}</p>
+                      </div>
+                    </div>
+
+                    <div *ngIf="!element.existingMapping" fxLayout="row" fxLayoutAlign="center center" class="custom-mapping--create-mapping-setting-cta">
+                      <div fxLayout="row" fxLayoutAlign="space-between center" class="pointer configuration--submit-btn" [ngClass]="mappingSetting.controls[i].valid ? 'btn-enabled' : 'btn-disabled'" (click)="saveMappingSetting(i)">
+                        <h5 class="btn-cta-text-without-icon single-line-text">
+                          Create Mapping
+                        </h5>
+                      </div>
                     </div>
                   </div>
 
-                  <div class="custom-mapping--fields-separator"></div>
-
-                  <div class="custom-mapping--fyle-field">
-                    <mat-form-field *ngIf="!element.existingMapping" [formGroupName]="i" floatLabel="always" appearance="outline" class="custom-mapping--form-field">
-                      <mat-select formControlName="fyleField" placeholder="Select an Expense field from Fyle">
-                        <mat-option *ngFor="let option of fyleFields" [matTooltip]="option.display_name" [matTooltipDisabled]="option.display_name.length <= 40" matTooltipPosition="above" matTooltipClass="above" (click)="updateMappingRow(i, '', option.attribute_type)" [value]="option.attribute_type">
-                          <p>{{ option.display_name | titlecase | trimCharacter: 38 }}</p>
-                          <img *ngIf="option.attribute_type === mappingSetting.value[i].fyleField" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-                        </mat-option>
-                      </mat-select>
-                      <div class="mat-select-arrow-closed"></div>
-                    </mat-form-field>
-                    <div fxLayoutAlign=" center" *ngIf="element.existingMapping" class="custom-mapping--mapped-row sub-text-color">
-                      <p class="custom-mapping--mapped-field-text">{{ element.fyleField | titlecase | snakeCaseToSpaceCase }}</p>
-                    </div>
+                  <div *ngIf="!element.existingMapping" class="custom-mapping--delete-section">
+                    <img width="18px" height="18px" src="assets/images/svgs/actions/clear-mapping.svg" class="search-select--clear-icon pointer" [ngClass]="{'search-select--clear-icon-smaller-area': true}" (click)="clearMappingRow(i)">
                   </div>
 
-                  <div *ngIf="!element.existingMapping" fxLayout="row" fxLayoutAlign="center center" class="custom-mapping--create-mapping-setting-cta">
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="pointer configuration--submit-btn" [ngClass]="mappingSetting.controls[i].valid ? 'btn-enabled' : 'btn-disabled'" (click)="saveMappingSetting(i)">
-                      <h5 class="btn-cta-text-without-icon single-line-text">
-                        Create Mapping
-                      </h5>
-                    </div>
+                  <div *ngIf="element.isDeleteButtonAllowed && element.existingMapping" class="custom-mapping--delete-section">
+                    <img matTooltip="Delete" matTooltipPosition="below" matTooltipClass="below" width="18px" height="20px" src="assets/images/svgs/actions/delete.svg" class="search-select--clear-icon pointer" [ngClass]="{'search-select--clear-icon-smaller-area': true}" (click)="deleteMappingSetting(element.index)">
                   </div>
                 </div>
-
-                <div *ngIf="!element.existingMapping" class="custom-mapping--delete-section">
-                  <img width="18px" height="18px" src="assets/images/svgs/actions/clear-mapping.svg" class="search-select--clear-icon pointer" [ngClass]="{'search-select--clear-icon-smaller-area': true}" (click)="clearMappingRow(i)">
-                </div>
-
-                <div *ngIf="element.isDeleteButtonAllowed && element.existingMapping" class="custom-mapping--delete-section">
-                  <img matTooltip="Delete" matTooltipPosition="below" matTooltipClass="below" width="18px" height="20px" src="assets/images/svgs/actions/delete.svg" class="search-select--clear-icon pointer" [ngClass]="{'search-select--clear-icon-smaller-area': true}" (click)="deleteMappingSetting(element.index)">
-                </div>
+                <div fxLayout="row" class="custom-mapping--mapping-row-separator"></div>
               </div>
-              <div fxFlex="row" class="custom-mapping--mapping-row-separator"></div>
+            </div>
+          </div>
+
+          <!-- Shimmers -->
+          <div *ngIf="isLoading">
+            <div class="skeleton-loader-list-view--init-box-section" fxLayout="row" fxLayoutAlign=" center">
+              <div class="shimmers skeleton-loader-list-view--init-box-custom-mapping"></div>
+              <div class="shimmers skeleton-loader-list-view--end-box"></div>
             </div>
           </div>
         </div>
       </div>
 
-      <div fxLayout="row" *ngIf="showMappingList && qboFields.length > mappingRows.length && fyleFields.length > mappingRows.length && isExistingRowMapped" class="custom-mapping--add-section">
+      <div fxLayout="row" *ngIf="!isLoading && showMappingList && qboFields.length > mappingRows.length && fyleFields.length > mappingRows.length && isExistingRowMapped" class="custom-mapping--add-section">
         <div fxLayout="row" class="pointer" (click)="displayMappingList()">
           <img class="custom-mapping--add-icon" width="15px" height="25px" src="assets/images/svgs/actions/plus.svg">
           <h4 class="actionable-text">Add New Mapping</h4>
@@ -98,9 +108,9 @@
         </div>
       </div>
 
-      <app-zero-state-with-illustration *ngIf="!showMappingList" [page]="ZeroStatePage.custom_mapping"></app-zero-state-with-illustration>
+      <app-zero-state-with-illustration *ngIf="!isLoading && !showMappingList" [page]="ZeroStatePage.custom_mapping"></app-zero-state-with-illustration>
 
-      <div *ngIf="!showMappingList" fxLayout="row" fxLayoutAlign="center center" class="custom-mapping--create-btn">
+      <div *ngIf="!isLoading && !showMappingList" fxLayout="row" fxLayoutAlign="center center" class="custom-mapping--create-btn">
         <div fxLayout="row" fxLayoutAlign="space-between center" class="pointer configuration--submit-btn btn-enabled" (click)="displayMappingList()">
           <h5 class="btn-cta-text-without-icon single-line-text">
             Create Custom Mapping

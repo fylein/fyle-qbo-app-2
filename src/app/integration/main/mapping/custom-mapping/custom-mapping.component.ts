@@ -92,6 +92,7 @@ export class CustomMappingComponent implements OnInit {
   }
 
   private constructPayloadAndSave(mappingRow: MappingSettingList): void {
+    this.isLoading = true;
     const mappingSettingPayload = [{
       source_field: mappingRow.fyleField,
       destination_field: mappingRow.qboField,
@@ -126,6 +127,7 @@ export class CustomMappingComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((ctaClicked) => {
       if (ctaClicked && mappingRow.id) {
+        this.isLoading = true;
         this.mappingService.deleteMappingSetting(mappingRow.id).subscribe(() => {
           // Hide mapping table if there are no more mappings
           if (this.mappingSettingForm.value.mappingSetting.length === 1) {
@@ -182,7 +184,6 @@ export class CustomMappingComponent implements OnInit {
   }
 
   private setupPage(): void {
-    // TODO: loader
     forkJoin([
       this.mappingService.getMappingSettings(),
       this.mappingService.getFyleExpenseFields()
