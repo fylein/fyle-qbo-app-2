@@ -14,9 +14,9 @@ import { HelperService } from 'src/app/core/services/core/helper.service';
 export class MappingTableComponent implements OnInit {
 
   @Input() mappings: MatTableDataSource<MappingList> = new MatTableDataSource<MappingList>([]);
-
+   // intentional lint err
   @Input() sourceType: string | undefined;
-
+   
   @Input() destinationType: string | undefined;
 
   @Input() mappingForm: FormGroup[];
