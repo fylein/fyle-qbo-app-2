@@ -95,7 +95,7 @@
         </div>
       </div>
 
-      <div fxLayout="row" *ngIf="showMappingList && isExistingRowMapped && !(qboFields.length > mappingRows.length && fyleFields.length > mappingRows.length)" class="custom-mapping--limit-exceeded-section paragraph">
+      <div fxLayout="row" *ngIf="!isLoading && showMappingList && isExistingRowMapped && !(qboFields.length > mappingRows.length && fyleFields.length > mappingRows.length)" class="custom-mapping--limit-exceeded-section paragraph">
         <div fxLayout="row" class="custom-mapping--limit-exceeded-content">
           <img class="custom-mapping--error-icon" width="17px" height="17px" src="assets/images/svgs/general/info-error.svg">
           <div>

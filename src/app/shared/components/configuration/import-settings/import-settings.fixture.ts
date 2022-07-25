@@ -6,7 +6,6 @@ import { ExpenseField } from "src/app/core/models/misc/expense-field.model";
 import { MappingSetting } from "src/app/core/models/db/mapping-setting.model";
 import { DestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
 import { QBOCredentials } from "src/app/core/models/configuration/qbo-connector.model";
-import { NavigationExtras } from "@angular/router";
 
 const workspaceresponse:WorkspaceGeneralSetting = {
   auto_create_destination_entity: true,
@@ -160,11 +159,6 @@ export const QBOCredentialsResponse: QBOCredentials = {
   refresh_token: "AB",
   updated_at: new Date("2022-05-06T13:13:25.893837Z"),
   workspace: 1
-};
-export const navigationExtras: NavigationExtras = {
-  queryParams: {
-    refreshMappings: true
-  }
 };
 export const errorResponse = {
   status: 404,

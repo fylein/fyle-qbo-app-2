@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { ClickEvent, ConfigurationCtaText, MappingDestinationField, OnboardingState, OnboardingStep, ProgressPhase, SimpleSearchPage, SimpleSearchType, UpdateEvent } from 'src/app/core/models/enum/enum.model';
@@ -288,12 +288,8 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
           this.workspaceService.setOnboardingState(OnboardingState.ADVANCED_CONFIGURATION);
           this.router.navigate([`/workspaces/onboarding/advanced_settings`]);
         } else {
-          const navigationExtras: NavigationExtras = {
-            queryParams: {
-              refreshMappings: true
-            }
-          };
-          this.router.navigate(['/workspaces/main/dashboard'], navigationExtras);
+          this.mappingService.refreshMappingPages();
+          this.router.navigate(['/workspaces/main/dashboard']);
         }
       }, () => {
         this.saveInProgress = false;

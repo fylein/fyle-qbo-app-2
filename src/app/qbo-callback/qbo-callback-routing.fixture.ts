@@ -1,5 +1,3 @@
-import { NavigationExtras } from "@angular/router";
-
 export const response={
   id: 1,
   refresh_token: 'fyle',

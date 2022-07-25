@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { forkJoin } from 'rxjs';
 import { MappingSetting, MappingSettingList } from 'src/app/core/models/db/mapping-setting.model';
@@ -82,15 +82,6 @@ export class CustomMappingComponent implements OnInit {
     this.mappingRows[index].fyleField = '';
   }
 
-  private redirectToDashboard(): void {
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-        refreshMappings: true
-      }
-    };
-    this.router.navigate(['/workspaces/main/dashboard'], navigationExtras);
-  }
-
   private constructPayloadAndSave(mappingRow: MappingSettingList): void {
     this.isLoading = true;
     const mappingSettingPayload = [{
@@ -101,9 +92,11 @@ export class CustomMappingComponent implements OnInit {
       source_placeholder: null
     }];
 
-    this.mappingService.postMappingSettings(mappingSettingPayload).subscribe(() => {
+    this.mappingService.postMappingSettings(mappingSettingPayload).subscribe((response: MappingSetting[]) => {
+      this.mappingService.refreshMappingPages();
       this.snackBar.open('Custom Mapping Created Successfully');
-      this.redirectToDashboard();
+      this.mappingSettings.push(response[0]);
+      this.setupPage();
     });
   }
 
@@ -134,8 +127,10 @@ export class CustomMappingComponent implements OnInit {
             this.showMappingList = false;
           }
 
+          this.mappingService.refreshMappingPages();
           this.snackBar.open('Custom Mapping Deleted Successfully');
-          this.redirectToDashboard();
+          this.mappingSettings = this.mappingSettings.filter((mapping) => mapping.id !== mappingRow.id);
+          this.setupPage();
         });
       }
     });
@@ -184,6 +179,57 @@ export class CustomMappingComponent implements OnInit {
   }
 
   private setupPage(): void {
+    // Remove already imported fyle fields from the options
+    this.fyleFields = this.fyleFields.filter(field => {
+      return !this.mappingSettings.some(mapping => mapping.import_to_fyle && mapping.source_field === field.attribute_type);
+    });
+
+    const importedQBOFields = this.mappingSettings.filter((mappingSetting: MappingSetting) => {
+      return (mappingSetting.destination_field === MappingDestinationField.CLASS || mappingSetting.destination_field === MappingDestinationField.DEPARTMENT || mappingSetting.destination_field === MappingDestinationField.CUSTOMER) && mappingSetting.import_to_fyle;
+    }).map((mappingSetting: MappingSetting) => mappingSetting.destination_field);
+
+    this.qboFields = this.qboFields.filter((qboField: MappingDestinationField) => !importedQBOFields.includes(qboField));
+
+    const mappedRows = this.mappingSettings.filter((mappingSetting: MappingSetting) => {
+      return (mappingSetting.destination_field === MappingDestinationField.CLASS || mappingSetting.destination_field === MappingDestinationField.DEPARTMENT || mappingSetting.destination_field === MappingDestinationField.CUSTOMER) && !mappingSetting.import_to_fyle;
+    }).map((mappingSetting, index) => {
+      const mappedRow: MappingSettingList = {
+        id: mappingSetting.id,
+        qboField: mappingSetting.destination_field,
+        fyleField: mappingSetting.source_field,
+        index: index,
+        existingMapping: true,
+        isDeleteButtonAllowed: false
+      };
+      return mappedRow;
+    });
+
+    this.mappingStats.all_attributes_count = mappedRows.length;
+
+    const mappedRowsFormArray = mappedRows.map((mappingSetting, index) => {
+      return this.formBuilder.group({
+        id: mappingSetting.id,
+        qboField: [mappingSetting.qboField, [Validators.required, RxwebValidators.unique()]],
+        fyleField: [mappingSetting.fyleField, [Validators.required, RxwebValidators.unique()]],
+        index: [index],
+        existingMapping: [true]
+      });
+    });
+
+    this.mappingSettingForm = this.formBuilder.group({
+      mappingSetting: this.formBuilder.array(mappedRowsFormArray)
+    });
+
+    this.mappingRows = mappedRows;
+
+    if (this.mappingRows.length) {
+      this.showMappingList = true;
+    }
+
+    this.isLoading = false;
+  }
+
+  private setupSettingsAndSetupPage(): void {
     forkJoin([
       this.mappingService.getMappingSettings(),
       this.mappingService.getFyleExpenseFields()
@@ -191,59 +237,12 @@ export class CustomMappingComponent implements OnInit {
       this.mappingSettings = responses[0].results;
       this.fyleFields = responses[1];
 
-      // Remove already imported fyle fields from the options
-      this.fyleFields = this.fyleFields.filter(field => {
-        return !this.mappingSettings.some(mapping => mapping.import_to_fyle && mapping.source_field === field.attribute_type);
-      });
-
-      const importedQBOFields = responses[0].results.filter((mappingSetting: MappingSetting) => {
-        return (mappingSetting.destination_field === MappingDestinationField.CLASS || mappingSetting.destination_field === MappingDestinationField.DEPARTMENT || mappingSetting.destination_field === MappingDestinationField.CUSTOMER) && mappingSetting.import_to_fyle;
-      }).map((mappingSetting: MappingSetting) => mappingSetting.destination_field);
-
-      this.qboFields = this.qboFields.filter((qboField: MappingDestinationField) => !importedQBOFields.includes(qboField));
-
-      const mappedRows = responses[0].results.filter((mappingSetting: MappingSetting) => {
-        return (mappingSetting.destination_field === MappingDestinationField.CLASS || mappingSetting.destination_field === MappingDestinationField.DEPARTMENT || mappingSetting.destination_field === MappingDestinationField.CUSTOMER) && !mappingSetting.import_to_fyle;
-      }).map((mappingSetting, index) => {
-        const mappedRow: MappingSettingList = {
-          id: mappingSetting.id,
-          qboField: mappingSetting.destination_field,
-          fyleField: mappingSetting.source_field,
-          index: index,
-          existingMapping: true,
-          isDeleteButtonAllowed: false
-        };
-        return mappedRow;
-      });
-
-      this.mappingStats.all_attributes_count = mappedRows.length;
-
-      const mappedRowsFormArray = mappedRows.map((mappingSetting, index) => {
-        return this.formBuilder.group({
-          id: mappingSetting.id,
-          qboField: [mappingSetting.qboField, [Validators.required, RxwebValidators.unique()]],
-          fyleField: [mappingSetting.fyleField, [Validators.required, RxwebValidators.unique()]],
-          index: [index],
-          existingMapping: [true]
-        });
-      });
-
-      this.mappingSettingForm = this.formBuilder.group({
-        mappingSetting: this.formBuilder.array(mappedRowsFormArray)
-      });
-
-      this.mappingRows = mappedRows;
-
-      if (this.mappingRows.length) {
-        this.showMappingList = true;
-      }
-
-      this.isLoading = false;
+      this.setupPage();
     });
   }
 
   ngOnInit(): void {
-    this.setupPage();
+    this.setupSettingsAndSetupPage();
   }
 
 }

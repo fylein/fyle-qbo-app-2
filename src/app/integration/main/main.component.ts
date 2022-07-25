@@ -73,7 +73,11 @@ export class MainComponent implements OnInit {
   constructor(
     private router: Router,
     private mappingService: MappingService
-  ) { }
+  ) {
+    this.mappingService.getMappingPagesForSideNavBar.subscribe((mappingSettingResponse: MappingSettingResponse) => {
+      this.setupMappingModules(mappingSettingResponse);
+    });
+  }
 
   navigate(module: DashboardModule | DashboardModuleChild): void {
     // Setting clicked module as active
@@ -135,7 +139,7 @@ export class MainComponent implements OnInit {
 
   }
 
-  setupMappingPages(): void {
+  private setupMappingModules(mappingSettingResponse: MappingSettingResponse): void {
     this.modules[2].childPages = [{
       name: 'Employee Mapping',
       route: 'mapping/employee',
@@ -147,39 +151,40 @@ export class MainComponent implements OnInit {
       isActive: false
     }];
 
+    const sourceFieldRoutes: string[] = [`mapping/${FyleField.EMPLOYEE.toLowerCase()}`, `mapping/${FyleField.CATEGORY.toLowerCase()}`];
+    mappingSettingResponse.results.forEach((mappingSetting: MappingSetting) => {
+      if (mappingSetting.source_field !== EmployeeFieldMapping.EMPLOYEE && mappingSetting.source_field !== FyleField.CATEGORY) {
+        sourceFieldRoutes.push(`mapping/${mappingSetting.source_field.toLowerCase()}`);
+        this.modules[2].childPages.push({
+          name: `${mappingSetting.source_field.toLowerCase()} Mapping`,
+          route: `mapping/${mappingSetting.source_field.toLowerCase()}`,
+          isActive: false
+        });
+      }
+    });
+
+    // TODO: do this conditionally only if QBO fields are not mapped already
+    this.modules[2].childPages.push({
+      name: 'Custom Mapping',
+      route: 'mapping/custom',
+      isActive: false
+    });
+
+    this.markModuleActive(this.router.url);
+    this.isLoading = false;
+  }
+
+  getSettingsAndSetupPage(): void {
     this.mappingService.getMappingSettings().subscribe((mappingSettingResponse: MappingSettingResponse) => {
-      const sourceFieldRoutes: string[] = [`mapping/${FyleField.EMPLOYEE.toLowerCase()}`, `mapping/${FyleField.CATEGORY.toLowerCase()}`];
-      mappingSettingResponse.results.forEach((mappingSetting: MappingSetting) => {
-        if (mappingSetting.source_field !== EmployeeFieldMapping.EMPLOYEE && mappingSetting.source_field !== FyleField.CATEGORY) {
-          sourceFieldRoutes.push(`mapping/${mappingSetting.source_field.toLowerCase()}`);
-          this.modules[2].childPages.push({
-            name: `${mappingSetting.source_field.toLowerCase()} Mapping`,
-            route: `mapping/${mappingSetting.source_field.toLowerCase()}`,
-            isActive: false
-          });
-        }
-      });
-
-      // TODO: do this conditionally only if QBO fields are not mapped already
-      this.modules[2].childPages.push({
-        name: 'Custom Mapping',
-        route: 'mapping/custom',
-        isActive: false
-      });
-
-      this.markModuleActive(this.router.url);
-      this.isLoading = false;
+      this.setupMappingModules(mappingSettingResponse);
     });
   }
 
   private setRouteWatcher(): void {
-    this.setupMappingPages();
+    this.getSettingsAndSetupPage();
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationStart) {
         const splitUrl = val.url.split('?');
-        if (splitUrl.length > 1 && splitUrl[1].includes('refreshMappings')) {
-          this.setupMappingPages();
-        }
         this.markModuleActive(splitUrl[0]);
       }
     });

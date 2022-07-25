@@ -1,15 +1,14 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Router, NavigationStart, Event as NavigationEvent, RouterEvent } from '@angular/router';
+import { Router, NavigationStart, RouterEvent } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, ReplaySubject } from 'rxjs';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { MainComponent } from './main.component';
 import { mappingResponse, modules } from './main.fixture';
-import { MainModule } from './main.module';
 import { SnakeCaseToSpaceCase } from '../../shared/pipes/snake-case-to-space-case.pipe';
+
 describe('MainComponent', () => {
   let component: MainComponent;
   let fixture: ComponentFixture<MainComponent>;
@@ -19,7 +18,9 @@ describe('MainComponent', () => {
   const routerSpy = { navigate: jasmine.createSpy('navigate'), url: '/onboarding', events: eventSubject.asObservable() };
   beforeEach(async () => {
     const service1 = {
-      getMappingSettings: () => of(mappingResponse)
+      getMappingSettings: () => of(mappingResponse),
+      refreshMappingPages: () => undefined,
+      getMappingPagesForSideNavBar: {subscribe: jasmine.createSpy('testEmitter subscribe')}
     };
     await TestBed.configureTestingModule({
       imports: [ RouterTestingModule, HttpClientModule, NoopAnimationsModule ],
@@ -45,27 +46,27 @@ describe('MainComponent', () => {
   });
 
   it('ngOnInit function check', () => {
-    spyOn(component, 'setupMappingPages').and.callThrough();
+    spyOn(component, 'getSettingsAndSetupPage').and.callThrough();
     expect(component.ngOnInit()).toBeUndefined();
     eventSubject.next(new NavigationStart(1, '/workspaces/main/'));
     fixture.detectChanges();
-    expect(component.setupMappingPages).toHaveBeenCalled();
+    expect(component.getSettingsAndSetupPage).toHaveBeenCalled();
   });
 
   it('ngOnInit function check', () => {
-    spyOn(component, 'setupMappingPages').and.callThrough();
+    spyOn(component, 'getSettingsAndSetupPage').and.callThrough();
     expect(component.ngOnInit()).toBeUndefined();
-    eventSubject.next(new NavigationStart(1, '/workspaces/main/configuration/employee_settings?refreshMappings'));
+    eventSubject.next(new NavigationStart(1, '/workspaces/main/configuration/employee_settings'));
     fixture.detectChanges();
-    expect(component.setupMappingPages).toHaveBeenCalled();
+    expect(component.getSettingsAndSetupPage).toHaveBeenCalled();
   });
 
   it('ngOnInit function check', () => {
-    spyOn(component, 'setupMappingPages').and.callThrough();
+    spyOn(component, 'getSettingsAndSetupPage').and.callThrough();
     expect(component.ngOnInit()).toBeUndefined();
-    eventSubject.next(new NavigationStart(1, '/workspaces/main/configuration?refreshMappings'));
+    eventSubject.next(new NavigationStart(1, '/workspaces/main/configuration'));
     fixture.detectChanges();
-    expect(component.setupMappingPages).toHaveBeenCalled();
+    expect(component.getSettingsAndSetupPage).toHaveBeenCalled();
   });
 
   it('Navigate function check', () => {
@@ -88,7 +89,7 @@ describe('MainComponent', () => {
 
   it('setupMappingPages function check', () => {
     spyOn(mappingService, 'getMappingSettings').and.callThrough();
-    expect(component.setupMappingPages()).toBeUndefined();
+    expect(component.getSettingsAndSetupPage()).toBeUndefined();
     fixture.detectChanges();
     expect(mappingService.getMappingSettings).toHaveBeenCalled();
   });
