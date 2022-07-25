@@ -175,7 +175,6 @@ describe('ImportSettingsComponent', () => {
     fixture.detectChanges();
     expect(importSettingService.postImportSettings).toHaveBeenCalled();
     expect(workspace.getOnboardingState).toHaveBeenCalled();
-    // expect(mappingService.refreshMappingPages).toHaveBeenCalled();
     expect(routerSpy.navigate).toHaveBeenCalledWith(['/workspaces/main/dashboard']);
   });
 

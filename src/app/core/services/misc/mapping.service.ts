@@ -123,7 +123,6 @@ export class MappingService {
 
   refreshMappingPages(): void {
     this.apiService.get(`/workspaces/${this.workspaceId}/mappings/settings/`, {}).subscribe((mappingSettingResponse: MappingSettingResponse) => {
-      console.log('mappingSettingResponse',mappingSettingResponse)
       this.getMappingPagesForSideNavBar.emit(mappingSettingResponse);
     });
   }
