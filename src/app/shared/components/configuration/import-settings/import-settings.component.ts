@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { NavigationExtras, Router } from '@angular/router';
@@ -170,9 +170,19 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
       this.mappingService.getQBODestinationAttributes('TAX_CODE')
     ]).subscribe(response => {
       this.importSettings = response[0];
-      const qboAttributes = [MappingDestinationField.CLASS, MappingDestinationField.DEPARTMENT, MappingDestinationField.CUSTOMER];
-
       this.fyleExpenseFields = response[1].map(field => field.attribute_type);
+
+      // Remove custom mapped Fyle options
+      const customMappedFyleFields = this.importSettings.mapping_settings.filter(setting => !setting.import_to_fyle).map(setting => setting.source_field);
+      const customMappedQboFields = this.importSettings.mapping_settings.filter(setting => !setting.import_to_fyle).map(setting => setting.destination_field);
+      if (customMappedFyleFields.length) {
+        this.fyleExpenseFields = this.fyleExpenseFields.filter(field => !customMappedFyleFields.includes(field));
+      }
+
+      // Remove custom mapped QBO fields
+      const qboAttributes = [MappingDestinationField.CLASS, MappingDestinationField.DEPARTMENT, MappingDestinationField.CUSTOMER].filter(
+        field => !customMappedQboFields.includes(field)
+      );
 
       this.qboExpenseFields = qboAttributes.map(attribute => {
         const mappingSetting = this.importSettings.mapping_settings.filter((mappingSetting: MappingSetting) => mappingSetting.destination_field === attribute);
@@ -253,8 +263,8 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
 
   save(): void {
     if (this.importSettingsForm.valid && !this.saveInProgress) {
-      // TODO: handle preserving of custom mapping
-      const importSettingsPayload = ImportSettingModel.constructPayload(this.importSettingsForm);
+      const customMappingSettings = this.importSettings.mapping_settings.filter(setting => !setting.import_to_fyle);
+      const importSettingsPayload = ImportSettingModel.constructPayload(this.importSettingsForm, customMappingSettings);
       this.saveInProgress = true;
 
       this.importSettingService.postImportSettings(importSettingsPayload).subscribe((response: ImportSettingGet) => {

@@ -48,6 +48,6 @@ describe('ImportSettingModel', () => {
         source_placeholder: 'Fyle'
       }]
     };
-    expect(ImportSettingModel.constructPayload(importSettingsForm)).toEqual(employeeSettingPayload);
+    expect(ImportSettingModel.constructPayload(importSettingsForm, [])).toEqual(employeeSettingPayload);
   });
 });
