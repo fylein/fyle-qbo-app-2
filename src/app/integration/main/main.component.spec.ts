@@ -20,7 +20,8 @@ describe('MainComponent', () => {
     const service1 = {
       getMappingSettings: () => of(mappingResponse),
       refreshMappingPages: () => undefined,
-      getMappingPagesForSideNavBar: {subscribe: jasmine.createSpy('testEmitter subscribe')}
+      getMappingPagesForSideNavBar: {subscribe: jasmine.createSpy('dummy subscribe')},
+      showWalkThroughTooltip: {subscribe: jasmine.createSpy('dummy subscribe')}
     };
     await TestBed.configureTestingModule({
       imports: [ RouterTestingModule, HttpClientModule, NoopAnimationsModule ],
