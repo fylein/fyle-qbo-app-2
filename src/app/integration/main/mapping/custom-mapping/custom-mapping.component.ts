@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -83,6 +83,7 @@ export class CustomMappingComponent implements OnInit {
   }
 
   private constructPayloadAndSave(mappingRow: MappingSettingList): void {
+    // TODO: add trackers
     this.isLoading = true;
     const mappingSettingPayload = [{
       source_field: mappingRow.fyleField,
@@ -93,6 +94,7 @@ export class CustomMappingComponent implements OnInit {
     }];
 
     this.mappingService.postMappingSettings(mappingSettingPayload).subscribe((response: MappingSetting[]) => {
+      this.mappingService.emitWalkThroughTooltip();
       this.mappingService.refreshMappingPages();
       this.snackBar.open('Custom Mapping Created Successfully');
       this.mappingSettings.push(response[0]);

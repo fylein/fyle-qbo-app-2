@@ -37,6 +37,22 @@
           </div>
         </div>
       </div>
+      <div #walkthrough *ngIf="showWalkThroughTooltip && module.name === 'Mappings'" class="walk-through-tooltip paragraph">
+        <div class="walk-through-tooltip--arrow-left">
+          <img src="assets/images/svgs/general/arrow-left-tooltip.svg">
+        </div>
+        <div fxLayout="row" class="walk-through-tooltip--header-section">
+          <p class="walk-through-tooltip--header-text">
+            You can find the newly created custom mapping here.
+          </p>
+          <img class="walk-through-tooltip--close-icon pointer" src="assets/images/svgs/actions/close-white.svg" width="10px" height="10px">
+        </div>
+        <div fxLayoutAlign="end center" class="walk-through-tooltip--cta-section">
+          <div class="walk-through-tooltip--cta pointer" fxLayoutAlign="center center">
+            Got it!
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="side-nav-bar--child-contents">

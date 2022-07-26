@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { MappingSetting, MappingSettingResponse } from 'src/app/core/models/db/mapping-setting.model';
 import { EmployeeFieldMapping, FyleField } from 'src/app/core/models/enum/enum.model';
@@ -13,6 +13,10 @@ import { MappingService } from 'src/app/core/services/misc/mapping.service';
 export class MainComponent implements OnInit {
 
   isLoading: boolean = true;
+
+  showWalkThroughTooltip: boolean;
+
+  @ViewChild('walkthrough') walkthrough: ElementRef;
 
   modules: DashboardModule[] = [
     {
@@ -71,11 +75,24 @@ export class MainComponent implements OnInit {
   ];
 
   constructor(
+    private renderer: Renderer2,
     private router: Router,
     private mappingService: MappingService
   ) {
     this.mappingService.getMappingPagesForSideNavBar.subscribe((mappingSettingResponse: MappingSettingResponse) => {
       this.setupMappingModules(mappingSettingResponse);
+    });
+
+    // Subscribe to the event that is emitted when custom mapping is created
+    this.mappingService.showWalkThroughTooltip.subscribe(() => {
+      this.showWalkThroughTooltip = true;
+    });
+
+    // Listen to clicks and auto hide the walkthrough tooltip
+    this.renderer.listen('window', 'click', (e: Event) => {
+      if (this.showWalkThroughTooltip && this.walkthrough?.nativeElement && e.target !== this.walkthrough?.nativeElement) {
+        this.showWalkThroughTooltip = false;
+      }
     });
   }
 

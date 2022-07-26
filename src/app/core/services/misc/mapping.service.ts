@@ -18,6 +18,8 @@ export class MappingService {
 
   @Output() getMappingPagesForSideNavBar: EventEmitter<MappingSettingResponse> = new EventEmitter();
 
+  @Output() showWalkThroughTooltip: EventEmitter<void> = new EventEmitter();
+
   workspaceId: string = this.workspaceService.getWorkspaceId();
 
   constructor(
@@ -125,6 +127,10 @@ export class MappingService {
     this.apiService.get(`/workspaces/${this.workspaceId}/mappings/settings/`, {}).subscribe((mappingSettingResponse: MappingSettingResponse) => {
       this.getMappingPagesForSideNavBar.emit(mappingSettingResponse);
     });
+  }
+
+  emitWalkThroughTooltip(): void {
+    this.showWalkThroughTooltip.emit();
   }
 
   postMappingSettings(mappingSettingPayload: MappingSettingPost[]): Observable<MappingSetting[]> {
