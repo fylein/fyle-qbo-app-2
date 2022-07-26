@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -32,7 +31,6 @@ import { CustomMappingComponent } from './custom-mapping/custom-mapping.componen
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    MatTableModule,
     MatTooltipModule
   ]
 })

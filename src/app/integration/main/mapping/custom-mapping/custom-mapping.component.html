@@ -89,7 +89,7 @@
       </div>
 
       <div fxLayout="row" *ngIf="!isLoading && showMappingList && qboFields.length > mappingRows.length && fyleFields.length > mappingRows.length && isExistingRowMapped" class="custom-mapping--add-section">
-        <div fxLayout="row" class="pointer" (click)="displayMappingList()">
+        <div fxLayout="row" class="pointer" (click)="createMappingRow()">
           <img class="custom-mapping--add-icon" width="15px" height="25px" src="assets/images/svgs/actions/plus.svg">
           <h4 class="actionable-text">Add New Mapping</h4>
         </div>
@@ -111,7 +111,7 @@
       <app-zero-state-with-illustration *ngIf="!isLoading && !showMappingList" [page]="ZeroStatePage.custom_mapping"></app-zero-state-with-illustration>
 
       <div *ngIf="!isLoading && !showMappingList" fxLayout="row" fxLayoutAlign="center center" class="custom-mapping--create-btn">
-        <div fxLayout="row" fxLayoutAlign="space-between center" class="pointer configuration--submit-btn btn-enabled" (click)="displayMappingList()">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="pointer configuration--submit-btn btn-enabled" (click)="createMappingRow()">
           <h5 class="btn-cta-text-without-icon single-line-text">
             Create Custom Mapping
           </h5>

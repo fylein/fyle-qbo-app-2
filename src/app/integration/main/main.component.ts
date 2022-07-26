@@ -79,6 +79,7 @@ export class MainComponent implements OnInit {
     private router: Router,
     private mappingService: MappingService
   ) {
+    // Helps refresh sidenav bar on mapping setting change
     this.mappingService.getMappingPagesForSideNavBar.subscribe((mappingSettingResponse: MappingSettingResponse) => {
       this.setupMappingModules(mappingSettingResponse);
     });
@@ -169,8 +170,12 @@ export class MainComponent implements OnInit {
     }];
 
     const sourceFieldRoutes: string[] = [`mapping/${FyleField.EMPLOYEE.toLowerCase()}`, `mapping/${FyleField.CATEGORY.toLowerCase()}`];
+    const importedFieldsFromQBO = [];
     mappingSettingResponse.results.forEach((mappingSetting: MappingSetting) => {
       if (mappingSetting.source_field !== EmployeeFieldMapping.EMPLOYEE && mappingSetting.source_field !== FyleField.CATEGORY) {
+        if (mappingSetting.import_to_fyle) {
+          importedFieldsFromQBO.push(mappingSetting.destination_field);
+        }
         sourceFieldRoutes.push(`mapping/${mappingSetting.source_field.toLowerCase()}`);
         this.modules[2].childPages.push({
           name: `${mappingSetting.source_field.toLowerCase()} Mapping`,
@@ -180,12 +185,14 @@ export class MainComponent implements OnInit {
       }
     });
 
-    // TODO: do this conditionally only if QBO fields are not mapped already
-    this.modules[2].childPages.push({
-      name: 'Custom Mapping',
-      route: 'mapping/custom',
-      isActive: false
-    });
+    // Show Custom Mapping menu if atleast one QBO field is available to be mapped
+    if (importedFieldsFromQBO.length < 3) {
+      this.modules[2].childPages.push({
+        name: 'Custom Mapping',
+        route: 'mapping/custom',
+        isActive: false
+      });
+    }
 
     this.markModuleActive(this.router.url);
     this.isLoading = false;

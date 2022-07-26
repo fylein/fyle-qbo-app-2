@@ -2,7 +2,6 @@ import { Component, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { forkJoin } from 'rxjs';
 import { MappingSetting, MappingSettingList } from 'src/app/core/models/db/mapping-setting.model';
@@ -39,8 +38,6 @@ export class CustomMappingComponent implements OnInit {
 
   fyleFields: ExpenseField[];
 
-  displayedColumns: string[] = ['qbo', 'fyle', 'cta', 'clear', 'delete'];
-
   mappingSettingForm: FormGroup;
 
   mappingSettings: MappingSetting[];
@@ -50,11 +47,10 @@ export class CustomMappingComponent implements OnInit {
     private formBuilder: FormBuilder,
     private helperService: HelperService,
     private mappingService: MappingService,
-    private router: Router,
     private snackBar: MatSnackBar
   ) { }
 
-  displayMappingList(): void {
+  createMappingRow(): void {
     this.mappingRows = this.mappingRows.concat([{ qboField: '', fyleField: '', index: this.mappingRows.length, existingMapping: false, isDeleteButtonAllowed: false }]);
 
     const row = this.formBuilder.group({
