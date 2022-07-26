@@ -37,7 +37,7 @@ describe('MainComponent', () => {
       providers: [
         { provide: MappingService, useValue: service1 },
         { provide: Router, useValue: routerSpy},
-        { provide: Renderer2, useValue: service2},
+        { provide: Renderer2, useValue: service2}
       ]
     })
     .compileComponents();
