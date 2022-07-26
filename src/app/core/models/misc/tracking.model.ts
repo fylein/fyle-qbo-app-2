@@ -17,7 +17,12 @@ export type UpdateEventAdditionalProperty = {
   phase: ProgressPhase,
   page: PaginatorPage,
   oldState: EmployeeSettingGet | ExportSettingGet | ImportSettingGet | AdvancedSettingGet | number,
-  newState: EmployeeSettingGet | ExportSettingGet | ImportSettingGet | AdvancedSettingGet | number
+  newState: EmployeeSettingGet | ExportSettingGet | ImportSettingGet | AdvancedSettingGet | number | {source_field: string, destination_field: string}
+};
+
+export type DeleteEventAdditionalProperty = {
+  source_field: string,
+  destination_field: string
 };
 
 export type TimeTakenAdditionalProperty = {
