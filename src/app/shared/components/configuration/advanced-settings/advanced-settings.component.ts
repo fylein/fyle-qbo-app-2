@@ -186,7 +186,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       memoStructure: [this.advancedSettings.workspace_general_settings.memo_structure],
       searchOption: [],
       emails: [this.advancedSettings.workspace_schedules.emails_selected ? this.advancedSettings.workspace_schedules.emails_selected : []],
-      addedEmail: [this.advancedSettings.workspace_schedules.additional_email_options ? this.advancedSettings.workspace_schedules.additional_email_options : []]
+      addedEmail: []
     });
 
     this.setCustomValidators();
