@@ -32,14 +32,16 @@ describe('AdvancedSettingsComponent', () => {
   let formbuilder: FormBuilder;
   let dialogSpy: jasmine.Spy;
   let dialogSpy1: jasmine.Spy;
-  const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({}), close: null });
+  const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({hours: 1,
+    schedule_enabled: true,
+    emails_selected: ["fyle@fyle.in"],
+    email_added: {name: "fyle", email: 'fyle@fyle.in'}}), close: null });
   dialogRefSpyObj.componentInstance = { body: '' };
 
   beforeEach(async () => {
     service1 = {
       postAdvancedSettings: () => of(advancedSettingResponse),
       getAdvancedSettings: () => of(getadvancedSettingResponse),
-      getWorkspaceSchedule: () => of(emailResponse),
       getWorkspaceAdmins: () => of(adminEmails)
     };
 
@@ -82,7 +84,8 @@ describe('AdvancedSettingsComponent', () => {
       exportScheduleFrequency: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [component.advancedSettings.workspace_general_settings.memo_structure],
       searchOption: [],
-      emails: [emailResponse.emails_selected]
+      emails: [emailResponse.emails_selected],
+      addedEmail: [emailResponse.additional_email_options]
     });
     component.advancedSettingsForm = form;
     router = TestBed.inject(Router);

@@ -20,7 +20,8 @@ export type AdvancedSettingGeneralMapping = {
 export type AdvancedSettingWorkspaceSchedule = {
   enabled: boolean,
   interval_hours: number,
-  emails_selected: string[]
+  emails_selected: string[],
+  additional_email_options: WorkspaceScheduleEmailOptions[]
 }
 
 export type AdvancedSettingWorkspaceSchedulePost = {
@@ -44,11 +45,10 @@ export type AdvancedSettingGet = {
 }
 
 export type AdvancedSettingAddEmailModel = {
-  workspaceId?: number;
+  workspaceId: number;
   hours: number;
   schedulEnabled: boolean;
   selectedEmails: string[];
-  addedEmail?: WorkspaceScheduleEmailOptions
 }
 
 export interface AdvancedSettingFormOption extends SelectFormOption {
@@ -73,7 +73,8 @@ export class AdvancedSettingModel {
       workspace_schedules: {
         enabled: advancedSettingsForm.get('exportSchedule')?.value ? true : false,
         interval_hours: advancedSettingsForm.get('exportScheduleFrequency')?.value ? advancedSettingsForm.get('exportScheduleFrequency')?.value : null,
-        emails_selected: advancedSettingsForm.get('emails')?.value ? advancedSettingsForm.get('emails')?.value : null
+        emails_selected: advancedSettingsForm.get('emails')?.value ? advancedSettingsForm.get('emails')?.value : null,
+        additional_email_options: advancedSettingsForm.get('addedEmail')?.value ? advancedSettingsForm.get('addedEmail')?.value : null
       }
     };
     return advancedSettingPayload;

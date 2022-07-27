@@ -38,18 +38,18 @@ export class AddEmailDialogComponent implements OnInit {
       emails_selected: this.data.selectedEmails,
       email_added: adminData
     };
-
-    this.settingsService.postWorkspaceSchedule(data).subscribe(() => {
-      this.dialogRef.close();
-    });
-
+      this.dialogRef.close(data);
   }
 
-  ngOnInit() {
+  setupForm(){
     this.form = this.formBuilder.group({
       adminName: ['', Validators.required],
       adminEmail: ['', Validators.compose([Validators.email, Validators.required])]
     });
+  }
+
+  ngOnInit() {
+    this.setupForm();
   }
 
 }

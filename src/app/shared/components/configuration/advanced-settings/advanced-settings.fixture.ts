@@ -45,7 +45,8 @@ export const advancedSettingResponse:AdvancedSettingGet = {
   workspace_schedules: {
     enabled: true,
     interval_hours: 10,
-    emails_selected: []
+    emails_selected: [],
+    additional_email_options: []
   },
   workspace_id: 1
 };
@@ -94,7 +95,8 @@ export const getadvancedSettingResponse:AdvancedSettingGet = {
   workspace_schedules: {
     enabled: true,
     interval_hours: 10,
-    emails_selected: []
+    emails_selected: [],
+    additional_email_options: []
   },
   workspace_id: 1
 };
@@ -114,7 +116,8 @@ export const getadvancedSettingResponse2:AdvancedSettingGet = {
   workspace_schedules: {
     enabled: true,
     interval_hours: 10,
-    emails_selected: []
+    emails_selected: [],
+    additional_email_options: []
   },
   workspace_id: 1
 };

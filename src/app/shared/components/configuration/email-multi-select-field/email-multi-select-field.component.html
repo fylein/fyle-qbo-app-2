@@ -1,19 +1,19 @@
-<div [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between center" class="email-configuration--field-section">
-  <div fxLayout="row" fxLayoutAlign="space-between start" class="email-configuration--field-label-section">
-    <img *ngIf="iconPath" src="{{ iconPath }}" class="email-configuration--icon">
-    <div class="email-configuration--field-label-text-section"
+<div [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
+  <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
+    <img *ngIf="iconPath" src="{{ iconPath }}" class="configuration--icon">
+    <div class="configuration--field-label-text-section"
       [ngClass]="{'email-multi-select-field--field-label-text-section-without-img': !iconPath}">
-      <div class="email-configuration--field-header">
+      <div class="configuration--field-header">
         {{ label }}
         <app-mandatory-field *ngIf="isFieldMandatory"></app-mandatory-field>
       </div>
-      <h5 class="email-configuration--field-label sub-text-color paragraph">
+      <h5 class="configuration--field-label sub-text-color paragraph">
         {{ subLabel }}
       </h5>
     </div>
   </div>
-  <div class="email-configuration--input-section">
-    <mat-form-field floatLabel="always" appearance="outline" class="email-configuration--form-field">
+  <div class="configuration--input-section">
+    <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
       <mat-select [placeholder]="placeholder" [formControlName]="formControllerName"
         [compareWith]="helperService.compareObjects" multiple>
         <app-simple-text-search [page]="SimpleSearchPage.CONFIGURATION"
@@ -41,12 +41,12 @@
           </div>
         </mat-select-trigger>
         <div *ngFor="let option of options | search : form.value.searchOption">
-          <mat-option [matTooltip]="option.email" [matTooltipDisabled]="option.email.length <= 40"
+          <mat-option [ngClass]="{'search-zero-state': option && option.name === 'No result found'}" [matTooltip]="option.email" [matTooltipDisabled]="option.email.length <= 40"
             matTooltipPosition="above" matTooltipClass="above" (click)="helperService.clearSearchText(form)"
             [value]="option.email" class="multiline-mat-option" fxLayout="row" fxLayoutAlign="start">
-            <p (click)="$event.stopPropagation()" *ngIf="options.length === 0 " class="align-center italic">No result
+            <p (click)="$event.stopPropagation()" *ngIf="option.name === 'No result found' " class="align-center italic">No result
               found</p>
-              <div>
+              <div *ngIf="option.name !== 'No result found' ">
                 <div class="schedule--head-name ">
                   {{option.name}}
                 </div>
@@ -54,7 +54,7 @@
                   {{option.email}}
                 </div>
               </div>
-            <img *ngIf="(form.value[formControllerName] | json) === ({name: option.name, id: option.email} | json)"
+            <img *ngIf="(form.value[formControllerName] | json) === ({name: option.name, email: option.email} | json) && (option.name !== 'No result found')"
               src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
           </mat-option>
         </div>

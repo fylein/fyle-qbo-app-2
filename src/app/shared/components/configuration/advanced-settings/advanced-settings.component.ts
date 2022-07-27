@@ -57,7 +57,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   ];
 
   frequencyIntervals: AdvancedSettingFormOption[] = [...Array(24).keys()].map(day => {
-     return {
+    return {
       label: (day + 1) === 1 ? (day + 1) + ' Hour' : (day + 1) + ' Hours',
       value: day + 1
     };
@@ -132,7 +132,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     const time = Date.now();
     const today = new Date(time);
 
-    const previewValues: {[key: string]: string} = {
+    const previewValues: { [key: string]: string } = {
       employee_email: 'john.doe@acme.com',
       category: 'Meals and Entertainment',
       purpose: 'Client Meeting',
@@ -162,7 +162,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   }
 
   showAutoCreateVendorsField(): boolean {
-    return this.workspaceGeneralSettings.employee_field_mapping === EmployeeFieldMapping.VENDOR && this.workspaceGeneralSettings.auto_map_employees !== null && this.workspaceGeneralSettings.auto_map_employees !== AutoMapEmployee.EMPLOYEE_CODE ;
+    return this.workspaceGeneralSettings.employee_field_mapping === EmployeeFieldMapping.VENDOR && this.workspaceGeneralSettings.auto_map_employees !== null && this.workspaceGeneralSettings.auto_map_employees !== AutoMapEmployee.EMPLOYEE_CODE;
   }
 
   private setupForm(): void {
@@ -185,7 +185,8 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       exportScheduleFrequency: [this.advancedSettings.workspace_schedules?.enabled ? this.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [this.advancedSettings.workspace_general_settings.memo_structure],
       searchOption: [],
-      emails: [this.advancedSettings.workspace_schedules.emails_selected ? this.advancedSettings.workspace_schedules.emails_selected : null]
+      emails: [this.advancedSettings.workspace_schedules.emails_selected ? this.advancedSettings.workspace_schedules.emails_selected : []],
+      addedEmail: [this.advancedSettings.workspace_schedules.additional_email_options ? this.advancedSettings.workspace_schedules.additional_email_options : []]
     });
 
     this.setCustomValidators();
@@ -198,15 +199,12 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       this.advancedSettingService.getAdvancedSettings(),
       this.mappingService.getQBODestinationAttributes('BANK_ACCOUNT'),
       this.workspaceService.getWorkspaceGeneralSettings(),
-      this.advancedSettingService.getWorkspaceSchedule(),
       this.advancedSettingService.getWorkspaceAdmins()
     ]).subscribe(response => {
       this.advancedSettings = response[0];
       this.billPaymentAccounts = response[1];
       this.workspaceGeneralSettings = response[2];
-      this.scheduleSetting = response[3];
-      this.adminEmails = response[4];
-      this.scheduleSetting.additional_email_options.length > 0 ? this.scheduleSetting.additional_email_options.map(mail => this.adminEmails.push(mail)) : '';
+      this.adminEmails = this.advancedSettings.workspace_schedules.additional_email_options ? this.advancedSettings.workspace_schedules.additional_email_options.concat(response[3]) : response[3];
       this.setupForm();
     });
   }
@@ -231,7 +229,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     const differenceInMs = new Date().getTime() - this.sessionStartTime.getTime();
 
     this.timeSpentEventRecorded = true;
-    this.trackingService.trackTimeSpent(OnboardingStep.ADVANCED_SETTINGS, {phase: this.getPhase(), durationInSeconds: Math.floor(differenceInMs / 1000), eventState: eventState});
+    this.trackingService.trackTimeSpent(OnboardingStep.ADVANCED_SETTINGS, { phase: this.getPhase(), durationInSeconds: Math.floor(differenceInMs / 1000), eventState: eventState });
   }
 
   save(): void {
@@ -280,8 +278,13 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       }
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.getSettingsAndSetupForm();
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.advancedSettingsForm.controls.exportScheduleFrequency.patchValue(result.hours);
+        this.advancedSettingsForm.controls.emails.patchValue(result.emails_selected);
+        this.advancedSettingsForm.controls.addedEmail.patchValue(result.email_added);
+        this.adminEmails = this.adminEmails.concat(result.email_added);
+      }
     });
   }
 

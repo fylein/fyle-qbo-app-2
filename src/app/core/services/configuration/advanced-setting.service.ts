@@ -31,16 +31,7 @@ export class AdvancedSettingService {
     return this.apiService.put(`/v2/workspaces/${this.workspaceService.getWorkspaceId()}/advanced_configurations/`, exportSettingsPayload);
   }
 
-  postWorkspaceSchedule(data: AdvancedSettingWorkspaceSchedulePost): Observable<WorkspaceSchedule> {
-    const workspaceId =  this.workspaceService.getWorkspaceId();
-    return this.apiService.post(`/workspaces/${workspaceId}/schedule/`, data);
-  }
-
   getWorkspaceAdmins(): Observable<[WorkspaceScheduleEmailOptions]> {
     return this.apiService.get(`/workspaces/${this.workspaceService.getWorkspaceId()}/admins/`, {});
-  }
-
-  getWorkspaceSchedule(): Observable<WorkspaceSchedule> {
-    return this.apiService.get(`/workspaces/${this.workspaceService.getWorkspaceId()}/schedule/`, {});
   }
 }
