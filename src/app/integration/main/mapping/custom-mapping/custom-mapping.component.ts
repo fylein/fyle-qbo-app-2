@@ -65,7 +65,7 @@ export class CustomMappingComponent implements OnInit {
     this.showMappingList = true;
   }
 
-  updateMappingRow(index: number, qboField: MappingDestinationField | '' = '', fyleField: MappingSourceField | string | '' = ''): void {
+  updateMappingRow(index: number, qboField: MappingDestinationField | '', fyleField: MappingSourceField | string | '' = ''): void {
     if (qboField) {
       this.mappingRows[index].qboField = qboField;
     } else if (fyleField) {

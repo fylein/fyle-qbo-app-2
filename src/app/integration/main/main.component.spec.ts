@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of, ReplaySubject } from 'rxjs';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { MainComponent } from './main.component';
-import { mappingResponse, modules } from './main.fixture';
+import { mappingSettingResponse, modules } from './main.fixture';
 import { SnakeCaseToSpaceCase } from '../../shared/pipes/snake-case-to-space-case.pipe';
 import { Renderer2, Type } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -21,9 +21,9 @@ describe('MainComponent', () => {
   const routerSpy = { navigate: jasmine.createSpy('navigate'), url: '/onboarding', events: eventSubject.asObservable() };
   beforeEach(async () => {
     const service1 = {
-      getMappingSettings: () => of(mappingResponse),
+      getMappingSettings: () => of(mappingSettingResponse),
       refreshMappingPages: () => undefined,
-      getMappingPagesForSideNavBar: of(mappingResponse),
+      getMappingPagesForSideNavBar: of(mappingSettingResponse),
       showWalkThroughTooltip: of(undefined)
     };
 

@@ -58,6 +58,17 @@ const mapping_settings: MappingSetting[] = [{
   import_to_fyle: true,
   is_custom: true,
   source_placeholder: null
+},
+{
+  id: 1,
+  created_at: new Date(),
+  updated_at: new Date(),
+  workspace: 1,
+  source_field: 'CUSTOM_FIELD',
+  destination_field: MappingDestinationField.DEPARTMENT,
+  import_to_fyle: false,
+  is_custom: true,
+  source_placeholder: null
 }];
 export const getImportsettingResponse: ImportSettingGet={
   general_mappings: general_mappings,
