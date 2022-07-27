@@ -124,6 +124,6 @@ describe('CustomMappingComponent', () => {
     fixture.detectChanges();
     expect(component.createMappingRow()).toBeUndefined();
     expect(component.showMappingList).toBeTrue();
-    expect(component.mappingSetting.value.length).toBe(2);
+    expect(component.mappingSetting.value.length).toBe(3);
   });
 });
