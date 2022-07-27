@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MappingSetting } from '../db/mapping-setting.model';
 import { MappingDestinationField, MappingSourceField } from '../enum/enum.model';
 import { ImportSettingModel, ImportSettingPost } from "./import-setting.model";
 
@@ -46,8 +47,28 @@ describe('ImportSettingModel', () => {
         import_to_fyle: true,
         is_custom: false,
         source_placeholder: 'Fyle'
+      },
+      {
+        source_field: MappingSourceField.COST_CENTER,
+        destination_field: MappingDestinationField.CUSTOMER,
+        import_to_fyle: false,
+        is_custom: false,
+        source_placeholder: null
       }]
     };
-    expect(ImportSettingModel.constructPayload(importSettingsForm, [])).toEqual(employeeSettingPayload);
+
+    const existingMappingSettings: MappingSetting[] = [{
+      id: 21,
+      created_at: new Date(),
+      updated_at: new Date(),
+      workspace: 1,
+      source_field: MappingSourceField.COST_CENTER,
+      destination_field: MappingDestinationField.CUSTOMER,
+      import_to_fyle: false,
+      is_custom: false,
+      source_placeholder: null
+    }];
+
+    expect(ImportSettingModel.constructPayload(importSettingsForm, existingMappingSettings)).toEqual(employeeSettingPayload);
   });
 });

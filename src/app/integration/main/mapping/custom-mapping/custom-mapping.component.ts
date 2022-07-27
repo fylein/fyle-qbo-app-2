@@ -6,10 +6,11 @@ import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { forkJoin } from 'rxjs';
 import { MappingSetting, MappingSettingList } from 'src/app/core/models/db/mapping-setting.model';
 import { MappingStats } from 'src/app/core/models/db/mapping.model';
-import { MappingDestinationField, MappingSourceField, ZeroStatePage } from 'src/app/core/models/enum/enum.model';
+import { DeleteEvent, MappingDestinationField, MappingSourceField, ProgressPhase, UpdateEvent, ZeroStatePage } from 'src/app/core/models/enum/enum.model';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { ExpenseField } from 'src/app/core/models/misc/expense-field.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
+import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/core/confirmation-dialog/confirmation-dialog.component';
 
@@ -47,7 +48,8 @@ export class CustomMappingComponent implements OnInit {
     private formBuilder: FormBuilder,
     private helperService: HelperService,
     private mappingService: MappingService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private trackingService: TrackingService
   ) { }
 
   createMappingRow(): void {
@@ -63,7 +65,7 @@ export class CustomMappingComponent implements OnInit {
     this.showMappingList = true;
   }
 
-  updateMappingRow(index: number, qboField: MappingDestinationField | '' = '', fyleField: MappingSourceField | string | '' = ''): void {
+  updateMappingRow(index: number, qboField: MappingDestinationField | '', fyleField: MappingSourceField | string | '' = ''): void {
     if (qboField) {
       this.mappingRows[index].qboField = qboField;
     } else if (fyleField) {
@@ -90,6 +92,13 @@ export class CustomMappingComponent implements OnInit {
     }];
 
     this.mappingService.postMappingSettings(mappingSettingPayload).subscribe((response: MappingSetting[]) => {
+      this.trackingService.onUpdateEvent(
+        UpdateEvent.CUSTOM_MAPPING,
+        {
+          phase: ProgressPhase.POST_ONBOARDING,
+          newState: {source_field: mappingSettingPayload[0].source_field, destination_field: mappingSettingPayload[0].destination_field}
+        }
+      );
       this.mappingService.emitWalkThroughTooltip();
       this.mappingService.refreshMappingPages();
       this.snackBar.open('Custom Mapping Created Successfully');
@@ -101,7 +110,7 @@ export class CustomMappingComponent implements OnInit {
   deleteMappingSetting(index: number): void {
     const mappingRow: MappingSettingList = this.mappingSettingForm.value.mappingSetting[index];
     const qboField: string = this.helperService.getSpaceCasedTitleCase(mappingRow.qboField);
-    const fyleField: string = this.helperService.getSpaceCasedTitleCase(mappingRow.qboField);
+    const fyleField: string = this.helperService.getSpaceCasedTitleCase(mappingRow.fyleField);
 
     const data: ConfirmationDialog = {
       title: 'Delete Custom Mapping',
@@ -124,6 +133,13 @@ export class CustomMappingComponent implements OnInit {
           if (this.mappingSettingForm.value.mappingSetting.length === 1) {
             this.showMappingList = false;
           }
+
+          this.trackingService.onDeleteEvent(
+            DeleteEvent.CUSTOM_MAPPING, {
+              source_field: mappingRow.fyleField,
+              destination_field: mappingRow.qboField
+            }
+          );
 
           this.mappingService.refreshMappingPages();
           this.snackBar.open('Custom Mapping Deleted Successfully');

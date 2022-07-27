@@ -199,7 +199,12 @@ export enum UpdateEvent {
   EXPORT_SETTINGS = 'Export Settings',
   IMPORT_SETTINGS = 'Import Settings',
   ADVANCED_SETTINGS = 'Advanced Settings',
-  PAGE_SIZE = 'Page Size'
+  PAGE_SIZE = 'Page Size',
+  CUSTOM_MAPPING = 'Custom Mapping'
+}
+
+export enum DeleteEvent {
+  CUSTOM_MAPPING = 'Custom Mapping'
 }
 
 export enum Action {

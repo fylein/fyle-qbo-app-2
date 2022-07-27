@@ -137,7 +137,7 @@ export class MappingService {
     return this.apiService.post(`/workspaces/${this.workspaceId}/mappings/settings/`, mappingSettingPayload);
   }
 
-  deleteMappingSetting(mappingSettingId: number): Observable<MappingSettingResponse> {
+  deleteMappingSetting(mappingSettingId: number): Observable<{}> {
     return this.apiService.delete(`/workspaces/${this.workspaceId}/mappings/settings/${mappingSettingId}/`);
   }
 }
