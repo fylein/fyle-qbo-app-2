@@ -154,7 +154,7 @@ export class CustomMappingComponent implements OnInit {
     if (this.mappingSettingForm.valid) {
       const mappingRow: MappingSettingList = this.mappingSettingForm.value.mappingSetting[index];
       const qboField: string = this.helperService.getSpaceCasedTitleCase(mappingRow.qboField);
-      const fyleField: string = this.helperService.getSpaceCasedTitleCase(mappingRow.qboField);
+      const fyleField: string = this.helperService.getSpaceCasedTitleCase(mappingRow.fyleField);
 
       const data: ConfirmationDialog = {
         title: 'Create Custom Mapping',
