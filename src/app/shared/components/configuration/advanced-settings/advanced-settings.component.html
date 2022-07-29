@@ -24,7 +24,7 @@
           [subLabel]="'You can select one or more email address from the given list, or add new one to get email notifications on.'"
           [placeholder]="'Select Email Address'" [formControllerName]="'emails'">
         </app-email-multi-select-field>
-        <div *ngIf="advancedSettingsForm.controls.exportScheduleFrequency.value" fxLayout="row" class="pointer"
+        <div *ngIf="advancedSettingsForm.controls.exportScheduleFrequency.value" fxLayout="row" class="advanced-settings--add-email-text pointer"
           fxLayoutAlign="end center" (click)="openAddemailDialog()">
           <span class="advanced-settings--span-or">or</span>
           <img class="advanced-settings--add-btn" src="assets/images/svgs/actions/add.svg">

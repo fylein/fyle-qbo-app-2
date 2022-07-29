@@ -47,10 +47,10 @@
             <p (click)="$event.stopPropagation()" *ngIf="option.name === 'No result found' " class="align-center italic">No result
               found</p>
               <div *ngIf="option.name !== 'No result found' ">
-                <div class="schedule--head-name ">
+                <div class="email-multi-select-field--head-name ">
                   {{option.name}}
                 </div>
-                <div class="schedule--bottom-name">
+                <div class="email-multi-select-field--bottom-name">
                   {{option.email}}
                 </div>
               </div>

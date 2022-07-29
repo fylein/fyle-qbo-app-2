@@ -66,6 +66,27 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+
+  &--bottom-name {
+    font-family: 'Aktiv Grotesk';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #A9ACBC;
+  }
+
+  &--head-name {
+    font-family: 'Aktiv Grotesk';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #414562;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
 }
 
 .configuration{
@@ -100,44 +121,6 @@ p {
   font-size: none !important;
 }
 
-.schedule {
-  &--add-btn {
-    margin-bottom: 8px;
-    height: 16px;
-    width: 16px;
-    ;
-  }
-
-  &--span-or {
-    margin-left: 5px;
-    margin-bottom: 8px;
-    margin-right: 25px;
-    font-weight: 500;
-    font-size: 14px;
-    color: #2c304e;
-  }
-
-  &--bottom-name {
-    font-family: 'Aktiv Grotesk';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 15px;
-    color: #A9ACBC;
-  }
-
-  &--head-name {
-    font-family: 'Aktiv Grotesk';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 18px;
-    color: #414562;
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-  }
-}
 .mat-option{
   padding-top: 8px;
   padding-bottom: 8px;
