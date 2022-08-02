@@ -80,14 +80,6 @@ describe('CustomMappingComponent', () => {
     expect(mappingRow.isDeleteButtonAllowed).toBeTrue();
   });
 
-  it('should save mapping setting', () => {
-    component.mappingSettingForm.patchValue({
-      mappingSetting: mappedRowsFormArray
-    });
-    fixture.detectChanges();
-    expect(component.saveMappingSetting(0)).toBeUndefined();
-  });
-
   it('should delete mapping setting', () => {
     component.mappingSettingForm.patchValue({
       mappingSetting: mappedRowsFormArray
@@ -100,10 +92,17 @@ describe('CustomMappingComponent', () => {
     component.mappingSettingForm.patchValue({
       mappingSetting: mappedRowsFormArray
     });
-    fixture.detectChanges();
+    const previousLength = component.mappingSettingForm.get('mappingSetting')?.value.length;
     expect(component.clearMappingRow(0)).toBeUndefined();
-    expect(component.mappingSettingForm.value.mappingSetting.length).toBe(0);
-    expect(component.showMappingList).toBeFalse();
+    expect(component.mappingSettingForm.get('mappingSetting')?.value.length).toEqual(previousLength - 1);
+  });
+
+  it('should save mapping setting', () => {
+    component.mappingSettingForm.patchValue({
+      mappingSetting: mappedRowsFormArray
+    });
+    fixture.detectChanges();
+    expect(component.saveMappingSetting(0)).toBeUndefined();
   });
 
   it('should update mapping row', () => {
