@@ -35,7 +35,7 @@ export class CustomMappingComponent implements OnInit {
 
   mappingRows:MappingSettingList[];
 
-  qboFields: MappingDestinationField[] = [MappingDestinationField.CLASS, MappingDestinationField.DEPARTMENT, MappingDestinationField.CUSTOMER];
+  qboFields: MappingDestinationField[];
 
   fyleFields: ExpenseField[];
 
@@ -74,14 +74,15 @@ export class CustomMappingComponent implements OnInit {
   }
 
   clearMappingRow(index: number): void {
-    this.mappingSetting.controls[index].get('qboField')?.setValue('');
-    this.mappingSetting.controls[index].get('fyleField')?.setValue('');
-    this.mappingRows[index].qboField = '';
-    this.mappingRows[index].fyleField = '';
+    this.mappingSetting.removeAt(index);
+    this.mappingRows.splice(index, 1);
+
+    if (!this.mappingRows.length) {
+      this.showMappingList = false;
+    }
   }
 
   private constructPayloadAndSave(mappingRow: MappingSettingList): void {
-    // TODO: add trackers
     this.isLoading = true;
     const mappingSettingPayload = [{
       source_field: mappingRow.fyleField,
@@ -144,6 +145,10 @@ export class CustomMappingComponent implements OnInit {
           this.mappingService.refreshMappingPages();
           this.snackBar.open('Custom Mapping Deleted Successfully');
           this.mappingSettings = this.mappingSettings.filter((mapping) => mapping.id !== mappingRow.id);
+          this.fyleFields.push({
+            attribute_type: mappingRow.fyleField,
+            display_name: this.helperService.getSpaceCasedTitleCase(mappingRow.fyleField)
+          });
           this.setupPage();
         });
       }
@@ -185,7 +190,7 @@ export class CustomMappingComponent implements OnInit {
   }
 
   get isExistingRowMapped(): boolean {
-   return this.mappingRows.filter(row => row.existingMapping).length > 0;
+   return this.mappingRows.filter(row => !row.existingMapping).length === 0;
   }
 
   get mappingSetting() {
@@ -195,14 +200,15 @@ export class CustomMappingComponent implements OnInit {
   private setupPage(): void {
     // Remove already imported fyle fields from the options
     this.fyleFields = this.fyleFields.filter(field => {
-      return !this.mappingSettings.some(mapping => mapping.import_to_fyle && mapping.source_field === field.attribute_type);
+      return !this.mappingSettings.some(mapping => mapping.source_field === field.attribute_type);
     });
+    this.qboFields = [MappingDestinationField.CLASS, MappingDestinationField.DEPARTMENT, MappingDestinationField.CUSTOMER];
 
-    const importedQBOFields = this.mappingSettings.filter((mappingSetting: MappingSetting) => {
-      return (mappingSetting.destination_field === MappingDestinationField.CLASS || mappingSetting.destination_field === MappingDestinationField.DEPARTMENT || mappingSetting.destination_field === MappingDestinationField.CUSTOMER) && mappingSetting.import_to_fyle;
+    const existingQBOFields = this.mappingSettings.filter((mappingSetting: MappingSetting) => {
+      return (mappingSetting.destination_field === MappingDestinationField.CLASS || mappingSetting.destination_field === MappingDestinationField.DEPARTMENT || mappingSetting.destination_field === MappingDestinationField.CUSTOMER);
     }).map((mappingSetting: MappingSetting) => mappingSetting.destination_field);
 
-    this.qboFields = this.qboFields.filter((qboField: MappingDestinationField) => !importedQBOFields.includes(qboField));
+    this.qboFields = this.qboFields.filter((qboField: MappingDestinationField) => !existingQBOFields.includes(qboField));
 
     const mappedRows = this.mappingSettings.filter((mappingSetting: MappingSetting) => {
       return (mappingSetting.destination_field === MappingDestinationField.CLASS || mappingSetting.destination_field === MappingDestinationField.DEPARTMENT || mappingSetting.destination_field === MappingDestinationField.CUSTOMER) && !mappingSetting.import_to_fyle;

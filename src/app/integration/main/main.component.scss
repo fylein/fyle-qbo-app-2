@@ -98,6 +98,13 @@
   &--child-contents {
     margin-left: 260px;
   }
+
+  &--separator {
+    border-top: 1px solid #DFDFE2;
+    width: 212px;
+    margin-left: 24px;
+    opacity: 0.1;
+  }
 }
 
 .walk-through-tooltip {

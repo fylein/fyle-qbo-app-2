@@ -88,14 +88,14 @@
         </div>
       </div>
 
-      <div fxLayout="row" *ngIf="!isLoading && showMappingList && qboFields.length > mappingRows.length && fyleFields.length > mappingRows.length && isExistingRowMapped" class="custom-mapping--add-section">
+      <div fxLayout="row" *ngIf="!isLoading && showMappingList && qboFields.length > 0 && fyleFields.length > 0 && isExistingRowMapped" class="custom-mapping--add-section">
         <div fxLayout="row" class="pointer" (click)="createMappingRow()">
           <img class="custom-mapping--add-icon" width="15px" height="25px" src="assets/images/svgs/actions/plus.svg">
           <h4 class="actionable-text">Add New Mapping</h4>
         </div>
       </div>
 
-      <div fxLayout="row" *ngIf="!isLoading && showMappingList && isExistingRowMapped && !(qboFields.length > mappingRows.length && fyleFields.length > mappingRows.length)" class="custom-mapping--limit-exceeded-section paragraph">
+      <div fxLayout="row" *ngIf="!isLoading && showMappingList && isExistingRowMapped && !(qboFields.length > 0 && fyleFields.length > 0)" class="custom-mapping--limit-exceeded-section paragraph">
         <div fxLayout="row" class="custom-mapping--limit-exceeded-content">
           <img class="custom-mapping--error-icon" width="17px" height="17px" src="assets/images/svgs/general/info-error.svg">
           <div>

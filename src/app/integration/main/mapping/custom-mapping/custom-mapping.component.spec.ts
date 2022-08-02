@@ -102,8 +102,8 @@ describe('CustomMappingComponent', () => {
     });
     fixture.detectChanges();
     expect(component.clearMappingRow(0)).toBeUndefined();
-    expect(component.mappingSettingForm.value.mappingSetting[0].fyleField).toBe('');
-    expect(component.mappingSettingForm.value.mappingSetting[0].qboField).toBe('');
+    expect(component.mappingSettingForm.value.mappingSetting.length).toBe(0);
+    expect(component.showMappingList).toBeFalse();
   });
 
   it('should update mapping row', () => {
