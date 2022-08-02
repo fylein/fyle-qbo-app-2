@@ -185,7 +185,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       exportScheduleFrequency: [this.advancedSettings.workspace_schedules?.enabled ? this.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [this.advancedSettings.workspace_general_settings.memo_structure],
       searchOption: [],
-      emails: [this.advancedSettings.workspace_schedules.emails_selected ? this.advancedSettings.workspace_schedules.emails_selected : []],
+      emails: [this.advancedSettings.workspace_schedules?.emails_selected ? this.advancedSettings.workspace_schedules?.emails_selected : []],
       addedEmail: []
     });
 
@@ -204,7 +204,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       this.advancedSettings = response[0];
       this.billPaymentAccounts = response[1];
       this.workspaceGeneralSettings = response[2];
-      this.adminEmails = this.advancedSettings.workspace_schedules.additional_email_options ? this.advancedSettings.workspace_schedules.additional_email_options.concat(response[3]) : response[3];
+      this.adminEmails = this.advancedSettings.workspace_schedules?.additional_email_options ? this.advancedSettings.workspace_schedules?.additional_email_options.concat(response[3]) : response[3];
       this.setupForm();
     });
   }
