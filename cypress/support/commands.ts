@@ -48,5 +48,6 @@ Cypress.Commands.add('login', () => {
 
 Cypress.on('uncaught:exception', (err, runnable) => {
   // Don't stop the test execution for 4xx errors
+  // TODO: do this only for 4xx errors
   return false
 })
