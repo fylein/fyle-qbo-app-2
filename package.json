@@ -12,7 +12,7 @@
     "config": "ts-node -O '{\"module\": \"commonjs\"}' config.index.ts",
     "cypress_open": "cypress open",
     "cypress_run": "npm run prepare_e2e_test && cypress run",
-    "prepare_e2e_test": "ts-node -O '{\"module\": \"commonjs\"}' scripts/e2e.ts"
+    "prepare_e2e_test": "node scripts/e2e.js"
   },
   "private": true,
   "dependencies": {

@@ -1,11 +1,11 @@
 import { defineConfig } from "cypress";
+import { environment } from "src/environments/environment";
 
 export default defineConfig({
   projectId: 'ixtuem',
   e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
-    baseUrl: 'http://localhost:4200'
+    baseUrl: environment.cypress_env === 'Local' ? 'http://localhost:4200' : 'https://quickbooks-new.fyleapps.tech',
   },
+  video: false,
+  screenshotOnRunFailure: false
 });
