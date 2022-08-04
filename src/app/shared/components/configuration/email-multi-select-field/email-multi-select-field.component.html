@@ -16,7 +16,7 @@
     <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
       <mat-select [placeholder]="placeholder" [formControlName]="formControllerName"
         [compareWith]="helperService.compareObjects" multiple>
-        <app-simple-text-search [page]="SimpleSearchPage.CONFIGURATION"
+        <app-simple-text-search [placeholder]="'Search by Name'" [page]="SimpleSearchPage.CONFIGURATION"
           [searchType]="SimpleSearchType.SELECT_FIELD" [form]="form"></app-simple-text-search>
         <mat-select-trigger fxLayout="row" fxLayoutAlign="space-between center">
           <div fxLayout="row">

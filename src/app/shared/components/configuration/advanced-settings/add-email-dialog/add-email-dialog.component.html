@@ -36,7 +36,7 @@
         <input class="add-email-dialog--form-input" type="text" formControlName="adminEmail"
           placeholder="Type email address here (ex- john@acme.com)" matInput>
         <app-mandatory-error-message *ngIf="form.controls.adminEmail.touched && !form.controls.adminEmail.valid"
-          [customErrorMessage]="'Please enter a proper email'"></app-mandatory-error-message>
+          [customErrorMessage]="'Please enter a valid email address'"></app-mandatory-error-message>
       </div>
     </div>
 
