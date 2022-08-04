@@ -142,7 +142,13 @@ export class GenericMappingComponent implements OnInit {
       }
     }
 
-    this.mappingService.getMappings(mappingState, allAlphabets, paginator.limit, paginator.offset, alphabetsFilter, this.mappingSetting.source_field, this.mappingSetting.destination_field).subscribe((extendedExpenseAttributeResponse: ExtendedExpenseAttributeResponse) => {
+    let active = false;
+    if ((this.mappingSetting.source_field === 'PROJECT' && this.mappingSetting.destination_field === 'CUSTOMER') ||
+        (this.mappingSetting.source_field === 'CATEGORY' && this.mappingSetting.destination_field === 'ACCOUNT') ) {
+        active = true;
+    }
+
+    this.mappingService.getMappings(mappingState, allAlphabets, paginator.limit, paginator.offset, alphabetsFilter, this.mappingSetting.source_field, this.mappingSetting.destination_field, active).subscribe((extendedExpenseAttributeResponse: ExtendedExpenseAttributeResponse) => {
       this.totalCount = extendedExpenseAttributeResponse.count;
       extendedExpenseAttributeResponse.results.forEach((extendedExpenseAttribute: ExtendedExpenseAttribute, index: number) => {
         mappings.push({
@@ -183,10 +189,17 @@ export class GenericMappingComponent implements OnInit {
       const mappingSetting = mappingSettingResponse.results.filter((mappingSetting) => mappingSetting.source_field === this.sourceType.toUpperCase());
       this.mappingSetting = mappingSetting.length ? mappingSetting[0] : {source_field: FyleField.CATEGORY, destination_field: QBOField.ACCOUNT};
       this.page = `${new TitleCasePipe().transform(new SnakeCaseToSpaceCase().transform(this.mappingSetting.source_field))} Mapping`;
-      this.mappingService.getMappingStats(this.sourceType.toUpperCase(), this.mappingSetting.destination_field).subscribe((mappingStats: MappingStats) => {
+
+      let active = false;
+      if ((this.mappingSetting.source_field === 'PROJECT' && this.mappingSetting.destination_field === 'CUSTOMER') ||
+          (this.mappingSetting.source_field === 'CATEGORY' && this.mappingSetting.destination_field === 'ACCOUNT') ){
+          active = true;
+      }
+
+      this.mappingService.getMappingStats(this.sourceType.toUpperCase(), this.mappingSetting.destination_field, active).subscribe((mappingStats: MappingStats) => {
         this.mappingStats = mappingStats;
 
-        this.mappingService.getQBODestinationAttributes(this.mappingSetting.destination_field).subscribe((qboData: DestinationAttribute[]) => {
+        this.mappingService.getQBODestinationAttributes(this.mappingSetting.destination_field, active).subscribe((qboData: DestinationAttribute[]) => {
           this.qboData = qboData;
           this.getMappings();
         });

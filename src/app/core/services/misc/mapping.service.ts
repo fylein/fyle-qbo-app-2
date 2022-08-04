@@ -23,10 +23,15 @@ export class MappingService {
     private workspaceService: WorkspaceService
   ) { }
 
-  getQBODestinationAttributes(attributeTypes: string | string[]): Observable<DestinationAttribute[]> {
-    return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/destination_attributes/`, {
-      attribute_types: attributeTypes
-    });
+  getQBODestinationAttributes(attributeTypes: string | string[], active:boolean = false): Observable<DestinationAttribute[]> {
+    const params: {[key: string]: any} = {};
+    params.attribute_types = attributeTypes;
+
+    if (active === true) {
+      params.active = true;
+    }
+
+    return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/destination_attributes/`, params);
   }
 
   getDistinctQBODestinationAttributes(attributeTypes: string[]): Observable<DestinationAttribute[]> {
@@ -59,19 +64,21 @@ export class MappingService {
     return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expense_fields/`, {});
   }
 
-  getMappings(mappingState: MappingState, allAlphabets: boolean, limit: number, offset: number, alphabetsFilter: string[], sourceType: string, destinationType: string): Observable<ExtendedExpenseAttributeResponse> {
-    return this.apiService.get(
-      `/workspaces/${this.workspaceId}/mappings/expense_attributes/`,
-      {
-        limit,
-        offset,
-        all_alphabets: allAlphabets,
-        mapped: mappingState === MappingState.ALL ? MappingState.ALL : false,
-        mapping_source_alphabets: alphabetsFilter.length ? alphabetsFilter : null,
-        source_type: sourceType,
-        destination_type: destinationType
-      }
-    );
+  getMappings(mappingState: MappingState, allAlphabets: boolean, limit: number, offset: number, alphabetsFilter: string[], sourceType: string, destinationType: string, active: boolean=false): Observable<ExtendedExpenseAttributeResponse> {
+    const params: {[key: string]: any} = {};
+    params.limit = limit;
+    params.offset = offset;
+    params.all_alphabets = allAlphabets;
+    params.mapped = mappingState === MappingState.ALL ? MappingState.ALL : false;
+    params.mapping_source_alphabets = alphabetsFilter.length ? alphabetsFilter : null;
+    params.source_type = sourceType;
+    params.destination_type = destinationType;
+
+    if (active === true) {
+      params.active = true;
+    }
+
+    return this.apiService.get(`/workspaces/${this.workspaceId}/mappings/expense_attributes/`, params);
   }
 
   postMapping(mapping: MappingPost): Observable<EmployeeMapping> {
@@ -110,8 +117,15 @@ export class MappingService {
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/vendors/`, {});
   }
 
-  getMappingStats(sourceType: string, destinationType: string): Observable<MappingStats> {
-    return this.apiService.get(`/workspaces/${this.workspaceId}/mappings/stats/`, { source_type: sourceType, destination_type: destinationType });
+  getMappingStats(sourceType: string, destinationType: string, active: boolean = false): Observable<MappingStats> {
+    const params: {[key: string]: any} = {};
+    params.source_type = sourceType;
+    params.destination_type = destinationType;
+
+    if (active === true) {
+      params.active = true;
+    }
+    return this.apiService.get(`/workspaces/${this.workspaceId}/mappings/stats/`, params);
   }
 
   // TODO: cache this safely later
