@@ -68,7 +68,6 @@
   }
 
   &--bottom-name {
-    font-family: 'Aktiv Grotesk';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -77,7 +76,6 @@
   }
 
   &--head-name {
-    font-family: 'Aktiv Grotesk';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -129,4 +127,9 @@ p {
 
 .example-additional-selection{
   margin-left: 10px;
+}
+
+.align-center{
+  padding: 8px 16px;
+  margin: 10px;
 }

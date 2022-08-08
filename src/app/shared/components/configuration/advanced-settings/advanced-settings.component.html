@@ -6,39 +6,39 @@
       [phase]="isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING">
     </app-configuration-step-header-section>
     <form [formGroup]="advancedSettingsForm">
-      <div class="configuration--field-section">
+      <div>
         <app-configuration-toggle-field [form]="advancedSettingsForm"
           [iconPath]="'assets/images/svgs/general/calendar.svg'" [label]="'Schedule automatic export'"
           [subLabel]="'Set up a schedule to frequently automate the export of expenses from Fyle to Quickbooks Online'"
           [formControllerName]="'exportSchedule'">
         </app-configuration-toggle-field>
-      </div>
-      <div *ngIf="advancedSettingsForm.value.exportSchedule">
-        <app-configuration-select-field [form]="advancedSettingsForm" [options]="frequencyIntervals"
-          [isFieldMandatory]="true" [mandatoryErrorListName]="'frequency'" [label]="'Select frequency of export'"
-          [subLabel]="'Select the frequency at which you want your Automated import-export to happen'"
-          [placeholder]="'Select Frequency'" [formControllerName]="'exportScheduleFrequency'">
-        </app-configuration-select-field>
-        <app-email-multi-select-field [form]="advancedSettingsForm" [options]="adminEmails" [isFieldMandatory]="false"
-          [label]="'Select an email address to notify upon export failure'"
-          [subLabel]="'You can select one or more email address from the given list, or add new one to get email notifications on.'"
-          [placeholder]="'Select Email Address'" [formControllerName]="'emails'">
-        </app-email-multi-select-field>
-        <div *ngIf="advancedSettingsForm.controls.exportScheduleFrequency.value" fxLayout="row" class="advanced-settings--add-email-text pointer"
-          fxLayoutAlign="end center" (click)="openAddemailDialog()">
-          <span class="advanced-settings--span-or">or</span>
-          <img class="advanced-settings--add-btn" src="assets/images/svgs/actions/add.svg">
-          <span class="advanced-settings--span-or">Add new email address</span>
+        <div *ngIf="advancedSettingsForm.value.exportSchedule">
+          <app-configuration-select-field [form]="advancedSettingsForm" [options]="frequencyIntervals"
+            [isFieldMandatory]="true" [mandatoryErrorListName]="'frequency'" [label]="'Select frequency of export'"
+            [subLabel]="'Select the frequency at which you want your Automated import-export to happen'"
+            [placeholder]="'Select Frequency'" [formControllerName]="'exportScheduleFrequency'">
+          </app-configuration-select-field>
+          <app-email-multi-select-field [form]="advancedSettingsForm" [options]="adminEmails" [isFieldMandatory]="false"
+            [label]="'Select an email address to notify upon export failure'"
+            [subLabel]="'You can select one or more email address from the given list, or add new one to get email notifications on.'"
+            [placeholder]="'Select Email Address'" [formControllerName]="'emails'">
+          </app-email-multi-select-field>
+          <div fxLayout="row" class="advanced-settings--add-email-text pointer"
+            fxLayoutAlign="end center" (click)="openAddemailDialog()">
+            <span class="advanced-settings--span-or">or</span>
+            <img class="advanced-settings--add-btn" src="assets/images/svgs/actions/add.svg">
+            <span class="advanced-settings--span-or">Add new email address</span>
+          </div>
         </div>
-      </div>
-
-      <div fxLayout="row" fxLayoutAlign="space-between start">
-        <div class="advanced-settings--schedule-note-content">
-          <h5 class="sub-text-color paragraph">
-            NOTE: If you skip enabling the auto-schedule of export, you could still manually export the data from the
-            <span class="bold">Dashboard</span>
-          </h5>
-        </div>
+  
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+          <div class="advanced-settings--schedule-note-content">
+            <h5 class="sub-text-color paragraph">
+              NOTE: If you skip enabling the auto-schedule of export, you could still manually export the data from the
+              <span class="bold">Dashboard</span>
+            </h5>
+          </div>
+        </div>  
       </div>
 
       <div class="configuration--field-section">

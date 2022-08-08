@@ -13,7 +13,7 @@
 </div>
 
 <!-- Advanced Setting Page - with icon -->
-<div *ngIf="iconPath" [formGroup]="form" [ngClass]="{'configuration--field-section': formControllerName !== 'exportSchedule'}">
+<div *ngIf="iconPath" [formGroup]="form" [ngClass]="formControllerName !== 'exportSchedule' ? 'configuration--field-section': 'configuration--export-field-section'">
   <div fxLayout="row" fxLayoutAlign="space-between start">
     <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
       <img src="{{ iconPath }}" class="configuration--icon">
