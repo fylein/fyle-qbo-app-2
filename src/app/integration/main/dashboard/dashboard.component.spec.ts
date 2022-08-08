@@ -144,6 +144,7 @@ describe('DashboardComponent', () => {
       expect(component.isLoading).toBeFalse();
     });
     discardPeriodicTasks();
+    expect(component.isLoading).toBeFalse();
   }));
 
   it('trackTimeTakenForResolvingMappingErrors function check', () => {

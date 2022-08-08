@@ -9,10 +9,9 @@ export class SearchPipe implements PipeTransform {
     if (value && args && args.length && args[0]) {
       const searchText = args[0].toLowerCase();
       const options = value.filter((item: any) => {
-        return item.value.toLowerCase().includes(searchText);
+        return item.value ? item.value.toLowerCase().includes(searchText) : item.name.toLowerCase().includes(searchText);
       });
-
-      return options && options.length ? options : [{ id: null, value: 'No result found' }];
+      return options && options.length ? options : (value[0].value ? [{ id: null, value: 'No result found' }] : [{ email: '', name: 'No result found' }]);
     }
     return value;
   }

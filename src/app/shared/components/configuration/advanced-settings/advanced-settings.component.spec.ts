@@ -5,7 +5,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { advancedSettingResponse, destinationAttribute, errorResponse, getadvancedSettingResponse, getadvancedSettingResponse2, memo, previewResponse, response } from './advanced-settings.fixture';
+import { adminEmails, advancedSettingResponse, destinationAttribute, emailResponse, errorResponse, getadvancedSettingResponse, getadvancedSettingResponse2, memo, previewResponse, response } from './advanced-settings.fixture';
 import { Router } from '@angular/router';
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
@@ -15,6 +15,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { OnboardingState, PaymentSyncDirection } from 'src/app/core/models/enum/enum.model';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { By } from '@angular/platform-browser';
+import { environment } from 'src/environments/environment';
+import { MatDialog } from '@angular/material/dialog';
 
 describe('AdvancedSettingsComponent', () => {
   let component: AdvancedSettingsComponent;
@@ -29,13 +31,18 @@ describe('AdvancedSettingsComponent', () => {
   let service3: any;
   let formbuilder: FormBuilder;
   let dialogSpy: jasmine.Spy;
-  const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({}), close: null });
+  let dialogSpy1: jasmine.Spy;
+  const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({hours: 1,
+    schedule_enabled: true,
+    emails_selected: ["fyle@fyle.in"],
+    email_added: {name: "fyle", email: 'fyle@fyle.in'}}), close: null });
   dialogRefSpyObj.componentInstance = { body: '' };
 
   beforeEach(async () => {
     service1 = {
       postAdvancedSettings: () => of(advancedSettingResponse),
-      getAdvancedSettings: () => of(getadvancedSettingResponse)
+      getAdvancedSettings: () => of(getadvancedSettingResponse),
+      getWorkspaceAdmins: () => of(adminEmails)
     };
 
     service2 = {
@@ -45,7 +52,8 @@ describe('AdvancedSettingsComponent', () => {
     service3 = {
       getWorkspaceGeneralSettings: () => of(response),
       getOnboardingState: () => 'ADVANCED_CONFIGURATION',
-      setOnboardingState: () => undefined
+      setOnboardingState: () => undefined,
+      getWorkspaceId: () => environment.tests.workspaceId
     };
     await TestBed.configureTestingModule({
       imports: [ RouterTestingModule, HttpClientModule, FormsModule, ReactiveFormsModule, MatSnackBarModule, SharedModule, NoopAnimationsModule],
@@ -75,7 +83,9 @@ describe('AdvancedSettingsComponent', () => {
       exportSchedule: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : false],
       exportScheduleFrequency: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [component.advancedSettings.workspace_general_settings.memo_structure],
-      searchOption: []
+      searchOption: [],
+      emails: [emailResponse.emails_selected],
+      addedEmail: [emailResponse.additional_email_options]
     });
     component.advancedSettingsForm = form;
     router = TestBed.inject(Router);
@@ -83,6 +93,7 @@ describe('AdvancedSettingsComponent', () => {
     workspace = TestBed.inject(WorkspaceService);
     mappingService = TestBed.inject(MappingService);
     dialogSpy = spyOn(TestBed.get(MatSnackBar), 'open').and.returnValue(dialogRefSpyObj);
+    dialogSpy1 = spyOn(TestBed.get(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
     fixture.detectChanges();
   });
 
@@ -131,7 +142,8 @@ describe('AdvancedSettingsComponent', () => {
       exportSchedule: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : false],
       exportScheduleFrequency: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [component.advancedSettings.workspace_general_settings.memo_structure],
-      searchOption: []
+      searchOption: [],
+      emails: [emailResponse.emails_selected]
     });
     component.saveInProgress = false;
     component.advancedSettingsForm = form;
@@ -157,7 +169,8 @@ describe('AdvancedSettingsComponent', () => {
       exportSchedule: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : false],
       exportScheduleFrequency: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [component.advancedSettings.workspace_general_settings.memo_structure],
-      searchOption: []
+      searchOption: [],
+      emails: [emailResponse.emails_selected]
     });
     component.saveInProgress = false;
     component.advancedSettingsForm = form;
@@ -181,7 +194,8 @@ describe('AdvancedSettingsComponent', () => {
       exportSchedule: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : false],
       exportScheduleFrequency: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [component.advancedSettings.workspace_general_settings.memo_structure],
-      searchOption: []
+      searchOption: [],
+      emails: [emailResponse.emails_selected]
     });
     component.saveInProgress = false;
     component.advancedSettingsForm = form;
@@ -225,5 +239,11 @@ describe('AdvancedSettingsComponent', () => {
     };
     fixture.detectChanges();
     expect(component.drop(event)).toBeUndefined();
+  });
+
+  it('openAddemailDialog function check', () => {
+    expect(component.openAddemailDialog()).toBeUndefined();
+    fixture.detectChanges();
+    expect(dialogSpy1).toHaveBeenCalled();
   });
 });
