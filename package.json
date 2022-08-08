@@ -8,8 +8,8 @@
     "build": "npm run setup_env && ng build --prod",
     "test": "ng test",
     "unit_test_ci": "npm run setup_env && ng test --watch=false --browsers=ChromeHeadlessCustom",
-    "lint": "ng lint",
-    "setup_env": "node scripts/setup_env.js"
+    "setup_env": "node scripts/setup_env.js",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
