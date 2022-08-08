@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { RedirectLink } from 'src/app/core/models/enum/enum.model';
+import { RedirectLink, ZeroStatePage } from 'src/app/core/models/enum/enum.model';
 import { SelectedDateFilter } from 'src/app/core/models/misc/date-filter.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 
@@ -19,7 +19,7 @@ export class ZeroStateWithIllustrationComponent implements OnInit {
 
   @Input() searchTerm: string;
 
-  @Input() page: 'export_log' | 'mapping' | 'dashboard' | 'dashboard_error';
+  @Input() page: ZeroStatePage;
 
   @Input() dateFilter: SelectedDateFilter | null;
 

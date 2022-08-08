@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
-import { chartOfAccountTypesList, errorResponse, destinationAttribute, expenseFieldresponse, getImportsettingResponse, navigationExtras, postImportsettingresponse, QBOCredentialsResponse, qboField } from './import-settings.fixture';
+import { chartOfAccountTypesList, errorResponse, destinationAttribute, expenseFieldresponse, getImportsettingResponse, postImportsettingresponse, QBOCredentialsResponse, qboField } from './import-settings.fixture';
 import { MappingDestinationField, OnboardingState } from 'src/app/core/models/enum/enum.model';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
@@ -45,7 +45,8 @@ describe('ImportSettingsComponent', () => {
     };
     service2 = {
       getFyleExpenseFields: () => of(expenseFieldresponse),
-      getQBODestinationAttributes: () => of(destinationAttribute)
+      getQBODestinationAttributes: () => of(destinationAttribute),
+      refreshMappingPages: () => undefined
     };
     service3 = {
       getOnboardingState: () => 'IMPORT_SETTINGS',
@@ -174,7 +175,7 @@ describe('ImportSettingsComponent', () => {
     fixture.detectChanges();
     expect(importSettingService.postImportSettings).toHaveBeenCalled();
     expect(workspace.getOnboardingState).toHaveBeenCalled();
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['/workspaces/main/dashboard'], navigationExtras);
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/workspaces/main/dashboard']);
   });
 
   it('Save function Failure check', () => {
