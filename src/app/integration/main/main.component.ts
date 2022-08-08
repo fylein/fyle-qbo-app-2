@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { MappingSetting, MappingSettingResponse } from 'src/app/core/models/db/mapping-setting.model';
 import { EmployeeFieldMapping, FyleField } from 'src/app/core/models/enum/enum.model';
@@ -13,6 +13,10 @@ import { MappingService } from 'src/app/core/services/misc/mapping.service';
 export class MainComponent implements OnInit {
 
   isLoading: boolean = true;
+
+  showWalkThroughTooltip: boolean;
+
+  @ViewChild('walkthrough') walkthrough: ElementRef;
 
   modules: DashboardModule[] = [
     {
@@ -71,9 +75,27 @@ export class MainComponent implements OnInit {
   ];
 
   constructor(
+    private renderer: Renderer2,
     private router: Router,
     private mappingService: MappingService
-  ) { }
+  ) {
+    // Helps refresh sidenav bar on mapping setting change
+    this.mappingService.getMappingPagesForSideNavBar.subscribe((mappingSettingResponse: MappingSettingResponse) => {
+      this.setupMappingModules(mappingSettingResponse);
+    });
+
+    // Subscribe to the event that is emitted when custom mapping is created
+    this.mappingService.showWalkThroughTooltip.subscribe(() => {
+      this.showWalkThroughTooltip = true;
+    });
+
+    // Listen to clicks and auto hide the walkthrough tooltip
+    this.renderer.listen('window', 'click', (e: Event) => {
+      if (this.showWalkThroughTooltip && this.walkthrough?.nativeElement && e.target !== this.walkthrough?.nativeElement) {
+        this.showWalkThroughTooltip = false;
+      }
+    });
+  }
 
   navigate(module: DashboardModule | DashboardModuleChild): void {
     // Setting clicked module as active
@@ -135,7 +157,7 @@ export class MainComponent implements OnInit {
 
   }
 
-  setupMappingPages(): void {
+  private setupMappingModules(mappingSettingResponse: MappingSettingResponse): void {
     this.modules[2].childPages = [{
       name: 'Employee Mapping',
       route: 'mapping/employee',
@@ -147,32 +169,46 @@ export class MainComponent implements OnInit {
       isActive: false
     }];
 
-    this.mappingService.getMappingSettings().subscribe((mappingSettingResponse: MappingSettingResponse) => {
-      const sourceFieldRoutes: string[] = [`mapping/${FyleField.EMPLOYEE.toLowerCase()}`, `mapping/${FyleField.CATEGORY.toLowerCase()}`];
-      mappingSettingResponse.results.forEach((mappingSetting: MappingSetting) => {
-        if (mappingSetting.source_field !== EmployeeFieldMapping.EMPLOYEE && mappingSetting.source_field !== FyleField.CATEGORY) {
-          sourceFieldRoutes.push(`mapping/${mappingSetting.source_field.toLowerCase()}`);
-          this.modules[2].childPages.push({
-            name: `${mappingSetting.source_field.toLowerCase()} Mapping`,
-            route: `mapping/${mappingSetting.source_field.toLowerCase()}`,
-            isActive: false
-          });
+    const sourceFieldRoutes: string[] = [`mapping/${FyleField.EMPLOYEE.toLowerCase()}`, `mapping/${FyleField.CATEGORY.toLowerCase()}`];
+    const importedFieldsFromQBO = [];
+    mappingSettingResponse.results.forEach((mappingSetting: MappingSetting) => {
+      if (mappingSetting.source_field !== EmployeeFieldMapping.EMPLOYEE && mappingSetting.source_field !== FyleField.CATEGORY) {
+        if (mappingSetting.import_to_fyle) {
+          importedFieldsFromQBO.push(mappingSetting.destination_field);
         }
-      });
+        sourceFieldRoutes.push(`mapping/${mappingSetting.source_field.toLowerCase()}`);
+        this.modules[2].childPages.push({
+          name: `${mappingSetting.source_field.toLowerCase()} Mapping`,
+          route: `mapping/${mappingSetting.source_field.toLowerCase()}`,
+          isActive: false
+        });
+      }
+    });
 
-      this.markModuleActive(this.router.url);
-      this.isLoading = false;
+    // Show Custom Mapping menu if atleast one QBO field is available to be mapped
+    if (importedFieldsFromQBO.length < 3) {
+      this.modules[2].childPages.push({
+        name: 'Custom Mapping',
+        route: 'mapping/custom',
+        isActive: false
+      });
+    }
+
+    this.markModuleActive(this.router.url);
+    this.isLoading = false;
+  }
+
+  getSettingsAndSetupPage(): void {
+    this.mappingService.getMappingSettings().subscribe((mappingSettingResponse: MappingSettingResponse) => {
+      this.setupMappingModules(mappingSettingResponse);
     });
   }
 
   private setRouteWatcher(): void {
-    this.setupMappingPages();
+    this.getSettingsAndSetupPage();
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationStart) {
         const splitUrl = val.url.split('?');
-        if (splitUrl.length > 1 && splitUrl[1].includes('refreshMappings')) {
-          this.setupMappingPages();
-        }
         this.markModuleActive(splitUrl[0]);
       }
     });

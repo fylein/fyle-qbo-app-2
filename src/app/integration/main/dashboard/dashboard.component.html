@@ -17,7 +17,7 @@
                 <img src="assets/images/svgs/general/info.svg" class="export--info-icon" width="16px" height="16px" matTooltip="All expenses from {{ importState === ExpenseState.PAYMENT_PROCESSING ? 'your' : 'the' }} {{ importState | titlecase | snakeCaseToSpaceCase }} state in Fyle will be automatically imported" matTooltipPosition="right" matTooltipClass="right" />
               </span>
               <div class="export--info-text paragraph">
-                <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">No new Transaction to export from the payment processing state in Fyle.</h5>
+                <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">No new Transaction to export from the {{ importState | titlecase | snakeCaseToSpaceCase }} state in Fyle.</h5>
                 <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">Once you start processing payment for the expenses, they will be automatically available here to export.</h5>
                 <h5 *ngIf="!exportInProgress && exportableExpenseGroupIds.length">Click on <b>Export</b> to start exporting expenses from Fyle as QBO transactions.</h5>
                 <h5 *ngIf="exportInProgress">This may take a few minutes. Please wait...</h5>
@@ -222,7 +222,7 @@
           </div>
         </div>
 
-        <app-zero-state-with-illustration *ngIf="lastExport && !errors.EMPLOYEE_MAPPING.length && !errors.CATEGORY_MAPPING.length && !errors.TAX_MAPPING.length && !errors.QBO_ERROR.length && !groupedErrorStat.CATEGORY_MAPPING && !groupedErrorStat.EMPLOYEE_MAPPING" [page]="'dashboard_error'"></app-zero-state-with-illustration>
+        <app-zero-state-with-illustration *ngIf="lastExport && !errors.EMPLOYEE_MAPPING.length && !errors.CATEGORY_MAPPING.length && !errors.TAX_MAPPING.length && !errors.QBO_ERROR.length && !groupedErrorStat.CATEGORY_MAPPING && !groupedErrorStat.EMPLOYEE_MAPPING" [page]="ZeroStatePage.dashboard_error"></app-zero-state-with-illustration>
       </div>
     </div>
 
@@ -247,5 +247,5 @@
 
   </div>
 
-  <app-zero-state-with-illustration *ngIf="!isLoading && !lastExport" [page]="'dashboard'"></app-zero-state-with-illustration>
+  <app-zero-state-with-illustration *ngIf="!isLoading && !lastExport" [page]="ZeroStatePage.dashboard"></app-zero-state-with-illustration>
 </div>

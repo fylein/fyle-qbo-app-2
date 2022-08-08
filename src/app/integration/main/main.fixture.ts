@@ -69,5 +69,5 @@ const mappingSetting:MappingSetting[] = [{
   is_custom: true,
   source_placeholder: 'string'
 }];
-export const mappingResponse: MappingSettingResponse = {
+export const mappingSettingResponse: MappingSettingResponse = {
   count: 0, next: 'aa', previous: 'aa', results: mappingSetting};

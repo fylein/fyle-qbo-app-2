@@ -199,7 +199,12 @@ export enum UpdateEvent {
   EXPORT_SETTINGS = 'Export Settings',
   IMPORT_SETTINGS = 'Import Settings',
   ADVANCED_SETTINGS = 'Advanced Settings',
-  PAGE_SIZE = 'Page Size'
+  PAGE_SIZE = 'Page Size',
+  CUSTOM_MAPPING = 'Custom Mapping'
+}
+
+export enum DeleteEvent {
+  CUSTOM_MAPPING = 'Custom Mapping'
 }
 
 export enum Action {
@@ -221,4 +226,12 @@ export enum SimpleSearchType {
 export enum RefinerSurveyType {
   ONBOARDING_DONE = 'Onboarding Done',
   EXPORT_DONE = 'Export Done'
+}
+
+export enum ZeroStatePage {
+  export_log = 'export_log',
+  mapping = 'mapping',
+  dashboard = 'dashboard',
+  dashboard_error = 'dashboard_error',
+  custom_mapping = 'custom_mapping'
 }
