@@ -8,6 +8,5 @@ docker-compose*
 README.md
 LICENSE
 .vscode
-src/environments/environment.json
 .angular
 .github
