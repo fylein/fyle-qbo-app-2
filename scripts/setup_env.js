@@ -11,9 +11,9 @@ const environment = {
   qbo_scope: `${process.env.QBO_SCOPE}`,
   qbo_authorize_uri: `${process.env.QBO_AUTHORIZE_URI}`,
   qbo_app_url: `${process.env.QBO_APP_URL}`,
-  sentry_dsn: `${process.env.SENTRY_DSN}`,
-  sentry_env: `${process.env.SENTRY_ENV}`,
-  release: `${process.env.RELEASE}`,
+  sentry_dsn: `${process.env.SENTRY_DSN ? process.env.SENTRY_DSN : ''}`,
+  sentry_env: `${process.env.SENTRY_ENV ? process.env.SENTRY_ENV : ''}`,
+  release: `${process.env.RELEASE ? process.env.RELEASE : ''}`,
   fyle_app_url: `${process.env.FYLE_APP_URL}`,
   tests: {
     user: {
