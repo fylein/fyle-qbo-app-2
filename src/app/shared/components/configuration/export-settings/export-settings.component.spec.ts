@@ -6,7 +6,7 @@ import { ExportSettingsComponent } from './export-settings.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, OnboardingState, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
-import { destinationAttribute, errorResponse, exportResponse, export_settings, navigationExtras, replacecontent1, replacecontent2, replacecontent3, workspaceResponse } from './export-settings.fixture';
+import { destinationAttribute, errorResponse, exportResponse, export_settings, replacecontent1, replacecontent2, replacecontent3, workspaceResponse } from './export-settings.fixture';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
@@ -36,7 +36,8 @@ describe('ExportSettingsComponent', () => {
       postExportSettings: () => of(exportResponse)
     };
     service2 = {
-      getGroupedQBODestinationAttributes: () => of(destinationAttribute)
+      getGroupedQBODestinationAttributes: () => of(destinationAttribute),
+      refreshMappingPages: () => undefined
     };
     service3 = {
       getWorkspaceGeneralSettings: () => of(workspaceResponse),
@@ -248,14 +249,12 @@ describe('ExportSettingsComponent', () => {
     expect(routerSpy.navigate).toHaveBeenCalledWith(['/workspaces/main/configuration/advanced_settings']);
   });
 
-  it('constructPayloadAndSave finction check', () => {
+  it('constructPayloadAndSave function check', () => {
     component.isOnboarding = false;
     expect((component as any).constructPayloadAndSave()).toBeUndefined();
-    fixture.detectChanges();
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['/workspaces/main/dashboard'], navigationExtras);
   });
 
-  it('constructPayloadAndSave finction check for failure', () => {
+  it('constructPayloadAndSave function check for failure', () => {
     spyOn(exportSettingService, 'postExportSettings').and.returnValue(throwError(errorResponse));
     expect((component as any).constructPayloadAndSave()).toBeUndefined();
     fixture.detectChanges();

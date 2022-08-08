@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { ConfigurationCtaText, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, OnboardingState, OnboardingStep, ProgressPhase, ReimbursableExpensesObject, UpdateEvent } from 'src/app/core/models/enum/enum.model';
@@ -598,12 +598,8 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       } else if (this.advancedSettingAffected()) {
         this.router.navigate(['/workspaces/main/configuration/advanced_settings']);
       } else {
-        const navigationExtras: NavigationExtras = {
-          queryParams: {
-            refreshMappings: true
-          }
-        };
-        this.router.navigate(['/workspaces/main/dashboard'], navigationExtras);
+        this.mappingService.refreshMappingPages();
+        this.router.navigate(['/workspaces/main/dashboard']);
       }
     }, () => {
       this.saveInProgress = false;

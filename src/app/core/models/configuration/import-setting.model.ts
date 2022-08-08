@@ -18,7 +18,7 @@ export type ImportSettingGeneralMapping = {
 
 export type ImportSettingMappingSetting = {
   source_field: MappingSourceField | string,
-  destination_field: MappingDestinationField,
+  destination_field: MappingDestinationField | string,
   import_to_fyle: boolean,
   is_custom: boolean,
   source_placeholder: string | null
@@ -32,7 +32,7 @@ export type ImportSettingPost = {
 
 export type ExpenseFieldsFormOption = {
   source_field: MappingSourceField | string,
-  destination_field: MappingDestinationField,
+  destination_field: MappingDestinationField | string,
   import_to_fyle: boolean,
   disable_import_to_fyle: boolean,
   source_placeholder: string | null
@@ -51,7 +51,7 @@ export interface ImportSettingFormOption extends SelectFormOption {
 
 
 export class ImportSettingModel {
-  static constructPayload(importSettingsForm: FormGroup): ImportSettingPost {
+  static constructPayload(importSettingsForm: FormGroup, customMappingSettings: MappingSetting[]): ImportSettingPost {
     const emptyDestinationAttribute = {id: null, name: null};
     const employeeSettingPayload: ImportSettingPost = {
       workspace_general_settings: {
@@ -63,7 +63,7 @@ export class ImportSettingModel {
       general_mappings: {
         default_tax_code: importSettingsForm.get('defaultTaxCode')?.value ? importSettingsForm.get('defaultTaxCode')?.value : emptyDestinationAttribute
       },
-      mapping_settings: ImportSettingModel.formatMappingSettings(importSettingsForm.get('expenseFields')?.value)
+      mapping_settings: ImportSettingModel.formatMappingSettings(importSettingsForm.get('expenseFields')?.value, customMappingSettings)
     };
     return employeeSettingPayload;
   }
@@ -72,7 +72,7 @@ export class ImportSettingModel {
     return chartOfAccounts.filter(chartOfAccount => chartOfAccount.enabled).map(chartOfAccount => chartOfAccount.name);
   }
 
-  static formatMappingSettings(expenseFields: ExpenseFieldsFormOption[]): ImportSettingMappingSetting[] {
+  static formatMappingSettings(expenseFields: ExpenseFieldsFormOption[], existingMappingSettings: MappingSetting[]): ImportSettingMappingSetting[] {
     const mappingSettings: ImportSettingMappingSetting[] = [];
     expenseFields.forEach((expenseField: ExpenseFieldsFormOption) => {
       if (expenseField.source_field) {
@@ -82,6 +82,19 @@ export class ImportSettingModel {
           import_to_fyle: expenseField.import_to_fyle,
           is_custom: expenseField.source_field === MappingSourceField.COST_CENTER || expenseField.source_field === MappingSourceField.PROJECT ? false : true,
           source_placeholder: expenseField.source_placeholder ? expenseField.source_placeholder : null
+        });
+      }
+    });
+
+    // Add custom mapping payload to preserve them
+    existingMappingSettings.forEach((existingMappingSetting: MappingSetting) => {
+      if (!mappingSettings.find(mappingSetting => mappingSetting.source_field === existingMappingSetting.source_field && !existingMappingSetting.import_to_fyle)) {
+        mappingSettings.push({
+          source_field: existingMappingSetting.source_field,
+          destination_field: existingMappingSetting.destination_field,
+          import_to_fyle: existingMappingSetting.import_to_fyle,
+          is_custom: existingMappingSetting.is_custom,
+          source_placeholder: existingMappingSetting.source_placeholder
         });
       }
     });

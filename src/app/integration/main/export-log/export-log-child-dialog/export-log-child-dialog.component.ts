@@ -7,6 +7,7 @@ import { Expense, ExpenseList } from 'src/app/core/models/db/expense.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
+import { ZeroStatePage } from 'src/app/core/models/enum/enum.model';
 
 @Component({
   selector: 'app-export-log-child-dialog',
@@ -24,6 +25,8 @@ export class ExportLogChildDialogComponent implements OnInit {
   private org_id: string = this.userService.getUserProfile().org_id;
 
   expenses: MatTableDataSource<ExpenseList> = new MatTableDataSource<ExpenseList>([]);
+
+  ZeroStatePage = ZeroStatePage;
 
   constructor(
     private formBuilder: FormBuilder,

@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { Cacheable } from 'ts-cacheable';
 import { DestinationAttribute, GroupedDestinationAttribute } from '../../models/db/destination-attribute.model';
 import { EmployeeMapping, EmployeeMappingPost, ExtendedEmployeeAttributeResponse } from '../../models/db/employee-mapping.model';
 import { ExtendedExpenseAttributeResponse } from '../../models/db/expense-attribute.model';
-import { MappingSettingResponse } from '../../models/db/mapping-setting.model';
+import { MappingSetting, MappingSettingPost, MappingSettingResponse } from '../../models/db/mapping-setting.model';
 import { MappingPost, MappingStats } from '../../models/db/mapping.model';
 import { EmployeeFieldMapping, MappingState } from '../../models/enum/enum.model';
 import { ExpenseField } from '../../models/misc/expense-field.model';
@@ -16,7 +16,11 @@ import { WorkspaceService } from '../workspace/workspace.service';
 })
 export class MappingService {
 
-  workspaceId: string = this.workspaceService.getWorkspaceId()
+  @Output() getMappingPagesForSideNavBar: EventEmitter<MappingSettingResponse> = new EventEmitter();
+
+  @Output() showWalkThroughTooltip: EventEmitter<void> = new EventEmitter();
+
+  workspaceId: string = this.workspaceService.getWorkspaceId();
 
   constructor(
     private apiService: ApiService,
@@ -117,5 +121,23 @@ export class MappingService {
   // TODO: cache this safely later
   getMappingSettings(): Observable<MappingSettingResponse> {
     return this.apiService.get(`/workspaces/${this.workspaceId}/mappings/settings/`, {});
+  }
+
+  refreshMappingPages(): void {
+    this.apiService.get(`/workspaces/${this.workspaceId}/mappings/settings/`, {}).subscribe((mappingSettingResponse: MappingSettingResponse) => {
+      this.getMappingPagesForSideNavBar.emit(mappingSettingResponse);
+    });
+  }
+
+  emitWalkThroughTooltip(): void {
+    this.showWalkThroughTooltip.emit();
+  }
+
+  postMappingSettings(mappingSettingPayload: MappingSettingPost[]): Observable<MappingSetting[]> {
+    return this.apiService.post(`/workspaces/${this.workspaceId}/mappings/settings/`, mappingSettingPayload);
+  }
+
+  deleteMappingSetting(mappingSettingId: number): Observable<{}> {
+    return this.apiService.delete(`/workspaces/${this.workspaceId}/mappings/settings/${mappingSettingId}/`);
   }
 }
