@@ -1,7 +1,6 @@
 export type DestinationAttributeDetail = {
   email: string;
   account_type: string;
-  accoount_l:string;
   fully_qualified_name: string;
 };
 
