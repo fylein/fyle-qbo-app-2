@@ -1,11 +1,14 @@
 dist
 node_modules
 npm-debug.log
-Dockerfile*
-docker-compose*
-.dockerignore
 .git
 .gitignore
+Dockerfile*
+docker-compose*
 README.md
 LICENSE
 .vscode
+src/environments/environment.json
+.angular
+.github
+nginx.conf

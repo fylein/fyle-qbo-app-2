@@ -16,9 +16,8 @@ jobs:
     - name: Install dependencies
       run: npm install
     - name: Test
-      run: npm run test
+      run: npm run unit_test_ci
       env:
-        FYLE_URL: ${{secrets.FYLE_URL}} 
         FYLE_CLIENT_ID: ${{secrets.FYLE_CLIENT_ID}} 
         CALLBACK_URL: ${{secrets.CALLBACK_URL}} 
         API_URL: ${{secrets.API_URL}} 
