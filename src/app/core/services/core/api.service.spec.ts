@@ -197,4 +197,39 @@ describe('ApiService', () => {
     expect(error).toBeInstanceOf(Observable);
   });
 
+  it('delete method test for 200', () => {
+    const response = {
+      app: 'deleted'
+    };
+    service.delete(`/workspaces/${workspace_id}/`).subscribe((value) => {
+      expect(value).toBeDefined();
+    });
+    const req = httpMock.expectOne({
+      method: 'DELETE',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/`
+    });
+
+    req.flush(response);
+  });
+
+  it('delete method test for 4xx', () => {
+    const response = {
+      status: 404,
+      statusText: "Not Found"
+    };
+
+    service.delete(`/workspaces/${workspace_id}/`).subscribe((value) => {
+      expect(value).toBeDefined();
+    }, (error) => {
+      expect(error.status).toBe(404);
+    });
+
+    const req = httpMock.expectOne({
+      method: 'DELETE',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/`
+    });
+
+    req.flush('', response);
+  });
+
 });

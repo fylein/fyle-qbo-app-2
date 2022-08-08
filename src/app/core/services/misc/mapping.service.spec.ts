@@ -9,6 +9,7 @@ import { MappingPost, MappingStats } from '../../models/db/mapping.model';
 import { MappingSettingResponse } from '../../models/db/mapping-setting.model';
 import { EmployeeMapping, EmployeeMappingPost } from '../../models/db/employee-mapping.model';
 import { DestinationAttribute } from '../../models/db/destination-attribute.model';
+import { mappingSettingPayload, postMappingSettingResponse } from './mapping.service.fixture';
 
 describe('MappingService', () => {
   let service: MappingService;
@@ -507,5 +508,47 @@ describe('MappingService', () => {
       url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee/`
     });
       req.flush(response);
+  });
+
+  it('should post MappingSettings', () => {
+    service.postMappingSettings(mappingSettingPayload).subscribe((value) => {
+      expect(value).toEqual(postMappingSettingResponse);
+    });
+    const req = httpMock.expectOne({
+      method: 'POST',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/settings/`
+    });
+
+    req.flush(postMappingSettingResponse);
+  });
+
+  it('should delete MappingSettings', () => {
+    service.deleteMappingSetting(11).subscribe((value) => {
+      expect(value).toEqual({});
+    });
+    const req = httpMock.expectOne({
+      method: 'DELETE',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/settings/11/`
+    });
+
+    req.flush({});
+  });
+
+  it('should emit getMappingPagesForSideNavBar', () => {
+    service.refreshMappingPages();
+    spyOn(service.getMappingPagesForSideNavBar, 'emit');
+    const req = httpMock.expectOne({
+      method: 'GET',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/settings/`
+    });
+
+    req.flush({});
+    expect(service.getMappingPagesForSideNavBar.emit).toHaveBeenCalled();
+  });
+
+  it('should emit walkThroughTooltip', () => {
+    spyOn(service.showWalkThroughTooltip, 'emit');
+    service.emitWalkThroughTooltip();
+    expect(service.showWalkThroughTooltip.emit).toHaveBeenCalled();
   });
 });
