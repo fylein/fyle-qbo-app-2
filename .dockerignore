@@ -11,4 +11,3 @@ LICENSE
 src/environments/environment.json
 .angular
 .github
-nginx.conf
