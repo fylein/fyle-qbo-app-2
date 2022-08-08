@@ -1,8 +1,9 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
 import { AdvancedSettingService } from './advanced-setting.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { AdvancedSettingGet, AdvancedSettingPost } from '../../models/configuration/advanced-setting.model';
+import { AdvancedSettingGet, AdvancedSettingPost, AdvancedSettingWorkspaceSchedulePost } from '../../models/configuration/advanced-setting.model';
 import { environment } from 'src/environments/environment';
+import { WorkspaceScheduleEmailOptions } from '../../models/db/workspace-schedule.model';
 
 describe('AdvancedSettingService', () => {
   let service: AdvancedSettingService;
@@ -41,7 +42,9 @@ describe('AdvancedSettingService', () => {
       },
       workspace_schedules: {
         enabled: true,
-        interval_hours: 10
+        interval_hours: 10,
+        emails_selected: [],
+        additional_email_options: []
       },
       workspace_id: 1
     };
@@ -70,7 +73,9 @@ describe('AdvancedSettingService', () => {
       },
       workspace_schedules: {
         enabled: true,
-        interval_hours: 10
+        interval_hours: 10,
+        emails_selected: [],
+        additional_email_options: []
       }
     };
 
@@ -88,7 +93,9 @@ describe('AdvancedSettingService', () => {
       },
       workspace_schedules: {
         enabled: true,
-        interval_hours: 10
+        interval_hours: 10,
+        emails_selected: [],
+        additional_email_options: []
       },
       workspace_id: 1
     };
@@ -100,5 +107,18 @@ describe('AdvancedSettingService', () => {
       url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/advanced_configurations/`
     });
   req.flush(advancedSettingResponse);
+  });
+
+  it('getWorkspaceAdmins function check', () => {
+    const response: WorkspaceScheduleEmailOptions[] = [{name: 'fyle', email: 'fyle@fyle.in'}, {name: 'dhaara', email: 'fyle1@fyle.in'}];
+    service.getWorkspaceAdmins().subscribe((value) => {
+      expect(value).toEqual(response);
+    });
+    const req = httpMock.expectOne({
+      method: 'GET',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/admins/`
+    });
+  req.flush(response);
+
   });
 });
