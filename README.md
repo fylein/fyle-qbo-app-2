@@ -21,7 +21,7 @@ Frontend Repository for Fyle &lt;> Quickbooks Online Integration
     environment:
       production: "False"
       FYLE_CLIENT_ID: 
-      API_URL: http://localhost:8000/api
+      API_URL: http://localhost:8002/api
       APP_URL: http://localhost:4200
       OLD_QBO_APP_URL: http://localhost:4201/auth/shared_login
       CALLBACK_URI: http://localhost:4200/auth/callback
