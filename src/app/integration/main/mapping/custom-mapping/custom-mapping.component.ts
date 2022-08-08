@@ -167,7 +167,6 @@ export class CustomMappingComponent implements OnInit {
           This will open a separate mapping Page for ${fyleField} under the Mappings section of the integration.<br><br>
           <li>In the ${fyleField} Mappings section, you can map the individual Fyle ${fyleField} to their corresponding ${qboField} values.</li>
           <li>Also, the Mappings cannot be edited once set up. However, you can delete the specific dimensions mapped and re-create if required.</li>
-          <li>For example, once ${qboField} in QBO is mapped to ${fyleField} in Fyle, you can not change this mapping but can you can delete this and start from scratch.</li>
           <br><br>Do you wish to continue?`,
         primaryCtaText: 'Save and Continue'
       };
