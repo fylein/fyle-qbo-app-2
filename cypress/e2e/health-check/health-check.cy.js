@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('health check to-do app', () => {
+describe('health check app', () => {
   beforeEach(() => {
     cy.visit('/')
   })

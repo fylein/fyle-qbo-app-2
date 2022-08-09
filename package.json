@@ -12,7 +12,7 @@
     "lint": "ng lint",
     "cypress_open": "cypress open",
     "cypress_run": "npm run setup_e2e_test && cypress run",
-    "setup_e2e_test": "node scripts/e2e.js"
+    "setup_e2e_test": "npm run setup_env && node scripts/setup_e2e_test.js"
   },
   "private": true,
   "dependencies": {
