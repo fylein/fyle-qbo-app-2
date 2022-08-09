@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Cacheable, CacheBuster } from 'ts-cacheable';
-import { AdvancedSettingGet, AdvancedSettingPost } from '../../models/configuration/advanced-setting.model';
+import { AdvancedSettingGet, AdvancedSettingPost, AdvancedSettingWorkspaceSchedulePost } from '../../models/configuration/advanced-setting.model';
+import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from '../../models/db/workspace-schedule.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
 
@@ -28,5 +29,9 @@ export class AdvancedSettingService {
   })
   postAdvancedSettings(exportSettingsPayload: AdvancedSettingPost): Observable<AdvancedSettingGet> {
     return this.apiService.put(`/v2/workspaces/${this.workspaceService.getWorkspaceId()}/advanced_configurations/`, exportSettingsPayload);
+  }
+
+  getWorkspaceAdmins(): Observable<[WorkspaceScheduleEmailOptions]> {
+    return this.apiService.get(`/workspaces/${this.workspaceService.getWorkspaceId()}/admins/`, {});
   }
 }

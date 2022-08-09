@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NavigationStart, Router } from '@angular/router';
 import { QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
@@ -9,12 +9,10 @@ import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
 import { AuthService } from 'src/app/core/services/core/auth.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
-import { StorageService } from 'src/app/core/services/core/storage.service';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
-import { environment } from 'src/environments/environment';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
@@ -62,7 +60,6 @@ export class HeaderComponent implements OnInit {
     private qboConnectorService: QboConnectorService,
     private router: Router,
     private renderer: Renderer2,
-    private storageService: StorageService,
     private trackingService: TrackingService,
     private userService: UserService,
     private windowService: WindowService,

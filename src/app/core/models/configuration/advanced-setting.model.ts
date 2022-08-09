@@ -2,6 +2,7 @@ import { FormGroup } from "@angular/forms";
 import { PaymentSyncDirection } from "../enum/enum.model";
 import { DefaultDestinationAttribute, GeneralMapping } from "../db/general-mapping.model";
 import { SelectFormOption } from "../misc/select-form-option.model";
+import { WorkspaceScheduleEmailOptions } from "../db/workspace-schedule.model";
 
 export type AdvancedSettingWorkspaceGeneralSetting = {
   sync_fyle_to_qbo_payments: boolean,
@@ -18,7 +19,16 @@ export type AdvancedSettingGeneralMapping = {
 
 export type AdvancedSettingWorkspaceSchedule = {
   enabled: boolean,
-  interval_hours: number
+  interval_hours: number,
+  emails_selected: string[],
+  additional_email_options: WorkspaceScheduleEmailOptions[]
+}
+
+export type AdvancedSettingWorkspaceSchedulePost = {
+  hours: number;
+  schedule_enabled: boolean;
+  emails_selected: string[];
+  email_added: WorkspaceScheduleEmailOptions
 }
 
 export type AdvancedSettingPost = {
@@ -34,8 +44,15 @@ export type AdvancedSettingGet = {
   workspace_id:number
 }
 
+export type AdvancedSettingAddEmailModel = {
+  workspaceId: number;
+  hours: number;
+  schedulEnabled: boolean;
+  selectedEmails: string[];
+}
+
 export interface AdvancedSettingFormOption extends SelectFormOption {
-  value: PaymentSyncDirection;
+  value: PaymentSyncDirection | number;
 }
 
 export class AdvancedSettingModel {
@@ -55,7 +72,9 @@ export class AdvancedSettingModel {
       },
       workspace_schedules: {
         enabled: advancedSettingsForm.get('exportSchedule')?.value ? true : false,
-        interval_hours: advancedSettingsForm.get('exportScheduleFrequency')?.value ? advancedSettingsForm.get('exportScheduleFrequency')?.value : null
+        interval_hours: advancedSettingsForm.get('exportScheduleFrequency')?.value ? advancedSettingsForm.get('exportScheduleFrequency')?.value : null,
+        emails_selected: advancedSettingsForm.get('emails')?.value ? advancedSettingsForm.get('emails')?.value : null,
+        additional_email_options: advancedSettingsForm.get('addedEmail')?.value ? advancedSettingsForm.get('addedEmail')?.value : null
       }
     };
     return advancedSettingPayload;

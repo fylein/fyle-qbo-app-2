@@ -31,7 +31,8 @@ describe('ConfigurationSelectFieldComponent', () => {
     component = fixture.componentInstance;
     const form = new FormGroup({
       employeeMapping: new FormControl(['EMPLOYEE']),
-      autoMapEmployee: new FormControl([true])
+      autoMapEmployee: new FormControl([true]),
+      emails: new FormControl(['fyle@fyle.in', 'integrations@fyle.in' ])
     });
     const employeeMappingOptions: EmployeeSettingFormOption[] = [
       {

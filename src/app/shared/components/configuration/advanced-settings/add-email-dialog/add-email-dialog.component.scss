@@ -1,0 +1,67 @@
+.add-email-dialog {
+  &--header-section {
+    background: #FFFFFF;
+    border-radius: 8px 8px 0px 0px;
+    height: 64px;
+  }
+
+  &--header-text {
+    padding: 24px 168px 24px 24px;
+    font-weight: 500;
+  }
+
+  &--close-icon {
+    width: 12px;
+    height: 12px;
+    padding: 26px 24px 27px 40px;
+  }
+
+  &--horizontal-separator {
+    border-top: 1px solid #F5F5F5;
+    width: 451px;
+    align-self: center;
+  }
+
+  &--name-text {
+    padding: 12px 0px 8px 24px;
+  }
+
+  &--form-field {
+    padding: 8px 24px 22px 24px;
+  }
+
+  &--form-input {
+    padding: 11px 0px 11px 14px;
+    width: 417px;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1px solid #DFDFE2;
+    box-sizing: border-box;
+  }
+
+  &--btn-section {
+    padding: 16px 24px 16px 0px;
+  }
+
+  &--cancel-btn {
+    padding-right: 16px;
+  }
+
+  &--cancel-btn-text {
+    &:hover {
+      box-shadow: 0px 4px 4px rgba(44, 48, 78, 0.1);
+    }
+  }
+
+  &--cta-btn {
+    &:hover {
+      box-shadow: 0px 4px 4px rgba(44, 48, 78, 0.1);
+    }
+  }
+
+  &--admin-info {
+    font-size: 14px;
+    color: #414562;
+    padding: 24px 24px 14px 24px;
+  }
+}
