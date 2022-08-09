@@ -24,6 +24,11 @@ const environment = {
   }
 };
 
+const a = [process.env];
+
+const b = a.concat();
+console.log('bbbb',b);
+
 const targetPath = './src/environments/environment.json';
 writeFile(targetPath, JSON.stringify(environment), 'utf8', (err) => {
   if (err) {
