@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   redirectToFyleOAuth(): void {
-    this.windowReference.location.href = `${environment.fyle_url}/app/developers/#/oauth/authorize?client_id=${environment.fyle_client_id}&redirect_uri=${environment.callback_uri}&response_type=code`;
+    this.windowReference.location.href = `${environment.fyle_app_url}/app/developers/#/oauth/authorize?client_id=${environment.fyle_client_id}&redirect_uri=${environment.callback_uri}&response_type=code`;
   }
 
   redirectToOnboardingLanding(): void {
