@@ -15,13 +15,13 @@ services:
     ports:
     - 4200:4200
     environment: 
-      production: False
-      FYLE_CLIENT_ID: 
+      production: "False"
+      FYLE_CLIENT_ID: tpaYfU7VLyrEN
       API_URL: http://localhost:8002/api
       APP_URL: http://localhost:4200
       OLD_QBO_APP_URL: http://localhost:4201/auth/shared_login
       CALLBACK_URI: http://localhost:4200/auth/callback
-      QBO_CLIENT_ID: 
+      QBO_CLIENT_ID: ABTemcw1ngLRye1iqW25EI2CyNUzdBSkNYWYxaFtkaJNgRcbM5
       QBO_SCOPE: com.intuit.quickbooks.accounting
       QBO_AUTHORIZE_URI: https://appcenter.intuit.com/connect/oauth2
       QBO_APP_URL: https://app.sandbox.qbo.intuit.com
