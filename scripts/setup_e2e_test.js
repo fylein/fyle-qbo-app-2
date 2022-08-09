@@ -1,5 +1,4 @@
 const { readFile } = require('fs');
-const http = require('http');
 
 readFile('./src/environments/environment.json', 'utf8', (err, data) => {
   if (err) {
@@ -8,7 +7,14 @@ readFile('./src/environments/environment.json', 'utf8', (err, data) => {
   const environment = JSON.parse(data);
   const baseUrl = environment.api_url;
   const apiUrl = `${baseUrl}/workspaces/ready/`;
-  
+
+  let http;
+  if (apiUrl.includes('http://')) {
+    http = require('http');
+  } else {
+    http = require('https');
+  }
+
   http.get(apiUrl, function(res) {
     if (res.statusCode === 200) {
       console.log('Prepared workspace for e2e tests');
