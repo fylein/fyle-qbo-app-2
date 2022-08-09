@@ -4,15 +4,15 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npm run config && ng build --prod",
-    "watch": "ng build --watch --configuration development",
-    "test": "npm run config && ng test --watch=false --browsers=ChromeHeadlessCustom",
-    "local_test": "ng test --configuration=localhost",
+    "local_dev_dc": "npm run setup_env && ng serve --host 0.0.0.0 --disable-host-check",
+    "build": "npm run setup_env && ng build",
+    "test": "ng test",
+    "unit_test_ci": "npm run setup_env && ng test --watch=false --browsers=ChromeHeadlessCustom",
+    "setup_env": "node scripts/setup_env.js",
     "lint": "ng lint",
-    "config": "ts-node -O '{\"module\": \"commonjs\"}' config.index.ts",
     "cypress_open": "cypress open",
-    "cypress_run": "npm run prepare_e2e_test && cypress run",
-    "prepare_e2e_test": "node scripts/e2e.js"
+    "cypress_run": "npm run setup_e2e_test && cypress run",
+    "setup_e2e_test": "node scripts/e2e.js"
   },
   "private": true,
   "dependencies": {
