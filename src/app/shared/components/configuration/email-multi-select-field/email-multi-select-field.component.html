@@ -41,7 +41,7 @@
           </div>
         </mat-select-trigger>
         <div *ngFor="let option of options | search : form.value.searchOption">
-          <p (click)="$event.stopPropagation()" *ngIf="option.name === 'No result found' " class="align-center italic">No result
+          <p (click)="$event.stopPropagation()" *ngIf="option.name === 'No result found' " class="align-center italic no-result">No result
             found</p>
           <mat-option *ngIf="option.name !== 'No result found' " [matTooltip]="option.email" [matTooltipDisabled]="option.email.length <= 40"
             matTooltipPosition="above" matTooltipClass="above" (click)="helperService.clearSearchText(form)"
