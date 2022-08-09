@@ -16,9 +16,6 @@ const environment = {
   release: `${process.env.RELEASE ? process.env.RELEASE : '{{RELEASE}}'}`,
   fyle_app_url: `${process.env.FYLE_APP_URL ? process.env.FYLE_APP_URL : '{{FYLE_APP_URL}}'}`,
   tests: {
-    user: {
-      refresh_token: `${process.env.TESTS_USER_REFRESH_TOKEN ? process.env.TESTS_USER_REFRESH_TOKEN : '{{TESTS_USER_REFRESH_TOKEN}}'}`,
-    },
     workspaceId: `${process.env.TESTS_WORKSPACEID ? process.env.TESTS_WORKSPACEID : '{{TESTS_WORKSPACEID}}'}`,
   },
   refiner_survey: {

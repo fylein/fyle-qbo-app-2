@@ -29,7 +29,6 @@ services:
       SENTRY_ENV: ''
       RELEASE: 'local'
       FYLE_APP_URL: https://app.fyle.tech
-      TESTS_USER_REFRESH_TOKEN: 
       TESTS_WORKSPACEID: 1
       REFINER_ONBOARDING_DONE_SURVEY_ID: 
       REFINER_EXPORT_DONE_SURVEY_ID: 

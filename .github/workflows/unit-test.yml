@@ -29,7 +29,6 @@ jobs:
         SENTRY_DSN: ${{secrets.SENTRY_DSN}} 
         RELEASE: ${{secrets.RELEASE}} 
         FYLE_APP_URL: ${{secrets.FYLE_APP_URL}} 
-        TESTS_USER_REFRESH_TOKEN: ${{secrets.TESTS_USER_REFRESH_TOKEN}} 
         TESTS_WORKSPACEID: ${{secrets.TESTS_WORKSPACEID}}
     - name: Comment Test Coverage
       uses: AthleticNet/comment-test-coverage@1.2.2
