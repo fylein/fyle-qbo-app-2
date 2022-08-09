@@ -1,7 +1,7 @@
 const { readFile } = require('fs');
 const http = require('http');
 
-readFile('../src/environments/environment.json', 'utf8', (err, data) => {
+readFile('./src/environments/environment.json', 'utf8', (err, data) => {
   if (err) {
     throw err;
   }
