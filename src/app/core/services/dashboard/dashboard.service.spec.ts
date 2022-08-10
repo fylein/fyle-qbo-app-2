@@ -147,13 +147,14 @@ describe('DashboardService', () => {
       previous: null,
       results: []
     };
+    let responseKeys, actualKeys;
     const taskType: TaskLogType[] = [TaskLogType.FETCHING_EXPENSE, TaskLogType.CREATING_BILL, TaskLogType.CREATING_EXPENSE, TaskLogType.CREATING_CHECK, TaskLogType.CREATING_CREDIT_CARD_PURCHASE, TaskLogType.CREATING_JOURNAL_ENTRY, TaskLogType.CREATING_CREDIT_CARD_CREDIT, TaskLogType.CREATING_DEBIT_CARD_EXPENSE];
     service.getTasks(500, [TaskLogState.ENQUEUED, TaskLogState.IN_PROGRESS], [3], taskType, `${API_BASE_URL}/workspaces/${workspace_id}/tasks/all/?limit=500`).subscribe((value) => {
-      const responseKeys = Object.keys(response).sort();
-      const actualKeys = Object.keys(value).sort();
-      expect(actualKeys).toEqual(responseKeys);
+      responseKeys = Object.keys(response).sort();
+      actualKeys = Object.keys(value).sort();
     });
-      const req = httpMock.expectOne(
+    expect(actualKeys).toEqual(responseKeys);
+    const req = httpMock.expectOne(
       req => req.method === 'GET' && req.url.includes(`${API_BASE_URL}/workspaces/${workspace_id}/tasks/all/?limit=500`)
     );
     expect(req.request.params.get('limit')).toBeNull();

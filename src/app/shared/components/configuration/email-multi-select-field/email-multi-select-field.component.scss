@@ -1,0 +1,132 @@
+.email-multi-select-field {
+  &--field-label-text-section-without-img {
+    padding-left: 35px;
+  }
+
+  &--select-example-section {
+    padding: 2px 8px 0px 10px;
+  }
+
+  &--select-note-section {
+    padding: 10px 50px 40px 32px;
+  }
+
+  &--select-note-content {
+    padding: 8px 12px 8px 32px;
+  }
+
+  &--preview-text {
+    font-size: 12px;
+    padding-top: 4px;
+
+    @media only screen and (max-width: 1440px) {
+      padding-left: 10px;
+    }
+  }
+
+  &--preview-btn {
+    color: #0660F6;
+  }
+
+  &--email-number {
+    margin-top: 5px;
+  }
+  
+  &--delele-all-icon {
+    margin-right: 5px;
+    color: #5a5d72;
+  }
+
+  &--delele-all-icon img{
+    height: 10px;
+    width: 10px;
+  }
+
+  &--selected-email {
+    height: auto;
+    background-color: #ffffff;
+    border: 1px solid #dfdfe2;
+    border-radius: 12px;
+    padding: 10px 10px 10px 10px;
+    height: 15px;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+  
+  &--vertical {
+    border-left: 1px solid #dfdfe2;
+    height: 20px;
+    margin-left: 10px;
+  }
+  
+  &--display-email {
+    display: block;
+    max-width: 160px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &--bottom-name {
+    font-family: 'Aktiv Grotesk';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #A9ACBC;
+  }
+
+  &--head-name {
+    font-family: 'Aktiv Grotesk';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #414562;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
+}
+
+.configuration{
+  &--field-section {
+    padding-bottom: 0px ;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+.mat-icon-close {
+  color: #a9acbc;
+  padding-left: 5px;
+  padding-top: 5px;
+}
+
+.mat-icon-close img{
+  height: 10px;
+  width: 10px;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: #e91e63;
+}
+
+.multiline-mat-option.mat-option {
+  white-space: normal;
+  line-height: normal;
+  height: auto !important;
+  font-size: none !important;
+}
+
+.mat-option{
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin: 10px;
+}
+
+.example-additional-selection{
+  margin-left: 10px;
+}

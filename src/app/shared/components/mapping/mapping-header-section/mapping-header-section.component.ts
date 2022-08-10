@@ -15,7 +15,9 @@ export class MappingHeaderSectionComponent implements OnInit {
 
   @Input() sourceType: string;
 
-  @Input() mappingStats: MappingStats;
+  @Input() customMapping: boolean;
+
+  @Input() mappingStats: Partial<MappingStats>;
 
   @Input() autoMapEmployee: AutoMapEmployee | null;
 

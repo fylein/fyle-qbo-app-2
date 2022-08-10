@@ -15,7 +15,7 @@
     </div>
     <div *ngFor="let module of modules" class="side-nav-bar--default-text-color">
       <div class="pointer" [ngClass]="[module.isActive && !module.childPages.length ? 'side-nav-bar--active-module' : '', module.isActive ? 'side-nav-bar--active-module-text' : '']" (click)="navigate(module)">
-        <div *ngIf="module.name === 'Mappings' || module.name === 'Configuration'" style="border-top: 1px solid #DFDFE2; width: 212px; margin-left: 24px; opacity: 0.1;"></div>
+        <div *ngIf="module.name === 'Mappings' || module.name === 'Configuration'" class="side-nav-bar--separator"></div>
         <div fxLayout="row">
           <div *ngIf="module.isActive && (!module.childPages.length || !module.isExpanded)" class="side-nav-bar--active-tag-module"></div>
           <div fxLayout="row" [ngClass]="[module.childPages.length ? 'side-nav-bar--module-block-content-expandable' : 'side-nav-bar--module-block-content', module.isActive && (!module.childPages.length || !module.isExpanded) ? 'side-nav-bar--active-module-block' : '', module.isActive && (!module.childPages.length || !module.isExpanded) ? 'side-nav-bar--active-module-block-expandable' : '']">
@@ -28,12 +28,31 @@
           </div>
         </div>
       </div>
-      <div *ngFor="let childPage of module.childPages">
-        <div fxLayout="row">
-          <div *ngIf="childPage.isActive && module.isExpanded" class="side-nav-bar--active-tag-module"></div>
-          <div *ngIf="module.isExpanded" fxLayout="row" class="side-nav-bar--module-block-content single-line-text pointer"
-            [ngClass]="[childPage.isActive ? 'side-nav-bar--active-child': '', childPage.isActive ? 'side-nav-bar--active-module-text': '', childPage.isActive && module.isExpanded ? 'side-nav-bar--active-module-block' : '']" (click)="navigate(childPage)">
-            <h4 matTooltip="{{childPage.name | titlecase | snakeCaseToSpaceCase}}" [matTooltipDisabled]="childPage.name.length > 25 === false" matTooltipPosition="right" matTooltipClass="right" class="side-nav-bar--module-block-text-inner side-nav-bar--text-properties capitalize"> {{ childPage.name | titlecase | snakeCaseToSpaceCase }}</h4>
+      <div *ngFor="let childPage of module.childPages; let i = index">
+        <div>
+          <div fxLayout="row">
+            <div *ngIf="childPage.isActive && module.isExpanded" class="side-nav-bar--active-tag-module"></div>
+            <div *ngIf="module.isExpanded" fxLayout="row" class="side-nav-bar--module-block-content single-line-text pointer"
+              [ngClass]="[childPage.isActive ? 'side-nav-bar--active-child': '', childPage.isActive ? 'side-nav-bar--active-module-text': '', childPage.isActive && module.isExpanded ? 'side-nav-bar--active-module-block' : '']" (click)="navigate(childPage)">
+              <h4 matTooltip="{{childPage.name | titlecase | snakeCaseToSpaceCase}}" [matTooltipDisabled]="childPage.name.length > 25 === false" matTooltipPosition="right" matTooltipClass="right" class="side-nav-bar--module-block-text-inner side-nav-bar--text-properties capitalize"> {{ childPage.name | titlecase | snakeCaseToSpaceCase }}</h4>
+            </div>
+          </div>
+          <div *ngIf="module.isExpanded && module.name === 'Mappings' && module.childPages.length - 2 === i" class="side-nav-bar--separator"></div>
+        </div>
+      </div>
+      <div #walkthrough *ngIf="showWalkThroughTooltip && module.name === 'Mappings'" class="walk-through-tooltip paragraph">
+        <div class="walk-through-tooltip--arrow-left">
+          <img src="assets/images/svgs/general/arrow-left-tooltip.svg">
+        </div>
+        <div fxLayout="row" class="walk-through-tooltip--header-section">
+          <p class="walk-through-tooltip--header-text">
+            You can find the newly created custom mapping here.
+          </p>
+          <img class="walk-through-tooltip--close-icon pointer" src="assets/images/svgs/actions/close-white.svg" width="10px" height="10px">
+        </div>
+        <div fxLayoutAlign="end center" class="walk-through-tooltip--cta-section">
+          <div class="walk-through-tooltip--cta pointer" fxLayoutAlign="center center">
+            Got it!
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
-import { NavigationExtras } from "@angular/router";
 import { ExportSettingFormOption, ExportSettingGet } from "src/app/core/models/configuration/export-setting.model";
-import { DestinationAttribute, GroupedDestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
+import { GroupedDestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
 import { AutoMapEmployee, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseState, ExportDateType, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
 
@@ -149,10 +148,5 @@ export const errorResponse = {
     id: 1,
     is_expired: true,
     company_name: 'QBO'
-  }
-};
-export const navigationExtras: NavigationExtras = {
-  queryParams: {
-    refreshMappings: true
   }
 };

@@ -58,4 +58,8 @@ describe('HelperService', () => {
       expect(service.openExternalLink('https://www.google.co.in/')).toBeUndefined();
   });
 
+  it('should convert snake cased upper case to title cased space case', () => {
+    expect(service.getSpaceCasedTitleCase('COST_CENTER')).toBe('Cost center');
+  });
+
 });

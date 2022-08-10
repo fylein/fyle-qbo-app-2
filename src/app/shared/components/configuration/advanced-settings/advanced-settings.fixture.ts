@@ -1,5 +1,6 @@
 import { AdvancedSettingGet, AdvancedSettingPost } from "src/app/core/models/configuration/advanced-setting.model";
 import { DestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
+import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from "src/app/core/models/db/workspace-schedule.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
 import { AutoMapEmployee, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
 
@@ -43,7 +44,9 @@ export const advancedSettingResponse:AdvancedSettingGet = {
   },
   workspace_schedules: {
     enabled: true,
-    interval_hours: 10
+    interval_hours: 10,
+    emails_selected: [],
+    additional_email_options: []
   },
   workspace_id: 1
 };
@@ -91,7 +94,9 @@ export const getadvancedSettingResponse:AdvancedSettingGet = {
   },
   workspace_schedules: {
     enabled: true,
-    interval_hours: 10
+    interval_hours: 10,
+    emails_selected: [],
+    additional_email_options: []
   },
   workspace_id: 1
 };
@@ -110,7 +115,9 @@ export const getadvancedSettingResponse2:AdvancedSettingGet = {
   },
   workspace_schedules: {
     enabled: true,
-    interval_hours: 10
+    interval_hours: 10,
+    emails_selected: [],
+    additional_email_options: []
   },
   workspace_id: 1
 };
@@ -124,4 +131,15 @@ export const errorResponse = {
     company_name: 'QBO'
   }
 };
+export const emailResponse: WorkspaceSchedule = {
+  id: 1,
+  workspace: 1,
+  enabled: false,
+  start_datetime: new Date(),
+  interval_hours: 1,
+  schedule: 1,
+  emails_selected: ['fyle@fyle.in', 'integrations@fyle.in' ],
+  additional_email_options: [{name: 'fyle3', email: 'fyle3@fyle.in'}]
+};
+export const adminEmails: WorkspaceScheduleEmailOptions[] = [ {name: 'fyle', email: 'fyle@fyle.in'}, {name: 'fyle2', email: 'fyle2@fyle.in'}];
 export const memo = ['employee_email', 'merchant', 'purpose', 'category', 'report_number', 'expense_link'];

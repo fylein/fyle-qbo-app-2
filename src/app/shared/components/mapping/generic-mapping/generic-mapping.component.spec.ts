@@ -342,7 +342,7 @@ describe('GenericMappingComponent', () => {
     fixture.detectChanges();
     expect((component as any).setupForm([' dh '])).toBeUndefined();
     fixture.detectChanges();
-    component.form.controls.searchOption.patchValue([' dh ']);
+    component.form.controls.searchOption.patchValue(' dh ');
     expect((component as any).setupForm([' dh '])).toBeUndefined();
   });
 });
