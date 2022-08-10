@@ -1,0 +1,22 @@
+version: 0.2
+
+env:
+  secrets-manager:
+    DOCKERHUB_PASS: "/dockerhub/credentials:password"
+    DOCKERHUB_USERNAME: "/dockerhub/credentials:username"
+phases:
+  install:
+    commands:
+      - echo pre_build step...
+      - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASS
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Building the Docker image...
+      - cd docker-distribution
+      - docker build -t sivafyle/fyle_qbo-app-2:$COMMIT_HASH .
+  post_build:
+    commands:
+      - echo Entered the post_build phase...
+      - echo Pushing the Docker image...
+      - docker push sivafyle/fyle_qbo-app-2:$COMMIT_HASH
