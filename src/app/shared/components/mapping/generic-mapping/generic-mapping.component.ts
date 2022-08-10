@@ -189,7 +189,7 @@ export class GenericMappingComponent implements OnInit {
         this.mappingStats = mappingStats;
         let active = false;
         if ((this.mappingSetting.source_field === 'PROJECT' && this.mappingSetting.destination_field === 'CUSTOMER') ||
-            (this.mappingSetting.source_field === 'CATEGORY' && this.mappingSetting.destination_field === 'ACCOUNT') ){
+            (this.mappingSetting.source_field === 'CATEGORY')){
             active = true;
         }
 
