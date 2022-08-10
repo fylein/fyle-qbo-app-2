@@ -34,3 +34,5 @@ jobs:
       QBO_AUTHORIZE_URI: ${{ secrets.QBO_AUTHORIZE_URI }}
       QBO_APP_URL: ${{ secrets.QBO_APP_URL }}
       FYLE_APP_URL: ${{ secrets.FYLE_APP_URL }}
+      E2E_TESTS_WORKSPACE_ID: ${{ secrets.E2E_TESTS_WORKSPACE_ID }}
+      E2E_TESTS_CLIENT_ID: ${{ secrets.E2E_TESTS_CLIENT_ID }}
