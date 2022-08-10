@@ -9,7 +9,6 @@ phases:
     commands:
       - echo Entered the build phase...
       - echo Building the Docker image...
-      - cd docker-distribution
       - docker build -t sivafyle/fyle_qbo-app-2:$COMMIT_HASH .
   post_build:
     commands:
