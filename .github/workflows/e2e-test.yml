@@ -5,7 +5,7 @@ on:
     types: [assigned, opened, synchronize, reopened]
 
 jobs:
-  build:
+  end-to-end-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

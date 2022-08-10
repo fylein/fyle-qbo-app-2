@@ -21,6 +21,12 @@ const environment = {
   refiner_survey: {
     onboarding_done_survery_id: `${process.env.REFINER_ONBOARDING_DONE_SURVEY_ID ? process.env.REFINER_ONBOARDING_DONE_SURVEY_ID : '{{REFINER_ONBOARDING_DONE_SURVEY_ID}}'}`,
     export_done_survery_id: `${process.env.REFINER_EXPORT_DONE_SURVEY_ID ? process.env.REFINER_EXPORT_DONE_SURVEY_ID : '{{REFINER_EXPORT_DONE_SURVEY_ID}}'}`,
+  },
+  e2e_tests: {
+    workspace_id: `${process.env.E2E_TESTS_WORKSPACE_ID ? process.env.E2E_TESTS_WORKSPACE_ID : '{{E2E_TESTS_WORKSPACE_ID}}'}`,
+    client_id: {
+      [process.env.E2E_TESTS_WORKSPACE_ID]: `${process.env.E2E_TESTS_CLIENT_ID ? process.env.E2E_TESTS_CLIENT_ID : '{{E2E_TESTS_CLIENT_ID}}'}`
+    }
   }
 };
 
