@@ -29,7 +29,7 @@ export class MappingService {
 
   getQBODestinationAttributes(attributeTypes: string | string[], active:boolean = false): Observable<DestinationAttribute[]> {
     const params: {attribute_types: string | string[], active?: boolean} = {
-      attribute_types : attributeTypes
+      attribute_types: attributeTypes
     };
 
     if (active) {
