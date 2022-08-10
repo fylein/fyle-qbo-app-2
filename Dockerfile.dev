@@ -3,6 +3,10 @@
 # base image
 FROM node:14.18-alpine as build
 
+# Create a working directory for app and node_modules
+RUN mkdir /app
+RUN mkdir /app/node_modules
+
 # set working directory
 WORKDIR /app
 

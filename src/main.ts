@@ -10,7 +10,7 @@ import { Integrations as TracingIntegrations } from '@sentry/tracing';
 const hostname = window.location.hostname;
 const env = environment.sentry_env;
 
-if (environment.sentry_dsn && env) {
+if (environment.sentry_dsn && env && hostname !== 'localhost') {
   Sentry.init({
     dsn: environment.sentry_dsn,
     release: env,
