@@ -85,6 +85,11 @@
     order: 1;
     flex-grow: 0;
   }
+
+  &--no-result{
+    padding: 8px 16px;
+    margin: 10px;
+  }
 }
 
 .configuration{
@@ -129,7 +134,3 @@ p {
   margin-left: 10px;
 }
 
-.no-result{
-  padding: 8px 16px;
-  margin: 10px;
-}
