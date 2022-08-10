@@ -9,9 +9,11 @@ phases:
     commands:
       - echo Entered the build phase...
       - echo Building the Docker image...
-      - docker build -t sivafyle/fyle_qbo-app-2:$COMMIT_HASH .
+      - ls
+      - docker build -t $DOCKER_USERNAME/fyle_qbo-app-2 .
   post_build:
     commands:
       - echo Entered the post_build phase...
       - echo Pushing the Docker image...
-      - docker push sivafyle/fyle_qbo-app-2:$COMMIT_HASH
+      - ls
+      - docker push $DOCKERHUB_USERNAME/fyle_qbo-app-2
