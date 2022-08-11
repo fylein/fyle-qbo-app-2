@@ -33,4 +33,6 @@ phases:
       - export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration')
       - aws eks --region $AWS_REGION update-kubeconfig --name $EKS_CLUSTER_NAME
       - kubectl -n integrations get pods
+      - sed -i "" "s?{{RELEASE_VERSION}}?${RELEASE_VERSION}?" staging-deploy.yml
+      - sed -i "" "s?{{DOCKERHUB_USERNAME}}?${DOCKERHUB_USERNAME}?" staging-deploy.yml
       - kubectl apply -f staging-deploy.yml
