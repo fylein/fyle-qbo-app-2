@@ -14,18 +14,18 @@ phases:
   pre_build:
     commands:
       - echo setting environment variables and versioning
-      - export RELEASE_VERSION="vM0.1.0"
+      - export RELEASE_VERSION="vM0.2.0"
       - export KUBECONFIG=$HOME/.kube/config
   build:
     commands:
       - echo Entered the build phase...
       - echo Building the Docker image...
-      # - docker build -t $DOCKERHUB_USERNAME/fyle_qbo-app-2:$RELEASE_VERSION .
+      - docker build -t $DOCKERHUB_USERNAME/fyle_qbo-app-2:$RELEASE_VERSION .
   post_build:
     commands:
       - echo Entered the post_build phase...
       - echo Pushing the Docker image...
-      # - docker push $DOCKERHUB_USERNAME/fyle_qbo-app-2:$RELEASE_VERSION
+      - docker push $DOCKERHUB_USERNAME/fyle_qbo-app-2:$RELEASE_VERSION
       - CREDENTIALS=$(aws sts assume-role --role-arn $EKS_KUBECTL_ROLE_ARN --role-session-name codebuild-kubectl --duration-seconds 900)
       - export AWS_ACCESS_KEY_ID="$(echo ${CREDENTIALS} | jq -r '.Credentials.AccessKeyId')"
       - export AWS_SECRET_ACCESS_KEY="$(echo ${CREDENTIALS} | jq -r '.Credentials.SecretAccessKey')"
