@@ -6,7 +6,7 @@ phases:
       - echo pre_build step...
       - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASS
       - curl -sS -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/aws-iam-authenticator
-      - curl -sS -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.20.4/2021-04-12/bin/linux/amd64/kubectl
+      - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/arm64/kubectl"
       - chmod +x ./kubectl ./aws-iam-authenticator
       - export PATH=$PWD/:$PATH
   pre_build:
@@ -19,12 +19,12 @@ phases:
     commands:
       - echo Entered the build phase...
       - echo Building the Docker image...
-      - docker build -t $DOCKERHUB_USERNAME/fyle_qbo-app-2:$RELEASE_VERSION .
+      # - docker build -t $DOCKERHUB_USERNAME/fyle_qbo-app-2:$RELEASE_VERSION .
   post_build:
     commands:
       - echo Entered the post_build phase...
       - echo Pushing the Docker image...
-      - docker push $DOCKERHUB_USERNAME/fyle_qbo-app-2:$RELEASE_VERSION
+      # - docker push $DOCKERHUB_USERNAME/fyle_qbo-app-2:$RELEASE_VERSION
       - CREDENTIALS=$(aws sts assume-role --role-arn $EKS_KUBECTL_ROLE_ARN --role-session-name codebuild-kubectl --duration-seconds 900)
       - export AWS_ACCESS_KEY_ID="$(echo ${CREDENTIALS} | jq -r '.Credentials.AccessKeyId')"
       - export AWS_SECRET_ACCESS_KEY="$(echo ${CREDENTIALS} | jq -r '.Credentials.SecretAccessKey')"
