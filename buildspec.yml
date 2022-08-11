@@ -25,6 +25,7 @@ phases:
       - echo Entered the post_build phase...
       - echo Pushing the Docker image...
       - docker push $DOCKERHUB_USERNAME/fyle_qbo-app-2:$RELEASE_VERSION
+      - ls
       - CREDENTIALS=$(aws sts assume-role --role-arn $EKS_KUBECTL_ROLE_ARN --role-session-name codebuild-kubectl --duration-seconds 900)
       - export AWS_ACCESS_KEY_ID="$(echo ${CREDENTIALS} | jq -r '.Credentials.AccessKeyId')"
       - export AWS_SECRET_ACCESS_KEY="$(echo ${CREDENTIALS} | jq -r '.Credentials.SecretAccessKey')"
