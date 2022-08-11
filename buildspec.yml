@@ -5,10 +5,16 @@ phases:
     commands:
       - echo pre_build step...
       - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASS
+      - curl -sS -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/aws-iam-authenticator
+      - curl -sS -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.20.4/2021-04-12/bin/linux/amd64/kubectl
+      - chmod +x ./kubectl ./aws-iam-authenticator
+      - export PATH=$PWD/:$PATH
   pre_build:
     commands:
       - echo setting environment variables and versioning
       - export RELEASE_VERSION="vM0.1.0"
+      - export KUBECONFIG=$HOME/.kube/config
+
   build:
     commands:
       - echo Entered the build phase...
@@ -19,3 +25,10 @@ phases:
       - echo Entered the post_build phase...
       - echo Pushing the Docker image...
       - docker push $DOCKERHUB_USERNAME/fyle_qbo-app-2:$RELEASE_VERSION
+      - CREDENTIALS=$(aws sts assume-role --role-arn $EKS_KUBECTL_ROLE_ARN --role-session-name codebuild-kubectl --duration-seconds 900)
+      - export AWS_ACCESS_KEY_ID="$(echo ${CREDENTIALS} | jq -r '.Credentials.AccessKeyId')"
+      - export AWS_SECRET_ACCESS_KEY="$(echo ${CREDENTIALS} | jq -r '.Credentials.SecretAccessKey')"
+      - export AWS_SESSION_TOKEN="$(echo ${CREDENTIALS} | jq -r '.Credentials.SessionToken')"
+      - export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration')
+      - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME
+      - kubectl get pods
