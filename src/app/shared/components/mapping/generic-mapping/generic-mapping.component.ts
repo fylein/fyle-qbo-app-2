@@ -192,8 +192,13 @@ export class GenericMappingComponent implements OnInit {
       this.page = `${new TitleCasePipe().transform(new SnakeCaseToSpaceCase().transform(this.mappingSetting.source_field))} Mapping`;
       this.mappingService.getMappingStats(this.sourceType.toUpperCase(), this.mappingSetting.destination_field).subscribe((mappingStats: MappingStats) => {
         this.mappingStats = mappingStats;
+        let active = false;
+        if ((this.mappingSetting.source_field === 'PROJECT' && this.mappingSetting.destination_field === 'CUSTOMER') ||
+            (this.mappingSetting.source_field === 'CATEGORY')){
+            active = true;
+        }
 
-        this.mappingService.getQBODestinationAttributes(this.mappingSetting.destination_field).subscribe((qboData: DestinationAttribute[]) => {
+        this.mappingService.getQBODestinationAttributes(this.mappingSetting.destination_field, active).subscribe((qboData: DestinationAttribute[]) => {
           this.qboData = qboData;
           this.getMappings();
         });
