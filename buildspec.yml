@@ -6,15 +6,16 @@ phases:
       - echo pre_build step...
       - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASS
       - curl -sS -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/aws-iam-authenticator
-      - curl -sS -o kubectl "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/arm64/kubectl"
-      - chmod +x ./kubectl ./aws-iam-authenticator
-      - export PATH=$PWD/:$PATH
+      - curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.15.10/2020-02-22/bin/linux/amd64/kubectl   
+      - chmod +x ./kubectl
+      - mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
+      - echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
+      - chmod +x ./aws-iam-authenticator
   pre_build:
     commands:
       - echo setting environment variables and versioning
       - export RELEASE_VERSION="vM0.1.0"
       - export KUBECONFIG=$HOME/.kube/config
-
   build:
     commands:
       - echo Entered the build phase...
@@ -30,5 +31,5 @@ phases:
       - export AWS_SECRET_ACCESS_KEY="$(echo ${CREDENTIALS} | jq -r '.Credentials.SecretAccessKey')"
       - export AWS_SESSION_TOKEN="$(echo ${CREDENTIALS} | jq -r '.Credentials.SessionToken')"
       - export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration')
-      - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME
+      - aws eks --region $AWS_REGION update-kubeconfig --name $EKS_CLUSTER_NAME
       - kubectl get pods
