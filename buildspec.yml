@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo pre_build step...
+      - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASS
+  pre_build:
+    commands:
+      - echo setting environment variables and versioning
+      - export RELEASE_VERSION="vM0.1.0"
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Building the Docker image...
+      - docker build -t $DOCKERHUB_USERNAME/fyle_qbo-app-2:$RELEASE_VERSION .
+  post_build:
+    commands:
+      - echo Entered the post_build phase...
+      - echo Pushing the Docker image...
+      - docker push $DOCKERHUB_USERNAME/fyle_qbo-app-2:$RELEASE_VERSION
