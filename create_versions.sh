@@ -33,5 +33,6 @@ echo "Pushing Docker Image to Docker Hub";
 
 docker push $DOCKERHUB_USERNAME/fyle_qbo-app-2:$DOCKER_VERSION;
 
+# Replacing stuff in Yaml File for deployment
 sed -i "s?{{RELEASE_VERSION}}?${DOCKER_VERSION}?" staging-deploy.yml
 sed -i "s?{{DOCKERHUB_USERNAME}}?${DOCKERHUB_USERNAME}?" staging-deploy.yml
