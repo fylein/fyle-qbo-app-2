@@ -19,7 +19,6 @@ phases:
     commands:
       - echo Entered the build phase...
       - echo Building the Docker image...
-      - git remote -v;
       - /bin/bash create_versions.sh
 
   post_build:
@@ -30,5 +29,4 @@ phases:
       - export AWS_SESSION_TOKEN="$(echo ${CREDENTIALS} | jq -r '.Credentials.SessionToken')"
       - export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration')
       - aws eks --region $AWS_REGION update-kubeconfig --name $EKS_CLUSTER_NAME
-      - kubectl -n integrations get pods
       - kubectl apply -f staging-deploy.yml
