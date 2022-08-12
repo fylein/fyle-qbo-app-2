@@ -6,31 +6,23 @@ describe('onboarding journey', () => {
     cy.visit('/')
   })
 
-  function selectMatOption(optionName) {
-    cy.get('mat-option').contains(optionName).click()
-  }
-
   function enableImportToFyle(fieldOrder, optionName) {
     cy.get('.import-settings--field-toggle-section').eq(fieldOrder).within(() => {
       enableConfigurationToggle(0)
       cy.get('.import-settings--fyle-field').click()
     })
-    selectMatOption(optionName)
+    cy.selectMatOption(optionName)
   }
 
   function enableConfigurationToggle(fieldOrder) {
-    cy.get('.mat-slide-toggle-bar').eq(fieldOrder).click()
+    cy.getMatToggle(fieldOrder).click()
   }
 
   function selectConfigurationField(fieldOrder, optionName) {
     cy.get('.configuration--field-section').eq(fieldOrder).within(() => {
       cy.get('.configuration--form-field').first().click()
     })
-    selectMatOption(optionName)
-  }
-
-  function proceedToNextStep() {
-    cy.get('.configuration--submit-btn').click()
+    cy.selectMatOption(optionName)
   }
 
   function completeEmployeeSettingOnboarding() {
@@ -41,7 +33,7 @@ describe('onboarding journey', () => {
     selectConfigurationField(0, 'Employee')
     selectConfigurationField(1, 'Fyle Name to QBO Display name')
 
-    proceedToNextStep()
+    cy.saveSetting('Save')
   }
 
   function completeExportSettingOnboarding() {
@@ -64,7 +56,7 @@ describe('onboarding journey', () => {
     selectConfigurationField(5, 'Credit Card Purchase')
     selectConfigurationField(6, 'Visa')
 
-    proceedToNextStep()
+    cy.saveSetting('Save')
   }
 
   function completeImportSettingOnboarding() {
@@ -80,7 +72,7 @@ describe('onboarding journey', () => {
     enableImportToFyle(0, 'Cost Center')
     enableImportToFyle(2, 'Project')
 
-    proceedToNextStep()
+    cy.saveSetting('Save')
   }
 
   function completeAdvancedSettingOnboarding() {
@@ -90,14 +82,14 @@ describe('onboarding journey', () => {
     // Select advanced setting form values
     enableConfigurationToggle(1)
 
-    proceedToNextStep()
+    cy.saveSetting('Save')
   }
 
   function completeOnboarding() {
     // Check if user is taken to onboarding done page after advanced setting form submission
     cy.url().should('include', '/workspaces/onboarding/done')
 
-    cy.get('.configuration--submit-btn').click()
+    cy.saveSetting('Launch Integration')
   }
 
   function finalAssertion() {
