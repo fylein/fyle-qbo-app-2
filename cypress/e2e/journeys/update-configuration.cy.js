@@ -118,8 +118,8 @@ describe('update configuration', () => {
     navigateToSettingPage('Import Settings')
 
     // Assert the existing option
-    assertConfigurationImportField(0, 'Project')
-    assertConfigurationImportField(2, 'Cost Center')
+    assertConfigurationImportField(0, 'Cost Center')
+    assertConfigurationImportField(2, 'Project')
   }
 
   function advancedSettingUpdates() {
