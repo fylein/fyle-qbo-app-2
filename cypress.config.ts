@@ -7,5 +7,8 @@ export default defineConfig({
     baseUrl: environment.app_url,
   },
   video: false,
-  screenshotOnRunFailure: false
+  screenshotOnRunFailure: true,
+  viewportHeight: 980,
+  viewportWidth: 1440,
+  defaultCommandTimeout: 10000
 });
