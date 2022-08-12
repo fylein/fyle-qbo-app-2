@@ -32,6 +32,8 @@ services:
       TESTS_WORKSPACEID: 1
       REFINER_ONBOARDING_DONE_SURVEY_ID: 
       REFINER_EXPORT_DONE_SURVEY_ID: 
+      E2E_TESTS_WORKSPACE_ID: 
+      E2E_TESTS_CLIENT_ID: 
 
 volumes:
   node_modules:

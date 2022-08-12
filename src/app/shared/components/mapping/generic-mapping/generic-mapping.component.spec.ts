@@ -111,7 +111,7 @@ describe('GenericMappingComponent', () => {
     req2.flush(response2);
     const req3 = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_types=CUSTOMER`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_types=CUSTOMER&active=true`
     });
     req3.flush([]);
   });
@@ -147,7 +147,7 @@ describe('GenericMappingComponent', () => {
     req2.flush(response2);
     const req3 = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_types=ACCOUNT`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_types=ACCOUNT&active=true`
     });
     req3.flush([]);
   });
