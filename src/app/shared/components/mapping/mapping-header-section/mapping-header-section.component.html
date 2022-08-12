@@ -3,7 +3,7 @@
     <div class="mapping-header-section--card pointer" [ngClass]="{'mapping-header-section--card-active': totalCardActive}" (click)="switchView(true)">
       <div fxLayout="row" fxLayoutAlign="end center">
         <img *ngIf="totalCardActive && !customMapping" src="assets/images/svgs/general/tick-filled.svg" class="mapping-header-section--card-active-icon">
-        <p class="mapping-header-section--card-active-icon"></p>
+        <p *ngIf="customMapping" class="mapping-header-section--card-active-icon"></p>
       </div>
       <div class="mapping-header-section--card-content-section" [ngClass]="{'mapping-header-section--card-content-section-active': totalCardActive}">
         <div class="mapping-header-section--card-tag"></div>
