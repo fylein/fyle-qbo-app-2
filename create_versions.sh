@@ -30,7 +30,7 @@ git pull;
 git tag -a $NEW_TAG -m "New tag for qbo-app-2 $NEW_TAG";
 git push origin $NEW_TAG;
 
-# echo "Pushing Docker Image to Docker Hub";
+echo "Pushing Docker Image to Docker Hub";
 
 # docker push $DOCKERHUB_USERNAME/fyle_qbo-app-2:$DOCKER_VERSION;
 

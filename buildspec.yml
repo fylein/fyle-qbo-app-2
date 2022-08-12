@@ -19,8 +19,8 @@ phases:
     commands:
       - echo Entered the build phase...
       - echo Building the Docker image...
-      - /bin/bash create_versions.sh
       - git remote -v;
+      - /bin/bash create_versions.sh
 
   post_build:
     commands:
