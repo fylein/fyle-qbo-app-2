@@ -41,11 +41,11 @@
           </div>
         </mat-select-trigger>
         <div *ngFor="let option of options | search : form.value.searchOption">
-          <mat-option [ngClass]="{'search-zero-state': option && option.name === 'No result found'}" [matTooltip]="option.email" [matTooltipDisabled]="option.email.length <= 40"
+          <p (click)="$event.stopPropagation()" *ngIf="option.name === 'No result found' " class="align-center italic email-multi-select-field--no-result">No result
+            found</p>
+          <mat-option *ngIf="option.name !== 'No result found' " [matTooltip]="option.email" [matTooltipDisabled]="option.email.length <= 40"
             matTooltipPosition="above" matTooltipClass="above" (click)="helperService.clearSearchText(form)"
             [value]="option.email" class="multiline-mat-option" fxLayout="row" fxLayoutAlign="start">
-            <p (click)="$event.stopPropagation()" *ngIf="option.name === 'No result found' " class="align-center italic">No result
-              found</p>
               <div *ngIf="option.name !== 'No result found' ">
                 <div class="email-multi-select-field--head-name ">
                   {{option.name}}
