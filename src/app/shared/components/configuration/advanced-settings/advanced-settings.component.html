@@ -6,13 +6,11 @@
       [phase]="isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING">
     </app-configuration-step-header-section>
     <form [formGroup]="advancedSettingsForm">
-      <div class="configuration--field-section">
-        <app-configuration-toggle-field [form]="advancedSettingsForm"
-          [iconPath]="'assets/images/svgs/general/calendar.svg'" [label]="'Schedule automatic export'"
-          [subLabel]="'Set up a schedule to frequently automate the export of expenses from Fyle to Quickbooks Online'"
-          [formControllerName]="'exportSchedule'">
-        </app-configuration-toggle-field>
-      </div>
+      <app-configuration-toggle-field [form]="advancedSettingsForm"
+        [iconPath]="'assets/images/svgs/general/calendar.svg'" [label]="'Schedule automatic export'"
+        [subLabel]="'Set up a schedule to frequently automate the export of expenses from Fyle to Quickbooks Online'"
+        [formControllerName]="'exportSchedule'">
+      </app-configuration-toggle-field>
       <div *ngIf="advancedSettingsForm.value.exportSchedule">
         <app-configuration-select-field [form]="advancedSettingsForm" [options]="frequencyIntervals"
           [isFieldMandatory]="true" [mandatoryErrorListName]="'frequency'" [label]="'Select frequency of export'"
@@ -24,8 +22,8 @@
           [subLabel]="'You can select one or more email address from the given list, or add new one to get email notifications on.'"
           [placeholder]="'Select Email Address'" [formControllerName]="'emails'">
         </app-email-multi-select-field>
-        <div *ngIf="advancedSettingsForm.controls.exportScheduleFrequency.value" fxLayout="row" class="advanced-settings--add-email-text pointer"
-          fxLayoutAlign="end center" (click)="openAddemailDialog()">
+        <div fxLayout="row" class="advanced-settings--add-email-text pointer" fxLayoutAlign="end center"
+          (click)="openAddemailDialog()">
           <span class="advanced-settings--span-or">or</span>
           <img class="advanced-settings--add-btn" src="assets/images/svgs/actions/add.svg">
           <span class="advanced-settings--span-or">Add new email address</span>

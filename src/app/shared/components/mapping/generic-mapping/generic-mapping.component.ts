@@ -146,6 +146,11 @@ export class GenericMappingComponent implements OnInit {
 
     this.mappingService.getMappings(mappingState, allAlphabets, paginator.limit, paginator.offset, alphabetsFilter, this.mappingSetting.source_field, this.mappingSetting.destination_field).subscribe((extendedExpenseAttributeResponse: ExtendedExpenseAttributeResponse) => {
       this.totalCount = extendedExpenseAttributeResponse.count;
+
+      if (this.mappingSetting.source_field === 'CATEGORY') {
+        extendedExpenseAttributeResponse.results = extendedExpenseAttributeResponse.results.filter(expenseAttribute => expenseAttribute.value !== 'Activity');
+      }
+
       extendedExpenseAttributeResponse.results.forEach((extendedExpenseAttribute: ExtendedExpenseAttribute, index: number) => {
         mappings.push({
           fyle: {
@@ -187,8 +192,13 @@ export class GenericMappingComponent implements OnInit {
       this.page = `${new TitleCasePipe().transform(new SnakeCaseToSpaceCase().transform(this.mappingSetting.source_field))} Mapping`;
       this.mappingService.getMappingStats(this.sourceType.toUpperCase(), this.mappingSetting.destination_field).subscribe((mappingStats: MappingStats) => {
         this.mappingStats = mappingStats;
+        let active = false;
+        if ((this.mappingSetting.source_field === 'PROJECT' && this.mappingSetting.destination_field === 'CUSTOMER') ||
+            (this.mappingSetting.source_field === 'CATEGORY')){
+            active = true;
+        }
 
-        this.mappingService.getQBODestinationAttributes(this.mappingSetting.destination_field).subscribe((qboData: DestinationAttribute[]) => {
+        this.mappingService.getQBODestinationAttributes(this.mappingSetting.destination_field, active).subscribe((qboData: DestinationAttribute[]) => {
           this.qboData = qboData;
           this.getMappings();
         });

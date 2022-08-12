@@ -9,27 +9,11 @@ Frontend Repository for Fyle &lt;> Quickbooks Online Integration
 
 * Navigate into the root folder
 
-* Copy docker-compose.template.yml as docker-compose.yml and add environment variables
+* Copy docker-compose.template.yml as docker-compose.yml and add environment variables wherever needed
 
     ```
-    $ cp docker-compose.template.yml docker-compose.yml
+    cp docker-compose.template.yml docker-compose.yml
     ```
-
-* Setup environment variables in docker_compose.yml
-
-    ```yaml
-    environment:
-      production: "False"
-      FYLE_URL: 
-      FYLE_CLIENT_ID: 
-      API_URL: http://localhost:8000/api
-      APP_URL: http://localhost:4200
-      CALLBACK_URI: http://localhost:4200/auth/callback
-      QBO_CLIENT_ID: 
-      QBO_SCOPE: 
-      QBO_AUTHORIZE_URL: 
-      QBO_APP_URL: 
-   ```
 
 * Build docker images
 
