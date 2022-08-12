@@ -14,13 +14,13 @@ phases:
   pre_build:
     commands:
       - echo setting environment variables and versioning
-      - export RELEASE_VERSION="vM0.2.0"
       - export KUBECONFIG=$HOME/.kube/config
   build:
     commands:
       - echo Entered the build phase...
       - echo Building the Docker image...
-      - docker build -t $DOCKERHUB_USERNAME/fyle_qbo-app-2:$RELEASE_VERSION .
+      - source create_versions.sh
+
   post_build:
     commands:
       - echo Entered the post_build phase...
