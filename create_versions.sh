@@ -26,6 +26,7 @@ echo "New tag: $NEW_TAG";
 docker build -t $DOCKERHUB_USERNAME/fyle_qbo-app-2:$DOCKER_VERSION .;
 
 # push the new tag to GitHub
+git remote set-url origin https://$GITHUB_USERNAME:$GITHUB_PASSWORD@github.com/fylein/fyle-qbo-app-2.git
 git pull;
 git tag -a $NEW_TAG -m "New tag for qbo-app-2 $NEW_TAG";
 git push origin $NEW_TAG;
