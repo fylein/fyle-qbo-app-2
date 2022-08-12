@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Getting the old tag from GitHub
 old_tag=$(git describe --tags $(git rev-list --tags --max-count=1));
 
@@ -21,7 +23,7 @@ echo "Docker version: $DOCKER_VERSION";
 echo "New tag: $NEW_TAG";
 
 # build docker image
-docker build -t $DOCKERHUB_USERNAME/fyle_qbo-app-2:$DOCKER_VERSION
+docker build -t $DOCKERHUB_USERNAME/fyle_qbo-app-2:$DOCKER_VERSION .
 
 # push the new tag to GitHub
 git tag -a $NEW_TAG -m "New tag for qbo-app-2 $NEW_TAG";
