@@ -23,18 +23,18 @@ echo "Docker version: $DOCKER_VERSION";
 echo "New tag: $NEW_TAG";
 
 # build docker image
-# docker build -t $DOCKERHUB_USERNAME/fyle_qbo-app-2:$DOCKER_VERSION .;
+docker build -t $DOCKERHUB_USERNAME/fyle_qbo-app-2:$DOCKER_VERSION .;
 
 # push the new tag to GitHub
-git pull;
 git remote set-url origin https://$GITHUB_USERNAME:$GITHUB_PASSWORD@github.com/fylein/fyle-qbo-app-2.git
+git pull;
 git tag -a $NEW_TAG -m "New tag for qbo-app-2 $NEW_TAG";
 git push origin $NEW_TAG;
 
 echo "Pushing Docker Image to Docker Hub";
 
-# docker push $DOCKERHUB_USERNAME/fyle_qbo-app-2:$DOCKER_VERSION;
+docker push $DOCKERHUB_USERNAME/fyle_qbo-app-2:$DOCKER_VERSION;
 
 # Replacing stuff in Yaml File for Staging deployment
-# sed -i "s?{{RELEASE_VERSION}}?${DOCKER_VERSION}?" staging-deploy.yml
-# sed -i "s?{{DOCKERHUB_USERNAME}}?${DOCKERHUB_USERNAME}?" staging-deploy.yml
+sed -i "s?{{RELEASE_VERSION}}?${DOCKER_VERSION}?" staging-deploy.yml
+sed -i "s?{{DOCKERHUB_USERNAME}}?${DOCKERHUB_USERNAME}?" staging-deploy.yml
