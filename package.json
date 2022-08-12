@@ -11,7 +11,7 @@
     "setup_env": "node scripts/setup_env.js",
     "lint": "ng lint",
     "cypress_open": "cypress open",
-    "cypress_run": "npm run setup_e2e_test && cypress run",
+    "cypress_run": "cypress run",
     "setup_e2e_test": "npm run setup_env && node scripts/setup_e2e_test.js"
   },
   "private": true,
