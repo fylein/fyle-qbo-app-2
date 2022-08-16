@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Generating a new tag and setting it in the env
-git checkout master
+git checkout master;
 export NEW_TAG="v$(git rev-parse --short HEAD)";
 
 # Print out new tag
