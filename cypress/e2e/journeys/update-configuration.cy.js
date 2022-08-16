@@ -2,6 +2,7 @@
 
 describe('update configuration', () => {
   beforeEach(() => {
+    cy.ignoreTokenHealth()
     cy.login()
     cy.visit('/')
   })

@@ -10,6 +10,7 @@ declare global {
       submitButton(content: string): Cypress.Chainable<JQuery<HTMLElement>>;
       saveSetting(content: string): void;
       getMatToggle(toggleIndex: number): void;
+      ignoreTokenHealth(): void;
     }
   }
 }
@@ -43,4 +44,9 @@ Cypress.Commands.add('saveSetting', (content: string) => {
 
 Cypress.Commands.add('getMatToggle', (toggleIndex: number) => {
   return cy.get('.mat-slide-toggle-bar').eq(toggleIndex)
+})
+
+Cypress.Commands.add('ignoreTokenHealth', () => {
+  // Intercept this API call to save some time
+  cy.intercept('GET', '**/qbo/preferences/', {})
 })
