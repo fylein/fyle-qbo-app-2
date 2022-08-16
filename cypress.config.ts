@@ -6,10 +6,9 @@ export default defineConfig({
   e2e: {
     baseUrl: environment.app_url,
   },
-  videoCompression: 0,
   screenshotOnRunFailure: true,
   videoUploadOnPasses: false,
   viewportHeight: 980,
   viewportWidth: 1440,
-  defaultCommandTimeout: 60000
+  defaultCommandTimeout: environment.e2e_tests.env === 'Local' ? 6000: 60000
 });

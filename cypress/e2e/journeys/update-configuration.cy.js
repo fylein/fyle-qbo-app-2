@@ -141,8 +141,8 @@ describe('update configuration', () => {
     navigateToSettingPage('Advanced Settings')
 
     // Assert the saved setting
-    assertAdvancedConfigurationOption(3, 'Export Fyle ACH Payments to Quickbooks Online')
-    assertAdvancedConfigurationOption(4, 'Checking')
+    assertAdvancedConfigurationOption(2, 'Export Fyle ACH Payments to Quickbooks Online')
+    assertAdvancedConfigurationOption(3, 'Checking')
   }
 
   it('updates configuration for each page', () => {
