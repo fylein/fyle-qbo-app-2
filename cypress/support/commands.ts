@@ -6,6 +6,11 @@ declare global {
   namespace Cypress {
     interface Chainable {
       login(): void;
+      selectMatOption(optionName: string): void;
+      submitButton(content: string): Cypress.Chainable<JQuery<HTMLElement>>;
+      saveSetting(content: string): void;
+      getMatToggle(toggleIndex: number): void;
+      ignoreTokenHealth(): void;
     }
   }
 }
@@ -21,4 +26,27 @@ Cypress.Commands.add('login', () => {
     org_name: 'XYZ Org'
   };
   window.localStorage.setItem('user', JSON.stringify(user))
+  window.localStorage.setItem('workspaceId', environment.e2e_tests.workspace_id)
+})
+
+Cypress.Commands.add('selectMatOption', (optionName) => {
+  cy.get('mat-option').contains(optionName).click()
+})
+
+Cypress.Commands.add('submitButton', (content: string | void) => {
+  const button = cy.get('.configuration--submit-btn')
+  return content ? button.contains(content) : button
+})
+
+Cypress.Commands.add('saveSetting', (content: string) => {
+  cy.submitButton(content).click()
+})
+
+Cypress.Commands.add('getMatToggle', (toggleIndex: number) => {
+  return cy.get('.mat-slide-toggle-bar').eq(toggleIndex)
+})
+
+Cypress.Commands.add('ignoreTokenHealth', () => {
+  // Intercept this API call to save some time
+  cy.intercept('GET', '**/qbo/preferences/', {})
 })
