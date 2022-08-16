@@ -6,7 +6,7 @@ export default defineConfig({
   e2e: {
     baseUrl: environment.app_url,
   },
-  videoCompression: 40,
+  videoCompression: 0,
   screenshotOnRunFailure: true,
   videoUploadOnPasses: false,
   viewportHeight: 980,
