@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Generating a new tag and setting it in the env, this will set latest commit hash as the tag
-]export NEW_TAG="v$(git rev-parse --short HEAD)";
+export NEW_TAG="v$(git rev-parse --short HEAD)";
 
 # Print out new tag
 echo "New tag: $NEW_TAG";
