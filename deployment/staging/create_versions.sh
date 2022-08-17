@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Get old docker tag
+export OLD_TAG="$(git rev-parse @~)";
+
+# Pull last docker image
+docker pull  $DOCKERHUB_USERNAME/fyle_qbo-app-2:$NEW_TAG || true;
+
 # Generating a new tag and setting it in the env, this will set latest commit hash as the tag
 export NEW_TAG="v$(git rev-parse --short HEAD)";
 
@@ -9,7 +15,7 @@ echo "New tag: $NEW_TAG";
 # build docker image
 echo "Building Docker Image";
 
-docker build -t $DOCKERHUB_USERNAME/fyle_qbo-app-2:$NEW_TAG .;
+DOCKER_BUILDKIT=1 docker build --build-arg BUILDKIT_INLINE_CACHE=1 --tag $DOCKERHUB_USERNAME/fyle_qbo-app-2:$NEW_TAG --cache-from $DOCKERHUB_USERNAME/fyle_qbo-app-2:$OLD_TAG .;
 
 # push docker image to docker hub
 echo "Pushing Docker Image to Docker Hub";
