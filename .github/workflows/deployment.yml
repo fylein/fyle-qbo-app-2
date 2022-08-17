@@ -1,0 +1,39 @@
+name: Continuous Deployment
+
+on:
+  pull_request:
+    types: [assigned, opened, synchronize, reopened]
+
+jobs:
+  staging_deploy:
+    runs-on: ubuntu-latest
+    environment: Staging
+    steps:
+      - uses: actions/checkout@v2 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+      - name: Run CodeBuild
+        uses: aws-actions/aws-codebuild-run-build@v1
+        with:
+          project-name: ${{ secrets.CODEBUILD_PROJECT_NAME }}
+          env-vars-for-codebuild: |
+            requester,
+            event-name
+        env:
+          requester: ${{ github.actor }}
+          event-name: ${{ github.event_name }}
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        if: ${{ always() && github.ref != 'refs/heads/master' }}
+        env:
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_MESSAGE: Staging Deploy Status - ${{ job.status }}
+          SLACK_TITLE: Deploy to Staging
+          SLACK_ICON_EMOJI: ":pepeok:"
+          SLACK_USERNAME: QBOv2
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_FOOTER: ''
