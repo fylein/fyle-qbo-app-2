@@ -44,7 +44,6 @@ jobs:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
-        if: ${{ always() && github.ref != 'refs/heads/master' }}
         env:
           SLACK_COLOR: ${{ job.status }}
           SLACK_MESSAGE: Staging Deploy Status - ${{ job.status }}
