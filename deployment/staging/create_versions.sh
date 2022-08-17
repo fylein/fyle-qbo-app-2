@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get old docker tag
-export OLD_TAG="$(git rev-parse @~)";
+export OLD_TAG="$(git rev-parse --short @~)";
 
 # Pull last docker image
 docker pull  $DOCKERHUB_USERNAME/fyle_qbo-app-2:$NEW_TAG || true;
