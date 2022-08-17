@@ -39,7 +39,7 @@ jobs:
         env:
           requester: ${{ github.actor }}
           event-name: ${{ github.event_name }}
-          NEW_TAG: env.NEW_TAG
+          NEW_TAG: ${{ env.NEW_TAG }}
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
