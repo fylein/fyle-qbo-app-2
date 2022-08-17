@@ -11,6 +11,7 @@ declare global {
       saveSetting(content: string): void;
       getMatToggle(toggleIndex: number): void;
       ignoreTokenHealth(): void;
+      setupHttpListeners(): void;
     }
   }
 }
@@ -27,7 +28,21 @@ Cypress.Commands.add('login', () => {
   };
   window.localStorage.setItem('user', JSON.stringify(user))
   window.localStorage.setItem('workspaceId', environment.e2e_tests.workspace_id)
+
+  // cy.login() will be used in all tests, hence adding http listener here
+  cy.setupHttpListeners();
 })
+
+Cypress.Commands.add('setupHttpListeners', () => {
+  // This helps cypress to wait for the http requests to complete with 200, regardless of the defaultCommandTimeout (10s)
+  // Usage: cy.wait('@getDestinationAttributes').its('response.statusCode').should('equal', 200)
+
+  // This API has high chance of exceeding the defaultCommandTimeout
+  cy.intercept({
+    method: 'GET',
+    url: '**/qbo/destination_attributes/**',
+  }).as('getDestinationAttributes');
+});
 
 Cypress.Commands.add('selectMatOption', (optionName) => {
   cy.get('mat-option').contains(optionName).click()
