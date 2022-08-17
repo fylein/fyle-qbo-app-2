@@ -33,7 +33,7 @@ jobs:
           project-name: ${{ secrets.CODEBUILD_PROJECT_NAME }}
           env-vars-for-codebuild: |
             requester,
-            event-name
+            event-name,
             NEW_TAG,
             DOCKERHUB_USERNAME
         env:
