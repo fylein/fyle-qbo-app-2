@@ -1,0 +1,32 @@
+name: AWS Staging Deploy
+
+on:
+  check_run:
+    types: [completed]
+    branches:
+      - slack-action
+
+jobs:
+  codebuild-stage:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Notify slack success
+      if: success()
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
+      uses: voxmedia/github-action-slack-notify-build@v1
+      with:
+        channel: qbo_app_staging_deploy_alerts
+        status: SUCCESS
+        color: good
+
+    - name: Notify slack fail
+      if: failure()
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
+      uses: voxmedia/github-action-slack-notify-build@v1
+      with:
+        channel: qbo_app_staging_deploy_alerts
+        status: FAILED
+        color: danger
