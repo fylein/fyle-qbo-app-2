@@ -15,7 +15,7 @@ echo "New tag: $NEW_TAG";
 # build docker image
 echo "Building Docker Image";
 
-DOCKER_BUILDKIT=1 docker build --build-arg BUILDKIT_INLINE_CACHE=1 --tag $DOCKERHUB_USERNAME/fyle_qbo-app-2:$NEW_TAG --cache-from $DOCKERHUB_USERNAME/fyle_qbo-app-2:$OLD_TAG .;
+docker build -t $DOCKERHUB_USERNAME/fyle_qbo-app-2:$NEW_TAG .
 
 # push docker image to docker hub
 echo "Pushing Docker Image to Docker Hub";
