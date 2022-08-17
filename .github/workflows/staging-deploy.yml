@@ -1,11 +1,8 @@
 name: AWS Staging Deploy
 
 on:
-  check_run:
-    types: [completed]
-    branches:
-      - slack-action
-
+  pull_request:
+    types: [assigned,  opened,  synchronize,  reopened]
 jobs:
   codebuild-stage:
     runs-on: ubuntu-latest
