@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Get old docker tag
-export OLD_TAG="$(git rev-parse --short @~)";
+export OLD_TAG="v$(git rev-parse --short @~)";
 
 # Pull last docker image
-docker pull  $DOCKERHUB_USERNAME/fyle_qbo-app-2:$NEW_TAG || true;
+docker pull  $DOCKERHUB_USERNAME/fyle_qbo-app-2:$OLD_TAG || true;
 
 # Generating a new tag and setting it in the env, this will set latest commit hash as the tag
 export NEW_TAG="v$(git rev-parse --short HEAD)";
