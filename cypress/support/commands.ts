@@ -16,6 +16,13 @@ declare global {
   }
 }
 
+function setupInterceptor(method: 'GET' | 'POST', url: string, alias: string) {
+  cy.intercept({
+    method: method,
+    url: `**${url}**`,
+  }).as(alias);
+}
+
 Cypress.Commands.add('login', () => {
   const user = {
     email: 'ashwin.t@fyle.in',
@@ -37,11 +44,15 @@ Cypress.Commands.add('setupHttpListeners', () => {
   // This helps cypress to wait for the http requests to complete with 200, regardless of the defaultCommandTimeout (10s)
   // Usage: cy.wait('@getDestinationAttributes').its('response.statusCode').should('equal', 200)
 
-  // This API has high chance of exceeding the defaultCommandTimeout
-  cy.intercept({
-    method: 'GET',
-    url: '**/qbo/destination_attributes/**',
-  }).as('getDestinationAttributes');
+  setupInterceptor('GET', '/qbo/destination_attributes/', 'getDestinationAttributes');
+
+  setupInterceptor('POST', '/fyle/expense_groups/sync/', 'synchronousImport');
+
+  setupInterceptor('GET', '/fyle/exportable_expense_groups/', 'exportableExpenseGroups');
+
+  setupInterceptor('GET', '/tasks/all/', 'tasksPolling');
+
+  setupInterceptor('POST', '/exports/trigger/', 'exportsTrigger');
 });
 
 Cypress.Commands.add('selectMatOption', (optionName) => {

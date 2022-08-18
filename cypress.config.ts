@@ -10,5 +10,5 @@ export default defineConfig({
   videoUploadOnPasses: false,
   viewportHeight: 980,
   viewportWidth: 1440,
-  defaultCommandTimeout: environment.e2e_tests.env === 'Local' ? 7000: 10000
+  defaultCommandTimeout: 10000
 });
