@@ -12,7 +12,6 @@ describe('resolve mapping error journey', () => {
     cy.wait('@exportableExpenseGroups').its('response.statusCode').should('equal', 200)
 
     // Check if exports are ready to be processed
-    cy.get('.export--content-section').contains('Transactions ready to export')
     cy.get('.export--info-text').contains('Click on Export to start exporting expenses from Fyle as QBO transactions.')
     cy.get('.zero-state-with-illustration--zero-state-img').should('be.visible')
   }
