@@ -28,7 +28,7 @@ jobs:
           node-version: 14.18
       - name: Install dependencies
         run: npm install
-      - name: Comment Test Coverage
+      - name: Comment Previous Unit Test Coverage
         uses: AthleticNet/comment-test-coverage@1.2.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -36,7 +36,7 @@ jobs:
           title: Previous Unit Test Coverage
       - name: Test
         run: npm run unit_test_ci
-      - name: Comment Test Coverage
+      - name: Comment Current Unit Test Coverage
         uses: AthleticNet/comment-test-coverage@1.2.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
