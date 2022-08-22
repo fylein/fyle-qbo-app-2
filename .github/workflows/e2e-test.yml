@@ -23,12 +23,15 @@ jobs:
         with:
           record: true
           browser: chrome
-      - name: Comment Test Coverage
-        uses: AthleticNet/comment-test-coverage@1.2.2
+      - name: Coverage report
+        uses: eleboys/test-coverage-report-action@v1.0.2
+        id: report
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: cypress/coverage/coverage-summary.json
-          title: End to End Test Coverage
+          title: Karma Test Coverage
+      - name: Print the output summary
+        run: echo "Report coverage json ${{ steps.report.outputs.summary }}"
     env:
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
