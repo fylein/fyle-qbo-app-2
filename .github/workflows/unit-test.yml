@@ -15,6 +15,12 @@ jobs:
         node-version: 14.18
     - name: Install dependencies
       run: npm install
+    - name: Comment Test Coverage
+      uses: AthleticNet/comment-test-coverage@1.2.2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        path: coverage/coverage-summary.json
+        title: Previous Unit Test Coverage
     - name: Test
       run: npm run unit_test_ci
     - name: Comment Test Coverage
@@ -22,7 +28,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         path: coverage/coverage-summary.json
-        title: Unit Test Coverage
+        title: Current Unit Test Coverage
       env:
         FYLE_CLIENT_ID: ${{secrets.FYLE_CLIENT_ID}} 
         CALLBACK_URL: ${{secrets.CALLBACK_URL}} 
