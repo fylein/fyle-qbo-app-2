@@ -38,5 +38,7 @@ jobs:
         title: Karma Test Coverage
     - name: Set code coverage commit status 📫
       run: npx -p check-code-coverage set-gh-status
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
