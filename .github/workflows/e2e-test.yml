@@ -14,26 +14,15 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.18
-      # - name: Install dependencies
-      #   run: npm install cypress
-      # - name: Prepare for end to end tests
-      #   run: npm run setup_e2e_test
-      # - name: Cypress run
-      #   uses: cypress-io/github-action@v4
-      #   with:
-      #     record: true
-      #     browser: chrome
-      - name: Comment Test Coverage
-        uses: AthleticNet/comment-test-coverage@1.2.2
+      - name: Install dependencies
+        run: npm install cypress
+      - name: Prepare for end to end tests
+        run: npm run setup_e2e_test
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: cypress/coverage/coverage-summary.json
-          title: Karma Test Coverage
-      - name: Set code coverage commit status 📫
-        run: npx set-gh-status --from cypress/coverage/coverage-summary.json
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+          record: true
+          browser: chrome
     env:
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

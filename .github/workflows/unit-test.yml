@@ -30,14 +30,8 @@ jobs:
         RELEASE: ${{secrets.RELEASE}} 
         FYLE_APP_URL: ${{secrets.FYLE_APP_URL}} 
         TESTS_WORKSPACEID: ${{secrets.TESTS_WORKSPACEID}}
-    # - name: Comment Test Coverage
-    #   uses: AthleticNet/comment-test-coverage@1.2.2
-    #   with:
-    #     token: ${{ secrets.GITHUB_TOKEN }}
-    #     path: coverage/coverage-summary.json
-    #     title: Karma Test Coverage
-    - name: Coverage report
-      uses: eleboys/test-coverage-report-action@v1.0.2
+    - name: Comment Test Coverage
+      uses: AthleticNet/comment-test-coverage@1.2.2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         path: coverage/coverage-summary.json
