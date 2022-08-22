@@ -23,8 +23,8 @@ jobs:
       #   with:
       #     record: true
       #     browser: chrome
-      - name: Coverage report
-        uses: eleboys/test-coverage-report-action@v1.0.2
+      - name: Comment Test Coverage
+        uses: AthleticNet/comment-test-coverage@1.2.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: cypress/coverage/coverage-summary.json
