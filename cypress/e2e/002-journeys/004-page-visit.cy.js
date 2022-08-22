@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('health check app', () => {
+describe('page visit across modules', () => {
   beforeEach(() => {
     cy.ignoreTokenHealth()
     cy.login()
@@ -9,6 +9,10 @@ describe('health check app', () => {
 
   function navigateToModule(pageName) {
     cy.get('.side-nav-bar--module-block-text').contains(pageName).click();
+  }
+
+  function navigateToMappingPage(pageName) {
+    cy.get('.side-nav-bar--module-block-text-inner').contains(pageName).click();
   }
 
   it('loads QBO app', () => {
@@ -23,19 +27,19 @@ describe('health check app', () => {
 
   it('loads Employee Mappings page', () => {
     navigateToModule('Mappings')
-    cy.get('.side-nav-bar--module-block-text-inner').contains('Employee Mapping').click();
+    navigateToMappingPage('Employee Mapping')
     cy.url().should('include', '/workspaces/main/mapping/employee')
   })
 
   it('loads Category Mappings page', () => {
     navigateToModule('Mappings')
-    cy.get('.side-nav-bar--module-block-text-inner').contains('Category Mapping').click();
+    navigateToMappingPage('Category Mapping')
     cy.url().should('include', '/workspaces/main/mapping/category')
   })
 
   it('loads Custom Mappings page', () => {
     navigateToModule('Mappings')
-    cy.get('.side-nav-bar--module-block-text-inner').contains('Custom Mapping').click();
+    navigateToMappingPage('Custom Mapping')
     cy.url().should('include', '/workspaces/main/mapping/custom')
   })
 })
