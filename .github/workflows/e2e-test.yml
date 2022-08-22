@@ -14,22 +14,22 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.18
-      - name: Install dependencies
-        run: npm install cypress
-      - name: Prepare for end to end tests
-        run: npm run setup_e2e_test
-      - name: Cypress run
-        uses: cypress-io/github-action@v4
-        with:
-          record: true
-          browser: chrome
-      - name: Coverage report
-        uses: eleboys/test-coverage-report-action@v1.0.2
-        id: report
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: cypress/coverage/coverage-summary.json
-          title: Karma Test Coverage
+      # - name: Install dependencies
+      #   run: npm install cypress
+      # - name: Prepare for end to end tests
+      #   run: npm run setup_e2e_test
+      # - name: Cypress run
+      #   uses: cypress-io/github-action@v4
+      #   with:
+      #     record: true
+      #     browser: chrome
+      # - name: Coverage report
+      #   uses: eleboys/test-coverage-report-action@v1.0.2
+      #   id: report
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     path: cypress/coverage/coverage-summary.json
+      #     title: Karma Test Coverage
       - name: Print the output summary
         run: echo "Report coverage json ${{ steps.report.outputs.summary }}"
       - name: Set code coverage commit status 📫
