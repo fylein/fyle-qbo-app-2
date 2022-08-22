@@ -56,3 +56,5 @@ src/environments/environment.json
 # Tests
 cypress/videos
 cypress/screenshots
+.nyc_output/
+cypress/coverage/

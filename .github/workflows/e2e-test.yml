@@ -23,6 +23,12 @@ jobs:
         with:
           record: true
           browser: chrome
+    - name: Comment Test Coverage
+      uses: AthleticNet/comment-test-coverage@1.2.2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        path: cypress/coverage/coverage-summary.json
+        title: End to End Test Coverage
     env:
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
