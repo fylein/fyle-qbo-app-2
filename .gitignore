@@ -34,7 +34,7 @@ chrome-profiler-events*.json
 /.angular/cache
 /.sass-cache
 /connect.lock
-coverage/
+coverage/*
 /libpeerconnection.log
 npm-debug.log
 yarn-error.log
@@ -57,4 +57,5 @@ src/environments/environment.json
 cypress/videos
 cypress/screenshots
 .nyc_output/
-cypress/coverage/
+cypress/coverage/*
+!cypress/coverage/coverage-summary.json

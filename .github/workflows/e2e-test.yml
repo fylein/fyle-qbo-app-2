@@ -32,6 +32,11 @@ jobs:
           title: Karma Test Coverage
       - name: Print the output summary
         run: echo "Report coverage json ${{ steps.report.outputs.summary }}"
+      - name: Set code coverage commit status 📫
+        run: npx -p check-code-coverage set-gh-status --from cypress/coverage/coverage-summary.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     env:
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
