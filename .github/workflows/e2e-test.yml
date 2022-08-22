@@ -16,12 +16,6 @@ jobs:
           node-version: 14.18
       - name: Install dependencies
         run: npm install cypress
-      - name: Comment Test Coverage
-        uses: AthleticNet/comment-test-coverage@1.2.2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: coverage/coverage-summary.json
-          title: Previous End to End Test Coverage
       - name: Prepare for end to end tests
         run: npm run setup_e2e_test
       - name: Cypress run
@@ -34,7 +28,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: cypress/coverage/coverage-summary.json
-          title: Current End to End Test Coverage
+          title: End to End Test Coverage
     env:
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -7,38 +7,38 @@ on:
 jobs:
   unit-test:
     runs-on: ubuntu-latest
+    env:
+      FYLE_CLIENT_ID: ${{secrets.FYLE_CLIENT_ID}}
+      CALLBACK_URL: ${{secrets.CALLBACK_URL}}
+      API_URL: ${{secrets.API_URL}}
+      APP_URL: ${{secrets.APP_URL}}
+      QBO_CLIENT_ID: ${{secrets.QBO_CLIENT_ID}}
+      QBO_SCOPE: ${{secrets.QBO_SCOPE}}
+      QBO_AUTHORIZE_URI: ${{secrets.QBO_AUTHORIZE_URI}}
+      QBO_APP_URL: ${{secrets.QBO_APP_URL}}
+      SENTRY_DSN: ${{secrets.SENTRY_DSN}}
+      RELEASE: ${{secrets.RELEASE}}
+      FYLE_APP_URL: ${{secrets.FYLE_APP_URL}}
+      TESTS_WORKSPACEID: ${{secrets.TESTS_WORKSPACEID}}
     steps:
-    - uses: actions/checkout@v1
-    - name: TypeScript Lint GitHub Action
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14.18
-    - name: Install dependencies
-      run: npm install
-    - name: Comment Test Coverage
-      uses: AthleticNet/comment-test-coverage@1.2.2
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        path: coverage/coverage-summary.json
-        title: Previous Unit Test Coverage
-    - name: Test
-      run: npm run unit_test_ci
-    - name: Comment Test Coverage
-      uses: AthleticNet/comment-test-coverage@1.2.2
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        path: coverage/coverage-summary.json
-        title: Current Unit Test Coverage
-      env:
-        FYLE_CLIENT_ID: ${{secrets.FYLE_CLIENT_ID}} 
-        CALLBACK_URL: ${{secrets.CALLBACK_URL}} 
-        API_URL: ${{secrets.API_URL}} 
-        APP_URL: ${{secrets.APP_URL}} 
-        QBO_CLIENT_ID: ${{secrets.QBO_CLIENT_ID}} 
-        QBO_SCOPE: ${{secrets.QBO_SCOPE}} 
-        QBO_AUTHORIZE_URI: ${{secrets.QBO_AUTHORIZE_URI}} 
-        QBO_APP_URL: ${{secrets.QBO_APP_URL}} 
-        SENTRY_DSN: ${{secrets.SENTRY_DSN}} 
-        RELEASE: ${{secrets.RELEASE}} 
-        FYLE_APP_URL: ${{secrets.FYLE_APP_URL}} 
-        TESTS_WORKSPACEID: ${{secrets.TESTS_WORKSPACEID}}
+      - uses: actions/checkout@v1
+      - name: TypeScript Lint GitHub Action
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.18
+      - name: Install dependencies
+        run: npm install
+      - name: Comment Test Coverage
+        uses: AthleticNet/comment-test-coverage@1.2.2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: coverage/coverage-summary.json
+          title: Previous Unit Test Coverage
+      - name: Test
+        run: npm run unit_test_ci
+      - name: Comment Test Coverage
+        uses: AthleticNet/comment-test-coverage@1.2.2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: coverage/coverage-summary.json
+          title: Current Unit Test Coverage
