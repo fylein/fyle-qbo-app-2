@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: 14.18
       - name: Install dependencies
-        run: npm install cypress
+        run: npm install --prefix cypress
       - name: Prepare for end to end tests
         run: npm run setup_e2e_test
       - name: Cypress run
