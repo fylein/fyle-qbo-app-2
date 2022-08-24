@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "rm -rf .nyc_output cypress/coverage && ng serve --extra-webpack-config ./cypress/coverage.webpack.js",
+    "start": "npm run remove_existing_code_coverage && ng serve --extra-webpack-config ./cypress/coverage.webpack.js",
     "local_dev_dc": "npm run setup_env && ng serve --host 0.0.0.0 --disable-host-check",
     "build": "npm run setup_env && ng build",
     "test": "ng test",
@@ -11,8 +11,9 @@
     "setup_env": "node scripts/setup_env.js",
     "lint": "ng lint",
     "cypress_open": "cypress open",
-    "cypress_run": "cypress run",
-    "setup_e2e_test": "npm run setup_env && node scripts/setup_e2e_test.js"
+    "cypress_run": "npm run remove_existing_code_coverage && cypress run",
+    "setup_e2e_test": "npm run setup_env && node scripts/setup_e2e_test.js",
+    "remove_existing_code_coverage": "rm -rf .nyc_output cypress/coverage"
   },
   "private": true,
   "dependencies": {
