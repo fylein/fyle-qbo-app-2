@@ -10,6 +10,9 @@ describe('resolve mapping error journey', () => {
   function importExpenses() {
     // Wait for sync import from Fyle to be completed
     cy.waitForDashboardLoad()
+    cy.wait('@getErrors').its('response.statusCode').should('equal', 200)
+    cy.wait('@getPastExport').its('response.statusCode').should('equal', 400)
+    cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)
 
     // User should be taken to dashboard since they are already onboarded and logged in
     cy.url().should('include', '/workspaces/main/dashboard')
@@ -20,7 +23,6 @@ describe('resolve mapping error journey', () => {
   }
 
   function exportExpenses() {
-    cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)
     cy.submitButton('Export').click()
 
     // Check if the export is in progress
@@ -32,13 +34,14 @@ describe('resolve mapping error journey', () => {
     cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)
 
     cy.exportsPolling()
+    cy.wait('@getErrors').its('response.statusCode').should('equal', 200)
+    cy.wait('@getPastExport').its('response.statusCode').should('equal', 200)
+
+    cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)
   }
 
   function resolveMappingError() {
     // Check if past export details and errors are visible
-    cy.wait('@getErrors')
-    cy.wait('@getPastExport')
-    cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)
     cy.get('.errors--mapping-error-contents').contains('Employee Mapping errors')
 
     // Resolve employee mapping error
