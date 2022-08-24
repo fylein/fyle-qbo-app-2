@@ -2,34 +2,25 @@
 
 describe('resolve mapping error journey', () => {
   beforeEach(() => {
+    cy.ignoreTokenHealth()
     cy.login()
     cy.visit('/')
   })
 
   function importExpenses() {
     // Wait for sync import from Fyle to be completed
-    cy.wait('@synchronousImport').its('response.statusCode').should('equal', 200)
-    cy.wait('@exportableExpenseGroups').its('response.statusCode').should('equal', 200)
+    cy.waitForDashboardLoad()
+
+    // User should be taken to dashboard since they are already onboarded and logged in
+    cy.url().should('include', '/workspaces/main/dashboard')
 
     // Check if exports are ready to be processed
     cy.get('.export--info-text').contains('Click on Export to start exporting expenses from Fyle as QBO transactions.')
     cy.get('.zero-state-with-illustration--zero-state-img').should('be.visible')
   }
 
-  function setupExportsPolling() {
-    // Wait till the exports are processed
-    cy.wait('@tasksPolling').then((http) => {
-      const filteredTasks = http.response.body.results.filter(task => (task.status === 'IN_PROGRESS' || task.status === 'ENQUEUED')).length;
-
-      if (filteredTasks > 0) {
-        setupExportsPolling()
-      } else {
-        assert.equal(filteredTasks, 0, 'All tasks are processed')
-      }
-    })
-  }
-
   function exportExpenses() {
+    cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)
     cy.submitButton('Export').click()
 
     // Check if the export is in progress
@@ -40,13 +31,14 @@ describe('resolve mapping error journey', () => {
     cy.wait('@exportsTrigger').its('response.statusCode').should('equal', 200)
     cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)
 
-    setupExportsPolling()
+    cy.exportsPolling()
   }
 
   function resolveMappingError() {
     // Check if past export details and errors are visible
-    cy.get('.past-export--content-section').should('be.visible')
-    cy.get('.errors--section').should('be.visible')
+    cy.wait('@getErrors')
+    cy.wait('@getPastExport')
+    cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)
     cy.get('.errors--mapping-error-contents').contains('Employee Mapping errors')
 
     // Resolve employee mapping error
@@ -59,6 +51,8 @@ describe('resolve mapping error journey', () => {
     cy.get('.mat-column-qbo').eq(1).contains('Select Vendor').click()
     cy.selectMatOption('Amazon')
 
+    cy.wait('@postEmployeeMapping').its('response.statusCode').should('equal', 201)
+
     cy.get('.dashboard-resolve-mapping-dialog--close-icon').click()
   }
 
@@ -67,17 +61,15 @@ describe('resolve mapping error journey', () => {
 
     cy.submitButton('Export').click()
 
+    cy.wait('@exportsTrigger').its('response.statusCode').should('equal', 200)
     cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)
-    setupExportsPolling()
+    cy.exportsPolling()
 
     // Integration Errors should not be visible since it is resolved
     cy.get('.errors--integration-error-contents').should('not.contain', 'Integration Errors')
   }
 
   it('should resolve mapping error', () => {
-    // User should be taken to dashboard since they are already onboarded and logged in
-    cy.url().should('include', '/workspaces/main/dashboard')
-
     importExpenses()
 
     exportExpenses()

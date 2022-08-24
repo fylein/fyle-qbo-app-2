@@ -7,10 +7,6 @@ describe('update configuration', () => {
     cy.visit('/')
   })
 
-  function navigateToSettingPage(pageName) {
-    cy.get('.side-nav-bar--module-block-content').contains(pageName).click();
-  }
-
   function assertConfigurationOptionAndUpdate(fieldOrder, optionName, newSelectionOptionName) {
     assertConfigurationOption(fieldOrder, optionName, true)
     cy.selectMatOption(newSelectionOptionName)
@@ -46,7 +42,7 @@ describe('update configuration', () => {
   }
 
   function employeeSettingUpdates() {
-    navigateToSettingPage('Map Employees')
+    cy.navigateToSettingPage('Map Employees')
 
     // Assert the existing option and update it and save
     assertConfigurationOptionAndUpdate(0, 'Employees', 'Vendors')
@@ -62,7 +58,7 @@ describe('update configuration', () => {
     // Check if user is taken to export settings page after employee setting form submission
     cy.url().should('include', '/workspaces/main/configuration/export_settings')
 
-    navigateToSettingPage('Map Employees')
+    cy.navigateToSettingPage('Map Employees')
 
     // Assert the existing option
     assertConfigurationOption(0, 'Vendors')
@@ -70,7 +66,7 @@ describe('update configuration', () => {
   }
 
   function exportSettingUpdates() {
-    navigateToSettingPage('Export Settings')
+    cy.navigateToSettingPage('Export Settings')
 
     // Reimbursable export should be turned off since Employee mapping is updated to Vendor
     cy.getMatToggle(0).should('not.be.checked')
@@ -93,7 +89,7 @@ describe('update configuration', () => {
     // Check if user is taken to advanced settings page after export setting form submission
     cy.url().should('include', '/workspaces/main/configuration/advanced_settings')
 
-    navigateToSettingPage('Export Settings')
+    cy.navigateToSettingPage('Export Settings')
 
     // Assert the existing option
     assertConfigurationOption(1, 'Bill')
@@ -101,7 +97,7 @@ describe('update configuration', () => {
   }
 
   function importSettingUpdates() {
-    navigateToSettingPage('Import Settings')
+    cy.navigateToSettingPage('Import Settings')
 
     changeImportFyleField('Cost Center', 'Project')
 
@@ -116,7 +112,7 @@ describe('update configuration', () => {
     // Check if user is taken to dashboard page after import setting form submission
     cy.url().should('include', '/workspaces/main/dashboard')
 
-    navigateToSettingPage('Import Settings')
+    cy.navigateToSettingPage('Import Settings')
 
     // Assert the existing option
     assertConfigurationImportField(0, 'Cost Center')
@@ -124,7 +120,7 @@ describe('update configuration', () => {
   }
 
   function advancedSettingUpdates() {
-    navigateToSettingPage('Advanced Settings')
+    cy.navigateToSettingPage('Advanced Settings')
 
     cy.getMatToggle(1).click()
     assertAdvancedConfigurationOptionAndUpdate(2, 'Select how payments', 'Export Fyle ACH Payments to Quickbooks Online')
@@ -138,7 +134,7 @@ describe('update configuration', () => {
     // Check if user is taken to dashboard page after advanced setting form submission
     cy.url().should('include', '/workspaces/main/dashboard')
 
-    navigateToSettingPage('Advanced Settings')
+    cy.navigateToSettingPage('Advanced Settings')
 
     // Assert the saved setting
     assertAdvancedConfigurationOption(2, 'Export Fyle ACH Payments to Quickbooks Online')

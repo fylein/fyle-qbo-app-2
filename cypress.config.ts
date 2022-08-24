@@ -17,5 +17,6 @@ export default defineConfig({
   videoUploadOnPasses: false,
   viewportHeight: 980,
   viewportWidth: 1440,
-  defaultCommandTimeout: 15000
+  defaultCommandTimeout: 15000,
+  requestTimeout: 15000
 });
