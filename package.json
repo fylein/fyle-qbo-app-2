@@ -10,8 +10,8 @@
     "unit_test_ci": "npm run setup_env && ng test --watch=false --browsers=ChromeHeadlessCustom",
     "setup_env": "node scripts/setup_env.js",
     "lint": "ng lint",
-    "cypress_open": "cypress open",
-    "cypress_run": "npm run remove_existing_code_coverage && cypress run",
+    "cypress_open": "cypress open -b chrome --e2e",
+    "cypress_run": "npm run remove_existing_code_coverage && cypress run -b chrome",
     "setup_e2e_test": "npm run setup_env && node scripts/setup_e2e_test.js",
     "remove_existing_code_coverage": "rm -rf .nyc_output cypress/coverage"
   },
@@ -67,7 +67,6 @@
   "nyc": {
     "report-dir": "cypress/coverage",
     "reporter": [
-      "text",
       "text-summary",
       "html",
       "json-summary"

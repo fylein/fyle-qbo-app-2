@@ -1,0 +1,10 @@
+{
+  "name": "fyle-qbo-app-e2e-test",
+  "version": "0.0.0",
+  "scripts": {},
+  "private": true,
+  "dependencies": {
+    "cypress": "^10.3.0"
+  },
+  "devDependencies": {}
+}

@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: 14.18
       - name: Install dependencies
-        run: npm install cypress
+        run: npm install --prefix cypress
       - name: Prepare for end to end tests
         run: npm run setup_e2e_test
       - name: Cypress run
@@ -38,3 +38,5 @@ jobs:
       E2E_TESTS_WORKSPACE_ID: ${{ secrets.E2E_TESTS_WORKSPACE_ID }}
       E2E_TESTS_CLIENT_ID: ${{ secrets.E2E_TESTS_CLIENT_ID }}
       E2E_TESTS_REFRESH_TOKEN: ${{ secrets.E2E_TESTS_REFRESH_TOKEN }}
+      COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
+      COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
