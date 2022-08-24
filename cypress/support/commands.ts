@@ -56,11 +56,7 @@ Cypress.Commands.add('setupHttpListeners', () => {
 
   setupInterceptor('GET', '/tasks/all/', 'tasksPolling');
 
-  // setupInterceptor('POST', '/exports/trigger', 'exportsTrigger');
-  cy.intercept({
-    method: 'POST',
-    url: `**/exports/trigger/`,
-  }).as('exportsTrigger');
+  setupInterceptor('POST', '/exports/trigger', 'exportsTrigger');
 
   setupInterceptor('POST', '/mappings/employee', 'postEmployeeMapping');
 
