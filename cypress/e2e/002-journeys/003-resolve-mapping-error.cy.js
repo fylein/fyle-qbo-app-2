@@ -7,12 +7,12 @@ describe('resolve mapping error journey', () => {
     cy.visit('/')
   })
 
-  function importExpenses() {
+  it('should import expenses', () => {
     // Wait for sync import from Fyle to be completed
-    cy.waitForDashboardLoad()
-    cy.wait('@getErrors').its('response.statusCode').should('equal', 200)
     cy.wait('@getPastExport').its('response.statusCode').should('equal', 400)
+    cy.wait('@getErrors').its('response.statusCode').should('equal', 200)
     cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)
+    cy.waitForDashboardLoad()
 
     // User should be taken to dashboard since they are already onboarded and logged in
     cy.url().should('include', '/workspaces/main/dashboard')
@@ -20,9 +20,13 @@ describe('resolve mapping error journey', () => {
     // Check if exports are ready to be processed
     cy.get('.export--info-text').contains('Click on Export to start exporting expenses from Fyle as QBO transactions.')
     cy.get('.zero-state-with-illustration--zero-state-img').should('be.visible')
-  }
+  })
 
-  function exportExpenses() {
+  it('should export expenses', () => {
+    cy.wait('@getPastExport').its('response.statusCode').should('equal', 400)
+    cy.wait('@getErrors').its('response.statusCode').should('equal', 200)
+    cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)
+    cy.waitForDashboardLoad()
     cy.submitButton('Export').click()
 
     // Check if the export is in progress
@@ -35,12 +39,13 @@ describe('resolve mapping error journey', () => {
 
     cy.exportsPolling()
     cy.wait('@getErrors').its('response.statusCode').should('equal', 200)
-    cy.wait('@getPastExport').its('response.statusCode').should('equal', 200)
+    cy.wait('@getPastExport')
 
     cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)
-  }
+  })
 
-  function resolveMappingError() {
+  it('should resolve mapping error', () => {
+    cy.waitForDashboardLoad()
     // Check if past export details and errors are visible
     cy.get('.errors--mapping-error-contents').contains('Employee Mapping errors')
 
@@ -57,11 +62,10 @@ describe('resolve mapping error journey', () => {
     cy.wait('@postEmployeeMapping').its('response.statusCode').should('equal', 201)
 
     cy.get('.dashboard-resolve-mapping-dialog--close-icon').click()
-  }
+  })
 
-  function reExportExpenses() {
-    cy.get('.errors--resolved-stat').should('be.visible').contains('error(s) resolved')
-
+  it('should re-export expenses', () => {
+    cy.waitForDashboardLoad()
     cy.submitButton('Export').click()
 
     cy.wait('@exportsTrigger').its('response.statusCode').should('equal', 200)
@@ -70,15 +74,5 @@ describe('resolve mapping error journey', () => {
 
     // Integration Errors should not be visible since it is resolved
     cy.get('.errors--integration-error-contents').should('not.contain', 'Integration Errors')
-  }
-
-  it('should resolve mapping error', () => {
-    importExpenses()
-
-    exportExpenses()
-
-    resolveMappingError()
-
-    reExportExpenses()
   })
 })
