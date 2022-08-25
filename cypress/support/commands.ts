@@ -16,6 +16,7 @@ declare global {
       exportsPolling(): void;
       waitForDashboardLoad(): void;
       interrupt(): void;
+      navigateToModule(pageName: string): void;
     }
   }
 }
@@ -64,6 +65,8 @@ Cypress.Commands.add('setupHttpListeners', () => {
 
   setupInterceptor('GET', '/export_detail', 'getPastExport');
 
+  setupInterceptor('GET', '/fyle/expense_groups/', 'getExpenseGroups')
+
   cy.intercept('POST', '**/refresh_dimensions', {}).as('refreshDimension')
 });
 
@@ -109,4 +112,8 @@ Cypress.Commands.add('exportsPolling', () => {
 Cypress.Commands.add('waitForDashboardLoad', () => {
   cy.wait('@synchronousImport').its('response.statusCode').should('equal', 200)
   cy.wait('@exportableExpenseGroups').its('response.statusCode').should('equal', 200)  
+})
+
+Cypress.Commands.add('navigateToModule', (pageName: string) => {
+  cy.get('.side-nav-bar--module-block-text').contains(pageName).click()
 })

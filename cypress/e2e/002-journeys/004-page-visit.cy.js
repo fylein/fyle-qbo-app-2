@@ -7,10 +7,6 @@ describe('page visit across modules', () => {
     cy.visit('/')
   })
 
-  function navigateToModule(pageName) {
-    cy.get('.side-nav-bar--module-block-text').contains(pageName).click();
-  }
-
   function navigateToMappingPage(pageName) {
     cy.get('.side-nav-bar--module-block-text-inner').contains(pageName).click();
   }
@@ -21,24 +17,24 @@ describe('page visit across modules', () => {
   })
 
   it('loads Export Log page', () => {
-    navigateToModule('Export Log')
+    cy.navigateToModule('Export Log')
     cy.url().should('include', '/workspaces/main/export_log')
   })
 
   it('loads Employee Mappings page', () => {
-    navigateToModule('Mappings')
+    cy.navigateToModule('Mappings')
     navigateToMappingPage('Employee Mapping')
     cy.url().should('include', '/workspaces/main/mapping/employee')
   })
 
   it('loads Category Mappings page', () => {
-    navigateToModule('Mappings')
+    cy.navigateToModule('Mappings')
     navigateToMappingPage('Category Mapping')
     cy.url().should('include', '/workspaces/main/mapping/category')
   })
 
   it('loads Custom Mappings page', () => {
-    navigateToModule('Mappings')
+    cy.navigateToModule('Mappings')
     navigateToMappingPage('Custom Mapping')
     cy.url().should('include', '/workspaces/main/mapping/custom')
   })
