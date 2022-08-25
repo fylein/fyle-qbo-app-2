@@ -26,6 +26,7 @@ const environment = {
     env: `${process.env.E2E_TESTS_ENV ? process.env.E2E_TESTS_ENV : '{{E2E_TESTS_ENV}}'}`,
     workspace_id: `${process.env.E2E_TESTS_WORKSPACE_ID ? process.env.E2E_TESTS_WORKSPACE_ID : '{{E2E_TESTS_WORKSPACE_ID}}'}`,
     refresh_token: `${process.env.E2E_TESTS_REFRESH_TOKEN ? process.env.E2E_TESTS_REFRESH_TOKEN : '{{E2E_TESTS_REFRESH_TOKEN}}'}`,
+    access_token: '',
     client_id: {
       [process.env.E2E_TESTS_WORKSPACE_ID]: `${process.env.E2E_TESTS_CLIENT_ID ? process.env.E2E_TESTS_CLIENT_ID : '{{E2E_TESTS_CLIENT_ID}}'}`
     }
