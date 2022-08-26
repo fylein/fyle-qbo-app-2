@@ -13,15 +13,15 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.18
-      # - name: Install dependencies
-      #   run: npm install --prefix cypress
-      # - name: Prepare for end to end tests
-      #   run: npm run setup_e2e_test
-      # - name: Cypress run
-      #   uses: cypress-io/github-action@v4
-      #   with:
-      #     record: true
-      #     browser: chrome
+      - name: Install dependencies
+        run: npm install --prefix cypress
+      - name: Prepare for end to end tests
+        run: npm run setup_e2e_test
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
+        with:
+          record: true
+          browser: chrome
       - name: End to End Test Coverage
         uses: fylein/comment-test-coverage@master
         with:
