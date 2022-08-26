@@ -31,7 +31,7 @@ function setupInterceptor(method: 'GET' | 'POST', url: string, alias: string) {
 Cypress.Commands.add('login', () => {
   const user = {
     email: 'ashwin.t@fyle.in',
-    access_token: 'xyz',
+    access_token: environment.e2e_tests.access_token,
     refresh_token: environment.e2e_tests.refresh_token,
     full_name: 'Ashwin',
     user_id: 'xyz',
