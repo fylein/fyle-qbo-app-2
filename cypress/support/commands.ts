@@ -17,6 +17,7 @@ declare global {
       waitForDashboardLoad(): void;
       interrupt(): void;
       navigateToModule(pageName: string): void;
+      navigateToMappingPage(pageName: string): void;
     }
   }
 }
@@ -116,4 +117,8 @@ Cypress.Commands.add('waitForDashboardLoad', () => {
 
 Cypress.Commands.add('navigateToModule', (pageName: string) => {
   cy.get('.side-nav-bar--module-block-text').contains(pageName).click()
+})
+
+Cypress.Commands.add('navigateToMappingPage', (pageName: string) => {
+  cy.get('.side-nav-bar--module-block-text-inner').contains(pageName).click();
 })
