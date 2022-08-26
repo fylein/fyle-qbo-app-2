@@ -24,7 +24,7 @@ jobs:
       #     record: true
       #     browser: chrome
       - name: End to End Test Coverage
-        uses: fylein/comment-test-coverage@2.0.0
+        uses: fylein/comment-test-coverage@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: cypress/coverage/coverage-summary.json
