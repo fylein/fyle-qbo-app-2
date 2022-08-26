@@ -17,7 +17,6 @@ declare global {
       waitForDashboardLoad(): void;
       interrupt(): void;
       navigateToModule(pageName: string): void;
-      storeAccessToken(accessToken: string): void;
     }
   }
 }
@@ -28,12 +27,6 @@ function setupInterceptor(method: 'GET' | 'POST', url: string, alias: string) {
     url: `**${url}**`,
   }).as(alias);
 }
-
-Cypress.Commands.add('storeAccessToken', (accessToken: string) => {
-  const targetPath = 'src/environments/environment.json';
-  environment.e2e_tests.access_token = accessToken;
-  cy.writeFile(targetPath, environment)
-})
 
 Cypress.Commands.add('login', () => {
   const user = {
