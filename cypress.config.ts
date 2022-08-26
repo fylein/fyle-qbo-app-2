@@ -13,8 +13,6 @@ export default defineConfig({
   env: {
     coverage: true
   },
-  screenshotOnRunFailure: true,
-  videoUploadOnPasses: false,
   viewportHeight: 980,
   viewportWidth: 1440,
   defaultCommandTimeout: 15000,
