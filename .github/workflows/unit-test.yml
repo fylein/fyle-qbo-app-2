@@ -30,9 +30,10 @@ jobs:
         RELEASE: ${{secrets.RELEASE}} 
         FYLE_APP_URL: ${{secrets.FYLE_APP_URL}} 
         TESTS_WORKSPACEID: ${{secrets.TESTS_WORKSPACEID}}
-    - name: Comment Test Coverage
-      uses: AthleticNet/comment-test-coverage@1.2.2
+    - name: Unit Test Coverage
+      uses: fylein/comment-test-coverage@2.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         path: coverage/coverage-summary.json
-        title: Karma Test Coverage
+        title: Unit Test Coverage
+
