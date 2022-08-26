@@ -10,16 +10,22 @@ describe('employee mapping view/create/update', () => {
   })
 
   it('view employee mapping rows', () => {
+    const mappingLimit = 10;
     cy.get('.mapping-table--row').each((_, index, __) => {
       cy.get('.mat-column-fyle').eq(index + 1).contains('@')
       cy.get('.mat-column-qbo').eq(index + 1).should('not.be.null')
       cy.get('.mat-column-state').eq(index + 1).contains(/Mapped|Unmapped/g)
+
+      // Stop execution
+      if (mappingLimit < index + 2) {
+        return false;
+      }
     })
   })
 
   it('create employee mappings', () => {
     // Number of mappings to be created
-    const mappingLimit = 10;
+    const mappingLimit = 5;
 
     cy.get('.mapping-header-section--card-content-text-header').contains('Unmapped Employees').click()
 
