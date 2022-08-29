@@ -1,3 +1,5 @@
+name: Manually Trigger End to End Tests - With environment
+
 on:
   workflow_dispatch:
     inputs:
