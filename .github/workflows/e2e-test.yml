@@ -1,7 +1,8 @@
 name: End to End Tests - Cypress
 
 on:
-  workflow_dispatch
+  pull_request:
+    types: [assigned, opened, synchronize, reopened]
 
 jobs:
   end-to-end-test:
