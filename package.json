@@ -3,23 +3,28 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "npm run remove_existing_code_coverage && ng serve --extra-webpack-config ./cypress/coverage.webpack.js",
     "local_dev_dc": "npm run setup_env && ng serve --host 0.0.0.0 --disable-host-check",
     "build": "npm run setup_env && ng build",
     "test": "ng test",
     "unit_test_ci": "npm run setup_env && ng test --watch=false --browsers=ChromeHeadlessCustom",
     "setup_env": "node scripts/setup_env.js",
     "lint": "ng lint",
-    "cypress_open": "cypress open",
-    "cypress_run": "cypress run",
-    "setup_e2e_test": "npm run setup_env && node scripts/setup_e2e_test.js"
+    "cypress_open": "cypress open -b chrome --e2e",
+    "cypress_run": "npm run remove_existing_code_coverage && cypress run -b chrome",
+    "setup_e2e_test": "npm run setup_env && node scripts/setup_e2e_test.js",
+    "remove_existing_code_coverage": "rm -rf .nyc_output cypress/coverage",
+    "cypress": "cypress"
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/build-angular": "~13.3.8",
     "@angular/animations": "~13.3.9",
     "@angular/cdk": "^13.3.7",
+    "@angular/cli": "~13.3.8",
     "@angular/common": "~13.3.9",
     "@angular/compiler": "~13.3.9",
+    "@angular/compiler-cli": "~13.3.9",
     "@angular/core": "~13.3.9",
     "@angular/flex-layout": "^13.0.0-beta.36",
     "@angular/forms": "~13.3.9",
@@ -35,29 +40,37 @@
     "ts-cacheable": "^1.0.6",
     "ts-node": "^10.7.0",
     "tslib": "^2.2.0",
+    "typescript": "~4.6.4",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~13.3.8",
     "@angular-eslint/builder": "12.7.0",
     "@angular-eslint/eslint-plugin": "12.7.0",
     "@angular-eslint/eslint-plugin-template": "12.7.0",
     "@angular-eslint/schematics": "12.7.0",
     "@angular-eslint/template-parser": "12.7.0",
-    "@angular/cli": "~13.3.8",
-    "@angular/compiler-cli": "~13.3.9",
+    "@cypress/code-coverage": "^3.10.0",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "4.28.2",
     "@typescript-eslint/parser": "4.28.2",
     "cypress": "^10.3.0",
     "eslint": "^7.26.0",
+    "istanbul-instrumenter-loader": "^3.0.1",
     "jasmine-core": "~3.8.0",
     "karma": "~6.3.16",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "typescript": "~4.6.4"
+    "ngx-build-plus": "^13.0.0"
+  },
+  "nyc": {
+    "report-dir": "cypress/coverage",
+    "reporter": [
+      "text-summary",
+      "html",
+      "json-summary"
+    ]
   }
 }

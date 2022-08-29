@@ -177,7 +177,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
     this.advancedSettingsForm = this.formBuilder.group({
       paymentSync: [paymentSync],
-      billPaymentAccount: [this.advancedSettings.general_mappings.bill_payment_account?.id],
+      billPaymentAccount: [this.advancedSettings.general_mappings.bill_payment_account?.id ? this.advancedSettings.general_mappings.bill_payment_account : null],
       changeAccountingPeriod: [this.advancedSettings.workspace_general_settings.change_accounting_period],
       singleCreditLineJE: [this.advancedSettings.workspace_general_settings.je_single_credit_line],
       autoCreateVendors: [this.advancedSettings.workspace_general_settings.auto_create_destination_entity],

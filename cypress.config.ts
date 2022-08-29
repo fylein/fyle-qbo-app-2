@@ -5,10 +5,16 @@ export default defineConfig({
   projectId: 'ixtuem',
   e2e: {
     baseUrl: environment.app_url,
+    setupNodeEvents(on, config) {
+      require('@cypress/code-coverage/task')(on, config)
+      return config
+    }
   },
-  video: false,
-  screenshotOnRunFailure: true,
+  env: {
+    coverage: true
+  },
   viewportHeight: 980,
   viewportWidth: 1440,
-  defaultCommandTimeout: 10000
+  defaultCommandTimeout: 15000,
+  requestTimeout: 15000
 });
