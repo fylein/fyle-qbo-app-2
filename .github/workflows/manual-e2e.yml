@@ -1,0 +1,18 @@
+name: Manually Trigger End to End Tests - With environment
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        type: choice
+        required: true
+        description: Environment
+        options: 
+        - staging
+        - production
+
+jobs:
+  approved:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Running e2eeeee test!"
