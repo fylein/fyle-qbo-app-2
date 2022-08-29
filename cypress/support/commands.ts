@@ -9,7 +9,7 @@ declare global {
       selectMatOption(optionName: string): void;
       submitButton(content: string): Cypress.Chainable<JQuery<HTMLElement>>;
       saveSetting(content: string): void;
-      getMatToggle(toggleIndex: number): void;
+      getMatToggle(toggleIndex: number): Cypress.Chainable<JQuery<HTMLElement>>;
       ignoreTokenHealth(): void;
       setupHttpListeners(): void;
       navigateToSettingPage(pageName: string): void;
@@ -18,6 +18,8 @@ declare global {
       interrupt(): void;
       navigateToModule(pageName: string): void;
       navigateToMappingPage(pageName: string): void;
+      importToFyle(fieldOrder: number, enable: boolean, optionName: string): void;
+      enableConfigurationToggle(fieldOrder: number): void;
     }
   }
 }
@@ -67,6 +69,10 @@ Cypress.Commands.add('setupHttpListeners', () => {
   setupInterceptor('GET', '/export_detail', 'getPastExport');
 
   setupInterceptor('GET', '/fyle/expense_groups/', 'getExpenseGroups')
+
+  setupInterceptor('GET', '/mappings/settings', 'getMappingSettings')
+
+  setupInterceptor('GET', '/fyle/expense_fields', 'getFyleExpenseFields')
 
   cy.intercept('POST', '**/refresh_dimensions', {}).as('refreshDimension')
 });
@@ -121,4 +127,20 @@ Cypress.Commands.add('navigateToModule', (pageName: string) => {
 
 Cypress.Commands.add('navigateToMappingPage', (pageName: string) => {
   cy.get('.side-nav-bar--module-block-text-inner').contains(pageName).click();
+})
+
+Cypress.Commands.add('importToFyle', (fieldOrder: number, enable: boolean, optionName: string = '') => {
+  cy.get('.import-settings--field-toggle-section').eq(fieldOrder).within(() => {
+    cy.enableConfigurationToggle(0)
+    if (enable) {
+      cy.get('.import-settings--fyle-field').click()
+    }
+  })
+  if (enable) {
+    cy.selectMatOption(optionName)
+  }
+})
+
+Cypress.Commands.add('enableConfigurationToggle', (fieldOrder: number) => {
+  cy.getMatToggle(fieldOrder).click()
 })
