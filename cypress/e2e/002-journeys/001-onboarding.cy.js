@@ -6,18 +6,6 @@ describe('onboarding journey', () => {
     cy.visit('/')
   })
 
-  function enableImportToFyle(fieldOrder, optionName) {
-    cy.get('.import-settings--field-toggle-section').eq(fieldOrder).within(() => {
-      enableConfigurationToggle(0)
-      cy.get('.import-settings--fyle-field').click()
-    })
-    cy.selectMatOption(optionName)
-  }
-
-  function enableConfigurationToggle(fieldOrder) {
-    cy.getMatToggle(fieldOrder).click()
-  }
-
   function selectConfigurationField(fieldOrder, optionName) {
     cy.get('.configuration--field-section').eq(fieldOrder).within(() => {
       cy.get('.configuration--form-field').first().click()
@@ -44,7 +32,7 @@ describe('onboarding journey', () => {
     selectConfigurationField(0, 'Payment Processing')
 
     // Expand reimbursable expenses section
-    enableConfigurationToggle(0)
+    cy.enableConfigurationToggle(0)
 
     selectConfigurationField(1, 'Check')
     selectConfigurationField(2, 'Checking')
@@ -52,7 +40,7 @@ describe('onboarding journey', () => {
     selectConfigurationField(4, 'Current Date')
 
     // Expand non-reimbursable expenses section
-    enableConfigurationToggle(1)
+    cy.enableConfigurationToggle(1)
     selectConfigurationField(5, 'Credit Card Purchase')
     selectConfigurationField(6, 'Visa')
 
@@ -65,12 +53,12 @@ describe('onboarding journey', () => {
 
     // Select import setting form values
     cy.get('.configuration--field-toggle-section').eq(0).within(() => {
-      enableConfigurationToggle(0)
+      cy.enableConfigurationToggle(0)
     })
     cy.get('.mat-checkbox-label').filter(':contains("Other Expense")').click()
 
-    enableImportToFyle(0, 'Cost Center')
-    enableImportToFyle(2, 'Project')
+    cy.importToFyle(0, true, 'Cost Center')
+    cy.importToFyle(2, true, 'Project')
 
     cy.saveSetting('Save')
   }
@@ -80,7 +68,7 @@ describe('onboarding journey', () => {
     cy.url().should('include', '/workspaces/onboarding/advanced_settings')
 
     // Select advanced setting form values
-    enableConfigurationToggle(1)
+    cy.enableConfigurationToggle(1)
 
     cy.saveSetting('Save')
   }
