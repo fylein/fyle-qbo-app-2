@@ -8,4 +8,14 @@ describe('health check app', () => {
   it('loads QBO app', () => {
     cy.url().should('include', '/auth/login')
   })
+
+  it('logout from QBO app', () => {
+    cy.login()
+    cy.reload()
+
+    cy.get('.navbar--profile-section').click()
+    cy.get('.profile--signout-text').contains('Signout').click()
+
+    cy.url().should('include', '/auth/login')
+  })
 })

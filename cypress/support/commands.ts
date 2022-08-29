@@ -20,6 +20,7 @@ declare global {
       navigateToMappingPage(pageName: string): void;
       importToFyle(fieldOrder: number, enable: boolean, optionName: string): void;
       enableConfigurationToggle(fieldOrder: number): void;
+      selectConfigurationField(fieldOrder: number, optionName: string): void;
     }
   }
 }
@@ -143,4 +144,11 @@ Cypress.Commands.add('importToFyle', (fieldOrder: number, enable: boolean, optio
 
 Cypress.Commands.add('enableConfigurationToggle', (fieldOrder: number) => {
   cy.getMatToggle(fieldOrder).click()
+})
+
+Cypress.Commands.add('selectConfigurationField', (fieldOrder: number, optionName: string) => {
+  cy.get('.configuration--field-section').eq(fieldOrder).within(() => {
+    cy.get('.configuration--form-field').first().click()
+  })
+  cy.selectMatOption(optionName)
 })

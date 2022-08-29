@@ -155,4 +155,51 @@ describe('update configuration', () => {
 
     advancedSettingUpdates()
   })
+
+  it('add email notification', () => {
+    cy.navigateToModule('Configuration')
+    cy.navigateToSettingPage('Advanced Settings')
+
+    cy.getMatToggle(0).click()
+    assertAdvancedConfigurationOptionAndUpdate(0, 'Select Frequency', '6 Hours')
+
+    cy.get('.advanced-settings--span-or').contains('Add new email address').click()
+
+    cy.get('.add-email-dialog--header-text').contains('Add new Email Address')
+
+    cy.get('.add-email-dialog--form-input').as('emailFormInput')
+
+    cy.get('@emailFormInput').eq(0).click()
+
+    cy.get('.add-email-dialog--admin-info').contains('Add an email address').click()
+
+    cy.get('.required-error').contains('Please enter a name')
+
+    cy.get('@emailFormInput').eq(0).type('Ashwin')
+
+    cy.get('@emailFormInput').eq(1).type('ashwin.t+hello@fyle.in')
+
+    cy.get('.mat-flat-button').contains('Save').click()
+  });
+
+  it('Import QBO field to Fyle', () => {
+    cy.navigateToModule('Configuration')
+    cy.navigateToSettingPage('Import Settings')
+
+    cy.get('.import-settings--create-custom-field').eq(0).click()
+
+    cy.get('.expense-field-creation-dialog--header-text').contains("Create a new 'Select type' field in Fyle")
+  });
+
+  it('preview QBO export', () => {
+    cy.navigateToModule('Configuration')
+    cy.navigateToSettingPage('Export Settings')
+
+    cy.getMatToggle(1).click()
+    cy.selectConfigurationField(5, 'Journal Entry')
+
+    cy.get('.configuration-select-field--preview-text').contains('here').click()
+
+    cy.get('.expense-form-preview--preview-section').should('be.visible')
+  })
 })
