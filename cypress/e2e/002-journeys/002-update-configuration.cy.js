@@ -156,13 +156,7 @@ describe('update configuration', () => {
     advancedSettingUpdates()
   })
 
-  it('add email notification', () => {
-    cy.navigateToModule('Configuration')
-    cy.navigateToSettingPage('Advanced Settings')
-
-    cy.getMatToggle(0).click()
-    assertAdvancedConfigurationOptionAndUpdate(0, 'Select Frequency', '6 Hours')
-
+  function addEmailNotification(name, email) {
     cy.get('.advanced-settings--span-or').contains('Add new email address').click()
 
     cy.get('.add-email-dialog--header-text').contains('Add new Email Address')
@@ -175,11 +169,27 @@ describe('update configuration', () => {
 
     cy.get('.required-error').contains('Please enter a name')
 
-    cy.get('@emailFormInput').eq(0).type('Ashwin')
+    cy.get('@emailFormInput').eq(0).type(name)
 
-    cy.get('@emailFormInput').eq(1).type('ashwin.t+hello@fyle.in')
+    cy.get('@emailFormInput').eq(1).type(email)
 
     cy.get('.mat-flat-button').contains('Save').click()
+  }
+
+  it('add email notification', () => {
+    cy.navigateToModule('Configuration')
+    cy.navigateToSettingPage('Advanced Settings')
+
+    cy.getMatToggle(0).click()
+    assertAdvancedConfigurationOptionAndUpdate(0, 'Select Frequency', '6 Hours')
+
+    addEmailNotification('Ashwin', 'ashwin.t+hello@fyle.in')
+    addEmailNotification('Ashwin 2', 'ashwin.t+hello2@fyle.in')
+    addEmailNotification('Ashwin 3', 'ashwin.t+hello3@fyle.in')
+
+    cy.get('.mat-icon-close').click()
+
+    cy.get('.email-multi-select-field--delele-all-icon').click()
   });
 
   it('Import QBO field to Fyle', () => {
@@ -195,10 +205,16 @@ describe('update configuration', () => {
     cy.navigateToModule('Configuration')
     cy.navigateToSettingPage('Export Settings')
 
-    cy.getMatToggle(1).click()
-    cy.selectConfigurationField(5, 'Journal Entry')
+    cy.get('.configuration-select-field--preview-text').eq(0).contains('here').click()
 
-    cy.get('.configuration-select-field--preview-text').contains('here').click()
+    cy.get('.expense-form-preview--preview-section').should('be.visible')
+
+    cy.get('.expense-form-preview--close-icon').click()
+
+    cy.getMatToggle(1).click()
+    cy.selectConfigurationField(5, 'Credit Card Purchase')
+
+    cy.get('.configuration-select-field--preview-text').eq(1).contains('here').click()
 
     cy.get('.expense-form-preview--preview-section').should('be.visible')
   })

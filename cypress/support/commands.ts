@@ -52,6 +52,7 @@ Cypress.Commands.add('login', () => {
 Cypress.Commands.add('setupHttpListeners', () => {
   // This helps cypress to wait for the http requests to complete with 200, regardless of the defaultCommandTimeout (10s)
   // Usage: cy.wait('@getDestinationAttributes').its('response.statusCode').should('equal', 200)
+  cy.intercept('POST', '**/refresh_dimensions', {}).as('refreshDimension')
 
   setupInterceptor('GET', '/qbo/destination_attributes/', 'getDestinationAttributes');
 
@@ -75,7 +76,7 @@ Cypress.Commands.add('setupHttpListeners', () => {
 
   setupInterceptor('GET', '/fyle/expense_fields', 'getFyleExpenseFields')
 
-  cy.intercept('POST', '**/refresh_dimensions', {}).as('refreshDimension')
+  setupInterceptor('GET', '/mappings/employee_attributes/', 'getEmployeeMappings')
 });
 
 Cypress.Commands.add('selectMatOption', (optionName) => {
