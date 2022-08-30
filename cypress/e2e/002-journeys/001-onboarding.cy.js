@@ -6,32 +6,13 @@ describe('onboarding journey', () => {
     cy.visit('/')
   })
 
-  function enableImportToFyle(fieldOrder, optionName) {
-    cy.get('.import-settings--field-toggle-section').eq(fieldOrder).within(() => {
-      enableConfigurationToggle(0)
-      cy.get('.import-settings--fyle-field').click()
-    })
-    cy.selectMatOption(optionName)
-  }
-
-  function enableConfigurationToggle(fieldOrder) {
-    cy.getMatToggle(fieldOrder).click()
-  }
-
-  function selectConfigurationField(fieldOrder, optionName) {
-    cy.get('.configuration--field-section').eq(fieldOrder).within(() => {
-      cy.get('.configuration--form-field').first().click()
-    })
-    cy.selectMatOption(optionName)
-  }
-
   function completeEmployeeSettingOnboarding() {
     // Check if user is taken to employee settings page after connection
     cy.url().should('include', '/workspaces/onboarding/employee_settings')
 
     // Select employee setting form values
-    selectConfigurationField(0, 'Employee')
-    selectConfigurationField(1, 'Fyle Name to QBO Display name')
+    cy.selectConfigurationField(0, 'Employee')
+    cy.selectConfigurationField(1, 'Fyle Name to QBO Display name')
 
     cy.saveSetting('Save')
   }
@@ -41,20 +22,20 @@ describe('onboarding journey', () => {
     cy.url().should('include', '/workspaces/onboarding/export_settings')
 
     // Select export setting form values
-    selectConfigurationField(0, 'Payment Processing')
+    cy.selectConfigurationField(0, 'Payment Processing')
 
     // Expand reimbursable expenses section
-    enableConfigurationToggle(0)
+    cy.enableConfigurationToggle(0)
 
-    selectConfigurationField(1, 'Check')
-    selectConfigurationField(2, 'Checking')
-    selectConfigurationField(3, 'Report')
-    selectConfigurationField(4, 'Current Date')
+    cy.selectConfigurationField(1, 'Check')
+    cy.selectConfigurationField(2, 'Checking')
+    cy.selectConfigurationField(3, 'Report')
+    cy.selectConfigurationField(4, 'Current Date')
 
     // Expand non-reimbursable expenses section
-    enableConfigurationToggle(1)
-    selectConfigurationField(5, 'Credit Card Purchase')
-    selectConfigurationField(6, 'Visa')
+    cy.enableConfigurationToggle(1)
+    cy.selectConfigurationField(5, 'Credit Card Purchase')
+    cy.selectConfigurationField(6, 'Visa')
 
     cy.saveSetting('Save')
   }
@@ -65,12 +46,12 @@ describe('onboarding journey', () => {
 
     // Select import setting form values
     cy.get('.configuration--field-toggle-section').eq(0).within(() => {
-      enableConfigurationToggle(0)
+      cy.enableConfigurationToggle(0)
     })
     cy.get('.mat-checkbox-label').filter(':contains("Other Expense")').click()
 
-    enableImportToFyle(0, 'Cost Center')
-    enableImportToFyle(2, 'Project')
+    cy.importToFyle(0, true, 'Cost Center')
+    cy.importToFyle(2, true, 'Project')
 
     cy.saveSetting('Save')
   }
@@ -80,7 +61,7 @@ describe('onboarding journey', () => {
     cy.url().should('include', '/workspaces/onboarding/advanced_settings')
 
     // Select advanced setting form values
-    enableConfigurationToggle(1)
+    cy.enableConfigurationToggle(1)
 
     cy.saveSetting('Save')
   }

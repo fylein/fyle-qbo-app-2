@@ -9,7 +9,7 @@ declare global {
       selectMatOption(optionName: string): void;
       submitButton(content: string): Cypress.Chainable<JQuery<HTMLElement>>;
       saveSetting(content: string): void;
-      getMatToggle(toggleIndex: number): void;
+      getMatToggle(toggleIndex: number): Cypress.Chainable<JQuery<HTMLElement>>;
       ignoreTokenHealth(): void;
       setupHttpListeners(): void;
       navigateToSettingPage(pageName: string): void;
@@ -18,6 +18,9 @@ declare global {
       interrupt(): void;
       navigateToModule(pageName: string): void;
       navigateToMappingPage(pageName: string): void;
+      importToFyle(fieldOrder: number, enable: boolean, optionName: string): void;
+      enableConfigurationToggle(fieldOrder: number): void;
+      selectConfigurationField(fieldOrder: number, optionName: string): void;
     }
   }
 }
@@ -49,6 +52,7 @@ Cypress.Commands.add('login', () => {
 Cypress.Commands.add('setupHttpListeners', () => {
   // This helps cypress to wait for the http requests to complete with 200, regardless of the defaultCommandTimeout (10s)
   // Usage: cy.wait('@getDestinationAttributes').its('response.statusCode').should('equal', 200)
+  cy.intercept('POST', '**/refresh_dimensions', {}).as('refreshDimension')
 
   setupInterceptor('GET', '/qbo/destination_attributes/', 'getDestinationAttributes');
 
@@ -68,7 +72,11 @@ Cypress.Commands.add('setupHttpListeners', () => {
 
   setupInterceptor('GET', '/fyle/expense_groups/', 'getExpenseGroups')
 
-  cy.intercept('POST', '**/refresh_dimensions', {}).as('refreshDimension')
+  setupInterceptor('GET', '/mappings/settings', 'getMappingSettings')
+
+  setupInterceptor('GET', '/fyle/expense_fields', 'getFyleExpenseFields')
+
+  setupInterceptor('GET', '/mappings/employee_attributes/', 'getEmployeeMappings')
 });
 
 Cypress.Commands.add('selectMatOption', (optionName) => {
@@ -121,4 +129,27 @@ Cypress.Commands.add('navigateToModule', (pageName: string) => {
 
 Cypress.Commands.add('navigateToMappingPage', (pageName: string) => {
   cy.get('.side-nav-bar--module-block-text-inner').contains(pageName).click();
+})
+
+Cypress.Commands.add('importToFyle', (fieldOrder: number, enable: boolean, optionName: string = '') => {
+  cy.get('.import-settings--field-toggle-section').eq(fieldOrder).within(() => {
+    cy.enableConfigurationToggle(0)
+    if (enable) {
+      cy.get('.import-settings--fyle-field').click()
+    }
+  })
+  if (enable) {
+    cy.selectMatOption(optionName)
+  }
+})
+
+Cypress.Commands.add('enableConfigurationToggle', (fieldOrder: number) => {
+  cy.getMatToggle(fieldOrder).click()
+})
+
+Cypress.Commands.add('selectConfigurationField', (fieldOrder: number, optionName: string) => {
+  cy.get('.configuration--field-section').eq(fieldOrder).within(() => {
+    cy.get('.configuration--form-field').first().click()
+  })
+  cy.selectMatOption(optionName)
 })
