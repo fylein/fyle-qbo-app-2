@@ -1,0 +1,49 @@
+name: End to End Tests - Prod
+
+on:
+  # TODO: remove this; Added this temporarily to check prod run immediately
+  pull_request:
+    types: [assigned, opened, synchronize, reopened]
+  # Runs every week day at 2pm IST
+  schedule:
+    - cron:  '30 8 * * 1-5'
+
+jobs:
+  end-to-end-test-prod:
+    runs-on: macos-latest
+    environment: End to End Test - Production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.18
+      - name: Install dependencies
+        run: npm install --prefix cypress
+      - name: Prepare for end to end tests
+        run: npm run setup_e2e_test
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
+        with:
+          record: true
+          browser: chrome
+          tag: ${{ secrets.E2E_TESTS_ENV }}
+    env:
+      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      E2E_TESTS_ENV: ${{ secrets.E2E_TESTS_ENV }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      FYLE_CLIENT_ID: ${{ secrets.FYLE_CLIENT_ID }}
+      CALLBACK_URL: ${{ secrets.CALLBACK_URL }}
+      API_URL: ${{ secrets.API_URL }}
+      APP_URL: ${{ secrets.APP_URL }}
+      QBO_CLIENT_ID: ${{ secrets.QBO_CLIENT_ID }}
+      QBO_SCOPE: ${{ secrets.QBO_SCOPE }}
+      QBO_AUTHORIZE_URI: ${{ secrets.QBO_AUTHORIZE_URI }}
+      QBO_APP_URL: ${{ secrets.QBO_APP_URL }}
+      FYLE_APP_URL: ${{ secrets.FYLE_APP_URL }}
+      E2E_TESTS_WORKSPACE_ID: ${{ secrets.E2E_TESTS_WORKSPACE_ID }}
+      E2E_TESTS_CLIENT_ID: ${{ secrets.E2E_TESTS_CLIENT_ID }}
+      E2E_TESTS_REFRESH_TOKEN: ${{ secrets.E2E_TESTS_REFRESH_TOKEN }}
+      COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
+      COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}

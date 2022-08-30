@@ -25,6 +25,7 @@ jobs:
         with:
           record: true
           browser: chrome
+          tag: ${{ secrets.E2E_TESTS_ENV }}
       - name: End to End Test Coverage
         uses: fylein/comment-test-coverage@master
         with:
@@ -33,6 +34,7 @@ jobs:
           title: End to End Test Coverage
     env:
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      E2E_TESTS_ENV: ${{ secrets.E2E_TESTS_ENV }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       FYLE_CLIENT_ID: ${{ secrets.FYLE_CLIENT_ID }}
       CALLBACK_URL: ${{ secrets.CALLBACK_URL }}
