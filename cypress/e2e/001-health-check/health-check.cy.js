@@ -13,7 +13,7 @@ describe('health check app', () => {
     cy.login()
     cy.reload()
 
-    cy.get('.navbar--profile-section').click()
+    cy.get('.navbarasd--profile-section').click()
     cy.get('.profile--signout-text').contains('Signout').click()
 
     cy.url().should('include', '/auth/login')

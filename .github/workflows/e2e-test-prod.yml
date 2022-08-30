@@ -29,6 +29,12 @@ jobs:
           record: true
           browser: chrome
           tag: ${{ secrets.E2E_TESTS_ENV }}
+      - name: 'Upload screenshots and videos to Slack'
+        uses: trymbill/cypress-slack-video-upload-action@v1.3.0
+        with:
+          token: ${{ secrets.SLACK_TOKEN }}
+          channels: 'integration_test_runs'
+          message: 'Cypress test just finished. I've placed the screenshots and videos in this thread. :pepe-dance:'
     env:
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       E2E_TESTS_ENV: ${{ secrets.E2E_TESTS_ENV }}
