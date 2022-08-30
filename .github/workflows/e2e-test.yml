@@ -1,11 +1,13 @@
-name: End to End Tests - Cypress
+name: End to End Tests on PR Approval - Staging
 
 on:
-  pull_request:
-    types: [assigned, opened, synchronize, reopened]
+  workflow_dispatch:
+  pull_request_review:
+    types: [submitted]
 
 jobs:
   end-to-end-test:
+    if: github.event.review.state == 'approved'
     runs-on: macos-latest
     steps:
       - name: Checkout

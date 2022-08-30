@@ -36,4 +36,3 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         path: coverage/coverage-summary.json
         title: Unit Test Coverage
-
