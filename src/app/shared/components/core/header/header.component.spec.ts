@@ -57,7 +57,6 @@ describe('HeaderComponent', () => {
 
     service4 = {
       getFyleCurrency: () => 'USD',
-      patchWorkspace: () => of({ app: 'done' }),
       getWorkspaceCreatedAt: () => new Date('2022-06-05T09:30:00.000Z')
 
     };

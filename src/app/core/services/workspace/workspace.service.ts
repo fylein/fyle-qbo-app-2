@@ -41,10 +41,6 @@ export class WorkspaceService {
     return this.apiService.post('/workspaces/', {});
   }
 
-  patchWorkspace(): Observable<Workspace> {
-    return this.apiService.patch(`/workspaces/${this.getWorkspaceId()}/`, {app_version: 'v1'});
-  }
-
   @Cacheable()
   getWorkspaces(orgId: string): Observable<Workspace[]> {
     return this.apiService.get(`/workspaces/`, {

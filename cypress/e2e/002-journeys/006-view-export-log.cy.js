@@ -84,4 +84,9 @@ describe('view export log', () => {
     cy.wait('@getExpenseGroups').its('response.statusCode').should('equal', 200)
     expect(cy.get('.export-log-table--row').children.length === 6)
   })
+
+  it('apply date filter for coverage', () => {
+    cy.get('.export-log--date-filter').eq(0).click()
+    cy.selectMatOption('Today')
+  })
 })
