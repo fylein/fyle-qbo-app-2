@@ -1,0 +1,11 @@
+name: Test
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  approved:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Running e2eeeee test!"
