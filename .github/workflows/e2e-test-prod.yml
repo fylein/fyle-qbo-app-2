@@ -35,7 +35,7 @@ jobs:
         with:
           token: ${{ secrets.SLACK_TOKEN }}
           channels: 'integration_test_runs'
-          message-text: ':pepe-dance: End to End tests just got completed. I have placed the screenshots and videos in this thread :pepe-dance:'
+          message-text: ':pepe-dance: End to End tests (on prod) just got completed. I have placed the screenshots and videos in this thread :pepe-dance:'
     env:
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       E2E_TESTS_ENV: ${{ secrets.E2E_TESTS_ENV }}
