@@ -22,7 +22,7 @@
                 <h5 *ngIf="!exportInProgress && exportableExpenseGroupIds.length">Click on <b>Export</b> to start exporting expenses from Fyle as QBO transactions.</h5>
                 <h5 *ngIf="exportInProgress">This may take a few minutes. Please wait...</h5>
                 <div *ngIf="!exportInProgress && failedExpenseGroupCount !== null && failedExpenseGroupCount > 0" fxLayout="row">
-                  <h5>{{ exportableExpenseGroupIds.length - failedExpenseGroupCount }} new Transaction{{(exportableExpenseGroupIds.length - failedExpenseGroupCount) > 1 ? 's' : ''}}, {{ failedExpenseGroupCount }} previously failed Transaction{{failedExpenseGroupCount > 1 ? 's' : ''}}</h5>
+                  <h5>{{ exportableExpenseGroupIds.length - failedExpenseGroupCount > 0 ? exportableExpenseGroupIds.length - failedExpenseGroupCount : 0 }} new Transaction{{(exportableExpenseGroupIds.length - failedExpenseGroupCount) > 1 ? 's' : ''}}, {{ failedExpenseGroupCount }} previously failed Transaction{{failedExpenseGroupCount > 1 ? 's' : ''}}</h5>
                   <!-- <img src="assets/images/svgs/general/info.svg" class="export--info-icon" width="16px" height="16px" /> -->
                 </div>
               </div>
