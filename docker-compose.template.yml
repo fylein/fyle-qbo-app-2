@@ -34,7 +34,9 @@ services:
       REFINER_ONBOARDING_DONE_SURVEY_ID: 
       REFINER_EXPORT_DONE_SURVEY_ID: 
       E2E_TESTS_WORKSPACE_ID: 
+      E2E_TESTS_ORG_ID: 
       E2E_TESTS_CLIENT_ID: 
+      E2E_TESTS_REFRESH_TOKEN: 
 
 volumes:
   node_modules:
