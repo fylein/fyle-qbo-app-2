@@ -74,7 +74,7 @@ describe('update configuration', () => {
     // Export them as Bills
     cy.getMatToggle(0).click()
     assertConfigurationOptionAndUpdate(1, 'Select expense export type', 'Bill')
-    assertConfigurationOptionAndUpdate(2, 'Select accounts payable', 'Advertising')
+    assertConfigurationOptionAndUpdate(2, 'Select accounts payable', 'Promotional')
 
     // Toggle off CCC export
     cy.getMatToggle(1).click()
@@ -93,7 +93,7 @@ describe('update configuration', () => {
 
     // Assert the existing option
     assertConfigurationOption(1, 'Bill')
-    assertConfigurationOption(2, 'Advertising')
+    assertConfigurationOption(2, 'Promotional')
   }
 
   function importSettingUpdates() {

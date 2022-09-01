@@ -54,7 +54,7 @@ describe('resolve qbo error', () => {
     cy.navigateToSettingPage('Export Settings')
 
     cy.get('.configuration--field-section').eq(2).within(() => {
-      cy.get('.configuration--form-field').should('contain', 'Advertising').click()
+      cy.get('.configuration--form-field').should('contain', 'Promotional').click()
     })
     cy.selectMatOption('Accounts Payable (A/P)')
     cy.saveSetting('Save')

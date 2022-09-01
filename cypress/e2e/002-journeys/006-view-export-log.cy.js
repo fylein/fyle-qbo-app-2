@@ -44,14 +44,11 @@ describe('view export log', () => {
   })
 
   it('simple text search', () => {
-    cy.get('.export-settings--search').type('C/2022/05/R/11')
-    expect(cy.get('.export-log-table--row').children.length === 1)
+    cy.get('.export-settings--search').type('C/')
+    expect(cy.get('.export-log-table--row').children.length > 0)
 
     cy.get('.search-select--clear-icon').click()
-    expect(cy.get('.export-log-table--row').children.length === 6)
-
-    cy.get('.export-settings--search').type('C/2022/05/R/1')
-    expect(cy.get('.export-log-table--row').children.length === 1)
+    expect(cy.get('.export-log-table--row').children.length > 1)
   })
 
   it('apply date filter', () => {
