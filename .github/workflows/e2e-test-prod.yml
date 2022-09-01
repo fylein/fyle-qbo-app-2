@@ -1,9 +1,6 @@
 name: End to End Tests - Prod
 
 on:
-  # TODO: remove this; Added this temporarily to check prod run immediately
-  pull_request:
-    types: [assigned, opened, synchronize, reopened]
   # Runs every Tuesday and Thursday at 2pm IST
   schedule:
     - cron:  '30 8 * * 2,4'
