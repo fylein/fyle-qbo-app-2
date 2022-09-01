@@ -3,7 +3,7 @@ name: Manually Trigger End to End Tests - With environment
 on:
   workflow_dispatch:
     inputs:
-      name:
+      env-name:
         type: choice
         required: true
         description: Environment
@@ -15,4 +15,4 @@ jobs:
   approved:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Running e2eeeee test!"
+      - run: echo "Running e2eeeee test on ${{ github.event.inputs.env-name }}!"
