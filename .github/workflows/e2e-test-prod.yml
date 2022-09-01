@@ -4,7 +4,7 @@ on:
   # TODO: remove this; Added this temporarily to check prod run immediately
   pull_request:
     types: [assigned, opened, synchronize, reopened]
-  # Runs every week day at 2pm IST
+  # Runs every Tuesday and Thursday at 2pm IST
   schedule:
     - cron:  '30 8 * * 2,4'
 
@@ -32,6 +32,7 @@ jobs:
           tag: ${{ secrets.E2E_TESTS_ENV }}
       - name: 'Upload screenshots and videos to Slack'
         uses: trymbill/cypress-slack-video-upload-action@v1.3.0
+        if: failure()
         with:
           token: ${{ secrets.SLACK_TOKEN }}
           channels: 'integration_test_runs'
