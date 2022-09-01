@@ -1,0 +1,2710 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fyle-qbo-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">fyle-qbo-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  DashboardComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/integration/main/dashboard/dashboard.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-dashboard</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./dashboard.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./dashboard.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#employeeFieldMapping" >employeeFieldMapping</a>
+                            </li>
+                            <li>
+                                <a href="#employeeName" >employeeName</a>
+                            </li>
+                            <li>
+                                <a href="#errors" >errors</a>
+                            </li>
+                            <li>
+                                <a href="#expenseGroupSetting" >expenseGroupSetting</a>
+                            </li>
+                            <li>
+                                <a href="#ExpenseState" >ExpenseState</a>
+                            </li>
+                            <li>
+                                <a href="#exportableExpenseGroupIds" >exportableExpenseGroupIds</a>
+                            </li>
+                            <li>
+                                <a href="#exportInProgress" >exportInProgress</a>
+                            </li>
+                            <li>
+                                <a href="#exportProgressPercentage" >exportProgressPercentage</a>
+                            </li>
+                            <li>
+                                <a href="#ExportState" >ExportState</a>
+                            </li>
+                            <li>
+                                <a href="#failedExpenseGroupCount" >failedExpenseGroupCount</a>
+                            </li>
+                            <li>
+                                <a href="#getExportErrors$" >getExportErrors$</a>
+                            </li>
+                            <li>
+                                <a href="#getLastExport$" >getLastExport$</a>
+                            </li>
+                            <li>
+                                <a href="#groupedErrorStat" >groupedErrorStat</a>
+                            </li>
+                            <li>
+                                <a href="#importInProgress" >importInProgress</a>
+                            </li>
+                            <li>
+                                <a href="#importState" >importState</a>
+                            </li>
+                            <li>
+                                <a href="#isLoading" >isLoading</a>
+                            </li>
+                            <li>
+                                <a href="#lastExport" >lastExport</a>
+                            </li>
+                            <li>
+                                <a href="#processedCount" >processedCount</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#taskType" >taskType</a>
+                            </li>
+                            <li>
+                                <a href="#ZeroStatePage" >ZeroStatePage</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#export" >export</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#formatErrors" >formatErrors</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getExpenseGroupingSetting" >getExpenseGroupingSetting</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#pollExportStatus" >pollExportStatus</a>
+                            </li>
+                            <li>
+                                <a href="#resolveMappingError" >resolveMappingError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setupPage" >setupPage</a>
+                            </li>
+                            <li>
+                                <a href="#showDashboardExportLog" >showDashboardExportLog</a>
+                            </li>
+                            <li>
+                                <a href="#showDashboardQboError" >showDashboardQboError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#showErrorStats" >showErrorStats</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#trackTimeTakenForResolvingMappingErrors" >trackTimeTakenForResolvingMappingErrors</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(dashboardService: <a href="../injectables/DashboardService.html" target="_self">DashboardService</a>, dialog: MatDialog, exportLogService: <a href="../injectables/ExportLogService.html" target="_self">ExportLogService</a>, refinerService: <a href="../injectables/RefinerService.html" target="_self">RefinerService</a>, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:71</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>dashboardService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DashboardService.html" target="_self" >DashboardService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>exportLogService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ExportLogService.html" target="_self" >ExportLogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>refinerService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RefinerService.html" target="_self" >RefinerService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>trackingService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TrackingService.html" target="_self" >TrackingService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>workspaceService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/WorkspaceService.html" target="_self" >WorkspaceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="export"></a>
+                    <span class="name">
+                        <span ><b>export</b></span>
+                        <a href="#export"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>export()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="308"
+                            class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:308</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatErrors"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>formatErrors</b></span>
+                        <a href="#formatErrors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatErrors(errors: <a href="../undefineds/Error.html" target="_self">Error[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="122"
+                            class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:122</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>errors</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#Error" target="_self" >Error[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#GroupedErrors" target="_self" >GroupedErrors</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getExpenseGroupingSetting"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getExpenseGroupingSetting</b></span>
+                        <a href="#getExpenseGroupingSetting"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getExpenseGroupingSetting(expenseGroupSetting: <a href="../interfaces/ExpenseGroupSetting.html" target="_self">ExpenseGroupSetting</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="137"
+                            class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:137</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>expenseGroupSetting</td>
+                                    <td>
+                                                <code><a href="../interfaces/ExpenseGroupSetting.html" target="_self" >ExpenseGroupSetting</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="318"
+                            class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:318</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pollExportStatus"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>pollExportStatus</b></span>
+                        <a href="#pollExportStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>pollExportStatus(exportableExpenseGroupIds: number[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:84</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>exportableExpenseGroupIds</td>
+                                    <td>
+                                            <code>number[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>[]</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resolveMappingError"></a>
+                    <span class="name">
+                        <span ><b>resolveMappingError</b></span>
+                        <a href="#resolveMappingError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resolveMappingError(groupedError: <a href="../undefineds/Error.html" target="_self">Error[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="241"
+                            class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:241</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>groupedError</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#Error" target="_self" >Error[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setupPage"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>setupPage</b></span>
+                        <a href="#setupPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setupPage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="150"
+                            class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:150</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showDashboardExportLog"></a>
+                    <span class="name">
+                        <span ><b>showDashboardExportLog</b></span>
+                        <a href="#showDashboardExportLog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showDashboardExportLog(exportState: <a href="../undefineds/ExportState.html" target="_self">ExportState</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="278"
+                            class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:278</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>exportState</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/enumerations.html#ExportState" target="_self" >ExportState</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showDashboardQboError"></a>
+                    <span class="name">
+                        <span ><b>showDashboardQboError</b></span>
+                        <a href="#showDashboardQboError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showDashboardQboError(error: <a href="../undefineds/Error.html" target="_self">Error</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="296"
+                            class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:296</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>error</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#Error" target="_self" >Error</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showErrorStats"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>showErrorStats</b></span>
+                        <a href="#showErrorStats"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>showErrorStats(eventStartTime: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>, errorType: <a href="../undefineds/Error.html" target="_self">ErrorType</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="205"
+                            class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:205</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>eventStartTime</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>errorType</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#Error" target="_self" >ErrorType</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trackTimeTakenForResolvingMappingErrors"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>trackTimeTakenForResolvingMappingErrors</b></span>
+                        <a href="#trackTimeTakenForResolvingMappingErrors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>trackTimeTakenForResolvingMappingErrors(eventStartTime: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>, errorType: <a href="../undefineds/Error.html" target="_self">ErrorType</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="184"
+                            class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:184</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>eventStartTime</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>errorType</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#Error" target="_self" >ErrorType</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="employeeFieldMapping"></a>
+                    <span class="name">
+                        <span ><b>employeeFieldMapping</b></span>
+                        <a href="#employeeFieldMapping"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Mapping.html" target="_self" >EmployeeFieldMapping</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="employeeName"></a>
+                    <span class="name">
+                        <span ><b>employeeName</b></span>
+                        <a href="#employeeName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.userService.getUserProfile().full_name</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errors"></a>
+                    <span class="name">
+                        <span ><b>errors</b></span>
+                        <a href="#errors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#GroupedErrors" target="_self" >GroupedErrors</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="expenseGroupSetting"></a>
+                    <span class="name">
+                        <span ><b>expenseGroupSetting</b></span>
+                        <a href="#expenseGroupSetting"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ExpenseState"></a>
+                    <span class="name">
+                        <span ><b>ExpenseState</b></span>
+                        <a href="#ExpenseState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ExpenseState</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportableExpenseGroupIds"></a>
+                    <span class="name">
+                        <span ><b>exportableExpenseGroupIds</b></span>
+                        <a href="#exportableExpenseGroupIds"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportInProgress"></a>
+                    <span class="name">
+                        <span ><b>exportInProgress</b></span>
+                        <a href="#exportInProgress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportProgressPercentage"></a>
+                    <span class="name">
+                        <span ><b>exportProgressPercentage</b></span>
+                        <a href="#exportProgressPercentage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ExportState"></a>
+                    <span class="name">
+                        <span ><b>ExportState</b></span>
+                        <a href="#ExportState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ExportState</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="failedExpenseGroupCount"></a>
+                    <span class="name">
+                        <span ><b>failedExpenseGroupCount</b></span>
+                        <a href="#failedExpenseGroupCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getExportErrors$"></a>
+                    <span class="name">
+                        <span ><b>getExportErrors$</b></span>
+                        <a href="#getExportErrors$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Error" target="_self" >Observable&lt;Error[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.dashboardService.getExportErrors()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getLastExport$"></a>
+                    <span class="name">
+                        <span ><b>getLastExport$</b></span>
+                        <a href="#getLastExport$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#LastExport" target="_self" >Observable&lt;LastExport&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.dashboardService.getLastExport()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:67</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="groupedErrorStat"></a>
+                    <span class="name">
+                        <span ><b>groupedErrorStat</b></span>
+                        <a href="#groupedErrorStat"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#GroupedErrorStat" target="_self" >GroupedErrorStat</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    [ErrorType.EMPLOYEE_MAPPING]: null,
+    [ErrorType.CATEGORY_MAPPING]: null,
+    [ErrorType.TAX_MAPPING]: null
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="importInProgress"></a>
+                    <span class="name">
+                        <span ><b>importInProgress</b></span>
+                        <a href="#importInProgress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="importState"></a>
+                    <span class="name">
+                        <span ><b>importState</b></span>
+                        <a href="#importState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Expense" target="_self" >ExpenseState</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isLoading"></a>
+                    <span class="name">
+                        <span ><b>isLoading</b></span>
+                        <a href="#isLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="lastExport"></a>
+                    <span class="name">
+                        <span ><b>lastExport</b></span>
+                        <a href="#lastExport"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#LastExport" target="_self" >LastExport | null</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="processedCount"></a>
+                    <span class="name">
+                        <span ><b>processedCount</b></span>
+                        <a href="#processedCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="taskType"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>taskType</b></span>
+                        <a href="#taskType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Task" target="_self" >TaskLogType[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[TaskLogType.FETCHING_EXPENSE, TaskLogType.CREATING_BILL, TaskLogType.CREATING_EXPENSE, TaskLogType.CREATING_CHECK, TaskLogType.CREATING_CREDIT_CARD_PURCHASE, TaskLogType.CREATING_JOURNAL_ENTRY, TaskLogType.CREATING_CREDIT_CARD_CREDIT, TaskLogType.CREATING_DEBIT_CARD_EXPENSE]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ZeroStatePage"></a>
+                    <span class="name">
+                        <span ><b>ZeroStatePage</b></span>
+                        <a href="#ZeroStatePage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ZeroStatePage</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/integration/main/dashboard/dashboard.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { forkJoin, from, interval, Observable, of } from &#x27;rxjs&#x27;;
+import { catchError, map, switchMap, takeWhile } from &#x27;rxjs/operators&#x27;;
+import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { Error, GroupedErrors, GroupedErrorStat } from &#x27;src/app/core/models/db/error.model&#x27;;
+import { LastExport } from &#x27;src/app/core/models/db/last-export.model&#x27;;
+import { ClickEvent, EmployeeFieldMapping, ErrorType, ExpenseState, ExportState, FyleField, FyleReferenceType, QBOField, RefinerSurveyType, TaskLogState, TaskLogType, ZeroStatePage } from &#x27;src/app/core/models/enum/enum.model&#x27;;
+import { DashboardService } from &#x27;src/app/core/services/dashboard/dashboard.service&#x27;;
+import { DashboardResolveMappingErrorDialogComponent } from &#x27;src/app/shared/components/dashboard/dashboard-resolve-mapping-error-dialog/dashboard-resolve-mapping-error-dialog.component&#x27;;
+import { WorkspaceService } from &#x27;src/app/core/services/workspace/workspace.service&#x27;;
+import { DashboardExportLogDialogComponent } from &#x27;src/app/shared/components/dashboard/dashboard-export-log-dialog/dashboard-export-log-dialog.component&#x27;;
+import { DashboardQboErrorDialogComponent } from &#x27;src/app/shared/components/dashboard/dashboard-qbo-error-dialog/dashboard-qbo-error-dialog.component&#x27;;
+import { Task } from &#x27;src/app/core/models/db/task-log.model&#x27;;
+import { UserService } from &#x27;src/app/core/services/misc/user.service&#x27;;
+import { ExportableExpenseGroup } from &#x27;src/app/core/models/db/expense-group.model&#x27;;
+import { ExportLogService } from &#x27;src/app/core/services/export-log/export-log.service&#x27;;
+import { ExpenseGroupSetting } from &#x27;src/app/core/models/db/expense-group-setting.model&#x27;;
+import { TrackingService } from &#x27;src/app/core/services/integration/tracking.service&#x27;;
+import { ResolveMappingErrorProperty } from &#x27;src/app/core/models/misc/tracking.model&#x27;;
+import { RefinerService } from &#x27;src/app/core/services/integration/refiner.service&#x27;;
+
+@Component({
+  selector: &#x27;app-dashboard&#x27;,
+  templateUrl: &#x27;./dashboard.component.html&#x27;,
+  styleUrls: [&#x27;./dashboard.component.scss&#x27;]
+})
+export class DashboardComponent implements OnInit {
+
+  isLoading: boolean &#x3D; true;
+
+  importInProgress: boolean &#x3D; true;
+
+  processedCount: number &#x3D; 0;
+
+  failedExpenseGroupCount: number | null &#x3D; null;
+
+  exportInProgress: boolean &#x3D; false;
+
+  exportProgressPercentage: number &#x3D; 0;
+
+  exportableExpenseGroupIds: number[];
+
+  lastExport: LastExport | null;
+
+  errors: GroupedErrors;
+
+  employeeFieldMapping: EmployeeFieldMapping;
+
+  expenseGroupSetting: string;
+
+  groupedErrorStat: GroupedErrorStat &#x3D; {
+    [ErrorType.EMPLOYEE_MAPPING]: null,
+    [ErrorType.CATEGORY_MAPPING]: null,
+    [ErrorType.TAX_MAPPING]: null
+  };
+
+  ExportState &#x3D; ExportState;
+
+  importState: ExpenseState;
+
+  ExpenseState &#x3D; ExpenseState;
+
+  employeeName: string &#x3D; this.userService.getUserProfile().full_name;
+
+  getExportErrors$: Observable&lt;Error[]&gt; &#x3D; this.dashboardService.getExportErrors();
+
+  getLastExport$: Observable&lt;LastExport&gt; &#x3D; this.dashboardService.getLastExport();
+
+  private taskType: TaskLogType[] &#x3D; [TaskLogType.FETCHING_EXPENSE, TaskLogType.CREATING_BILL, TaskLogType.CREATING_EXPENSE, TaskLogType.CREATING_CHECK, TaskLogType.CREATING_CREDIT_CARD_PURCHASE, TaskLogType.CREATING_JOURNAL_ENTRY, TaskLogType.CREATING_CREDIT_CARD_CREDIT, TaskLogType.CREATING_DEBIT_CARD_EXPENSE];
+
+  ZeroStatePage &#x3D; ZeroStatePage;
+
+  constructor(
+    private dashboardService: DashboardService,
+    private dialog: MatDialog,
+    private exportLogService: ExportLogService,
+    private refinerService: RefinerService,
+    private trackingService: TrackingService,
+    private userService: UserService,
+    private workspaceService: WorkspaceService
+  ) { }
+
+
+  private pollExportStatus(exportableExpenseGroupIds: number[] &#x3D; []): void {
+    interval(3000).pipe(
+      switchMap(() &#x3D;&gt; from(this.dashboardService.getAllTasks([], exportableExpenseGroupIds, this.taskType))),
+      takeWhile((response) &#x3D;&gt; response.results.filter(task &#x3D;&gt; (task.status &#x3D;&#x3D;&#x3D; &#x27;IN_PROGRESS&#x27; || task.status &#x3D;&#x3D;&#x3D; &#x27;ENQUEUED&#x27;) &amp;&amp; exportableExpenseGroupIds.includes(task.expense_group)).length &gt; 0, true)
+    ).subscribe((res) &#x3D;&gt; {
+      this.processedCount &#x3D; res.results.filter(task &#x3D;&gt; (task.status !&#x3D;&#x3D; &#x27;IN_PROGRESS&#x27; &amp;&amp; task.status !&#x3D;&#x3D; &#x27;ENQUEUED&#x27;) &amp;&amp; (task.type !&#x3D;&#x3D; TaskLogType.FETCHING_EXPENSE &amp;&amp; task.type !&#x3D;&#x3D; TaskLogType.CREATING_BILL_PAYMENT) &amp;&amp; exportableExpenseGroupIds.includes(task.expense_group)).length;
+      this.exportProgressPercentage &#x3D; Math.round((this.processedCount / exportableExpenseGroupIds.length) * 100);
+
+      if (res.results.filter(task &#x3D;&gt; (task.status &#x3D;&#x3D;&#x3D; &#x27;IN_PROGRESS&#x27; || task.status &#x3D;&#x3D;&#x3D; &#x27;ENQUEUED&#x27;) &amp;&amp; exportableExpenseGroupIds.includes(task.expense_group)).length &#x3D;&#x3D;&#x3D; 0) {
+        this.isLoading &#x3D; true;
+        forkJoin([
+          this.getExportErrors$,
+          this.getLastExport$
+        ]).subscribe(responses &#x3D;&gt; {
+          this.errors &#x3D; this.formatErrors(responses[0]);
+          this.groupedErrorStat &#x3D; {
+            EMPLOYEE_MAPPING: null,
+            CATEGORY_MAPPING: null,
+            TAX_MAPPING: null
+          };
+          this.lastExport &#x3D; responses[1];
+          this.isLoading &#x3D; false;
+        });
+        this.dashboardService.getAllTasks([TaskLogState.FAILED, TaskLogState.FATAL]).subscribe((taskResponse) &#x3D;&gt; {
+          this.failedExpenseGroupCount &#x3D; taskResponse.count;
+          this.exportableExpenseGroupIds &#x3D; taskResponse.results.map((task: Task) &#x3D;&gt; task.expense_group);
+          this.exportInProgress &#x3D; false;
+          this.exportProgressPercentage &#x3D; 0;
+          this.processedCount &#x3D; 0;
+
+          if (this.failedExpenseGroupCount &#x3D;&#x3D;&#x3D; 0) {
+            this.refinerService.triggerSurvey(RefinerSurveyType.EXPORT_DONE);
+          }
+        });
+      }
+    });
+  }
+
+  private formatErrors(errors: Error[]): GroupedErrors {
+    return errors.reduce((groupedErrors: GroupedErrors, error: Error) &#x3D;&gt; {
+      const group: Error[] &#x3D; groupedErrors[error.type] || [];
+      group.push(error);
+      groupedErrors[error.type] &#x3D; group;
+
+      return groupedErrors;
+    }, {
+      [ErrorType.EMPLOYEE_MAPPING]: [],
+      [ErrorType.CATEGORY_MAPPING]: [],
+      [ErrorType.TAX_MAPPING]: [],
+      [ErrorType.QBO_ERROR]: []
+    });
+  }
+
+  private getExpenseGroupingSetting(expenseGroupSetting: ExpenseGroupSetting): string {
+    const grouping: string[] &#x3D; expenseGroupSetting.reimbursable_expense_group_fields ? expenseGroupSetting.reimbursable_expense_group_fields : expenseGroupSetting.corporate_credit_card_expense_group_fields;
+    if (grouping.includes(FyleReferenceType.EXPENSE)) {
+      return &#x27;expense&#x27;;
+    } else if (grouping.includes(FyleReferenceType.REPORT_ID)) {
+      return &#x27;report&#x27;;
+    } else if (grouping.includes(FyleReferenceType.PAYMENT)) {
+      return &#x27;payment&#x27;;
+    }
+
+    return &#x27;&#x27;;
+  }
+
+  private setupPage(): void {
+    forkJoin([
+      this.getLastExport$.pipe(map((res) &#x3D;&gt; res), catchError(() &#x3D;&gt; of(null))),
+      this.getExportErrors$,
+      this.workspaceService.getWorkspaceGeneralSettings(),
+      this.dashboardService.getAllTasks([TaskLogState.ENQUEUED, TaskLogState.IN_PROGRESS, TaskLogState.FAILED], undefined, this.taskType),
+      this.exportLogService.getExpenseGroupSettings()
+    ]).subscribe((responses) &#x3D;&gt; {
+      this.lastExport &#x3D; responses[0];
+      this.errors &#x3D; this.formatErrors(responses[1]);
+      this.employeeFieldMapping &#x3D; responses[2].employee_field_mapping;
+      this.expenseGroupSetting &#x3D; this.getExpenseGroupingSetting(responses[4]);
+      this.importState &#x3D; responses[4].expense_state;
+
+      const queuedTasks: Task[] &#x3D; responses[3].results.filter((task: Task) &#x3D;&gt; task.status &#x3D;&#x3D;&#x3D; TaskLogState.ENQUEUED || task.status &#x3D;&#x3D;&#x3D; TaskLogState.IN_PROGRESS);
+      this.failedExpenseGroupCount &#x3D; responses[3].results.filter((task: Task) &#x3D;&gt; task.status &#x3D;&#x3D;&#x3D; TaskLogState.FAILED).length;
+
+      if (queuedTasks.length) {
+        this.importInProgress &#x3D; false;
+        this.exportInProgress &#x3D; true;
+        this.exportableExpenseGroupIds &#x3D; responses[3].results.filter((task: Task) &#x3D;&gt; task.status &#x3D;&#x3D;&#x3D; TaskLogState.ENQUEUED || task.status &#x3D;&#x3D;&#x3D; TaskLogState.IN_PROGRESS).map((task: Task) &#x3D;&gt; task.expense_group);
+        this.pollExportStatus(this.exportableExpenseGroupIds);
+      } else {
+        this.dashboardService.importExpenseGroups().subscribe(() &#x3D;&gt; {
+          this.dashboardService.getExportableGroupsIds().subscribe((exportableExpenseGroups: ExportableExpenseGroup) &#x3D;&gt; {
+            this.exportableExpenseGroupIds &#x3D; exportableExpenseGroups.exportable_expense_group_ids;
+            this.importInProgress &#x3D; false;
+          });
+        });
+      }
+      this.isLoading &#x3D; false;
+    });
+  }
+
+  private trackTimeTakenForResolvingMappingErrors(eventStartTime: Date, errorType: ErrorType): void {
+    if (errorType &#x3D;&#x3D;&#x3D; ErrorType.CATEGORY_MAPPING || errorType &#x3D;&#x3D;&#x3D; ErrorType.EMPLOYEE_MAPPING || errorType &#x3D;&#x3D;&#x3D; ErrorType.TAX_MAPPING) {
+      const error &#x3D; this.groupedErrorStat[errorType];
+
+      if (error?.totalCount &amp;&amp; error?.totalCount &gt; 0) {
+        const properties: ResolveMappingErrorProperty &#x3D; {
+          resolvedCount: error?.resolvedCount ? error?.resolvedCount : 0,
+          totalCount: error?.totalCount ? error?.totalCount : 0,
+          unresolvedCount: error?.totalCount - error?.resolvedCount,
+          resolvedAllErrors: error.resolvedCount &#x3D;&#x3D;&#x3D; error.totalCount,
+          startTime: eventStartTime,
+          endTime: new Date(),
+          durationInSeconds: Math.floor((new Date().getTime() - eventStartTime.getTime()) / 1000),
+          errorType: errorType
+        };
+
+        this.trackingService.onErrorResolve(properties);
+      }
+    }
+  }
+
+  private showErrorStats(eventStartTime: Date, errorType: ErrorType): void {
+    this.getExportErrors$.subscribe((errors) &#x3D;&gt; {
+      const newError: GroupedErrors &#x3D; this.formatErrors(errors);
+
+      if (this.errors.CATEGORY_MAPPING.length !&#x3D;&#x3D; newError.CATEGORY_MAPPING.length) {
+        const totalCount &#x3D; this.groupedErrorStat.CATEGORY_MAPPING ? this.groupedErrorStat.CATEGORY_MAPPING.totalCount : this.errors.CATEGORY_MAPPING.length;
+
+        this.groupedErrorStat.CATEGORY_MAPPING &#x3D; {
+          resolvedCount: totalCount - newError.CATEGORY_MAPPING.length,
+          totalCount: totalCount
+        };
+      }
+
+      if (this.errors.EMPLOYEE_MAPPING.length !&#x3D;&#x3D; newError.EMPLOYEE_MAPPING.length) {
+        const totalCount &#x3D; this.groupedErrorStat.EMPLOYEE_MAPPING ? this.groupedErrorStat.EMPLOYEE_MAPPING.totalCount : this.errors.EMPLOYEE_MAPPING.length;
+
+        this.groupedErrorStat.EMPLOYEE_MAPPING &#x3D; {
+          resolvedCount: totalCount - newError.EMPLOYEE_MAPPING.length,
+          totalCount: totalCount
+        };
+      }
+
+      if (this.errors.TAX_MAPPING.length !&#x3D;&#x3D; newError.TAX_MAPPING.length) {
+        const totalCount &#x3D; this.groupedErrorStat.TAX_MAPPING ? this.groupedErrorStat.TAX_MAPPING.totalCount : this.errors.TAX_MAPPING.length;
+
+        this.groupedErrorStat.TAX_MAPPING &#x3D; {
+          resolvedCount: totalCount - newError.TAX_MAPPING.length,
+          totalCount: totalCount
+        };
+      }
+
+      this.errors &#x3D; newError;
+      this.trackTimeTakenForResolvingMappingErrors(eventStartTime, errorType);
+    });
+  }
+
+  resolveMappingError(groupedError: Error[]): void {
+    const eventStartTime &#x3D; new Date();
+    const errorType &#x3D; groupedError[0].type;
+    let sourceType: FyleField | null &#x3D; null;
+    let destinationType: QBOField | EmployeeFieldMapping | null &#x3D; null;
+
+    if (errorType &#x3D;&#x3D;&#x3D; ErrorType.EMPLOYEE_MAPPING) {
+      sourceType &#x3D; FyleField.EMPLOYEE;
+      destinationType &#x3D; this.employeeFieldMapping;
+    } else if (errorType &#x3D;&#x3D;&#x3D; ErrorType.CATEGORY_MAPPING) {
+      sourceType &#x3D; FyleField.CATEGORY;
+      destinationType &#x3D; QBOField.ACCOUNT;
+    } else if (errorType &#x3D;&#x3D;&#x3D; ErrorType.TAX_MAPPING) {
+      sourceType &#x3D; FyleField.TAX_GROUP;
+      destinationType &#x3D; QBOField.TAX_CODE;
+    }
+
+    const dialogRef &#x3D; this.dialog.open(DashboardResolveMappingErrorDialogComponent, {
+      width: &#x27;784px&#x27;,
+      height: &#x27;974px&#x27;,
+      data: {
+        sourceType: sourceType,
+        destinationType: destinationType,
+        fyleAttributes: groupedError,
+        workspaceId: this.workspaceService.getWorkspaceId()
+      },
+      position: {
+        top: &#x27;0px&#x27;,
+        right: &#x27;0px&#x27;
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(() &#x3D;&gt; {
+      this.showErrorStats(eventStartTime, errorType);
+    });
+  }
+
+  showDashboardExportLog(exportState: ExportState): void {
+    const event &#x3D; exportState &#x3D;&#x3D;&#x3D; ExportState.SUCCESS ? ClickEvent.SUCCESSFUL_EXPORTS : ClickEvent.FAILED_EXPORTS;
+    this.trackingService.onClickEvent(event);
+
+    this.dialog.open(DashboardExportLogDialogComponent, {
+      width: &#x27;784px&#x27;,
+      height: &#x27;974px&#x27;,
+      data: {
+        exportState: exportState,
+        lastExportedAt: exportState &#x3D;&#x3D;&#x3D; ExportState.SUCCESS &amp;&amp; this.lastExport?.last_exported_at ? this.lastExport.last_exported_at : null
+      },
+      position: {
+        top: &#x27;0px&#x27;,
+        right: &#x27;0px&#x27;
+      }
+    });
+  }
+
+  showDashboardQboError(error: Error): void {
+    this.dialog.open(DashboardQboErrorDialogComponent, {
+      width: &#x27;784px&#x27;,
+      height: &#x27;974px&#x27;,
+      data: error,
+      position: {
+        top: &#x27;0px&#x27;,
+        right: &#x27;0px&#x27;
+      }
+    });
+  }
+
+  export(): void {
+    if (!this.exportInProgress &amp;&amp; this.exportableExpenseGroupIds.length) {
+      this.exportInProgress &#x3D; true;
+      this.trackingService.onClickEvent(ClickEvent.EXPORT);
+      this.dashboardService.exportExpenseGroups().subscribe(() &#x3D;&gt; {
+        this.pollExportStatus(this.exportableExpenseGroupIds);
+      });
+    }
+  }
+
+  ngOnInit(): void {
+    this.setupPage();
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;dashboard&quot;&gt;
+  &lt;app-dashboard-header-section [name]&#x3D;&quot;employeeName&quot;&gt;&lt;/app-dashboard-header-section&gt;
+
+  &lt;div *ngIf&#x3D;&quot;!importInProgress&quot; class&#x3D;&quot;export&quot;&gt;
+    &lt;div class&#x3D;&quot;export--core-section&quot;&gt;
+      &lt;div class&#x3D;&quot;export--content-section&quot;&gt;
+        &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot;&gt;
+          &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between start&quot;&gt;
+            &lt;div *ngIf&#x3D;&quot;!exportInProgress &amp;&amp; exportableExpenseGroupIds.length&quot; class&#x3D;&quot;export--arrow-section&quot;&gt;
+              &lt;img src&#x3D;&quot;assets/images/svgs/actions/arrow-up.svg&quot; /&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;export--info-section&quot;&gt;
+              &lt;span fxLayout&#x3D;&quot;row&quot;&gt;
+                &lt;h3 *ngIf&#x3D;&quot;!exportInProgress &amp;&amp; !exportableExpenseGroupIds.length&quot;&gt;Sit back and relax!&lt;/h3&gt;
+                &lt;h3 *ngIf&#x3D;&quot;exportInProgress&quot;&gt;Exporting {{ processedCount }} of {{ exportableExpenseGroupIds.length }} Transaction{{exportableExpenseGroupIds.length &gt; 1 ? &#x27;s&#x27; : &#x27;&#x27;}} to your QBO account&lt;/h3&gt;
+                &lt;h3 *ngIf&#x3D;&quot;!exportInProgress &amp;&amp; exportableExpenseGroupIds.length&quot;&gt;{{ exportableExpenseGroupIds.length }} Transaction{{exportableExpenseGroupIds.length &gt; 1 ? &#x27;s&#x27; : &#x27;&#x27;}} ready to export&lt;/h3&gt;
+                &lt;img src&#x3D;&quot;assets/images/svgs/general/info.svg&quot; class&#x3D;&quot;export--info-icon&quot; width&#x3D;&quot;16px&quot; height&#x3D;&quot;16px&quot; matTooltip&#x3D;&quot;All expenses from {{ importState &#x3D;&#x3D;&#x3D; ExpenseState.PAYMENT_PROCESSING ? &#x27;your&#x27; : &#x27;the&#x27; }} {{ importState | titlecase | snakeCaseToSpaceCase }} state in Fyle will be automatically imported&quot; matTooltipPosition&#x3D;&quot;right&quot; matTooltipClass&#x3D;&quot;right&quot; /&gt;
+              &lt;/span&gt;
+              &lt;div class&#x3D;&quot;export--info-text paragraph&quot;&gt;
+                &lt;h5 *ngIf&#x3D;&quot;!exportInProgress &amp;&amp; !exportableExpenseGroupIds.length&quot;&gt;No new Transaction to export from the {{ importState | titlecase | snakeCaseToSpaceCase }} state in Fyle.&lt;/h5&gt;
+                &lt;h5 *ngIf&#x3D;&quot;!exportInProgress &amp;&amp; !exportableExpenseGroupIds.length&quot;&gt;Once you start processing payment for the expenses, they will be automatically available here to export.&lt;/h5&gt;
+                &lt;h5 *ngIf&#x3D;&quot;!exportInProgress &amp;&amp; exportableExpenseGroupIds.length&quot;&gt;Click on &lt;b&gt;Export&lt;/b&gt; to start exporting expenses from Fyle as QBO transactions.&lt;/h5&gt;
+                &lt;h5 *ngIf&#x3D;&quot;exportInProgress&quot;&gt;This may take a few minutes. Please wait...&lt;/h5&gt;
+                &lt;div *ngIf&#x3D;&quot;!exportInProgress &amp;&amp; failedExpenseGroupCount !&#x3D;&#x3D; null &amp;&amp; failedExpenseGroupCount &gt; 0&quot; fxLayout&#x3D;&quot;row&quot;&gt;
+                  &lt;h5&gt;{{ exportableExpenseGroupIds.length - failedExpenseGroupCount &gt; 0 ? exportableExpenseGroupIds.length - failedExpenseGroupCount : 0 }} new Transaction{{(exportableExpenseGroupIds.length - failedExpenseGroupCount) &gt; 1 ? &#x27;s&#x27; : &#x27;&#x27;}}, {{ failedExpenseGroupCount }} previously failed Transaction{{failedExpenseGroupCount &gt; 1 ? &#x27;s&#x27; : &#x27;&#x27;}}&lt;/h5&gt;
+                  &lt;!-- &lt;img src&#x3D;&quot;assets/images/svgs/general/info.svg&quot; class&#x3D;&quot;export--info-icon&quot; width&#x3D;&quot;16px&quot; height&#x3D;&quot;16px&quot; /&gt; --&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot; class&#x3D;&quot;pointer configuration--submit-btn&quot; [ngClass]&#x3D;&quot;!exportableExpenseGroupIds.length || exportInProgress ? &#x27;btn-disabled&#x27; : &#x27;btn-enabled&#x27;&quot; (click)&#x3D;&quot;export()&quot;&gt;
+            &lt;h5 class&#x3D;&quot;btn-cta-text-with-icon single-line-text&quot;&gt;
+              {{ exportInProgress ? &#x27;Exporting&#x27; : &#x27;Export&#x27; }}
+            &lt;/h5&gt;
+            &lt;img *ngIf&#x3D;&quot;!exportInProgress&quot; src&#x3D;&quot;assets/images/svgs/actions/arrow-mark-right.svg&quot; class&#x3D;&quot;btn-icon&quot; /&gt;
+            &lt;img *ngIf&#x3D;&quot;exportInProgress&quot; src&#x3D;&quot;assets/images/svgs/actions/sync-dashboard-export.svg&quot; class&#x3D;&quot;btn-icon&quot; /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;mat-progress-bar *ngIf&#x3D;&quot;exportInProgress&quot; mode&#x3D;&quot;determinate&quot; [value]&#x3D;&quot;exportProgressPercentage&quot;&gt;&lt;/mat-progress-bar&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- export shimmer --&gt;
+  &lt;div *ngIf&#x3D;&quot;importInProgress&quot; class&#x3D;&quot;export&quot;&gt;
+    &lt;div class&#x3D;&quot;export--core-section&quot;&gt;
+      &lt;div class&#x3D;&quot;export--content-section&quot;&gt;
+        &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot;&gt;
+          &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between start&quot;&gt;
+            &lt;div class&#x3D;&quot;shimmers loader--export-arrow&quot;&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;export--info-section&quot;&gt;
+              &lt;div class&#x3D;&quot;shimmers loader--export-header&quot;&gt;&lt;/div&gt;
+              &lt;div class&#x3D;&quot;export--info-text&quot;&gt;
+                &lt;div class&#x3D;&quot;shimmers loader--export-sub-header&quot;&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;shimmers loader--export-btn&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- export shimmer --&gt;
+
+
+  &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;start start&quot;&gt;
+    &lt;div class&#x3D;&quot;past-export paragraph&quot; *ngIf&#x3D;&quot;lastExport &amp;&amp; !isLoading&quot;&gt;
+      &lt;div class&#x3D;&quot;past-export--section&quot;&gt;
+        &lt;div class&#x3D;&quot;past-export--content-section&quot;&gt;
+          &lt;h2 class&#x3D;&quot;past-export--header&quot;&gt;
+            Your last export
+          &lt;/h2&gt;
+          &lt;p class&#x3D;&quot;past-export--header-divider&quot;&gt;&lt;/p&gt;
+          &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;start center&quot; class&#x3D;&quot;past-export--row sub-text-color&quot;&gt;
+            &lt;p class&#x3D;&quot;past-export--detail single-line-text&quot;&gt;Date &amp; Time of export&lt;/p&gt;
+            &lt;p class&#x3D;&quot;single-line-text&quot;&gt;{{ lastExport.last_exported_at| date: &#x27;dd MMM, yyyy&#x27; }} at {{ lastExport.last_exported_at | date: &#x27;HH:mm&#x27; }}&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;p class&#x3D;&quot;past-export--divider&quot;&gt;&lt;/p&gt;
+
+          &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;start center&quot; class&#x3D;&quot;past-export--row sub-text-color&quot;&gt;
+            &lt;p class&#x3D;&quot;past-export--detail&quot;&gt;Mode of export&lt;/p&gt;
+            &lt;p&gt;{{ lastExport.export_mode | titlecase }}&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;p class&#x3D;&quot;past-export--divider&quot;&gt;&lt;/p&gt;
+
+          &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;start center&quot; class&#x3D;&quot;past-export--row sub-text-color&quot;&gt;
+            &lt;p class&#x3D;&quot;past-export--detail&quot;&gt;Total Exports&lt;/p&gt;
+            &lt;p&gt;{{ lastExport.total_expense_groups_count }}&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;p class&#x3D;&quot;past-export--divider&quot;&gt;&lt;/p&gt;
+
+          &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;start center&quot; class&#x3D;&quot;past-export--row sub-text-color&quot;&gt;
+            &lt;p class&#x3D;&quot;past-export--detail&quot;&gt;Successful Exports&lt;/p&gt;
+            &lt;p class&#x3D;&quot;past-export--view-expense&quot;&gt;{{ lastExport.successful_expense_groups_count }}&lt;/p&gt;
+            &lt;p *ngIf&#x3D;&quot;lastExport.successful_expense_groups_count&quot; class&#x3D;&quot;past-export--view-expense-text pointer&quot; (click)&#x3D;&quot;showDashboardExportLog(ExportState.SUCCESS)&quot;&gt;View&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;p class&#x3D;&quot;past-export--divider&quot;&gt;&lt;/p&gt;
+
+          &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;start center&quot; class&#x3D;&quot;past-export--row sub-text-color&quot;&gt;
+            &lt;p class&#x3D;&quot;past-export--detail&quot;&gt;Failed Exports&lt;/p&gt;
+            &lt;p class&#x3D;&quot;past-export--view-expense&quot;&gt;{{ lastExport.failed_expense_groups_count }}&lt;/p&gt;
+            &lt;p *ngIf&#x3D;&quot;lastExport.failed_expense_groups_count&quot; class&#x3D;&quot;past-export--view-expense-text pointer&quot; (click)&#x3D;&quot;showDashboardExportLog(ExportState.FAILED)&quot;&gt;View&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- past export shimmer --&gt;
+    &lt;div class&#x3D;&quot;past-export&quot; *ngIf&#x3D;&quot;isLoading&quot;&gt;
+      &lt;div class&#x3D;&quot;past-export--section&quot;&gt;
+        &lt;div class&#x3D;&quot;past-export--content-section&quot;&gt;
+          &lt;div class&#x3D;&quot;past-export--header shimmers loader--past-export-header&quot;&gt;&lt;/div&gt;
+          &lt;div class&#x3D;&quot;past-export--header shimmers loader--past-export-sub-header&quot;&gt;&lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;past-export--header shimmers loader--past-export-sub-header-with-space&quot;&gt;&lt;/div&gt;
+
+          &lt;div *ngFor&#x3D;&quot;let i of [0,1]&quot;&gt;
+            &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;start center&quot; class&#x3D;&quot;loader--past-export-avatar-section&quot;&gt;
+              &lt;div class&#x3D;&quot;shimmers loader--past-export-avatar&quot;&gt;&lt;/div&gt;
+              &lt;div class&#x3D;&quot;shimmers loader--past-export-line-header&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;shimmers loader--past-export-line-sub-header&quot;&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- past export shimmer --&gt;
+
+    &lt;div *ngIf&#x3D;&quot;!isLoading &amp;&amp; lastExport &amp;&amp; errors&quot; class&#x3D;&quot;errors paragraph&quot;&gt;
+      &lt;div class&#x3D;&quot;errors--section&quot; [ngClass]&#x3D;&quot;{&#x27;errors--zero-state-section&#x27;: !errors || !errors?.EMPLOYEE_MAPPING?.length &amp;&amp; !errors?.CATEGORY_MAPPING?.length &amp;&amp; !errors?.TAX_MAPPING?.length &amp;&amp; !errors?.QBO_ERROR?.length}&quot;&gt;
+        &lt;p class&#x3D;&quot;errors--header&quot; fxLayout&#x3D;&quot;row&quot;&gt;
+          Errors
+          &lt;img src&#x3D;&quot;assets/images/svgs/general/info.svg&quot; class&#x3D;&quot;errors--info-icon&quot; width&#x3D;&quot;16px&quot; height&#x3D;&quot;16px&quot; matTooltip&#x3D;&quot;Expenses failed to export due to the following errors. Resolve them before trying to re-export again.&quot; matTooltipPosition&#x3D;&quot;right&quot; matTooltipClass&#x3D;&quot;right&quot; /&gt;
+        &lt;/p&gt;
+        &lt;p class&#x3D;&quot;errors--header-divider&quot;&gt;&lt;/p&gt;
+
+        &lt;div *ngIf&#x3D;&quot;errors?.EMPLOYEE_MAPPING?.length || groupedErrorStat?.EMPLOYEE_MAPPING || errors?.CATEGORY_MAPPING?.length || groupedErrorStat?.CATEGORY_MAPPING || errors?.TAX_MAPPING?.length || groupedErrorStat?.TAX_MAPPING&quot; class&#x3D;&quot;errors--integration-error-section&quot;&gt;
+          &lt;div class&#x3D;&quot;errors--integration-error-contents&quot;&gt;
+            &lt;p&gt;Integration Errors&lt;/p&gt;
+            &lt;h5 class&#x3D;&quot;errors--integration-error-sub-header sub-text-color&quot;&gt;Check and resolve these errors before trying to re-export them again.&lt;/h5&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div *ngIf&#x3D;&quot;errors?.EMPLOYEE_MAPPING?.length || groupedErrorStat?.EMPLOYEE_MAPPING || errors?.CATEGORY_MAPPING?.length || groupedErrorStat?.CATEGORY_MAPPING || errors?.TAX_MAPPING?.length || groupedErrorStat?.TAX_MAPPING&quot; class&#x3D;&quot;errors--mapping-error-section&quot;&gt;
+          &lt;div *ngIf&#x3D;&quot;errors?.EMPLOYEE_MAPPING?.length || groupedErrorStat?.EMPLOYEE_MAPPING&quot; class&#x3D;&quot;errors--mapping-error-contents&quot; fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot;&gt;
+            &lt;div&gt;
+              &lt;p&gt;Employee Mapping errors&lt;/p&gt;
+              &lt;h5 *ngIf&#x3D;&quot;groupedErrorStat.EMPLOYEE_MAPPING&quot; class&#x3D;&quot;errors--resolved-stat sub-text-color&quot;&gt;{{ groupedErrorStat.EMPLOYEE_MAPPING.resolvedCount }}/{{ groupedErrorStat.EMPLOYEE_MAPPING.totalCount }} error(s) resolved&lt;/h5&gt;
+            &lt;/div&gt;
+            &lt;div *ngIf&#x3D;&quot;!groupedErrorStat.EMPLOYEE_MAPPING || (groupedErrorStat.EMPLOYEE_MAPPING &amp;&amp; groupedErrorStat.EMPLOYEE_MAPPING.resolvedCount !&#x3D;&#x3D; groupedErrorStat.EMPLOYEE_MAPPING.totalCount)&quot; fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot; class&#x3D;&quot;errors--resolve-btn configuration--submit-btn pointer&quot; (click)&#x3D;&quot;resolveMappingError(errors.EMPLOYEE_MAPPING)&quot;&gt;
+              &lt;p class&#x3D;&quot;single-line-text btn-cta-text-without-icon&quot;&gt;
+                Resolve
+              &lt;/p&gt;
+            &lt;/div&gt;
+
+            &lt;div *ngIf&#x3D;&quot;groupedErrorStat.EMPLOYEE_MAPPING &amp;&amp; groupedErrorStat.EMPLOYEE_MAPPING.resolvedCount &#x3D;&#x3D;&#x3D; groupedErrorStat.EMPLOYEE_MAPPING.totalCount&quot; fxLayout&#x3D;&quot;row&quot;&gt;
+              &lt;img src&#x3D;&quot;assets/images/svgs/general/tick-resolved.svg&quot; class&#x3D;&quot;errors--resolved-icon&quot; width&#x3D;&quot;16px&quot; height&#x3D;&quot;16px&quot; /&gt;
+              &lt;p class&#x3D;&quot;errors--resolve-btn-text sub-text-color single-line-text&quot;&gt;
+                Resolved
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;p class&#x3D;&quot;errors--divider&quot;&gt;&lt;/p&gt;
+
+          &lt;div *ngIf&#x3D;&quot;errors?.CATEGORY_MAPPING?.length || (groupedErrorStat &amp;&amp; groupedErrorStat.CATEGORY_MAPPING)&quot; class&#x3D;&quot;errors--mapping-error-contents&quot; fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot;&gt;
+            &lt;div&gt;
+              &lt;p&gt;Category Mapping errors&lt;/p&gt;
+              &lt;h5 *ngIf&#x3D;&quot;groupedErrorStat.CATEGORY_MAPPING&quot; class&#x3D;&quot;errors--resolved-stat sub-text-color&quot;&gt;{{ groupedErrorStat.CATEGORY_MAPPING.resolvedCount }}/{{ groupedErrorStat.CATEGORY_MAPPING.totalCount }} error(s) resolved&lt;/h5&gt;
+            &lt;/div&gt;
+            &lt;div *ngIf&#x3D;&quot;!groupedErrorStat.CATEGORY_MAPPING || (groupedErrorStat.CATEGORY_MAPPING &amp;&amp; groupedErrorStat.CATEGORY_MAPPING.resolvedCount !&#x3D;&#x3D; groupedErrorStat.CATEGORY_MAPPING.totalCount)&quot; fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot; class&#x3D;&quot;errors--resolve-btn configuration--submit-btn pointer&quot; (click)&#x3D;&quot;resolveMappingError(errors.CATEGORY_MAPPING)&quot;&gt;
+              &lt;p class&#x3D;&quot;single-line-text btn-cta-text-without-icon&quot;&gt;
+                Resolve
+              &lt;/p&gt;
+            &lt;/div&gt;
+
+            &lt;div *ngIf&#x3D;&quot;groupedErrorStat.CATEGORY_MAPPING &amp;&amp; groupedErrorStat.CATEGORY_MAPPING.resolvedCount &#x3D;&#x3D;&#x3D; groupedErrorStat.CATEGORY_MAPPING.totalCount&quot; fxLayout&#x3D;&quot;row&quot;&gt;
+              &lt;img src&#x3D;&quot;assets/images/svgs/general/tick-resolved.svg&quot; class&#x3D;&quot;errors--resolved-icon&quot; width&#x3D;&quot;16px&quot; height&#x3D;&quot;16px&quot; /&gt;
+              &lt;p class&#x3D;&quot;errors--resolve-btn-text sub-text-color single-line-text&quot;&gt;
+                Resolved
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;p class&#x3D;&quot;errors--divider&quot;&gt;&lt;/p&gt;
+
+          &lt;div *ngIf&#x3D;&quot;errors?.TAX_MAPPING?.length || (groupedErrorStat &amp;&amp; groupedErrorStat.TAX_MAPPING)&quot; class&#x3D;&quot;errors--mapping-error-contents&quot; fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot;&gt;
+            &lt;div&gt;
+              &lt;p&gt;Tax Mapping errors&lt;/p&gt;
+              &lt;h5 *ngIf&#x3D;&quot;groupedErrorStat.TAX_MAPPING&quot; class&#x3D;&quot;errors--resolved-stat sub-text-color&quot;&gt;{{ groupedErrorStat.TAX_MAPPING.resolvedCount }}/{{ groupedErrorStat.TAX_MAPPING.totalCount }} error(s) resolved&lt;/h5&gt;
+            &lt;/div&gt;
+            &lt;div *ngIf&#x3D;&quot;!groupedErrorStat.TAX_MAPPING || (groupedErrorStat.TAX_MAPPING &amp;&amp; groupedErrorStat.TAX_MAPPING.resolvedCount !&#x3D;&#x3D; groupedErrorStat.TAX_MAPPING.totalCount)&quot; fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot; class&#x3D;&quot;errors--resolve-btn configuration--submit-btn pointer&quot; (click)&#x3D;&quot;resolveMappingError(errors.TAX_MAPPING)&quot;&gt;
+              &lt;p class&#x3D;&quot;single-line-text btn-cta-text-without-icon&quot;&gt;
+                Resolve
+              &lt;/p&gt;
+            &lt;/div&gt;
+
+            &lt;div *ngIf&#x3D;&quot;groupedErrorStat.TAX_MAPPING &amp;&amp; groupedErrorStat.TAX_MAPPING.resolvedCount &#x3D;&#x3D;&#x3D; groupedErrorStat.TAX_MAPPING.totalCount&quot; fxLayout&#x3D;&quot;row&quot;&gt;
+              &lt;img src&#x3D;&quot;assets/images/svgs/general/tick-resolved.svg&quot; class&#x3D;&quot;errors--resolved-icon&quot; width&#x3D;&quot;16px&quot; height&#x3D;&quot;16px&quot; /&gt;
+              &lt;p class&#x3D;&quot;errors--resolve-btn-text sub-text-color single-line-text&quot;&gt;
+                Resolved
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;p class&#x3D;&quot;errors--divider&quot;&gt;&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div *ngIf&#x3D;&quot;errors?.QBO_ERROR?.length&quot; class&#x3D;&quot;errors--integration-error-section&quot;&gt;
+          &lt;div class&#x3D;&quot;errors--integration-error-contents&quot;&gt;
+            &lt;p&gt;Quickbooks Errors&lt;/p&gt;
+            &lt;h5 class&#x3D;&quot;errors--integration-error-sub-header sub-text-color&quot;&gt;Resolve these errors on your Quickbooks Account before trying to re-export them again.&lt;/h5&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div *ngFor&#x3D;&quot;let error of errors?.QBO_ERROR&quot;&gt;
+          &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot; class&#x3D;&quot;errors--qbo-error&quot;&gt;
+            &lt;div&gt;
+              &lt;p&gt;{{ error.error_title }}&lt;/p&gt;
+              &lt;h5 class&#x3D;&quot;errors--qbo-error-short-description sub-text-color&quot;&gt;{{ error.error_detail }}&lt;/h5&gt;
+            &lt;/div&gt;
+            &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;center center&quot; class&#x3D;&quot;errors--view-expenses pointer&quot;&gt;
+              &lt;h5 class&#x3D;&quot;errors--view-expenses-text single-line-text&quot; (click)&#x3D;&quot;showDashboardQboError(error)&quot;&gt;View Expenses&lt;/h5&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;app-zero-state-with-illustration *ngIf&#x3D;&quot;lastExport &amp;&amp; !errors.EMPLOYEE_MAPPING.length &amp;&amp; !errors.CATEGORY_MAPPING.length &amp;&amp; !errors.TAX_MAPPING.length &amp;&amp; !errors.QBO_ERROR.length &amp;&amp; !groupedErrorStat.CATEGORY_MAPPING &amp;&amp; !groupedErrorStat.EMPLOYEE_MAPPING&quot; [page]&#x3D;&quot;ZeroStatePage.dashboard_error&quot;&gt;&lt;/app-zero-state-with-illustration&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- errors shimmer --&gt;
+    &lt;div *ngIf&#x3D;&quot;isLoading&quot; class&#x3D;&quot;errors&quot;&gt;
+      &lt;div class&#x3D;&quot;errors--section&quot;&gt;
+        &lt;div class&#x3D;&quot;shimmers loader--errors-header&quot;&gt;&lt;/div&gt;
+        &lt;p class&#x3D;&quot;errors--divider&quot;&gt;&lt;/p&gt;
+        &lt;div class&#x3D;&quot;shimmers loader--errors-type-header&quot;&gt;&lt;/div&gt;
+        &lt;p&gt;&lt;/p&gt;
+        &lt;div class&#x3D;&quot;shimmers loader--errors-type-sub-header&quot;&gt;&lt;/div&gt;
+
+        &lt;div *ngFor&#x3D;&quot;let i of [0,1,2]&quot;&gt;
+          &lt;div class&#x3D;&quot;loader--error-box&quot; fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot;&gt;
+            &lt;div class&#x3D;&quot;shimmers loader--error-type&quot;&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;shimmers loader--error-btn&quot;&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- errors shimmer --&gt;
+
+  &lt;/div&gt;
+
+  &lt;app-zero-state-with-illustration *ngIf&#x3D;&quot;!isLoading &amp;&amp; !lastExport&quot; [page]&#x3D;&quot;ZeroStatePage.dashboard&quot;&gt;&lt;/app-zero-state-with-illustration&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./dashboard.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.dashboard {
+  width: 1658px;
+  @media only screen and (max-width: 1440px) {
+    width: 1178px;
+  }
+}
+
+
+.export {
+  padding-left: 24px;
+  padding-right: 24px;
+
+  &amp;--core-section {
+    background: #FFFFFF;
+    border: 1px solid #F5F5F5;
+    box-sizing: border-box;
+    box-shadow: 0px 16px 20px -5px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+    margin-top: -95px;
+    height: 120px;
+  }
+
+  &amp;--content-section {
+    padding: 25px 40px 25px 24px;
+  }
+
+  &amp;--info-section {
+    width: 735px;
+  }
+
+  &amp;--info-text {
+    padding-top: 8px;
+    color: #2C304E;
+  }
+
+  &amp;--arrow-section {
+    width: 24px;
+    padding-right: 12px;
+  }
+
+  &amp;--info-icon {
+    padding-left: 6px;
+    margin-top: 4px;
+  }
+}
+
+.past-export {
+  padding: 28px 24px 0px 24px;
+
+  &amp;--section {
+    background: #FFFFFF;
+    border: 1px solid #F5F5F5;
+    box-sizing: border-box;
+    box-shadow: 0px 24px 12px rgba(22, 21, 40, 0.02);
+    border-radius: 8px;
+    width: 348px;
+  }
+
+  &amp;--content-section {
+    padding: 24px;
+  }
+
+  &amp;--header {
+    font-weight: 500;
+    font-size: 20px;
+    padding-bottom: 16px;
+  }
+
+  &amp;--header-divider {
+    border: 1px solid #DFDFE2;
+    width: 346px;
+    margin-left: -25px;
+  }
+
+  &amp;--divider {
+    @extend .past-export--header-divider;
+    border: 1px solid #F5F5F5;
+  }
+
+  &amp;--row {
+    font-size: 14px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  &amp;--detail {
+    width: 140px;
+    padding-right: 26px;
+  }
+
+  &amp;--view-expense {
+    width: 15px;
+    padding-right: 84px;
+  }
+
+  &amp;--view-expense-text {
+   color: #FF3366;
+  }
+}
+
+.errors {
+  padding: 28px 24px 0px 0px;
+
+  &amp;--section {
+    width: 1235px;
+    @media only screen and (max-width: 1440px) {
+      width: 760px;
+    }
+
+    min-height: 450px;
+    max-height: 550px;
+    @media only screen and (max-width: 1440px) {
+      min-height: 350px;
+      max-height: 450px;
+    }
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background: #FFFFFF;
+    border: 1px solid #F5F5F5;
+    box-sizing: border-box;
+    box-shadow: 0px 24px 12px -8px rgba(22, 21, 40, 0.02);
+    border-radius: 8px;
+  }
+
+  &amp;--zero-state-section {
+    min-height: 635px;
+    @media only screen and (max-width: 1440px) {
+      min-height: 460px;
+    }
+  }
+
+  &amp;--header {
+    padding: 24px 0px 16px 24px;
+    font-size: 20px;
+  }
+
+  &amp;--info-icon {
+    padding-left: 6px;
+    margin-top: 7px;
+  }
+
+  &amp;--header-divider {
+    border: 1px solid #DFDFE2;
+    width: 1230px;
+    @media only screen and (max-width: 1440px) {
+      width: 757px;
+    }
+  }
+
+  &amp;--divider {
+    @extend .errors--header-divider;
+    border: 1px solid #F5F5F5;
+    margin-left: -25px;
+  }
+
+  &amp;--integration-error-section {
+    background: #FAFCFF;
+    height: 72px;
+  }
+
+  &amp;--integration-error-contents {
+    padding: 15px 0px 15px 23px;
+  }
+
+  &amp;--integration-error-sub-header {
+    padding-top: 4px;
+  }
+
+  &amp;--mapping-error-section {
+    padding: 0px 24px 0px 24px;
+    font-size: 14px;
+  }
+
+  &amp;--resolve-btn {
+    background: #2C304E;
+
+    &amp;:hover {
+      box-shadow: 0px 4px 4px rgba(44, 48, 78, 0.1);
+    }
+  }
+
+  &amp;--mapping-error-contents {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  &amp;--qbo-error {
+    font-size: 14px;
+    padding: 20px 24px;
+  }
+
+  &amp;--resolved-stat {
+    padding-top: 4px;
+  }
+
+  &amp;--resolved-icon {
+    padding-right: 6px;
+  }
+
+  &amp;--resolve-btn-text {
+    padding-right: 4px;
+  }
+
+  &amp;--qbo-error-short-description {
+    padding-top: 8px;
+    font-size: 12px;
+    width: 750px;
+    @media only screen and (max-width: 1440px) {
+      width: 450px;
+    }
+  }
+
+  &amp;--view-expenses {
+    width: 100px;
+    height: 29px;
+    background: #FFFFFF;
+    border: 1px solid #DFDFE2;
+    box-sizing: border-box;
+    border-radius: 4px;
+
+    &amp;:hover {
+      box-shadow: 0px 4px 4px rgba(44, 48, 78, 0.1);
+    }
+  }
+
+  &amp;--view-expenses-text {
+    color: #2C304E;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
+}
+
+.loader {
+  &amp;--export-arrow {
+    height: 19px;
+    width: 19px;
+    margin-right: 12px;
+  }
+
+  &amp;--export-header {
+    height: 19px;
+    width: 158px;
+  }
+
+  &amp;--export-sub-header {
+    height: 19px;
+    width: 222px;
+  }
+
+  &amp;--export-btn {
+    height: 42px;
+    width: 256px;
+  }
+
+  &amp;--past-export-header {
+    width: 158px;
+  }
+
+  &amp;--past-export-sub-header {
+    width: 222px;
+  }
+
+  &amp;--past-export-sub-header-with-space {
+    @extend .loader--past-export-sub-header;
+    margin-top: 44px;
+  }
+
+  &amp;--past-export-avatar-section {
+    margin-top: 44px;
+  }
+
+  &amp;--past-export-avatar {
+    border-radius: 8px;
+    height: 28px;
+    width: 28px;
+    margin-right: 8px;
+  }
+
+  &amp;--past-export-line-header {
+    height: 19px;
+    width: 120px;
+  }
+
+  &amp;--past-export-line-sub-header {
+    height: 19px;
+    width: 60px;
+    margin-top: 15px;
+    margin-left: 36px;
+  }
+
+  &amp;--errors-header {
+    height: 19px;
+    width: 222px;
+    margin: 19px 0px 18px 25px;
+  }
+
+  &amp;--errors-type-header {
+    width: 222px;
+    height: 19px;
+    margin: 19px 0px 18px 25px;
+  }
+
+  &amp;--errors-type-sub-header {
+    width: 149px;
+    height: 19px;
+    margin: 19px 0px 18px 25px;
+  }
+
+  &amp;--error-box {
+    margin: 25px 16px;
+    background: #FFFFFF;
+    border: 1px solid #F5F5F5;
+    box-sizing: border-box;
+    border-radius: 6px;
+    height: 68px;
+  }
+
+  &amp;--error-type {
+    width: 206px;
+    height: 19px;
+    margin-left: 16px;
+  }
+
+  &amp;--error-btn {
+    margin-right: 16px;
+    width: 104px;
+    height: 44px;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="dashboard">  <app-dashboard-header-section [name]="employeeName"></app-dashboard-header-section>  <div *ngIf="!importInProgress" class="export">    <div class="export--core-section">      <div class="export--content-section">        <div fxLayout="row" fxLayoutAlign="space-between center">          <div fxLayout="row" fxLayoutAlign="space-between start">            <div *ngIf="!exportInProgress && exportableExpenseGroupIds.length" class="export--arrow-section">              <img src="assets/images/svgs/actions/arrow-up.svg" />            </div>            <div class="export--info-section">              <span fxLayout="row">                <h3 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">Sit back and relax!</h3>                <h3 *ngIf="exportInProgress">Exporting {{ processedCount }} of {{ exportableExpenseGroupIds.length }} Transaction{{exportableExpenseGroupIds.length > 1 ? \'s\' : \'\'}} to your QBO account</h3>                <h3 *ngIf="!exportInProgress && exportableExpenseGroupIds.length">{{ exportableExpenseGroupIds.length }} Transaction{{exportableExpenseGroupIds.length > 1 ? \'s\' : \'\'}} ready to export</h3>                <img src="assets/images/svgs/general/info.svg" class="export--info-icon" width="16px" height="16px" matTooltip="All expenses from {{ importState === ExpenseState.PAYMENT_PROCESSING ? \'your\' : \'the\' }} {{ importState | titlecase | snakeCaseToSpaceCase }} state in Fyle will be automatically imported" matTooltipPosition="right" matTooltipClass="right" />              </span>              <div class="export--info-text paragraph">                <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">No new Transaction to export from the {{ importState | titlecase | snakeCaseToSpaceCase }} state in Fyle.</h5>                <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">Once you start processing payment for the expenses, they will be automatically available here to export.</h5>                <h5 *ngIf="!exportInProgress && exportableExpenseGroupIds.length">Click on <b>Export</b> to start exporting expenses from Fyle as QBO transactions.</h5>                <h5 *ngIf="exportInProgress">This may take a few minutes. Please wait...</h5>                <div *ngIf="!exportInProgress && failedExpenseGroupCount !== null && failedExpenseGroupCount > 0" fxLayout="row">                  <h5>{{ exportableExpenseGroupIds.length - failedExpenseGroupCount > 0 ? exportableExpenseGroupIds.length - failedExpenseGroupCount : 0 }} new Transaction{{(exportableExpenseGroupIds.length - failedExpenseGroupCount) > 1 ? \'s\' : \'\'}}, {{ failedExpenseGroupCount }} previously failed Transaction{{failedExpenseGroupCount > 1 ? \'s\' : \'\'}}</h5>                  <!-- <img src="assets/images/svgs/general/info.svg" class="export--info-icon" width="16px" height="16px" /> -->                </div>              </div>            </div>          </div>          <div fxLayout="row" fxLayoutAlign="space-between center" class="pointer configuration--submit-btn" [ngClass]="!exportableExpenseGroupIds.length || exportInProgress ? \'btn-disabled\' : \'btn-enabled\'" (click)="export()">            <h5 class="btn-cta-text-with-icon single-line-text">              {{ exportInProgress ? \'Exporting\' : \'Export\' }}            </h5>            <img *ngIf="!exportInProgress" src="assets/images/svgs/actions/arrow-mark-right.svg" class="btn-icon" />            <img *ngIf="exportInProgress" src="assets/images/svgs/actions/sync-dashboard-export.svg" class="btn-icon" />          </div>        </div>      </div>      <mat-progress-bar *ngIf="exportInProgress" mode="determinate" [value]="exportProgressPercentage"></mat-progress-bar>    </div>  </div>  <!-- export shimmer -->  <div *ngIf="importInProgress" class="export">    <div class="export--core-section">      <div class="export--content-section">        <div fxLayout="row" fxLayoutAlign="space-between center">          <div fxLayout="row" fxLayoutAlign="space-between start">            <div class="shimmers loader--export-arrow"></div>            <div class="export--info-section">              <div class="shimmers loader--export-header"></div>              <div class="export--info-text">                <div class="shimmers loader--export-sub-header"></div>              </div>            </div>          </div>          <div class="shimmers loader--export-btn"></div>        </div>      </div>    </div>  </div>  <!-- export shimmer -->  <div fxLayout="row" fxLayoutAlign="start start">    <div class="past-export paragraph" *ngIf="lastExport && !isLoading">      <div class="past-export--section">        <div class="past-export--content-section">          <h2 class="past-export--header">            Your last export          </h2>          <p class="past-export--header-divider"></p>          <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">            <p class="past-export--detail single-line-text">Date & Time of export</p>            <p class="single-line-text">{{ lastExport.last_exported_at| date: \'dd MMM, yyyy\' }} at {{ lastExport.last_exported_at | date: \'HH:mm\' }}</p>          </div>          <p class="past-export--divider"></p>          <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">            <p class="past-export--detail">Mode of export</p>            <p>{{ lastExport.export_mode | titlecase }}</p>          </div>          <p class="past-export--divider"></p>          <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">            <p class="past-export--detail">Total Exports</p>            <p>{{ lastExport.total_expense_groups_count }}</p>          </div>          <p class="past-export--divider"></p>          <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">            <p class="past-export--detail">Successful Exports</p>            <p class="past-export--view-expense">{{ lastExport.successful_expense_groups_count }}</p>            <p *ngIf="lastExport.successful_expense_groups_count" class="past-export--view-expense-text pointer" (click)="showDashboardExportLog(ExportState.SUCCESS)">View</p>          </div>          <p class="past-export--divider"></p>          <div fxLayout="row" fxLayoutAlign="start center" class="past-export--row sub-text-color">            <p class="past-export--detail">Failed Exports</p>            <p class="past-export--view-expense">{{ lastExport.failed_expense_groups_count }}</p>            <p *ngIf="lastExport.failed_expense_groups_count" class="past-export--view-expense-text pointer" (click)="showDashboardExportLog(ExportState.FAILED)">View</p>          </div>        </div>      </div>    </div>    <!-- past export shimmer -->    <div class="past-export" *ngIf="isLoading">      <div class="past-export--section">        <div class="past-export--content-section">          <div class="past-export--header shimmers loader--past-export-header"></div>          <div class="past-export--header shimmers loader--past-export-sub-header"></div>          <div class="past-export--header shimmers loader--past-export-sub-header-with-space"></div>          <div *ngFor="let i of [0,1]">            <div fxLayout="row" fxLayoutAlign="start center" class="loader--past-export-avatar-section">              <div class="shimmers loader--past-export-avatar"></div>              <div class="shimmers loader--past-export-line-header"></div>            </div>            <div class="shimmers loader--past-export-line-sub-header"></div>          </div>        </div>      </div>    </div>    <!-- past export shimmer -->    <div *ngIf="!isLoading && lastExport && errors" class="errors paragraph">      <div class="errors--section" [ngClass]="{\'errors--zero-state-section\': !errors || !errors?.EMPLOYEE_MAPPING?.length && !errors?.CATEGORY_MAPPING?.length && !errors?.TAX_MAPPING?.length && !errors?.QBO_ERROR?.length}">        <p class="errors--header" fxLayout="row">          Errors          <img src="assets/images/svgs/general/info.svg" class="errors--info-icon" width="16px" height="16px" matTooltip="Expenses failed to export due to the following errors. Resolve them before trying to re-export again." matTooltipPosition="right" matTooltipClass="right" />        </p>        <p class="errors--header-divider"></p>        <div *ngIf="errors?.EMPLOYEE_MAPPING?.length || groupedErrorStat?.EMPLOYEE_MAPPING || errors?.CATEGORY_MAPPING?.length || groupedErrorStat?.CATEGORY_MAPPING || errors?.TAX_MAPPING?.length || groupedErrorStat?.TAX_MAPPING" class="errors--integration-error-section">          <div class="errors--integration-error-contents">            <p>Integration Errors</p>            <h5 class="errors--integration-error-sub-header sub-text-color">Check and resolve these errors before trying to re-export them again.</h5>          </div>        </div>        <div *ngIf="errors?.EMPLOYEE_MAPPING?.length || groupedErrorStat?.EMPLOYEE_MAPPING || errors?.CATEGORY_MAPPING?.length || groupedErrorStat?.CATEGORY_MAPPING || errors?.TAX_MAPPING?.length || groupedErrorStat?.TAX_MAPPING" class="errors--mapping-error-section">          <div *ngIf="errors?.EMPLOYEE_MAPPING?.length || groupedErrorStat?.EMPLOYEE_MAPPING" class="errors--mapping-error-contents" fxLayout="row" fxLayoutAlign="space-between center">            <div>              <p>Employee Mapping errors</p>              <h5 *ngIf="groupedErrorStat.EMPLOYEE_MAPPING" class="errors--resolved-stat sub-text-color">{{ groupedErrorStat.EMPLOYEE_MAPPING.resolvedCount }}/{{ groupedErrorStat.EMPLOYEE_MAPPING.totalCount }} error(s) resolved</h5>            </div>            <div *ngIf="!groupedErrorStat.EMPLOYEE_MAPPING || (groupedErrorStat.EMPLOYEE_MAPPING && groupedErrorStat.EMPLOYEE_MAPPING.resolvedCount !== groupedErrorStat.EMPLOYEE_MAPPING.totalCount)" fxLayout="row" fxLayoutAlign="space-between center" class="errors--resolve-btn configuration--submit-btn pointer" (click)="resolveMappingError(errors.EMPLOYEE_MAPPING)">              <p class="single-line-text btn-cta-text-without-icon">                Resolve              </p>            </div>            <div *ngIf="groupedErrorStat.EMPLOYEE_MAPPING && groupedErrorStat.EMPLOYEE_MAPPING.resolvedCount === groupedErrorStat.EMPLOYEE_MAPPING.totalCount" fxLayout="row">              <img src="assets/images/svgs/general/tick-resolved.svg" class="errors--resolved-icon" width="16px" height="16px" />              <p class="errors--resolve-btn-text sub-text-color single-line-text">                Resolved              </p>            </div>          </div>          <p class="errors--divider"></p>          <div *ngIf="errors?.CATEGORY_MAPPING?.length || (groupedErrorStat && groupedErrorStat.CATEGORY_MAPPING)" class="errors--mapping-error-contents" fxLayout="row" fxLayoutAlign="space-between center">            <div>              <p>Category Mapping errors</p>              <h5 *ngIf="groupedErrorStat.CATEGORY_MAPPING" class="errors--resolved-stat sub-text-color">{{ groupedErrorStat.CATEGORY_MAPPING.resolvedCount }}/{{ groupedErrorStat.CATEGORY_MAPPING.totalCount }} error(s) resolved</h5>            </div>            <div *ngIf="!groupedErrorStat.CATEGORY_MAPPING || (groupedErrorStat.CATEGORY_MAPPING && groupedErrorStat.CATEGORY_MAPPING.resolvedCount !== groupedErrorStat.CATEGORY_MAPPING.totalCount)" fxLayout="row" fxLayoutAlign="space-between center" class="errors--resolve-btn configuration--submit-btn pointer" (click)="resolveMappingError(errors.CATEGORY_MAPPING)">              <p class="single-line-text btn-cta-text-without-icon">                Resolve              </p>            </div>            <div *ngIf="groupedErrorStat.CATEGORY_MAPPING && groupedErrorStat.CATEGORY_MAPPING.resolvedCount === groupedErrorStat.CATEGORY_MAPPING.totalCount" fxLayout="row">              <img src="assets/images/svgs/general/tick-resolved.svg" class="errors--resolved-icon" width="16px" height="16px" />              <p class="errors--resolve-btn-text sub-text-color single-line-text">                Resolved              </p>            </div>          </div>          <p class="errors--divider"></p>          <div *ngIf="errors?.TAX_MAPPING?.length || (groupedErrorStat && groupedErrorStat.TAX_MAPPING)" class="errors--mapping-error-contents" fxLayout="row" fxLayoutAlign="space-between center">            <div>              <p>Tax Mapping errors</p>              <h5 *ngIf="groupedErrorStat.TAX_MAPPING" class="errors--resolved-stat sub-text-color">{{ groupedErrorStat.TAX_MAPPING.resolvedCount }}/{{ groupedErrorStat.TAX_MAPPING.totalCount }} error(s) resolved</h5>            </div>            <div *ngIf="!groupedErrorStat.TAX_MAPPING || (groupedErrorStat.TAX_MAPPING && groupedErrorStat.TAX_MAPPING.resolvedCount !== groupedErrorStat.TAX_MAPPING.totalCount)" fxLayout="row" fxLayoutAlign="space-between center" class="errors--resolve-btn configuration--submit-btn pointer" (click)="resolveMappingError(errors.TAX_MAPPING)">              <p class="single-line-text btn-cta-text-without-icon">                Resolve              </p>            </div>            <div *ngIf="groupedErrorStat.TAX_MAPPING && groupedErrorStat.TAX_MAPPING.resolvedCount === groupedErrorStat.TAX_MAPPING.totalCount" fxLayout="row">              <img src="assets/images/svgs/general/tick-resolved.svg" class="errors--resolved-icon" width="16px" height="16px" />              <p class="errors--resolve-btn-text sub-text-color single-line-text">                Resolved              </p>            </div>          </div>          <p class="errors--divider"></p>        </div>        <div *ngIf="errors?.QBO_ERROR?.length" class="errors--integration-error-section">          <div class="errors--integration-error-contents">            <p>Quickbooks Errors</p>            <h5 class="errors--integration-error-sub-header sub-text-color">Resolve these errors on your Quickbooks Account before trying to re-export them again.</h5>          </div>        </div>        <div *ngFor="let error of errors?.QBO_ERROR">          <div fxLayout="row" fxLayoutAlign="space-between center" class="errors--qbo-error">            <div>              <p>{{ error.error_title }}</p>              <h5 class="errors--qbo-error-short-description sub-text-color">{{ error.error_detail }}</h5>            </div>            <div fxLayout="row" fxLayoutAlign="center center" class="errors--view-expenses pointer">              <h5 class="errors--view-expenses-text single-line-text" (click)="showDashboardQboError(error)">View Expenses</h5>            </div>          </div>        </div>        <app-zero-state-with-illustration *ngIf="lastExport && !errors.EMPLOYEE_MAPPING.length && !errors.CATEGORY_MAPPING.length && !errors.TAX_MAPPING.length && !errors.QBO_ERROR.length && !groupedErrorStat.CATEGORY_MAPPING && !groupedErrorStat.EMPLOYEE_MAPPING" [page]="ZeroStatePage.dashboard_error"></app-zero-state-with-illustration>      </div>    </div>    <!-- errors shimmer -->    <div *ngIf="isLoading" class="errors">      <div class="errors--section">        <div class="shimmers loader--errors-header"></div>        <p class="errors--divider"></p>        <div class="shimmers loader--errors-type-header"></div>        <p></p>        <div class="shimmers loader--errors-type-sub-header"></div>        <div *ngFor="let i of [0,1,2]">          <div class="loader--error-box" fxLayout="row" fxLayoutAlign="space-between center">            <div class="shimmers loader--error-type"></div>            <div class="shimmers loader--error-btn"></div>          </div>        </div>      </div>    </div>    <!-- errors shimmer -->  </div>  <app-zero-state-with-illustration *ngIf="!isLoading && !lastExport" [page]="ZeroStatePage.dashboard"></app-zero-state-with-illustration></div></div>'
+    var COMPONENTS = [{'name': 'AddEmailDialogComponent', 'selector': 'app-add-email-dialog'},{'name': 'AdvancedSettingsComponent', 'selector': 'app-advanced-settings'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'ConfigurationAdvancedSettingsComponent', 'selector': 'app-configuration-advanced-settings'},{'name': 'ConfigurationComponent', 'selector': 'app-configuration'},{'name': 'ConfigurationEmployeeSettingsComponent', 'selector': 'app-configuration-employee-settings'},{'name': 'ConfigurationExportSettingsComponent', 'selector': 'app-configuration-export-settings'},{'name': 'ConfigurationImportSettingsComponent', 'selector': 'app-configuration-import-settings'},{'name': 'ConfigurationSelectFieldComponent', 'selector': 'app-configuration-select-field'},{'name': 'ConfigurationStepFooterSectionComponent', 'selector': 'app-configuration-step-footer-section'},{'name': 'ConfigurationStepHeaderSectionComponent', 'selector': 'app-configuration-step-header-section'},{'name': 'ConfigurationToggleFieldComponent', 'selector': 'app-configuration-toggle-field'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'CustomMappingComponent', 'selector': 'app-custom-mapping'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardExportLogDialogComponent', 'selector': 'app-dashboard-export-log-dialog'},{'name': 'DashboardHeaderSectionComponent', 'selector': 'app-dashboard-header-section'},{'name': 'DashboardQboErrorDialogComponent', 'selector': 'app-dashboard-qbo-error-dialog'},{'name': 'DashboardResolveMappingErrorDialogComponent', 'selector': 'app-dashboard-resolve-mapping-error-dialog'},{'name': 'EmailMultiSelectFieldComponent', 'selector': 'app-email-multi-select-field'},{'name': 'EmployeeMappingComponent', 'selector': 'app-employee-mapping'},{'name': 'EmployeeSettingsComponent', 'selector': 'app-employee-settings'},{'name': 'ExpenseFieldCreationDialogComponent', 'selector': 'app-expense-field-creation-dialog'},{'name': 'ExportLogChildDialogComponent', 'selector': 'app-export-log-child-dialog'},{'name': 'ExportLogChildTableComponent', 'selector': 'app-export-log-child-table'},{'name': 'ExportLogComponent', 'selector': 'app-export-log'},{'name': 'ExportLogTableComponent', 'selector': 'app-export-log-table'},{'name': 'ExportSettingsComponent', 'selector': 'app-export-settings'},{'name': 'FyleCallbackComponent', 'selector': 'app-fyle-callback'},{'name': 'GenericMappingComponent', 'selector': 'app-generic-mapping'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImportSettingsComponent', 'selector': 'app-import-settings'},{'name': 'IntegrationComponent', 'selector': 'app-integration'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'MandatoryErrorMessageComponent', 'selector': 'app-mandatory-error-message'},{'name': 'MandatoryFieldComponent', 'selector': 'app-mandatory-field'},{'name': 'MappingComponent', 'selector': 'app-mapping'},{'name': 'MappingFilterComponent', 'selector': 'app-mapping-filter'},{'name': 'MappingHeaderSectionComponent', 'selector': 'app-mapping-header-section'},{'name': 'MappingTableComponent', 'selector': 'app-mapping-table'},{'name': 'OnboardingAdvancedSettingsComponent', 'selector': 'app-onboarding-advanced-settings'},{'name': 'OnboardingComponent', 'selector': 'app-onboarding'},{'name': 'OnboardingDoneComponent', 'selector': 'app-onboarding-done'},{'name': 'OnboardingEmployeeSettingsComponent', 'selector': 'app-onboarding-employee-settings'},{'name': 'OnboardingExportSettingsComponent', 'selector': 'app-onboarding-export-settings'},{'name': 'OnboardingFooterComponent', 'selector': 'app-onboarding-footer'},{'name': 'OnboardingImportSettingsComponent', 'selector': 'app-onboarding-import-settings'},{'name': 'OnboardingLandingComponent', 'selector': 'app-onboarding-landing'},{'name': 'OnboardingQboConnectorComponent', 'selector': 'app-onboarding-qbo-connector'},{'name': 'OnboardingStepperComponent', 'selector': 'app-onboarding-stepper'},{'name': 'PaginatorComponent', 'selector': 'app-paginator'},{'name': 'PreviewDialogComponent', 'selector': 'app-preview-dialog'},{'name': 'QboCallbackComponent', 'selector': 'app-qbo-callback'},{'name': 'QboConnectorComponent', 'selector': 'app-qbo-connector'},{'name': 'SharedLoginComponent', 'selector': 'app-shared-login'},{'name': 'SimpleTextSearchComponent', 'selector': 'app-simple-text-search'},{'name': 'ZeroStateWithIllustrationComponent', 'selector': 'app-zero-state-with-illustration'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'DashboardComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DashboardComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

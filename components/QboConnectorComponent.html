@@ -1,0 +1,1811 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fyle-qbo-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">fyle-qbo-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  QboConnectorComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-qbo-connector</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./qbo-connector.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./qbo-connector.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ConfigurationCtaText" >ConfigurationCtaText</a>
+                            </li>
+                            <li>
+                                <a href="#fyleOrgName" >fyleOrgName</a>
+                            </li>
+                            <li>
+                                <a href="#isContinueDisabled" >isContinueDisabled</a>
+                            </li>
+                            <li>
+                                <a href="#isLoading" >isLoading</a>
+                            </li>
+                            <li>
+                                <a href="#isOnboarding" >isOnboarding</a>
+                            </li>
+                            <li>
+                                <a href="#isQboConnected" >isQboConnected</a>
+                            </li>
+                            <li>
+                                <a href="#qboCompanyName" >qboCompanyName</a>
+                            </li>
+                            <li>
+                                <a href="#qboConnectionInProgress" >qboConnectionInProgress</a>
+                            </li>
+                            <li>
+                                <a href="#qboTokenExpired" >qboTokenExpired</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#sessionStartTime" >sessionStartTime</a>
+                            </li>
+                            <li>
+                                <a href="#showDisconnectQBO" >showDisconnectQBO</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#timeSpentEventRecorded" >timeSpentEventRecorded</a>
+                            </li>
+                            <li>
+                                <a href="#windowReference" >windowReference</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#connectQbo" >connectQbo</a>
+                            </li>
+                            <li>
+                                <a href="#continueToNextStep" >continueToNextStep</a>
+                            </li>
+                            <li>
+                                <a href="#disconnectQbo" >disconnectQbo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getSettings" >getSettings</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#postQboCredentials" >postQboCredentials</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setupPage" >setupPage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#showOrHideDisconnectQBO" >showOrHideDisconnectQBO</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#showWarningDialog" >showWarningDialog</a>
+                            </li>
+                            <li>
+                                <a href="#switchFyleOrg" >switchFyleOrg</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#trackSessionTime" >trackSessionTime</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, dialog: MatDialog, qboConnectorService: <a href="../injectables/QboConnectorService.html" target="_self">QboConnectorService</a>, exportSettingService: <a href="../injectables/ExportSettingService.html" target="_self">ExportSettingService</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, snackBar: MatSnackBar, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, windowService: <a href="../injectables/WindowService.html" target="_self">WindowService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:50</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>qboConnectorService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/QboConnectorService.html" target="_self" >QboConnectorService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>exportSettingService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ExportSettingService.html" target="_self" >ExportSettingService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackBar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>trackingService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TrackingService.html" target="_self" >TrackingService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>windowService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/WindowService.html" target="_self" >WindowService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>workspaceService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/WorkspaceService.html" target="_self" >WorkspaceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="connectQbo"></a>
+                    <span class="name">
+                        <span ><b>connectQbo</b></span>
+                        <a href="#connectQbo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>connectQbo()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:89</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="continueToNextStep"></a>
+                    <span class="name">
+                        <span ><b>continueToNextStep</b></span>
+                        <a href="#continueToNextStep"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>continueToNextStep()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:75</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disconnectQbo"></a>
+                    <span class="name">
+                        <span ><b>disconnectQbo</b></span>
+                        <a href="#disconnectQbo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>disconnectQbo()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:93</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSettings"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getSettings</b></span>
+                        <a href="#getSettings"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getSettings()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="165"
+                            class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:165</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="198"
+                            class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:198</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="204"
+                            class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:204</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="postQboCredentials"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>postQboCredentials</b></span>
+                        <a href="#postQboCredentials"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>postQboCredentials(code: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, realmId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:139</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>code</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>realmId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setupPage"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>setupPage</b></span>
+                        <a href="#setupPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setupPage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="185"
+                            class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:185</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showOrHideDisconnectQBO"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>showOrHideDisconnectQBO</b></span>
+                        <a href="#showOrHideDisconnectQBO"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>showOrHideDisconnectQBO()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:103</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showWarningDialog"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>showWarningDialog</b></span>
+                        <a href="#showWarningDialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>showWarningDialog()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="119"
+                            class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:119</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="switchFyleOrg"></a>
+                    <span class="name">
+                        <span ><b>switchFyleOrg</b></span>
+                        <a href="#switchFyleOrg"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>switchFyleOrg()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:84</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trackSessionTime"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>trackSessionTime</b></span>
+                        <a href="#trackSessionTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>trackSessionTime(eventState: "success" | "navigated")</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:68</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>eventState</td>
+                                    <td>
+                                            <code>&quot;success&quot; | &quot;navigated&quot;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ConfigurationCtaText"></a>
+                    <span class="name">
+                        <span ><b>ConfigurationCtaText</b></span>
+                        <a href="#ConfigurationCtaText"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ConfigurationCtaText</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fyleOrgName"></a>
+                    <span class="name">
+                        <span ><b>fyleOrgName</b></span>
+                        <a href="#fyleOrgName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.userService.getUserProfile().org_name</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isContinueDisabled"></a>
+                    <span class="name">
+                        <span ><b>isContinueDisabled</b></span>
+                        <a href="#isContinueDisabled"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isLoading"></a>
+                    <span class="name">
+                        <span ><b>isLoading</b></span>
+                        <a href="#isLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isOnboarding"></a>
+                    <span class="name">
+                        <span ><b>isOnboarding</b></span>
+                        <a href="#isOnboarding"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isQboConnected"></a>
+                    <span class="name">
+                        <span ><b>isQboConnected</b></span>
+                        <a href="#isQboConnected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="qboCompanyName"></a>
+                    <span class="name">
+                        <span ><b>qboCompanyName</b></span>
+                        <a href="#qboCompanyName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="qboConnectionInProgress"></a>
+                    <span class="name">
+                        <span ><b>qboConnectionInProgress</b></span>
+                        <a href="#qboConnectionInProgress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="qboTokenExpired"></a>
+                    <span class="name">
+                        <span ><b>qboTokenExpired</b></span>
+                        <a href="#qboTokenExpired"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sessionStartTime"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>sessionStartTime</b></span>
+                        <a href="#sessionStartTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Date()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showDisconnectQBO"></a>
+                    <span class="name">
+                        <span ><b>showDisconnectQBO</b></span>
+                        <a href="#showDisconnectQBO"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="timeSpentEventRecorded"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>timeSpentEventRecorded</b></span>
+                        <a href="#timeSpentEventRecorded"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="windowReference"></a>
+                    <span class="name">
+                        <span ><b>windowReference</b></span>
+                        <a href="#windowReference"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Window</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/shared/components/configuration/qbo-connector/qbo-connector.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
+import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+import { environment } from &#x27;src/environments/environment&#x27;;
+import { ExportSettingGet } from &#x27;src/app/core/models/configuration/export-setting.model&#x27;;
+import { QboConnectorPost, QBOCredentials } from &#x27;src/app/core/models/configuration/qbo-connector.model&#x27;;
+import { ExportSettingService } from &#x27;src/app/core/services/configuration/export-setting.service&#x27;;
+import { QboConnectorService } from &#x27;src/app/core/services/configuration/qbo-connector.service&#x27;;
+import { AuthService } from &#x27;src/app/core/services/core/auth.service&#x27;;
+import { WindowService } from &#x27;src/app/core/services/core/window.service&#x27;;
+import { UserService } from &#x27;src/app/core/services/misc/user.service&#x27;;
+import { WorkspaceService } from &#x27;src/app/core/services/workspace/workspace.service&#x27;;
+import { ClickEvent, ConfigurationCtaText, OnboardingState, OnboardingStep, ProgressPhase } from &#x27;src/app/core/models/enum/enum.model&#x27;;
+import { ConfirmationDialog } from &#x27;src/app/core/models/misc/confirmation-dialog.model&#x27;;
+import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { ConfirmationDialogComponent } from &#x27;../../core/confirmation-dialog/confirmation-dialog.component&#x27;;
+import { TrackingService } from &#x27;src/app/core/services/integration/tracking.service&#x27;;
+
+@Component({
+  selector: &#x27;app-qbo-connector&#x27;,
+  templateUrl: &#x27;./qbo-connector.component.html&#x27;,
+  styleUrls: [&#x27;./qbo-connector.component.scss&#x27;]
+})
+export class QboConnectorComponent implements OnInit, OnDestroy {
+
+  isLoading: boolean &#x3D; true;
+
+  qboConnectionInProgress: boolean;
+
+  isQboConnected: boolean &#x3D; true;
+
+  qboTokenExpired: boolean;
+
+  showDisconnectQBO: boolean;
+
+  isContinueDisabled: boolean &#x3D; true;
+
+  isOnboarding: boolean &#x3D; false;
+
+  qboCompanyName: string | null;
+
+  fyleOrgName: string &#x3D; this.userService.getUserProfile().org_name;
+
+  windowReference: Window;
+
+  ConfigurationCtaText &#x3D; ConfigurationCtaText;
+
+  private readonly sessionStartTime &#x3D; new Date();
+
+  private timeSpentEventRecorded: boolean &#x3D; false;
+
+  constructor(
+    private authService: AuthService,
+    private dialog: MatDialog,
+    private qboConnectorService: QboConnectorService,
+    private exportSettingService: ExportSettingService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private trackingService: TrackingService,
+    private userService: UserService,
+    private windowService: WindowService,
+    private workspaceService: WorkspaceService
+  ) {
+    this.windowReference &#x3D; this.windowService.nativeWindow;
+  }
+
+  private trackSessionTime(eventState: &#x27;success&#x27; | &#x27;navigated&#x27;): void {
+    const differenceInMs &#x3D; new Date().getTime() - this.sessionStartTime.getTime();
+
+    this.timeSpentEventRecorded &#x3D; true;
+    this.trackingService.trackTimeSpent(OnboardingStep.CONNECT_QBO, {phase: ProgressPhase.ONBOARDING, durationInSeconds: Math.floor(differenceInMs / 1000), eventState: eventState});
+  }
+
+  continueToNextStep(): void {
+    if (this.isContinueDisabled) {
+      return;
+    }
+
+    this.trackSessionTime(&#x27;success&#x27;);
+    this.router.navigate([&#x60;/workspaces/onboarding/employee_settings&#x60;]);
+  }
+
+  switchFyleOrg(): void {
+    this.authService.logout();
+    this.authService.redirectToFyleOAuth();
+  }
+
+  connectQbo(): void {
+    this.authService.redirectToQboOAuth();
+  }
+
+  disconnectQbo(): void {
+    this.isLoading &#x3D; true;
+    this.qboConnectorService.disconnectQBOConnection().subscribe(() &#x3D;&gt; {
+      this.trackingService.onClickEvent(ClickEvent.RECONNECT_QBO, {oldCompanyName: this.qboCompanyName});
+      this.showDisconnectQBO &#x3D; false;
+      this.qboCompanyName &#x3D; null;
+      this.getSettings();
+    });
+  }
+
+  private showOrHideDisconnectQBO(): void {
+    this.exportSettingService.getExportSettings().subscribe((exportSettings: ExportSettingGet) &#x3D;&gt; {
+      // Do nothing
+      this.isContinueDisabled &#x3D; false;
+      this.isLoading &#x3D; false;
+
+      if (!(exportSettings.workspace_general_settings?.reimbursable_expenses_object || exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object)) {
+        this.showDisconnectQBO &#x3D; true;
+      }
+    }, () &#x3D;&gt; {
+      // Showing Disconnect QBO button since the customer didn&#x27;t set up the next step
+      this.showDisconnectQBO &#x3D; true;
+      this.isLoading &#x3D; false;
+    });
+  }
+
+  private showWarningDialog(): void {
+    const data: ConfirmationDialog &#x3D; {
+      title: &#x27;Incorrect account selected&#x27;,
+      contents: &#x27;You had previously set up the integration with a different QBO account. Please choose the same to restore the settings&#x27;,
+      primaryCtaText: &#x27;Re connect&#x27;,
+      hideSecondaryCTA: true
+    };
+
+    const dialogRef &#x3D; this.dialog.open(ConfirmationDialogComponent, {
+      width: &#x27;551px&#x27;,
+      data: data
+    });
+
+    dialogRef.afterClosed().subscribe((ctaClicked) &#x3D;&gt; {
+      if (ctaClicked) {
+        this.router.navigate([&#x60;/workspaces/onboarding/landing&#x60;]);
+      }
+    });
+  }
+
+  private postQboCredentials(code: string, realmId: string): void {
+    const qboAuthResponse: QboConnectorPost &#x3D; {
+      code: code,
+      realm_id: realmId,
+      redirect_uri: &#x60;${environment.app_url}/qbo_callback&#x60;
+    };
+
+    this.qboConnectorService.connectQBO(qboAuthResponse).subscribe((qboCredentials: QBOCredentials) &#x3D;&gt; {
+      this.workspaceService.refreshQBODimensions().subscribe(() &#x3D;&gt; {
+        this.trackingService.onOnboardingStepCompletion(OnboardingStep.CONNECT_QBO, 1);
+        this.workspaceService.setOnboardingState(OnboardingState.MAP_EMPLOYEES);
+        this.qboConnectionInProgress &#x3D; false;
+        this.qboCompanyName &#x3D; qboCredentials.company_name;
+        this.showOrHideDisconnectQBO();
+      });
+    }, (error) &#x3D;&gt; {
+      const errorMessage &#x3D; &#x27;message&#x27; in error.error ? error.error.message : &#x27;Failed to connect to QuickBooks Online. Please try again&#x27;;
+      if (errorMessage &#x3D;&#x3D;&#x3D; &#x27;Please choose the correct Quickbooks online account&#x27;) {
+        this.showWarningDialog();
+      } else {
+        this.snackBar.open(errorMessage, &#x27;&#x27;, { duration: 7000 });
+        this.router.navigate([&#x60;/workspaces/onboarding/landing&#x60;]);
+      }
+    });
+  }
+
+  private getSettings(): void {
+    this.qboConnectorService.getQBOCredentials().subscribe((qboCredentials: QBOCredentials) &#x3D;&gt; {
+      this.qboCompanyName &#x3D; qboCredentials.company_name;
+      this.showOrHideDisconnectQBO();
+    }, (error) &#x3D;&gt; {
+      // Token expired
+      if (&#x27;id&#x27; in error.error) {
+        // We have a QBO row present in DB
+        this.qboTokenExpired &#x3D; error.error.is_expired;
+        if (this.qboTokenExpired) {
+          this.qboCompanyName &#x3D; error.error.company_name;
+        }
+      }
+
+      this.isQboConnected &#x3D; false;
+      this.isContinueDisabled &#x3D; true;
+      this.isLoading &#x3D; false;
+    });
+  }
+
+  private setupPage(): void {
+    const code &#x3D; this.route.snapshot.queryParams.code;
+    const realmId &#x3D; this.route.snapshot.queryParams.realmId;
+    this.isOnboarding &#x3D; this.windowReference.location.pathname.includes(&#x27;onboarding&#x27;);
+    if (code &amp;&amp; realmId) {
+      this.isLoading &#x3D; false;
+      this.qboConnectionInProgress &#x3D; true;
+      this.postQboCredentials(code, realmId);
+    } else {
+      this.getSettings();
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (!this.timeSpentEventRecorded) {
+      this.trackSessionTime(&#x27;navigated&#x27;);
+    }
+  }
+
+  ngOnInit(): void {
+    this.setupPage();
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;center center&quot; class&#x3D;&quot;configuration--section&quot; [ngClass]&#x3D;&quot;[isOnboarding ? &#x27;configuration--onboarding-section&#x27; : &#x27;&#x27;, !isOnboarding ? &#x27;configuration--post-onboarding-section&#x27;: &#x27;&#x27;]&quot;&gt;
+  &lt;app-loader [phase]&#x3D;&quot;&#x27;pre_onboarding&#x27;&quot; *ngIf&#x3D;&quot;isLoading&quot;&gt;&lt;/app-loader&gt;
+  &lt;div *ngIf&#x3D;&quot;!isLoading&quot; class&#x3D;&quot;configuration--contents&quot;&gt;
+    &lt;app-configuration-step-header-section&gt;&lt;/app-configuration-step-header-section&gt;
+    &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot;&gt;
+      &lt;div class&#x3D;&quot;qbo-connector--connection-blocks&quot;&gt;
+        &lt;div class&#x3D;&quot;qbo-connector--qbo-org-section&quot;&gt;
+          &lt;h5 class&#x3D;&quot;qbo-connector--fyle-section-text align-center sub-text-color bold&quot;&gt;
+            FYLE
+          &lt;/h5&gt;
+          &lt;h3 [matTooltip]&#x3D;&quot;fyleOrgName&quot; [matTooltipDisabled]&#x3D;&quot;fyleOrgName.length &gt; 26 &#x3D;&#x3D;&#x3D; false&quot; matTooltipPosition&#x3D;&quot;left&quot; matTooltipClass&#x3D;&quot;left&quot; class&#x3D;&quot;align-center default-cursor single-line-text&quot;&gt;
+            {{ fyleOrgName | trimCharacter: 26 }}
+          &lt;/h3&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;qbo-connector--switch-org-section&quot;&gt;
+          &lt;div class&#x3D;&quot;qbo-connector--org-switch-separator&quot;&gt;&lt;/div&gt;
+          &lt;div class&#x3D;&quot;qbo-connector--switch-org-inner-section&quot;&gt;
+            &lt;h4 class&#x3D;&quot;qbo-connector--switch-org-info-text sub-text-color single-line-text&quot;&gt;
+              Not the organization that you wish to connect?
+            &lt;/h4&gt;
+            &lt;h4 (click)&#x3D;&quot;switchFyleOrg()&quot; class&#x3D;&quot;qbo-connector--switch-org-text actionable-text align-center&quot;&gt;
+              Switch Organization
+            &lt;/h4&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;qbo-connector--connection-blocks&quot;&gt;
+        &lt;div class&#x3D;&quot;qbo-connector--connection-top-block&quot;&gt;
+          &lt;div class&#x3D;&quot;qbo-connector--connection-block-separator-1&quot;&gt;&lt;/div&gt;
+          &lt;div&gt;
+            &lt;img src&#x3D;&quot;assets/gifs/disconnect.gif&quot; height&#x3D;&quot;100px&quot; width&#x3D;&quot;100px&quot;/&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;qbo-connector--connection-block-separator-2&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;qbo-connector--connection-blocks&quot;&gt;
+        &lt;div class&#x3D;&quot;qbo-connector--fyle-org-section&quot;&gt;
+          &lt;h5 class&#x3D;&quot;qbo-connector--fyle-section-text align-center sub-text-color bold&quot;&gt;
+            QUICKBOOKS ONLINE COMPANY
+          &lt;/h5&gt;
+          &lt;h3 [matTooltip]&#x3D;&quot;qboCompanyName&quot; [matTooltipDisabled]&#x3D;&quot;qboCompanyName.length &gt; 26 &#x3D;&#x3D;&#x3D; false&quot; matTooltipPosition&#x3D;&quot;right&quot; matTooltipClass&#x3D;&quot;right&quot; *ngIf&#x3D;&quot;!qboConnectionInProgress &amp;&amp; qboCompanyName&quot; class&#x3D;&quot;default-cursor single-line-text align-center&quot;&gt;
+            {{ qboCompanyName | trimCharacter: 26 }}
+          &lt;/h3&gt;
+          &lt;p class&#x3D;&quot;align-center&quot; *ngIf&#x3D;&quot;qboConnectionInProgress&quot;&gt;
+            &lt;app-loader [size]&#x3D;&quot;&#x27;small&#x27;&quot;&gt;&lt;/app-loader&gt;
+          &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;qbo-connector--switch-org-section&quot;&gt;
+          &lt;div class&#x3D;&quot;qbo-connector--org-switch-separator&quot;&gt;&lt;/div&gt;
+          &lt;div class&#x3D;&quot;qbo-connector--switch-org-inner-section&quot;&gt;
+            &lt;h4 *ngIf&#x3D;&quot;!isQboConnected &amp;&amp; !qboConnectionInProgress &amp;&amp; !qboTokenExpired&quot; class&#x3D;&quot;qbo-connector--connection-in-progress-text align-center sub-text-color&quot;&gt;
+              No Quickbooks Online company is connected yet.
+            &lt;/h4&gt;
+            &lt;h4 *ngIf&#x3D;&quot;!isQboConnected &amp;&amp; !qboConnectionInProgress &amp;&amp; !qboTokenExpired&quot; (click)&#x3D;&quot;connectQbo()&quot; class&#x3D;&quot;qbo-connector--switch-org-text actionable-text align-center&quot;&gt;
+              Connect to QBO
+            &lt;/h4&gt;
+            &lt;h4 *ngIf&#x3D;&quot;!qboConnectionInProgress &amp;&amp; !qboTokenExpired &amp;&amp; showDisconnectQBO&quot; class&#x3D;&quot;qbo-connector--switch-org-info-text align-center sub-text-color single-line-text&quot;&gt;
+              Not the company that you wish to connect with?
+            &lt;/h4&gt;
+            &lt;h4 *ngIf&#x3D;&quot;qboConnectionInProgress&quot; class&#x3D;&quot;qbo-connector--connection-in-progress-text align-center sub-text-color&quot;&gt;
+              Please hold on; we are fetching data from your Quickbooks Online account, which may take a few seconds.
+            &lt;/h4&gt;
+            &lt;h4 *ngIf&#x3D;&quot;qboTokenExpired &amp;&amp; !qboConnectionInProgress&quot; class&#x3D;&quot;qbo-connector--connection-in-progress-text align-center sub-text-color&quot;&gt;
+              Token expired
+            &lt;/h4&gt;
+            &lt;h4 *ngIf&#x3D;&quot;!qboConnectionInProgress &amp;&amp; qboTokenExpired&quot; (click)&#x3D;&quot;connectQbo()&quot; class&#x3D;&quot;qbo-connector--switch-org-text actionable-text align-center&quot;&gt;
+              Re-Connect to QBO
+            &lt;/h4&gt;
+            &lt;h4 *ngIf&#x3D;&quot;!qboConnectionInProgress &amp;&amp; showDisconnectQBO&quot; (click)&#x3D;&quot;disconnectQbo()&quot; class&#x3D;&quot;qbo-connector--switch-org-text actionable-text align-center&quot;&gt;
+              Disconnect
+            &lt;/h4&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;app-configuration-step-footer-section [ctaText]&#x3D;&quot;ConfigurationCtaText.CONTINUE&quot; [isButtonDisabled]&#x3D;&quot;isContinueDisabled&quot; (save)&#x3D;&quot;continueToNextStep()&quot;&gt;&lt;/app-configuration-step-footer-section&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;app-onboarding-footer [page]&#x3D;&quot;&#x27;qbo_connector&#x27;&quot; *ngIf&#x3D;&quot;!isLoading &amp;&amp; isOnboarding&quot;&gt;&lt;/app-onboarding-footer&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./qbo-connector.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.qbo-connector {
+  &amp;--connection-blocks {
+    padding-top: 9px;
+  }
+
+  &amp;--fyle-org-section {
+    padding: 56px 114px 0px 114px;
+  }
+
+  &amp;--fyle-section-text {
+    padding-bottom: 18px;
+  }
+
+  &amp;--switch-org-section {
+    padding: 16px 94.5px 56px 94.5px
+  }
+
+  &amp;--org-switch-separator {
+    border-top: 1px solid #F5F5F5;
+    width: 302px;
+  }
+
+  &amp;--switch-org-inner-section {
+    padding-top: 8px;
+  }
+
+  &amp;--switch-org-info-text {
+    width: 302px;
+  }
+
+  &amp;--connection-in-progress-text {
+    width: 398px;
+  }
+
+  &amp;--switch-org-text {
+    padding-top: 8px;
+  }
+
+  &amp;--connection-top-block {
+    height: 88.62px;
+  }
+
+  &amp;--connection-block-separator {
+    border-top: 1px solid #F5F5F5;
+    transform: rotate(90deg);
+    position: absolute;
+    margin-left: -82px;
+  }
+
+  &amp;--connection-block-separator-1 {
+    @extend .qbo-connector--connection-block-separator;
+    width: 102px;
+    height: 160px;
+    margin-top: -112px;
+  }
+
+  &amp;--connection-block-separator-2 {
+    @extend .qbo-connector--connection-block-separator;
+    width: 165px;
+    height: 100px;
+    margin-top: 7px;
+  }
+
+  &amp;--qbo-org-section {
+    padding: 55px 138.5px 0px 138.5px;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div fxLayout="row" fxLayoutAlign="center center" class="configuration--section" [ngClass]="[isOnboarding ? \'configuration--onboarding-section\' : \'\', !isOnboarding ? \'configuration--post-onboarding-section\': \'\']">  <app-loader [phase]="\'pre_onboarding\'" *ngIf="isLoading"></app-loader>  <div *ngIf="!isLoading" class="configuration--contents">    <app-configuration-step-header-section></app-configuration-step-header-section>    <div fxLayout="row" fxLayoutAlign="space-between center">      <div class="qbo-connector--connection-blocks">        <div class="qbo-connector--qbo-org-section">          <h5 class="qbo-connector--fyle-section-text align-center sub-text-color bold">            FYLE          </h5>          <h3 [matTooltip]="fyleOrgName" [matTooltipDisabled]="fyleOrgName.length > 26 === false" matTooltipPosition="left" matTooltipClass="left" class="align-center default-cursor single-line-text">            {{ fyleOrgName | trimCharacter: 26 }}          </h3>        </div>        <div class="qbo-connector--switch-org-section">          <div class="qbo-connector--org-switch-separator"></div>          <div class="qbo-connector--switch-org-inner-section">            <h4 class="qbo-connector--switch-org-info-text sub-text-color single-line-text">              Not the organization that you wish to connect?            </h4>            <h4 (click)="switchFyleOrg()" class="qbo-connector--switch-org-text actionable-text align-center">              Switch Organization            </h4>          </div>        </div>      </div>      <div class="qbo-connector--connection-blocks">        <div class="qbo-connector--connection-top-block">          <div class="qbo-connector--connection-block-separator-1"></div>          <div>            <img src="assets/gifs/disconnect.gif" height="100px" width="100px"/>          </div>          <div class="qbo-connector--connection-block-separator-2"></div>        </div>      </div>      <div class="qbo-connector--connection-blocks">        <div class="qbo-connector--fyle-org-section">          <h5 class="qbo-connector--fyle-section-text align-center sub-text-color bold">            QUICKBOOKS ONLINE COMPANY          </h5>          <h3 [matTooltip]="qboCompanyName" [matTooltipDisabled]="qboCompanyName.length > 26 === false" matTooltipPosition="right" matTooltipClass="right" *ngIf="!qboConnectionInProgress && qboCompanyName" class="default-cursor single-line-text align-center">            {{ qboCompanyName | trimCharacter: 26 }}          </h3>          <p class="align-center" *ngIf="qboConnectionInProgress">            <app-loader [size]="\'small\'"></app-loader>          </p>        </div>        <div class="qbo-connector--switch-org-section">          <div class="qbo-connector--org-switch-separator"></div>          <div class="qbo-connector--switch-org-inner-section">            <h4 *ngIf="!isQboConnected && !qboConnectionInProgress && !qboTokenExpired" class="qbo-connector--connection-in-progress-text align-center sub-text-color">              No Quickbooks Online company is connected yet.            </h4>            <h4 *ngIf="!isQboConnected && !qboConnectionInProgress && !qboTokenExpired" (click)="connectQbo()" class="qbo-connector--switch-org-text actionable-text align-center">              Connect to QBO            </h4>            <h4 *ngIf="!qboConnectionInProgress && !qboTokenExpired && showDisconnectQBO" class="qbo-connector--switch-org-info-text align-center sub-text-color single-line-text">              Not the company that you wish to connect with?            </h4>            <h4 *ngIf="qboConnectionInProgress" class="qbo-connector--connection-in-progress-text align-center sub-text-color">              Please hold on; we are fetching data from your Quickbooks Online account, which may take a few seconds.            </h4>            <h4 *ngIf="qboTokenExpired && !qboConnectionInProgress" class="qbo-connector--connection-in-progress-text align-center sub-text-color">              Token expired            </h4>            <h4 *ngIf="!qboConnectionInProgress && qboTokenExpired" (click)="connectQbo()" class="qbo-connector--switch-org-text actionable-text align-center">              Re-Connect to QBO            </h4>            <h4 *ngIf="!qboConnectionInProgress && showDisconnectQBO" (click)="disconnectQbo()" class="qbo-connector--switch-org-text actionable-text align-center">              Disconnect            </h4>          </div>        </div>      </div>    </div>    <app-configuration-step-footer-section [ctaText]="ConfigurationCtaText.CONTINUE" [isButtonDisabled]="isContinueDisabled" (save)="continueToNextStep()"></app-configuration-step-footer-section>  </div></div><app-onboarding-footer [page]="\'qbo_connector\'" *ngIf="!isLoading && isOnboarding"></app-onboarding-footer></div>'
+    var COMPONENTS = [{'name': 'AddEmailDialogComponent', 'selector': 'app-add-email-dialog'},{'name': 'AdvancedSettingsComponent', 'selector': 'app-advanced-settings'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'ConfigurationAdvancedSettingsComponent', 'selector': 'app-configuration-advanced-settings'},{'name': 'ConfigurationComponent', 'selector': 'app-configuration'},{'name': 'ConfigurationEmployeeSettingsComponent', 'selector': 'app-configuration-employee-settings'},{'name': 'ConfigurationExportSettingsComponent', 'selector': 'app-configuration-export-settings'},{'name': 'ConfigurationImportSettingsComponent', 'selector': 'app-configuration-import-settings'},{'name': 'ConfigurationSelectFieldComponent', 'selector': 'app-configuration-select-field'},{'name': 'ConfigurationStepFooterSectionComponent', 'selector': 'app-configuration-step-footer-section'},{'name': 'ConfigurationStepHeaderSectionComponent', 'selector': 'app-configuration-step-header-section'},{'name': 'ConfigurationToggleFieldComponent', 'selector': 'app-configuration-toggle-field'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'CustomMappingComponent', 'selector': 'app-custom-mapping'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardExportLogDialogComponent', 'selector': 'app-dashboard-export-log-dialog'},{'name': 'DashboardHeaderSectionComponent', 'selector': 'app-dashboard-header-section'},{'name': 'DashboardQboErrorDialogComponent', 'selector': 'app-dashboard-qbo-error-dialog'},{'name': 'DashboardResolveMappingErrorDialogComponent', 'selector': 'app-dashboard-resolve-mapping-error-dialog'},{'name': 'EmailMultiSelectFieldComponent', 'selector': 'app-email-multi-select-field'},{'name': 'EmployeeMappingComponent', 'selector': 'app-employee-mapping'},{'name': 'EmployeeSettingsComponent', 'selector': 'app-employee-settings'},{'name': 'ExpenseFieldCreationDialogComponent', 'selector': 'app-expense-field-creation-dialog'},{'name': 'ExportLogChildDialogComponent', 'selector': 'app-export-log-child-dialog'},{'name': 'ExportLogChildTableComponent', 'selector': 'app-export-log-child-table'},{'name': 'ExportLogComponent', 'selector': 'app-export-log'},{'name': 'ExportLogTableComponent', 'selector': 'app-export-log-table'},{'name': 'ExportSettingsComponent', 'selector': 'app-export-settings'},{'name': 'FyleCallbackComponent', 'selector': 'app-fyle-callback'},{'name': 'GenericMappingComponent', 'selector': 'app-generic-mapping'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImportSettingsComponent', 'selector': 'app-import-settings'},{'name': 'IntegrationComponent', 'selector': 'app-integration'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'MandatoryErrorMessageComponent', 'selector': 'app-mandatory-error-message'},{'name': 'MandatoryFieldComponent', 'selector': 'app-mandatory-field'},{'name': 'MappingComponent', 'selector': 'app-mapping'},{'name': 'MappingFilterComponent', 'selector': 'app-mapping-filter'},{'name': 'MappingHeaderSectionComponent', 'selector': 'app-mapping-header-section'},{'name': 'MappingTableComponent', 'selector': 'app-mapping-table'},{'name': 'OnboardingAdvancedSettingsComponent', 'selector': 'app-onboarding-advanced-settings'},{'name': 'OnboardingComponent', 'selector': 'app-onboarding'},{'name': 'OnboardingDoneComponent', 'selector': 'app-onboarding-done'},{'name': 'OnboardingEmployeeSettingsComponent', 'selector': 'app-onboarding-employee-settings'},{'name': 'OnboardingExportSettingsComponent', 'selector': 'app-onboarding-export-settings'},{'name': 'OnboardingFooterComponent', 'selector': 'app-onboarding-footer'},{'name': 'OnboardingImportSettingsComponent', 'selector': 'app-onboarding-import-settings'},{'name': 'OnboardingLandingComponent', 'selector': 'app-onboarding-landing'},{'name': 'OnboardingQboConnectorComponent', 'selector': 'app-onboarding-qbo-connector'},{'name': 'OnboardingStepperComponent', 'selector': 'app-onboarding-stepper'},{'name': 'PaginatorComponent', 'selector': 'app-paginator'},{'name': 'PreviewDialogComponent', 'selector': 'app-preview-dialog'},{'name': 'QboCallbackComponent', 'selector': 'app-qbo-callback'},{'name': 'QboConnectorComponent', 'selector': 'app-qbo-connector'},{'name': 'SharedLoginComponent', 'selector': 'app-shared-login'},{'name': 'SimpleTextSearchComponent', 'selector': 'app-simple-text-search'},{'name': 'ZeroStateWithIllustrationComponent', 'selector': 'app-zero-state-with-illustration'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'QboConnectorComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'QboConnectorComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,914 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fyle-qbo-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">fyle-qbo-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  ConfigurationStepHeaderSectionComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/shared/components/configuration/configuration-step-header-section/configuration-step-header-section.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-configuration-step-header-section</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./configuration-step-header-section.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./configuration-step-header-section.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#activePage" >activePage</a>
+                            </li>
+                            <li>
+                                <a href="#contentText" >contentText</a>
+                            </li>
+                            <li>
+                                <a href="#headerText" >headerText</a>
+                            </li>
+                            <li>
+                                <a href="#helpArticleLink" >helpArticleLink</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#helperService" >helperService</a>
+                            </li>
+                            <li>
+                                <a href="#isStepOptional" >isStepOptional</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#refreshQBODimensions" >refreshQBODimensions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setupContent" >setupContent</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#phase" >phase</a>
+                            </li>
+                            <li>
+                                <a href="#showSyncButton" >showSyncButton</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(helperService: <a href="../injectables/HelperService.html" target="_self">HelperService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, snackBar: MatSnackBar, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/shared/components/configuration/configuration-step-header-section/configuration-step-header-section.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>helperService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/HelperService.html" target="_self" >HelperService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackBar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>trackingService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TrackingService.html" target="_self" >TrackingService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>workspaceService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/WorkspaceService.html" target="_self" >WorkspaceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="phase"></a>
+                        <b>phase</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#ProgressPhase" target="_self" >ProgressPhase</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/shared/components/configuration/configuration-step-header-section/configuration-step-header-section.component.ts:28</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showSyncButton"></a>
+                        <b>showSyncButton</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/shared/components/configuration/configuration-step-header-section/configuration-step-header-section.component.ts:26</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/app/shared/components/configuration/configuration-step-header-section/configuration-step-header-section.component.ts:82</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="refreshQBODimensions"></a>
+                    <span class="name">
+                        <span ><b>refreshQBODimensions</b></span>
+                        <a href="#refreshQBODimensions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>refreshQBODimensions()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">src/app/shared/components/configuration/configuration-step-header-section/configuration-step-header-section.component.ts:38</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setupContent"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>setupContent</b></span>
+                        <a href="#setupContent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setupContent()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/app/shared/components/configuration/configuration-step-header-section/configuration-step-header-section.component.ts:44</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activePage"></a>
+                    <span class="name">
+                        <span ><b>activePage</b></span>
+                        <a href="#activePage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | undefined</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/shared/components/configuration/configuration-step-header-section/configuration-step-header-section.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="contentText"></a>
+                    <span class="name">
+                        <span ><b>contentText</b></span>
+                        <a href="#contentText"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/shared/components/configuration/configuration-step-header-section/configuration-step-header-section.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="headerText"></a>
+                    <span class="name">
+                        <span ><b>headerText</b></span>
+                        <a href="#headerText"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/shared/components/configuration/configuration-step-header-section/configuration-step-header-section.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="helpArticleLink"></a>
+                    <span class="name">
+                        <span ><b>helpArticleLink</b></span>
+                        <a href="#helpArticleLink"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#RedirectLink" target="_self" >RedirectLink</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/shared/components/configuration/configuration-step-header-section/configuration-step-header-section.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="helperService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>helperService</b></span>
+                        <a href="#helperService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/HelperService.html" target="_self" >HelperService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/shared/components/configuration/configuration-step-header-section/configuration-step-header-section.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isStepOptional"></a>
+                    <span class="name">
+                        <span ><b>isStepOptional</b></span>
+                        <a href="#isStepOptional"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/shared/components/configuration/configuration-step-header-section/configuration-step-header-section.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnInit } from &#x27;@angular/core&#x27;;
+import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { ClickEvent, ProgressPhase, RedirectLink } from &#x27;src/app/core/models/enum/enum.model&#x27;;
+import { HelperService } from &#x27;src/app/core/services/core/helper.service&#x27;;
+import { TrackingService } from &#x27;src/app/core/services/integration/tracking.service&#x27;;
+import { WorkspaceService } from &#x27;src/app/core/services/workspace/workspace.service&#x27;;
+
+@Component({
+  selector: &#x27;app-configuration-step-header-section&#x27;,
+  templateUrl: &#x27;./configuration-step-header-section.component.html&#x27;,
+  styleUrls: [&#x27;./configuration-step-header-section.component.scss&#x27;]
+})
+export class ConfigurationStepHeaderSectionComponent implements OnInit {
+
+  headerText: string;
+
+  contentText: string;
+
+  isStepOptional: boolean;
+
+  activePage: string | undefined;
+
+  helpArticleLink: RedirectLink;
+
+  @Input() showSyncButton: boolean;
+
+  @Input() phase: ProgressPhase;
+
+  constructor(
+    public helperService: HelperService,
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private trackingService: TrackingService,
+    private workspaceService: WorkspaceService
+  ) { }
+
+  refreshQBODimensions(): void {
+    this.trackingService.onClickEvent(ClickEvent.SYNC_DIMENSION, {phase: this.phase});
+    this.workspaceService.refreshQBODimensions().subscribe();
+    this.snackBar.open(&#x27;Refreshing data dimensions from QBO...&#x27;);
+  }
+
+  private setupContent(): void {
+    const route &#x3D; this.router.url;
+    if (route.includes(&#x27;realmId&#x27;)) {
+      this.activePage &#x3D; &#x27;qbo_connector&#x27;;
+    } else {
+      this.activePage &#x3D; route.split(&#x27;/&#x27;).pop();
+    }
+
+    switch (this.activePage) {
+      case &#x27;qbo_connector&#x27;:
+        this.headerText &#x3D; &#x27;Connect to Quickbooks Online&#x27;;
+        this.contentText &#x3D; &#x27;Connect to the Quickbooks Online Company from which you would like to import and export data. The Fyle org and Quickbooks Online company cannot be changed once the configuration steps are complete.&#x27;;
+        this.helpArticleLink &#x3D; RedirectLink.CONFIGURATION_QBO_CONNECTOR;
+        break;
+      case &#x27;employee_settings&#x27;:
+        this.headerText &#x3D; &#x27;Map Employees&#x27;;
+        this.contentText &#x3D; &#x27;Choose appropriate representation of your Employees in Quickbooks Online.&#x27;;
+        this.helpArticleLink &#x3D; RedirectLink.CONFIGURATION_EMPLOYEE_SETTING;
+        break;
+      case &#x27;export_settings&#x27;:
+        this.headerText &#x3D; &#x27;Export Settings&#x27;;
+        this.contentText &#x3D; &#x27;In this section, you will configure how and when expenses from Fyle can be exported to Quickbooks Online.&#x27;;
+        this.helpArticleLink &#x3D; RedirectLink.CONFIGURATION_EXPORT_SETTING;
+        break;
+      case &#x27;import_settings&#x27;:
+        this.headerText &#x3D; &#x27;Import Settings&#x27;;
+        this.contentText &#x3D; &#x27;You can Enable all the data that you wish to import from Quickbooks Online. All the imported data from Quickbooks Online would be available in Fyle under Admin Setting &gt; Organization.&#x27;;
+        this.helpArticleLink &#x3D; RedirectLink.CONFIGURATION_IMPORT_SETTING;
+        break;
+      case &#x27;advanced_settings&#x27;:
+        this.headerText &#x3D; &#x27;Advanced Settings&#x27;;
+        this.isStepOptional &#x3D; true;
+        this.contentText &#x3D; &#x27;This section contains settings to automate and customize your expense export.&#x27;;
+        this.helpArticleLink &#x3D; RedirectLink.CONFIGURATION_ADVANCED_SETTING;
+        break;
+    }
+  }
+
+  ngOnInit(): void {
+    this.setupContent();
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;header-section&quot;&gt;
+  &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between start&quot; class&#x3D;&quot;header-section--inner&quot; [ngClass]&#x3D;&quot;{&#x27;header-section--sync-inactive&#x27;: !(showSyncButton &amp;&amp; (activePage &#x3D;&#x3D;&#x3D; &#x27;export_settings&#x27; || activePage &#x3D;&#x3D;&#x3D; &#x27;import_settings&#x27; || activePage &#x3D;&#x3D;&#x3D; &#x27;advanced_settings&#x27;))}&quot;&gt;
+    &lt;div&gt;
+      &lt;h3 class&#x3D;&quot;header-section--header-text single-line-text&quot;&gt;
+        {{ headerText }} &lt;span *ngIf&#x3D;&quot;isStepOptional&quot; class&#x3D;&quot;sub-text-color italic&quot;&gt;(Optional)&lt;/span&gt;
+      &lt;/h3&gt;
+      &lt;h5 class&#x3D;&quot;sub-text-color paragraph&quot;&gt;
+        {{ contentText }} &lt;span class&#x3D;&quot;header-section--learn-more-btn pointer&quot; (click)&#x3D;&quot;helperService.openExternalLink(helpArticleLink)&quot;&gt;Learn more&lt;/span&gt;
+      &lt;/h5&gt;
+      &lt;div *ngIf&#x3D;&quot;activePage &#x3D;&#x3D;&#x3D; &#x27;import_settings&#x27;&quot; class&#x3D;&quot;header-section--info-section&quot;&gt;
+        &lt;div fxLayout&#x3D;&quot;row&quot; class&#x3D;&quot;header-section--info-content-section&quot;&gt;
+          &lt;img src&#x3D;&quot;assets/images/svgs/general/info.svg&quot; class&#x3D;&quot;header-section--info-icon&quot; width&#x3D;&quot;16px&quot; height&#x3D;&quot;16px&quot; /&gt;
+          &lt;h5 class&#x3D;&quot;sub-text-color&quot;&gt;
+            Enabling an Import of a dimension will sync all the data from the selected dimension with the expense fields in Fyle. If you don&#x27;t want to import all the data and only use specific data in Fyle, we recommend that you create these fields first in Fyle and then selectively map them from the &lt;b&gt;Dashboard &gt; Mappings&lt;/b&gt; section once the setup is complete.
+          &lt;/h5&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;header-section--sync-btn&quot; *ngIf&#x3D;&quot;showSyncButton &amp;&amp; (activePage &#x3D;&#x3D;&#x3D; &#x27;export_settings&#x27; || activePage &#x3D;&#x3D;&#x3D; &#x27;import_settings&#x27; || activePage &#x3D;&#x3D;&#x3D; &#x27;advanced_settings&#x27;)&quot;&gt;
+      &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot; class&#x3D;&quot;configuration--back-btn pointer&quot; (click)&#x3D;&quot;refreshQBODimensions()&quot; matTooltip&#x3D;&quot;Instantly refresh and sync the dimensions from QBO and Fyle&quot; matTooltipPosition&#x3D;&quot;above&quot; matTooltipClass&#x3D;&quot;above&quot;&gt;
+        &lt;img src&#x3D;&quot;assets/images/svgs/actions/sync.svg&quot; class&#x3D;&quot;btn-cta-text-with-icon&quot; /&gt;
+        &lt;h5 class&#x3D;&quot;btn-icon align-center&quot;&gt;Sync&lt;/h5&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./configuration-step-header-section.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.header-section {
+  background: #FFFFFF;
+  border: 1px solid #F5F5F5;
+  box-sizing: border-box;
+  border-radius: 8px 8px 0px 0px;
+
+  &amp;--inner {
+    min-height: 71px;
+    padding: 30px;
+    width: 1080px;
+  }
+
+  &amp;--sync-inactive {
+    width: 1080px;
+  }
+
+  &amp;--header-text {
+    padding-bottom: 12px;
+  }
+
+  &amp;--info-section {
+    padding-top: 16px;
+  }
+
+  &amp;--info-content-section {
+    background: #EFF5FC;
+    border-radius: 4px;
+    padding: 12px 26px 12px 12px;
+  }
+
+  &amp;--info-icon {
+    padding-left: 2px;
+    padding-right: 8px;
+  }
+
+  &amp;--sync-btn {
+    padding-top: 25px;
+    padding-left: 10px;
+  }
+
+  &amp;--learn-more-btn {
+    color: #0660F6;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="header-section">  <div fxLayout="row" fxLayoutAlign="space-between start" class="header-section--inner" [ngClass]="{\'header-section--sync-inactive\': !(showSyncButton && (activePage === \'export_settings\' || activePage === \'import_settings\' || activePage === \'advanced_settings\'))}">    <div>      <h3 class="header-section--header-text single-line-text">        {{ headerText }} <span *ngIf="isStepOptional" class="sub-text-color italic">(Optional)</span>      </h3>      <h5 class="sub-text-color paragraph">        {{ contentText }} <span class="header-section--learn-more-btn pointer" (click)="helperService.openExternalLink(helpArticleLink)">Learn more</span>      </h5>      <div *ngIf="activePage === \'import_settings\'" class="header-section--info-section">        <div fxLayout="row" class="header-section--info-content-section">          <img src="assets/images/svgs/general/info.svg" class="header-section--info-icon" width="16px" height="16px" />          <h5 class="sub-text-color">            Enabling an Import of a dimension will sync all the data from the selected dimension with the expense fields in Fyle. If you don\'t want to import all the data and only use specific data in Fyle, we recommend that you create these fields first in Fyle and then selectively map them from the <b>Dashboard > Mappings</b> section once the setup is complete.          </h5>        </div>      </div>    </div>    <div class="header-section--sync-btn" *ngIf="showSyncButton && (activePage === \'export_settings\' || activePage === \'import_settings\' || activePage === \'advanced_settings\')">      <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--back-btn pointer" (click)="refreshQBODimensions()" matTooltip="Instantly refresh and sync the dimensions from QBO and Fyle" matTooltipPosition="above" matTooltipClass="above">        <img src="assets/images/svgs/actions/sync.svg" class="btn-cta-text-with-icon" />        <h5 class="btn-icon align-center">Sync</h5>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddEmailDialogComponent', 'selector': 'app-add-email-dialog'},{'name': 'AdvancedSettingsComponent', 'selector': 'app-advanced-settings'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'ConfigurationAdvancedSettingsComponent', 'selector': 'app-configuration-advanced-settings'},{'name': 'ConfigurationComponent', 'selector': 'app-configuration'},{'name': 'ConfigurationEmployeeSettingsComponent', 'selector': 'app-configuration-employee-settings'},{'name': 'ConfigurationExportSettingsComponent', 'selector': 'app-configuration-export-settings'},{'name': 'ConfigurationImportSettingsComponent', 'selector': 'app-configuration-import-settings'},{'name': 'ConfigurationSelectFieldComponent', 'selector': 'app-configuration-select-field'},{'name': 'ConfigurationStepFooterSectionComponent', 'selector': 'app-configuration-step-footer-section'},{'name': 'ConfigurationStepHeaderSectionComponent', 'selector': 'app-configuration-step-header-section'},{'name': 'ConfigurationToggleFieldComponent', 'selector': 'app-configuration-toggle-field'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'CustomMappingComponent', 'selector': 'app-custom-mapping'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardExportLogDialogComponent', 'selector': 'app-dashboard-export-log-dialog'},{'name': 'DashboardHeaderSectionComponent', 'selector': 'app-dashboard-header-section'},{'name': 'DashboardQboErrorDialogComponent', 'selector': 'app-dashboard-qbo-error-dialog'},{'name': 'DashboardResolveMappingErrorDialogComponent', 'selector': 'app-dashboard-resolve-mapping-error-dialog'},{'name': 'EmailMultiSelectFieldComponent', 'selector': 'app-email-multi-select-field'},{'name': 'EmployeeMappingComponent', 'selector': 'app-employee-mapping'},{'name': 'EmployeeSettingsComponent', 'selector': 'app-employee-settings'},{'name': 'ExpenseFieldCreationDialogComponent', 'selector': 'app-expense-field-creation-dialog'},{'name': 'ExportLogChildDialogComponent', 'selector': 'app-export-log-child-dialog'},{'name': 'ExportLogChildTableComponent', 'selector': 'app-export-log-child-table'},{'name': 'ExportLogComponent', 'selector': 'app-export-log'},{'name': 'ExportLogTableComponent', 'selector': 'app-export-log-table'},{'name': 'ExportSettingsComponent', 'selector': 'app-export-settings'},{'name': 'FyleCallbackComponent', 'selector': 'app-fyle-callback'},{'name': 'GenericMappingComponent', 'selector': 'app-generic-mapping'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImportSettingsComponent', 'selector': 'app-import-settings'},{'name': 'IntegrationComponent', 'selector': 'app-integration'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'MandatoryErrorMessageComponent', 'selector': 'app-mandatory-error-message'},{'name': 'MandatoryFieldComponent', 'selector': 'app-mandatory-field'},{'name': 'MappingComponent', 'selector': 'app-mapping'},{'name': 'MappingFilterComponent', 'selector': 'app-mapping-filter'},{'name': 'MappingHeaderSectionComponent', 'selector': 'app-mapping-header-section'},{'name': 'MappingTableComponent', 'selector': 'app-mapping-table'},{'name': 'OnboardingAdvancedSettingsComponent', 'selector': 'app-onboarding-advanced-settings'},{'name': 'OnboardingComponent', 'selector': 'app-onboarding'},{'name': 'OnboardingDoneComponent', 'selector': 'app-onboarding-done'},{'name': 'OnboardingEmployeeSettingsComponent', 'selector': 'app-onboarding-employee-settings'},{'name': 'OnboardingExportSettingsComponent', 'selector': 'app-onboarding-export-settings'},{'name': 'OnboardingFooterComponent', 'selector': 'app-onboarding-footer'},{'name': 'OnboardingImportSettingsComponent', 'selector': 'app-onboarding-import-settings'},{'name': 'OnboardingLandingComponent', 'selector': 'app-onboarding-landing'},{'name': 'OnboardingQboConnectorComponent', 'selector': 'app-onboarding-qbo-connector'},{'name': 'OnboardingStepperComponent', 'selector': 'app-onboarding-stepper'},{'name': 'PaginatorComponent', 'selector': 'app-paginator'},{'name': 'PreviewDialogComponent', 'selector': 'app-preview-dialog'},{'name': 'QboCallbackComponent', 'selector': 'app-qbo-callback'},{'name': 'QboConnectorComponent', 'selector': 'app-qbo-connector'},{'name': 'SharedLoginComponent', 'selector': 'app-shared-login'},{'name': 'SimpleTextSearchComponent', 'selector': 'app-simple-text-search'},{'name': 'ZeroStateWithIllustrationComponent', 'selector': 'app-zero-state-with-illustration'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ConfigurationStepHeaderSectionComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ConfigurationStepHeaderSectionComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,3931 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fyle-qbo-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">fyle-qbo-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  ExportSettingsComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/shared/components/configuration/export-settings/export-settings.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-export-settings</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./export-settings.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./export-settings.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#accountsPayables" >accountsPayables</a>
+                            </li>
+                            <li>
+                                <a href="#bankAccounts" >bankAccounts</a>
+                            </li>
+                            <li>
+                                <a href="#cccAccounts" >cccAccounts</a>
+                            </li>
+                            <li>
+                                <a href="#cccExpenseGroupingDateOptions" >cccExpenseGroupingDateOptions</a>
+                            </li>
+                            <li>
+                                <a href="#ConfigurationCtaText" >ConfigurationCtaText</a>
+                            </li>
+                            <li>
+                                <a href="#creditCardExportTypes" >creditCardExportTypes</a>
+                            </li>
+                            <li>
+                                <a href="#employeeFieldMapping" >employeeFieldMapping</a>
+                            </li>
+                            <li>
+                                <a href="#expenseAccounts" >expenseAccounts</a>
+                            </li>
+                            <li>
+                                <a href="#expenseGroupingFieldOptions" >expenseGroupingFieldOptions</a>
+                            </li>
+                            <li>
+                                <a href="#expenseStateOptions" >expenseStateOptions</a>
+                            </li>
+                            <li>
+                                <a href="#exportSettings" >exportSettings</a>
+                            </li>
+                            <li>
+                                <a href="#exportSettingsForm" >exportSettingsForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#helperService" >helperService</a>
+                            </li>
+                            <li>
+                                <a href="#isLoading" >isLoading</a>
+                            </li>
+                            <li>
+                                <a href="#isOnboarding" >isOnboarding</a>
+                            </li>
+                            <li>
+                                <a href="#ProgressPhase" >ProgressPhase</a>
+                            </li>
+                            <li>
+                                <a href="#reimbursableExpenseGroupingDateOptions" >reimbursableExpenseGroupingDateOptions</a>
+                            </li>
+                            <li>
+                                <a href="#reimbursableExportTypes" >reimbursableExportTypes</a>
+                            </li>
+                            <li>
+                                <a href="#saveInProgress" >saveInProgress</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#sessionStartTime" >sessionStartTime</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#timeSpentEventRecorded" >timeSpentEventRecorded</a>
+                            </li>
+                            <li>
+                                <a href="#vendors" >vendors</a>
+                            </li>
+                            <li>
+                                <a href="#windowReference" >windowReference</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#advancedSettingAffected" >advancedSettingAffected</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#constructPayloadAndSave" >constructPayloadAndSave</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#constructWarningMessage" >constructWarningMessage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#createCreditCardExpenseWatcher" >createCreditCardExpenseWatcher</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#createCreditCardExportGroupWatcher" >createCreditCardExportGroupWatcher</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#createCreditCardExportTypeWatcher" >createCreditCardExportTypeWatcher</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#createReimbursableExpenseWatcher" >createReimbursableExpenseWatcher</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#createReimbursableExportGroupWatcher" >createReimbursableExportGroupWatcher</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#createReimbursableExportTypeWatcher" >createReimbursableExportTypeWatcher</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#exportSelectionValidator" >exportSelectionValidator</a>
+                            </li>
+                            <li>
+                                <a href="#generateGroupingLabel" >generateGroupingLabel</a>
+                            </li>
+                            <li>
+                                <a href="#getAccountsPayableLabel" >getAccountsPayableLabel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getExportGroup" >getExportGroup</a>
+                            </li>
+                            <li>
+                                <a href="#getExportType" >getExportType</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getPhase" >getPhase</a>
+                            </li>
+                            <li>
+                                <a href="#getReimbursableExportTypes" >getReimbursableExportTypes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getSettingsAndSetupForm" >getSettingsAndSetupForm</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToPreviousStep" >navigateToPreviousStep</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#paymentsSyncAffected" >paymentsSyncAffected</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#replaceContentBasedOnConfiguration" >replaceContentBasedOnConfiguration</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#restrictExpenseGroupSetting" >restrictExpenseGroupSetting</a>
+                            </li>
+                            <li>
+                                <a href="#save" >save</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setCustomValidatorsAndWatchers" >setCustomValidatorsAndWatchers</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setGeneralMappingsValidator" >setGeneralMappingsValidator</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setupForm" >setupForm</a>
+                            </li>
+                            <li>
+                                <a href="#showBankAccountField" >showBankAccountField</a>
+                            </li>
+                            <li>
+                                <a href="#showCCCAccountsPayableField" >showCCCAccountsPayableField</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#showConfirmationDialog" >showConfirmationDialog</a>
+                            </li>
+                            <li>
+                                <a href="#showCreditCardAccountField" >showCreditCardAccountField</a>
+                            </li>
+                            <li>
+                                <a href="#showDebitCardAccountField" >showDebitCardAccountField</a>
+                            </li>
+                            <li>
+                                <a href="#showDefaultCreditCardVendorField" >showDefaultCreditCardVendorField</a>
+                            </li>
+                            <li>
+                                <a href="#showExpenseAccountField" >showExpenseAccountField</a>
+                            </li>
+                            <li>
+                                <a href="#showReimbursableAccountsPayableField" >showReimbursableAccountsPayableField</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#singleItemizedJournalEntryAffected" >singleItemizedJournalEntryAffected</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#trackSessionTime" >trackSessionTime</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#updateExportSettings" >updateExportSettings</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(dialog: MatDialog, formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, exportSettingService: <a href="../injectables/ExportSettingService.html" target="_self">ExportSettingService</a>, helperService: <a href="../injectables/HelperService.html" target="_self">HelperService</a>, mappingService: <a href="../injectables/MappingService.html" target="_self">MappingService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, snackBar: MatSnackBar, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>, windowService: <a href="../injectables/WindowService.html" target="_self">WindowService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:128</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>exportSettingService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ExportSettingService.html" target="_self" >ExportSettingService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>helperService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/HelperService.html" target="_self" >HelperService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>mappingService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MappingService.html" target="_self" >MappingService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackBar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>trackingService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TrackingService.html" target="_self" >TrackingService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>windowService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/WindowService.html" target="_self" >WindowService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>workspaceService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/WorkspaceService.html" target="_self" >WorkspaceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="advancedSettingAffected"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>advancedSettingAffected</b></span>
+                        <a href="#advancedSettingAffected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>advancedSettingAffected()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="496"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:496</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="constructPayloadAndSave"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>constructPayloadAndSave</b></span>
+                        <a href="#constructPayloadAndSave"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>constructPayloadAndSave()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="574"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:574</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="constructWarningMessage"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>constructWarningMessage</b></span>
+                        <a href="#constructWarningMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>constructWarningMessage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="520"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:520</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createCreditCardExpenseWatcher"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>createCreditCardExpenseWatcher</b></span>
+                        <a href="#createCreditCardExpenseWatcher"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createCreditCardExpenseWatcher()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="218"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:218</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createCreditCardExportGroupWatcher"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>createCreditCardExportGroupWatcher</b></span>
+                        <a href="#createCreditCardExportGroupWatcher"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createCreditCardExportGroupWatcher()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="387"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:387</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createCreditCardExportTypeWatcher"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>createCreditCardExportTypeWatcher</b></span>
+                        <a href="#createCreditCardExportTypeWatcher"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createCreditCardExportTypeWatcher()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="256"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:256</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createReimbursableExpenseWatcher"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>createReimbursableExpenseWatcher</b></span>
+                        <a href="#createReimbursableExpenseWatcher"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createReimbursableExpenseWatcher()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:199</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createReimbursableExportGroupWatcher"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>createReimbursableExportGroupWatcher</b></span>
+                        <a href="#createReimbursableExportGroupWatcher"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createReimbursableExportGroupWatcher()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="372"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:372</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createReimbursableExportTypeWatcher"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>createReimbursableExportTypeWatcher</b></span>
+                        <a href="#createReimbursableExportTypeWatcher"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createReimbursableExportTypeWatcher()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="250"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:250</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportSelectionValidator"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>exportSelectionValidator</b></span>
+                        <a href="#exportSelectionValidator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>exportSelectionValidator()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="264"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:264</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://angular.io/api/forms/ValidatorFn" target="_blank" >ValidatorFn</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateGroupingLabel"></a>
+                    <span class="name">
+                        <span ><b>generateGroupingLabel</b></span>
+                        <a href="#generateGroupingLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>generateGroupingLabel(exportSource: "reimbursable" | "credit card")</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="151"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:151</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>exportSource</td>
+                                    <td>
+                                            <code>&quot;reimbursable&quot; | &quot;credit card&quot;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAccountsPayableLabel"></a>
+                    <span class="name">
+                        <span ><b>getAccountsPayableLabel</b></span>
+                        <a href="#getAccountsPayableLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAccountsPayableLabel()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="324"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:324</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getExportGroup"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getExportGroup</b></span>
+                        <a href="#getExportGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getExportGroup(exportGroups: string[] | null)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="423"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:423</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>exportGroups</td>
+                                    <td>
+                                            <code>string[] | null</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getExportType"></a>
+                    <span class="name">
+                        <span ><b>getExportType</b></span>
+                        <a href="#getExportType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getExportType(exportType: <a href="../undefineds/Expense.html" target="_self">ReimbursableExpensesObject | CorporateCreditCardExpensesObject</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="145"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:145</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>exportType</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#Expense" target="_self" >ReimbursableExpensesObject | CorporateCreditCardExpensesObject</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPhase"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getPhase</b></span>
+                        <a href="#getPhase"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPhase()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="563"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:563</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/enumerations.html#ProgressPhase" target="_self" >ProgressPhase</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getReimbursableExportTypes"></a>
+                    <span class="name">
+                        <span ><b>getReimbursableExportTypes</b></span>
+                        <a href="#getReimbursableExportTypes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getReimbursableExportTypes(employeeFieldMapping: <a href="../interfaces/Mapping.html" target="_self">EmployeeFieldMapping</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="166"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:166</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>employeeFieldMapping</td>
+                                    <td>
+                                                <code><a href="../interfaces/Mapping.html" target="_self" >EmployeeFieldMapping</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/ExportSettingFormOption.html" target="_self" >ExportSettingFormOption[]</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSettingsAndSetupForm"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getSettingsAndSetupForm</b></span>
+                        <a href="#getSettingsAndSetupForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getSettingsAndSetupForm()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="434"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:434</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToPreviousStep"></a>
+                    <span class="name">
+                        <span ><b>navigateToPreviousStep</b></span>
+                        <a href="#navigateToPreviousStep"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToPreviousStep()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="480"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:480</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="621"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:621</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="627"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:627</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="paymentsSyncAffected"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>paymentsSyncAffected</b></span>
+                        <a href="#paymentsSyncAffected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>paymentsSyncAffected()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="492"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:492</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="replaceContentBasedOnConfiguration"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>replaceContentBasedOnConfiguration</b></span>
+                        <a href="#replaceContentBasedOnConfiguration"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>replaceContentBasedOnConfiguration(updatedConfiguration: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, existingConfiguration: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, exportType: "reimbursable" | "credit card")</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="504"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:504</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>updatedConfiguration</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>existingConfiguration</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>exportType</td>
+                                    <td>
+                                            <code>&quot;reimbursable&quot; | &quot;credit card&quot;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="restrictExpenseGroupSetting"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>restrictExpenseGroupSetting</b></span>
+                        <a href="#restrictExpenseGroupSetting"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>restrictExpenseGroupSetting(creditCardExportType: string | null)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="237"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:237</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>creditCardExportType</td>
+                                    <td>
+                                            <code>string | null</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="save"></a>
+                    <span class="name">
+                        <span ><b>save</b></span>
+                        <a href="#save"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>save()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="610"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:610</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setCustomValidatorsAndWatchers"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>setCustomValidatorsAndWatchers</b></span>
+                        <a href="#setCustomValidatorsAndWatchers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setCustomValidatorsAndWatchers()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="407"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:407</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setGeneralMappingsValidator"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>setGeneralMappingsValidator</b></span>
+                        <a href="#setGeneralMappingsValidator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setGeneralMappingsValidator()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="328"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:328</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setupForm"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>setupForm</b></span>
+                        <a href="#setupForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setupForm()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="456"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:456</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showBankAccountField"></a>
+                    <span class="name">
+                        <span ><b>showBankAccountField</b></span>
+                        <a href="#showBankAccountField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showBankAccountField()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="296"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:296</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showCCCAccountsPayableField"></a>
+                    <span class="name">
+                        <span ><b>showCCCAccountsPayableField</b></span>
+                        <a href="#showCCCAccountsPayableField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showCCCAccountsPayableField()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="320"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:320</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showConfirmationDialog"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>showConfirmationDialog</b></span>
+                        <a href="#showConfirmationDialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>showConfirmationDialog()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="542"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:542</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showCreditCardAccountField"></a>
+                    <span class="name">
+                        <span ><b>showCreditCardAccountField</b></span>
+                        <a href="#showCreditCardAccountField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showCreditCardAccountField()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="300"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:300</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showDebitCardAccountField"></a>
+                    <span class="name">
+                        <span ><b>showDebitCardAccountField</b></span>
+                        <a href="#showDebitCardAccountField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showDebitCardAccountField()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="304"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:304</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showDefaultCreditCardVendorField"></a>
+                    <span class="name">
+                        <span ><b>showDefaultCreditCardVendorField</b></span>
+                        <a href="#showDefaultCreditCardVendorField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showDefaultCreditCardVendorField()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="308"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:308</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showExpenseAccountField"></a>
+                    <span class="name">
+                        <span ><b>showExpenseAccountField</b></span>
+                        <a href="#showExpenseAccountField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showExpenseAccountField()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="312"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:312</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showReimbursableAccountsPayableField"></a>
+                    <span class="name">
+                        <span ><b>showReimbursableAccountsPayableField</b></span>
+                        <a href="#showReimbursableAccountsPayableField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showReimbursableAccountsPayableField()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="316"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:316</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="singleItemizedJournalEntryAffected"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>singleItemizedJournalEntryAffected</b></span>
+                        <a href="#singleItemizedJournalEntryAffected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>singleItemizedJournalEntryAffected()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="488"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:488</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trackSessionTime"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>trackSessionTime</b></span>
+                        <a href="#trackSessionTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>trackSessionTime(eventState: "success" | "navigated")</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="567"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:567</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>eventState</td>
+                                    <td>
+                                            <code>&quot;success&quot; | &quot;navigated&quot;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateExportSettings"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>updateExportSettings</b></span>
+                        <a href="#updateExportSettings"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateExportSettings()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="484"
+                            class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:484</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="accountsPayables"></a>
+                    <span class="name">
+                        <span ><b>accountsPayables</b></span>
+                        <a href="#accountsPayables"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#DestinationAttribute" target="_self" >DestinationAttribute[]</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bankAccounts"></a>
+                    <span class="name">
+                        <span ><b>bankAccounts</b></span>
+                        <a href="#bankAccounts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#DestinationAttribute" target="_self" >DestinationAttribute[]</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cccAccounts"></a>
+                    <span class="name">
+                        <span ><b>cccAccounts</b></span>
+                        <a href="#cccAccounts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#DestinationAttribute" target="_self" >DestinationAttribute[]</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cccExpenseGroupingDateOptions"></a>
+                    <span class="name">
+                        <span ><b>cccExpenseGroupingDateOptions</b></span>
+                        <a href="#cccExpenseGroupingDateOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ExportSettingFormOption.html" target="_self" >ExportSettingFormOption[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.reimbursableExpenseGroupingDateOptions.concat()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ConfigurationCtaText"></a>
+                    <span class="name">
+                        <span ><b>ConfigurationCtaText</b></span>
+                        <a href="#ConfigurationCtaText"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ConfigurationCtaText</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:122</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="creditCardExportTypes"></a>
+                    <span class="name">
+                        <span ><b>creditCardExportTypes</b></span>
+                        <a href="#creditCardExportTypes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ExportSettingFormOption.html" target="_self" >ExportSettingFormOption[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      label: &#x27;Bill&#x27;,
+      value: CorporateCreditCardExpensesObject.BILL
+    },
+    {
+      label: &#x27;Credit Card Purchase&#x27;,
+      value: CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE
+    },
+    {
+      label: &#x27;Journal Entry&#x27;,
+      value: CorporateCreditCardExpensesObject.JOURNAL_ENTRY
+    },
+    {
+      label: &#x27;Debit Card Expense&#x27;,
+      value: CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE
+    }
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:101</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="employeeFieldMapping"></a>
+                    <span class="name">
+                        <span ><b>employeeFieldMapping</b></span>
+                        <a href="#employeeFieldMapping"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Mapping.html" target="_self" >EmployeeFieldMapping</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="expenseAccounts"></a>
+                    <span class="name">
+                        <span ><b>expenseAccounts</b></span>
+                        <a href="#expenseAccounts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#DestinationAttribute" target="_self" >DestinationAttribute[]</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="expenseGroupingFieldOptions"></a>
+                    <span class="name">
+                        <span ><b>expenseGroupingFieldOptions</b></span>
+                        <a href="#expenseGroupingFieldOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ExportSettingFormOption.html" target="_self" >ExportSettingFormOption[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      label: &#x27;Report&#x27;,
+      value: ExpenseGroupingFieldOption.CLAIM_NUMBER
+    },
+    {
+      label: &#x27;Payment&#x27;,
+      value: ExpenseGroupingFieldOption.SETTLEMENT_ID
+    },
+    {
+      label: &#x27;Expense&#x27;,
+      value: ExpenseGroupingFieldOption.EXPENSE_ID
+    }
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="expenseStateOptions"></a>
+                    <span class="name">
+                        <span ><b>expenseStateOptions</b></span>
+                        <a href="#expenseStateOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ExportSettingFormOption.html" target="_self" >ExportSettingFormOption[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      value: ExpenseState.PAYMENT_PROCESSING,
+      label: &#x27;Payment Processing&#x27;
+    },
+    {
+      value: ExpenseState.PAID,
+      label: &#x27;Paid&#x27;
+    }
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportSettings"></a>
+                    <span class="name">
+                        <span ><b>exportSettings</b></span>
+                        <a href="#exportSettings"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ExportSettingGet" target="_self" >ExportSettingGet</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportSettingsForm"></a>
+                    <span class="name">
+                        <span ><b>exportSettingsForm</b></span>
+                        <a href="#exportSettingsForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="helperService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>helperService</b></span>
+                        <a href="#helperService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/HelperService.html" target="_self" >HelperService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:134</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isLoading"></a>
+                    <span class="name">
+                        <span ><b>isLoading</b></span>
+                        <a href="#isLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isOnboarding"></a>
+                    <span class="name">
+                        <span ><b>isOnboarding</b></span>
+                        <a href="#isOnboarding"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ProgressPhase"></a>
+                    <span class="name">
+                        <span ><b>ProgressPhase</b></span>
+                        <a href="#ProgressPhase"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ProgressPhase</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:124</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reimbursableExpenseGroupingDateOptions"></a>
+                    <span class="name">
+                        <span ><b>reimbursableExpenseGroupingDateOptions</b></span>
+                        <a href="#reimbursableExpenseGroupingDateOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ExportSettingFormOption.html" target="_self" >ExportSettingFormOption[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      label: &#x27;Current Date&#x27;,
+      value: ExportDateType.CURRENT_DATE
+    },
+    {
+      label: &#x27;Verification Date&#x27;,
+      value: ExportDateType.VERIFIED_AT
+    },
+    {
+      label: &#x27;Spend Date&#x27;,
+      value: ExportDateType.SPENT_AT
+    },
+    {
+      label: &#x27;Approval Date&#x27;,
+      value: ExportDateType.APPROVED_AT
+    },
+    {
+      label: &#x27;Last Spend Date&#x27;,
+      value: ExportDateType.LAST_SPENT_AT
+    }
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reimbursableExportTypes"></a>
+                    <span class="name">
+                        <span ><b>reimbursableExportTypes</b></span>
+                        <a href="#reimbursableExportTypes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ExportSettingFormOption.html" target="_self" >ExportSettingFormOption[]</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:120</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveInProgress"></a>
+                    <span class="name">
+                        <span ><b>saveInProgress</b></span>
+                        <a href="#saveInProgress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sessionStartTime"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>sessionStartTime</b></span>
+                        <a href="#sessionStartTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Date()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:126</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="timeSpentEventRecorded"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>timeSpentEventRecorded</b></span>
+                        <a href="#timeSpentEventRecorded"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:128</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="vendors"></a>
+                    <span class="name">
+                        <span ><b>vendors</b></span>
+                        <a href="#vendors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#DestinationAttribute" target="_self" >DestinationAttribute[]</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="windowReference"></a>
+                    <span class="name">
+                        <span ><b>windowReference</b></span>
+                        <a href="#windowReference"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Window</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/shared/components/configuration/export-settings/export-settings.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, OnDestroy, OnInit, Output } from &#x27;@angular/core&#x27;;
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from &#x27;@angular/forms&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { forkJoin } from &#x27;rxjs&#x27;;
+import { DestinationAttribute } from &#x27;src/app/core/models/db/destination-attribute.model&#x27;;
+import { ConfigurationCtaText, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, OnboardingState, OnboardingStep, ProgressPhase, ReimbursableExpensesObject, UpdateEvent } from &#x27;src/app/core/models/enum/enum.model&#x27;;
+import { ExportSettingGet, ExportSettingFormOption, ExportSettingModel } from &#x27;src/app/core/models/configuration/export-setting.model&#x27;;
+import { ExportSettingService } from &#x27;src/app/core/services/configuration/export-setting.service&#x27;;
+import { HelperService } from &#x27;src/app/core/services/core/helper.service&#x27;;
+import { MappingService } from &#x27;src/app/core/services/misc/mapping.service&#x27;;
+import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { WindowService } from &#x27;src/app/core/services/core/window.service&#x27;;
+import { WorkspaceService } from &#x27;src/app/core/services/workspace/workspace.service&#x27;;
+import { ConfirmationDialog } from &#x27;src/app/core/models/misc/confirmation-dialog.model&#x27;;
+import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { ConfirmationDialogComponent } from &#x27;../../core/confirmation-dialog/confirmation-dialog.component&#x27;;
+import { TrackingService } from &#x27;src/app/core/services/integration/tracking.service&#x27;;
+
+@Component({
+  selector: &#x27;app-export-settings&#x27;,
+  templateUrl: &#x27;./export-settings.component.html&#x27;,
+  styleUrls: [&#x27;./export-settings.component.scss&#x27;]
+})
+export class ExportSettingsComponent implements OnInit, OnDestroy {
+
+  isLoading: boolean &#x3D; true;
+
+  saveInProgress: boolean;
+
+  isOnboarding: boolean &#x3D; false;
+
+  employeeFieldMapping: EmployeeFieldMapping;
+
+  exportSettingsForm: FormGroup;
+
+  exportSettings: ExportSettingGet;
+
+  bankAccounts: DestinationAttribute[];
+
+  cccAccounts: DestinationAttribute[];
+
+  accountsPayables: DestinationAttribute[];
+
+  vendors: DestinationAttribute[];
+
+  expenseAccounts: DestinationAttribute[];
+
+  windowReference: Window;
+
+  expenseStateOptions: ExportSettingFormOption[] &#x3D; [
+    {
+      value: ExpenseState.PAYMENT_PROCESSING,
+      label: &#x27;Payment Processing&#x27;
+    },
+    {
+      value: ExpenseState.PAID,
+      label: &#x27;Paid&#x27;
+    }
+  ];
+
+  expenseGroupingFieldOptions: ExportSettingFormOption[] &#x3D; [
+    {
+      label: &#x27;Report&#x27;,
+      value: ExpenseGroupingFieldOption.CLAIM_NUMBER
+    },
+    {
+      label: &#x27;Payment&#x27;,
+      value: ExpenseGroupingFieldOption.SETTLEMENT_ID
+    },
+    {
+      label: &#x27;Expense&#x27;,
+      value: ExpenseGroupingFieldOption.EXPENSE_ID
+    }
+  ];
+
+  reimbursableExpenseGroupingDateOptions: ExportSettingFormOption[] &#x3D; [
+    {
+      label: &#x27;Current Date&#x27;,
+      value: ExportDateType.CURRENT_DATE
+    },
+    {
+      label: &#x27;Verification Date&#x27;,
+      value: ExportDateType.VERIFIED_AT
+    },
+    {
+      label: &#x27;Spend Date&#x27;,
+      value: ExportDateType.SPENT_AT
+    },
+    {
+      label: &#x27;Approval Date&#x27;,
+      value: ExportDateType.APPROVED_AT
+    },
+    {
+      label: &#x27;Last Spend Date&#x27;,
+      value: ExportDateType.LAST_SPENT_AT
+    }
+  ];
+
+  cccExpenseGroupingDateOptions: ExportSettingFormOption[] &#x3D; this.reimbursableExpenseGroupingDateOptions.concat();
+
+  creditCardExportTypes: ExportSettingFormOption[] &#x3D; [
+    {
+      label: &#x27;Bill&#x27;,
+      value: CorporateCreditCardExpensesObject.BILL
+    },
+    {
+      label: &#x27;Credit Card Purchase&#x27;,
+      value: CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE
+    },
+    {
+      label: &#x27;Journal Entry&#x27;,
+      value: CorporateCreditCardExpensesObject.JOURNAL_ENTRY
+    },
+    {
+      label: &#x27;Debit Card Expense&#x27;,
+      value: CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE
+    }
+  ];
+
+  reimbursableExportTypes: ExportSettingFormOption[];
+
+  ConfigurationCtaText &#x3D; ConfigurationCtaText;
+
+  ProgressPhase &#x3D; ProgressPhase;
+
+  private readonly sessionStartTime &#x3D; new Date();
+
+  private timeSpentEventRecorded: boolean &#x3D; false;
+
+  constructor(
+    private dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    private exportSettingService: ExportSettingService,
+    public helperService: HelperService,
+    private mappingService: MappingService,
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private trackingService: TrackingService,
+    private windowService: WindowService,
+    private workspaceService: WorkspaceService
+  ) {
+    this.windowReference &#x3D; this.windowService.nativeWindow;
+  }
+
+  getExportType(exportType: ReimbursableExpensesObject | CorporateCreditCardExpensesObject): string {
+    const lowerCaseWord &#x3D; exportType.toLowerCase();
+
+    return lowerCaseWord.charAt(0).toUpperCase() + lowerCaseWord.slice(1);
+  }
+
+  generateGroupingLabel(exportSource: &#x27;reimbursable&#x27; | &#x27;credit card&#x27;): string {
+    let exportType: ReimbursableExpensesObject | CorporateCreditCardExpensesObject;
+    if (exportSource &#x3D;&#x3D;&#x3D; &#x27;reimbursable&#x27;) {
+      exportType &#x3D; this.exportSettingsForm.value.reimbursableExportType;
+    } else {
+      exportType &#x3D; this.exportSettingsForm.value.creditCardExportType;
+    }
+
+    if (exportType &#x3D;&#x3D;&#x3D; ReimbursableExpensesObject.EXPENSE) {
+      return &#x27;How should the expenses be grouped?&#x27;;
+    }
+
+    return &#x60;How should the expense in ${this.getExportType(exportType)} be grouped?&#x60;;
+  }
+
+  getReimbursableExportTypes(employeeFieldMapping: EmployeeFieldMapping): ExportSettingFormOption[] {
+    return {
+      EMPLOYEE: [
+        {
+          label: &#x27;Check&#x27;,
+          value: ReimbursableExpensesObject.CHECK
+        },
+        {
+          label: &#x27;Expense&#x27;,
+          value: ReimbursableExpensesObject.EXPENSE
+        },
+        {
+          label: &#x27;Journal Entry&#x27;,
+          value: ReimbursableExpensesObject.JOURNAL_ENTRY
+        }
+      ],
+      VENDOR: [
+        {
+          label: &#x27;Bill&#x27;,
+          value: ReimbursableExpensesObject.BILL
+        },
+        {
+          label: &#x27;Expense&#x27;,
+          value: ReimbursableExpensesObject.EXPENSE
+        },
+        {
+          label: &#x27;Journal Entry&#x27;,
+          value: ReimbursableExpensesObject.JOURNAL_ENTRY
+        }
+      ]
+    }[employeeFieldMapping];
+  }
+
+  private createReimbursableExpenseWatcher(): void {
+    this.exportSettingsForm.controls.reimbursableExpense.valueChanges.subscribe((isReimbursableExpenseSelected) &#x3D;&gt; {
+      if (isReimbursableExpenseSelected) {
+        this.exportSettingsForm.controls.reimbursableExportType.setValidators(Validators.required);
+        this.exportSettingsForm.controls.reimbursableExportGroup.setValidators(Validators.required);
+        this.exportSettingsForm.controls.reimbursableExportDate.setValidators(Validators.required);
+      } else {
+        this.exportSettingsForm.controls.reimbursableExportType.clearValidators();
+        this.exportSettingsForm.controls.reimbursableExportGroup.clearValidators();
+        this.exportSettingsForm.controls.reimbursableExportDate.clearValidators();
+        this.exportSettingsForm.controls.reimbursableExportType.setValue(null);
+        this.exportSettingsForm.controls.reimbursableExportGroup.setValue(null);
+        this.exportSettingsForm.controls.reimbursableExportDate.setValue(null);
+      }
+
+      this.setGeneralMappingsValidator();
+    });
+  }
+
+  private createCreditCardExpenseWatcher(): void {
+    this.exportSettingsForm.controls.creditCardExpense.valueChanges.subscribe((isCreditCardExpenseSelected) &#x3D;&gt; {
+      if (isCreditCardExpenseSelected) {
+        this.exportSettingsForm.controls.creditCardExportType.setValidators(Validators.required);
+        this.exportSettingsForm.controls.creditCardExportGroup.setValidators(Validators.required);
+        this.exportSettingsForm.controls.creditCardExportDate.setValidators(Validators.required);
+      } else {
+        this.exportSettingsForm.controls.creditCardExportType.clearValidators();
+        this.exportSettingsForm.controls.creditCardExportGroup.clearValidators();
+        this.exportSettingsForm.controls.creditCardExportDate.clearValidators();
+        this.exportSettingsForm.controls.creditCardExportType.setValue(null);
+        this.exportSettingsForm.controls.creditCardExportGroup.setValue(null);
+        this.exportSettingsForm.controls.creditCardExportDate.setValue(null);
+      }
+
+      this.setGeneralMappingsValidator();
+    });
+  }
+
+  private restrictExpenseGroupSetting(creditCardExportType: string | null) : void {
+    if (creditCardExportType &#x3D;&#x3D;&#x3D; CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || creditCardExportType &#x3D;&#x3D;&#x3D; CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE) {
+      this.exportSettingsForm.controls.creditCardExportGroup.setValue(ExpenseGroupingFieldOption.EXPENSE_ID);
+      this.exportSettingsForm.controls.creditCardExportGroup.disable();
+
+      this.exportSettingsForm.controls.creditCardExportDate.setValue(ExportDateType.SPENT_AT);
+      this.exportSettingsForm.controls.creditCardExportDate.disable();
+    } else {
+      this.exportSettingsForm.controls.creditCardExportGroup.enable();
+      this.exportSettingsForm.controls.creditCardExportDate.enable();
+    }
+  }
+
+  private createReimbursableExportTypeWatcher(): void {
+    this.exportSettingsForm.controls.reimbursableExportType.valueChanges.subscribe(() &#x3D;&gt; {
+      this.setGeneralMappingsValidator();
+    });
+  }
+
+  private createCreditCardExportTypeWatcher(): void {
+    this.restrictExpenseGroupSetting(this.exportSettings.workspace_general_settings.corporate_credit_card_expenses_object);
+    this.exportSettingsForm.controls.creditCardExportType.valueChanges.subscribe((creditCardExportType: string) &#x3D;&gt; {
+      this.setGeneralMappingsValidator();
+      this.restrictExpenseGroupSetting(creditCardExportType);
+    });
+  }
+
+  private exportSelectionValidator(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: object} | null &#x3D;&gt; {
+      let forbidden &#x3D; true;
+      if (this.exportSettingsForm &amp;&amp; this.exportSettingsForm.value.expenseState) {
+        if (typeof control.value &#x3D;&#x3D;&#x3D; &#x27;boolean&#x27;) {
+          if (control.value) {
+            forbidden &#x3D; false;
+          } else {
+            if (control.parent?.get(&#x27;reimbursableExpense&#x27;)?.value || control.parent?.get(&#x27;creditCardExpense&#x27;)?.value) {
+              forbidden &#x3D; false;
+            }
+          }
+        } else if ((control.value &#x3D;&#x3D;&#x3D; ExpenseState.PAID || control.value &#x3D;&#x3D;&#x3D; ExpenseState.PAYMENT_PROCESSING) &amp;&amp; (control.parent?.get(&#x27;reimbursableExpense&#x27;)?.value || control.parent?.get(&#x27;creditCardExpense&#x27;)?.value)) {
+          forbidden &#x3D; false;
+        }
+
+        if (!forbidden) {
+          control.parent?.get(&#x27;expenseState&#x27;)?.setErrors(null);
+          control.parent?.get(&#x27;reimbursableExpense&#x27;)?.setErrors(null);
+          control.parent?.get(&#x27;creditCardExpense&#x27;)?.setErrors(null);
+          return null;
+        }
+      }
+
+      return {
+        forbiddenOption: {
+          value: control.value
+        }
+      };
+    };
+  }
+
+  showBankAccountField(): boolean {
+    return this.employeeFieldMapping &#x3D;&#x3D;&#x3D; EmployeeFieldMapping.EMPLOYEE &amp;&amp; this.exportSettingsForm.controls.reimbursableExportType.value &amp;&amp; this.exportSettingsForm.controls.reimbursableExportType.value !&#x3D;&#x3D; ReimbursableExpensesObject.EXPENSE;
+  }
+
+  showCreditCardAccountField(): boolean {
+    return this.exportSettingsForm.controls.creditCardExportType.value &amp;&amp; this.exportSettingsForm.controls.creditCardExportType.value !&#x3D;&#x3D; CorporateCreditCardExpensesObject.BILL &amp;&amp; this.exportSettingsForm.controls.creditCardExportType.value !&#x3D;&#x3D; CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE;
+  }
+
+  showDebitCardAccountField(): boolean {
+    return this.exportSettingsForm.controls.creditCardExportType.value &amp;&amp; this.exportSettingsForm.controls.creditCardExportType.value &#x3D;&#x3D;&#x3D; CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE;
+  }
+
+  showDefaultCreditCardVendorField(): boolean {
+    return this.exportSettingsForm.controls.creditCardExportType.value &#x3D;&#x3D;&#x3D; CorporateCreditCardExpensesObject.BILL;
+  }
+
+  showExpenseAccountField(): boolean {
+    return this.exportSettingsForm.controls.reimbursableExportType.value &#x3D;&#x3D;&#x3D; ReimbursableExpensesObject.EXPENSE;
+  }
+
+  showReimbursableAccountsPayableField(): boolean {
+    return (this.exportSettingsForm.controls.reimbursableExportType.value &#x3D;&#x3D;&#x3D; ReimbursableExpensesObject.BILL) || (this.exportSettingsForm.controls.reimbursableExportType.value &#x3D;&#x3D;&#x3D; ReimbursableExpensesObject.JOURNAL_ENTRY &amp;&amp; this.employeeFieldMapping &#x3D;&#x3D;&#x3D; EmployeeFieldMapping.VENDOR);
+  }
+
+  showCCCAccountsPayableField(): boolean {
+    return this.exportSettingsForm.controls.creditCardExportType.value &#x3D;&#x3D;&#x3D; CorporateCreditCardExpensesObject.BILL;
+  }
+
+  getAccountsPayableLabel(): string {
+    return (this.exportSettingsForm.controls.reimbursableExportType.value &#x3D;&#x3D;&#x3D; ReimbursableExpensesObject.BILL || this.exportSettingsForm.controls.creditCardExportType.value &#x3D;&#x3D;&#x3D; CorporateCreditCardExpensesObject.BILL) ? ReimbursableExpensesObject.BILL : ReimbursableExpensesObject.JOURNAL_ENTRY;
+  }
+
+  private setGeneralMappingsValidator(): void {
+    if (this.showBankAccountField()) {
+      this.exportSettingsForm.controls.bankAccount.setValidators(Validators.required);
+    } else {
+      this.exportSettingsForm.controls.bankAccount.clearValidators();
+      this.exportSettingsForm.controls.bankAccount.updateValueAndValidity();
+    }
+
+    if (this.showCreditCardAccountField()) {
+      this.exportSettingsForm.controls.defaultCCCAccount.setValidators(Validators.required);
+    } else {
+      this.exportSettingsForm.controls.defaultCCCAccount.clearValidators();
+      this.exportSettingsForm.controls.defaultCCCAccount.updateValueAndValidity();
+    }
+
+    if (this.showDebitCardAccountField()) {
+      this.exportSettingsForm.controls.defaultDebitCardAccount.setValidators(Validators.required);
+    } else {
+      this.exportSettingsForm.controls.defaultDebitCardAccount.clearValidators();
+      this.exportSettingsForm.controls.defaultDebitCardAccount.updateValueAndValidity();
+    }
+
+    if (this.showReimbursableAccountsPayableField() || this.showCCCAccountsPayableField()) {
+      this.exportSettingsForm.controls.accountsPayable.setValidators(Validators.required);
+    } else {
+      this.exportSettingsForm.controls.accountsPayable.clearValidators();
+      this.exportSettingsForm.controls.accountsPayable.updateValueAndValidity();
+    }
+
+    if (this.showDefaultCreditCardVendorField()) {
+      this.exportSettingsForm.controls.defaultCreditCardVendor.setValidators(Validators.required);
+    } else {
+      this.exportSettingsForm.controls.defaultCreditCardVendor.clearValidators();
+      this.exportSettingsForm.controls.defaultCreditCardVendor.updateValueAndValidity();
+    }
+
+    if (this.showExpenseAccountField()) {
+      this.exportSettingsForm.controls.qboExpenseAccount.setValidators(Validators.required);
+    } else {
+      this.exportSettingsForm.controls.qboExpenseAccount.clearValidators();
+      this.exportSettingsForm.controls.qboExpenseAccount.updateValueAndValidity();
+    }
+  }
+
+  private createReimbursableExportGroupWatcher(): void {
+    this.exportSettingsForm.controls.reimbursableExportGroup.valueChanges.subscribe((reimbursableExportGroup: ExpenseGroupingFieldOption) &#x3D;&gt; {
+      if (reimbursableExportGroup &#x3D;&#x3D;&#x3D; ExpenseGroupingFieldOption.EXPENSE_ID) {
+        this.reimbursableExpenseGroupingDateOptions.pop();
+      } else {
+        if (this.reimbursableExpenseGroupingDateOptions.length !&#x3D;&#x3D; 5) {
+          this.reimbursableExpenseGroupingDateOptions.push({
+            label: &#x27;Last Spend Date&#x27;,
+            value: ExportDateType.LAST_SPENT_AT
+          });
+        }
+      }
+    });
+  }
+
+  private createCreditCardExportGroupWatcher(): void {
+    this.exportSettingsForm.controls.creditCardExportGroup.valueChanges.subscribe((creditCardExportGroup: ExpenseGroupingFieldOption) &#x3D;&gt; {
+      if (creditCardExportGroup &amp;&amp; creditCardExportGroup &#x3D;&#x3D;&#x3D; ExpenseGroupingFieldOption.EXPENSE_ID) {
+        this.cccExpenseGroupingDateOptions &#x3D; this.cccExpenseGroupingDateOptions.filter((option) &#x3D;&gt; {
+          return option.value !&#x3D;&#x3D; ExportDateType.LAST_SPENT_AT;
+        });
+      } else {
+        const lastSpentAt &#x3D; this.cccExpenseGroupingDateOptions.filter((option) &#x3D;&gt; {
+          return option.value &#x3D;&#x3D;&#x3D; ExportDateType.LAST_SPENT_AT;
+        });
+        if (!lastSpentAt.length) {
+          this.cccExpenseGroupingDateOptions.push({
+            label: &#x27;Last Spend Date&#x27;,
+            value: ExportDateType.LAST_SPENT_AT
+          });
+        }
+      }
+    });
+  }
+
+  private setCustomValidatorsAndWatchers(): void {
+    // Toggles
+    this.createReimbursableExpenseWatcher();
+    this.createCreditCardExpenseWatcher();
+
+    // Export select fields
+    this.createReimbursableExportTypeWatcher();
+    this.createCreditCardExportTypeWatcher();
+
+    // Goruping fields
+    this.createReimbursableExportGroupWatcher();
+    this.createCreditCardExportGroupWatcher();
+
+    this.setGeneralMappingsValidator();
+  }
+
+  private getExportGroup(exportGroups: string[] | null): string {
+    if (exportGroups) {
+      const exportGroup &#x3D; exportGroups.find((exportGroup) &#x3D;&gt; {
+        return exportGroup &#x3D;&#x3D;&#x3D; ExpenseGroupingFieldOption.EXPENSE_ID || exportGroup &#x3D;&#x3D;&#x3D; ExpenseGroupingFieldOption.CLAIM_NUMBER || exportGroup &#x3D;&#x3D;&#x3D; ExpenseGroupingFieldOption.SETTLEMENT_ID;
+      });
+      return exportGroup ? exportGroup : ExpenseGroupingFieldOption.CLAIM_NUMBER;
+    }
+
+    return &#x27;&#x27;;
+  }
+
+  private getSettingsAndSetupForm(): void {
+    this.isOnboarding &#x3D; this.windowReference.location.pathname.includes(&#x27;onboarding&#x27;);
+    const destinationAttributes &#x3D; [&#x27;BANK_ACCOUNT&#x27;, &#x27;CREDIT_CARD_ACCOUNT&#x27;, &#x27;ACCOUNTS_PAYABLE&#x27;, &#x27;VENDOR&#x27;];
+    forkJoin([
+      this.exportSettingService.getExportSettings(),
+      this.mappingService.getGroupedQBODestinationAttributes(destinationAttributes),
+      this.workspaceService.getWorkspaceGeneralSettings()
+    ]).subscribe(response &#x3D;&gt; {
+      this.exportSettings &#x3D; response[0];
+      this.employeeFieldMapping &#x3D; response[2].employee_field_mapping;
+      this.reimbursableExportTypes &#x3D; this.getReimbursableExportTypes(this.employeeFieldMapping);
+
+      this.bankAccounts &#x3D; response[1].BANK_ACCOUNT;
+      this.cccAccounts &#x3D; response[1].CREDIT_CARD_ACCOUNT;
+      this.accountsPayables &#x3D; response[1].ACCOUNTS_PAYABLE;
+      this.vendors &#x3D; response[1].VENDOR;
+      this.expenseAccounts &#x3D; this.bankAccounts.concat(this.cccAccounts);
+
+      this.setupForm();
+    });
+  }
+
+  private setupForm(): void {
+    this.exportSettingsForm &#x3D; this.formBuilder.group({
+      expenseState: [this.exportSettings.expense_group_settings?.expense_state, Validators.required],
+      reimbursableExpense: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? true : false, this.exportSelectionValidator()],
+      reimbursableExportType: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object],
+      reimbursableExportGroup: [this.getExportGroup(this.exportSettings.expense_group_settings?.reimbursable_expense_group_fields)],
+      reimbursableExportDate: [this.exportSettings.expense_group_settings?.reimbursable_export_date_type],
+      creditCardExpense: [this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object ? true : false, this.exportSelectionValidator()],
+      creditCardExportType: [this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object],
+      creditCardExportGroup: [this.getExportGroup(this.exportSettings.expense_group_settings?.corporate_credit_card_expense_group_fields)],
+      creditCardExportDate: [this.exportSettings.expense_group_settings?.ccc_export_date_type],
+      bankAccount: [this.exportSettings.general_mappings?.bank_account?.id ? this.exportSettings.general_mappings.bank_account : null],
+      defaultCCCAccount: [this.exportSettings.general_mappings?.default_ccc_account?.id ? this.exportSettings.general_mappings.default_ccc_account : null],
+      accountsPayable: [this.exportSettings.general_mappings?.accounts_payable?.id ? this.exportSettings.general_mappings.accounts_payable : null],
+      defaultCreditCardVendor: [this.exportSettings.general_mappings?.default_ccc_vendor?.id ? this.exportSettings.general_mappings.default_ccc_vendor : null],
+      qboExpenseAccount: [this.exportSettings.general_mappings?.qbo_expense_account?.id ? this.exportSettings.general_mappings.qbo_expense_account : null],
+      defaultDebitCardAccount: [this.exportSettings.general_mappings?.default_debit_card_account?.id ? this.exportSettings.general_mappings.default_debit_card_account : null],
+      searchOption: []
+    });
+
+    this.setCustomValidatorsAndWatchers();
+    this.isLoading &#x3D; false;
+  }
+
+  navigateToPreviousStep(): void {
+    this.router.navigate([&#x60;/workspaces/onboarding/employee_settings&#x60;]);
+  }
+
+  private updateExportSettings(): boolean {
+    return this.exportSettings.workspace_general_settings.reimbursable_expenses_object !&#x3D;&#x3D; null || this.exportSettings.workspace_general_settings.corporate_credit_card_expenses_object !&#x3D;&#x3D; null;
+  }
+
+  private singleItemizedJournalEntryAffected(): boolean {
+    return (this.exportSettings?.workspace_general_settings?.reimbursable_expenses_object !&#x3D;&#x3D; ReimbursableExpensesObject.JOURNAL_ENTRY &amp;&amp; this.exportSettingsForm.value.reimbursableExportType &#x3D;&#x3D;&#x3D; ReimbursableExpensesObject.JOURNAL_ENTRY) || (this.exportSettings?.workspace_general_settings?.corporate_credit_card_expenses_object !&#x3D;&#x3D; CorporateCreditCardExpensesObject.JOURNAL_ENTRY &amp;&amp; this.exportSettingsForm.value.creditCardExportType &#x3D;&#x3D;&#x3D; CorporateCreditCardExpensesObject.JOURNAL_ENTRY);
+  }
+
+  private paymentsSyncAffected(): boolean {
+    return this.exportSettings?.workspace_general_settings?.reimbursable_expenses_object !&#x3D;&#x3D; ReimbursableExpensesObject.BILL &amp;&amp; this.exportSettingsForm.value.reimbursableExportType  &#x3D;&#x3D;&#x3D; ReimbursableExpensesObject.BILL;
+  }
+
+  private advancedSettingAffected(): boolean {
+    if (this.updateExportSettings() &amp;&amp; (this.singleItemizedJournalEntryAffected() || this.paymentsSyncAffected())) {
+      return true;
+    }
+
+    return false;
+  }
+
+  private replaceContentBasedOnConfiguration(updatedConfiguration: string, existingConfiguration: string, exportType: &#x27;reimbursable&#x27; | &#x27;credit card&#x27;): string {
+    const configurationUpdate &#x3D; &#x60;You have changed the export type of $exportType expense from &lt;b&gt;$existingExportType&lt;/b&gt; to &lt;b&gt;$updatedExportType&lt;/b&gt;,
+    which would impact a few configurations in the &lt;b&gt;Advanced settings&lt;/b&gt;. &lt;br&gt;&lt;br&gt;Please revisit the &lt;b&gt;Advanced settings&lt;/b&gt; to check and enable the
+    features that could help customize and automate your integration workflows.&#x60;;
+
+    const newConfiguration &#x3D; &#x60;You have &lt;b&gt;selected a new export type&lt;/b&gt; for the $exportType expense, which would impact a few configurations
+      in the &lt;b&gt;Advanced settings&lt;/b&gt;. &lt;br&gt;&lt;br&gt;Please revisit the &lt;b&gt;Advanced settings&lt;/b&gt; to check and enable the features that could help customize and
+      automate your integration workflows.&#x60;;
+
+    if (updatedConfiguration !&#x3D;&#x3D; &#x27;None&#x27; &amp;&amp; existingConfiguration !&#x3D;&#x3D; &#x27;None&#x27;) {
+      return configurationUpdate.replace(&#x27;$exportType&#x27;, exportType).replace(&#x27;$existingExportType&#x27;, existingConfiguration.toLowerCase().replace(/^\w/, (c: string) &#x3D;&gt; c.toUpperCase())).replace(&#x27;$updatedExportType&#x27;, updatedConfiguration.toLowerCase().replace(/^\w/, (c: string) &#x3D;&gt; c.toUpperCase()));
+    }
+
+    return newConfiguration.replace(&#x27;$exportType&#x27;, exportType);
+  }
+
+  private constructWarningMessage(): string {
+    let content: string &#x3D; &#x27;&#x27;;
+    const existingReimbursableExportType &#x3D; this.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? this.exportSettings.workspace_general_settings.reimbursable_expenses_object : &#x27;None&#x27;;
+    const existingCorporateCardExportType &#x3D; this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object ? this.exportSettings.workspace_general_settings.corporate_credit_card_expenses_object : &#x27;None&#x27;;
+    const updatedReimbursableExportType &#x3D; this.exportSettingsForm.value.reimbursableExportType ? this.exportSettingsForm.value.reimbursableExportType : &#x27;None&#x27;;
+    const updatedCorporateCardExportType &#x3D; this.exportSettingsForm.value.creditCardExportType ? this.exportSettingsForm.value.creditCardExportType : &#x27;None&#x27;;
+
+    if (this.singleItemizedJournalEntryAffected()) {
+      if (updatedReimbursableExportType !&#x3D;&#x3D; existingReimbursableExportType) {
+        content &#x3D; this.replaceContentBasedOnConfiguration(updatedReimbursableExportType, existingReimbursableExportType, &#x27;reimbursable&#x27;);
+      } else if (existingCorporateCardExportType !&#x3D;&#x3D; updatedCorporateCardExportType) {
+        content &#x3D; this.replaceContentBasedOnConfiguration(updatedCorporateCardExportType, existingCorporateCardExportType, &#x27;credit card&#x27;);
+      }
+    }
+
+    if (!this.singleItemizedJournalEntryAffected() &amp;&amp; this.paymentsSyncAffected()) {
+      content &#x3D; this.replaceContentBasedOnConfiguration(updatedReimbursableExportType, existingReimbursableExportType, &#x27;reimbursable&#x27;);
+    }
+
+    return content;
+  }
+
+  private showConfirmationDialog(): void {
+    const content &#x3D; this.constructWarningMessage();
+
+    const data: ConfirmationDialog &#x3D; {
+      title: &#x27;Change in Configuration&#x27;,
+      contents: &#x60;${content}&lt;br&gt;&lt;br&gt;Would you like to continue?&#x60;,
+      primaryCtaText: &#x27;Continue&#x27;
+    };
+
+    const dialogRef &#x3D; this.dialog.open(ConfirmationDialogComponent, {
+      width: &#x27;551px&#x27;,
+      data: data
+    });
+
+    dialogRef.afterClosed().subscribe((ctaClicked) &#x3D;&gt; {
+      if (ctaClicked) {
+        this.constructPayloadAndSave();
+      }
+    });
+  }
+
+  private getPhase(): ProgressPhase {
+    return this.isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING;
+  }
+
+  private trackSessionTime(eventState: &#x27;success&#x27; | &#x27;navigated&#x27;): void {
+    const differenceInMs &#x3D; new Date().getTime() - this.sessionStartTime.getTime();
+
+    this.timeSpentEventRecorded &#x3D; true;
+    this.trackingService.trackTimeSpent(OnboardingStep.EXPORT_SETTINGS, {phase: this.getPhase(), durationInSeconds: Math.floor(differenceInMs / 1000), eventState: eventState});
+  }
+
+  private constructPayloadAndSave(): void {
+    this.saveInProgress &#x3D; true;
+    const exportSettingPayload &#x3D; ExportSettingModel.constructPayload(this.exportSettingsForm);
+
+    this.exportSettingService.postExportSettings(exportSettingPayload).subscribe((response: ExportSettingGet) &#x3D;&gt; {
+      if (this.workspaceService.getOnboardingState() &#x3D;&#x3D;&#x3D; OnboardingState.EXPORT_SETTINGS) {
+        this.trackingService.onOnboardingStepCompletion(OnboardingStep.EXPORT_SETTINGS, 3, exportSettingPayload);
+      } else {
+        this.trackingService.onUpdateEvent(
+          UpdateEvent.EXPORT_SETTINGS,
+          {
+            phase: this.getPhase(),
+            oldState: this.exportSettings,
+            newState: response
+          }
+        );
+      }
+
+      this.saveInProgress &#x3D; false;
+      this.snackBar.open(&#x27;Export settings saved successfully&#x27;);
+      this.trackSessionTime(&#x27;success&#x27;);
+      if (this.isOnboarding) {
+        this.workspaceService.setOnboardingState(OnboardingState.IMPORT_SETTINGS);
+        this.router.navigate([&#x60;/workspaces/onboarding/import_settings&#x60;]);
+      } else if (this.advancedSettingAffected()) {
+        this.router.navigate([&#x27;/workspaces/main/configuration/advanced_settings&#x27;]);
+      } else {
+        this.mappingService.refreshMappingPages();
+        this.router.navigate([&#x27;/workspaces/main/dashboard&#x27;]);
+      }
+    }, () &#x3D;&gt; {
+      this.saveInProgress &#x3D; false;
+      this.snackBar.open(&#x27;Error saving export settings, please try again later&#x27;);
+      });
+  }
+
+  save(): void {
+    if (this.exportSettingsForm.valid &amp;&amp; !this.saveInProgress) {
+      if (this.advancedSettingAffected()) {
+        // Show warning dialog
+        this.showConfirmationDialog();
+        return;
+      }
+      this.constructPayloadAndSave();
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (!this.timeSpentEventRecorded) {
+      this.trackSessionTime(&#x27;navigated&#x27;);
+    }
+  }
+
+  ngOnInit(): void {
+    this.getSettingsAndSetupForm();
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;center center&quot; class&#x3D;&quot;configuration--section&quot; [ngClass]&#x3D;&quot;[isOnboarding ? &#x27;configuration--onboarding-section&#x27; : &#x27;&#x27;, !isOnboarding ? &#x27;configuration--post-onboarding-section&#x27;: &#x27;&#x27;]&quot;&gt;
+  &lt;app-loader [ngClass]&#x3D;&quot;{&#x27;loader-main&#x27;: !isOnboarding}&quot; [phase]&#x3D;&quot;&#x27;pre_onboarding&#x27;&quot; *ngIf&#x3D;&quot;isLoading&quot;&gt;&lt;/app-loader&gt;
+  &lt;div *ngIf&#x3D;&quot;!isLoading&quot; class&#x3D;&quot;configuration--contents&quot;&gt;
+    &lt;app-configuration-step-header-section [showSyncButton]&#x3D;&quot;isOnboarding&quot; [phase]&#x3D;&quot;isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING&quot;&gt;&lt;/app-configuration-step-header-section&gt;
+    &lt;form [formGroup]&#x3D;&quot;exportSettingsForm&quot;&gt;
+      &lt;app-configuration-select-field
+        [form]&#x3D;&quot;exportSettingsForm&quot;
+        [options]&#x3D;&quot;expenseStateOptions&quot;
+        [isFieldMandatory]&#x3D;&quot;true&quot;
+        [mandatoryErrorListName]&#x3D;&quot;&#x27;expense state&#x27;&quot;
+        [iconPath]&#x3D;&quot;&#x27;assets/images/svgs/actions/question-mark.svg&#x27;&quot;
+        [label]&#x3D;&quot;&#x27;At which state should the expenses be ready to export from Fyle?&#x27;&quot;
+        [subLabel]&#x3D;&quot;&#x27;You could choose to export expenses when they have been approved and are awaiting payment clearance, OR simply when they have been paid out.&#x27;&quot;
+        [placeholder]&#x3D;&quot;&#x27;Select expense state&#x27;&quot;
+        [formControllerName]&#x3D;&quot;&#x27;expenseState&#x27;&quot;
+        &gt;
+      &lt;/app-configuration-select-field&gt;
+
+      &lt;app-configuration-toggle-field
+        [form]&#x3D;&quot;exportSettingsForm&quot;
+        [label]&#x3D;&quot;&#x27;Export Reimbursable Expenses&#x27;&quot;
+        [subLabel]&#x3D;&quot;&#x27;Enable this to export the reimbursable expenses from Fyle. If not enabled, any &lt;span class&#x3D;bold&gt;out-of-pocket&lt;/span&gt; expenses will not be exported to QBO.&#x27;&quot;
+        [formControllerName]&#x3D;&quot;&#x27;reimbursableExpense&#x27;&quot;
+      &gt;
+      &lt;/app-configuration-toggle-field&gt;
+
+      &lt;div *ngIf&#x3D;&quot;exportSettingsForm.value.reimbursableExpense&quot;&gt;
+        &lt;app-configuration-select-field
+          [form]&#x3D;&quot;exportSettingsForm&quot;
+          [options]&#x3D;&quot;reimbursableExportTypes&quot;
+          [isFieldMandatory]&#x3D;&quot;true&quot;
+          [mandatoryErrorListName]&#x3D;&quot;&#x27;expense export type&#x27;&quot;
+          [iconPath]&#x3D;&quot;&#x27;assets/images/svgs/general/expense.svg&#x27;&quot;
+          [label]&#x3D;&quot;&#x27;How should the expense be exported?&#x27;&quot;
+          [subLabel]&#x3D;&quot;&#x27;Choose the type of transaction in Quickbooks Online to export your Fyle expenses.&#x27;&quot;
+          [placeholder]&#x3D;&quot;&#x27;Select expense export type&#x27;&quot;
+          [formControllerName]&#x3D;&quot;&#x27;reimbursableExportType&#x27;&quot;
+          [phase]&#x3D;&quot;isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING&quot;
+          &gt;
+        &lt;/app-configuration-select-field&gt;
+
+        &lt;div *ngIf&#x3D;&quot;showBankAccountField()&quot;&gt;
+          &lt;app-configuration-select-field
+            [form]&#x3D;&quot;exportSettingsForm&quot;
+            [qboAttributes]&#x3D;&quot;bankAccounts&quot;
+            [isFieldMandatory]&#x3D;&quot;true&quot;
+            [mandatoryErrorListName]&#x3D;&quot;&#x27;bank account&#x27;&quot;
+            [label]&#x3D;&quot;&#x27;To which Bank Account should the &#x27; + getExportType(exportSettingsForm.value.reimbursableExportType) + &#x27; be posted to?&#x27;&quot;
+            [subLabel]&#x3D;&quot;&#x27;All the offset entry in the Journal will be posted to the selected Bank account&#x27;&quot;
+            [placeholder]&#x3D;&quot;&#x27;Select Bank Account&#x27;&quot;
+            [formControllerName]&#x3D;&quot;&#x27;bankAccount&#x27;&quot;
+            &gt;
+          &lt;/app-configuration-select-field&gt;
+        &lt;/div&gt;
+
+        &lt;div *ngIf&#x3D;&quot;showExpenseAccountField()&quot;&gt;
+          &lt;app-configuration-select-field
+            [form]&#x3D;&quot;exportSettingsForm&quot;
+            [qboAttributes]&#x3D;&quot;expenseAccounts&quot;
+            [isFieldMandatory]&#x3D;&quot;true&quot;
+            [mandatoryErrorListName]&#x3D;&quot;&#x27;expense account&#x27;&quot;
+            [label]&#x3D;&quot;&#x27;To which Expense Account should the &#x27; + getExportType(exportSettingsForm.value.reimbursableExportType) + &#x27; be posted to?&#x27;&quot;
+            [subLabel]&#x3D;&quot;&#x27;The expenses exported will be added to the selected Expense Payment Account&#x27;&quot;
+            [placeholder]&#x3D;&quot;&#x27;Select Expense Account&#x27;&quot;
+            [formControllerName]&#x3D;&quot;&#x27;qboExpenseAccount&#x27;&quot;
+            &gt;
+          &lt;/app-configuration-select-field&gt;
+        &lt;/div&gt;
+
+        &lt;div *ngIf&#x3D;&quot;showReimbursableAccountsPayableField()&quot;&gt;
+          &lt;app-configuration-select-field
+            [form]&#x3D;&quot;exportSettingsForm&quot;
+            [qboAttributes]&#x3D;&quot;accountsPayables&quot;
+            [isFieldMandatory]&#x3D;&quot;true&quot;
+            [mandatoryErrorListName]&#x3D;&quot;&#x27;accounts payable&#x27;&quot;
+            [label]&#x3D;&quot;&#x27;To which Accounts Payable account should the Bill be posted to?&#x27;&quot;
+            [subLabel]&#x3D;&quot;&#x27;The integration will post the offset credit entry in Bill to the selected Accounts Payable Account.&#x27;&quot;
+            [placeholder]&#x3D;&quot;&#x27;Select accounts payable&#x27;&quot;
+            [formControllerName]&#x3D;&quot;&#x27;accountsPayable&#x27;&quot;
+            &gt;
+          &lt;/app-configuration-select-field&gt;
+        &lt;/div&gt;
+
+        &lt;div *ngIf&#x3D;&quot;exportSettingsForm.value.reimbursableExportType&quot;&gt;
+          &lt;app-configuration-select-field
+            [form]&#x3D;&quot;exportSettingsForm&quot;
+            [options]&#x3D;&quot;expenseGroupingFieldOptions&quot;
+            [isFieldMandatory]&#x3D;&quot;true&quot;
+            [mandatoryErrorListName]&#x3D;&quot;&#x27;expense export grouping&#x27;&quot;
+            [iconPath]&#x3D;&quot;&#x27;assets/images/svgs/general/tabs.svg&#x27;&quot;
+            [label]&#x3D;&quot;generateGroupingLabel(&#x27;reimbursable&#x27;)&quot;
+            [subLabel]&#x3D;&quot;&#x27;Grouping reflects how the expense entries of a &#x27; + getExportType(exportSettingsForm.value.reimbursableExportType) + &#x27; are posted in QBO. For example, grouping by payment exports all expenses within a Fyle payment queue as one record.&#x27;&quot;
+            [placeholder]&#x3D;&quot;&#x27;Select expense export grouping&#x27;&quot;
+            [formControllerName]&#x3D;&quot;&#x27;reimbursableExportGroup&#x27;&quot;
+            &gt;
+          &lt;/app-configuration-select-field&gt;
+        &lt;/div&gt;
+
+        &lt;div *ngIf&#x3D;&quot;exportSettingsForm.value.reimbursableExportType&quot;&gt;
+          &lt;app-configuration-select-field
+            [form]&#x3D;&quot;exportSettingsForm&quot;
+            [options]&#x3D;&quot;reimbursableExpenseGroupingDateOptions&quot;
+            [isFieldMandatory]&#x3D;&quot;true&quot;
+            [mandatoryErrorListName]&#x3D;&quot;&#x27;date&#x27;&quot;
+            [iconPath]&#x3D;&quot;&#x27;assets/images/svgs/general/calendar.svg&#x27;&quot;
+            [label]&#x3D;&quot;&#x27;Set the &#x27; + getExportType(exportSettingsForm.value.reimbursableExportType) + &#x27; date as&#x27;&quot;
+            [subLabel]&#x3D;&quot;&#x27;The selected date will reflect in expenses exported to QBO&#x27;&quot;
+            [placeholder]&#x3D;&quot;&#x27;Select the date of the &#x27; + getExportType(exportSettingsForm.value.reimbursableExportType)&quot;
+            [formControllerName]&#x3D;&quot;&#x27;reimbursableExportDate&#x27;&quot;
+            &gt;
+          &lt;/app-configuration-select-field&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;app-configuration-toggle-field
+        [form]&#x3D;&quot;exportSettingsForm&quot;
+        [label]&#x3D;&quot;&#x27;Export Corporate Card Expenses&#x27;&quot;
+        [subLabel]&#x3D;&quot;&#x27;Enable this to export the corporate card expenses from Fyle. If not enabled, any expenses &lt;span class&#x3D;bold&gt;Paid by Corporate Card&lt;/span&gt; will not be exported to QBO.&#x27;&quot;
+        [formControllerName]&#x3D;&quot;&#x27;creditCardExpense&#x27;&quot;
+      &gt;
+      &lt;/app-configuration-toggle-field&gt;
+
+      &lt;div *ngIf&#x3D;&quot;exportSettingsForm.value.creditCardExpense&quot;&gt;
+        &lt;app-configuration-select-field
+          [form]&#x3D;&quot;exportSettingsForm&quot;
+          [options]&#x3D;&quot;creditCardExportTypes&quot;
+          [isFieldMandatory]&#x3D;&quot;true&quot;
+          [mandatoryErrorListName]&#x3D;&quot;&#x27;expense export type&#x27;&quot;
+          [iconPath]&#x3D;&quot;&#x27;assets/images/svgs/general/expense.svg&#x27;&quot;
+          [label]&#x3D;&quot;&#x27;How should the expense be exported?&#x27;&quot;
+          [subLabel]&#x3D;&quot;&#x27;Choose the type of transaction in Quickbooks Online to export your corporate card expense from Fyle.&#x27;&quot;
+          [placeholder]&#x3D;&quot;&#x27;Select expense export type&#x27;&quot;
+          [formControllerName]&#x3D;&quot;&#x27;creditCardExportType&#x27;&quot;
+          [phase]&#x3D;&quot;isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING&quot;
+          &gt;
+        &lt;/app-configuration-select-field&gt;
+
+        &lt;div *ngIf&#x3D;&quot;showCreditCardAccountField()&quot;&gt;
+          &lt;app-configuration-select-field
+            [form]&#x3D;&quot;exportSettingsForm&quot;
+            [qboAttributes]&#x3D;&quot;cccAccounts&quot;
+            [isFieldMandatory]&#x3D;&quot;true&quot;
+            [mandatoryErrorListName]&#x3D;&quot;&#x27;credit card account&#x27;&quot;
+            [label]&#x3D;&quot;&#x27;Set Default Credit Card Account as&#x27;&quot;
+            [subLabel]&#x3D;&quot;&#x27;Post all your company corporate card transactions to a default credit card account.&#x27;&quot;
+            [placeholder]&#x3D;&quot;&#x27;Select Default Credit Card Account&#x27;&quot;
+            [formControllerName]&#x3D;&quot;&#x27;defaultCCCAccount&#x27;&quot;
+            &gt;
+          &lt;/app-configuration-select-field&gt;
+
+        &lt;/div&gt;
+
+        &lt;div *ngIf&#x3D;&quot;showDebitCardAccountField()&quot;&gt;
+          &lt;app-configuration-select-field
+            [form]&#x3D;&quot;exportSettingsForm&quot;
+            [qboAttributes]&#x3D;&quot;bankAccounts&quot;
+            [isFieldMandatory]&#x3D;&quot;true&quot;
+            [mandatoryErrorListName]&#x3D;&quot;&#x27;debit card account&#x27;&quot;
+            [label]&#x3D;&quot;&#x27;Set Default Debit Card Account as&#x27;&quot;
+            [subLabel]&#x3D;&quot;&#x27;Post all your company debit card transactions to a default debit card account.&#x27;&quot;
+            [placeholder]&#x3D;&quot;&#x27;Select Default Debit Card Account&#x27;&quot;
+            [formControllerName]&#x3D;&quot;&#x27;defaultDebitCardAccount&#x27;&quot;
+            &gt;
+          &lt;/app-configuration-select-field&gt;
+
+        &lt;/div&gt;
+
+        &lt;div *ngIf&#x3D;&quot;showDefaultCreditCardVendorField()&quot;&gt;
+          &lt;app-configuration-select-field
+            [form]&#x3D;&quot;exportSettingsForm&quot;
+            [qboAttributes]&#x3D;&quot;vendors&quot;
+            [isFieldMandatory]&#x3D;&quot;true&quot;
+            [mandatoryErrorListName]&#x3D;&quot;&#x27;corporate card vendor&#x27;&quot;
+            [label]&#x3D;&quot;&#x27;Set default corporate Card Vendor as&#x27;&quot;
+            [subLabel]&#x3D;&quot;&#x27;The default vendor will apply to all corporate card transactions upon export.&#x27;&quot;
+            [placeholder]&#x3D;&quot;&#x27;Select default corporate card vendor&#x27;&quot;
+            [formControllerName]&#x3D;&quot;&#x27;defaultCreditCardVendor&#x27;&quot;
+            &gt;
+          &lt;/app-configuration-select-field&gt;
+
+        &lt;/div&gt;
+
+        &lt;div *ngIf&#x3D;&quot;showCCCAccountsPayableField() &amp;&amp; !showReimbursableAccountsPayableField()&quot;&gt;
+          &lt;app-configuration-select-field
+            [form]&#x3D;&quot;exportSettingsForm&quot;
+            [qboAttributes]&#x3D;&quot;accountsPayables&quot;
+            [isFieldMandatory]&#x3D;&quot;true&quot;
+            [mandatoryErrorListName]&#x3D;&quot;&#x27;accounts payable&#x27;&quot;
+            [label]&#x3D;&quot;&#x27;To which Accounts Payable account should the Bill be posted to?&#x27;&quot;
+            [subLabel]&#x3D;&quot;&#x27;The integration will post the offset credit entry in Bill to the selected Accounts Payable Account.&#x27;&quot;
+            [placeholder]&#x3D;&quot;&#x27;Select accounts payable&#x27;&quot;
+            [formControllerName]&#x3D;&quot;&#x27;accountsPayable&#x27;&quot;
+            &gt;
+          &lt;/app-configuration-select-field&gt;
+        &lt;/div&gt;
+
+        &lt;div *ngIf&#x3D;&quot;exportSettingsForm.value.creditCardExportType&quot;&gt;
+          &lt;app-configuration-select-field
+            [form]&#x3D;&quot;exportSettingsForm&quot;
+            [options]&#x3D;&quot;expenseGroupingFieldOptions&quot;
+            [isFieldMandatory]&#x3D;&quot;true&quot;
+            [mandatoryErrorListName]&#x3D;&quot;&#x27;expense export grouping&#x27;&quot;
+            [iconPath]&#x3D;&quot;&#x27;assets/images/svgs/general/tabs.svg&#x27;&quot;
+            [label]&#x3D;&quot;generateGroupingLabel(&#x27;credit card&#x27;)&quot;
+            [subLabel]&#x3D;&quot;&#x27;Grouping reflects how the expense entries of a &#x27; + getExportType(exportSettingsForm.value.creditCardExportType) + &#x27; are posted in QBO. For example, grouping by payment exports all expenses within a Fyle payment queue as one consolidated record.&#x27;&quot;
+            [placeholder]&#x3D;&quot;&#x27;Select expense export grouping&#x27;&quot;
+            [formControllerName]&#x3D;&quot;&#x27;creditCardExportGroup&#x27;&quot;
+            &gt;
+          &lt;/app-configuration-select-field&gt;
+        &lt;/div&gt;
+
+        &lt;div *ngIf&#x3D;&quot;exportSettingsForm.value.creditCardExportType&quot;&gt;
+          &lt;app-configuration-select-field
+            [form]&#x3D;&quot;exportSettingsForm&quot;
+            [options]&#x3D;&quot;cccExpenseGroupingDateOptions&quot;
+            [isFieldMandatory]&#x3D;&quot;true&quot;
+            [mandatoryErrorListName]&#x3D;&quot;&#x27;date&#x27;&quot;
+            [iconPath]&#x3D;&quot;&#x27;assets/images/svgs/general/calendar.svg&#x27;&quot;
+            [label]&#x3D;&quot;&#x27;Set the &#x27; + getExportType(exportSettingsForm.value.creditCardExportType) + &#x27; date as&#x27;&quot;
+            [subLabel]&#x3D;&quot;&#x27;The selected date will reflect in the corporate card expenses exported to QBO.&#x27;&quot;
+            [placeholder]&#x3D;&quot;&#x27;Select the date of the &#x27; + getExportType(exportSettingsForm.value.creditCardExportType)&quot;
+            [formControllerName]&#x3D;&quot;&#x27;creditCardExportDate&#x27;&quot;
+            &gt;
+          &lt;/app-configuration-select-field&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;app-configuration-step-footer-section [ctaText]&#x3D;&quot;!saveInProgress ? (isOnboarding ? ConfigurationCtaText.SAVE_AND_CONTINUE : ConfigurationCtaText.SAVE) : ConfigurationCtaText.SAVING&quot; [showBackButton]&#x3D;&quot;isOnboarding&quot; [isButtonDisabled]&#x3D;&quot;!exportSettingsForm.valid || saveInProgress&quot; (navigateToPreviousStep)&#x3D;&quot;navigateToPreviousStep()&quot; (save)&#x3D;&quot;save()&quot;&gt;&lt;/app-configuration-step-footer-section&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;app-onboarding-footer *ngIf&#x3D;&quot;isOnboarding &amp;&amp; !isLoading&quot;&gt;&lt;/app-onboarding-footer&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./export-settings.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div fxLayout="row" fxLayoutAlign="center center" class="configuration--section" [ngClass]="[isOnboarding ? \'configuration--onboarding-section\' : \'\', !isOnboarding ? \'configuration--post-onboarding-section\': \'\']">  <app-loader [ngClass]="{\'loader-main\': !isOnboarding}" [phase]="\'pre_onboarding\'" *ngIf="isLoading"></app-loader>  <div *ngIf="!isLoading" class="configuration--contents">    <app-configuration-step-header-section [showSyncButton]="isOnboarding" [phase]="isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING"></app-configuration-step-header-section>    <form [formGroup]="exportSettingsForm">      <app-configuration-select-field        [form]="exportSettingsForm"        [options]="expenseStateOptions"        [isFieldMandatory]="true"        [mandatoryErrorListName]="\'expense state\'"        [iconPath]="\'assets/images/svgs/actions/question-mark.svg\'"        [label]="\'At which state should the expenses be ready to export from Fyle?\'"        [subLabel]="\'You could choose to export expenses when they have been approved and are awaiting payment clearance, OR simply when they have been paid out.\'"        [placeholder]="\'Select expense state\'"        [formControllerName]="\'expenseState\'"        >      </app-configuration-select-field>      <app-configuration-toggle-field        [form]="exportSettingsForm"        [label]="\'Export Reimbursable Expenses\'"        [subLabel]="\'Enable this to export the reimbursable expenses from Fyle. If not enabled, any <span class=bold>out-of-pocket</span> expenses will not be exported to QBO.\'"        [formControllerName]="\'reimbursableExpense\'"      >      </app-configuration-toggle-field>      <div *ngIf="exportSettingsForm.value.reimbursableExpense">        <app-configuration-select-field          [form]="exportSettingsForm"          [options]="reimbursableExportTypes"          [isFieldMandatory]="true"          [mandatoryErrorListName]="\'expense export type\'"          [iconPath]="\'assets/images/svgs/general/expense.svg\'"          [label]="\'How should the expense be exported?\'"          [subLabel]="\'Choose the type of transaction in Quickbooks Online to export your Fyle expenses.\'"          [placeholder]="\'Select expense export type\'"          [formControllerName]="\'reimbursableExportType\'"          [phase]="isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING"          >        </app-configuration-select-field>        <div *ngIf="showBankAccountField()">          <app-configuration-select-field            [form]="exportSettingsForm"            [qboAttributes]="bankAccounts"            [isFieldMandatory]="true"            [mandatoryErrorListName]="\'bank account\'"            [label]="\'To which Bank Account should the \' + getExportType(exportSettingsForm.value.reimbursableExportType) + \' be posted to?\'"            [subLabel]="\'All the offset entry in the Journal will be posted to the selected Bank account\'"            [placeholder]="\'Select Bank Account\'"            [formControllerName]="\'bankAccount\'"            >          </app-configuration-select-field>        </div>        <div *ngIf="showExpenseAccountField()">          <app-configuration-select-field            [form]="exportSettingsForm"            [qboAttributes]="expenseAccounts"            [isFieldMandatory]="true"            [mandatoryErrorListName]="\'expense account\'"            [label]="\'To which Expense Account should the \' + getExportType(exportSettingsForm.value.reimbursableExportType) + \' be posted to?\'"            [subLabel]="\'The expenses exported will be added to the selected Expense Payment Account\'"            [placeholder]="\'Select Expense Account\'"            [formControllerName]="\'qboExpenseAccount\'"            >          </app-configuration-select-field>        </div>        <div *ngIf="showReimbursableAccountsPayableField()">          <app-configuration-select-field            [form]="exportSettingsForm"            [qboAttributes]="accountsPayables"            [isFieldMandatory]="true"            [mandatoryErrorListName]="\'accounts payable\'"            [label]="\'To which Accounts Payable account should the Bill be posted to?\'"            [subLabel]="\'The integration will post the offset credit entry in Bill to the selected Accounts Payable Account.\'"            [placeholder]="\'Select accounts payable\'"            [formControllerName]="\'accountsPayable\'"            >          </app-configuration-select-field>        </div>        <div *ngIf="exportSettingsForm.value.reimbursableExportType">          <app-configuration-select-field            [form]="exportSettingsForm"            [options]="expenseGroupingFieldOptions"            [isFieldMandatory]="true"            [mandatoryErrorListName]="\'expense export grouping\'"            [iconPath]="\'assets/images/svgs/general/tabs.svg\'"            [label]="generateGroupingLabel(\'reimbursable\')"            [subLabel]="\'Grouping reflects how the expense entries of a \' + getExportType(exportSettingsForm.value.reimbursableExportType) + \' are posted in QBO. For example, grouping by payment exports all expenses within a Fyle payment queue as one record.\'"            [placeholder]="\'Select expense export grouping\'"            [formControllerName]="\'reimbursableExportGroup\'"            >          </app-configuration-select-field>        </div>        <div *ngIf="exportSettingsForm.value.reimbursableExportType">          <app-configuration-select-field            [form]="exportSettingsForm"            [options]="reimbursableExpenseGroupingDateOptions"            [isFieldMandatory]="true"            [mandatoryErrorListName]="\'date\'"            [iconPath]="\'assets/images/svgs/general/calendar.svg\'"            [label]="\'Set the \' + getExportType(exportSettingsForm.value.reimbursableExportType) + \' date as\'"            [subLabel]="\'The selected date will reflect in expenses exported to QBO\'"            [placeholder]="\'Select the date of the \' + getExportType(exportSettingsForm.value.reimbursableExportType)"            [formControllerName]="\'reimbursableExportDate\'"            >          </app-configuration-select-field>        </div>      </div>      <app-configuration-toggle-field        [form]="exportSettingsForm"        [label]="\'Export Corporate Card Expenses\'"        [subLabel]="\'Enable this to export the corporate card expenses from Fyle. If not enabled, any expenses <span class=bold>Paid by Corporate Card</span> will not be exported to QBO.\'"        [formControllerName]="\'creditCardExpense\'"      >      </app-configuration-toggle-field>      <div *ngIf="exportSettingsForm.value.creditCardExpense">        <app-configuration-select-field          [form]="exportSettingsForm"          [options]="creditCardExportTypes"          [isFieldMandatory]="true"          [mandatoryErrorListName]="\'expense export type\'"          [iconPath]="\'assets/images/svgs/general/expense.svg\'"          [label]="\'How should the expense be exported?\'"          [subLabel]="\'Choose the type of transaction in Quickbooks Online to export your corporate card expense from Fyle.\'"          [placeholder]="\'Select expense export type\'"          [formControllerName]="\'creditCardExportType\'"          [phase]="isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING"          >        </app-configuration-select-field>        <div *ngIf="showCreditCardAccountField()">          <app-configuration-select-field            [form]="exportSettingsForm"            [qboAttributes]="cccAccounts"            [isFieldMandatory]="true"            [mandatoryErrorListName]="\'credit card account\'"            [label]="\'Set Default Credit Card Account as\'"            [subLabel]="\'Post all your company corporate card transactions to a default credit card account.\'"            [placeholder]="\'Select Default Credit Card Account\'"            [formControllerName]="\'defaultCCCAccount\'"            >          </app-configuration-select-field>        </div>        <div *ngIf="showDebitCardAccountField()">          <app-configuration-select-field            [form]="exportSettingsForm"            [qboAttributes]="bankAccounts"            [isFieldMandatory]="true"            [mandatoryErrorListName]="\'debit card account\'"            [label]="\'Set Default Debit Card Account as\'"            [subLabel]="\'Post all your company debit card transactions to a default debit card account.\'"            [placeholder]="\'Select Default Debit Card Account\'"            [formControllerName]="\'defaultDebitCardAccount\'"            >          </app-configuration-select-field>        </div>        <div *ngIf="showDefaultCreditCardVendorField()">          <app-configuration-select-field            [form]="exportSettingsForm"            [qboAttributes]="vendors"            [isFieldMandatory]="true"            [mandatoryErrorListName]="\'corporate card vendor\'"            [label]="\'Set default corporate Card Vendor as\'"            [subLabel]="\'The default vendor will apply to all corporate card transactions upon export.\'"            [placeholder]="\'Select default corporate card vendor\'"            [formControllerName]="\'defaultCreditCardVendor\'"            >          </app-configuration-select-field>        </div>        <div *ngIf="showCCCAccountsPayableField() && !showReimbursableAccountsPayableField()">          <app-configuration-select-field            [form]="exportSettingsForm"            [qboAttributes]="accountsPayables"            [isFieldMandatory]="true"            [mandatoryErrorListName]="\'accounts payable\'"            [label]="\'To which Accounts Payable account should the Bill be posted to?\'"            [subLabel]="\'The integration will post the offset credit entry in Bill to the selected Accounts Payable Account.\'"            [placeholder]="\'Select accounts payable\'"            [formControllerName]="\'accountsPayable\'"            >          </app-configuration-select-field>        </div>        <div *ngIf="exportSettingsForm.value.creditCardExportType">          <app-configuration-select-field            [form]="exportSettingsForm"            [options]="expenseGroupingFieldOptions"            [isFieldMandatory]="true"            [mandatoryErrorListName]="\'expense export grouping\'"            [iconPath]="\'assets/images/svgs/general/tabs.svg\'"            [label]="generateGroupingLabel(\'credit card\')"            [subLabel]="\'Grouping reflects how the expense entries of a \' + getExportType(exportSettingsForm.value.creditCardExportType) + \' are posted in QBO. For example, grouping by payment exports all expenses within a Fyle payment queue as one consolidated record.\'"            [placeholder]="\'Select expense export grouping\'"            [formControllerName]="\'creditCardExportGroup\'"            >          </app-configuration-select-field>        </div>        <div *ngIf="exportSettingsForm.value.creditCardExportType">          <app-configuration-select-field            [form]="exportSettingsForm"            [options]="cccExpenseGroupingDateOptions"            [isFieldMandatory]="true"            [mandatoryErrorListName]="\'date\'"            [iconPath]="\'assets/images/svgs/general/calendar.svg\'"            [label]="\'Set the \' + getExportType(exportSettingsForm.value.creditCardExportType) + \' date as\'"            [subLabel]="\'The selected date will reflect in the corporate card expenses exported to QBO.\'"            [placeholder]="\'Select the date of the \' + getExportType(exportSettingsForm.value.creditCardExportType)"            [formControllerName]="\'creditCardExportDate\'"            >          </app-configuration-select-field>        </div>      </div>      <app-configuration-step-footer-section [ctaText]="!saveInProgress ? (isOnboarding ? ConfigurationCtaText.SAVE_AND_CONTINUE : ConfigurationCtaText.SAVE) : ConfigurationCtaText.SAVING" [showBackButton]="isOnboarding" [isButtonDisabled]="!exportSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>    </form>  </div></div><app-onboarding-footer *ngIf="isOnboarding && !isLoading"></app-onboarding-footer></div>'
+    var COMPONENTS = [{'name': 'AddEmailDialogComponent', 'selector': 'app-add-email-dialog'},{'name': 'AdvancedSettingsComponent', 'selector': 'app-advanced-settings'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'ConfigurationAdvancedSettingsComponent', 'selector': 'app-configuration-advanced-settings'},{'name': 'ConfigurationComponent', 'selector': 'app-configuration'},{'name': 'ConfigurationEmployeeSettingsComponent', 'selector': 'app-configuration-employee-settings'},{'name': 'ConfigurationExportSettingsComponent', 'selector': 'app-configuration-export-settings'},{'name': 'ConfigurationImportSettingsComponent', 'selector': 'app-configuration-import-settings'},{'name': 'ConfigurationSelectFieldComponent', 'selector': 'app-configuration-select-field'},{'name': 'ConfigurationStepFooterSectionComponent', 'selector': 'app-configuration-step-footer-section'},{'name': 'ConfigurationStepHeaderSectionComponent', 'selector': 'app-configuration-step-header-section'},{'name': 'ConfigurationToggleFieldComponent', 'selector': 'app-configuration-toggle-field'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'CustomMappingComponent', 'selector': 'app-custom-mapping'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardExportLogDialogComponent', 'selector': 'app-dashboard-export-log-dialog'},{'name': 'DashboardHeaderSectionComponent', 'selector': 'app-dashboard-header-section'},{'name': 'DashboardQboErrorDialogComponent', 'selector': 'app-dashboard-qbo-error-dialog'},{'name': 'DashboardResolveMappingErrorDialogComponent', 'selector': 'app-dashboard-resolve-mapping-error-dialog'},{'name': 'EmailMultiSelectFieldComponent', 'selector': 'app-email-multi-select-field'},{'name': 'EmployeeMappingComponent', 'selector': 'app-employee-mapping'},{'name': 'EmployeeSettingsComponent', 'selector': 'app-employee-settings'},{'name': 'ExpenseFieldCreationDialogComponent', 'selector': 'app-expense-field-creation-dialog'},{'name': 'ExportLogChildDialogComponent', 'selector': 'app-export-log-child-dialog'},{'name': 'ExportLogChildTableComponent', 'selector': 'app-export-log-child-table'},{'name': 'ExportLogComponent', 'selector': 'app-export-log'},{'name': 'ExportLogTableComponent', 'selector': 'app-export-log-table'},{'name': 'ExportSettingsComponent', 'selector': 'app-export-settings'},{'name': 'FyleCallbackComponent', 'selector': 'app-fyle-callback'},{'name': 'GenericMappingComponent', 'selector': 'app-generic-mapping'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImportSettingsComponent', 'selector': 'app-import-settings'},{'name': 'IntegrationComponent', 'selector': 'app-integration'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'MandatoryErrorMessageComponent', 'selector': 'app-mandatory-error-message'},{'name': 'MandatoryFieldComponent', 'selector': 'app-mandatory-field'},{'name': 'MappingComponent', 'selector': 'app-mapping'},{'name': 'MappingFilterComponent', 'selector': 'app-mapping-filter'},{'name': 'MappingHeaderSectionComponent', 'selector': 'app-mapping-header-section'},{'name': 'MappingTableComponent', 'selector': 'app-mapping-table'},{'name': 'OnboardingAdvancedSettingsComponent', 'selector': 'app-onboarding-advanced-settings'},{'name': 'OnboardingComponent', 'selector': 'app-onboarding'},{'name': 'OnboardingDoneComponent', 'selector': 'app-onboarding-done'},{'name': 'OnboardingEmployeeSettingsComponent', 'selector': 'app-onboarding-employee-settings'},{'name': 'OnboardingExportSettingsComponent', 'selector': 'app-onboarding-export-settings'},{'name': 'OnboardingFooterComponent', 'selector': 'app-onboarding-footer'},{'name': 'OnboardingImportSettingsComponent', 'selector': 'app-onboarding-import-settings'},{'name': 'OnboardingLandingComponent', 'selector': 'app-onboarding-landing'},{'name': 'OnboardingQboConnectorComponent', 'selector': 'app-onboarding-qbo-connector'},{'name': 'OnboardingStepperComponent', 'selector': 'app-onboarding-stepper'},{'name': 'PaginatorComponent', 'selector': 'app-paginator'},{'name': 'PreviewDialogComponent', 'selector': 'app-preview-dialog'},{'name': 'QboCallbackComponent', 'selector': 'app-qbo-callback'},{'name': 'QboConnectorComponent', 'selector': 'app-qbo-connector'},{'name': 'SharedLoginComponent', 'selector': 'app-shared-login'},{'name': 'SimpleTextSearchComponent', 'selector': 'app-simple-text-search'},{'name': 'ZeroStateWithIllustrationComponent', 'selector': 'app-zero-state-with-illustration'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ExportSettingsComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ExportSettingsComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

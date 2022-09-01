@@ -1,0 +1,1825 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fyle-qbo-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">fyle-qbo-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  EmployeeMappingComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-employee-mapping</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./employee-mapping.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./employee-mapping.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#autoMapEmployee" >autoMapEmployee</a>
+                            </li>
+                            <li>
+                                <a href="#employeeFieldMapping" >employeeFieldMapping</a>
+                            </li>
+                            <li>
+                                <a href="#emptyMapping" >emptyMapping</a>
+                            </li>
+                            <li>
+                                <a href="#filterOptions" >filterOptions</a>
+                            </li>
+                            <li>
+                                <a href="#form" >form</a>
+                            </li>
+                            <li>
+                                <a href="#fyleQboMappingFormArray" >fyleQboMappingFormArray</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#helperService" >helperService</a>
+                            </li>
+                            <li>
+                                <a href="#isLoading" >isLoading</a>
+                            </li>
+                            <li>
+                                <a href="#limit" >limit</a>
+                            </li>
+                            <li>
+                                <a href="#mappingForm" >mappingForm</a>
+                            </li>
+                            <li>
+                                <a href="#mappings" >mappings</a>
+                            </li>
+                            <li>
+                                <a href="#mappingStats" >mappingStats</a>
+                            </li>
+                            <li>
+                                <a href="#offset" >offset</a>
+                            </li>
+                            <li>
+                                <a href="#PaginatorPage" >PaginatorPage</a>
+                            </li>
+                            <li>
+                                <a href="#qboData" >qboData</a>
+                            </li>
+                            <li>
+                                <a href="#totalCardActive" >totalCardActive</a>
+                            </li>
+                            <li>
+                                <a href="#totalCount" >totalCount</a>
+                            </li>
+                            <li>
+                                <a href="#ZeroStatePage" >ZeroStatePage</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getMappings" >getMappings</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getMappingsAndSetupPage" >getMappingsAndSetupPage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getPaginator" >getPaginator</a>
+                            </li>
+                            <li>
+                                <a href="#mappingCardUpdateHandler" >mappingCardUpdateHandler</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#save" >save</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#searchByText" >searchByText</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setupForm" >setupForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setupFyleQboMappingFormArray" >setupFyleQboMappingFormArray</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, helperService: <a href="../injectables/HelperService.html" target="_self">HelperService</a>, mappingService: <a href="../injectables/MappingService.html" target="_self">MappingService</a>, paginatorService: <a href="../injectables/PaginatorService.html" target="_self">PaginatorService</a>, snackBar: MatSnackBar, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:56</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>helperService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/HelperService.html" target="_self" >HelperService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>mappingService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MappingService.html" target="_self" >MappingService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>paginatorService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PaginatorService.html" target="_self" >PaginatorService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackBar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>trackingService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TrackingService.html" target="_self" >TrackingService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>workspaceService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/WorkspaceService.html" target="_self" >WorkspaceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMappings"></a>
+                    <span class="name">
+                        <span ><b>getMappings</b></span>
+                        <a href="#getMappings"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getMappings(data: <a href="../undefineds/Paginator.html" target="_self">Paginator | void</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:112</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#Paginator" target="_self" >Paginator | void</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMappingsAndSetupPage"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getMappingsAndSetupPage</b></span>
+                        <a href="#getMappingsAndSetupPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getMappingsAndSetupPage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="200"
+                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:200</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPaginator"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getPaginator</b></span>
+                        <a href="#getPaginator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPaginator()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="196"
+                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:196</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#Paginator" target="_self" >Paginator</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mappingCardUpdateHandler"></a>
+                    <span class="name">
+                        <span ><b>mappingCardUpdateHandler</b></span>
+                        <a href="#mappingCardUpdateHandler"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>mappingCardUpdateHandler(totalCardActive: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:68</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>totalCardActive</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="238"
+                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:238</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="save"></a>
+                    <span class="name">
+                        <span ><b>save</b></span>
+                        <a href="#save"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>save(selectedRow: <a href="../interfaces/Mapping.html" target="_self">MappingList</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="221"
+                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:221</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>selectedRow</td>
+                                    <td>
+                                                <code><a href="../interfaces/Mapping.html" target="_self" >MappingList</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchByText"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>searchByText</b></span>
+                        <a href="#searchByText"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>searchByText(mapping: <a href="../interfaces/Mapping.html" target="_self">MappingList</a>, filterText: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="192"
+                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:192</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>mapping</td>
+                                    <td>
+                                                <code><a href="../interfaces/Mapping.html" target="_self" >MappingList</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>filterText</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setupForm"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>setupForm</b></span>
+                        <a href="#setupForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setupForm(filterOption: string[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:91</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>filterOption</td>
+                                    <td>
+                                            <code>string[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>[]</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setupFyleQboMappingFormArray"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>setupFyleQboMappingFormArray</b></span>
+                        <a href="#setupFyleQboMappingFormArray"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setupFyleQboMappingFormArray(mappings: <a href="../interfaces/Mapping.html" target="_self">MappingList[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:81</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>mappings</td>
+                                    <td>
+                                                <code><a href="../interfaces/Mapping.html" target="_self" >MappingList[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="autoMapEmployee"></a>
+                    <span class="name">
+                        <span ><b>autoMapEmployee</b></span>
+                        <a href="#autoMapEmployee"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#AutoMapEmployee" target="_self" >AutoMapEmployee | null</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="employeeFieldMapping"></a>
+                    <span class="name">
+                        <span ><b>employeeFieldMapping</b></span>
+                        <a href="#employeeFieldMapping"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Mapping.html" target="_self" >EmployeeFieldMapping</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="emptyMapping"></a>
+                    <span class="name">
+                        <span ><b>emptyMapping</b></span>
+                        <a href="#emptyMapping"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Mapping.html" target="_self" >MatTableDataSource&lt;MappingList&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MatTableDataSource&lt;MappingList&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterOptions"></a>
+                    <span class="name">
+                        <span ><b>filterOptions</b></span>
+                        <a href="#filterOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;, &#x27;D&#x27;, &#x27;E&#x27;, &#x27;F&#x27;, &#x27;G&#x27;, &#x27;H&#x27;, &#x27;I&#x27;, &#x27;J&#x27;, &#x27;K&#x27;, &#x27;L&#x27;, &#x27;M&#x27;, &#x27;N&#x27;, &#x27;O&#x27;, &#x27;P&#x27;, &#x27;Q&#x27;, &#x27;R&#x27;, &#x27;S&#x27;, &#x27;T&#x27;, &#x27;U&#x27;, &#x27;V&#x27;, &#x27;W&#x27;, &#x27;X&#x27;, &#x27;Y&#x27;, &#x27;Z&#x27;]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="form"></a>
+                    <span class="name">
+                        <span ><b>form</b></span>
+                        <a href="#form"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fyleQboMappingFormArray"></a>
+                    <span class="name">
+                        <span ><b>fyleQboMappingFormArray</b></span>
+                        <a href="#fyleQboMappingFormArray"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="helperService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>helperService</b></span>
+                        <a href="#helperService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/HelperService.html" target="_self" >HelperService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isLoading"></a>
+                    <span class="name">
+                        <span ><b>isLoading</b></span>
+                        <a href="#isLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="limit"></a>
+                    <span class="name">
+                        <span ><b>limit</b></span>
+                        <a href="#limit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mappingForm"></a>
+                    <span class="name">
+                        <span ><b>mappingForm</b></span>
+                        <a href="#mappingForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mappings"></a>
+                    <span class="name">
+                        <span ><b>mappings</b></span>
+                        <a href="#mappings"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Mapping.html" target="_self" >MatTableDataSource&lt;MappingList&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MatTableDataSource&lt;MappingList&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mappingStats"></a>
+                    <span class="name">
+                        <span ><b>mappingStats</b></span>
+                        <a href="#mappingStats"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Mapping.html" target="_self" >MappingStats</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="offset"></a>
+                    <span class="name">
+                        <span ><b>offset</b></span>
+                        <a href="#offset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PaginatorPage"></a>
+                    <span class="name">
+                        <span ><b>PaginatorPage</b></span>
+                        <a href="#PaginatorPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>PaginatorPage</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="qboData"></a>
+                    <span class="name">
+                        <span ><b>qboData</b></span>
+                        <a href="#qboData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#DestinationAttribute" target="_self" >DestinationAttribute[]</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="totalCardActive"></a>
+                    <span class="name">
+                        <span ><b>totalCardActive</b></span>
+                        <a href="#totalCardActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="totalCount"></a>
+                    <span class="name">
+                        <span ><b>totalCount</b></span>
+                        <a href="#totalCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ZeroStatePage"></a>
+                    <span class="name">
+                        <span ><b>ZeroStatePage</b></span>
+                        <a href="#ZeroStatePage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ZeroStatePage</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { FormArray, FormBuilder, FormGroup } from &#x27;@angular/forms&#x27;;
+import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { MatTableDataSource } from &#x27;@angular/material/table&#x27;;
+import { DestinationAttribute } from &#x27;src/app/core/models/db/destination-attribute.model&#x27;;
+import { EmployeeMappingModel, ExtendedEmployeeAttribute, ExtendedEmployeeAttributeResponse } from &#x27;src/app/core/models/db/employee-mapping.model&#x27;;
+import { MappingList, MappingStats } from &#x27;src/app/core/models/db/mapping.model&#x27;;
+import { WorkspaceGeneralSetting } from &#x27;src/app/core/models/db/workspace-general-setting.model&#x27;;
+import { AutoMapEmployee, ClickEvent, EmployeeFieldMapping, MappingState, PaginatorPage, ZeroStatePage } from &#x27;src/app/core/models/enum/enum.model&#x27;;
+import { Paginator } from &#x27;src/app/core/models/misc/paginator.model&#x27;;
+import { HelperService } from &#x27;src/app/core/services/core/helper.service&#x27;;
+import { PaginatorService } from &#x27;src/app/core/services/core/paginator.service&#x27;;
+import { TrackingService } from &#x27;src/app/core/services/integration/tracking.service&#x27;;
+import { MappingService } from &#x27;src/app/core/services/misc/mapping.service&#x27;;
+import { WorkspaceService } from &#x27;src/app/core/services/workspace/workspace.service&#x27;;
+
+@Component({
+  selector: &#x27;app-employee-mapping&#x27;,
+  templateUrl: &#x27;./employee-mapping.component.html&#x27;,
+  styleUrls: [&#x27;./employee-mapping.component.scss&#x27;]
+})
+export class EmployeeMappingComponent implements OnInit {
+
+  totalCardActive: boolean &#x3D; true;
+
+  autoMapEmployee: AutoMapEmployee | null;
+
+  isLoading: boolean &#x3D; true;
+
+  limit: number;
+
+  offset: number;
+
+  totalCount: number;
+
+  mappingStats: MappingStats;
+
+  employeeFieldMapping: EmployeeFieldMapping;
+
+  qboData: DestinationAttribute[];
+
+  mappings: MatTableDataSource&lt;MappingList&gt; &#x3D; new MatTableDataSource&lt;MappingList&gt;([]);
+
+  emptyMapping: MatTableDataSource&lt;MappingList&gt; &#x3D; new MatTableDataSource&lt;MappingList&gt;([]);
+
+  fyleQboMappingFormArray: FormGroup[];
+
+  filterOptions: string[] &#x3D; [&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;, &#x27;D&#x27;, &#x27;E&#x27;, &#x27;F&#x27;, &#x27;G&#x27;, &#x27;H&#x27;, &#x27;I&#x27;, &#x27;J&#x27;, &#x27;K&#x27;, &#x27;L&#x27;, &#x27;M&#x27;, &#x27;N&#x27;, &#x27;O&#x27;, &#x27;P&#x27;, &#x27;Q&#x27;, &#x27;R&#x27;, &#x27;S&#x27;, &#x27;T&#x27;, &#x27;U&#x27;, &#x27;V&#x27;, &#x27;W&#x27;, &#x27;X&#x27;, &#x27;Y&#x27;, &#x27;Z&#x27;];
+
+  form: FormGroup;
+
+  mappingForm: FormGroup[];
+
+  PaginatorPage &#x3D; PaginatorPage;
+
+  ZeroStatePage &#x3D; ZeroStatePage;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    public helperService: HelperService,
+    private mappingService: MappingService,
+    private paginatorService: PaginatorService,
+    private snackBar: MatSnackBar,
+    private trackingService: TrackingService,
+    private workspaceService: WorkspaceService
+  ) { }
+
+  mappingCardUpdateHandler(totalCardActive: boolean): void {
+    let eventName &#x3D; ClickEvent.MAPPED_MAPPINGS_FILTER;
+    if (!totalCardActive) {
+      eventName &#x3D; ClickEvent.UNMAPPED_MAPPINGS_FILTER;
+    }
+    this.trackingService.onClickEvent(eventName, {page: &#x27;Employee Mapping&#x27;});
+
+    this.totalCardActive &#x3D; totalCardActive;
+    this.form.controls.cardUpdated.patchValue(true);
+
+    this.getMappings();
+  }
+
+  private setupFyleQboMappingFormArray(mappings: MappingList[]): void {
+    this.fyleQboMappingFormArray &#x3D; mappings.map((mapping: MappingList) &#x3D;&gt; {
+      return this.formBuilder.group({
+        searchOption: [&#x27;&#x27;],
+        source: [mapping.fyle.value],
+        destination: [mapping.qbo.value]
+      });
+    });
+  }
+
+  private setupForm(filterOption: string[] &#x3D; []): void {
+    this.form &#x3D; this.formBuilder.group({
+      map: [&#x27;&#x27;],
+      fyleQboMapping: this.formBuilder.array(this.fyleQboMappingFormArray),
+      searchOption: [&#x27;&#x27;],
+      filterOption: [filterOption],
+      cardUpdated: [false]
+    });
+
+    this.form.controls.searchOption.valueChanges.subscribe((searchTerm: string) &#x3D;&gt; {
+      if (searchTerm) {
+        this.mappings.filter &#x3D; searchTerm.trim().toLowerCase();
+      } else {
+        this.mappings.filter &#x3D; &#x27;&#x27;;
+      }
+    });
+
+    const mappingForm &#x3D; this.form.controls.fyleQboMapping as FormArray;
+    this.mappingForm &#x3D; mappingForm.controls as FormGroup[];
+  }
+
+  getMappings(data: Paginator | void): void {
+    this.isLoading &#x3D; true;
+    if (this.form) {
+      this.form.controls.cardUpdated.patchValue(true);
+    }
+    const paginator: Paginator &#x3D; data ? data : this.getPaginator();
+
+    const mappings: MappingList[] &#x3D; [];
+
+    // Store page size when user changes it
+    if (this.limit !&#x3D;&#x3D; data?.limit) {
+      this.paginatorService.storePageSize(PaginatorPage.MAPPING, paginator.limit);
+    }
+
+    this.limit &#x3D; paginator.limit;
+    this.offset &#x3D; paginator.offset;
+    const mappingState &#x3D; this.totalCardActive ? MappingState.ALL : MappingState.UNMAPPED;
+
+    let alphabetsFilter: string[] &#x3D; [];
+    let allAlphabets: boolean &#x3D; true;
+
+    if (this.form) {
+      allAlphabets &#x3D; this.form.value.filterOption.length &#x3D;&#x3D;&#x3D; 0;
+
+      if (!allAlphabets) {
+        alphabetsFilter &#x3D; this.form.value.filterOption;
+      }
+    }
+
+    this.mappingService.getEmployeeMappings(mappingState, allAlphabets, paginator.limit, paginator.offset, alphabetsFilter, this.employeeFieldMapping).subscribe((extendedEmployeeAttributeResponse: ExtendedEmployeeAttributeResponse) &#x3D;&gt; {
+      this.totalCount &#x3D; extendedEmployeeAttributeResponse.count;
+      extendedEmployeeAttributeResponse.results.forEach((extendedEmployeeAttribute: ExtendedEmployeeAttribute, index: number) &#x3D;&gt; {
+
+        const qbo: {id: string | number, value: string} &#x3D; {
+          id: &#x27;&#x27;,
+          value: &#x27;&#x27;
+        };
+
+        const preserveDestination: {id: string | number} &#x3D; {
+          id: &#x27;&#x27;
+        };
+
+        if (extendedEmployeeAttribute.employeemapping.length) {
+          if (this.employeeFieldMapping &#x3D;&#x3D;&#x3D; EmployeeFieldMapping.EMPLOYEE) {
+            qbo.id &#x3D; extendedEmployeeAttribute.employeemapping[0].destination_employee?.id;
+            qbo.value &#x3D; extendedEmployeeAttribute.employeemapping[0].destination_employee?.value;
+            preserveDestination.id &#x3D; extendedEmployeeAttribute.employeemapping[0].destination_vendor?.id;
+          } else {
+            qbo.id &#x3D; extendedEmployeeAttribute.employeemapping[0].destination_vendor?.id;
+            qbo.value &#x3D; extendedEmployeeAttribute.employeemapping[0].destination_vendor?.value;
+            preserveDestination.id &#x3D; extendedEmployeeAttribute.employeemapping[0].destination_employee?.id;
+          }
+        }
+
+        mappings.push({
+          fyle: {
+            id: extendedEmployeeAttribute.id,
+            value: extendedEmployeeAttribute.value
+          },
+          qbo: qbo,
+          preserveDestination: preserveDestination,
+          state: qbo.id ? MappingState.MAPPED : MappingState.UNMAPPED,
+          autoMapped: extendedEmployeeAttribute.auto_mapped,
+          index: index
+        });
+      });
+
+      this.mappings &#x3D; new MatTableDataSource(mappings);
+      this.mappings.filterPredicate &#x3D; this.searchByText;
+      this.setupFyleQboMappingFormArray(mappings);
+
+      // Reinitialize form when the card changes or when the component is loaded for first time
+      if (!this.form || (this.form &amp;&amp; this.form.value.cardUpdated)) {
+        this.setupForm(alphabetsFilter);
+      }
+
+      this.isLoading &#x3D; false;
+    });
+  }
+
+  private searchByText(mapping: MappingList, filterText: string) {
+    return mapping.fyle.value.toLowerCase().includes(filterText.toLowerCase());
+  }
+
+  private getPaginator(): Paginator {
+    return this.paginatorService.getPageSize(PaginatorPage.MAPPING);
+  }
+
+  private getMappingsAndSetupPage(): void {
+    this.workspaceService.getWorkspaceGeneralSettings().subscribe((workspaceGeneralSettings: WorkspaceGeneralSetting) &#x3D;&gt; {
+    this.employeeFieldMapping &#x3D; workspaceGeneralSettings.employee_field_mapping;
+    this.autoMapEmployee &#x3D; workspaceGeneralSettings.auto_map_employees;
+
+    this.mappingService.getMappingStats(EmployeeFieldMapping.EMPLOYEE, this.employeeFieldMapping).subscribe((mappingStats: MappingStats) &#x3D;&gt; {
+      this.mappingStats &#x3D; mappingStats;
+      let qboData$;
+      if (this.employeeFieldMapping &#x3D;&#x3D;&#x3D; EmployeeFieldMapping.EMPLOYEE) {
+        qboData$ &#x3D; this.mappingService.getQBOEmployees();
+      } else {
+        qboData$ &#x3D; this.mappingService.getQBOVendors();
+      }
+      qboData$.subscribe((qboData: DestinationAttribute[]) &#x3D;&gt; {
+        this.qboData &#x3D; qboData;
+        this.getMappings();
+      });
+    });
+  });
+  }
+
+  save(selectedRow: MappingList): void {
+    const employeeMappingPayload &#x3D; EmployeeMappingModel.constructPayload(this.employeeFieldMapping, selectedRow, this.workspaceService.getWorkspaceId());
+
+    this.mappingService.postEmployeeMapping(employeeMappingPayload).subscribe(() &#x3D;&gt; {
+      if (selectedRow.state &#x3D;&#x3D;&#x3D; MappingState.UNMAPPED) {
+        this.mappingStats.unmapped_attributes_count -&#x3D; 1;
+        selectedRow.state &#x3D; MappingState.MAPPED;
+      }
+
+      this.snackBar.open(&#x27;Changes saved&#x27;, &#x27;&#x27;, {
+        horizontalPosition: &#x27;center&#x27;,
+        verticalPosition: &#x27;bottom&#x27;,
+        panelClass: &#x27;mapping-snackbar&#x27;
+      });
+    });
+  }
+
+  ngOnInit(): void {
+    this.getMappingsAndSetupPage();
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;mapping&quot;&gt;
+  &lt;app-mapping-header-section [mappingStats]&#x3D;&quot;mappingStats&quot; [totalCardActive]&#x3D;&quot;totalCardActive&quot; [sourceType]&#x3D;&quot;&#x27;employee&#x27;&quot; [autoMapEmployee]&#x3D;&quot;autoMapEmployee&quot; (mappingCardUpdateHandler)&#x3D;&quot;mappingCardUpdateHandler($event)&quot;&gt;&lt;/app-mapping-header-section&gt;
+
+  &lt;div class&#x3D;&quot;mapping--core-section&quot;&gt;
+    &lt;div class&#x3D;&quot;mapping--core-section-content&quot;&gt;
+      &lt;app-mapping-filter [page]&#x3D;&quot;&#x27;Employee Mapping&#x27;&quot; [form]&#x3D;&quot;form&quot; [searchTerm]&#x3D;&quot;&#x27;Employee Email&#x27;&quot; (mappingFilterUpdateHandler)&#x3D;&quot;getMappings()&quot;&gt;&lt;/app-mapping-filter&gt;
+
+      &lt;div *ngIf&#x3D;&quot;!isLoading&quot; class&#x3D;&quot;mapping--table&quot;&gt;
+        &lt;app-mapping-table [mappings]&#x3D;&quot;mappings&quot; [sourceType]&#x3D;&quot;&#x27;EMPLOYEE&#x27;&quot; [destinationType]&#x3D;&quot;employeeFieldMapping&quot; [qboData]&#x3D;&quot;qboData&quot; [mappingForm]&#x3D;&quot;mappingForm&quot; (mappingSaveHandler)&#x3D;&quot;save($event)&quot;&gt;&lt;/app-mapping-table&gt;
+
+        &lt;app-zero-state-with-illustration [page]&#x3D;&quot;ZeroStatePage.mapping&quot; [form]&#x3D;&quot;form&quot; [data]&#x3D;&quot;mappings&quot; [searchTerm]&#x3D;&quot;&#x27;Employee Email&#x27;&quot;&gt;&lt;/app-zero-state-with-illustration&gt;
+      &lt;/div&gt;
+
+      &lt;!-- shimmers --&gt;
+      &lt;div *ngIf&#x3D;&quot;isLoading&quot;&gt;
+        &lt;app-mapping-table [mappings]&#x3D;&quot;emptyMapping&quot; [sourceType]&#x3D;&quot;&#x27;EMPLOYEE&#x27;&quot; [destinationType]&#x3D;&quot;employeeFieldMapping&quot; [qboData]&#x3D;&quot;[]&quot; [mappingForm]&#x3D;&quot;mappingForm&quot;&gt;&lt;/app-mapping-table&gt;
+        &lt;div *ngFor&#x3D;&quot;let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]&quot; fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;start center&quot; class&#x3D;&quot;skeleton-loader-list-view--row-box&quot;&gt;
+          &lt;div class&#x3D;&quot;skeleton-loader-list-view--init-box-section&quot;&gt;
+            &lt;div class&#x3D;&quot;shimmers skeleton-loader-list-view--init-box&quot;&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;skeleton-loader-list-view--end-box-section&quot;&gt;
+            &lt;div class&#x3D;&quot;shimmers skeleton-loader-list-view--end-box&quot;&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- shimmers --&gt;
+
+      &lt;app-paginator *ngIf&#x3D;&quot;mappings.filteredData.length&quot; [page]&#x3D;&quot;PaginatorPage.MAPPING&quot; [totalCount]&#x3D;&quot;totalCount&quot; [limit]&#x3D;&quot;limit&quot; [offset]&#x3D;&quot;offset&quot; (pageChangeEvent)&#x3D;&quot;getMappings($event)&quot;&gt;&lt;/app-paginator&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./employee-mapping.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="mapping">  <app-mapping-header-section [mappingStats]="mappingStats" [totalCardActive]="totalCardActive" [sourceType]="\'employee\'" [autoMapEmployee]="autoMapEmployee" (mappingCardUpdateHandler)="mappingCardUpdateHandler($event)"></app-mapping-header-section>  <div class="mapping--core-section">    <div class="mapping--core-section-content">      <app-mapping-filter [page]="\'Employee Mapping\'" [form]="form" [searchTerm]="\'Employee Email\'" (mappingFilterUpdateHandler)="getMappings()"></app-mapping-filter>      <div *ngIf="!isLoading" class="mapping--table">        <app-mapping-table [mappings]="mappings" [sourceType]="\'EMPLOYEE\'" [destinationType]="employeeFieldMapping" [qboData]="qboData" [mappingForm]="mappingForm" (mappingSaveHandler)="save($event)"></app-mapping-table>        <app-zero-state-with-illustration [page]="ZeroStatePage.mapping" [form]="form" [data]="mappings" [searchTerm]="\'Employee Email\'"></app-zero-state-with-illustration>      </div>      <!-- shimmers -->      <div *ngIf="isLoading">        <app-mapping-table [mappings]="emptyMapping" [sourceType]="\'EMPLOYEE\'" [destinationType]="employeeFieldMapping" [qboData]="[]" [mappingForm]="mappingForm"></app-mapping-table>        <div *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" fxLayout="row" fxLayoutAlign="start center" class="skeleton-loader-list-view--row-box">          <div class="skeleton-loader-list-view--init-box-section">            <div class="shimmers skeleton-loader-list-view--init-box"></div>          </div>          <div class="skeleton-loader-list-view--end-box-section">            <div class="shimmers skeleton-loader-list-view--end-box"></div>          </div>        </div>      </div>      <!-- shimmers -->      <app-paginator *ngIf="mappings.filteredData.length" [page]="PaginatorPage.MAPPING" [totalCount]="totalCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getMappings($event)"></app-paginator>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddEmailDialogComponent', 'selector': 'app-add-email-dialog'},{'name': 'AdvancedSettingsComponent', 'selector': 'app-advanced-settings'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'ConfigurationAdvancedSettingsComponent', 'selector': 'app-configuration-advanced-settings'},{'name': 'ConfigurationComponent', 'selector': 'app-configuration'},{'name': 'ConfigurationEmployeeSettingsComponent', 'selector': 'app-configuration-employee-settings'},{'name': 'ConfigurationExportSettingsComponent', 'selector': 'app-configuration-export-settings'},{'name': 'ConfigurationImportSettingsComponent', 'selector': 'app-configuration-import-settings'},{'name': 'ConfigurationSelectFieldComponent', 'selector': 'app-configuration-select-field'},{'name': 'ConfigurationStepFooterSectionComponent', 'selector': 'app-configuration-step-footer-section'},{'name': 'ConfigurationStepHeaderSectionComponent', 'selector': 'app-configuration-step-header-section'},{'name': 'ConfigurationToggleFieldComponent', 'selector': 'app-configuration-toggle-field'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'CustomMappingComponent', 'selector': 'app-custom-mapping'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardExportLogDialogComponent', 'selector': 'app-dashboard-export-log-dialog'},{'name': 'DashboardHeaderSectionComponent', 'selector': 'app-dashboard-header-section'},{'name': 'DashboardQboErrorDialogComponent', 'selector': 'app-dashboard-qbo-error-dialog'},{'name': 'DashboardResolveMappingErrorDialogComponent', 'selector': 'app-dashboard-resolve-mapping-error-dialog'},{'name': 'EmailMultiSelectFieldComponent', 'selector': 'app-email-multi-select-field'},{'name': 'EmployeeMappingComponent', 'selector': 'app-employee-mapping'},{'name': 'EmployeeSettingsComponent', 'selector': 'app-employee-settings'},{'name': 'ExpenseFieldCreationDialogComponent', 'selector': 'app-expense-field-creation-dialog'},{'name': 'ExportLogChildDialogComponent', 'selector': 'app-export-log-child-dialog'},{'name': 'ExportLogChildTableComponent', 'selector': 'app-export-log-child-table'},{'name': 'ExportLogComponent', 'selector': 'app-export-log'},{'name': 'ExportLogTableComponent', 'selector': 'app-export-log-table'},{'name': 'ExportSettingsComponent', 'selector': 'app-export-settings'},{'name': 'FyleCallbackComponent', 'selector': 'app-fyle-callback'},{'name': 'GenericMappingComponent', 'selector': 'app-generic-mapping'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImportSettingsComponent', 'selector': 'app-import-settings'},{'name': 'IntegrationComponent', 'selector': 'app-integration'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'MandatoryErrorMessageComponent', 'selector': 'app-mandatory-error-message'},{'name': 'MandatoryFieldComponent', 'selector': 'app-mandatory-field'},{'name': 'MappingComponent', 'selector': 'app-mapping'},{'name': 'MappingFilterComponent', 'selector': 'app-mapping-filter'},{'name': 'MappingHeaderSectionComponent', 'selector': 'app-mapping-header-section'},{'name': 'MappingTableComponent', 'selector': 'app-mapping-table'},{'name': 'OnboardingAdvancedSettingsComponent', 'selector': 'app-onboarding-advanced-settings'},{'name': 'OnboardingComponent', 'selector': 'app-onboarding'},{'name': 'OnboardingDoneComponent', 'selector': 'app-onboarding-done'},{'name': 'OnboardingEmployeeSettingsComponent', 'selector': 'app-onboarding-employee-settings'},{'name': 'OnboardingExportSettingsComponent', 'selector': 'app-onboarding-export-settings'},{'name': 'OnboardingFooterComponent', 'selector': 'app-onboarding-footer'},{'name': 'OnboardingImportSettingsComponent', 'selector': 'app-onboarding-import-settings'},{'name': 'OnboardingLandingComponent', 'selector': 'app-onboarding-landing'},{'name': 'OnboardingQboConnectorComponent', 'selector': 'app-onboarding-qbo-connector'},{'name': 'OnboardingStepperComponent', 'selector': 'app-onboarding-stepper'},{'name': 'PaginatorComponent', 'selector': 'app-paginator'},{'name': 'PreviewDialogComponent', 'selector': 'app-preview-dialog'},{'name': 'QboCallbackComponent', 'selector': 'app-qbo-callback'},{'name': 'QboConnectorComponent', 'selector': 'app-qbo-connector'},{'name': 'SharedLoginComponent', 'selector': 'app-shared-login'},{'name': 'SimpleTextSearchComponent', 'selector': 'app-simple-text-search'},{'name': 'ZeroStateWithIllustrationComponent', 'selector': 'app-zero-state-with-illustration'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'EmployeeMappingComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'EmployeeMappingComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

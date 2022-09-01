@@ -1,0 +1,1946 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fyle-qbo-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">fyle-qbo-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  CustomMappingComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-custom-mapping</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./custom-mapping.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./custom-mapping.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#fyleFields" >fyleFields</a>
+                            </li>
+                            <li>
+                                <a href="#isLoading" >isLoading</a>
+                            </li>
+                            <li>
+                                <a href="#mappingRows" >mappingRows</a>
+                            </li>
+                            <li>
+                                <a href="#mappingSettingForm" >mappingSettingForm</a>
+                            </li>
+                            <li>
+                                <a href="#mappingSettings" >mappingSettings</a>
+                            </li>
+                            <li>
+                                <a href="#mappingStats" >mappingStats</a>
+                            </li>
+                            <li>
+                                <a href="#qboFields" >qboFields</a>
+                            </li>
+                            <li>
+                                <a href="#showAddButton" >showAddButton</a>
+                            </li>
+                            <li>
+                                <a href="#showMappingList" >showMappingList</a>
+                            </li>
+                            <li>
+                                <a href="#ZeroStatePage" >ZeroStatePage</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#clearMappingRow" >clearMappingRow</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#constructPayloadAndSave" >constructPayloadAndSave</a>
+                            </li>
+                            <li>
+                                <a href="#createMappingRow" >createMappingRow</a>
+                            </li>
+                            <li>
+                                <a href="#deleteMappingSetting" >deleteMappingSetting</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#saveMappingSetting" >saveMappingSetting</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setupPage" >setupPage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setupSettingsAndSetupPage" >setupSettingsAndSetupPage</a>
+                            </li>
+                            <li>
+                                <a href="#showDeleteButton" >showDeleteButton</a>
+                            </li>
+                            <li>
+                                <a href="#updateMappingRow" >updateMappingRow</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#isExistingRowMapped" >isExistingRowMapped</a>
+                                </li>
+                                <li>
+                                    <a href="#mappingSetting" >mappingSetting</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(dialog: MatDialog, formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, helperService: <a href="../injectables/HelperService.html" target="_self">HelperService</a>, mappingService: <a href="../injectables/MappingService.html" target="_self">MappingService</a>, snackBar: MatSnackBar, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:44</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>helperService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/HelperService.html" target="_self" >HelperService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>mappingService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MappingService.html" target="_self" >MappingService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackBar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>trackingService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TrackingService.html" target="_self" >TrackingService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clearMappingRow"></a>
+                    <span class="name">
+                        <span ><b>clearMappingRow</b></span>
+                        <a href="#clearMappingRow"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clearMappingRow(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:76</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>index</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="constructPayloadAndSave"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>constructPayloadAndSave</b></span>
+                        <a href="#constructPayloadAndSave"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>constructPayloadAndSave(mappingRow: <a href="../interfaces/Mapping.html" target="_self">MappingSettingList</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:85</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>mappingRow</td>
+                                    <td>
+                                                <code><a href="../interfaces/Mapping.html" target="_self" >MappingSettingList</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createMappingRow"></a>
+                    <span class="name">
+                        <span ><b>createMappingRow</b></span>
+                        <a href="#createMappingRow"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createMappingRow()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:55</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteMappingSetting"></a>
+                    <span class="name">
+                        <span ><b>deleteMappingSetting</b></span>
+                        <a href="#deleteMappingSetting"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteMappingSetting(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:111</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>index</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="263"
+                            class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:263</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveMappingSetting"></a>
+                    <span class="name">
+                        <span ><b>saveMappingSetting</b></span>
+                        <a href="#saveMappingSetting"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>saveMappingSetting(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="158"
+                            class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:158</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>index</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setupPage"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>setupPage</b></span>
+                        <a href="#setupPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setupPage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:199</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setupSettingsAndSetupPage"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>setupSettingsAndSetupPage</b></span>
+                        <a href="#setupSettingsAndSetupPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setupSettingsAndSetupPage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="251"
+                            class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:251</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showDeleteButton"></a>
+                    <span class="name">
+                        <span ><b>showDeleteButton</b></span>
+                        <a href="#showDeleteButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showDeleteButton(mappingRow: <a href="../interfaces/Mapping.html" target="_self">MappingSettingList</a>, allowed: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="187"
+                            class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:187</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>mappingRow</td>
+                                    <td>
+                                                <code><a href="../interfaces/Mapping.html" target="_self" >MappingSettingList</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>allowed</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateMappingRow"></a>
+                    <span class="name">
+                        <span ><b>updateMappingRow</b></span>
+                        <a href="#updateMappingRow"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateMappingRow(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, qboField: <a href="../interfaces/Mapping.html" target="_self">MappingDestinationField | string</a>, fyleField: <a href="../interfaces/Mapping.html" target="_self">MappingSourceField | string | string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:68</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>index</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>qboField</td>
+                                    <td>
+                                                <code><a href="../interfaces/Mapping.html" target="_self" >MappingDestinationField | string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>fyleField</td>
+                                    <td>
+                                                <code><a href="../interfaces/Mapping.html" target="_self" >MappingSourceField | string | string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>&#x27;&#x27;</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fyleFields"></a>
+                    <span class="name">
+                        <span ><b>fyleFields</b></span>
+                        <a href="#fyleFields"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ExpenseField[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isLoading"></a>
+                    <span class="name">
+                        <span ><b>isLoading</b></span>
+                        <a href="#isLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mappingRows"></a>
+                    <span class="name">
+                        <span ><b>mappingRows</b></span>
+                        <a href="#mappingRows"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Mapping.html" target="_self" >MappingSettingList[]</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mappingSettingForm"></a>
+                    <span class="name">
+                        <span ><b>mappingSettingForm</b></span>
+                        <a href="#mappingSettingForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mappingSettings"></a>
+                    <span class="name">
+                        <span ><b>mappingSettings</b></span>
+                        <a href="#mappingSettings"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Mapping.html" target="_self" >MappingSetting[]</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mappingStats"></a>
+                    <span class="name">
+                        <span ><b>mappingStats</b></span>
+                        <a href="#mappingStats"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Mapping.html" target="_self" >Partial&lt;MappingStats&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    all_attributes_count: 0
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="qboFields"></a>
+                    <span class="name">
+                        <span ><b>qboFields</b></span>
+                        <a href="#qboFields"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Mapping.html" target="_self" >MappingDestinationField[]</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showAddButton"></a>
+                    <span class="name">
+                        <span ><b>showAddButton</b></span>
+                        <a href="#showAddButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showMappingList"></a>
+                    <span class="name">
+                        <span ><b>showMappingList</b></span>
+                        <a href="#showMappingList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ZeroStatePage"></a>
+                    <span class="name">
+                        <span ><b>ZeroStatePage</b></span>
+                        <a href="#ZeroStatePage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ZeroStatePage</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isExistingRowMapped"></a>
+                        <span class="name"><b>isExistingRowMapped</b><a href="#isExistingRowMapped"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>isExistingRowMapped()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:191</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mappingSetting"></a>
+                        <span class="name"><b>mappingSetting</b><a href="#mappingSetting"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>mappingSetting()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/app/integration/main/mapping/custom-mapping/custom-mapping.component.ts:195</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Output } from &#x27;@angular/core&#x27;;
+import { FormArray, FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
+import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { RxwebValidators } from &#x27;@rxweb/reactive-form-validators&#x27;;
+import { forkJoin } from &#x27;rxjs&#x27;;
+import { MappingSetting, MappingSettingList } from &#x27;src/app/core/models/db/mapping-setting.model&#x27;;
+import { MappingStats } from &#x27;src/app/core/models/db/mapping.model&#x27;;
+import { DeleteEvent, MappingDestinationField, MappingSourceField, ProgressPhase, UpdateEvent, ZeroStatePage } from &#x27;src/app/core/models/enum/enum.model&#x27;;
+import { ConfirmationDialog } from &#x27;src/app/core/models/misc/confirmation-dialog.model&#x27;;
+import { ExpenseField } from &#x27;src/app/core/models/misc/expense-field.model&#x27;;
+import { HelperService } from &#x27;src/app/core/services/core/helper.service&#x27;;
+import { TrackingService } from &#x27;src/app/core/services/integration/tracking.service&#x27;;
+import { MappingService } from &#x27;src/app/core/services/misc/mapping.service&#x27;;
+import { ConfirmationDialogComponent } from &#x27;src/app/shared/components/core/confirmation-dialog/confirmation-dialog.component&#x27;;
+
+@Component({
+  selector: &#x27;app-custom-mapping&#x27;,
+  templateUrl: &#x27;./custom-mapping.component.html&#x27;,
+  styleUrls: [&#x27;./custom-mapping.component.scss&#x27;]
+})
+export class CustomMappingComponent implements OnInit {
+
+  isLoading: boolean &#x3D; true;
+
+  showAddButton: boolean;
+
+  mappingStats: Partial&lt;MappingStats&gt; &#x3D; {
+    all_attributes_count: 0
+  };
+
+  showMappingList: boolean &#x3D; false;
+
+  ZeroStatePage &#x3D; ZeroStatePage;
+
+  mappingRows:MappingSettingList[];
+
+  qboFields: MappingDestinationField[];
+
+  fyleFields: ExpenseField[];
+
+  mappingSettingForm: FormGroup;
+
+  mappingSettings: MappingSetting[];
+
+  constructor(
+    private dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    private helperService: HelperService,
+    private mappingService: MappingService,
+    private snackBar: MatSnackBar,
+    private trackingService: TrackingService
+  ) { }
+
+  createMappingRow(): void {
+    this.mappingRows &#x3D; this.mappingRows.concat([{ qboField: &#x27;&#x27;, fyleField: &#x27;&#x27;, index: this.mappingRows.length, existingMapping: false, isDeleteButtonAllowed: false }]);
+
+    const row &#x3D; this.formBuilder.group({
+      qboField: [&#x27;&#x27;, [Validators.required, RxwebValidators.unique()]],
+      fyleField: [&#x27;&#x27;, [Validators.required, RxwebValidators.unique()]],
+      index: [this.mappingRows.length],
+      existingMapping: [false]
+    });
+    this.mappingSetting.push(row);
+    this.showMappingList &#x3D; true;
+  }
+
+  updateMappingRow(index: number, qboField: MappingDestinationField | &#x27;&#x27;, fyleField: MappingSourceField | string | &#x27;&#x27; &#x3D; &#x27;&#x27;): void {
+    if (qboField) {
+      this.mappingRows[index].qboField &#x3D; qboField;
+    } else if (fyleField) {
+      this.mappingRows[index].fyleField &#x3D; fyleField;
+    }
+  }
+
+  clearMappingRow(index: number): void {
+    this.mappingSetting.removeAt(index);
+    this.mappingRows.splice(index, 1);
+
+    if (!this.mappingRows.length) {
+      this.showMappingList &#x3D; false;
+    }
+  }
+
+  private constructPayloadAndSave(mappingRow: MappingSettingList): void {
+    this.isLoading &#x3D; true;
+    const mappingSettingPayload &#x3D; [{
+      source_field: mappingRow.fyleField,
+      destination_field: mappingRow.qboField,
+      import_to_fyle: false,
+      is_custom: mappingRow.fyleField &#x3D;&#x3D;&#x3D; MappingSourceField.COST_CENTER || mappingRow.fyleField &#x3D;&#x3D;&#x3D; MappingSourceField.PROJECT ? false : true,
+      source_placeholder: null
+    }];
+
+    this.mappingService.postMappingSettings(mappingSettingPayload).subscribe((response: MappingSetting[]) &#x3D;&gt; {
+      this.trackingService.onUpdateEvent(
+        UpdateEvent.CUSTOM_MAPPING,
+        {
+          phase: ProgressPhase.POST_ONBOARDING,
+          newState: {source_field: mappingSettingPayload[0].source_field, destination_field: mappingSettingPayload[0].destination_field}
+        }
+      );
+      this.mappingService.emitWalkThroughTooltip();
+      this.mappingService.refreshMappingPages();
+      this.snackBar.open(&#x27;Custom Mapping Created Successfully&#x27;);
+      this.mappingSettings.push(response[0]);
+      this.setupPage();
+    });
+  }
+
+  deleteMappingSetting(index: number): void {
+    const mappingRow: MappingSettingList &#x3D; this.mappingSettingForm.value.mappingSetting[index];
+    const qboField: string &#x3D; this.helperService.getSpaceCasedTitleCase(mappingRow.qboField);
+    const fyleField: string &#x3D; this.helperService.getSpaceCasedTitleCase(mappingRow.fyleField);
+
+    const data: ConfirmationDialog &#x3D; {
+      title: &#x27;Delete Custom Mapping&#x27;,
+      contents: &#x60;&lt;li&gt;You are deleting the custom mapping of &lt;b&gt;${qboField}&lt;/b&gt; in QBO to ${fyleField} in Fyle.&lt;/li&gt;
+        &lt;li&gt;This will delete all the mappings setup in the &lt;b&gt;${fyleField}&lt;/b&gt; Mapping section.&lt;/li&gt;
+        &lt;br&gt;Do you wish to continue?&#x60;,
+      primaryCtaText: &#x27;Save and Continue&#x27;
+    };
+
+    const dialogRef &#x3D; this.dialog.open(ConfirmationDialogComponent, {
+      width: &#x27;551px&#x27;,
+      data: data
+    });
+
+    dialogRef.afterClosed().subscribe((ctaClicked) &#x3D;&gt; {
+      if (ctaClicked &amp;&amp; mappingRow.id) {
+        this.isLoading &#x3D; true;
+        this.mappingService.deleteMappingSetting(mappingRow.id).subscribe(() &#x3D;&gt; {
+          // Hide mapping table if there are no more mappings
+          if (this.mappingSettingForm.value.mappingSetting.length &#x3D;&#x3D;&#x3D; 1) {
+            this.showMappingList &#x3D; false;
+          }
+
+          this.trackingService.onDeleteEvent(
+            DeleteEvent.CUSTOM_MAPPING, {
+              source_field: mappingRow.fyleField,
+              destination_field: mappingRow.qboField
+            }
+          );
+
+          this.mappingService.refreshMappingPages();
+          this.snackBar.open(&#x27;Custom Mapping Deleted Successfully&#x27;);
+          this.mappingSettings &#x3D; this.mappingSettings.filter((mapping) &#x3D;&gt; mapping.id !&#x3D;&#x3D; mappingRow.id);
+          this.fyleFields.push({
+            attribute_type: mappingRow.fyleField,
+            display_name: this.helperService.getSpaceCasedTitleCase(mappingRow.fyleField)
+          });
+          this.setupPage();
+        });
+      }
+    });
+  }
+
+  saveMappingSetting(index: number): void {
+    if (this.mappingSettingForm.valid) {
+      const mappingRow: MappingSettingList &#x3D; this.mappingSettingForm.value.mappingSetting[index];
+      const qboField: string &#x3D; this.helperService.getSpaceCasedTitleCase(mappingRow.qboField);
+      const fyleField: string &#x3D; this.helperService.getSpaceCasedTitleCase(mappingRow.fyleField);
+
+      const data: ConfirmationDialog &#x3D; {
+        title: &#x27;Create Custom Mapping&#x27;,
+        contents: &#x60;You are creating a custom mapping between &lt;b&gt;${qboField}&lt;/b&gt; in QBO and &lt;b&gt;${fyleField}&lt;/b&gt; in Fyle.
+          This will open a separate mapping Page for ${fyleField} under the Mappings section of the integration.&lt;br&gt;&lt;br&gt;
+          &lt;li&gt;In the ${fyleField} Mappings section, you can map the individual Fyle ${fyleField} to their corresponding ${qboField} values.&lt;/li&gt;
+          &lt;li&gt;Also, the Mappings cannot be edited once set up. However, you can delete the specific dimensions mapped and re-create if required.&lt;/li&gt;
+          &lt;br&gt;&lt;br&gt;Do you wish to continue?&#x60;,
+        primaryCtaText: &#x27;Save and Continue&#x27;
+      };
+
+      const dialogRef &#x3D; this.dialog.open(ConfirmationDialogComponent, {
+        width: &#x27;551px&#x27;,
+        data: data
+      });
+
+      dialogRef.afterClosed().subscribe((ctaClicked) &#x3D;&gt; {
+        if (ctaClicked) {
+          this.constructPayloadAndSave(mappingRow);
+        }
+      });
+    }
+  }
+
+  showDeleteButton(mappingRow: MappingSettingList, allowed: boolean): void {
+    mappingRow.isDeleteButtonAllowed &#x3D; allowed;
+  }
+
+  get isExistingRowMapped(): boolean {
+   return this.mappingRows.filter(row &#x3D;&gt; !row.existingMapping).length &#x3D;&#x3D;&#x3D; 0;
+  }
+
+  get mappingSetting() {
+    return this.mappingSettingForm.get(&#x27;mappingSetting&#x27;) as FormArray;
+  }
+
+  private setupPage(): void {
+    // Remove already imported fyle fields from the options
+    this.fyleFields &#x3D; this.fyleFields.filter(field &#x3D;&gt; {
+      return !this.mappingSettings.some(mapping &#x3D;&gt; mapping.source_field &#x3D;&#x3D;&#x3D; field.attribute_type);
+    });
+    this.qboFields &#x3D; [MappingDestinationField.CLASS, MappingDestinationField.DEPARTMENT, MappingDestinationField.CUSTOMER];
+
+    const existingQBOFields &#x3D; this.mappingSettings.filter((mappingSetting: MappingSetting) &#x3D;&gt; {
+      return (mappingSetting.destination_field &#x3D;&#x3D;&#x3D; MappingDestinationField.CLASS || mappingSetting.destination_field &#x3D;&#x3D;&#x3D; MappingDestinationField.DEPARTMENT || mappingSetting.destination_field &#x3D;&#x3D;&#x3D; MappingDestinationField.CUSTOMER);
+    }).map((mappingSetting: MappingSetting) &#x3D;&gt; mappingSetting.destination_field);
+
+    this.qboFields &#x3D; this.qboFields.filter((qboField: MappingDestinationField) &#x3D;&gt; !existingQBOFields.includes(qboField));
+
+    const mappedRows &#x3D; this.mappingSettings.filter((mappingSetting: MappingSetting) &#x3D;&gt; {
+      return (mappingSetting.destination_field &#x3D;&#x3D;&#x3D; MappingDestinationField.CLASS || mappingSetting.destination_field &#x3D;&#x3D;&#x3D; MappingDestinationField.DEPARTMENT || mappingSetting.destination_field &#x3D;&#x3D;&#x3D; MappingDestinationField.CUSTOMER) &amp;&amp; !mappingSetting.import_to_fyle;
+    }).map((mappingSetting, index) &#x3D;&gt; {
+      const mappedRow: MappingSettingList &#x3D; {
+        id: mappingSetting.id,
+        qboField: mappingSetting.destination_field,
+        fyleField: mappingSetting.source_field,
+        index: index,
+        existingMapping: true,
+        isDeleteButtonAllowed: false
+      };
+      return mappedRow;
+    });
+
+    this.mappingStats.all_attributes_count &#x3D; mappedRows.length;
+
+    const mappedRowsFormArray &#x3D; mappedRows.map((mappingSetting, index) &#x3D;&gt; {
+      return this.formBuilder.group({
+        id: mappingSetting.id,
+        qboField: [mappingSetting.qboField, [Validators.required, RxwebValidators.unique()]],
+        fyleField: [mappingSetting.fyleField, [Validators.required, RxwebValidators.unique()]],
+        index: [index],
+        existingMapping: [true]
+      });
+    });
+
+    this.mappingSettingForm &#x3D; this.formBuilder.group({
+      mappingSetting: this.formBuilder.array(mappedRowsFormArray)
+    });
+
+    this.mappingRows &#x3D; mappedRows;
+
+    if (this.mappingRows.length) {
+      this.showMappingList &#x3D; true;
+    }
+
+    this.isLoading &#x3D; false;
+  }
+
+  private setupSettingsAndSetupPage(): void {
+    forkJoin([
+      this.mappingService.getMappingSettings(),
+      this.mappingService.getFyleExpenseFields()
+    ]).subscribe(responses &#x3D;&gt; {
+      this.mappingSettings &#x3D; responses[0].results;
+      this.fyleFields &#x3D; responses[1];
+
+      this.setupPage();
+    });
+  }
+
+  ngOnInit(): void {
+    this.setupSettingsAndSetupPage();
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;mapping&quot;&gt;
+  &lt;app-mapping-header-section [mappingStats]&#x3D;&quot;mappingStats&quot; [totalCardActive]&#x3D;&quot;true&quot; [customMapping]&#x3D;&quot;true&quot;&gt;&lt;/app-mapping-header-section&gt;
+
+  &lt;div class&#x3D;&quot;custom-mapping&quot;&gt;
+    &lt;div class&#x3D;&quot;custom-mapping--content&quot;&gt;
+      &lt;div class&#x3D;&quot;custom-mapping--title-section&quot;&gt;
+        &lt;p class&#x3D;&quot;custom-mapping--title&quot;&gt;Select a dimension in QBO that you want to map to an expense field in Fyle&lt;/p&gt;
+        &lt;h5 class&#x3D;&quot;sub-text-color&quot;&gt;Mapping would help you export Fyle expenses with the correct dimension value to QBO.&lt;/h5&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;custom-mapping--mapping-section&quot; *ngIf&#x3D;&quot;showMappingList || isLoading&quot;&gt;
+        &lt;div&gt;
+          &lt;div class&#x3D;&quot;custom-mapping--table-header&quot; fxLayout&#x3D;&quot;row&quot;&gt;
+            &lt;h5 fxLayoutAlign&#x3D;&quot; center&quot; class&#x3D;&quot;custom-mapping--table-header-text custom-mapping--table-header-col-1&quot;&gt;
+              Dimension from QBO
+            &lt;/h5&gt;
+            &lt;h5 fxLayoutAlign&#x3D;&quot; center&quot; class&#x3D;&quot;custom-mapping--table-header-text custom-mapping--table-header-col-2&quot;&gt;
+              Expense field from Fyle
+            &lt;/h5&gt;
+          &lt;/div&gt;
+
+          &lt;div *ngIf&#x3D;&quot;!isLoading&quot;&gt;
+            &lt;div [formGroup]&#x3D;&quot;mappingSettingForm&quot; *ngFor&#x3D;&quot;let element of mappingRows; let i &#x3D; index&quot;&gt;
+              &lt;div formArrayName&#x3D;&quot;mappingSetting&quot; fxLayout&#x3D;&quot;column&quot;&gt;
+                &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot; (mouseenter)&#x3D;&quot;showDeleteButton(element, true)&quot; (mouseleave)&#x3D;&quot;showDeleteButton(element, false)&quot;&gt;
+                  &lt;div fxLayout&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;custom-mapping--qbo-field&quot;&gt;
+                      &lt;mat-form-field *ngIf&#x3D;&quot;!element.existingMapping&quot; [formGroupName]&#x3D;&quot;i&quot; floatLabel&#x3D;&quot;always&quot; appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;custom-mapping--form-field&quot;&gt;
+                        &lt;mat-select formControlName&#x3D;&quot;qboField&quot; placeholder&#x3D;&quot;Select a Dimension from QBO&quot;&gt;
+                          &lt;mat-option *ngFor&#x3D;&quot;let option of qboFields&quot; [matTooltip]&#x3D;&quot;option&quot; [matTooltipDisabled]&#x3D;&quot;option.length &lt;&#x3D; 40&quot; matTooltipPosition&#x3D;&quot;above&quot; matTooltipClass&#x3D;&quot;above&quot; (click)&#x3D;&quot;updateMappingRow(i, option)&quot; [value]&#x3D;&quot;option&quot;&gt;
+                            &lt;p&gt;{{ option | titlecase | trimCharacter: 38 }}&lt;/p&gt;
+                            &lt;img *ngIf&#x3D;&quot;option &#x3D;&#x3D;&#x3D; mappingSetting.value[i].qboField&quot; src&#x3D;&quot;assets/images/svgs/general/tick-pink.svg&quot; class&#x3D;&quot;selected-value-check-mark&quot;&gt;
+                          &lt;/mat-option&gt;
+                        &lt;/mat-select&gt;
+                        &lt;div class&#x3D;&quot;mat-select-arrow-closed&quot;&gt;&lt;/div&gt;
+                      &lt;/mat-form-field&gt;
+                      &lt;div fxLayoutAlign&#x3D;&quot; center&quot; *ngIf&#x3D;&quot;element.existingMapping&quot; class&#x3D;&quot;custom-mapping--mapped-row sub-text-color&quot;&gt;
+                        &lt;p class&#x3D;&quot;custom-mapping--mapped-field-text&quot;&gt;{{ element.qboField | titlecase | snakeCaseToSpaceCase }}&lt;/p&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class&#x3D;&quot;custom-mapping--fields-separator&quot;&gt;&lt;/div&gt;
+
+                    &lt;div class&#x3D;&quot;custom-mapping--fyle-field&quot;&gt;
+                      &lt;mat-form-field *ngIf&#x3D;&quot;!element.existingMapping&quot; [formGroupName]&#x3D;&quot;i&quot; floatLabel&#x3D;&quot;always&quot; appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;custom-mapping--form-field&quot;&gt;
+                        &lt;mat-select formControlName&#x3D;&quot;fyleField&quot; placeholder&#x3D;&quot;Select an Expense field from Fyle&quot;&gt;
+                          &lt;mat-option *ngFor&#x3D;&quot;let option of fyleFields&quot; [matTooltip]&#x3D;&quot;option.display_name&quot; [matTooltipDisabled]&#x3D;&quot;option.display_name.length &lt;&#x3D; 40&quot; matTooltipPosition&#x3D;&quot;above&quot; matTooltipClass&#x3D;&quot;above&quot; (click)&#x3D;&quot;updateMappingRow(i, &#x27;&#x27;, option.attribute_type)&quot; [value]&#x3D;&quot;option.attribute_type&quot;&gt;
+                            &lt;p&gt;{{ option.display_name | titlecase | trimCharacter: 38 }}&lt;/p&gt;
+                            &lt;img *ngIf&#x3D;&quot;option.attribute_type &#x3D;&#x3D;&#x3D; mappingSetting.value[i].fyleField&quot; src&#x3D;&quot;assets/images/svgs/general/tick-pink.svg&quot; class&#x3D;&quot;selected-value-check-mark&quot;&gt;
+                          &lt;/mat-option&gt;
+                        &lt;/mat-select&gt;
+                        &lt;div class&#x3D;&quot;mat-select-arrow-closed&quot;&gt;&lt;/div&gt;
+                      &lt;/mat-form-field&gt;
+                      &lt;div fxLayoutAlign&#x3D;&quot; center&quot; *ngIf&#x3D;&quot;element.existingMapping&quot; class&#x3D;&quot;custom-mapping--mapped-row sub-text-color&quot;&gt;
+                        &lt;p class&#x3D;&quot;custom-mapping--mapped-field-text&quot;&gt;{{ element.fyleField | titlecase | snakeCaseToSpaceCase }}&lt;/p&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div *ngIf&#x3D;&quot;!element.existingMapping&quot; fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;center center&quot; class&#x3D;&quot;custom-mapping--create-mapping-setting-cta&quot;&gt;
+                      &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot; class&#x3D;&quot;pointer configuration--submit-btn&quot; [ngClass]&#x3D;&quot;mappingSetting.controls[i].valid ? &#x27;btn-enabled&#x27; : &#x27;btn-disabled&#x27;&quot; (click)&#x3D;&quot;saveMappingSetting(i)&quot;&gt;
+                        &lt;h5 class&#x3D;&quot;btn-cta-text-without-icon single-line-text&quot;&gt;
+                          Create Mapping
+                        &lt;/h5&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+
+                  &lt;div *ngIf&#x3D;&quot;!element.existingMapping&quot; class&#x3D;&quot;custom-mapping--delete-section&quot;&gt;
+                    &lt;img width&#x3D;&quot;18px&quot; height&#x3D;&quot;18px&quot; src&#x3D;&quot;assets/images/svgs/actions/clear-mapping.svg&quot; class&#x3D;&quot;search-select--clear-icon pointer&quot; [ngClass]&#x3D;&quot;{&#x27;search-select--clear-icon-smaller-area&#x27;: true}&quot; (click)&#x3D;&quot;clearMappingRow(i)&quot;&gt;
+                  &lt;/div&gt;
+
+                  &lt;div *ngIf&#x3D;&quot;element.isDeleteButtonAllowed &amp;&amp; element.existingMapping&quot; class&#x3D;&quot;custom-mapping--delete-section&quot;&gt;
+                    &lt;img matTooltip&#x3D;&quot;Delete&quot; matTooltipPosition&#x3D;&quot;below&quot; matTooltipClass&#x3D;&quot;below&quot; width&#x3D;&quot;18px&quot; height&#x3D;&quot;20px&quot; src&#x3D;&quot;assets/images/svgs/actions/delete.svg&quot; class&#x3D;&quot;search-select--clear-icon pointer&quot; [ngClass]&#x3D;&quot;{&#x27;search-select--clear-icon-smaller-area&#x27;: true}&quot; (click)&#x3D;&quot;deleteMappingSetting(element.index)&quot;&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div fxLayout&#x3D;&quot;row&quot; class&#x3D;&quot;custom-mapping--mapping-row-separator&quot;&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;!-- Shimmers --&gt;
+          &lt;div *ngIf&#x3D;&quot;isLoading&quot;&gt;
+            &lt;div class&#x3D;&quot;skeleton-loader-list-view--init-box-section&quot; fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot; center&quot;&gt;
+              &lt;div class&#x3D;&quot;shimmers skeleton-loader-list-view--init-box-custom-mapping&quot;&gt;&lt;/div&gt;
+              &lt;div class&#x3D;&quot;shimmers skeleton-loader-list-view--end-box&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div fxLayout&#x3D;&quot;row&quot; *ngIf&#x3D;&quot;!isLoading &amp;&amp; showMappingList &amp;&amp; qboFields.length &gt; 0 &amp;&amp; fyleFields.length &gt; 0 &amp;&amp; isExistingRowMapped&quot; class&#x3D;&quot;custom-mapping--add-section&quot;&gt;
+        &lt;div fxLayout&#x3D;&quot;row&quot; class&#x3D;&quot;pointer&quot; (click)&#x3D;&quot;createMappingRow()&quot;&gt;
+          &lt;img class&#x3D;&quot;custom-mapping--add-icon&quot; width&#x3D;&quot;15px&quot; height&#x3D;&quot;25px&quot; src&#x3D;&quot;assets/images/svgs/actions/plus.svg&quot;&gt;
+          &lt;h4 class&#x3D;&quot;actionable-text&quot;&gt;Add New Mapping&lt;/h4&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div fxLayout&#x3D;&quot;row&quot; *ngIf&#x3D;&quot;!isLoading &amp;&amp; showMappingList &amp;&amp; isExistingRowMapped &amp;&amp; !(qboFields.length &gt; 0 &amp;&amp; fyleFields.length &gt; 0)&quot; class&#x3D;&quot;custom-mapping--limit-exceeded-section paragraph&quot;&gt;
+        &lt;div fxLayout&#x3D;&quot;row&quot; class&#x3D;&quot;custom-mapping--limit-exceeded-content&quot;&gt;
+          &lt;img class&#x3D;&quot;custom-mapping--error-icon&quot; width&#x3D;&quot;17px&quot; height&#x3D;&quot;17px&quot; src&#x3D;&quot;assets/images/svgs/general/info-error.svg&quot;&gt;
+          &lt;div&gt;
+            &lt;p class&#x3D;&quot;custom-mapping--limit-exceeded-text&quot;&gt;Limit reached&lt;/p&gt;
+            &lt;p class&#x3D;&quot;custom-mapping--limit-exceeded-caption&quot;&gt;
+              You have set up Custom mapping for all the dimensions allowed in the Integration.
+              Please reach out to &lt;b&gt;support@fylehq.com&lt;/b&gt; in case you have any specific questions. 
+            &lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;app-zero-state-with-illustration *ngIf&#x3D;&quot;!isLoading &amp;&amp; !showMappingList&quot; [page]&#x3D;&quot;ZeroStatePage.custom_mapping&quot;&gt;&lt;/app-zero-state-with-illustration&gt;
+
+      &lt;div *ngIf&#x3D;&quot;!isLoading &amp;&amp; !showMappingList&quot; fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;center center&quot; class&#x3D;&quot;custom-mapping--create-btn&quot;&gt;
+        &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot; class&#x3D;&quot;pointer configuration--submit-btn btn-enabled&quot; (click)&#x3D;&quot;createMappingRow()&quot;&gt;
+          &lt;h5 class&#x3D;&quot;btn-cta-text-without-icon single-line-text&quot;&gt;
+            Create Custom Mapping
+          &lt;/h5&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./custom-mapping.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.custom-mapping {
+  padding: 24px 24px 31px 24px;
+
+  &amp;--content {
+    background: #FFFFFF;
+    border-radius: 8px;
+    height: 540px;
+  }
+
+  &amp;--title-section {
+    padding: 32px;
+    border-bottom: 1px solid #DFDFE2;
+  }
+
+  &amp;--title {
+    padding-bottom: 8px;
+  }
+
+  &amp;--create-btn {
+    padding-top: 24px;
+  }
+
+  &amp;--mapping-section {
+    padding-top: 32px;
+  }
+
+  &amp;--table-header {
+    height: 40px;
+    background: #F5F5F5;
+    border: 1px solid #DFDFE2;
+    border-radius: 4px 0px 0px 4px;
+  }
+
+  &amp;--table-header-text {
+    color: #2C304E;
+  }
+
+  &amp;--table-header-col-1 {
+    padding-left: 31px;
+    border-right: 1px solid #DFDFE2;
+    width: 338px;
+  }
+
+  &amp;--table-header-col-2 {
+    padding-left: 22px;
+    width: 338px;
+  }
+
+  &amp;--form-field {
+    width: 280px;
+  }
+
+  &amp;--qbo-field {
+    padding: 22px 0px 21px 33px;
+  }
+
+  &amp;--fields-separator {
+    border-top: 1px solid #DFDFE2;
+    width: 48px;
+    margin-top: 44px;
+  }
+
+  &amp;--fyle-field {
+    width: 338px;
+    padding: 22px 0px 21px 0px;
+  }
+
+  &amp;--create-mapping-setting-cta {
+    margin-top: -5px;
+  }
+
+  &amp;--delete-section {
+    padding-right: 36px;
+  }
+
+  &amp;--mapping-row-separator {
+    border-top: 1px solid #DFDFE2;
+  }
+
+  &amp;--add-section {
+    padding: 33px 0px 0px 22px;
+    font-size: 14px;
+  }
+
+  &amp;--add-icon {
+    margin-top: -4px;
+    padding-right: 10px;
+  }
+
+  &amp;--mapped-row {
+    background: #F5F5F5;
+    border: 1px solid #DFDFE2;
+    border-radius: 4px;
+    width: 280px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  &amp;--mapped-field-text {
+    padding-left: 13px;
+  }
+
+  &amp;--limit-exceeded-section {
+    padding: 32px 0px 0px 33px;
+  }
+
+  &amp;--limit-exceeded-content {
+    background: #FBE8E9;
+    border: 1px solid rgba(218, 30, 40, 0.1);
+    border-radius: 4px;
+    width: 510px;
+    font-size: 12px;
+  }
+
+  &amp;--error-icon {
+    padding: 10px 0px 0px 14px;
+  }
+
+  &amp;--limit-exceeded-text {
+    padding: 11px 0px 4px 14px;
+  }
+
+  &amp;--limit-exceeded-caption {
+    padding: 0px 0px 8px 11px;
+  }
+}
+
+p {
+  margin: 0;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="mapping">  <app-mapping-header-section [mappingStats]="mappingStats" [totalCardActive]="true" [customMapping]="true"></app-mapping-header-section>  <div class="custom-mapping">    <div class="custom-mapping--content">      <div class="custom-mapping--title-section">        <p class="custom-mapping--title">Select a dimension in QBO that you want to map to an expense field in Fyle</p>        <h5 class="sub-text-color">Mapping would help you export Fyle expenses with the correct dimension value to QBO.</h5>      </div>      <div class="custom-mapping--mapping-section" *ngIf="showMappingList || isLoading">        <div>          <div class="custom-mapping--table-header" fxLayout="row">            <h5 fxLayoutAlign=" center" class="custom-mapping--table-header-text custom-mapping--table-header-col-1">              Dimension from QBO            </h5>            <h5 fxLayoutAlign=" center" class="custom-mapping--table-header-text custom-mapping--table-header-col-2">              Expense field from Fyle            </h5>          </div>          <div *ngIf="!isLoading">            <div [formGroup]="mappingSettingForm" *ngFor="let element of mappingRows; let i = index">              <div formArrayName="mappingSetting" fxLayout="column">                <div fxLayout="row" fxLayoutAlign="space-between center" (mouseenter)="showDeleteButton(element, true)" (mouseleave)="showDeleteButton(element, false)">                  <div fxLayout="row">                    <div class="custom-mapping--qbo-field">                      <mat-form-field *ngIf="!element.existingMapping" [formGroupName]="i" floatLabel="always" appearance="outline" class="custom-mapping--form-field">                        <mat-select formControlName="qboField" placeholder="Select a Dimension from QBO">                          <mat-option *ngFor="let option of qboFields" [matTooltip]="option" [matTooltipDisabled]="option.length <= 40" matTooltipPosition="above" matTooltipClass="above" (click)="updateMappingRow(i, option)" [value]="option">                            <p>{{ option | titlecase | trimCharacter: 38 }}</p>                            <img *ngIf="option === mappingSetting.value[i].qboField" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">                          </mat-option>                        </mat-select>                        <div class="mat-select-arrow-closed"></div>                      </mat-form-field>                      <div fxLayoutAlign=" center" *ngIf="element.existingMapping" class="custom-mapping--mapped-row sub-text-color">                        <p class="custom-mapping--mapped-field-text">{{ element.qboField | titlecase | snakeCaseToSpaceCase }}</p>                      </div>                    </div>                    <div class="custom-mapping--fields-separator"></div>                    <div class="custom-mapping--fyle-field">                      <mat-form-field *ngIf="!element.existingMapping" [formGroupName]="i" floatLabel="always" appearance="outline" class="custom-mapping--form-field">                        <mat-select formControlName="fyleField" placeholder="Select an Expense field from Fyle">                          <mat-option *ngFor="let option of fyleFields" [matTooltip]="option.display_name" [matTooltipDisabled]="option.display_name.length <= 40" matTooltipPosition="above" matTooltipClass="above" (click)="updateMappingRow(i, \'\', option.attribute_type)" [value]="option.attribute_type">                            <p>{{ option.display_name | titlecase | trimCharacter: 38 }}</p>                            <img *ngIf="option.attribute_type === mappingSetting.value[i].fyleField" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">                          </mat-option>                        </mat-select>                        <div class="mat-select-arrow-closed"></div>                      </mat-form-field>                      <div fxLayoutAlign=" center" *ngIf="element.existingMapping" class="custom-mapping--mapped-row sub-text-color">                        <p class="custom-mapping--mapped-field-text">{{ element.fyleField | titlecase | snakeCaseToSpaceCase }}</p>                      </div>                    </div>                    <div *ngIf="!element.existingMapping" fxLayout="row" fxLayoutAlign="center center" class="custom-mapping--create-mapping-setting-cta">                      <div fxLayout="row" fxLayoutAlign="space-between center" class="pointer configuration--submit-btn" [ngClass]="mappingSetting.controls[i].valid ? \'btn-enabled\' : \'btn-disabled\'" (click)="saveMappingSetting(i)">                        <h5 class="btn-cta-text-without-icon single-line-text">                          Create Mapping                        </h5>                      </div>                    </div>                  </div>                  <div *ngIf="!element.existingMapping" class="custom-mapping--delete-section">                    <img width="18px" height="18px" src="assets/images/svgs/actions/clear-mapping.svg" class="search-select--clear-icon pointer" [ngClass]="{\'search-select--clear-icon-smaller-area\': true}" (click)="clearMappingRow(i)">                  </div>                  <div *ngIf="element.isDeleteButtonAllowed && element.existingMapping" class="custom-mapping--delete-section">                    <img matTooltip="Delete" matTooltipPosition="below" matTooltipClass="below" width="18px" height="20px" src="assets/images/svgs/actions/delete.svg" class="search-select--clear-icon pointer" [ngClass]="{\'search-select--clear-icon-smaller-area\': true}" (click)="deleteMappingSetting(element.index)">                  </div>                </div>                <div fxLayout="row" class="custom-mapping--mapping-row-separator"></div>              </div>            </div>          </div>          <!-- Shimmers -->          <div *ngIf="isLoading">            <div class="skeleton-loader-list-view--init-box-section" fxLayout="row" fxLayoutAlign=" center">              <div class="shimmers skeleton-loader-list-view--init-box-custom-mapping"></div>              <div class="shimmers skeleton-loader-list-view--end-box"></div>            </div>          </div>        </div>      </div>      <div fxLayout="row" *ngIf="!isLoading && showMappingList && qboFields.length > 0 && fyleFields.length > 0 && isExistingRowMapped" class="custom-mapping--add-section">        <div fxLayout="row" class="pointer" (click)="createMappingRow()">          <img class="custom-mapping--add-icon" width="15px" height="25px" src="assets/images/svgs/actions/plus.svg">          <h4 class="actionable-text">Add New Mapping</h4>        </div>      </div>      <div fxLayout="row" *ngIf="!isLoading && showMappingList && isExistingRowMapped && !(qboFields.length > 0 && fyleFields.length > 0)" class="custom-mapping--limit-exceeded-section paragraph">        <div fxLayout="row" class="custom-mapping--limit-exceeded-content">          <img class="custom-mapping--error-icon" width="17px" height="17px" src="assets/images/svgs/general/info-error.svg">          <div>            <p class="custom-mapping--limit-exceeded-text">Limit reached</p>            <p class="custom-mapping--limit-exceeded-caption">              You have set up Custom mapping for all the dimensions allowed in the Integration.              Please reach out to <b>support@fylehq.com</b> in case you have any specific questions.             </p>          </div>        </div>      </div>      <app-zero-state-with-illustration *ngIf="!isLoading && !showMappingList" [page]="ZeroStatePage.custom_mapping"></app-zero-state-with-illustration>      <div *ngIf="!isLoading && !showMappingList" fxLayout="row" fxLayoutAlign="center center" class="custom-mapping--create-btn">        <div fxLayout="row" fxLayoutAlign="space-between center" class="pointer configuration--submit-btn btn-enabled" (click)="createMappingRow()">          <h5 class="btn-cta-text-without-icon single-line-text">            Create Custom Mapping          </h5>        </div>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddEmailDialogComponent', 'selector': 'app-add-email-dialog'},{'name': 'AdvancedSettingsComponent', 'selector': 'app-advanced-settings'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'ConfigurationAdvancedSettingsComponent', 'selector': 'app-configuration-advanced-settings'},{'name': 'ConfigurationComponent', 'selector': 'app-configuration'},{'name': 'ConfigurationEmployeeSettingsComponent', 'selector': 'app-configuration-employee-settings'},{'name': 'ConfigurationExportSettingsComponent', 'selector': 'app-configuration-export-settings'},{'name': 'ConfigurationImportSettingsComponent', 'selector': 'app-configuration-import-settings'},{'name': 'ConfigurationSelectFieldComponent', 'selector': 'app-configuration-select-field'},{'name': 'ConfigurationStepFooterSectionComponent', 'selector': 'app-configuration-step-footer-section'},{'name': 'ConfigurationStepHeaderSectionComponent', 'selector': 'app-configuration-step-header-section'},{'name': 'ConfigurationToggleFieldComponent', 'selector': 'app-configuration-toggle-field'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'CustomMappingComponent', 'selector': 'app-custom-mapping'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardExportLogDialogComponent', 'selector': 'app-dashboard-export-log-dialog'},{'name': 'DashboardHeaderSectionComponent', 'selector': 'app-dashboard-header-section'},{'name': 'DashboardQboErrorDialogComponent', 'selector': 'app-dashboard-qbo-error-dialog'},{'name': 'DashboardResolveMappingErrorDialogComponent', 'selector': 'app-dashboard-resolve-mapping-error-dialog'},{'name': 'EmailMultiSelectFieldComponent', 'selector': 'app-email-multi-select-field'},{'name': 'EmployeeMappingComponent', 'selector': 'app-employee-mapping'},{'name': 'EmployeeSettingsComponent', 'selector': 'app-employee-settings'},{'name': 'ExpenseFieldCreationDialogComponent', 'selector': 'app-expense-field-creation-dialog'},{'name': 'ExportLogChildDialogComponent', 'selector': 'app-export-log-child-dialog'},{'name': 'ExportLogChildTableComponent', 'selector': 'app-export-log-child-table'},{'name': 'ExportLogComponent', 'selector': 'app-export-log'},{'name': 'ExportLogTableComponent', 'selector': 'app-export-log-table'},{'name': 'ExportSettingsComponent', 'selector': 'app-export-settings'},{'name': 'FyleCallbackComponent', 'selector': 'app-fyle-callback'},{'name': 'GenericMappingComponent', 'selector': 'app-generic-mapping'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImportSettingsComponent', 'selector': 'app-import-settings'},{'name': 'IntegrationComponent', 'selector': 'app-integration'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'MandatoryErrorMessageComponent', 'selector': 'app-mandatory-error-message'},{'name': 'MandatoryFieldComponent', 'selector': 'app-mandatory-field'},{'name': 'MappingComponent', 'selector': 'app-mapping'},{'name': 'MappingFilterComponent', 'selector': 'app-mapping-filter'},{'name': 'MappingHeaderSectionComponent', 'selector': 'app-mapping-header-section'},{'name': 'MappingTableComponent', 'selector': 'app-mapping-table'},{'name': 'OnboardingAdvancedSettingsComponent', 'selector': 'app-onboarding-advanced-settings'},{'name': 'OnboardingComponent', 'selector': 'app-onboarding'},{'name': 'OnboardingDoneComponent', 'selector': 'app-onboarding-done'},{'name': 'OnboardingEmployeeSettingsComponent', 'selector': 'app-onboarding-employee-settings'},{'name': 'OnboardingExportSettingsComponent', 'selector': 'app-onboarding-export-settings'},{'name': 'OnboardingFooterComponent', 'selector': 'app-onboarding-footer'},{'name': 'OnboardingImportSettingsComponent', 'selector': 'app-onboarding-import-settings'},{'name': 'OnboardingLandingComponent', 'selector': 'app-onboarding-landing'},{'name': 'OnboardingQboConnectorComponent', 'selector': 'app-onboarding-qbo-connector'},{'name': 'OnboardingStepperComponent', 'selector': 'app-onboarding-stepper'},{'name': 'PaginatorComponent', 'selector': 'app-paginator'},{'name': 'PreviewDialogComponent', 'selector': 'app-preview-dialog'},{'name': 'QboCallbackComponent', 'selector': 'app-qbo-callback'},{'name': 'QboConnectorComponent', 'selector': 'app-qbo-connector'},{'name': 'SharedLoginComponent', 'selector': 'app-shared-login'},{'name': 'SimpleTextSearchComponent', 'selector': 'app-simple-text-search'},{'name': 'ZeroStateWithIllustrationComponent', 'selector': 'app-zero-state-with-illustration'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CustomMappingComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CustomMappingComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

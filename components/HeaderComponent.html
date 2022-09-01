@@ -1,0 +1,1831 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fyle-qbo-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">fyle-qbo-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  HeaderComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/shared/components/core/header/header.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-header</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./header.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./header.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#activePage" >activePage</a>
+                            </li>
+                            <li>
+                                <a href="#currency" >currency</a>
+                            </li>
+                            <li>
+                                <a href="#help" >help</a>
+                            </li>
+                            <li>
+                                <a href="#helpButton" >helpButton</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#helperService" >helperService</a>
+                            </li>
+                            <li>
+                                <a href="#isHelpSectionExpanded" >isHelpSectionExpanded</a>
+                            </li>
+                            <li>
+                                <a href="#isProfileExpanded" >isProfileExpanded</a>
+                            </li>
+                            <li>
+                                <a href="#isQboConnected" >isQboConnected</a>
+                            </li>
+                            <li>
+                                <a href="#menu" >menu</a>
+                            </li>
+                            <li>
+                                <a href="#menuButton" >menuButton</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#phase" >phase</a>
+                            </li>
+                            <li>
+                                <a href="#qboCompanyName" >qboCompanyName</a>
+                            </li>
+                            <li>
+                                <a href="#RedirectLink" >RedirectLink</a>
+                            </li>
+                            <li>
+                                <a href="#showBackButton" >showBackButton</a>
+                            </li>
+                            <li>
+                                <a href="#user" >user</a>
+                            </li>
+                            <li>
+                                <a href="#windowReference" >windowReference</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#disconnectQbo" >disconnectQbo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getActivePageName" >getActivePageName</a>
+                            </li>
+                            <li>
+                                <a href="#logout" >logout</a>
+                            </li>
+                            <li>
+                                <a href="#navigateBack" >navigateBack</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setupPage" >setupPage</a>
+                            </li>
+                            <li>
+                                <a href="#showOrHideHelpDropdown" >showOrHideHelpDropdown</a>
+                            </li>
+                            <li>
+                                <a href="#showOrHideProfileDropdown" >showOrHideProfileDropdown</a>
+                            </li>
+                            <li>
+                                <a href="#switchFyleOrg" >switchFyleOrg</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, dialog: MatDialog, location: <a href="https://angular.io/api/common/Location" target="_blank">Location</a>, helperService: <a href="../injectables/HelperService.html" target="_self">HelperService</a>, qboConnectorService: <a href="../injectables/QboConnectorService.html" target="_self">QboConnectorService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, renderer: <a href="https://angular.io/api/core/Renderer2" target="_blank">Renderer2</a>, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, windowService: <a href="../injectables/WindowService.html" target="_self">WindowService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/shared/components/core/header/header.component.ts:53</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>location</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/Location" target="_blank" >Location</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>helperService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/HelperService.html" target="_self" >HelperService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>qboConnectorService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/QboConnectorService.html" target="_self" >QboConnectorService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>renderer</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/Renderer2" target="_blank" >Renderer2</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>trackingService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TrackingService.html" target="_self" >TrackingService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>windowService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/WindowService.html" target="_self" >WindowService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>workspaceService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/WorkspaceService.html" target="_self" >WorkspaceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disconnectQbo"></a>
+                    <span class="name">
+                        <span ><b>disconnectQbo</b></span>
+                        <a href="#disconnectQbo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>disconnectQbo()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="138"
+                            class="link-to-prism">src/app/shared/components/core/header/header.component.ts:138</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getActivePageName"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getActivePageName</b></span>
+                        <a href="#getActivePageName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getActivePageName(currentPageUrl: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/app/shared/components/core/header/header.component.ts:80</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>currentPageUrl</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logout"></a>
+                    <span class="name">
+                        <span ><b>logout</b></span>
+                        <a href="#logout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>logout()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="164"
+                            class="link-to-prism">src/app/shared/components/core/header/header.component.ts:164</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateBack"></a>
+                    <span class="name">
+                        <span ><b>navigateBack</b></span>
+                        <a href="#navigateBack"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateBack()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/app/shared/components/core/header/header.component.ts:129</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="184"
+                            class="link-to-prism">src/app/shared/components/core/header/header.component.ts:184</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setupPage"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>setupPage</b></span>
+                        <a href="#setupPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setupPage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="102"
+                            class="link-to-prism">src/app/shared/components/core/header/header.component.ts:102</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showOrHideHelpDropdown"></a>
+                    <span class="name">
+                        <span ><b>showOrHideHelpDropdown</b></span>
+                        <a href="#showOrHideHelpDropdown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showOrHideHelpDropdown()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="175"
+                            class="link-to-prism">src/app/shared/components/core/header/header.component.ts:175</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showOrHideProfileDropdown"></a>
+                    <span class="name">
+                        <span ><b>showOrHideProfileDropdown</b></span>
+                        <a href="#showOrHideProfileDropdown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showOrHideProfileDropdown()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="169"
+                            class="link-to-prism">src/app/shared/components/core/header/header.component.ts:169</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="switchFyleOrg"></a>
+                    <span class="name">
+                        <span ><b>switchFyleOrg</b></span>
+                        <a href="#switchFyleOrg"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>switchFyleOrg()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="133"
+                            class="link-to-prism">src/app/shared/components/core/header/header.component.ts:133</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activePage"></a>
+                    <span class="name">
+                        <span ><b>activePage</b></span>
+                        <a href="#activePage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/shared/components/core/header/header.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currency"></a>
+                    <span class="name">
+                        <span ><b>currency</b></span>
+                        <a href="#currency"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.workspaceService.getFyleCurrency()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/shared/components/core/header/header.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="help"></a>
+                    <span class="name">
+                        <span ><b>help</b></span>
+                        <a href="#help"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;help&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/shared/components/core/header/header.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="helpButton"></a>
+                    <span class="name">
+                        <span ><b>helpButton</b></span>
+                        <a href="#helpButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;helpButton&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/shared/components/core/header/header.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="helperService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>helperService</b></span>
+                        <a href="#helperService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/HelperService.html" target="_self" >HelperService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/shared/components/core/header/header.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isHelpSectionExpanded"></a>
+                    <span class="name">
+                        <span ><b>isHelpSectionExpanded</b></span>
+                        <a href="#isHelpSectionExpanded"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/shared/components/core/header/header.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isProfileExpanded"></a>
+                    <span class="name">
+                        <span ><b>isProfileExpanded</b></span>
+                        <a href="#isProfileExpanded"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/shared/components/core/header/header.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isQboConnected"></a>
+                    <span class="name">
+                        <span ><b>isQboConnected</b></span>
+                        <a href="#isQboConnected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/shared/components/core/header/header.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="menu"></a>
+                    <span class="name">
+                        <span ><b>menu</b></span>
+                        <a href="#menu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;menu&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/shared/components/core/header/header.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="menuButton"></a>
+                    <span class="name">
+                        <span ><b>menuButton</b></span>
+                        <a href="#menuButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;menuButton&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/shared/components/core/header/header.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="phase"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>phase</b></span>
+                        <a href="#phase"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#ProgressPhase" target="_self" >ProgressPhase</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/shared/components/core/header/header.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="qboCompanyName"></a>
+                    <span class="name">
+                        <span ><b>qboCompanyName</b></span>
+                        <a href="#qboCompanyName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/shared/components/core/header/header.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="RedirectLink"></a>
+                    <span class="name">
+                        <span ><b>RedirectLink</b></span>
+                        <a href="#RedirectLink"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>RedirectLink</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/shared/components/core/header/header.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showBackButton"></a>
+                    <span class="name">
+                        <span ><b>showBackButton</b></span>
+                        <a href="#showBackButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/shared/components/core/header/header.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="user"></a>
+                    <span class="name">
+                        <span ><b>user</b></span>
+                        <a href="#user"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/User.html" target="_self" >MinimalUser</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/shared/components/core/header/header.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="windowReference"></a>
+                    <span class="name">
+                        <span ><b>windowReference</b></span>
+                        <a href="#windowReference"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Window</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/shared/components/core/header/header.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Location } from &#x27;@angular/common&#x27;;
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from &#x27;@angular/core&#x27;;
+import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { NavigationStart, Router } from &#x27;@angular/router&#x27;;
+import { QBOCredentials } from &#x27;src/app/core/models/configuration/qbo-connector.model&#x27;;
+import { MinimalUser } from &#x27;src/app/core/models/db/user.model&#x27;;
+import { ClickEvent, ProgressPhase, RedirectLink } from &#x27;src/app/core/models/enum/enum.model&#x27;;
+import { ConfirmationDialog } from &#x27;src/app/core/models/misc/confirmation-dialog.model&#x27;;
+import { QboConnectorService } from &#x27;src/app/core/services/configuration/qbo-connector.service&#x27;;
+import { AuthService } from &#x27;src/app/core/services/core/auth.service&#x27;;
+import { HelperService } from &#x27;src/app/core/services/core/helper.service&#x27;;
+import { TrackingService } from &#x27;src/app/core/services/integration/tracking.service&#x27;;
+import { WindowService } from &#x27;src/app/core/services/core/window.service&#x27;;
+import { UserService } from &#x27;src/app/core/services/misc/user.service&#x27;;
+import { WorkspaceService } from &#x27;src/app/core/services/workspace/workspace.service&#x27;;
+import { ConfirmationDialogComponent } from &#x27;../confirmation-dialog/confirmation-dialog.component&#x27;;
+
+@Component({
+  selector: &#x27;app-header&#x27;,
+  templateUrl: &#x27;./header.component.html&#x27;,
+  styleUrls: [&#x27;./header.component.scss&#x27;]
+})
+export class HeaderComponent implements OnInit {
+
+  user: MinimalUser;
+
+  isQboConnected: boolean &#x3D; true;
+
+  isProfileExpanded: boolean;
+
+  isHelpSectionExpanded: boolean;
+
+  currency: string &#x3D; this.workspaceService.getFyleCurrency();
+
+  qboCompanyName: string;
+
+  showBackButton: boolean;
+
+  activePage: string;
+
+  @ViewChild(&#x27;menuButton&#x27;) menuButton: ElementRef;
+
+  @ViewChild(&#x27;helpButton&#x27;) helpButton: ElementRef;
+
+  @ViewChild(&#x27;help&#x27;) help: ElementRef;
+
+  @ViewChild(&#x27;menu&#x27;) menu: ElementRef;
+
+  RedirectLink &#x3D; RedirectLink;
+
+  windowReference: Window;
+
+  private phase: ProgressPhase;
+
+  constructor(
+    private authService: AuthService,
+    private dialog: MatDialog,
+    private location: Location,
+    public helperService: HelperService,
+    private qboConnectorService: QboConnectorService,
+    private router: Router,
+    private renderer: Renderer2,
+    private trackingService: TrackingService,
+    private userService: UserService,
+    private windowService: WindowService,
+    private workspaceService: WorkspaceService
+  ) {
+    this.windowReference &#x3D; this.windowService.nativeWindow;
+    this.renderer.listen(&#x27;window&#x27;, &#x27;click&#x27;, (e: Event) &#x3D;&gt; {
+      if (e.target !&#x3D;&#x3D; this.menuButton.nativeElement &amp;&amp; e.target !&#x3D;&#x3D; this.menu.nativeElement) {
+        this.isProfileExpanded &#x3D; false;
+      }
+
+      if (e &amp;&amp; e?.target !&#x3D;&#x3D; this.helpButton?.nativeElement &amp;&amp; e.target !&#x3D;&#x3D; this.help?.nativeElement) {
+        this.isHelpSectionExpanded &#x3D; false;
+      }
+    });
+  }
+
+  private getActivePageName(currentPageUrl: string): string {
+    if (currentPageUrl.indexOf(&#x27;dashboard&#x27;) &gt; -1) {
+      return &#x27;Dashboard&#x27;;
+    } else if (currentPageUrl.indexOf(&#x27;export_log&#x27;) &gt; -1) {
+      return &#x27;Export Log&#x27;;
+    } else if (currentPageUrl.indexOf(&#x27;mapping&#x27;) &gt; -1) {
+      return currentPageUrl.split(&#x27;/&#x27;)[4] + &#x27; mapping&#x27;;
+    } else if (currentPageUrl.indexOf(&#x27;/configuration/employee_settings&#x27;) &gt; -1) {
+      return &#x27;Map Employees&#x27;;
+    } else if (currentPageUrl.indexOf(&#x27;/configuration/export_settings&#x27;) &gt; -1) {
+      return &#x27;Export Settings&#x27;;
+    } else if (currentPageUrl.indexOf(&#x27;/configuration/import_settings&#x27;) &gt; -1) {
+      return &#x27;Import Settings&#x27;;
+    } else if (currentPageUrl.indexOf(&#x27;/configuration/advanced_settings&#x27;) &gt; -1) {
+      return &#x27;Advanced Settings&#x27;;
+    } else if (currentPageUrl.indexOf(&#x27;/onboarding&#x27;) &gt; -1) {
+      return &#x27;&#x27;;
+    }
+
+    return &#x27;Dashboard&#x27;;
+  }
+
+  private setupPage(): void {
+    this.phase &#x3D; this.windowReference.location.pathname.includes(&#x27;onboarding&#x27;) ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING;
+    this.user &#x3D; this.userService.getUserProfile();
+
+    this.qboConnectorService.getQBOCredentials().subscribe((credentials: QBOCredentials) &#x3D;&gt; {
+      this.qboCompanyName &#x3D; credentials.company_name;
+    }, (error) &#x3D;&gt; {
+      this.isQboConnected &#x3D; false;
+      if (&#x27;id&#x27; in error.error) {
+        // We have a QBO row present in DB
+        this.qboCompanyName &#x3D; error.error.company_name;
+      }
+    });
+
+    const currentPageUrl &#x3D; this.windowReference.location.pathname;
+
+    this.activePage &#x3D; this.getActivePageName(currentPageUrl);
+
+    this.router.events.subscribe((val) &#x3D;&gt; {
+      if (val instanceof NavigationStart) {
+        this.showBackButton &#x3D; true;
+
+        this.activePage &#x3D; this.getActivePageName(val.url);
+      }
+    });
+  }
+
+  navigateBack() {
+    this.location.back();
+  }
+
+  switchFyleOrg(): void {
+    this.authService.logout(true);
+    this.authService.redirectToFyleOAuth();
+  }
+
+  disconnectQbo(): void {
+    const data: ConfirmationDialog &#x3D; {
+      title: &#x27;Disconnect Quickbooks Online&#x27;,
+      contents: &#x60;Exporting expenses from Fyle will no longer work if you disconnect your 
+        Quickbooks Online Company.
+        &lt;br&gt;
+        Are you sure you want to disconnect &lt;b&gt;${this.qboCompanyName}&lt;/b&gt; Quickbooks Online
+        company?&#x60;,
+      primaryCtaText: &#x27;Disconnect&#x27;
+    };
+
+    const dialogRef &#x3D; this.dialog.open(ConfirmationDialogComponent, {
+      width: &#x27;551px&#x27;,
+      data: data
+    });
+
+    dialogRef.afterClosed().subscribe((disconnect) &#x3D;&gt; {
+      if (disconnect) {
+        this.trackingService.onClickEvent(ClickEvent.DISCONNECT_QBO, {phase: this.phase});
+        this.qboConnectorService.disconnectQBOConnection().subscribe(() &#x3D;&gt; {
+          this.authService.redirectToOnboardingLanding();
+        });
+      }
+    });
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.authService.redirectToOnboardingLogin();
+  }
+
+  showOrHideProfileDropdown(): void {
+    this.isProfileExpanded &#x3D; !this.isProfileExpanded;
+
+    event?.stopPropagation();
+  }
+
+  showOrHideHelpDropdown(): void {
+    if (!this.isHelpSectionExpanded) {
+      this.trackingService.onClickEvent(ClickEvent.HELP_SECTION, {phase: this.phase});
+    }
+
+    this.isHelpSectionExpanded &#x3D; !this.isHelpSectionExpanded;
+    event?.stopPropagation();
+  }
+
+  ngOnInit(): void {
+    this.setupPage();
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot; class&#x3D;&quot;navbar&quot;&gt;
+  &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot;&gt;
+    &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot; class&#x3D;&quot;navbar--logo-section&quot;&gt;
+      &lt;div class&#x3D;&quot;navbar--fyle-logo&quot;&gt;
+        &lt;img alt&#x3D;&quot;Fyle&quot; src&#x3D;&quot;assets/images/svgs/logo/fyle.svg&quot; width&#x3D;&quot;70px&quot; height&#x3D;&quot;60px&quot;/&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;navbar--plus&quot;&gt;
+        +
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;img alt&#x3D;&quot;Quickbooks Online&quot; src&#x3D;&quot;assets/images/svgs/logo/qbo.svg&quot; width&#x3D;&quot;110px&quot; height&#x3D;&quot;60px&quot; class&#x3D;&quot;navbar--qbo-logo&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;img *ngIf&#x3D;&quot;showBackButton &amp;&amp; activePage&quot; class&#x3D;&quot;navbar--back-btn pointer&quot; (click)&#x3D;&quot;navigateBack()&quot; src&#x3D;&quot;assets/images/svgs/actions/arrow-mark-left-back.svg&quot; /&gt;
+    &lt;h3 [ngClass]&#x3D;&quot;showBackButton &amp;&amp; activePage ? &#x27;navbar--page-name-with-back-btn&#x27; : &#x27;navbar--page-name&#x27;&quot;&gt;{{ activePage | titlecase | snakeCaseToSpaceCase }}&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot; class&#x3D;&quot;navbar--profile-help&quot;&gt;
+    &lt;div #helpButton (click)&#x3D;&quot;showOrHideHelpDropdown()&quot; fxLayout&#x3D;&quot;row&quot; class&#x3D;&quot;navbar--help-section pointer&quot;&gt;
+      &lt;div class&#x3D;&quot;navbar--help-icon&quot;&gt;
+        &lt;img src&#x3D;&quot;assets/images/svgs/actions/help.svg&quot; /&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;navbar--help-text navbar--small-text&quot;&gt;
+        Help
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div fxLayout&#x3D;&quot;row&quot; #menu&gt;
+      &lt;div (click)&#x3D;&quot;showOrHideProfileDropdown()&quot; class&#x3D;&quot;navbar--avatar-section pointer&quot;&gt;
+        &lt;p class&#x3D;&quot;navbar--avatar-text align-center&quot;&gt;
+          {{user.full_name[0]}}
+        &lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;navbar--profile-section&quot;&gt;
+        &lt;div (click)&#x3D;&quot;showOrHideProfileDropdown()&quot;&gt;
+          &lt;div class&#x3D;&quot;pointer&quot; [matTooltip]&#x3D;&quot;user.full_name&quot; [matTooltipDisabled]&#x3D;&quot;user.full_name.length &gt; 20 &#x3D;&#x3D;&#x3D; false&quot; matTooltipPosition&#x3D;&quot;below&quot; matTooltipClass&#x3D;&quot;below profile-tooltip&quot;&gt;
+            {{ user.full_name | trimCharacter: 20 }}
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;navbar--user-org navbar--small-text sub-text-color pointer&quot; [matTooltip]&#x3D;&quot;user.org_name&quot; [matTooltipDisabled]&#x3D;&quot;user.org_name.length &gt; 26 &#x3D;&#x3D;&#x3D; false&quot; matTooltipPosition&#x3D;&quot;below&quot; matTooltipClass&#x3D;&quot;below&quot;&gt;
+            {{ user.org_name | trimCharacter: 26 }}
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div *ngIf&#x3D;&quot;isProfileExpanded&quot; class&#x3D;&quot;profile&quot;&gt;
+          &lt;div class&#x3D;&quot;profile--section&quot;&gt;
+            &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;start center&quot;&gt;
+              &lt;div class&#x3D;&quot;navbar--avatar-section&quot;&gt;
+                &lt;p class&#x3D;&quot;navbar--avatar-text align-center&quot;&gt;
+                  {{user.full_name[0]}}
+                &lt;/p&gt;
+              &lt;/div&gt;
+
+              &lt;h3 class&#x3D;&quot;profile--name&quot; [matTooltip]&#x3D;&quot;user.full_name&quot; [matTooltipDisabled]&#x3D;&quot;user.full_name.length &gt; 20 &#x3D;&#x3D;&#x3D; false&quot; matTooltipPosition&#x3D;&quot;below&quot; matTooltipClass&#x3D;&quot;below&quot;&gt;
+                {{ user.full_name | trimCharacter: 20 }}
+              &lt;/h3&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;profile--divider&quot;&gt;&lt;/div&gt;
+
+            &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot;&gt;
+              &lt;div&gt;Fyle Organization&lt;/div&gt;
+              &lt;div class&#x3D;&quot;profile--actionable-btn actionable-text&quot; (click)&#x3D;&quot;switchFyleOrg()&quot;&gt;Switch Organization&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div&gt;
+              &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;start center&quot; class&#x3D;&quot;profile--org-section&quot;&gt;
+                &lt;div class&#x3D;&quot;profile--org-name&quot; [matTooltip]&#x3D;&quot;user.org_name&quot; [matTooltipDisabled]&#x3D;&quot;user.org_name.length &gt; 26 &#x3D;&#x3D;&#x3D; false&quot; matTooltipPosition&#x3D;&quot;below&quot; matTooltipClass&#x3D;&quot;below&quot;&gt;
+                  {{ user.org_name | trimCharacter: 26 }}
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;profile--state-pill profile--state-pill-active&quot;&gt;
+                  &lt;h4 class&#x3D;&quot;profile--state-pill-text align-center&quot;&gt;Active&lt;/h4&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;profile--currency sub-text-color&quot;&gt;
+                {{ currency }}
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;profile--divider&quot;&gt;&lt;/div&gt;
+
+            &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot;&gt;
+              &lt;div&gt;Quickbooks Online Company&lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;isQboConnected&quot; class&#x3D;&quot;profile--actionable-btn actionable-text&quot; (click)&#x3D;&quot;disconnectQbo()&quot;&gt;Disconnect&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div&gt;
+              &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;start center&quot; class&#x3D;&quot;profile--org-section&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;qboCompanyName&quot; class&#x3D;&quot;profile--org-name&quot; [matTooltip]&#x3D;&quot;qboCompanyName&quot; [matTooltipDisabled]&#x3D;&quot;qboCompanyName.length &gt; 26 &#x3D;&#x3D;&#x3D; false&quot; matTooltipPosition&#x3D;&quot;below&quot; matTooltipClass&#x3D;&quot;below&quot;&gt;
+                  {{ qboCompanyName | trimCharacter: 26 }}
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;profile--state-pill&quot; [ngClass]&#x3D;&quot;isQboConnected ? &#x27;profile--state-pill-active&#x27; : &#x27;profile--state-pill-inactive&#x27;&quot;&gt;
+                  &lt;h4 class&#x3D;&quot;profile--state-pill-text align-center&quot;&gt;{{ isQboConnected ? &#x27;Active&#x27;: &#x27;Inactive&#x27; }}&lt;/h4&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;profile--currency sub-text-color&quot;&gt;
+                {{ currency }}
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;profile--divider&quot;&gt;&lt;/div&gt;
+
+            &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;center center&quot; class&#x3D;&quot;profile--signout-section pointer&quot; (click)&#x3D;&quot;logout()&quot;&gt;
+              &lt;img src&#x3D;&quot;assets/images/svgs/actions/signout.svg&quot; /&gt;
+              &lt;div class&#x3D;&quot;profile--signout-text&quot;&gt;Signout&lt;/div&gt;
+            &lt;/div&gt;
+
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div *ngIf&#x3D;&quot;isHelpSectionExpanded&quot; class&#x3D;&quot;help paragraph&quot; #help&gt;
+          &lt;div class&#x3D;&quot;help--help-center-section&quot;&gt;
+            &lt;h5 fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot; center&quot; class&#x3D;&quot;help--help-center-content pointer&quot; (click)&#x3D;&quot;helperService.openExternalLink(RedirectLink.FYLE_HELP)&quot;&gt;
+              Visit Help Centre
+              &lt;img class&#x3D;&quot;help--open-in-new-tab-icon&quot; src&#x3D;&quot;assets/images/svgs/actions/open-in-new-tab-help.svg&quot; width&#x3D;&quot;14px&quot; height&#x3D;&quot;14px&quot;/&gt;
+            &lt;/h5&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;help--divider&quot;&gt;&lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;help--email-section&quot;&gt;
+            &lt;h5&gt;Still facing issues?&lt;/h5&gt;
+            &lt;h5 class&#x3D;&quot;sub-text-color help--email-info-text&quot;&gt;
+              Write your query to us along with screenshots (if any) at
+            &lt;/h5&gt;
+            &lt;h5 (click)&#x3D;&quot;helperService.openExternalLink(&#x27;mailto:support@fylehq.com&#x27;)&quot; class&#x3D;&quot;help--support-email pointer&quot;&gt;support@fylehq.com&lt;/h5&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div (click)&#x3D;&quot;showOrHideProfileDropdown()&quot; class&#x3D;&quot;profile--dropdown pointer&quot;&gt;
+        &lt;img #menuButton src&#x3D;&#x27;{{ &quot;assets/images/svgs/actions/arrow-mark-&quot; + (isProfileExpanded ? &quot;up&quot; : &quot;down&quot;) + &quot;-dashboard.svg&quot;}}&#x27; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./header.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.profile {
+  height: 340px;
+  width: 353px;
+  right: 20px;
+  position: absolute;
+  background: #FFFFFF;
+  box-shadow: 0px 8px 40px rgba(215, 215, 215, 0.73);
+  border-radius: 8px;
+  margin-top: 10px;
+  z-index: 101;
+
+  &amp;--section {
+    padding: 16px 16px;
+  }
+
+  &amp;--dropdown {
+    padding-top: 8px;
+    padding-left: 8px;
+  }
+
+  &amp;--name {
+    padding-left: 16px;
+  }
+
+  &amp;--divider {
+    border: 1px solid #F5F5F5;
+    width: 321px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  &amp;--org-section {
+    padding-top: 11px;
+  }
+
+  &amp;--org-name {
+    color: #414562;
+    font-size: 14px;
+    padding-right: 8px;
+  }
+
+  &amp;--actionable-btn {
+    font-size: 12px;
+  }
+
+  &amp;--state-pill {
+    height: 24px;
+    border-radius: 13.5px;
+  }
+
+  &amp;--state-pill-active {
+    background: #E7F7F2;
+    color: #55B07D;
+    @extend .profile--state-pill;
+  }
+
+  &amp;--state-pill-inactive {
+    background: rgba(218, 30, 40, 0.1);
+    color: #DA1E28;
+    @extend .profile--state-pill;
+  }
+
+  &amp;--state-pill-text {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  &amp;--currency {
+    font-size: 12px;
+    padding-top: 7px;
+  }
+
+  &amp;--signout-section {
+    padding-bottom: 16px;
+  }
+
+  &amp;--signout-text {
+    font-size: 14px;
+    padding-left: 6px;
+    color: #DA1E28;
+  }
+}
+
+.help {
+  width: 245px;
+  margin-top: 10px;
+  right: 154px;
+  position: absolute;
+  background: #FFFFFF;
+  box-shadow: 0px 8px 40px rgba(215, 215, 215, 0.73);
+  border-radius: 4px;
+  color: #2C304E;
+  z-index: 101;
+
+  &amp;--help-center-section {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  &amp;--help-center-content {
+    height: 50px;
+    background: #F5F5F5;
+    padding-left: 16px;
+  }
+
+  &amp;--open-in-new-tab-icon {
+    padding-left: 9px;
+  }
+
+  &amp;--divider {
+    margin: 0px 16px 24px 16px;
+    border: 1px solid #DFDFE2;
+    width: 213px;
+  }
+
+  &amp;--email-section {
+    padding-left: 16px;
+  }
+
+  &amp;--email-info-text {
+    width: 185px;
+    padding-top: 8px;
+  }
+
+  &amp;--support-email {
+    padding-top: 4px;
+    padding-bottom: 20px;
+    color: #0062FF;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div fxLayout="row" fxLayoutAlign="space-between center" class="navbar">  <div fxLayout="row" fxLayoutAlign="space-between center">    <div fxLayout="row" fxLayoutAlign="space-between center" class="navbar--logo-section">      <div class="navbar--fyle-logo">        <img alt="Fyle" src="assets/images/svgs/logo/fyle.svg" width="70px" height="60px"/>      </div>      <div class="navbar--plus">        +      </div>      <div>        <img alt="Quickbooks Online" src="assets/images/svgs/logo/qbo.svg" width="110px" height="60px" class="navbar--qbo-logo" />      </div>    </div>    <img *ngIf="showBackButton && activePage" class="navbar--back-btn pointer" (click)="navigateBack()" src="assets/images/svgs/actions/arrow-mark-left-back.svg" />    <h3 [ngClass]="showBackButton && activePage ? \'navbar--page-name-with-back-btn\' : \'navbar--page-name\'">{{ activePage | titlecase | snakeCaseToSpaceCase }}</h3>  </div>  <div fxLayout="row" fxLayoutAlign="space-between center" class="navbar--profile-help">    <div #helpButton (click)="showOrHideHelpDropdown()" fxLayout="row" class="navbar--help-section pointer">      <div class="navbar--help-icon">        <img src="assets/images/svgs/actions/help.svg" />      </div>      <div class="navbar--help-text navbar--small-text">        Help      </div>    </div>    <div fxLayout="row" #menu>      <div (click)="showOrHideProfileDropdown()" class="navbar--avatar-section pointer">        <p class="navbar--avatar-text align-center">          {{user.full_name[0]}}        </p>      </div>      <div class="navbar--profile-section">        <div (click)="showOrHideProfileDropdown()">          <div class="pointer" [matTooltip]="user.full_name" [matTooltipDisabled]="user.full_name.length > 20 === false" matTooltipPosition="below" matTooltipClass="below profile-tooltip">            {{ user.full_name | trimCharacter: 20 }}          </div>          <div class="navbar--user-org navbar--small-text sub-text-color pointer" [matTooltip]="user.org_name" [matTooltipDisabled]="user.org_name.length > 26 === false" matTooltipPosition="below" matTooltipClass="below">            {{ user.org_name | trimCharacter: 26 }}          </div>        </div>        <div *ngIf="isProfileExpanded" class="profile">          <div class="profile--section">            <div fxLayout="row" fxLayoutAlign="start center">              <div class="navbar--avatar-section">                <p class="navbar--avatar-text align-center">                  {{user.full_name[0]}}                </p>              </div>              <h3 class="profile--name" [matTooltip]="user.full_name" [matTooltipDisabled]="user.full_name.length > 20 === false" matTooltipPosition="below" matTooltipClass="below">                {{ user.full_name | trimCharacter: 20 }}              </h3>            </div>            <div class="profile--divider"></div>            <div fxLayout="row" fxLayoutAlign="space-between center">              <div>Fyle Organization</div>              <div class="profile--actionable-btn actionable-text" (click)="switchFyleOrg()">Switch Organization</div>            </div>            <div>              <div fxLayout="row" fxLayoutAlign="start center" class="profile--org-section">                <div class="profile--org-name" [matTooltip]="user.org_name" [matTooltipDisabled]="user.org_name.length > 26 === false" matTooltipPosition="below" matTooltipClass="below">                  {{ user.org_name | trimCharacter: 26 }}                </div>                <div class="profile--state-pill profile--state-pill-active">                  <h4 class="profile--state-pill-text align-center">Active</h4>                </div>              </div>              <div class="profile--currency sub-text-color">                {{ currency }}              </div>            </div>            <div class="profile--divider"></div>            <div fxLayout="row" fxLayoutAlign="space-between center">              <div>Quickbooks Online Company</div>              <div *ngIf="isQboConnected" class="profile--actionable-btn actionable-text" (click)="disconnectQbo()">Disconnect</div>            </div>            <div>              <div fxLayout="row" fxLayoutAlign="start center" class="profile--org-section">                <div *ngIf="qboCompanyName" class="profile--org-name" [matTooltip]="qboCompanyName" [matTooltipDisabled]="qboCompanyName.length > 26 === false" matTooltipPosition="below" matTooltipClass="below">                  {{ qboCompanyName | trimCharacter: 26 }}                </div>                <div class="profile--state-pill" [ngClass]="isQboConnected ? \'profile--state-pill-active\' : \'profile--state-pill-inactive\'">                  <h4 class="profile--state-pill-text align-center">{{ isQboConnected ? \'Active\': \'Inactive\' }}</h4>                </div>              </div>              <div class="profile--currency sub-text-color">                {{ currency }}              </div>            </div>            <div class="profile--divider"></div>            <div fxLayout="row" fxLayoutAlign="center center" class="profile--signout-section pointer" (click)="logout()">              <img src="assets/images/svgs/actions/signout.svg" />              <div class="profile--signout-text">Signout</div>            </div>          </div>        </div>        <div *ngIf="isHelpSectionExpanded" class="help paragraph" #help>          <div class="help--help-center-section">            <h5 fxLayout="row" fxLayoutAlign=" center" class="help--help-center-content pointer" (click)="helperService.openExternalLink(RedirectLink.FYLE_HELP)">              Visit Help Centre              <img class="help--open-in-new-tab-icon" src="assets/images/svgs/actions/open-in-new-tab-help.svg" width="14px" height="14px"/>            </h5>          </div>          <div class="help--divider"></div>          <div class="help--email-section">            <h5>Still facing issues?</h5>            <h5 class="sub-text-color help--email-info-text">              Write your query to us along with screenshots (if any) at            </h5>            <h5 (click)="helperService.openExternalLink(\'mailto:support@fylehq.com\')" class="help--support-email pointer">support@fylehq.com</h5>          </div>        </div>      </div>      <div (click)="showOrHideProfileDropdown()" class="profile--dropdown pointer">        <img #menuButton src=\'{{ "assets/images/svgs/actions/arrow-mark-" + (isProfileExpanded ? "up" : "down") + "-dashboard.svg"}}\' />      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddEmailDialogComponent', 'selector': 'app-add-email-dialog'},{'name': 'AdvancedSettingsComponent', 'selector': 'app-advanced-settings'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'ConfigurationAdvancedSettingsComponent', 'selector': 'app-configuration-advanced-settings'},{'name': 'ConfigurationComponent', 'selector': 'app-configuration'},{'name': 'ConfigurationEmployeeSettingsComponent', 'selector': 'app-configuration-employee-settings'},{'name': 'ConfigurationExportSettingsComponent', 'selector': 'app-configuration-export-settings'},{'name': 'ConfigurationImportSettingsComponent', 'selector': 'app-configuration-import-settings'},{'name': 'ConfigurationSelectFieldComponent', 'selector': 'app-configuration-select-field'},{'name': 'ConfigurationStepFooterSectionComponent', 'selector': 'app-configuration-step-footer-section'},{'name': 'ConfigurationStepHeaderSectionComponent', 'selector': 'app-configuration-step-header-section'},{'name': 'ConfigurationToggleFieldComponent', 'selector': 'app-configuration-toggle-field'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'CustomMappingComponent', 'selector': 'app-custom-mapping'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardExportLogDialogComponent', 'selector': 'app-dashboard-export-log-dialog'},{'name': 'DashboardHeaderSectionComponent', 'selector': 'app-dashboard-header-section'},{'name': 'DashboardQboErrorDialogComponent', 'selector': 'app-dashboard-qbo-error-dialog'},{'name': 'DashboardResolveMappingErrorDialogComponent', 'selector': 'app-dashboard-resolve-mapping-error-dialog'},{'name': 'EmailMultiSelectFieldComponent', 'selector': 'app-email-multi-select-field'},{'name': 'EmployeeMappingComponent', 'selector': 'app-employee-mapping'},{'name': 'EmployeeSettingsComponent', 'selector': 'app-employee-settings'},{'name': 'ExpenseFieldCreationDialogComponent', 'selector': 'app-expense-field-creation-dialog'},{'name': 'ExportLogChildDialogComponent', 'selector': 'app-export-log-child-dialog'},{'name': 'ExportLogChildTableComponent', 'selector': 'app-export-log-child-table'},{'name': 'ExportLogComponent', 'selector': 'app-export-log'},{'name': 'ExportLogTableComponent', 'selector': 'app-export-log-table'},{'name': 'ExportSettingsComponent', 'selector': 'app-export-settings'},{'name': 'FyleCallbackComponent', 'selector': 'app-fyle-callback'},{'name': 'GenericMappingComponent', 'selector': 'app-generic-mapping'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImportSettingsComponent', 'selector': 'app-import-settings'},{'name': 'IntegrationComponent', 'selector': 'app-integration'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'MandatoryErrorMessageComponent', 'selector': 'app-mandatory-error-message'},{'name': 'MandatoryFieldComponent', 'selector': 'app-mandatory-field'},{'name': 'MappingComponent', 'selector': 'app-mapping'},{'name': 'MappingFilterComponent', 'selector': 'app-mapping-filter'},{'name': 'MappingHeaderSectionComponent', 'selector': 'app-mapping-header-section'},{'name': 'MappingTableComponent', 'selector': 'app-mapping-table'},{'name': 'OnboardingAdvancedSettingsComponent', 'selector': 'app-onboarding-advanced-settings'},{'name': 'OnboardingComponent', 'selector': 'app-onboarding'},{'name': 'OnboardingDoneComponent', 'selector': 'app-onboarding-done'},{'name': 'OnboardingEmployeeSettingsComponent', 'selector': 'app-onboarding-employee-settings'},{'name': 'OnboardingExportSettingsComponent', 'selector': 'app-onboarding-export-settings'},{'name': 'OnboardingFooterComponent', 'selector': 'app-onboarding-footer'},{'name': 'OnboardingImportSettingsComponent', 'selector': 'app-onboarding-import-settings'},{'name': 'OnboardingLandingComponent', 'selector': 'app-onboarding-landing'},{'name': 'OnboardingQboConnectorComponent', 'selector': 'app-onboarding-qbo-connector'},{'name': 'OnboardingStepperComponent', 'selector': 'app-onboarding-stepper'},{'name': 'PaginatorComponent', 'selector': 'app-paginator'},{'name': 'PreviewDialogComponent', 'selector': 'app-preview-dialog'},{'name': 'QboCallbackComponent', 'selector': 'app-qbo-callback'},{'name': 'QboConnectorComponent', 'selector': 'app-qbo-connector'},{'name': 'SharedLoginComponent', 'selector': 'app-shared-login'},{'name': 'SimpleTextSearchComponent', 'selector': 'app-simple-text-search'},{'name': 'ZeroStateWithIllustrationComponent', 'selector': 'app-zero-state-with-illustration'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'HeaderComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'HeaderComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
