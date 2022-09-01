@@ -21,7 +21,6 @@ jobs:
       - name: Prepare for end to end tests
         run: npm run setup_e2e_test
       - name: Cypress run
-        continue-on-error: true
         uses: cypress-io/github-action@v4
         with:
           record: true
