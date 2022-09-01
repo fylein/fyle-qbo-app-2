@@ -1,7 +1,7 @@
 # Fyle QBO App
 Frontend Repository for Fyle &lt;> Quickbooks Online Integration
 
-##Documentation
+## Documentation
 Please refer this link to find the [documentation](https://fylein.github.io/fyle-qbo-app-2) of the project.
 
 ### Local development setup (Docker Compose)
