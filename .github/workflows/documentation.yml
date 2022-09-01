@@ -1,9 +1,6 @@
 name: Build and Deploy Documentation to Github Page
 
 on:
-  # TODO: remove this; Added this temporarily to check run immediately
-  pull_request:
-    types: [assigned, opened, synchronize, reopened]
   push:
     branches:
       - master
