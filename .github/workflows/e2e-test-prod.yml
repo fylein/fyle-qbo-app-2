@@ -6,7 +6,7 @@ on:
     types: [assigned, opened, synchronize, reopened]
   # Runs every week day at 2pm IST
   schedule:
-    - cron:  '30 8 * * 1-5'
+    - cron:  '30 8 * * 2,4'
 
 jobs:
   end-to-end-test-prod:
