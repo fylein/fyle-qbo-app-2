@@ -39,7 +39,7 @@ Cypress.Commands.add('login', () => {
     refresh_token: environment.e2e_tests.refresh_token,
     full_name: 'Ashwin',
     user_id: 'xyz',
-    org_id: 'or1xUjUb50no',
+    org_id: environment.e2e_tests.org_id,
     org_name: 'XYZ Org'
   };
   window.localStorage.setItem('user', JSON.stringify(user))
