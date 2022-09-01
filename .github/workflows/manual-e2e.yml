@@ -8,11 +8,13 @@ on:
         required: true
         description: Environment
         options: 
-        - staging
-        - production
+        - End to End Test - Staging
+        - End to End Test - Production
 
 jobs:
   approved:
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.event.inputs.env-name }}
     steps:
       - run: echo "Running e2eeeee test on ${{ github.event.inputs.env-name }}!"
