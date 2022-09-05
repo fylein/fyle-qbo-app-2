@@ -4,59 +4,21 @@ Frontend Repository for Fyle &lt;> Quickbooks Online Integration
 ## Documentation
 Please refer this link to find the [documentation](https://fylein.github.io/fyle-qbo-app-2) of the project.
 
-## Local development setup (Docker Compose)
+## Local development setup
 
-* Download and install Docker desktop for Mac from [here.](https://www.docker.com/products/docker-desktop)
+* Copy `environment.json` from integrations-central/ and add it to `src/environments`
 
-* If you're using a linux machine, please download docker according to the distrubution you're on.
-
-* Navigate into the root folder
-
-* Copy docker-compose.template.yml as docker-compose.yml and add environment variables wherever needed
-
-    ```
-    cp docker-compose.template.yml docker-compose.yml
+    ```bash
+    cp ../fyle-integrations-central/app-secrets/qbo-2/environment.json src/environments/environment.json
     ```
 
-* Build docker images
+* Run app
 
-    ```
-    docker-compose build
-    ```
-
-* Run docker containers
-
-    ```
-    docker-compose up -d app
-    ```
-
-* To tail the logs a service you can do
-
-    ```
-    docker-compose logs -f app
-    ```
-
-* To stop the containers
-
-    ```
-    docker-compose stop app
-    ```
-
-* To restart any containers -
-
-    ```
-    docker-compose restart app
-    ```
-
-* To run bash inside any container for purpose of debugging or for creating new components, services etc
-
-    ```
-    docker-compose exec app /bin/bash
+    ```bash
+    npm start
     ```
 
 ## Running End to End Tests on local
-<b>Note:</b> *For now, Cypress tests runs on local machine and not inside a docker container*
-
 ### Setup Org to test
 <b>Note:</b> *All the steps mentioned in this section are one time activity*
 * It would be very easy if we use this org for running tests since we have pre populated data in Fyle to run tests
@@ -64,27 +26,13 @@ Please refer this link to find the [documentation](https://fylein.github.io/fyle
     Email: ashwin.t@fyle.in | Org Name: Fyle For QBO Angular Tests - Github Action
     ```
 * Login to this org on [local](http:localhost:4200) once and complete QBO OAuth connection
-* Update values for these variables -
+* Update values for these variables in `e2e_tests` key in `environment.json` (present in `src/environments`) -
+<b>*(Copy all these values from local storage)*</b>
     ```
-    (copy 1, 2, 3 from local storage and 4 from integrations-central/)
-    E2E_TESTS_WORKSPACE_ID:
-    E2E_TESTS_ORG_ID:
-    E2E_TESTS_REFRESH_TOKEN:
-    E2E_TESTS_CLIENT_ID:
-    ```
-    in docker compose file and
-    ```json
-    "e2e_tests": {
-        "env": "Local",
         "workspace_id": "",
         "refresh_token": "",
-        "access_token": "",
-        "org_id": "",
-        "client_id": ""
-    }
+        "org_id": ""
     ```
-    in `environment.json` (present in `src/environments`)
-    <b>Note:</b> *Leave access_token empty*
 
 * Create an sql function to partially setup an org to run tests -
     ```bash
