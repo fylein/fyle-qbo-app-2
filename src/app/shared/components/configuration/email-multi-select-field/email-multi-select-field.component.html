@@ -1,8 +1,6 @@
 <div [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-section">
   <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">
-    <img *ngIf="iconPath" src="{{ iconPath }}" class="configuration--icon">
-    <div class="configuration--field-label-text-section"
-      [ngClass]="{'email-multi-select-field--field-label-text-section-without-img': !iconPath}">
+    <div class="configuration--field-label-text-section email-multi-select-field--field-label-text-section-without-img">
       <div class="configuration--field-header">
         {{ label }}
         <app-mandatory-field *ngIf="isFieldMandatory"></app-mandatory-field>

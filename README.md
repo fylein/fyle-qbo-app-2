@@ -27,7 +27,8 @@ Please refer this link to find the [documentation](https://fylein.github.io/fyle
     ```
 * Login to this org on [local](http:localhost:4200) once and complete QBO OAuth connection
 * Update values for these variables in `e2e_tests` key in `environment.json` (present in `src/environments`) -
-<b>*(Copy all these values from local storage)*</b>
+*(Copy all these values from local storage)*
+<b>Note:</b> *Copy refresh_token from `user` key in local storage*
     ```
         "workspace_id": "",
         "refresh_token": "",

@@ -9,24 +9,30 @@ describe('view export log', () => {
     cy.wait('@getExpenseGroups').its('response.statusCode').should('equal', 200)
   })
 
-  it('view expense groups rows', () => {
+  function readExpenseGroupRows() {
     cy.get('.export-log-table--row').each((_, index, __) => {
-      cy.get('.mat-column-exportedAt').eq(index + 1).as('exportedAt')
-      cy.get('@exportedAt').find('h4').contains(',').should('not.be.null')
-      cy.get('@exportedAt').find('h5').contains(':').should('have.class', 'export-log-table--sub-row')
+      if (index < 40) {
+        cy.get('.mat-column-exportedAt').eq(index + 1).as('exportedAt')
+        cy.get('@exportedAt').find('h4').contains(',').should('not.be.null')
+        cy.get('@exportedAt').find('h5').contains(':').should('have.class', 'export-log-table--sub-row')
 
-      cy.get('.mat-column-name').eq(index + 1).as('employee')
-      cy.get('@employee').find('h4').should('not.be.null')
-      cy.get('@employee').find('h5').contains('@').should('have.class', 'export-log-table--sub-row')
+        cy.get('.mat-column-name').eq(index + 1).as('employee')
+        cy.get('@employee').find('h4').should('not.be.null')
+        cy.get('@employee').find('h5').contains('@').should('have.class', 'export-log-table--sub-row')
 
-      cy.get('.mat-column-fundSource').eq(index + 1).contains('Reimbursable')
+        cy.get('.mat-column-fundSource').eq(index + 1).contains(/Credit Card|Reimbursable/g)
 
-      cy.get('.mat-column-referenceID').eq(index + 1).contains('C/')
+        cy.get('.mat-column-referenceID').eq(index + 1).contains(/C|E|P/)
 
-      cy.get('.mat-column-exportType').eq(index + 1).contains('Bill')
+        cy.get('.mat-column-exportType').eq(index + 1).contains(/Bill|Credit Card Purchase|Check|Journal Entry|Expense/g)
 
-      cy.get('.mat-column-link').eq(index + 1).should('not.be.null')
+        cy.get('.mat-column-link').eq(index + 1).should('not.be.null')
+      }
     })
+  }
+
+  it('view expense groups rows', () => {
+    readExpenseGroupRows()
   })
 
   it('view child expenses', () => {
@@ -85,5 +91,11 @@ describe('view export log', () => {
   it('apply date filter for coverage', () => {
     cy.get('.export-log--date-filter').eq(0).click()
     cy.selectMatOption('Today')
+  })
+
+  it('view expense groups from fixture', () => {
+    cy.intercept('GET', '**/fyle/expense_groups/**', { fixture: 'export-logs.json' })
+    cy.reload()
+    readExpenseGroupRows()
   })
 })

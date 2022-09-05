@@ -28,6 +28,14 @@ describe('header', () => {
 
     cy.navigateToMappingPage('Custom Mapping')
     assertPageHeader('Custom Mapping')
+
+    cy.navigateToModule('Configuration')
+    cy.navigateToSettingPage('Employee Settings')
+    assertPageHeader('Map Employees')
+
+    cy.navigateToModule('Configuration')
+    cy.navigateToSettingPage('Export Settings')
+    assertPageHeader('Export Settings')
   })
 
   it('back button to navigate to previous page', () => {
