@@ -3,20 +3,15 @@ name: End to End Tests on PR Approval - Staging
 on:
   pull_request_review:
     types: [submitted]
-  pull_request_review_comment:
+  label:
     types: [created]
-
 jobs:
   end-to-end-test:
     # if: (github.event_name == 'pull_request_review' && github.event.review.state == 'approved') || (github.event_name == 'pull_request_review_comment' && github.event.body == 'Run e2e tests')
     runs-on: macos-latest
     environment: End to End Test - Staging
     steps:
-      - run: echo ${{github.event_name == 'pull_request_review_comment' && github.event.body == 'Run e2e tests'}}
-      - run: echo ${{github.event_name }}
-      - run: echo ${{github.event_name == 'pull_request_review_comment'}}
-      - run: echo ${{github.event.body}}
-      - run: echo ${{github.event.body == 'Run e2e tests'}}
+      - run: echo "Event - ${{toJson(github)}}"
       # - name: Checkout
       #   uses: actions/checkout@v2
       # - name: Setup Node
