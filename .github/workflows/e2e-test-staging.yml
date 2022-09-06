@@ -12,7 +12,6 @@ jobs:
     runs-on: macos-latest
     environment: End to End Test - Staging
     steps:
-      - run: echo "Event - ${{toJson(github)}}"
       - run: echo ${{github.event_name == 'pull_request_review_comment' && github.event.body == 'Run e2e tests'}}
       - run: echo ${{github.event_name }}
       - run: echo ${{github.event_name == 'pull_request_review_comment'}}
