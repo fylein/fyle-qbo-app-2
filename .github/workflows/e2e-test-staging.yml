@@ -15,7 +15,9 @@ jobs:
       - run: echo "Event - ${{toJson(github)}}"
       - run: echo ${{github.event_name == 'pull_request_review_comment' && github.event.body == 'Run e2e tests'}}
       - run: echo ${{github.event_name }}
+      - run: echo ${{github.event_name == 'pull_request_review_comment'}}
       - run: echo ${{github.event.body}}
+      - run: echo ${{ggithub.event.body == 'Run e2e tests'}}
       # - name: Checkout
       #   uses: actions/checkout@v2
       # - name: Setup Node
