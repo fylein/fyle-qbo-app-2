@@ -3,8 +3,8 @@ name: End to End Tests on PR Approval - Staging
 on:
   pull_request_review:
     types: [submitted]
-  label:
-    types: [created]
+  pull_request:
+    types: [labeled]
 jobs:
   end-to-end-test:
     # if: (github.event_name == 'pull_request_review' && github.event.review.state == 'approved') || (github.event_name == 'pull_request_review_comment' && github.event.body == 'Run e2e tests')
