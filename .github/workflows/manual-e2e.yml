@@ -3,16 +3,53 @@ name: Manually Trigger End to End Tests - With environment
 on:
   workflow_dispatch:
     inputs:
-      name:
+      env-name:
         type: choice
         required: true
         description: Environment
         options: 
-        - staging
-        - production
+        - End to End Test - Staging
+        - End to End Test - Production
 
 jobs:
-  approved:
-    runs-on: ubuntu-latest
+  end-to-end-test-manual-trigger:
+    runs-on: macos-latest
+    environment:
+      name: ${{ github.event.inputs.env-name }}
     steps:
-      - run: echo "Running e2eeeee test!"
+      - run: echo "Running e2e test on ${{ github.event.inputs.env-name }}!"
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.18
+      - name: Install dependencies
+        run: npm install --prefix cypress
+      - name: Prepare for end to end tests
+        run: npm run setup_e2e_test
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
+        with:
+          record: true
+          browser: chrome
+          tag: ${{ secrets.E2E_TESTS_ENV }}
+      - name: 'Upload screenshots and videos to Slack'
+        uses: trymbill/cypress-slack-video-upload-action@v1.3.0
+        if: failure()
+        with:
+          token: ${{ secrets.SLACK_TOKEN }}
+          channels: 'integration_test_runs'
+          message-text: ':pepe-dance: End to End tests (${{ github.event.inputs.env-name }}) just got completed. I have placed the screenshots and videos in this thread :pepe-dance:'
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
+      COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
+      APP_URL: ${{ secrets.APP_URL }}
+      API_URL: ${{ secrets.API_URL }}
+      E2E_TESTS_ENV: ${{ secrets.E2E_TESTS_ENV }}
+      E2E_TESTS_WORKSPACE_ID: ${{ secrets.E2E_TESTS_WORKSPACE_ID }}
+      E2E_TESTS_CLIENT_ID: ${{ secrets.E2E_TESTS_CLIENT_ID }}
+      E2E_TESTS_REFRESH_TOKEN: ${{ secrets.E2E_TESTS_REFRESH_TOKEN }}
+      E2E_TESTS_ORG_ID: $ {{ secrets.E2E_TESTS_ORG_ID }}
