@@ -129,7 +129,7 @@
           </div>
         </div>
 
-        <div class="import-settings--tax-section">
+        <div *ngIf="showImportVendors()" class="import-settings--tax-section">
           <app-configuration-toggle-field
             [form]="importSettingsForm"
             [label]="'Import QBO Vendors'"
