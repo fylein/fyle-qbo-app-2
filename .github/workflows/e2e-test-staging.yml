@@ -12,7 +12,6 @@ jobs:
     runs-on: macos-latest
     environment: End to End Test - Staging
     steps:
-      - run: echo "Event - ${{toJson(github)}}"
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
@@ -21,21 +20,21 @@ jobs:
           node-version: 14.18
       - name: Install dependencies
         run: npm install --prefix cypress
-      # - name: Prepare for end to end tests
-      #   run: npm run setup_e2e_test
-      # - name: Cypress run
-      #   uses: cypress-io/github-action@v4
-      #   with:
-      #     record: true
-      #     browser: chrome
-      #     tag: ${{ secrets.E2E_TESTS_ENV }}
-      # - name: 'Upload screenshots and videos to Slack'
-      #   uses: trymbill/cypress-slack-video-upload-action@v1.3.0
-      #   if: failure()
-      #   with:
-      #     token: ${{ secrets.SLACK_TOKEN }}
-      #     channels: 'integration_test_runs'
-      #     message-text: ':pepe-dance: End to End tests (on staging) just got completed. I have placed the screenshots and videos in this thread :pepe-dance:'
+      - name: Prepare for end to end tests
+        run: npm run setup_e2e_test
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
+        with:
+          record: true
+          browser: chrome
+          tag: ${{ secrets.E2E_TESTS_ENV }}
+      - name: 'Upload screenshots and videos to Slack'
+        uses: trymbill/cypress-slack-video-upload-action@v1.3.0
+        if: failure()
+        with:
+          token: ${{ secrets.SLACK_TOKEN }}
+          channels: 'integration_test_runs'
+          message-text: ':pepe-dance: End to End tests (on staging) just got completed. I have placed the screenshots and videos in this thread :pepe-dance:'
       - name: End to End Test Coverage
         uses: fylein/comment-test-coverage@master
         with:
