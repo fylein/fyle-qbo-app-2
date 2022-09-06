@@ -13,14 +13,14 @@ jobs:
     environment: End to End Test - Staging
     steps:
       - run: echo "Event - ${{toJson(github)}}"
-      # - name: Checkout
-      #   uses: actions/checkout@v2
-      # - name: Setup Node
-      #   uses: actions/setup-node@v1
-      #   with:
-      #     node-version: 14.18
-      # - name: Install dependencies
-      #   run: npm install --prefix cypress
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.18
+      - name: Install dependencies
+        run: npm install --prefix cypress
       # - name: Prepare for end to end tests
       #   run: npm run setup_e2e_test
       # - name: Cypress run
@@ -36,12 +36,12 @@ jobs:
       #     token: ${{ secrets.SLACK_TOKEN }}
       #     channels: 'integration_test_runs'
       #     message-text: ':pepe-dance: End to End tests (on staging) just got completed. I have placed the screenshots and videos in this thread :pepe-dance:'
-      # - name: End to End Test Coverage
-      #   uses: fylein/comment-test-coverage@master
-      #   with:
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     path: cypress/coverage/coverage-summary.json
-      #     title: End to End Test Coverage
+      - name: End to End Test Coverage
+        uses: fylein/comment-test-coverage@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: cypress/coverage/coverage-summary.json
+          title: End to End Test Coverage
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
