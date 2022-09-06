@@ -70,7 +70,10 @@ Please refer this link to find the [documentation](https://fylein.github.io/fyle
 ### End to End Tests on Github
 * End to End tests runs on all PRs, after the PR is approved. Only if all tests pass, contributor will be able to merge it to master. This happens against the staging environment. We'll receive a comment in the PR about the run status and code coverage summary.
 * End to End tests against production environment will run every Tuesday and Thursday at 2pm.
-* Manually if we wanted to trigger end to end tests, we can make use of manual [github action](https://github.com/fylein/fyle-qbo-app-2/actions/workflows/manual-e2e.yml) and run it against Staging/Production environment with the specified branch.
+* Manually if we wanted to trigger end to end tests, we can make use of manual [github action](https://github.com/fylein/fyle-qbo-app-2/actions/workflows/manual-e2e.yml) and run it against Staging/Production environment with the specified branch and click on `Run Workflow` button.
 * Once the tests are completed, we'll receive a message on slack with the summary and screen recordings incase the test fails.
+* Consider the following scenario for example -
+    * Developer raised a PR -> reviewer approved it -> e2e failed -> dev fixed the broken test
+    * Now, to trigger the action, the developer should manually trigger the github action from [here](https://github.com/fylein/fyle-qbo-app-2/actions/workflows/e2e-test-staging.yml) and click on `Run Workflow` button.
 
 *For more detailed notes, please to check the Notion doc about End to End Tests on QBO App*
