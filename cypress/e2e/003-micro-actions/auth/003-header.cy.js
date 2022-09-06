@@ -30,10 +30,9 @@ describe('header', () => {
     assertPageHeader('Custom Mapping')
 
     cy.navigateToModule('Configuration')
-    cy.navigateToSettingPage('Employee Settings')
+    cy.navigateToSettingPage('Map Employees')
     assertPageHeader('Map Employees')
 
-    cy.navigateToModule('Configuration')
     cy.navigateToSettingPage('Export Settings')
     assertPageHeader('Export Settings')
   })
