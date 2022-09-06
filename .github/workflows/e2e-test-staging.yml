@@ -11,7 +11,7 @@ jobs:
     runs-on: macos-latest
     environment: End to End Test - Staging
     steps:
-      - run: echo "Event - ${{fromJson(github.event)}}"
+      - run: echo "Event - ${{toJson(github)}}"
       # - name: Checkout
       #   uses: actions/checkout@v2
       # - name: Setup Node
