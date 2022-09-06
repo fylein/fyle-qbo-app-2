@@ -74,6 +74,8 @@ Please refer this link to find the [documentation](https://fylein.github.io/fyle
 * Once the tests are completed, we'll receive a message on slack with the summary and screen recordings incase the test fails.
 * Consider the following scenario for example -
     * Developer raised a PR -> reviewer approved it -> e2e failed -> dev fixed the broken test
-    * Now, to trigger the action, the developer should manually trigger the github action from [here](https://github.com/fylein/fyle-qbo-app-2/actions/workflows/e2e-test-staging.yml) and click on `Run Workflow` button.
+    * Now, to trigger the action, the developer should manually trigger the github action by creating a label named `run e2e tests` in the PR.
+    * Dev will be able to un label and label them multiple times to trigger e2e tests.
+    <b>Note</b>: *Labels can be found in the right side section where Reviewer, Assignee are maintained*
 
 *For more detailed notes, please to check the Notion doc about End to End Tests on QBO App*
