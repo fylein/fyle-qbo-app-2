@@ -83,7 +83,7 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
     private trackingService: TrackingService,
     private windowService: WindowService,
     private workspaceService: WorkspaceService,
-    private advancedSettingService: AdvancedSettingService,
+    private advancedSettingService: AdvancedSettingService
   ) {
     this.windowReference = this.windowService.nativeWindow;
   }
@@ -199,7 +199,7 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
       this.importSettingService.getImportSettings(),
       this.mappingService.getFyleExpenseFields(),
       this.mappingService.getQBODestinationAttributes('TAX_CODE'),
-      this.advancedSettingService.getAdvancedSettings(),
+      this.advancedSettingService.getAdvancedSettings()
     ]).subscribe(response => {
       this.importSettings = response[0];
       this.fyleExpenseFields = response[1].map(field => field.attribute_type);
