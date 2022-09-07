@@ -4,7 +4,6 @@
   "scripts": {
     "ng": "ng",
     "start": "npm run remove_existing_code_coverage && ng serve --extra-webpack-config ./cypress/coverage.webpack.js",
-    "local_dev_dc": "npm run setup_env && ng serve --host 0.0.0.0 --disable-host-check",
     "build": "npm run setup_env && ng build",
     "test": "ng test",
     "unit_test_ci": "npm run setup_env && ng test --watch=false --browsers=ChromeHeadlessCustom",

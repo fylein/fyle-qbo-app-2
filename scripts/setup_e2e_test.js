@@ -25,7 +25,7 @@ readFile('./src/environments/environment.json', 'utf8', (err, data) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-E2E-Tests-Client-ID': environment.e2e_tests.client_id[environment.e2e_tests.workspace_id]
+      'X-E2E-Tests-Client-ID': environment.e2e_tests.client_id
     }
   };
 

@@ -1,23 +1,15 @@
-name: Manually Trigger End to End Tests - With environment
+name: End to End Tests - Prod
 
 on:
-  workflow_dispatch:
-    inputs:
-      env-name:
-        type: choice
-        required: true
-        description: Environment
-        options: 
-        - End to End Test - Staging
-        - End to End Test - Production
+  # Runs every Tuesday and Thursday at 2pm IST
+  schedule:
+    - cron:  '30 8 * * 2,4'
 
 jobs:
-  end-to-end-test-manual-trigger:
+  end-to-end-test-prod:
     runs-on: macos-latest
-    environment:
-      name: ${{ github.event.inputs.env-name }}
+    environment: End to End Test - Production
     steps:
-      - run: echo "Running e2e test on ${{ github.event.inputs.env-name }}!"
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
@@ -40,7 +32,7 @@ jobs:
         with:
           token: ${{ secrets.SLACK_TOKEN }}
           channels: 'integration_test_runs'
-          message-text: ':pepe-dance: End to End tests (${{ github.event.inputs.env-name }}) just got completed. I have placed the screenshots and videos in this thread :pepe-dance:'
+          message-text: ':pepe-dance: End to End tests (on prod) just got completed. I have placed the screenshots and videos in this thread :pepe-dance:'
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
