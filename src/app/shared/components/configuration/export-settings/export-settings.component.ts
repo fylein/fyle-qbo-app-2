@@ -445,7 +445,9 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
       this.bankAccounts = response[1].BANK_ACCOUNT;
       this.cccAccounts = response[1].CREDIT_CARD_ACCOUNT;
-      this.accountsPayables = response[1].ACCOUNTS_PAYABLE;
+      this.accountsPayables = response[1].ACCOUNTS_PAYABLE.filter((accountPayable) => {
+        return accountPayable.detail.account_type === 'Accounts Payable';
+      });
       this.vendors = response[1].VENDOR;
       this.expenseAccounts = this.bankAccounts.concat(this.cccAccounts);
 
