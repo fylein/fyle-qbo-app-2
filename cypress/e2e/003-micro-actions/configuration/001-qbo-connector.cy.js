@@ -47,6 +47,8 @@ describe('auth module', () => {
       }
     })
 
+    cy.reload()
+
     cy.get('.qbo-connector--switch-org-text').contains('Disconnect').click()
   })
 })
