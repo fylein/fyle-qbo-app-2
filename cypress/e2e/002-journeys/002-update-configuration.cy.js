@@ -157,6 +157,8 @@ describe('update configuration', () => {
   })
 
   function addEmailNotification(name, email) {
+    // Adding 0.5 wait time at start and end of this function since it is causing some race condition rarely
+    cy.wait(500)
     cy.get('.advanced-settings--span-or').contains('Add new email address').click()
 
     cy.get('.add-email-dialog--header-text').contains('Add new Email Address')
@@ -174,6 +176,7 @@ describe('update configuration', () => {
     cy.get('@emailFormInput').eq(1).type(email)
 
     cy.get('.mat-flat-button').contains('Save').click()
+    cy.wait(500)
   }
 
   it('add email notification', () => {
