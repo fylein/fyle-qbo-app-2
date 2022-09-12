@@ -49,6 +49,7 @@ describe('ImportSettingsComponent', () => {
       refreshMappingPages: () => undefined
     };
     service3 = {
+      getWorkspaceGeneralSettings: () => of(getImportsettingResponse.workspace_general_settings),
       getOnboardingState: () => 'IMPORT_SETTINGS',
       setOnboardingState: () => undefined
     };
@@ -114,11 +115,13 @@ describe('ImportSettingsComponent', () => {
     spyOn(importSettingService, 'getImportSettings').and.callThrough();
     spyOn(mappingService, 'getFyleExpenseFields').and.callThrough();
     spyOn(mappingService, 'getQBODestinationAttributes').and.callThrough();
+    spyOn(workspace, 'getWorkspaceGeneralSettings').and.callThrough();
     expect(component.ngOnInit()).toBeUndefined();
     fixture.detectChanges();
     expect(importSettingService.getImportSettings).toHaveBeenCalled();
     expect(mappingService.getFyleExpenseFields).toHaveBeenCalled();
     expect(mappingService.getQBODestinationAttributes).toHaveBeenCalled();
+    expect(workspace.getWorkspaceGeneralSettings).toHaveBeenCalled();
     expect(component.isLoading).toBeFalse();
   });
 
@@ -187,6 +190,25 @@ describe('ImportSettingsComponent', () => {
     fixture.detectChanges();
     expect(importSettingService.postImportSettings).toHaveBeenCalled();
     expect(component.saveInProgress).toBeFalse();
+  });
+
+  it('constructPayloadAndSave function check', () => {
+    component.isOnboarding = false;
+    expect((component as any).constructPayloadAndSave()).toBeUndefined();
+  });
+
+  it('constructPayloadAndSave function check for failure', () => {
+    spyOn(importSettingService, 'postImportSettings').and.returnValue(throwError(errorResponse));
+    expect((component as any).constructPayloadAndSave()).toBeUndefined();
+    fixture.detectChanges();
+    expect(importSettingService.postImportSettings).toHaveBeenCalled();
+    expect(component.isLoading).toBeFalse();
+  });
+
+  it('showConfirmationDialog function check', () => {
+    expect((component as any).showConfirmationDialog()).toBeUndefined();
+    fixture.detectChanges();
+    expect(dialogSpy).toHaveBeenCalled();
   });
 
   it('showFyleExpenseFormPreview function check', () => {

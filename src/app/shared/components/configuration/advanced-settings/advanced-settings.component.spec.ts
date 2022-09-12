@@ -80,6 +80,7 @@ describe('AdvancedSettingsComponent', () => {
       changeAccountingPeriod: [component.advancedSettings.workspace_general_settings.change_accounting_period],
       singleCreditLineJE: [component.advancedSettings.workspace_general_settings.je_single_credit_line],
       autoCreateVendors: [component.advancedSettings.workspace_general_settings.auto_create_destination_entity],
+      autoCreateMerchantsAsVendors: [component.advancedSettings.workspace_general_settings.auto_create_merchants_as_vendors],
       exportSchedule: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : false],
       exportScheduleFrequency: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [component.advancedSettings.workspace_general_settings.memo_structure],
@@ -113,6 +114,10 @@ describe('AdvancedSettingsComponent', () => {
     expect(component.showAutoCreateVendorsField()).toBeTrue();
   });
 
+  it('showAutoCreateMerchantsAsVendorsField function check', () => {
+    expect(component.showAutoCreateMerchantsAsVendorsField()).toBeFalse();
+  });
+
   it('navigateToPreviousStep function check', () => {
     component.navigateToPreviousStep();
     expect(routerSpy.navigate).toHaveBeenCalledWith(['/workspaces/onboarding/import_settings']);
@@ -139,6 +144,7 @@ describe('AdvancedSettingsComponent', () => {
       changeAccountingPeriod: [component.advancedSettings.workspace_general_settings.change_accounting_period],
       singleCreditLineJE: [component.advancedSettings.workspace_general_settings.je_single_credit_line],
       autoCreateVendors: [component.advancedSettings.workspace_general_settings.auto_create_destination_entity],
+      autoCreateMerchantsAsVendors: [component.advancedSettings.workspace_general_settings.auto_create_merchants_as_vendors],
       exportSchedule: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : false],
       exportScheduleFrequency: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [component.advancedSettings.workspace_general_settings.memo_structure],
@@ -166,6 +172,7 @@ describe('AdvancedSettingsComponent', () => {
       changeAccountingPeriod: [component.advancedSettings.workspace_general_settings.change_accounting_period],
       singleCreditLineJE: [component.advancedSettings.workspace_general_settings.je_single_credit_line],
       autoCreateVendors: [component.advancedSettings.workspace_general_settings.auto_create_destination_entity],
+      autoCreateMerchantsAsVendors: [component.advancedSettings.workspace_general_settings.auto_create_merchants_as_vendors],
       exportSchedule: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : false],
       exportScheduleFrequency: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [component.advancedSettings.workspace_general_settings.memo_structure],
@@ -191,6 +198,7 @@ describe('AdvancedSettingsComponent', () => {
       changeAccountingPeriod: [component.advancedSettings.workspace_general_settings.change_accounting_period],
       singleCreditLineJE: [component.advancedSettings.workspace_general_settings.je_single_credit_line],
       autoCreateVendors: [component.advancedSettings.workspace_general_settings.auto_create_destination_entity],
+      autoCreateMerchantsAsVendors: [component.advancedSettings.workspace_general_settings.auto_create_merchants_as_vendors],
       exportSchedule: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : false],
       exportScheduleFrequency: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [component.advancedSettings.workspace_general_settings.memo_structure],

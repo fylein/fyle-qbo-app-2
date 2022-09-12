@@ -166,7 +166,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   }
 
   showAutoCreateMerchantsAsVendorsField(): boolean {
-    return this.workspaceGeneralSettings.import_vendors_as_merchants === false;
+    return this.workspaceGeneralSettings.import_vendors_as_merchants === false && (this.workspaceGeneralSettings.corporate_credit_card_expenses_object === CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || this.workspaceGeneralSettings.corporate_credit_card_expenses_object === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE);
   }
 
   private setupForm(): void {

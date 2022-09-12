@@ -129,10 +129,10 @@
           </div>
         </div>
 
-        <div *ngIf="showImportVendors()" class="import-settings--tax-section">
+        <div *ngIf="showImportVendors()" class="import-settings--vendor">
           <app-configuration-toggle-field
             [form]="importSettingsForm"
-            [label]="'Import QBO Vendors'"
+            [label]="'Import Vendors from QuickBooks Online'"
             [subLabel]="'QBO vendors will be imported as merchants in Fyle that can be selected while submitting expenses.'"
             [formControllerName]="'importVendorsAsMerchants'">
           </app-configuration-toggle-field>

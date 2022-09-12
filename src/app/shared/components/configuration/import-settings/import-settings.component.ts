@@ -15,8 +15,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
 import { QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
 import { WindowService } from 'src/app/core/services/core/window.service';
-import { AdvancedSettingGet } from 'src/app/core/models/configuration/advanced-setting.model';
-import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { PreviewDialogComponent } from '../preview-dialog/preview-dialog.component';
@@ -42,7 +40,7 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
 
   importSettings: ImportSettingGet;
 
-  advancedSettings: AdvancedSettingGet;
+  autoCreateMerchantsAsVendors: boolean;
 
   importSettingsForm: FormGroup;
 
@@ -83,7 +81,6 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
     private trackingService: TrackingService,
     private windowService: WindowService,
     private workspaceService: WorkspaceService,
-    private advancedSettingService: AdvancedSettingService
   ) {
     this.windowReference = this.windowService.nativeWindow;
   }
@@ -164,7 +161,7 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
   }
 
   showImportVendors(): boolean {
-    return this.advancedSettings.workspace_general_settings.auto_create_merchants_as_vendors === false;
+    return !this.autoCreateMerchantsAsVendors;
   }
 
   private setupForm(): void {
@@ -199,11 +196,11 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
       this.importSettingService.getImportSettings(),
       this.mappingService.getFyleExpenseFields(),
       this.mappingService.getQBODestinationAttributes('TAX_CODE'),
-      this.advancedSettingService.getAdvancedSettings()
+      this.workspaceService.getWorkspaceGeneralSettings()
     ]).subscribe(response => {
       this.importSettings = response[0];
       this.fyleExpenseFields = response[1].map(field => field.attribute_type);
-      this.advancedSettings = response[3];
+      this.autoCreateMerchantsAsVendors = response[3].auto_create_merchants_as_vendors;
 
       // Remove custom mapped Fyle options
       const customMappedFyleFields = this.importSettings.mapping_settings.filter(setting => !setting.import_to_fyle).map(setting => setting.source_field);
