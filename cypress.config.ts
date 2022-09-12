@@ -5,6 +5,7 @@ export default defineConfig({
   projectId: 'ixtuem',
   e2e: {
     baseUrl: environment.app_url,
+    experimentalStudio: true,
     setupNodeEvents(on, config) {
       require('@cypress/code-coverage/task')(on, config)
       return config
