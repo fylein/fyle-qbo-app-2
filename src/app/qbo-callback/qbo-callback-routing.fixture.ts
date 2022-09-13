@@ -16,7 +16,7 @@ export const errorResponse = {
     id: 1,
     is_expired: true,
     company_name: 'QBO',
-    message: 'Please choose the correct Quickbooks online account'
+    message: 'Please choose the correct QuickBooks Online account'
   }
 };
 export const errorResponse1 = {

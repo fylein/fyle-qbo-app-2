@@ -44,7 +44,7 @@ describe('page visit across modules', () => {
   it('loads QBO Connector page', () => {
     cy.visit('/workspaces/onboarding/qbo_connector')
 
-    cy.get('.header-section--header-text').contains('Connect to Quickbooks Online')
+    cy.get('.header-section--header-text').contains('Connect to QuickBooks Online')
 
     cy.saveSetting('Continue')
   })

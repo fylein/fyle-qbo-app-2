@@ -55,8 +55,8 @@ describe('header', () => {
 
     cy.get('.profile--section').contains('Disconnect').click()
 
-    cy.get('.confirmation-dialog--header-content').contains('Disconnect Quickbooks Online')
-    cy.get('.confirmation-dialog--info').contains('Exporting expenses from Fyle will no longer work if you disconnect your Quickbooks Online Company.')
+    cy.get('.confirmation-dialog--header-content').contains('Disconnect QuickBooks Online')
+    cy.get('.confirmation-dialog--info').contains('Exporting expenses from Fyle will no longer work if you disconnect your QuickBooks Online Company.')
 
     cy.get('.confirmation-dialog--cancel-btn-text').click()
   })

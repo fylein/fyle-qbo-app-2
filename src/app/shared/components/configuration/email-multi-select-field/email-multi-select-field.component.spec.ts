@@ -34,7 +34,7 @@ describe('EmailMultiSelectFieldComponent', () => {
     component.options = adminEmails;
     component.formControllerName = 'employeeMapping';
     component.isFieldMandatory = true;
-    component.label = 'How are your Employees represented in Quickbooks Online?';
+    component.label = 'How are your Employees represented in QuickBooks Online?';
     component.subLabel = 'Select how you represent your employees in QuickBooks Online. This would help to export the expenses from Fyle to the correct employee/vendor record in QuickBooks Online.';
     component.placeholder = 'Select representation';
     fixture.detectChanges();

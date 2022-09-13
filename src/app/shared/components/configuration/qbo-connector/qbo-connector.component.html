@@ -49,7 +49,7 @@
           <div class="qbo-connector--org-switch-separator"></div>
           <div class="qbo-connector--switch-org-inner-section">
             <h4 *ngIf="!isQboConnected && !qboConnectionInProgress && !qboTokenExpired" class="qbo-connector--connection-in-progress-text align-center sub-text-color">
-              No Quickbooks Online company is connected yet.
+              No QuickBooks Online company is connected yet.
             </h4>
             <h4 *ngIf="!isQboConnected && !qboConnectionInProgress && !qboTokenExpired" (click)="connectQbo()" class="qbo-connector--switch-org-text actionable-text align-center">
               Connect to QuickBooks Online
@@ -58,7 +58,7 @@
               Not the company that you wish to connect with?
             </h4>
             <h4 *ngIf="qboConnectionInProgress" class="qbo-connector--connection-in-progress-text align-center sub-text-color">
-              Please hold on; we are fetching data from your Quickbooks Online account, which may take a few seconds.
+              Please hold on; we are fetching data from your QuickBooks Online account, which may take a few seconds.
             </h4>
             <h4 *ngIf="qboTokenExpired && !qboConnectionInProgress" class="qbo-connector--connection-in-progress-text align-center sub-text-color">
               Token expired

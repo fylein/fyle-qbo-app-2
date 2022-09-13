@@ -8,7 +8,7 @@
     <form [formGroup]="advancedSettingsForm">
       <app-configuration-toggle-field [form]="advancedSettingsForm"
         [iconPath]="'assets/images/svgs/general/calendar.svg'" [label]="'Schedule automatic export'"
-        [subLabel]="'Set up a schedule to frequently automate the export of expenses from Fyle to Quickbooks Online'"
+        [subLabel]="'Set up a schedule to frequently automate the export of expenses from Fyle to QuickBooks Online'"
         [formControllerName]="'exportSchedule'">
       </app-configuration-toggle-field>
       <div *ngIf="advancedSettingsForm.value.exportSchedule">

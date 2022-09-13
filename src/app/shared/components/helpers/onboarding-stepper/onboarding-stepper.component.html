@@ -17,7 +17,7 @@
           <div *ngIf="onboardingStep.step !== 'Advanced Settings'" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? 'stepper--horizontal-separator-completed' : 'stepper--horizontal-separator', !onboardingStep.active && !onboardingStep.completed ? 'stepper--horizontal-separator' : '']"></div>
         </div>
         <div (click)="navigate(onboardingStep.completed, onboardingStep.route)" class="stepper--step-name" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? 'pointer' : 'cursor-disabled', !onboardingStep.active && !onboardingStep.completed ? 'sub-text-color cursor-disabled' : '']">
-          <h5 [ngClass]="{'stepper--step-1-2-text': onboardingStep.number === 1 || onboardingStep.number === 2, 'stepper--step-3-4-text': onboardingStep.number === 3 || onboardingStep.number === 4, 'stepper--step-5-text': onboardingStep.number === 5}">{{onboardingStep.step}}</h5>
+          <h5 [ngClass]="{'stepper--step-1-text': onboardingStep.number === 1, 'stepper--step-2-text': onboardingStep.number === 2, 'stepper--step-3-4-text': onboardingStep.number === 3 || onboardingStep.number === 4, 'stepper--step-5-text': onboardingStep.number === 5}">{{onboardingStep.step}}</h5>
         </div>
       </div>
     </div>

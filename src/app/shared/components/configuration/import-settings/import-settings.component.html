@@ -6,7 +6,7 @@
       <form [formGroup]="importSettingsForm" class="import-settings--field">
         <app-configuration-toggle-field
           [form]="importSettingsForm"
-          [label]="'Import Chart of Accounts from Quickbooks Online'"
+          [label]="'Import Chart of Accounts from QuickBooks Online'"
           [subLabel]="'Imported accounts will be available as Categories in Fyle.'"
           [formControllerName]="'chartOfAccount'">
         </app-configuration-toggle-field>
@@ -37,9 +37,9 @@
             <div class="import-settings--field-toggle-section">
               <div fxLayout="row" fxLayoutAlign="space-between center">
                 <div class="import-settings--field-label-section import-settings--import-area">
-                  Import {{ expenseField.value.destination_field | titlecase }} from Quickbooks Online
+                  Import {{ expenseField.value.destination_field | titlecase }} from QuickBooks Online
                   <h5 class="configuration--field-label sub-text-color">
-                    The imported {{ expenseField.value.destination_field | titlecase }} from Quickbooks Online will be a
+                    The imported {{ expenseField.value.destination_field | titlecase }} from QuickBooks Online will be a
                     selectable field while creating an expense.
                   </h5>
                 </div>
@@ -91,7 +91,7 @@
           <app-configuration-toggle-field
             [form]="importSettingsForm"
             [label]="'Import Tax from QuickBooks Online'"
-            [subLabel]="'The imported Tax codes from Quickbooks will be set as Tax group in Fyle. This will be a selectable field while creating an expense.'"
+            [subLabel]="'The imported Tax codes from QuickBooks Online will be set as Tax group in Fyle. This will be a selectable field while creating an expense.'"
             [formControllerName]="'taxCode'">
           </app-configuration-toggle-field>
         </div>

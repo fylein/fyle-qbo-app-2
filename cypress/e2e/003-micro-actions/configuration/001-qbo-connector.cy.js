@@ -24,7 +24,7 @@ describe('auth module', () => {
     cy.intercept('POST', '**/connect_qbo/authorization_code/', {
       statusCode: 400,
       body: {
-        message: 'Please choose the correct Quickbooks online account'
+        message: 'Please choose the correct QuickBooks Online account'
       }
     })
     cy.visit('/workspaces/onboarding/qbo_connector?code=xyz&realmId=xyz')

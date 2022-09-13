@@ -57,7 +57,7 @@ export class QboCallbackComponent implements OnInit {
       this.router.navigate([`/workspaces/main/dashboard`]);
     }, (error) => {
       const errorMessage = 'message' in error.error ? error.error.message : 'Failed to connect to QuickBooks Online. Please try again';
-      if (errorMessage === 'Please choose the correct Quickbooks online account') {
+      if (errorMessage === 'Please choose the correct QuickBooks Online account') {
         this.showWarningDialog();
       } else {
         this.snackBar.open(errorMessage, '', { duration: 7000 });

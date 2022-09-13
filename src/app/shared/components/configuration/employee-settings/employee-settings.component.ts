@@ -104,7 +104,7 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
       title: 'Change in Configuration',
       contents: `You are changing your employee representation from <b>${existingEmployeeFieldMapping}</b> to <b>${updatedEmployeeFieldMapping}</b>
         <br><br>This will impact the configuration in the <b>Export settings</b> on How the export of expenses
-        can be exported from Fyle to Quickbooks Online.<br><br>
+        can be exported from Fyle to QuickBooks Online.<br><br>
         Would you like to continue? If yes, you will be redirected to <b>Export settings</b> to revisit the configuration and complete it.`,
       primaryCtaText: 'Continue'
     };
