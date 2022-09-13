@@ -46,19 +46,26 @@ describe('resolve qbo error', () => {
     })
   })
 
-  it('should update Accounts Payable from export settings page and re trigger export', () => {
+  it('should update category mapping and re trigger export', () => {
     cy.waitForDashboardLoad()
 
-    // Update to correct Accounts Payable
-    cy.get('.side-nav-bar--module-block-content-expandable').contains('Configuration').click();
-    cy.navigateToSettingPage('Export Settings')
+    // Update category mapping
+    cy.navigateToModule('Mappings')
+    cy.navigateToMappingPage('Category Mapping')
+    cy.url().should('include', '/workspaces/main/mapping/category')
 
-    cy.get('.configuration--field-section').eq(2).within(() => {
-      cy.get('.configuration--form-field').should('contain', 'Promotional').click()
-    })
-    cy.selectMatOption('Accounts Payable (A/P)')
-    cy.saveSetting('Save')
+    cy.get('.mapping-filter--filter-alphabet-list').contains('F').click()
+    cy.wait('@getMappings').its('response.statusCode').should('equal', 200)
 
+    cy.get('.mapping-filter--filter-alphabet-list').as('alphabet')
+    cy.get('@alphabet').contains('F').click()
+
+    cy.get('.mapping-table--row').eq(3).as('categoryMappingRow')
+    cy.get('@categoryMappingRow').find('.mat-column-fyle').contains('Food')
+
+    cy.get('@categoryMappingRow').find('.mapping-table--form-field').click()
+    cy.get('.mat-option').contains('Food').click()
+  
     // Export
     cy.url().should('include', '/workspaces/main/dashboard')
     cy.wait('@exportableExpenseGroups').its('response.statusCode').should('equal', 200)

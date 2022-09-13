@@ -38,7 +38,6 @@ describe('resolve mapping error journey', () => {
     cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)
 
     cy.exportsPolling()
-    cy.wait('@getErrors').its('response.statusCode').should('equal', 200)
     cy.wait('@getPastExport')
 
     cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)

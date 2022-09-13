@@ -74,6 +74,8 @@ Cypress.Commands.add('setupHttpListeners', () => {
 
   setupInterceptor('GET', '/mappings/settings', 'getMappingSettings')
 
+  setupInterceptor('GET', '/mappings/expense_attributes/', 'getMappings')
+
   setupInterceptor('GET', '/fyle/expense_fields', 'getFyleExpenseFields')
 
   setupInterceptor('GET', '/mappings/employee_attributes/', 'getEmployeeMappings')

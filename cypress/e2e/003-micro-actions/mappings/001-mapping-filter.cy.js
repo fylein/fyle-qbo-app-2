@@ -17,4 +17,14 @@ describe('mapping filter', () => {
       cy.get('.mat-column-fyle').eq(index + 1).contains('ashwin')
     })
   })
+
+  it('alphabet filter', () => {
+    cy.wait('@getEmployeeMappings').its('response.statusCode').should('equal', 200)
+    cy.get('.mapping-filter--filter-alphabet-list').as('alphabet')
+    cy.get('@alphabet').contains('O').click()
+
+    cy.get('.mapping-table--row').each((_, index, __) => {
+      cy.get('.mat-column-fyle').eq(index + 1).contains(/o|O/g)
+    })
+  })
 })

@@ -74,7 +74,7 @@ describe('update configuration', () => {
     // Export them as Bills
     cy.getMatToggle(0).click()
     assertConfigurationOptionAndUpdate(1, 'Select expense export type', 'Bill')
-    assertConfigurationOptionAndUpdate(2, 'Select accounts payable', 'Promotional')
+    assertConfigurationOptionAndUpdate(2, 'Select accounts payable', 'Accounts Payable (A/P)')
 
     // Toggle off CCC export
     cy.getMatToggle(1).click()
@@ -93,7 +93,7 @@ describe('update configuration', () => {
 
     // Assert the existing option
     assertConfigurationOption(1, 'Bill')
-    assertConfigurationOption(2, 'Promotional')
+    assertConfigurationOption(2, 'Accounts Payable (A/P)')
   }
 
   function importSettingUpdates() {
@@ -157,6 +157,8 @@ describe('update configuration', () => {
   })
 
   function addEmailNotification(name, email) {
+    // Adding 0.5 wait time at start and end of this function since it is causing some race condition rarely
+    cy.wait(500)
     cy.get('.advanced-settings--span-or').contains('Add new email address').click()
 
     cy.get('.add-email-dialog--header-text').contains('Add new Email Address')
@@ -174,6 +176,7 @@ describe('update configuration', () => {
     cy.get('@emailFormInput').eq(1).type(email)
 
     cy.get('.mat-flat-button').contains('Save').click()
+    cy.wait(500)
   }
 
   it('add email notification', () => {
@@ -182,6 +185,8 @@ describe('update configuration', () => {
 
     cy.getMatToggle(0).click()
     assertAdvancedConfigurationOptionAndUpdate(0, 'Select Frequency', '6 Hours')
+
+    cy.get('.configuration--form-field').contains('Select Email Address')
 
     addEmailNotification('Ashwin', 'ashwin.t+hello@fyle.in')
     addEmailNotification('Ashwin 2', 'ashwin.t+hello2@fyle.in')
@@ -199,6 +204,9 @@ describe('update configuration', () => {
     cy.get('.import-settings--create-custom-field').eq(0).click()
 
     cy.get('.expense-field-creation-dialog--header-text').contains("Create a new 'Select type' field in Fyle")
+
+    cy.get('.expense-field-creation-dialog--form-input').eq(0).type('Team')
+    cy.get('.mat-flat-button').contains('Create & Save').click()
   });
 
   it('preview QBO export', () => {
@@ -217,5 +225,79 @@ describe('update configuration', () => {
     cy.get('.configuration-select-field--preview-text').eq(1).contains('here').click()
 
     cy.get('.expense-form-preview--preview-section').should('be.visible')
+  })
+
+  it('change expense grouping / export type / API POST error', () => {
+    cy.intercept('PUT', '**/export_settings/', {
+      statusCode: 400,
+      body: {
+        message: 'Dummy error message',
+      },
+    })
+    cy.navigateToModule('Configuration')
+    cy.navigateToSettingPage('Export Settings')
+
+    assertConfigurationOption(3, 'Report', true)
+    cy.selectMatOption('Payment')
+
+    assertConfigurationOption(1, 'Bill', true)
+    cy.selectMatOption('Journal Entry')
+
+    cy.enableConfigurationToggle(1)
+    cy.enableConfigurationToggle(1)
+
+    cy.enableConfigurationToggle(1)
+    assertConfigurationOption(5, 'Select expense export type', true)
+    cy.selectMatOption('Journal Entry')
+    assertConfigurationOption(8, 'Select the date', true)
+    cy.selectMatOption('Last Spend Date')
+
+    cy.enableConfigurationToggle(1)
+
+    cy.saveSetting('Save')
+    cy.saveSetting('Continue')
+  })
+
+  it('preview Fyle expense form', () => {
+    cy.navigateToModule('Configuration')
+    cy.navigateToSettingPage('Import Settings')
+
+    cy.get('.import-settings--preview-text').eq(0).contains('here').click()
+
+    cy.get('.expense-form-preview--preview-section').should('be.visible')
+
+    cy.get('.expense-form-preview--close-icon').click()
+  })
+
+  it('should fail saving import settings', () => {
+    cy.intercept('PUT', '**/import_settings/', {
+      statusCode: 400,
+      body: {
+        message: 'Dummy error message',
+      },
+    })
+    cy.navigateToModule('Configuration')
+    cy.navigateToSettingPage('Import Settings')
+
+    cy.saveSetting('Save')
+  })
+
+  it('update category mapping', () => {
+    cy.navigateToModule('Mappings')
+    cy.navigateToMappingPage('Category Mapping')
+    cy.url().should('include', '/workspaces/main/mapping/category')
+
+    cy.get('.mapping-filter--filter-alphabet-list').contains('F').click()
+    cy.wait('@getMappings').its('response.statusCode').should('equal', 200)
+
+    cy.get('.mapping-filter--filter-alphabet-list').as('alphabet')
+    cy.get('@alphabet').contains('F').click()
+
+    cy.get('.mapping-table--row').eq(3).as('categoryMappingRow')
+    cy.get('@categoryMappingRow').find('.mat-column-fyle').contains('Food')
+
+    cy.get('@categoryMappingRow').find('.mapping-table--form-field').click()
+    cy.get('.mat-option').contains('Opening Balance Equity').click()
+
   })
 })

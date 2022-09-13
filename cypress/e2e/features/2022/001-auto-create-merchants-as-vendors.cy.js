@@ -58,6 +58,7 @@ describe('auto create vendor', () => {
     })
     cy.saveSetting('Save')
 
+    cy.url().should('include', '/workspaces/main/dashboard')
     cy.waitForDashboardLoad()
     cy.submitButton('Export').click()
   })

@@ -34,20 +34,14 @@ jobs:
           channels: 'integration_test_runs'
           message-text: ':pepe-dance: End to End tests (on prod) just got completed. I have placed the screenshots and videos in this thread :pepe-dance:'
     env:
-      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-      E2E_TESTS_ENV: ${{ secrets.E2E_TESTS_ENV }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      FYLE_CLIENT_ID: ${{ secrets.FYLE_CLIENT_ID }}
-      CALLBACK_URL: ${{ secrets.CALLBACK_URL }}
-      API_URL: ${{ secrets.API_URL }}
+      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
+      COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
       APP_URL: ${{ secrets.APP_URL }}
-      QBO_CLIENT_ID: ${{ secrets.QBO_CLIENT_ID }}
-      QBO_SCOPE: ${{ secrets.QBO_SCOPE }}
-      QBO_AUTHORIZE_URI: ${{ secrets.QBO_AUTHORIZE_URI }}
-      QBO_APP_URL: ${{ secrets.QBO_APP_URL }}
-      FYLE_APP_URL: ${{ secrets.FYLE_APP_URL }}
+      API_URL: ${{ secrets.API_URL }}
+      E2E_TESTS_ENV: ${{ secrets.E2E_TESTS_ENV }}
       E2E_TESTS_WORKSPACE_ID: ${{ secrets.E2E_TESTS_WORKSPACE_ID }}
       E2E_TESTS_CLIENT_ID: ${{ secrets.E2E_TESTS_CLIENT_ID }}
       E2E_TESTS_REFRESH_TOKEN: ${{ secrets.E2E_TESTS_REFRESH_TOKEN }}
-      COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
-      COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
+      E2E_TESTS_ORG_ID: $ {{ secrets.E2E_TESTS_ORG_ID }}
