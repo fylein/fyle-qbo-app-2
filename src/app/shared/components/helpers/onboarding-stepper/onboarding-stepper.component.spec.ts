@@ -26,7 +26,7 @@ describe('OnboardingStepperComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(OnboardingStepperComponent);
     component = fixture.componentInstance;
-    component.currentStep = 'Connect to QBO';
+    component.currentStep = 'Connect to QuickBooks Online';
     fixture.detectChanges();
   });
 

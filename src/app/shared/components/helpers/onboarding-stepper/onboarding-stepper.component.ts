@@ -19,7 +19,7 @@ export class OnboardingStepperComponent implements OnInit {
       active: false,
       completed: false,
       number: 1,
-      step: 'Connect to QBO',
+      step: 'Connect to QuickBooks Online',
       icon: 'qbo-connector',
       route: 'qbo_connector',
       size: {

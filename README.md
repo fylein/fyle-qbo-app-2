@@ -25,7 +25,7 @@ Please refer this link to find the [documentation](https://fylein.github.io/fyle
     ```
     Email: ashwin.t@fyle.in | Org Name: Fyle For QBO Angular Tests - Github Action
     ```
-* Login to this org on [local](http:localhost:4200) once and complete QBO OAuth connection
+* Login to this org on [local](http:localhost:4200) once and complete QBO OAuth connection (Connect to `Sandbox Company_US_2` company in QBO)
 * Update values for these variables in `e2e_tests` key in `environment.json` (present in `src/environments`) -
 *(Copy all these values from local storage)*
 <b>Note:</b> *Copy refresh_token from `user` key in local storage*

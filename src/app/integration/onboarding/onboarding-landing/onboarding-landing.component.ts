@@ -17,6 +17,8 @@ export class OnboardingLandingComponent implements OnInit, OnDestroy {
 
   private timeSpentEventRecorded: boolean = false;
 
+  qboConnectBtnSource: string = 'assets/images/svgs/actions/connect-to-qbo.svg';
+
   constructor(
     private authService: AuthService,
     private trackingService: TrackingService,
