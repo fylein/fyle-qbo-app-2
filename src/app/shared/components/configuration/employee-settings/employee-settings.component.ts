@@ -55,15 +55,15 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
     },
     {
       value: AutoMapEmployee.NAME,
-      label: 'Fyle Name to QBO Display name'
+      label: 'Fyle Name to QuickBooks Online Display name'
     },
     {
       value: AutoMapEmployee.EMAIL,
-      label: 'Fyle Email to QBO Email'
+      label: 'Fyle Email to QuickBooks Online Email'
     },
     {
       value: AutoMapEmployee.EMPLOYEE_CODE,
-      label: 'Fyle Employee Code to QBO Display name'
+      label: 'Fyle Employee Code to QuickBooks Online Display name'
     }
   ];
 

@@ -4,15 +4,15 @@
   <div class="custom-mapping">
     <div class="custom-mapping--content">
       <div class="custom-mapping--title-section">
-        <p class="custom-mapping--title">Select a dimension in QBO that you want to map to an expense field in Fyle</p>
-        <h5 class="sub-text-color">Mapping would help you export Fyle expenses with the correct dimension value to QBO.</h5>
+        <p class="custom-mapping--title">Select a dimension in QuickBooks Online that you want to map to an expense field in Fyle</p>
+        <h5 class="sub-text-color">Mapping would help you export Fyle expenses with the correct dimension value to QuickBooks Online.</h5>
       </div>
 
       <div class="custom-mapping--mapping-section" *ngIf="showMappingList || isLoading">
         <div>
           <div class="custom-mapping--table-header" fxLayout="row">
             <h5 fxLayoutAlign=" center" class="custom-mapping--table-header-text custom-mapping--table-header-col-1">
-              Dimension from QBO
+              Dimension from QuickBooks Online
             </h5>
             <h5 fxLayoutAlign=" center" class="custom-mapping--table-header-text custom-mapping--table-header-col-2">
               Expense field from Fyle
@@ -26,7 +26,7 @@
                   <div fxLayout="row">
                     <div class="custom-mapping--qbo-field">
                       <mat-form-field *ngIf="!element.existingMapping" [formGroupName]="i" floatLabel="always" appearance="outline" class="custom-mapping--form-field">
-                        <mat-select formControlName="qboField" placeholder="Select a Dimension from QBO">
+                        <mat-select formControlName="qboField" placeholder="Select a Dimension from QuickBooks Online">
                           <mat-option *ngFor="let option of qboFields" [matTooltip]="option" [matTooltipDisabled]="option.length <= 40" matTooltipPosition="above" matTooltipClass="above" (click)="updateMappingRow(i, option)" [value]="option">
                             <p>{{ option | titlecase | trimCharacter: 38 }}</p>
                             <img *ngIf="option === mappingSetting.value[i].qboField" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">

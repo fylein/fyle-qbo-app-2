@@ -29,7 +29,7 @@ describe('auth module', () => {
     })
     cy.visit('/workspaces/onboarding/qbo_connector?code=xyz&realmId=xyz')
     cy.get('.confirmation-dialog--header-content').contains('Incorrect account selected')
-    cy.get('.confirmation-dialog--info').contains('You had previously set up the integration with a different QBO account. Please choose the same to restore the settings')
+    cy.get('.confirmation-dialog--info').contains('You had previously set up the integration with a different QuickBooks Online account. Please choose the same to restore the settings')
   })
 
   it('disconnect QBO dialog', () => {

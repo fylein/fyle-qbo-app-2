@@ -12,14 +12,14 @@
             <div class="export--info-section">
               <span fxLayout="row">
                 <h3 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">Sit back and relax!</h3>
-                <h3 *ngIf="exportInProgress">Exporting {{ processedCount }} of {{ exportableExpenseGroupIds.length }} Transaction{{exportableExpenseGroupIds.length > 1 ? 's' : ''}} to your QBO account</h3>
+                <h3 *ngIf="exportInProgress">Exporting {{ processedCount }} of {{ exportableExpenseGroupIds.length }} Transaction{{exportableExpenseGroupIds.length > 1 ? 's' : ''}} to your QuickBooks Online account</h3>
                 <h3 *ngIf="!exportInProgress && exportableExpenseGroupIds.length">{{ exportableExpenseGroupIds.length }} Transaction{{exportableExpenseGroupIds.length > 1 ? 's' : ''}} ready to export</h3>
                 <img src="assets/images/svgs/general/info.svg" class="export--info-icon" width="16px" height="16px" matTooltip="All expenses from {{ importState === ExpenseState.PAYMENT_PROCESSING ? 'your' : 'the' }} {{ importState | titlecase | snakeCaseToSpaceCase }} state in Fyle will be automatically imported" matTooltipPosition="right" matTooltipClass="right" />
               </span>
               <div class="export--info-text paragraph">
                 <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">No new Transaction to export from the {{ importState | titlecase | snakeCaseToSpaceCase }} state in Fyle.</h5>
                 <h5 *ngIf="!exportInProgress && !exportableExpenseGroupIds.length">Once you start processing payment for the expenses, they will be automatically available here to export.</h5>
-                <h5 *ngIf="!exportInProgress && exportableExpenseGroupIds.length">Click on <b>Export</b> to start exporting expenses from Fyle as QBO transactions.</h5>
+                <h5 *ngIf="!exportInProgress && exportableExpenseGroupIds.length">Click on <b>Export</b> to start exporting expenses from Fyle as QuickBooks Online transactions.</h5>
                 <h5 *ngIf="exportInProgress">This may take a few minutes. Please wait...</h5>
                 <div *ngIf="!exportInProgress && failedExpenseGroupCount !== null && failedExpenseGroupCount > 0" fxLayout="row">
                   <h5>{{ exportableExpenseGroupIds.length - failedExpenseGroupCount > 0 ? exportableExpenseGroupIds.length - failedExpenseGroupCount : 0 }} new Transaction{{(exportableExpenseGroupIds.length - failedExpenseGroupCount) > 1 ? 's' : ''}}, {{ failedExpenseGroupCount }} previously failed Transaction{{failedExpenseGroupCount > 1 ? 's' : ''}}</h5>

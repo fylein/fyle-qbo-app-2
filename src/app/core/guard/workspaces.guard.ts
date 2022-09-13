@@ -43,7 +43,7 @@ export class WorkspacesGuard implements CanActivate {
           if (error.status === 400) {
             globalCacheBusterNotifier.next();
             this.trackingService.onQBOAccountDisconnect();
-            this.snackBar.open('Oops! Your QBO connection expired, please connect again', '', { duration: 7000 });
+            this.snackBar.open('Oops! Your QuickBooks Online connection expired, please connect again', '', { duration: 7000 });
 
             const onboardingState: OnboardingState = this.workspaceService.getOnboardingState();
 

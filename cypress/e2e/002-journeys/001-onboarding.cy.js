@@ -12,7 +12,7 @@ describe('onboarding journey', () => {
 
     // Select employee setting form values
     cy.selectConfigurationField(0, 'Employee')
-    cy.selectConfigurationField(1, 'Fyle Name to QBO Display name')
+    cy.selectConfigurationField(1, 'Fyle Name to QuickBooks Online Display name')
 
     cy.saveSetting('Save')
   }

@@ -29,7 +29,7 @@ export class QboCallbackComponent implements OnInit {
   private showWarningDialog(): void {
     const data: ConfirmationDialog = {
       title: 'Incorrect account selected',
-      contents: 'You had previously set up the integration with a different QBO account. Please choose the same to restore the settings',
+      contents: 'You had previously set up the integration with a different QuickBooks Online account. Please choose the same to restore the settings',
       primaryCtaText: 'Re connect',
       hideSecondaryCTA: true
     };

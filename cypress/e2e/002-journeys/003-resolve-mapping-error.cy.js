@@ -18,7 +18,7 @@ describe('resolve mapping error journey', () => {
     cy.url().should('include', '/workspaces/main/dashboard')
 
     // Check if exports are ready to be processed
-    cy.get('.export--info-text').contains('Click on Export to start exporting expenses from Fyle as QBO transactions.')
+    cy.get('.export--info-text').contains('Click on Export to start exporting expenses from Fyle as QuickBooks Online transactions.')
     cy.get('.zero-state-with-illustration--zero-state-img').should('be.visible')
   })
 

@@ -7,7 +7,7 @@
       <img src="assets/images/svgs/actions/close.svg" (click)="this.dialogRef.close()"
         class="dashboard-resolve-mapping-dialog--close-icon sub-text-color pointer" />
     </div>
-    <h5 class="dashboard-resolve-mapping-dialog--sub-header-text sub-text-color">Resolve the following mapping errors to export your failed expenses successully to QBO </h5>
+    <h5 class="dashboard-resolve-mapping-dialog--sub-header-text sub-text-color">Resolve the following mapping errors to export your failed expenses successully to QuickBooks Online </h5>
   </div>
 
 
@@ -45,7 +45,7 @@
 
     <ng-container matColumnDef="qbo">
       <th mat-header-cell *matHeaderCellDef>
-        <h4 class="dashboard-resolve-mapping-dialog--row-heading-qbo">{{ data.destinationType | titlecase | snakeCaseToSpaceCase }} in QBO</h4>
+        <h4 class="dashboard-resolve-mapping-dialog--row-heading-qbo">{{ data.destinationType | titlecase | snakeCaseToSpaceCase }} in QuickBooks Online</h4>
       </th>
       <td mat-cell *matCellDef="let element">
         <mat-form-field floatLabel="always" appearance="outline" class="dashboard-resolve-mapping-dialog--form-field">

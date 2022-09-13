@@ -46,7 +46,7 @@ describe('update configuration', () => {
 
     // Assert the existing option and update it and save
     assertConfigurationOptionAndUpdate(0, 'Employees', 'Vendors')
-    assertConfigurationOptionAndUpdate(1, 'Fyle Name to QBO Display name', 'None')
+    assertConfigurationOptionAndUpdate(1, 'Fyle Name to QuickBooks Online Display name', 'None')
 
     cy.saveSetting('Save')
 

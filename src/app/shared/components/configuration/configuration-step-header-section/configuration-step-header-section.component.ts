@@ -38,7 +38,7 @@ export class ConfigurationStepHeaderSectionComponent implements OnInit {
   refreshQBODimensions(): void {
     this.trackingService.onClickEvent(ClickEvent.SYNC_DIMENSION, {phase: this.phase});
     this.workspaceService.refreshQBODimensions().subscribe();
-    this.snackBar.open('Refreshing data dimensions from QBO...');
+    this.snackBar.open('Refreshing data dimensions from QuickBooks Online...');
   }
 
   private setupContent(): void {
