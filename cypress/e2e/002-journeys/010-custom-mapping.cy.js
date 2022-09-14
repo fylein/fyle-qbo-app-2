@@ -103,7 +103,7 @@ describe('custom mapping create/view/delete', () => {
 
   it('delete custom mapping rows', () => {
     cy.wait(['@getMappingSettings', '@getFyleExpenseFields']).then(() => {
-      cy.wait(2000)
+      cy.wait(500)
       cy.get('.custom-mapping--mapping-section').find('div').eq(2).trigger('mouseenter')
       cy.get('.custom-mapping--delete-section').find('.search-select--clear-icon').click()
 
