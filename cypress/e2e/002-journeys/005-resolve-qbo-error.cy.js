@@ -9,7 +9,7 @@ describe('resolve qbo error', () => {
 
   it('view failed exports', () => {
     cy.waitForDashboardLoad()
-    cy.get('.past-export--row').contains('View').click()
+    cy.get('.past-export--row').last().contains('View').click()
 
     cy.get('.dashboard-export-log--header-section').contains('Failed Expense Groups')
 
@@ -65,7 +65,7 @@ describe('resolve qbo error', () => {
 
     cy.get('@categoryMappingRow').find('.mapping-table--form-field').click()
     cy.get('.mat-option').contains('Food').click()
-  
+    cy.navigateToModule('Dashboard')
     // Export
     cy.url().should('include', '/workspaces/main/dashboard')
     cy.wait('@exportableExpenseGroups').its('response.statusCode').should('equal', 200)

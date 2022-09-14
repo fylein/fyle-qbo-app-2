@@ -70,8 +70,8 @@ describe('custom mapping create/view/delete', () => {
       saveAndAssertConfirmationDialog('Department', 'Cost center')
 
       selectCustomMapping(2, 'Customer', 'QBO')
-      selectCustomMapping(2, 'Team', 'Fyle')
-      saveAndAssertConfirmationDialog('Customer', 'Team', false)
+      selectCustomMapping(2, 'Xero Team', 'Fyle')
+      saveAndAssertConfirmationDialog('Customer', 'Xero team', false)
 
       cy.get('.mapping-header-section--card-content-text-count').should('have.text', '3')
     })
@@ -89,7 +89,7 @@ describe('custom mapping create/view/delete', () => {
       },
       2: {
         qbo: 'Customer',
-        fyle: 'Team'
+        fyle: 'Xero team'
       }
     };
     cy.wait(['@getMappingSettings', '@getFyleExpenseFields']).then(() => {
@@ -103,6 +103,7 @@ describe('custom mapping create/view/delete', () => {
 
   it('delete custom mapping rows', () => {
     cy.wait(['@getMappingSettings', '@getFyleExpenseFields']).then(() => {
+      cy.wait(2000)
       cy.get('.custom-mapping--mapping-section').find('div').eq(2).trigger('mouseenter')
       cy.get('.custom-mapping--delete-section').find('.search-select--clear-icon').click()
 
