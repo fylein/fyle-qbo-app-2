@@ -80,7 +80,7 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     private trackingService: TrackingService,
     private windowService: WindowService,
-    private workspaceService: WorkspaceService,
+    private workspaceService: WorkspaceService
   ) {
     this.windowReference = this.windowService.nativeWindow;
   }
