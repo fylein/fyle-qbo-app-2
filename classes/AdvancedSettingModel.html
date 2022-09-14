@@ -128,8 +128,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/app/core/models/configuration/advanced-setting.model.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/app/core/models/configuration/advanced-setting.model.ts:60</a></div>
                 </td>
             </tr>
 
@@ -197,6 +197,7 @@ export type AdvancedSettingWorkspaceGeneralSetting &#x3D; {
   sync_fyle_to_qbo_payments: boolean,
   sync_qbo_to_fyle_payments: boolean,
   auto_create_destination_entity: boolean,
+  auto_create_merchants_as_vendors: boolean,
   je_single_credit_line: boolean,
   change_accounting_period: boolean,
   memo_structure: string[]
@@ -252,6 +253,7 @@ export class AdvancedSettingModel {
         sync_fyle_to_qbo_payments: advancedSettingsForm.get(&#x27;paymentSync&#x27;)?.value &amp;&amp; advancedSettingsForm.get(&#x27;paymentSync&#x27;)?.value &#x3D;&#x3D;&#x3D; PaymentSyncDirection.FYLE_TO_QBO ? true : false,
         sync_qbo_to_fyle_payments: advancedSettingsForm.get(&#x27;paymentSync&#x27;)?.value &amp;&amp; advancedSettingsForm.get(&#x27;paymentSync&#x27;)?.value &#x3D;&#x3D;&#x3D; PaymentSyncDirection.QBO_TO_FYLE ? true : false,
         auto_create_destination_entity: advancedSettingsForm.get(&#x27;autoCreateVendors&#x27;)?.value,
+        auto_create_merchants_as_vendors: advancedSettingsForm.get(&#x27;autoCreateMerchantsAsVendors&#x27;)?.value,
         je_single_credit_line: advancedSettingsForm.get(&#x27;singleCreditLineJE&#x27;)?.value,
         change_accounting_period: advancedSettingsForm.get(&#x27;changeAccountingPeriod&#x27;)?.value,
         memo_structure: advancedSettingsForm.get(&#x27;memoStructure&#x27;)?.value
