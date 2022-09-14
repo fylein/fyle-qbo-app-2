@@ -19,6 +19,7 @@ describe('AdvancedSettingModel', () => {
       changeAccountingPeriod: new FormControl(true),
       singleCreditLineJE: new FormControl(true),
       autoCreateVendors: new FormControl(true),
+      autoCreateMerchantsAsVendors: new FormControl(true),
       exportSchedule: new FormControl(true),
       exportScheduleFrequency: new FormControl(10),
       memoStructure: new FormControl(['Fyle']),
@@ -32,6 +33,7 @@ describe('AdvancedSettingModel', () => {
         sync_fyle_to_qbo_payments: false,
         sync_qbo_to_fyle_payments: false,
         auto_create_destination_entity: true,
+        auto_create_merchants_as_vendors: true,
         je_single_credit_line: true,
         change_accounting_period: true,
         memo_structure: ['Fyle']

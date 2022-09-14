@@ -33,6 +33,7 @@ describe('AdvancedSettingService', () => {
         sync_fyle_to_qbo_payments: false,
         sync_qbo_to_fyle_payments: false,
         auto_create_destination_entity: true,
+        auto_create_merchants_as_vendors: true,
         je_single_credit_line: true,
         change_accounting_period: true,
         memo_structure: ['Fyle']
@@ -64,6 +65,7 @@ describe('AdvancedSettingService', () => {
         sync_fyle_to_qbo_payments: false,
         sync_qbo_to_fyle_payments: false,
         auto_create_destination_entity: true,
+        auto_create_merchants_as_vendors: true,
         je_single_credit_line: true,
         change_accounting_period: true,
         memo_structure: ['Fyle']
@@ -84,6 +86,7 @@ describe('AdvancedSettingService', () => {
         sync_fyle_to_qbo_payments: false,
         sync_qbo_to_fyle_payments: false,
         auto_create_destination_entity: true,
+        auto_create_merchants_as_vendors: true,
         je_single_credit_line: true,
         change_accounting_period: true,
         memo_structure: ['Fyle']

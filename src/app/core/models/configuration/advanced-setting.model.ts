@@ -8,6 +8,7 @@ export type AdvancedSettingWorkspaceGeneralSetting = {
   sync_fyle_to_qbo_payments: boolean,
   sync_qbo_to_fyle_payments: boolean,
   auto_create_destination_entity: boolean,
+  auto_create_merchants_as_vendors: boolean,
   je_single_credit_line: boolean,
   change_accounting_period: boolean,
   memo_structure: string[]
@@ -63,6 +64,7 @@ export class AdvancedSettingModel {
         sync_fyle_to_qbo_payments: advancedSettingsForm.get('paymentSync')?.value && advancedSettingsForm.get('paymentSync')?.value === PaymentSyncDirection.FYLE_TO_QBO ? true : false,
         sync_qbo_to_fyle_payments: advancedSettingsForm.get('paymentSync')?.value && advancedSettingsForm.get('paymentSync')?.value === PaymentSyncDirection.QBO_TO_FYLE ? true : false,
         auto_create_destination_entity: advancedSettingsForm.get('autoCreateVendors')?.value,
+        auto_create_merchants_as_vendors: advancedSettingsForm.get('autoCreateMerchantsAsVendors')?.value,
         je_single_credit_line: advancedSettingsForm.get('singleCreditLineJE')?.value,
         change_accounting_period: advancedSettingsForm.get('changeAccountingPeriod')?.value,
         memo_structure: advancedSettingsForm.get('memoStructure')?.value
