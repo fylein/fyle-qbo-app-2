@@ -165,6 +165,10 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     return this.workspaceGeneralSettings.employee_field_mapping === EmployeeFieldMapping.VENDOR && this.workspaceGeneralSettings.auto_map_employees !== null && this.workspaceGeneralSettings.auto_map_employees !== AutoMapEmployee.EMPLOYEE_CODE;
   }
 
+  showAutoCreateMerchantsAsVendorsField(): boolean {
+    return !this.workspaceGeneralSettings.import_vendors_as_merchants && (this.workspaceGeneralSettings.corporate_credit_card_expenses_object === CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || this.workspaceGeneralSettings.corporate_credit_card_expenses_object === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE);
+  }
+
   private setupForm(): void {
     let paymentSync = '';
     if (this.advancedSettings.workspace_general_settings.sync_fyle_to_qbo_payments) {
@@ -181,6 +185,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       changeAccountingPeriod: [this.advancedSettings.workspace_general_settings.change_accounting_period],
       singleCreditLineJE: [this.advancedSettings.workspace_general_settings.je_single_credit_line],
       autoCreateVendors: [this.advancedSettings.workspace_general_settings.auto_create_destination_entity],
+      autoCreateMerchantsAsVendors: [this.advancedSettings.workspace_general_settings.auto_create_merchants_as_vendors],
       exportSchedule: [this.advancedSettings.workspace_schedules?.enabled ? this.advancedSettings.workspace_schedules.interval_hours : false],
       exportScheduleFrequency: [this.advancedSettings.workspace_schedules?.enabled ? this.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [this.advancedSettings.workspace_general_settings.memo_structure],

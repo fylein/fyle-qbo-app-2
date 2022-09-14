@@ -74,7 +74,7 @@ describe('update configuration', () => {
     // Export them as Bills
     cy.getMatToggle(0).click()
     assertConfigurationOptionAndUpdate(1, 'Select expense export type', 'Bill')
-    assertConfigurationOptionAndUpdate(2, 'Select accounts payable', 'Promotional')
+    assertConfigurationOptionAndUpdate(2, 'Select accounts payable', 'Accounts Payable (A/P)')
 
     // Toggle off CCC export
     cy.getMatToggle(1).click()
@@ -93,7 +93,7 @@ describe('update configuration', () => {
 
     // Assert the existing option
     assertConfigurationOption(1, 'Bill')
-    assertConfigurationOption(2, 'Promotional')
+    assertConfigurationOption(2, 'Accounts Payable (A/P)')
   }
 
   function importSettingUpdates() {
@@ -256,6 +256,7 @@ describe('update configuration', () => {
 
     cy.saveSetting('Save')
     cy.saveSetting('Continue')
+    cy.wait(1000)
   })
 
   it('preview Fyle expense form', () => {
@@ -280,5 +281,40 @@ describe('update configuration', () => {
     cy.navigateToSettingPage('Import Settings')
 
     cy.saveSetting('Save')
+  })
+
+  it('update category mapping', () => {
+    cy.navigateToModule('Mappings')
+    cy.navigateToMappingPage('Category Mapping')
+    cy.url().should('include', '/workspaces/main/mapping/category')
+
+    cy.get('.mapping-filter--filter-alphabet-list').contains('F').click()
+    cy.wait('@getMappings').its('response.statusCode').should('equal', 200)
+
+    cy.get('.mapping-filter--filter-alphabet-list').as('alphabet')
+    cy.get('@alphabet').contains('F').click()
+
+    cy.get('.mapping-table--row').eq(3).as('categoryMappingRow')
+    cy.get('@categoryMappingRow').find('.mat-column-fyle').contains('Food')
+
+    cy.get('@categoryMappingRow').find('.mapping-table--form-field').click()
+    cy.get('.mat-option').contains('Opening Balance Equity').click()
+
+  })
+
+  it('update project mapping', () => {
+    cy.navigateToModule('Mappings')
+    cy.navigateToMappingPage('Project Mapping')
+    cy.url().should('include', '/workspaces/main/mapping/project')
+
+    cy.get('.mapping-filter--filter-alphabet-list').contains('F').click()
+    cy.wait('@getDestinationAttributes').its('response.statusCode').should('equal', 200)
+
+    cy.get('.mapping-table--row').eq(1).as('projectMappingRow')
+    cy.get('@projectMappingRow').find('.mat-column-fyle').contains('Aaron Abbott')
+
+    cy.get('@projectMappingRow').find('.mapping-table--form-field').click()
+    cy.get('.mat-option').eq(0).click()
+
   })
 })

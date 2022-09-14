@@ -26,6 +26,7 @@ export const mappinglist: MappingList[] = [{
 }];
 export const workspaceGeneralSettingResponse:WorkspaceGeneralSetting = {
   auto_create_destination_entity: true,
+  auto_create_merchants_as_vendors: true,
   auto_map_employees: null,
   category_sync_version: "v1",
   change_accounting_period: true,

@@ -116,6 +116,13 @@
         [formControllerName]="'singleCreditLineJE'">
       </app-configuration-toggle-field>
 
+      <app-configuration-toggle-field *ngIf="showAutoCreateMerchantsAsVendorsField()" [form]="advancedSettingsForm"
+        [iconPath]="'assets/images/svgs/general/building.svg'"
+        [label]="'Auto-create Merchants as Vendors'"
+        [subLabel]="'Fyle will auto-create a new vendor in QuickBooks Online for every new merchant name added in Fyle by employees if that merchant does not exsit in QuickBooks Online'"
+        [formControllerName]="'autoCreateMerchantsAsVendors'">
+      </app-configuration-toggle-field>
+
       <app-configuration-step-footer-section
         [ctaText]="!saveInProgress ? (isOnboarding ? ConfigurationCtaText.SAVE_AND_CONTINUE : ConfigurationCtaText.SAVE) : ConfigurationCtaText.SAVING"
         [showBackButton]="isOnboarding" [isButtonDisabled]="!advancedSettingsForm.valid || saveInProgress"
