@@ -256,6 +256,7 @@ describe('update configuration', () => {
 
     cy.saveSetting('Save')
     cy.saveSetting('Continue')
+    cy.wait(5000)
   })
 
   it('preview Fyle expense form', () => {
