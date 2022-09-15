@@ -29,7 +29,7 @@ describe('custom mapping create/view/delete', () => {
     cy.saveSetting('Create Mapping')
 
     cy.get('.confirmation-dialog--header-content').contains('Create Custom Mapping')
-    cy.get('.confirmation-dialog--info').contains(`You are creating a custom mapping between ${qbo} in QBO and ${fyle} in Fyle.`)
+    cy.get('.confirmation-dialog--info').contains(`You are creating a custom mapping between ${qbo} in QuickBooks Online and ${fyle} in Fyle.`)
 
     cy.saveSetting('Save and Continue')
 
@@ -108,7 +108,7 @@ describe('custom mapping create/view/delete', () => {
       cy.get('.custom-mapping--delete-section').find('.search-select--clear-icon').click()
 
       cy.get('.confirmation-dialog--header-content').contains('Delete Custom Mapping')
-      cy.get('.confirmation-dialog--info').contains(`You are deleting the custom mapping of Department in QBO to Cost center in Fyle.`)
+      cy.get('.confirmation-dialog--info').contains(`You are deleting the custom mapping of Department in QuickBooks Online to Cost center in Fyle.`)
 
       cy.saveSetting('Save and Continue')
       cy.get('.mapping-header-section--card-content-text-count').should('have.text', '2')

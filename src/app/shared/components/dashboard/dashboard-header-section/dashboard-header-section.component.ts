@@ -23,7 +23,7 @@ export class DashboardHeaderSectionComponent implements OnInit {
     this.trackingService.onClickEvent(ClickEvent.SYNC_DIMENSION, {phase: ProgressPhase.POST_ONBOARDING});
     this.workspaceService.refreshQBODimensions().subscribe();
     this.workspaceService.refreshFyleDimensions().subscribe();
-    this.snackBar.open('Refreshing data dimensions from QBO...');
+    this.snackBar.open('Refreshing data dimensions from QuickBooks Online...');
     }
 
   ngOnInit(): void {

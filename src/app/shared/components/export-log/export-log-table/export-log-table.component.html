@@ -44,7 +44,7 @@
 
   <ng-container *ngIf="displayedColumns.indexOf('exportType') !== -1" matColumnDef="exportedAt" matColumnDef="exportType">
     <th mat-header-cell *matHeaderCellDef>
-      <h4>Exported to QBO as</h4>
+      <h4>Exported to QuickBooks Online as</h4>
     </th>
     <td [ngClass]="{'pointer': element.fyleReferenceType !== FyleReferenceType.EXPENSE && allowChildViewing}" (click)="openChildExpenses(element)" mat-cell *matCellDef="let element"> {{element.exportedAs | titlecase}} </td>
   </ng-container>

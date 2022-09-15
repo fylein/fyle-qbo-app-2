@@ -46,7 +46,7 @@ describe('update configuration', () => {
 
     // Assert the existing option and update it and save
     assertConfigurationOptionAndUpdate(0, 'Employees', 'Vendors')
-    assertConfigurationOptionAndUpdate(1, 'Fyle Name to QBO Display name', 'None')
+    assertConfigurationOptionAndUpdate(1, 'Fyle Name to QuickBooks Online Display name', 'None')
 
     cy.saveSetting('Save')
 
@@ -123,7 +123,7 @@ describe('update configuration', () => {
     cy.navigateToSettingPage('Advanced Settings')
 
     cy.getMatToggle(1).click()
-    assertAdvancedConfigurationOptionAndUpdate(2, 'Select how payments', 'Export Fyle ACH Payments to Quickbooks Online')
+    assertAdvancedConfigurationOptionAndUpdate(2, 'Select how payments', 'Export Fyle ACH Payments to QuickBooks Online')
     cy.submitButton().should('have.class', 'btn-disabled')
     assertAdvancedConfigurationOptionAndUpdate(3, 'Select a Payment Account', 'Checking')
 
@@ -137,7 +137,7 @@ describe('update configuration', () => {
     cy.navigateToSettingPage('Advanced Settings')
 
     // Assert the saved setting
-    assertAdvancedConfigurationOption(2, 'Export Fyle ACH Payments to Quickbooks Online')
+    assertAdvancedConfigurationOption(2, 'Export Fyle ACH Payments to QuickBooks Online')
     assertAdvancedConfigurationOption(3, 'Checking')
   }
 

@@ -55,15 +55,15 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
     },
     {
       value: AutoMapEmployee.NAME,
-      label: 'Fyle Name to QBO Display name'
+      label: 'Fyle Name to QuickBooks Online Display name'
     },
     {
       value: AutoMapEmployee.EMAIL,
-      label: 'Fyle Email to QBO Email'
+      label: 'Fyle Email to QuickBooks Online Email'
     },
     {
       value: AutoMapEmployee.EMPLOYEE_CODE,
-      label: 'Fyle Employee Code to QBO Display name'
+      label: 'Fyle Employee Code to QuickBooks Online Display name'
     }
   ];
 
@@ -104,7 +104,7 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
       title: 'Change in Configuration',
       contents: `You are changing your employee representation from <b>${existingEmployeeFieldMapping}</b> to <b>${updatedEmployeeFieldMapping}</b>
         <br><br>This will impact the configuration in the <b>Export settings</b> on How the export of expenses
-        can be exported from Fyle to Quickbooks Online.<br><br>
+        can be exported from Fyle to QuickBooks Online.<br><br>
         Would you like to continue? If yes, you will be redirected to <b>Export settings</b> to revisit the configuration and complete it.`,
       primaryCtaText: 'Continue'
     };

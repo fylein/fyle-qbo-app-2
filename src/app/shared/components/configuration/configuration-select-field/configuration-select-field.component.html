@@ -32,28 +32,28 @@
     </mat-form-field>
     <app-mandatory-error-message *ngIf="isFieldMandatory && form.controls[formControllerName].touched && !form.controls[formControllerName].valid && !form.controls[formControllerName].disabled" [listName]="mandatoryErrorListName" [customErrorMessage]="customErrorMessage"></app-mandatory-error-message>
     <div *ngIf="(formControllerName === 'reimbursableExportType' && form.value.reimbursableExportType) || (formControllerName === 'creditCardExportType' && form.value.creditCardExportType)" class="configuration-select-field--preview-text sub-text-color">
-      <p *ngIf="formControllerName === 'reimbursableExportType'">Click <span class="configuration-select-field--preview-btn pointer" (click)="showQBOExportPreview(form.value.reimbursableExportType, null)">here</span> to Preivew on how it looks on QBO</p>
-      <p *ngIf="formControllerName === 'creditCardExportType'">Click <span class="configuration-select-field--preview-btn pointer" (click)="showQBOExportPreview(null, form.value.creditCardExportType)">here</span> to Preivew on how it looks on QBO</p>
+      <p *ngIf="formControllerName === 'reimbursableExportType'">Click <span class="configuration-select-field--preview-btn pointer" (click)="showQBOExportPreview(form.value.reimbursableExportType, null)">here</span> to Preivew on how it looks on QuickBooks Online</p>
+      <p *ngIf="formControllerName === 'creditCardExportType'">Click <span class="configuration-select-field--preview-btn pointer" (click)="showQBOExportPreview(null, form.value.creditCardExportType)">here</span> to Preivew on how it looks on QuickBooks Online</p>
     </div>
 
     <div *ngIf="formControllerName === 'autoMapEmployee'" class="configuration-select-field--select-example-section paragraph">
       <h5 *ngIf="form.value.autoMapEmployee === 'NAME'" class="sub-text-color">
-        Example: Ryan Clark will map to Ryan Clark in QBO.
+        Example: Ryan Clark will map to Ryan Clark in QuickBooks Online.
       </h5>
       <h5 *ngIf="form.value.autoMapEmployee === 'EMAIL'" class="sub-text-color">
-        Example: ryan.clark@acme.com will map to ryan.clark@acme.com in QBO.
+        Example: ryan.clark@acme.com will map to ryan.clark@acme.com in QuickBooks Online.
       </h5>
       <h5 *ngIf="form.value.autoMapEmployee === 'EMPLOYEE_CODE'" class="sub-text-color">
-        Example: E0146 will map to E0146 in QBO.
+        Example: E0146 will map to E0146 in QuickBooks Online.
       </h5>
     </div>
 
     <div *ngIf="formControllerName === 'employeeMapping'" class="configuration-select-field--select-example-section paragraph">
       <h5 *ngIf="form.value.employeeMapping === 'EMPLOYEE'" class="sub-text-color">
-        Example of an Employee from your QBO instance : {{ liveEntityExample.EMPLOYEE }}
+        Example of an Employee from your QuickBooks Online instance : {{ liveEntityExample.EMPLOYEE }}
       </h5>
       <h5 *ngIf="form.value.employeeMapping === 'VENDOR'" class="sub-text-color">
-        Example of a Vendor from your QBO instance : {{ liveEntityExample.VENDOR }}
+        Example of a Vendor from your QuickBooks Online instance : {{ liveEntityExample.VENDOR }}
       </h5>
     </div>
   </div>

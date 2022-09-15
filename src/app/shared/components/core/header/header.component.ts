@@ -137,11 +137,11 @@ export class HeaderComponent implements OnInit {
 
   disconnectQbo(): void {
     const data: ConfirmationDialog = {
-      title: 'Disconnect Quickbooks Online',
+      title: 'Disconnect QuickBooks Online',
       contents: `Exporting expenses from Fyle will no longer work if you disconnect your 
-        Quickbooks Online Company.
+        QuickBooks Online Company.
         <br>
-        Are you sure you want to disconnect <b>${this.qboCompanyName}</b> Quickbooks Online
+        Are you sure you want to disconnect <b>${this.qboCompanyName}</b> QuickBooks Online
         company?`,
       primaryCtaText: 'Disconnect'
     };

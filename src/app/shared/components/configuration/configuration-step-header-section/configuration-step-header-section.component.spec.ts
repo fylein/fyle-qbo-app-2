@@ -68,8 +68,8 @@ describe('ConfigurationStepHeaderSectionComponent', () => {
     // @ts-ignore: force this private property value for testing.
     router.url = '/path/to/realmId';
     component.ngOnInit();
-    expect(component.headerText).toEqual('Connect to Quickbooks Online');
-    expect(component.contentText).toEqual('Connect to the Quickbooks Online Company from which you would like to import and export data. The Fyle org and Quickbooks Online company cannot be changed once the configuration steps are complete.');
+    expect(component.headerText).toEqual('Connect to QuickBooks Online');
+    expect(component.contentText).toEqual('Connect to the QuickBooks Online Company from which you would like to import and export data. The Fyle org and QuickBooks Online company cannot be changed once the configuration steps are complete.');
   });
 
   it('setupContent function with router url as employee_settings check', () => {
@@ -77,7 +77,7 @@ describe('ConfigurationStepHeaderSectionComponent', () => {
     router.url = '/path/to/employee_settings';
     component.ngOnInit();
     expect(component.headerText).toEqual('Map Employees');
-    expect(component.contentText).toEqual('Choose appropriate representation of your Employees in Quickbooks Online.');
+    expect(component.contentText).toEqual('Choose appropriate representation of your Employees in QuickBooks Online.');
   });
 
   it('setupContent function with router url as export_settings check', () => {
@@ -85,7 +85,7 @@ describe('ConfigurationStepHeaderSectionComponent', () => {
     router.url = '/path/to/export_settings';
     component.ngOnInit();
     expect(component.headerText).toEqual('Export Settings');
-    expect(component.contentText).toEqual('In this section, you will configure how and when expenses from Fyle can be exported to Quickbooks Online.');
+    expect(component.contentText).toEqual('In this section, you will configure how and when expenses from Fyle can be exported to QuickBooks Online.');
   });
 
   it('setupContent function with router url as import_settings check', () => {
@@ -93,7 +93,7 @@ describe('ConfigurationStepHeaderSectionComponent', () => {
     router.url = '/path/to/import_settings';
     component.ngOnInit();
     expect(component.headerText).toEqual('Import Settings');
-    expect(component.contentText).toEqual('You can Enable all the data that you wish to import from Quickbooks Online. All the imported data from Quickbooks Online would be available in Fyle under Admin Setting > Organization.');
+    expect(component.contentText).toEqual('You can Enable all the data that you wish to import from QuickBooks Online. All the imported data from QuickBooks Online would be available in Fyle under Admin Setting > Organization.');
   });
 
   it('setupContent function with router url as advanced_settings check', () => {

@@ -69,7 +69,7 @@ describe('MappingTableComponent', () => {
     const mappingRow = fixture.debugElement.queryAll(By.css('h4'));
     const mappingRowP = fixture.debugElement.queryAll(By.css('td'));
     expect(mappingRow[0].nativeElement.innerText).toBe('Employee in Fyle');
-    expect(mappingRow[1].nativeElement.innerText).toBe('Employee in QBO');
+    expect(mappingRow[1].nativeElement.innerText).toBe('Employee in QuickBooks Online');
     expect(mappingRowP[1].children[0].children[0].children[1].children[0].nativeElement.innerText).toBe('');
   });
 });

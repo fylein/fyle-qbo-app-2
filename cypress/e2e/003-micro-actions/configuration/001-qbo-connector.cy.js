@@ -24,12 +24,12 @@ describe('auth module', () => {
     cy.intercept('POST', '**/connect_qbo/authorization_code/', {
       statusCode: 400,
       body: {
-        message: 'Please choose the correct Quickbooks online account'
+        message: 'Please choose the correct QuickBooks Online account'
       }
     })
     cy.visit('/workspaces/onboarding/qbo_connector?code=xyz&realmId=xyz')
     cy.get('.confirmation-dialog--header-content').contains('Incorrect account selected')
-    cy.get('.confirmation-dialog--info').contains('You had previously set up the integration with a different QBO account. Please choose the same to restore the settings')
+    cy.get('.confirmation-dialog--info').contains('You had previously set up the integration with a different QuickBooks Online account. Please choose the same to restore the settings')
   })
 
   it('disconnect QBO dialog', () => {

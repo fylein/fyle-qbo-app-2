@@ -19,7 +19,7 @@
       <app-configuration-toggle-field
         [form]="exportSettingsForm"
         [label]="'Export Reimbursable Expenses'"
-        [subLabel]="'Enable this to export the reimbursable expenses from Fyle. If not enabled, any <span class=bold>out-of-pocket</span> expenses will not be exported to QBO.'"
+        [subLabel]="'Enable this to export the reimbursable expenses from Fyle. If not enabled, any <span class=bold>out-of-pocket</span> expenses will not be exported to QuickBooks Online.'"
         [formControllerName]="'reimbursableExpense'"
       >
       </app-configuration-toggle-field>
@@ -32,7 +32,7 @@
           [mandatoryErrorListName]="'expense export type'"
           [iconPath]="'assets/images/svgs/general/expense.svg'"
           [label]="'How should the expense be exported?'"
-          [subLabel]="'Choose the type of transaction in Quickbooks Online to export your Fyle expenses.'"
+          [subLabel]="'Choose the type of transaction in QuickBooks Online to export your Fyle expenses.'"
           [placeholder]="'Select expense export type'"
           [formControllerName]="'reimbursableExportType'"
           [phase]="isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING"
@@ -89,7 +89,7 @@
             [mandatoryErrorListName]="'expense export grouping'"
             [iconPath]="'assets/images/svgs/general/tabs.svg'"
             [label]="generateGroupingLabel('reimbursable')"
-            [subLabel]="'Grouping reflects how the expense entries of a ' + getExportType(exportSettingsForm.value.reimbursableExportType) + ' are posted in QBO. For example, grouping by payment exports all expenses within a Fyle payment queue as one record.'"
+            [subLabel]="'Grouping reflects how the expense entries of a ' + getExportType(exportSettingsForm.value.reimbursableExportType) + ' are posted in QuickBooks Online. For example, grouping by payment exports all expenses within a Fyle payment queue as one record.'"
             [placeholder]="'Select expense export grouping'"
             [formControllerName]="'reimbursableExportGroup'"
             >
@@ -104,7 +104,7 @@
             [mandatoryErrorListName]="'date'"
             [iconPath]="'assets/images/svgs/general/calendar.svg'"
             [label]="'Set the ' + getExportType(exportSettingsForm.value.reimbursableExportType) + ' date as'"
-            [subLabel]="'The selected date will reflect in expenses exported to QBO'"
+            [subLabel]="'The selected date will reflect in expenses exported to QuickBooks Online'"
             [placeholder]="'Select the date of the ' + getExportType(exportSettingsForm.value.reimbursableExportType)"
             [formControllerName]="'reimbursableExportDate'"
             >
@@ -115,7 +115,7 @@
       <app-configuration-toggle-field
         [form]="exportSettingsForm"
         [label]="'Export Corporate Card Expenses'"
-        [subLabel]="'Enable this to export the corporate card expenses from Fyle. If not enabled, any expenses <span class=bold>Paid by Corporate Card</span> will not be exported to QBO.'"
+        [subLabel]="'Enable this to export the corporate card expenses from Fyle. If not enabled, any expenses <span class=bold>Paid by Corporate Card</span> will not be exported to QuickBooks Online.'"
         [formControllerName]="'creditCardExpense'"
       >
       </app-configuration-toggle-field>
@@ -128,7 +128,7 @@
           [mandatoryErrorListName]="'expense export type'"
           [iconPath]="'assets/images/svgs/general/expense.svg'"
           [label]="'How should the expense be exported?'"
-          [subLabel]="'Choose the type of transaction in Quickbooks Online to export your corporate card expense from Fyle.'"
+          [subLabel]="'Choose the type of transaction in QuickBooks Online to export your corporate card expense from Fyle.'"
           [placeholder]="'Select expense export type'"
           [formControllerName]="'creditCardExportType'"
           [phase]="isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING"
@@ -202,7 +202,7 @@
             [mandatoryErrorListName]="'expense export grouping'"
             [iconPath]="'assets/images/svgs/general/tabs.svg'"
             [label]="generateGroupingLabel('credit card')"
-            [subLabel]="'Grouping reflects how the expense entries of a ' + getExportType(exportSettingsForm.value.creditCardExportType) + ' are posted in QBO. For example, grouping by payment exports all expenses within a Fyle payment queue as one consolidated record.'"
+            [subLabel]="'Grouping reflects how the expense entries of a ' + getExportType(exportSettingsForm.value.creditCardExportType) + ' are posted in QuickBooks Online. For example, grouping by payment exports all expenses within a Fyle payment queue as one consolidated record.'"
             [placeholder]="'Select expense export grouping'"
             [formControllerName]="'creditCardExportGroup'"
             >
@@ -217,7 +217,7 @@
             [mandatoryErrorListName]="'date'"
             [iconPath]="'assets/images/svgs/general/calendar.svg'"
             [label]="'Set the ' + getExportType(exportSettingsForm.value.creditCardExportType) + ' date as'"
-            [subLabel]="'The selected date will reflect in the corporate card expenses exported to QBO.'"
+            [subLabel]="'The selected date will reflect in the corporate card expenses exported to QuickBooks Online.'"
             [placeholder]="'Select the date of the ' + getExportType(exportSettingsForm.value.creditCardExportType)"
             [formControllerName]="'creditCardExportDate'"
             >

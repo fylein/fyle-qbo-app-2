@@ -119,7 +119,7 @@ export class QboConnectorComponent implements OnInit, OnDestroy {
   private showWarningDialog(): void {
     const data: ConfirmationDialog = {
       title: 'Incorrect account selected',
-      contents: 'You had previously set up the integration with a different QBO account. Please choose the same to restore the settings',
+      contents: 'You had previously set up the integration with a different QuickBooks Online account. Please choose the same to restore the settings',
       primaryCtaText: 'Re connect',
       hideSecondaryCTA: true
     };
@@ -153,7 +153,7 @@ export class QboConnectorComponent implements OnInit, OnDestroy {
       });
     }, (error) => {
       const errorMessage = 'message' in error.error ? error.error.message : 'Failed to connect to QuickBooks Online. Please try again';
-      if (errorMessage === 'Please choose the correct Quickbooks online account') {
+      if (errorMessage === 'Please choose the correct QuickBooks Online account') {
         this.showWarningDialog();
       } else {
         this.snackBar.open(errorMessage, '', { duration: 7000 });

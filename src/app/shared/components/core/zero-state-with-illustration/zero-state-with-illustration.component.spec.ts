@@ -154,7 +154,7 @@ describe('ZeroStateWithIllustrationComponent', () => {
     const zeroStateText1 = zeroState.nativeElement.innerHTML;
 
     expect(zeroState).toBeTruthy();
-    expect(zeroStateText1).toEqual('Curious on how exports work in Fyle-QBO integrations?');
+    expect(zeroStateText1).toEqual('Curious on how exports work in Fyle - QuickBooks Online Integration?');
   });
 
   it('Zero state with page = dashboard_error and with dateFilter data testing', () => {

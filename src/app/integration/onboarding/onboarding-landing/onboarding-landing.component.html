@@ -7,19 +7,17 @@
     <div fxLayout="column" fxLayoutAlign="space-between center">
       <div class="landing--welcome-text">
         <h1 class="landing--welcome-text-header align-center">
-          Welcome to Fyle + Quickbooks Online Integration
+          Welcome to Fyle + QuickBooks Online Integration
         </h1>
         <h3 class="landing--welcome-text-caption align-center sub-text-color paragraph">
-          Save time and effort by automating the seamless transfer of data between Fyle and Quickbooks Online for
+          Save time and effort by automating the seamless transfer of data between Fyle and QuickBooks Online for
           accurate accounting.
         </h3>
       </div>
-      <div class="landing--qbo-connect-section" (click)="connectQbo()">
-        <div fxLayout="row" fxLayoutAlign="center center" class="landing--qbo-connect-button pointer">
-          <h3 class="landing--qbo-connect-text bold single-line-text">
-            Connect to Quickbooks Online
-          </h3>
-        </div>
+      <div class="landing--qbo-connect-section pointer">
+        <img [src]="qboConnectBtnSource" (click)="connectQbo()"
+        (mouseover)="qboConnectBtnSource = 'assets/images/svgs/actions/connect-to-qbo-active.svg'"
+        (mouseout)="qboConnectBtnSource = 'assets/images/svgs/actions/connect-to-qbo.svg'">
       </div>
     </div>
   </div>
@@ -36,7 +34,7 @@
     </div>
     <div>
       <iframe class="landing--guide-video" width="797" height="448" src="https://www.youtube.com/embed/b63lS2DG5j4"
-        title="Fyle Quickbooks Integration" frameborder="0"
+        title="Fyle QuickBooks Online Integration" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
     </div>
@@ -50,7 +48,7 @@
       How does the integration work?
     </h2>
     <h3 class="landing--integration-data-flow-text-caption align-center sub-text-color">
-      Export expenses from Fyle and import chart of accounts, projects, and other data from Quickbooks Online.
+      Export expenses from Fyle and import chart of accounts, projects, and other data from QuickBooks Online.
     </h3>
   </div>
   <div class="landing--integration-data-image-section">

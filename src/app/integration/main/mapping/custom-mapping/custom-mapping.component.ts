@@ -115,7 +115,7 @@ export class CustomMappingComponent implements OnInit {
 
     const data: ConfirmationDialog = {
       title: 'Delete Custom Mapping',
-      contents: `<li>You are deleting the custom mapping of <b>${qboField}</b> in QBO to ${fyleField} in Fyle.</li>
+      contents: `<li>You are deleting the custom mapping of <b>${qboField}</b> in QuickBooks Online to ${fyleField} in Fyle.</li>
         <li>This will delete all the mappings setup in the <b>${fyleField}</b> Mapping section.</li>
         <br>Do you wish to continue?`,
       primaryCtaText: 'Save and Continue'
@@ -163,7 +163,7 @@ export class CustomMappingComponent implements OnInit {
 
       const data: ConfirmationDialog = {
         title: 'Create Custom Mapping',
-        contents: `You are creating a custom mapping between <b>${qboField}</b> in QBO and <b>${fyleField}</b> in Fyle.
+        contents: `You are creating a custom mapping between <b>${qboField}</b> in QuickBooks Online and <b>${fyleField}</b> in Fyle.
           This will open a separate mapping Page for ${fyleField} under the Mappings section of the integration.<br><br>
           <li>In the ${fyleField} Mappings section, you can map the individual Fyle ${fyleField} to their corresponding ${qboField} values.</li>
           <li>Also, the Mappings cannot be edited once set up. However, you can delete the specific dimensions mapped and re-create if required.</li>

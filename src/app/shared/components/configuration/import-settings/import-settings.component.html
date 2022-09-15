@@ -6,7 +6,7 @@
       <form [formGroup]="importSettingsForm" class="import-settings--field">
         <app-configuration-toggle-field
           [form]="importSettingsForm"
-          [label]="'Import Chart of Accounts from Quickbooks Online'"
+          [label]="'Import Chart of Accounts from QuickBooks Online'"
           [subLabel]="'Imported accounts will be available as Categories in Fyle.'"
           [formControllerName]="'chartOfAccount'">
         </app-configuration-toggle-field>
@@ -15,7 +15,7 @@
           <div class="import-settings--field-checkbox-contents">
             <div class="import-settings--chart-of-account-header">
               <h5 class="bold">
-                Select the accounts from QBO to import as categories in Fyle
+                Select the accounts from QuickBooks Online to import as categories in Fyle
               </h5>
             </div>
             <div formArrayName="chartOfAccountTypes" class="import-settings--chart-of-account-list-section">
@@ -37,9 +37,9 @@
             <div class="import-settings--field-toggle-section">
               <div fxLayout="row" fxLayoutAlign="space-between center">
                 <div class="import-settings--field-label-section import-settings--import-area">
-                  Import {{ expenseField.value.destination_field | titlecase }} from Quickbooks Online
+                  Import {{ expenseField.value.destination_field | titlecase }} from QuickBooks Online
                   <h5 class="configuration--field-label sub-text-color">
-                    The imported {{ expenseField.value.destination_field | titlecase }} from Quickbooks Online will be a
+                    The imported {{ expenseField.value.destination_field | titlecase }} from QuickBooks Online will be a
                     selectable field while creating an expense.
                   </h5>
                 </div>
@@ -53,7 +53,7 @@
                   <div fxLayout="row" class="import-settings--mapping-qbo-fyle-section">
                     <div class="import-settings--qbo-field">
                       <h5 class="import-settings--qbo-field-text single-line-text">
-                        {{ expenseField.value.destination_field | titlecase }} in QBO
+                        {{ expenseField.value.destination_field | titlecase }} in QuickBooks Online
                       </h5>
                     </div>
                     <div class="import-settings--fields-separator"></div>
@@ -90,8 +90,8 @@
         <div class="import-settings--tax-section" *ngIf="isTaxGroupSyncAllowed">
           <app-configuration-toggle-field
             [form]="importSettingsForm"
-            [label]="'Import Tax from QBO'"
-            [subLabel]="'The imported Tax codes from Quickbooks will be set as Tax group in Fyle. This will be a selectable field while creating an expense.'"
+            [label]="'Import Tax from QuickBooks Online'"
+            [subLabel]="'The imported Tax codes from QuickBooks Online will be set as Tax group in Fyle. This will be a selectable field while creating an expense.'"
             [formControllerName]="'taxCode'">
           </app-configuration-toggle-field>
         </div>
@@ -133,7 +133,7 @@
           <app-configuration-toggle-field
             [form]="importSettingsForm"
             [label]="'Import Vendors from QuickBooks Online'"
-            [subLabel]="'QBO vendors will be imported as merchants in Fyle that can be selected while submitting expenses.'"
+            [subLabel]="'QuickBooks Online vendors will be imported as merchants in Fyle that can be selected while submitting expenses.'"
             [formControllerName]="'importVendorsAsMerchants'">
           </app-configuration-toggle-field>
         </div>
