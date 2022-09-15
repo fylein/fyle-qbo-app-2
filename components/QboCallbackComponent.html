@@ -514,7 +514,7 @@ export class QboCallbackComponent implements OnInit {
   private showWarningDialog(): void {
     const data: ConfirmationDialog &#x3D; {
       title: &#x27;Incorrect account selected&#x27;,
-      contents: &#x27;You had previously set up the integration with a different QBO account. Please choose the same to restore the settings&#x27;,
+      contents: &#x27;You had previously set up the integration with a different QuickBooks Online account. Please choose the same to restore the settings&#x27;,
       primaryCtaText: &#x27;Re connect&#x27;,
       hideSecondaryCTA: true
     };
@@ -542,7 +542,7 @@ export class QboCallbackComponent implements OnInit {
       this.router.navigate([&#x60;/workspaces/main/dashboard&#x60;]);
     }, (error) &#x3D;&gt; {
       const errorMessage &#x3D; &#x27;message&#x27; in error.error ? error.error.message : &#x27;Failed to connect to QuickBooks Online. Please try again&#x27;;
-      if (errorMessage &#x3D;&#x3D;&#x3D; &#x27;Please choose the correct Quickbooks online account&#x27;) {
+      if (errorMessage &#x3D;&#x3D;&#x3D; &#x27;Please choose the correct QuickBooks Online account&#x27;) {
         this.showWarningDialog();
       } else {
         this.snackBar.open(errorMessage, &#x27;&#x27;, { duration: 7000 });

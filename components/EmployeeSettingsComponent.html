@@ -927,15 +927,15 @@
     },
     {
       value: AutoMapEmployee.NAME,
-      label: &#x27;Fyle Name to QBO Display name&#x27;
+      label: &#x27;Fyle Name to QuickBooks Online Display name&#x27;
     },
     {
       value: AutoMapEmployee.EMAIL,
-      label: &#x27;Fyle Email to QBO Email&#x27;
+      label: &#x27;Fyle Email to QuickBooks Online Email&#x27;
     },
     {
       value: AutoMapEmployee.EMPLOYEE_CODE,
-      label: &#x27;Fyle Employee Code to QBO Display name&#x27;
+      label: &#x27;Fyle Employee Code to QuickBooks Online Display name&#x27;
     }
   ]</code>
                     </td>
@@ -1381,15 +1381,15 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
     },
     {
       value: AutoMapEmployee.NAME,
-      label: &#x27;Fyle Name to QBO Display name&#x27;
+      label: &#x27;Fyle Name to QuickBooks Online Display name&#x27;
     },
     {
       value: AutoMapEmployee.EMAIL,
-      label: &#x27;Fyle Email to QBO Email&#x27;
+      label: &#x27;Fyle Email to QuickBooks Online Email&#x27;
     },
     {
       value: AutoMapEmployee.EMPLOYEE_CODE,
-      label: &#x27;Fyle Employee Code to QBO Display name&#x27;
+      label: &#x27;Fyle Employee Code to QuickBooks Online Display name&#x27;
     }
   ];
 
@@ -1430,7 +1430,7 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
       title: &#x27;Change in Configuration&#x27;,
       contents: &#x60;You are changing your employee representation from &lt;b&gt;${existingEmployeeFieldMapping}&lt;/b&gt; to &lt;b&gt;${updatedEmployeeFieldMapping}&lt;/b&gt;
         &lt;br&gt;&lt;br&gt;This will impact the configuration in the &lt;b&gt;Export settings&lt;/b&gt; on How the export of expenses
-        can be exported from Fyle to Quickbooks Online.&lt;br&gt;&lt;br&gt;
+        can be exported from Fyle to QuickBooks Online.&lt;br&gt;&lt;br&gt;
         Would you like to continue? If yes, you will be redirected to &lt;b&gt;Export settings&lt;/b&gt; to revisit the configuration and complete it.&#x60;,
       primaryCtaText: &#x27;Continue&#x27;
     };
@@ -1562,8 +1562,8 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
         [mandatoryErrorListName]&#x3D;&quot;&#x27;option&#x27;&quot;
         [liveEntityExample]&#x3D;&quot;liveEntityExample&quot;
         [iconPath]&#x3D;&quot;&#x27;assets/images/svgs/general/employee.svg&#x27;&quot;
-        [label]&#x3D;&quot;&#x27;How are your Employees represented in Quickbooks Online?&#x27;&quot;
-        [subLabel]&#x3D;&quot;&#x27;Select how you represent your employees in QBO. This would help to export the expenses from Fyle to the correct employee/vendor record in QBO.&#x27;&quot;
+        [label]&#x3D;&quot;&#x27;How are your Employees represented in QuickBooks Online?&#x27;&quot;
+        [subLabel]&#x3D;&quot;&#x27;Select how you represent your employees in QuickBooks Online. This would help to export the expenses from Fyle to the correct employee/vendor record in QuickBooks Online.&#x27;&quot;
         [placeholder]&#x3D;&quot;&#x27;Select representation&#x27;&quot;
         [formControllerName]&#x3D;&quot;&#x27;employeeMapping&#x27;&quot;
         &gt;
@@ -1573,8 +1573,8 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
         [form]&#x3D;&quot;employeeSettingsForm&quot;
         [options]&#x3D;&quot;autoMapEmployeeOptions&quot;
         [iconPath]&#x3D;&quot;&#x27;assets/images/svgs/general/employee.svg&#x27;&quot;
-        [label]&#x3D;&quot;&#x27;How should Employees in Fyle be matched to Employees/Vendors in Quickbooks Online?&#x27;&quot;
-        [subLabel]&#x3D;&quot;&#x27;Automatically map the employees in Fyle to their corresponding records in QBO based on a unique parameter.&#x27;&quot;
+        [label]&#x3D;&quot;&#x27;How should Employees in Fyle be matched to Employees/Vendors in QuickBooks Online?&#x27;&quot;
+        [subLabel]&#x3D;&quot;&#x27;Automatically map the employees in Fyle to their corresponding records in QuickBooks Online based on a unique parameter.&#x27;&quot;
         [placeholder]&#x3D;&quot;&#x27;Select representation&#x27;&quot;
         [formControllerName]&#x3D;&quot;&#x27;autoMapEmployee&#x27;&quot;
         &gt;
@@ -1620,7 +1620,7 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div fxLayout="row" fxLayoutAlign="center center" class="configuration--section" [ngClass]="[isOnboarding ? \'configuration--onboarding-section\' : \'\', !isOnboarding ? \'configuration--post-onboarding-section\': \'\']">  <app-loader [ngClass]="{\'loader-main\': !isOnboarding}" [phase]="\'pre_onboarding\'" *ngIf="isLoading"></app-loader>  <div *ngIf="!isLoading" class="configuration--contents">    <app-configuration-step-header-section></app-configuration-step-header-section>    <form [formGroup]="employeeSettingsForm">      <app-configuration-select-field         [form]="employeeSettingsForm"        [options]="employeeMappingOptions"        [isFieldMandatory]="true"        [mandatoryErrorListName]="\'option\'"        [liveEntityExample]="liveEntityExample"        [iconPath]="\'assets/images/svgs/general/employee.svg\'"        [label]="\'How are your Employees represented in Quickbooks Online?\'"        [subLabel]="\'Select how you represent your employees in QBO. This would help to export the expenses from Fyle to the correct employee/vendor record in QBO.\'"        [placeholder]="\'Select representation\'"        [formControllerName]="\'employeeMapping\'"        >      </app-configuration-select-field>      <app-configuration-select-field         [form]="employeeSettingsForm"        [options]="autoMapEmployeeOptions"        [iconPath]="\'assets/images/svgs/general/employee.svg\'"        [label]="\'How should Employees in Fyle be matched to Employees/Vendors in Quickbooks Online?\'"        [subLabel]="\'Automatically map the employees in Fyle to their corresponding records in QBO based on a unique parameter.\'"        [placeholder]="\'Select representation\'"        [formControllerName]="\'autoMapEmployee\'"        >      </app-configuration-select-field>      <app-configuration-step-footer-section [ctaText]="!saveInProgress ? (isOnboarding ? ConfigurationCtaText.SAVE_AND_CONTINUE : ConfigurationCtaText.SAVE) : ConfigurationCtaText.SAVING" [showBackButton]="isOnboarding" [isButtonDisabled]="!employeeSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>    </form>  </div></div><app-onboarding-footer *ngIf="isOnboarding && !isLoading"></app-onboarding-footer></div>'
+        var COMPONENT_TEMPLATE = '<div><div fxLayout="row" fxLayoutAlign="center center" class="configuration--section" [ngClass]="[isOnboarding ? \'configuration--onboarding-section\' : \'\', !isOnboarding ? \'configuration--post-onboarding-section\': \'\']">  <app-loader [ngClass]="{\'loader-main\': !isOnboarding}" [phase]="\'pre_onboarding\'" *ngIf="isLoading"></app-loader>  <div *ngIf="!isLoading" class="configuration--contents">    <app-configuration-step-header-section></app-configuration-step-header-section>    <form [formGroup]="employeeSettingsForm">      <app-configuration-select-field         [form]="employeeSettingsForm"        [options]="employeeMappingOptions"        [isFieldMandatory]="true"        [mandatoryErrorListName]="\'option\'"        [liveEntityExample]="liveEntityExample"        [iconPath]="\'assets/images/svgs/general/employee.svg\'"        [label]="\'How are your Employees represented in QuickBooks Online?\'"        [subLabel]="\'Select how you represent your employees in QuickBooks Online. This would help to export the expenses from Fyle to the correct employee/vendor record in QuickBooks Online.\'"        [placeholder]="\'Select representation\'"        [formControllerName]="\'employeeMapping\'"        >      </app-configuration-select-field>      <app-configuration-select-field         [form]="employeeSettingsForm"        [options]="autoMapEmployeeOptions"        [iconPath]="\'assets/images/svgs/general/employee.svg\'"        [label]="\'How should Employees in Fyle be matched to Employees/Vendors in QuickBooks Online?\'"        [subLabel]="\'Automatically map the employees in Fyle to their corresponding records in QuickBooks Online based on a unique parameter.\'"        [placeholder]="\'Select representation\'"        [formControllerName]="\'autoMapEmployee\'"        >      </app-configuration-select-field>      <app-configuration-step-footer-section [ctaText]="!saveInProgress ? (isOnboarding ? ConfigurationCtaText.SAVE_AND_CONTINUE : ConfigurationCtaText.SAVE) : ConfigurationCtaText.SAVING" [showBackButton]="isOnboarding" [isButtonDisabled]="!employeeSettingsForm.valid || saveInProgress" (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>    </form>  </div></div><app-onboarding-footer *ngIf="isOnboarding && !isLoading"></app-onboarding-footer></div>'
     var COMPONENTS = [{'name': 'AddEmailDialogComponent', 'selector': 'app-add-email-dialog'},{'name': 'AdvancedSettingsComponent', 'selector': 'app-advanced-settings'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'ConfigurationAdvancedSettingsComponent', 'selector': 'app-configuration-advanced-settings'},{'name': 'ConfigurationComponent', 'selector': 'app-configuration'},{'name': 'ConfigurationEmployeeSettingsComponent', 'selector': 'app-configuration-employee-settings'},{'name': 'ConfigurationExportSettingsComponent', 'selector': 'app-configuration-export-settings'},{'name': 'ConfigurationImportSettingsComponent', 'selector': 'app-configuration-import-settings'},{'name': 'ConfigurationSelectFieldComponent', 'selector': 'app-configuration-select-field'},{'name': 'ConfigurationStepFooterSectionComponent', 'selector': 'app-configuration-step-footer-section'},{'name': 'ConfigurationStepHeaderSectionComponent', 'selector': 'app-configuration-step-header-section'},{'name': 'ConfigurationToggleFieldComponent', 'selector': 'app-configuration-toggle-field'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'CustomMappingComponent', 'selector': 'app-custom-mapping'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardExportLogDialogComponent', 'selector': 'app-dashboard-export-log-dialog'},{'name': 'DashboardHeaderSectionComponent', 'selector': 'app-dashboard-header-section'},{'name': 'DashboardQboErrorDialogComponent', 'selector': 'app-dashboard-qbo-error-dialog'},{'name': 'DashboardResolveMappingErrorDialogComponent', 'selector': 'app-dashboard-resolve-mapping-error-dialog'},{'name': 'EmailMultiSelectFieldComponent', 'selector': 'app-email-multi-select-field'},{'name': 'EmployeeMappingComponent', 'selector': 'app-employee-mapping'},{'name': 'EmployeeSettingsComponent', 'selector': 'app-employee-settings'},{'name': 'ExpenseFieldCreationDialogComponent', 'selector': 'app-expense-field-creation-dialog'},{'name': 'ExportLogChildDialogComponent', 'selector': 'app-export-log-child-dialog'},{'name': 'ExportLogChildTableComponent', 'selector': 'app-export-log-child-table'},{'name': 'ExportLogComponent', 'selector': 'app-export-log'},{'name': 'ExportLogTableComponent', 'selector': 'app-export-log-table'},{'name': 'ExportSettingsComponent', 'selector': 'app-export-settings'},{'name': 'FyleCallbackComponent', 'selector': 'app-fyle-callback'},{'name': 'GenericMappingComponent', 'selector': 'app-generic-mapping'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImportSettingsComponent', 'selector': 'app-import-settings'},{'name': 'IntegrationComponent', 'selector': 'app-integration'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'MandatoryErrorMessageComponent', 'selector': 'app-mandatory-error-message'},{'name': 'MandatoryFieldComponent', 'selector': 'app-mandatory-field'},{'name': 'MappingComponent', 'selector': 'app-mapping'},{'name': 'MappingFilterComponent', 'selector': 'app-mapping-filter'},{'name': 'MappingHeaderSectionComponent', 'selector': 'app-mapping-header-section'},{'name': 'MappingTableComponent', 'selector': 'app-mapping-table'},{'name': 'OnboardingAdvancedSettingsComponent', 'selector': 'app-onboarding-advanced-settings'},{'name': 'OnboardingComponent', 'selector': 'app-onboarding'},{'name': 'OnboardingDoneComponent', 'selector': 'app-onboarding-done'},{'name': 'OnboardingEmployeeSettingsComponent', 'selector': 'app-onboarding-employee-settings'},{'name': 'OnboardingExportSettingsComponent', 'selector': 'app-onboarding-export-settings'},{'name': 'OnboardingFooterComponent', 'selector': 'app-onboarding-footer'},{'name': 'OnboardingImportSettingsComponent', 'selector': 'app-onboarding-import-settings'},{'name': 'OnboardingLandingComponent', 'selector': 'app-onboarding-landing'},{'name': 'OnboardingQboConnectorComponent', 'selector': 'app-onboarding-qbo-connector'},{'name': 'OnboardingStepperComponent', 'selector': 'app-onboarding-stepper'},{'name': 'PaginatorComponent', 'selector': 'app-paginator'},{'name': 'PreviewDialogComponent', 'selector': 'app-preview-dialog'},{'name': 'QboCallbackComponent', 'selector': 'app-qbo-callback'},{'name': 'QboConnectorComponent', 'selector': 'app-qbo-connector'},{'name': 'SharedLoginComponent', 'selector': 'app-shared-login'},{'name': 'SimpleTextSearchComponent', 'selector': 'app-simple-text-search'},{'name': 'ZeroStateWithIllustrationComponent', 'selector': 'app-zero-state-with-illustration'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'EmployeeSettingsComponent'};

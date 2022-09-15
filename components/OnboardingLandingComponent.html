@@ -138,6 +138,9 @@
                                 <a href="#phase" >phase</a>
                             </li>
                             <li>
+                                <a href="#qboConnectBtnSource" >qboConnectBtnSource</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#sessionStartTime" >sessionStartTime</a>
@@ -194,7 +197,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/integration/onboarding/onboarding-landing/onboarding-landing.component.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/integration/onboarding/onboarding-landing/onboarding-landing.component.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -285,8 +288,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/app/integration/onboarding/onboarding-landing/onboarding-landing.component.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/app/integration/onboarding/onboarding-landing/onboarding-landing.component.ts:35</a></div>
                 </td>
             </tr>
 
@@ -322,8 +325,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/app/integration/onboarding/onboarding-landing/onboarding-landing.component.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/app/integration/onboarding/onboarding-landing/onboarding-landing.component.ts:41</a></div>
                 </td>
             </tr>
 
@@ -359,8 +362,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/app/integration/onboarding/onboarding-landing/onboarding-landing.component.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/app/integration/onboarding/onboarding-landing/onboarding-landing.component.ts:47</a></div>
                 </td>
             </tr>
 
@@ -398,8 +401,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/app/integration/onboarding/onboarding-landing/onboarding-landing.component.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/app/integration/onboarding/onboarding-landing/onboarding-landing.component.ts:28</a></div>
                 </td>
             </tr>
 
@@ -473,6 +476,37 @@
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/integration/onboarding/onboarding-landing/onboarding-landing.component.ts:14</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="qboConnectBtnSource"></a>
+                    <span class="name">
+                        <span ><b>qboConnectBtnSource</b></span>
+                        <a href="#qboConnectBtnSource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;assets/images/svgs/actions/connect-to-qbo.svg&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/integration/onboarding/onboarding-landing/onboarding-landing.component.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -563,6 +597,8 @@ export class OnboardingLandingComponent implements OnInit, OnDestroy {
 
   private timeSpentEventRecorded: boolean &#x3D; false;
 
+  qboConnectBtnSource: string &#x3D; &#x27;assets/images/svgs/actions/connect-to-qbo.svg&#x27;;
+
   constructor(
     private authService: AuthService,
     private trackingService: TrackingService,
@@ -607,19 +643,17 @@ export class OnboardingLandingComponent implements OnInit, OnDestroy {
     &lt;div fxLayout&#x3D;&quot;column&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot;&gt;
       &lt;div class&#x3D;&quot;landing--welcome-text&quot;&gt;
         &lt;h1 class&#x3D;&quot;landing--welcome-text-header align-center&quot;&gt;
-          Welcome to Fyle + Quickbooks Online Integration
+          Welcome to Fyle + QuickBooks Online Integration
         &lt;/h1&gt;
         &lt;h3 class&#x3D;&quot;landing--welcome-text-caption align-center sub-text-color paragraph&quot;&gt;
-          Save time and effort by automating the seamless transfer of data between Fyle and Quickbooks Online for
+          Save time and effort by automating the seamless transfer of data between Fyle and QuickBooks Online for
           accurate accounting.
         &lt;/h3&gt;
       &lt;/div&gt;
-      &lt;div class&#x3D;&quot;landing--qbo-connect-section&quot; (click)&#x3D;&quot;connectQbo()&quot;&gt;
-        &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;center center&quot; class&#x3D;&quot;landing--qbo-connect-button pointer&quot;&gt;
-          &lt;h3 class&#x3D;&quot;landing--qbo-connect-text bold single-line-text&quot;&gt;
-            Connect to Quickbooks Online
-          &lt;/h3&gt;
-        &lt;/div&gt;
+      &lt;div class&#x3D;&quot;landing--qbo-connect-section pointer&quot;&gt;
+        &lt;img [src]&#x3D;&quot;qboConnectBtnSource&quot; (click)&#x3D;&quot;connectQbo()&quot;
+        (mouseover)&#x3D;&quot;qboConnectBtnSource &#x3D; &#x27;assets/images/svgs/actions/connect-to-qbo-active.svg&#x27;&quot;
+        (mouseout)&#x3D;&quot;qboConnectBtnSource &#x3D; &#x27;assets/images/svgs/actions/connect-to-qbo.svg&#x27;&quot;&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -636,7 +670,7 @@ export class OnboardingLandingComponent implements OnInit, OnDestroy {
     &lt;/div&gt;
     &lt;div&gt;
       &lt;iframe class&#x3D;&quot;landing--guide-video&quot; width&#x3D;&quot;797&quot; height&#x3D;&quot;448&quot; src&#x3D;&quot;https://www.youtube.com/embed/b63lS2DG5j4&quot;
-        title&#x3D;&quot;Fyle Quickbooks Integration&quot; frameborder&#x3D;&quot;0&quot;
+        title&#x3D;&quot;Fyle QuickBooks Online Integration&quot; frameborder&#x3D;&quot;0&quot;
         allow&#x3D;&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot;
         allowfullscreen&gt;&lt;/iframe&gt;
     &lt;/div&gt;
@@ -650,7 +684,7 @@ export class OnboardingLandingComponent implements OnInit, OnDestroy {
       How does the integration work?
     &lt;/h2&gt;
     &lt;h3 class&#x3D;&quot;landing--integration-data-flow-text-caption align-center sub-text-color&quot;&gt;
-      Export expenses from Fyle and import chart of accounts, projects, and other data from Quickbooks Online.
+      Export expenses from Fyle and import chart of accounts, projects, and other data from QuickBooks Online.
     &lt;/h3&gt;
   &lt;/div&gt;
   &lt;div class&#x3D;&quot;landing--integration-data-image-section&quot;&gt;
@@ -793,7 +827,7 @@ export class OnboardingLandingComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><app-header></app-header><div class="landing">  <div class="landing--bg-triangle-left"></div>  <div class="landing--bg-triangle-right"></div>  <div fxLayout="row" fxLayoutAlign="center center" class="landing--welcome-section">    <div fxLayout="column" fxLayoutAlign="space-between center">      <div class="landing--welcome-text">        <h1 class="landing--welcome-text-header align-center">          Welcome to Fyle + Quickbooks Online Integration        </h1>        <h3 class="landing--welcome-text-caption align-center sub-text-color paragraph">          Save time and effort by automating the seamless transfer of data between Fyle and Quickbooks Online for          accurate accounting.        </h3>      </div>      <div class="landing--qbo-connect-section" (click)="connectQbo()">        <div fxLayout="row" fxLayoutAlign="center center" class="landing--qbo-connect-button pointer">          <h3 class="landing--qbo-connect-text bold single-line-text">            Connect to Quickbooks Online          </h3>        </div>      </div>    </div>  </div>  <div fxLayout="column" fxLayoutAlign="space-between center" class="landing--guide-section">    <div class="landing--guide-text">        <h2 class="landing--guide-text-header align-center">          Guide to setup your Integrations        </h2>      <div>        <h3 class="landing--guide-text-caption align-center sub-text-color">          A quick video tour to help you set up your integration easily and fast.        </h3>      </div>    </div>    <div>      <iframe class="landing--guide-video" width="797" height="448" src="https://www.youtube.com/embed/b63lS2DG5j4"        title="Fyle Quickbooks Integration" frameborder="0"        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"        allowfullscreen></iframe>    </div>  </div></div><div class="landing--integration-data-flow-section">  <div class="landing--integration-data-flow-text">    <h2 class="landing--integration-data-flow-text-header align-center">      How does the integration work?    </h2>    <h3 class="landing--integration-data-flow-text-caption align-center sub-text-color">      Export expenses from Fyle and import chart of accounts, projects, and other data from Quickbooks Online.    </h3>  </div>  <div class="landing--integration-data-image-section">    <img src="assets/images/svgs/general/fyle-qbo-data-flow.svg" class="landing--integration-data-image"/>  </div></div><app-onboarding-footer></app-onboarding-footer></div>'
+        var COMPONENT_TEMPLATE = '<div><app-header></app-header><div class="landing">  <div class="landing--bg-triangle-left"></div>  <div class="landing--bg-triangle-right"></div>  <div fxLayout="row" fxLayoutAlign="center center" class="landing--welcome-section">    <div fxLayout="column" fxLayoutAlign="space-between center">      <div class="landing--welcome-text">        <h1 class="landing--welcome-text-header align-center">          Welcome to Fyle + QuickBooks Online Integration        </h1>        <h3 class="landing--welcome-text-caption align-center sub-text-color paragraph">          Save time and effort by automating the seamless transfer of data between Fyle and QuickBooks Online for          accurate accounting.        </h3>      </div>      <div class="landing--qbo-connect-section pointer">        <img [src]="qboConnectBtnSource" (click)="connectQbo()"        (mouseover)="qboConnectBtnSource = \'assets/images/svgs/actions/connect-to-qbo-active.svg\'"        (mouseout)="qboConnectBtnSource = \'assets/images/svgs/actions/connect-to-qbo.svg\'">      </div>    </div>  </div>  <div fxLayout="column" fxLayoutAlign="space-between center" class="landing--guide-section">    <div class="landing--guide-text">        <h2 class="landing--guide-text-header align-center">          Guide to setup your Integrations        </h2>      <div>        <h3 class="landing--guide-text-caption align-center sub-text-color">          A quick video tour to help you set up your integration easily and fast.        </h3>      </div>    </div>    <div>      <iframe class="landing--guide-video" width="797" height="448" src="https://www.youtube.com/embed/b63lS2DG5j4"        title="Fyle QuickBooks Online Integration" frameborder="0"        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"        allowfullscreen></iframe>    </div>  </div></div><div class="landing--integration-data-flow-section">  <div class="landing--integration-data-flow-text">    <h2 class="landing--integration-data-flow-text-header align-center">      How does the integration work?    </h2>    <h3 class="landing--integration-data-flow-text-caption align-center sub-text-color">      Export expenses from Fyle and import chart of accounts, projects, and other data from QuickBooks Online.    </h3>  </div>  <div class="landing--integration-data-image-section">    <img src="assets/images/svgs/general/fyle-qbo-data-flow.svg" class="landing--integration-data-image"/>  </div></div><app-onboarding-footer></app-onboarding-footer></div>'
     var COMPONENTS = [{'name': 'AddEmailDialogComponent', 'selector': 'app-add-email-dialog'},{'name': 'AdvancedSettingsComponent', 'selector': 'app-advanced-settings'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'ConfigurationAdvancedSettingsComponent', 'selector': 'app-configuration-advanced-settings'},{'name': 'ConfigurationComponent', 'selector': 'app-configuration'},{'name': 'ConfigurationEmployeeSettingsComponent', 'selector': 'app-configuration-employee-settings'},{'name': 'ConfigurationExportSettingsComponent', 'selector': 'app-configuration-export-settings'},{'name': 'ConfigurationImportSettingsComponent', 'selector': 'app-configuration-import-settings'},{'name': 'ConfigurationSelectFieldComponent', 'selector': 'app-configuration-select-field'},{'name': 'ConfigurationStepFooterSectionComponent', 'selector': 'app-configuration-step-footer-section'},{'name': 'ConfigurationStepHeaderSectionComponent', 'selector': 'app-configuration-step-header-section'},{'name': 'ConfigurationToggleFieldComponent', 'selector': 'app-configuration-toggle-field'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'CustomMappingComponent', 'selector': 'app-custom-mapping'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardExportLogDialogComponent', 'selector': 'app-dashboard-export-log-dialog'},{'name': 'DashboardHeaderSectionComponent', 'selector': 'app-dashboard-header-section'},{'name': 'DashboardQboErrorDialogComponent', 'selector': 'app-dashboard-qbo-error-dialog'},{'name': 'DashboardResolveMappingErrorDialogComponent', 'selector': 'app-dashboard-resolve-mapping-error-dialog'},{'name': 'EmailMultiSelectFieldComponent', 'selector': 'app-email-multi-select-field'},{'name': 'EmployeeMappingComponent', 'selector': 'app-employee-mapping'},{'name': 'EmployeeSettingsComponent', 'selector': 'app-employee-settings'},{'name': 'ExpenseFieldCreationDialogComponent', 'selector': 'app-expense-field-creation-dialog'},{'name': 'ExportLogChildDialogComponent', 'selector': 'app-export-log-child-dialog'},{'name': 'ExportLogChildTableComponent', 'selector': 'app-export-log-child-table'},{'name': 'ExportLogComponent', 'selector': 'app-export-log'},{'name': 'ExportLogTableComponent', 'selector': 'app-export-log-table'},{'name': 'ExportSettingsComponent', 'selector': 'app-export-settings'},{'name': 'FyleCallbackComponent', 'selector': 'app-fyle-callback'},{'name': 'GenericMappingComponent', 'selector': 'app-generic-mapping'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImportSettingsComponent', 'selector': 'app-import-settings'},{'name': 'IntegrationComponent', 'selector': 'app-integration'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'MandatoryErrorMessageComponent', 'selector': 'app-mandatory-error-message'},{'name': 'MandatoryFieldComponent', 'selector': 'app-mandatory-field'},{'name': 'MappingComponent', 'selector': 'app-mapping'},{'name': 'MappingFilterComponent', 'selector': 'app-mapping-filter'},{'name': 'MappingHeaderSectionComponent', 'selector': 'app-mapping-header-section'},{'name': 'MappingTableComponent', 'selector': 'app-mapping-table'},{'name': 'OnboardingAdvancedSettingsComponent', 'selector': 'app-onboarding-advanced-settings'},{'name': 'OnboardingComponent', 'selector': 'app-onboarding'},{'name': 'OnboardingDoneComponent', 'selector': 'app-onboarding-done'},{'name': 'OnboardingEmployeeSettingsComponent', 'selector': 'app-onboarding-employee-settings'},{'name': 'OnboardingExportSettingsComponent', 'selector': 'app-onboarding-export-settings'},{'name': 'OnboardingFooterComponent', 'selector': 'app-onboarding-footer'},{'name': 'OnboardingImportSettingsComponent', 'selector': 'app-onboarding-import-settings'},{'name': 'OnboardingLandingComponent', 'selector': 'app-onboarding-landing'},{'name': 'OnboardingQboConnectorComponent', 'selector': 'app-onboarding-qbo-connector'},{'name': 'OnboardingStepperComponent', 'selector': 'app-onboarding-stepper'},{'name': 'PaginatorComponent', 'selector': 'app-paginator'},{'name': 'PreviewDialogComponent', 'selector': 'app-preview-dialog'},{'name': 'QboCallbackComponent', 'selector': 'app-qbo-callback'},{'name': 'QboConnectorComponent', 'selector': 'app-qbo-connector'},{'name': 'SharedLoginComponent', 'selector': 'app-shared-login'},{'name': 'SimpleTextSearchComponent', 'selector': 'app-simple-text-search'},{'name': 'ZeroStateWithIllustrationComponent', 'selector': 'app-zero-state-with-illustration'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'OnboardingLandingComponent'};
