@@ -87,8 +87,8 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
 
   private showConfirmationDialog(): void {
     const data: ConfirmationDialog = {
-      title: 'Change in Configuration',
-      contents: `Importing vendors from QuickBooks Online as Merchants in Fyle will allow employees to choose only from the imported list, and they cannot add any new merchants.<br>
+      title: 'Import Vendors from QuickBooks Online',
+      contents: `Importing vendors from QuickBooks Online as Merchants in Fyle will allow employees to choose only from the imported list, and they cannot add any new merchants.<br><br>
       Are you sure you'd like to import vendors from QuickBooks Online?<br><br>`,
       primaryCtaText: 'Continue'
     };
