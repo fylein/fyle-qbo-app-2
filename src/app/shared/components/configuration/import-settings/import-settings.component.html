@@ -133,9 +133,14 @@
           <app-configuration-toggle-field
             [form]="importSettingsForm"
             [label]="'Import Vendors from QuickBooks Online'"
-            [subLabel]="'Vendors from QuickBooks Online will be imported as merchants in Fyle and will be a selectable field while creating an expense. Employees will be allowed to select only from the imported list and will not be able to add any new merchant.'"
+            [subLabel]="'Vendors from QuickBooks Online will be imported as merchants in Fyle and will be a selectable field while creating an expense.'"
             [formControllerName]="'importVendorsAsMerchants'">
           </app-configuration-toggle-field>
+          <div class="import-settings--vendor-contents">
+            <h5 class="sub-text-color paragraph">
+              NOTE: Employees will be allowed to select only from the imported list and will not be able to add any new merchant.
+            </h5>
+          </div>
         </div>
       </form>
 
