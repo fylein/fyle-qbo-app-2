@@ -119,7 +119,7 @@
       <app-configuration-toggle-field *ngIf="showAutoCreateMerchantsAsVendorsField()" [form]="advancedSettingsForm"
         [iconPath]="'assets/images/svgs/general/building.svg'"
         [label]="'Auto-create Merchants as Vendors'"
-        [subLabel]="'Fyle will auto-create a new vendor in QuickBooks Online for every new merchant name added in Fyle by employees if that merchant does not exsit in QuickBooks Online'"
+        [subLabel]="'Fyle will auto-create a new vendor in QuickBooks Online if a merchant added by an employee does not have a corresponding match in QuickBooks Online'"
         [formControllerName]="'autoCreateMerchantsAsVendors'">
       </app-configuration-toggle-field>
 
