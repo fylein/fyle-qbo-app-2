@@ -54,7 +54,7 @@
       <h4>Link to {{externalUrlType}}</h4>
     </th>
     <td mat-cell *matCellDef="let element" class="export-log-table--open-in-qbo">
-      <img class="pointer" src="assets/images/svgs/actions/open-in-new-tab.svg" (click)="helperService.openExternalLink(externalUrlType === 'QBO' ? element.qboUrl : element.fyleUrl)"/>
+      <img class="pointer" src="assets/images/svgs/actions/open-in-new-tab.svg" (click)="helperService.openExternalLink(externalUrlType === 'QuickBooks Online' ? element.qboUrl : element.fyleUrl)"/>
     </td>
   </ng-container>
 
