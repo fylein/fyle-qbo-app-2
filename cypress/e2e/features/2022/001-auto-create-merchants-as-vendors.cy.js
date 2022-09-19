@@ -15,7 +15,6 @@ describe('auto create vendor', () => {
       cy.enableConfigurationToggle(0)
     })
     cy.saveSetting('Save')
-    cy.saveSetting('Continue')
 
     cy.navigateToSettingPage('Advanced Settings')
     cy.get('.advanced-settings').should('not.contain', 'Auto-create Merchants as Vendors')

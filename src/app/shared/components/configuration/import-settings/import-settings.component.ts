@@ -15,13 +15,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
 import { QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
 import { WindowService } from 'src/app/core/services/core/window.service';
-import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { PreviewDialogComponent } from '../preview-dialog/preview-dialog.component';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { ClickEventAdditionalProperty } from 'src/app/core/models/misc/tracking.model';
-import { ConfirmationDialogComponent } from '../../core/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-import-settings',
@@ -83,26 +81,6 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
     private workspaceService: WorkspaceService
   ) {
     this.windowReference = this.windowService.nativeWindow;
-  }
-
-  private showConfirmationDialog(): void {
-    const data: ConfirmationDialog = {
-      title: 'Import Vendors from QuickBooks Online',
-      contents: `Importing vendors from QuickBooks Online as Merchants in Fyle will allow employees to choose only from the imported list, and they cannot add any new merchants.<br><br>
-      Are you sure you'd like to import vendors from QuickBooks Online?<br><br>`,
-      primaryCtaText: 'Continue'
-    };
-
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '551px',
-      data: data
-    });
-
-    dialogRef.afterClosed().subscribe((ctaClicked) => {
-      if (ctaClicked) {
-        this.constructPayloadAndSave();
-      }
-    });
   }
 
   createChartOfAccountField(type: string): FormGroup {
@@ -291,10 +269,6 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
     this.trackingService.trackTimeSpent(OnboardingStep.IMPORT_SETTINGS, {phase: this.getPhase(), durationInSeconds: Math.floor(differenceInMs / 1000), eventState: eventState});
   }
 
-  private importSettingAffected(): boolean | undefined {
-    return this.importSettingsForm.value.importVendorsAsMerchants;
-  }
-
   private constructPayloadAndSave(): void {
     const customMappingSettings = this.importSettings.mapping_settings.filter(setting => !setting.import_to_fyle);
     const importSettingsPayload = ImportSettingModel.constructPayload(this.importSettingsForm, customMappingSettings);
@@ -332,10 +306,6 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
 
   save(): void {
     if (this.importSettingsForm.valid && !this.saveInProgress) {
-      if (this.importSettingAffected()) {
-        this.showConfirmationDialog();
-        return;
-      }
       this.constructPayloadAndSave();
     }
   }

@@ -205,12 +205,6 @@ describe('ImportSettingsComponent', () => {
     expect(component.isLoading).toBeFalse();
   });
 
-  it('showConfirmationDialog function check', () => {
-    expect((component as any).showConfirmationDialog()).toBeUndefined();
-    fixture.detectChanges();
-    expect(dialogSpy).toHaveBeenCalled();
-  });
-
   it('showFyleExpenseFormPreview function check', () => {
     const chartOfAccountTypeFormArray = component.chartOfAccountTypesList.map((type) => component.createChartOfAccountField(type));
     const expenseFieldsFormArray = component.qboExpenseFields.map((field) => {
