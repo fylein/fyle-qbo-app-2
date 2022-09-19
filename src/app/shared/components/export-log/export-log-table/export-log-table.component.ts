@@ -18,7 +18,7 @@ export class ExportLogTableComponent implements OnInit {
 
   @Input() expenseGroups: MatTableDataSource<ExpenseGroupList> = new MatTableDataSource<ExpenseGroupList>([]);
 
-  @Input() externalUrlType: string = 'QBO';
+  @Input() externalUrlType: string = 'QuickBooks Online';
 
   // Disable opening of child expenses when this component is used in dashboard export dialog
   @Input() allowChildViewing: boolean = true;
