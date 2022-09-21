@@ -64,7 +64,6 @@ export class MappingService {
     }));
   }
 
-  @Cacheable()
   getFyleExpenseFields(): Observable<ExpenseField[]> {
     return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expense_fields/`, {});
   }
