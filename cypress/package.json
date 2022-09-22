@@ -4,7 +4,7 @@
   "scripts": {},
   "private": true,
   "dependencies": {
-    "cypress": "^10.7.0"
+    "cypress": "^10.3.0"
   },
   "devDependencies": {}
 }
