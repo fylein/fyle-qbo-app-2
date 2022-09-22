@@ -15,7 +15,6 @@ describe('auth module', () => {
 
   it('wrong qbo oauth code redirects to landing page', () => {
     cy.visit('/workspaces/onboarding/qbo_connector?code=xyz&realmId=xyz')
-    cy.get('.qbo-connector--connection-in-progress-text').contains('Please hold on')
 
     cy.url().should('include', '/workspaces/onboarding/landing')
   })
