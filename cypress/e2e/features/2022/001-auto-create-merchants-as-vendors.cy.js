@@ -16,6 +16,8 @@ describe('auto create vendor', () => {
     })
     cy.saveSetting('Save')
 
+    cy.url().should('include', '/workspaces/main/dashboard')
+
     cy.navigateToSettingPage('Advanced Settings')
     cy.get('.advanced-settings').should('not.contain', 'Auto-create Merchants as Vendors')
 
@@ -34,15 +36,19 @@ describe('auto create vendor', () => {
     cy.enableConfigurationToggle(1)
 
     cy.selectConfigurationField(5, 'Bill')
+    cy.selectConfigurationField(6, 'Alexandra Fitzgerald')
+
     cy.saveSetting('Save')
 
+    cy.url().should('include', '/workspaces/main/dashboard')
     cy.navigateToSettingPage('Advanced Settings')
     cy.get('.advanced-settings').should('not.contain', 'Auto-create Merchants as Vendors')
 
     cy.navigateToSettingPage('Export Settings')
-    cy.enableConfigurationToggle(1)
 
     cy.selectConfigurationField(5, 'Credit Card Purchase')
+    cy.selectConfigurationField(6, 'Visa')
+
     cy.saveSetting('Save')
     cy.url().should('include', '/workspaces/main/dashboard')
 
