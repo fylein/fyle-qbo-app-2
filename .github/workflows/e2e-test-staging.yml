@@ -12,17 +12,30 @@ jobs:
     runs-on: macos-latest
     environment: End to End Test - Staging
     steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@v5
+        with:
+          concurrent_skipping: 'always'
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
           node-version: 14.18
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            src:
+              - 'src/**'
       - name: Install dependencies
+        if: steps.filter.outputs.src == 'true'
         run: npm install --prefix cypress
       - name: Prepare for end to end tests
+        if: steps.filter.outputs.src == 'true'
         run: npm run setup_e2e_test
       - name: Cypress run
+        if: steps.filter.outputs.src == 'true'
         uses: cypress-io/github-action@v4
         with:
           record: true
