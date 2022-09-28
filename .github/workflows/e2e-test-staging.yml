@@ -29,13 +29,13 @@ jobs:
             src:
               - 'src/**'
       - name: Install dependencies
-        if: steps.changes.outputs.src == 'true'
+        if: steps.filters.outputs.src == 'true'
         run: npm install --prefix cypress
       - name: Prepare for end to end tests
-        if: steps.changes.outputs.src == 'true'
+        if: steps.filters.outputs.src == 'true'
         run: npm run setup_e2e_test
       - name: Cypress run
-        if: steps.changes.outputs.src == 'true'
+        if: steps.filters.outputs.src == 'true'
         uses: cypress-io/github-action@v4
         with:
           record: true
