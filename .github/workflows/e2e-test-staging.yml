@@ -12,10 +12,11 @@ jobs:
     runs-on: macos-latest
     environment: End to End Test - Staging
     steps:
-      - id: skip_check
-        uses: fkirc/skip-duplicate-actions@v5
-        with:
-          concurrent_skipping: 'never'
+      # TODO: revisit this later
+      # - id: skip_check
+      #   uses: fkirc/skip-duplicate-actions@v5
+      #   with:
+      #     concurrent_skipping: 'never'
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
