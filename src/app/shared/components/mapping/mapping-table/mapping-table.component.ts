@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { MappingList } from 'src/app/core/models/db/mapping.model';
-import { EmployeeFieldMapping, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
+import { EmployeeFieldMapping, FyleField, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 
 @Component({
@@ -51,6 +51,18 @@ export class MappingTableComponent implements OnInit {
     selectedRow.qbo.value = selectedOption.value;
 
     this.mappingSaveHandler.emit(selectedRow);
+  }
+
+  searchResultHandler(results: DestinationAttribute[]){
+  if (results.length>0){
+    const data = this.mappings.data.filter((value) => value.state === 'MAPPED');
+    const mapped_attribute: DestinationAttribute[]=[];
+    data.forEach( (value) => {
+      mapped_attribute.push(this.qboData.filter((results) => results.value === value.qbo.value)[0]);
+  });
+    this.qboData = results;
+    this.qboData.concat(mapped_attribute);
+  }
   }
 
   ngOnInit(): void {

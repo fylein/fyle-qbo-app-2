@@ -9,6 +9,8 @@ import { destinationAttribute, mappingList } from './mapping-table.fixture';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('MappingTableComponent', () => {
   let component: MappingTableComponent;
@@ -16,7 +18,7 @@ describe('MappingTableComponent', () => {
   let formBuilder: FormBuilder;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SharedModule, BrowserAnimationsModule],
+      imports: [SharedModule, BrowserAnimationsModule, HttpClientTestingModule],
       declarations: [MappingTableComponent],
       providers: [FormBuilder],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -71,5 +73,9 @@ describe('MappingTableComponent', () => {
     expect(mappingRow[0].nativeElement.innerText).toBe('Employee in Fyle');
     expect(mappingRow[1].nativeElement.innerText).toBe('Employee in QuickBooks Online');
     expect(mappingRowP[1].children[0].children[0].children[1].children[0].nativeElement.innerText).toBe('');
+  });
+
+  it('searchResultHandler function check', () => {
+    expect(component.searchResultHandler(destinationAttribute)).toBeUndefined();
   });
 });

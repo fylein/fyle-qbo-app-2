@@ -39,6 +39,22 @@ export class MappingService {
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/destination_attributes/`, params);
   }
 
+  getSearchedQBODestinationAttributes(attributeType: string, search_term?: string | void, active:boolean = false): Observable<DestinationAttribute[]> {
+    const params: {attribute_type: string | string[], active?: boolean, search_term?: string} = {
+      attribute_type: attributeType
+    };
+
+    if (active) {
+      params.active = true;
+    }
+
+    if (search_term) {
+      params.search_term = search_term;
+    }
+
+    return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/mapping_options/`, params);
+  }
+
   getDistinctQBODestinationAttributes(attributeTypes: string[]): Observable<DestinationAttribute[]> {
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/qbo_attributes/`, {
       attribute_types: attributeTypes
@@ -110,13 +126,21 @@ export class MappingService {
   }
 
   @Cacheable()
-  getQBOEmployees(): Observable<DestinationAttribute[]> {
-    return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/employees/`, {});
+  getQBOEmployees(searchTerm:string | void): Observable<DestinationAttribute[]> {
+    const params: {search_term?: string} = {};
+    if (searchTerm){
+      params.search_term = searchTerm;
+    }
+    return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/employees/`, params);
   }
 
   @Cacheable()
-  getQBOVendors(): Observable<DestinationAttribute[]> {
-    return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/vendors/`, {});
+  getQBOVendors(searchTerm:string | void): Observable<DestinationAttribute[]> {
+    const params: {search_term?: string} = {};
+    if (searchTerm){
+      params.search_term = searchTerm;
+    }
+    return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/vendors/`, params);
   }
 
   getMappingStats(sourceType: string, destinationType: string): Observable<MappingStats> {

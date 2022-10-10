@@ -161,6 +161,9 @@ export class EmployeeMappingComponent implements OnInit {
             qbo.value = extendedEmployeeAttribute.employeemapping[0].destination_vendor?.value;
             preserveDestination.id = extendedEmployeeAttribute.employeemapping[0].destination_employee?.id;
           }
+          if (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_employee.value) < 0) {
+            this.qboData.push(extendedEmployeeAttribute.employeemapping[0].destination_employee);
+          }
         }
 
         mappings.push({

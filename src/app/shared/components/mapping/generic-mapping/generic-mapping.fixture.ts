@@ -1,7 +1,7 @@
 import { DestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
 import { EmployeeMapping } from "src/app/core/models/db/employee-mapping.model";
 import { MappingSetting, MappingSettingResponse, MinimalMappingSetting } from "src/app/core/models/db/mapping-setting.model";
-import { MappingList, MappingStats } from "src/app/core/models/db/mapping.model";
+import { MappingList, MappingPost, MappingStats } from "src/app/core/models/db/mapping.model";
 import { MappingDestinationField, MappingSourceField, MappingState } from "src/app/core/models/enum/enum.model";
 import { environment } from "src/environments/environment";
 const API_BASE_URL = environment.api_url;
@@ -169,3 +169,41 @@ export const destinationAttribute: DestinationAttribute[] = [{
   value: "Accounts Payable",
   workspace: 146
 }];
+export const getMappingsresponse= {"count": 6, "next": null, "previous": null, "results": [{"id": 363953, "mapping": [{"destination": {"id": 50140, "attribute_type": "DEPARTMENT", "display_name": "Department", "value": "Accountants Inc", "destination_id": "4", "auto_created": false, "active": true, "detail": null, "created_at": "2022-05-12T03:58:18.256948Z", "updated_at": "2022-05-12T03:58:18.256966Z", "workspace": 286}, "source_type": "HGFH", "destination_type": "DEPARTMENT", "created_at": "2022-07-14T11:41:07.465208Z", "updated_at": "2022-07-14T11:41:07.465230Z"}], "attribute_type": "HGFH", "display_name": "Hgfh", "value": "Accountants Inc", "source_id": "expense_custom_field.hgfh.1", "auto_mapped": true, "auto_created": false, "active": true, "detail": {"placeholder": "Select Hgfh", "custom_field_id": 209230}, "created_at": "2022-07-14T11:41:06.207847Z", "updated_at": "2022-07-14T11:41:06.207873Z", "workspace": 286}, {"id": 363954, "mapping": [{"destination": {"id": 50141, "attribute_type": "DEPARTMENT", "display_name": "Department", "value": "Bangalore", "destination_id": "1", "auto_created": false, "active": true, "detail": null, "created_at": "2022-05-12T03:58:18.256990Z", "updated_at": "2022-05-12T03:58:18.256996Z", "workspace": 286}, "source_type": "HGFH", "destination_type": "DEPARTMENT", "created_at": "2022-07-14T11:41:07.465250Z", "updated_at": "2022-07-14T11:41:07.465256Z"}], "attribute_type": "HGFH", "display_name": "Hgfh", "value": "Bangalore", "source_id": "expense_custom_field.hgfh.2", "auto_mapped": true, "auto_created": false, "active": true, "detail": {"placeholder": "Select Hgfh", "custom_field_id": 209230}, "created_at": "2022-07-14T11:41:06.207906Z", "updated_at": "2022-07-14T11:41:06.207913Z", "workspace": 286}, {"id": 363958, "mapping": [{"destination": {"id": 50142, "attribute_type": "DEPARTMENT", "display_name": "Department", "value": "Bebe Rexha", "destination_id": "2", "auto_created": false, "active": true, "detail": null, "created_at": "2022-05-12T03:58:18.257017Z", "updated_at": "2022-05-12T03:58:18.257023Z", "workspace": 286}, "source_type": "HGFH", "destination_type": "DEPARTMENT", "created_at": "2022-07-14T11:41:07.465273Z", "updated_at": "2022-07-14T11:41:07.465279Z"}], "attribute_type": "HGFH", "display_name": "Hgfh", "value": "Bebe Rexha", "source_id": "expense_custom_field.hgfh.6", "auto_mapped": true, "auto_created": false, "active": true, "detail": {"placeholder": "Select Hgfh", "custom_field_id": 209230}, "created_at": "2022-07-14T11:41:06.208037Z", "updated_at": "2022-07-14T11:41:06.208043Z", "workspace": 286}, {"id": 363956, "mapping": [{"destination": {"id": 58701, "attribute_type": "DEPARTMENT", "display_name": "Department", "value": "Chennai", "destination_id": "5", "auto_created": false, "active": true, "detail": null, "created_at": "2022-07-14T11:41:04.540856Z", "updated_at": "2022-07-14T11:41:04.540879Z", "workspace": 286}, "source_type": "HGFH", "destination_type": "DEPARTMENT", "created_at": "2022-07-14T11:41:07.465318Z", "updated_at": "2022-07-14T11:41:07.465323Z"}], "attribute_type": "HGFH", "display_name": "Hgfh", "value": "Chennai", "source_id": "expense_custom_field.hgfh.4", "auto_mapped": true, "auto_created": false, "active": true, "detail": {"placeholder": "Select Hgfh", "custom_field_id": 209230}, "created_at": "2022-07-14T11:41:06.207974Z", "updated_at": "2022-07-14T11:41:06.207979Z", "workspace": 286}, {"id": 363955, "mapping": [{"destination": {"id": 58702, "attribute_type": "DEPARTMENT", "display_name": "Department", "value": "Delhi", "destination_id": "6", "auto_created": false, "active": true, "detail": null, "created_at": "2022-07-14T11:41:04.540903Z", "updated_at": "2022-07-14T11:41:04.540909Z", "workspace": 286}, "source_type": "HGFH", "destination_type": "DEPARTMENT", "created_at": "2022-07-14T11:41:07.465341Z", "updated_at": "2022-07-14T11:41:07.465346Z"}], "attribute_type": "HGFH", "display_name": "Hgfh", "value": "Delhi", "source_id": "expense_custom_field.hgfh.3", "auto_mapped": true, "auto_created": false, "active": true, "detail": {"placeholder": "Select Hgfh", "custom_field_id": 209230}, "created_at": "2022-07-14T11:41:06.207941Z", "updated_at": "2022-07-14T11:41:06.207947Z", "workspace": 286}, {"id": 363957, "mapping": [{"destination": {"id": 50143, "attribute_type": "DEPARTMENT", "display_name": "Department", "value": "suhas_p1", "destination_id": "3", "auto_created": false, "active": true, "detail": null, "created_at": "2022-05-12T03:58:18.257044Z", "updated_at": "2022-05-12T03:58:18.257050Z", "workspace": 286}, "source_type": "HGFH", "destination_type": "DEPARTMENT", "created_at": "2022-07-14T11:41:07.465296Z", "updated_at": "2022-07-14T11:41:07.465301Z"}], "attribute_type": "HGFH", "display_name": "Hgfh", "value": "suhas_p1", "source_id": "expense_custom_field.hgfh.5", "auto_mapped": true, "auto_created": false, "active": true, "detail": {"placeholder": "Select Hgfh", "custom_field_id": 209230}, "created_at": "2022-07-14T11:41:06.208006Z", "updated_at": "2022-07-14T11:41:06.208011Z", "workspace": 286}]};
+
+const payload: MappingPost = {
+  source_type: 'Payment',
+  source_value: 'dummy',
+  destination_type: 'Expence',
+  destination_id: '1',
+  destination_value: 'dummy'
+};
+export const postMappingsresponse:EmployeeMapping = {
+  id: 1,
+  source_employee: {
+    id: 1,
+    attribute_type: 'VENDOR',
+    display_name: 'Vendor',
+    value: 'dummy',
+    source_id: 1,
+    auto_mapped: true,
+    active: true,
+    created_at: new Date(),
+    updated_at: new Date(),
+    workspace: +workspace_id,
+    detail: {
+      location: 'india',
+      full_name: 'Fyle Integrations',
+      department_id: '2',
+      department: 'Integrations',
+      department_code: 'FYI2',
+      employee_code: 'FYIE1'
+    }
+  },
+  destination_employee: destination,
+  destination_vendor: destination,
+  destination_card_account: destination,
+  created_at: new Date(),
+  updated_at: new Date(),
+  workspace: +workspace_id
+};
