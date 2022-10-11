@@ -36,8 +36,7 @@
     "@sentry/angular": "^6.19.7",
     "@sentry/tracing": "^6.19.7",
     "rxjs": "~6.6.0",
-    "ts-cacheable": "^1.0.6",
-    "ts-node": "^10.7.0",
+    "ts-cacheable": "^1.0.7",
     "tslib": "^2.2.0",
     "typescript": "~4.6.4",
     "zone.js": "~0.11.4"
