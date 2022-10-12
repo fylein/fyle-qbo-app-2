@@ -60,8 +60,15 @@ export class MappingTableComponent implements OnInit {
     data.forEach( (value) => {
       mapped_attribute.push(this.qboData.filter((results) => results.value === value.qbo.value)[0]);
   });
+    const unique_mapped_attribute = [...new Set(mapped_attribute)];
+    results.forEach((value) => {
+      var index = unique_mapped_attribute.findIndex((res) => res.value === value.value);
+      if (index !== -1){
+        unique_mapped_attribute.splice(index, 1);
+      }
+    });
+    results = results.concat(unique_mapped_attribute);
     this.qboData = results;
-    this.qboData.concat(mapped_attribute);
   }
   }
 

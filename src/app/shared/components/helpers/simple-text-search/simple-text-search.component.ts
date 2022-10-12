@@ -41,49 +41,47 @@ export class SimpleTextSearchComponent implements OnInit, OnChanges {
   }
 
   private trackSimpleSearch(): void {
-    if (this.page !== SimpleSearchPage.MAPPING){
     this.form?.controls.searchOption?.valueChanges.subscribe((searchString: string) => {
       if (!this.simpleSearchEventRecorded && searchString) {
           this.trackingService.onSimpleSearch({page: this.page, searchType: this.searchType});
           this.simpleSearchEventRecorded = true;
         }
     });
-  } else {
-    this.form?.controls.searchOption?.valueChanges.pipe(
-      debounceTime(900),
-      switchMap(id => {
-        const search_term = this.form?.controls.searchOption?.value;
-        if (search_term.length > 2){
-          if (this.destinationType === EmployeeFieldMapping.EMPLOYEE){
-            return this.mappingService.getQBOEmployees(search_term);
-          } else if (this.destinationType === EmployeeFieldMapping.VENDOR){
-            return this.mappingService.getQBOVendors(search_term);
-          }
-            const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
-            return this.mappingService.getSearchedQBODestinationAttributes(attribute, search_term);
-
-        }
-          if (this.destinationType === EmployeeFieldMapping.EMPLOYEE){
-            return this.mappingService.getQBOEmployees();
-          } else if (this.destinationType === EmployeeFieldMapping.VENDOR){
-            return this.mappingService.getQBOVendors();
-          }
-          const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
-          return this.mappingService.getSearchedQBODestinationAttributes(attribute);
-
-
-      })
-    ).subscribe((employeeMappingResponse: DestinationAttribute[]) => {
-         this.searchResult.emit(employeeMappingResponse);
-         this.loading = false;
-    });
-    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.form) {
       this.trackSimpleSearch();
+      if (this.page === SimpleSearchPage.MAPPING) {
+      this.form?.controls.searchOption?.valueChanges.pipe(
+        debounceTime(2000),
+        switchMap((search_term) => {
+          if (search_term && search_term.length > 1) {
+            if (this.destinationType === EmployeeFieldMapping.EMPLOYEE) {
+              return this.mappingService.getQBOEmployees(search_term);
+            } else if (this.destinationType === EmployeeFieldMapping.VENDOR) {
+              return this.mappingService.getQBOVendors(search_term);
+            }
+              const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
+              return this.mappingService.getSearchedQBODestinationAttributes(attribute, search_term);
+          } else if (search_term === '') {
+            if (this.destinationType === EmployeeFieldMapping.EMPLOYEE) {
+              return this.mappingService.getQBOEmployees();
+            } else if (this.destinationType === EmployeeFieldMapping.VENDOR) {
+              return this.mappingService.getQBOVendors();
+            }
+            const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
+            return this.mappingService.getSearchedQBODestinationAttributes(attribute);
+          }
+            this.loading = false;
+            return [];
+        })
+      ).subscribe((employeeMappingResponse: DestinationAttribute[]) => {
+           this.searchResult.emit(employeeMappingResponse);
+           this.loading = false;
+      });
     }
+  }
 
     if (changes.placeholder) {
       this.simpleSearchEventRecorded = false;
