@@ -158,8 +158,6 @@ export class EmployeeMappingComponent implements OnInit {
             preserveDestination.id = extendedEmployeeAttribute.employeemapping[0].destination_vendor?.id;
             if ((extendedEmployeeAttribute.employeemapping[0].destination_employee) && (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_employee?.value) < 0)) {
               this.qboData.push(extendedEmployeeAttribute.employeemapping[0].destination_employee);
-            } else if ((extendedEmployeeAttribute.employeemapping[0].destination_vendor) && (!extendedEmployeeAttribute.employeemapping[0].destination_employee) && (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_vendor?.value) < 0)) {
-              this.qboData.push(extendedEmployeeAttribute.employeemapping[0].destination_vendor);
             }
           } else {
             qbo.id = extendedEmployeeAttribute.employeemapping[0].destination_vendor?.id;
@@ -167,8 +165,6 @@ export class EmployeeMappingComponent implements OnInit {
             preserveDestination.id = extendedEmployeeAttribute.employeemapping[0].destination_employee?.id;
             if ((extendedEmployeeAttribute.employeemapping[0].destination_vendor) && (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_vendor?.value) < 0)) {
               this.qboData.push(extendedEmployeeAttribute.employeemapping[0].destination_vendor);
-            } else if ((extendedEmployeeAttribute.employeemapping[0].destination_employee) && (!extendedEmployeeAttribute.employeemapping[0].destination_vendor) && (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_employee?.value) < 0)) {
-              this.qboData.push(extendedEmployeeAttribute.employeemapping[0].destination_employee);
             }
           }
         }
