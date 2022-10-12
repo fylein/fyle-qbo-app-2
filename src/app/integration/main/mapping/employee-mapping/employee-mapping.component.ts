@@ -152,23 +152,30 @@ export class EmployeeMappingComponent implements OnInit {
         };
 
         if (extendedEmployeeAttribute.employeemapping.length) {
+          console.log('employeemapping', this.employeeFieldMapping)
           if (this.employeeFieldMapping === EmployeeFieldMapping.EMPLOYEE) {
             qbo.id = extendedEmployeeAttribute.employeemapping[0].destination_employee?.id;
             qbo.value = extendedEmployeeAttribute.employeemapping[0].destination_employee?.value;
             preserveDestination.id = extendedEmployeeAttribute.employeemapping[0].destination_vendor?.id;
             console.log('employee', extendedEmployeeAttribute.employeemapping, this.qboData);
-            console.log("if", this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_employee?.value) < 0);
-            if (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_employee?.value) < 0) {
-              console.log('pushed',extendedEmployeeAttribute)
+            console.log("if", (extendedEmployeeAttribute.employeemapping[0].destination_employee) && (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_employee?.value) < 0));
+            if ((extendedEmployeeAttribute.employeemapping[0].destination_employee) && (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_employee?.value) < 0)) {
+              console.log('pushede',extendedEmployeeAttribute)
               this.qboData.push(extendedEmployeeAttribute.employeemapping[0].destination_employee);
+            }
+            else if ((extendedEmployeeAttribute.employeemapping[0].destination_vendor) && (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_vendor?.value) < 0)) {
+              console.log('pushed',extendedEmployeeAttribute)
+              this.qboData.push(extendedEmployeeAttribute.employeemapping[0].destination_vendor);
             }
           } else {
             qbo.id = extendedEmployeeAttribute.employeemapping[0].destination_vendor?.id;
             qbo.value = extendedEmployeeAttribute.employeemapping[0].destination_vendor?.value;
             preserveDestination.id = extendedEmployeeAttribute.employeemapping[0].destination_employee?.id;
-            console.log('vendor', extendedEmployeeAttribute.employeemapping, this.qboData);
-            if (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_vendor?.value) < 0) {
+            if ((extendedEmployeeAttribute.employeemapping[0].destination_vendor) && (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_vendor?.value) < 0)) {
               this.qboData.push(extendedEmployeeAttribute.employeemapping[0].destination_vendor);
+            }
+            else if ((extendedEmployeeAttribute.employeemapping[0].destination_employee) && (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_employee?.value) < 0)) {
+              this.qboData.push(extendedEmployeeAttribute.employeemapping[0].destination_employee);
             }
           }
         }
