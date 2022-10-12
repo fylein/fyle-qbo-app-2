@@ -156,13 +156,19 @@ export class EmployeeMappingComponent implements OnInit {
             qbo.id = extendedEmployeeAttribute.employeemapping[0].destination_employee?.id;
             qbo.value = extendedEmployeeAttribute.employeemapping[0].destination_employee?.value;
             preserveDestination.id = extendedEmployeeAttribute.employeemapping[0].destination_vendor?.id;
+            console.log('employee', extendedEmployeeAttribute.employeemapping, this.qboData);
+            console.log("if", this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_employee?.value) < 0);
+            if (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_employee?.value) < 0) {
+              this.qboData.push(extendedEmployeeAttribute.employeemapping[0].destination_employee);
+            }
           } else {
             qbo.id = extendedEmployeeAttribute.employeemapping[0].destination_vendor?.id;
             qbo.value = extendedEmployeeAttribute.employeemapping[0].destination_vendor?.value;
             preserveDestination.id = extendedEmployeeAttribute.employeemapping[0].destination_employee?.id;
-          }
-          if (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_employee?.value) < 0) {
-            this.qboData.push(extendedEmployeeAttribute.employeemapping[0].destination_employee);
+            console.log('vendor', extendedEmployeeAttribute.employeemapping, this.qboData);
+            if (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_vendor?.value) < 0) {
+              this.qboData.push(extendedEmployeeAttribute.employeemapping[0].destination_vendor);
+            }
           }
         }
 
