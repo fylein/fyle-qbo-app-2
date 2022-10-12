@@ -62,7 +62,7 @@ export class MappingTableComponent implements OnInit {
   });
     const unique_mapped_attribute = [...new Set(mapped_attribute)];
     results.forEach((value) => {
-      var index = unique_mapped_attribute.findIndex((res) => res.value === value.value);
+      var index = unique_mapped_attribute.findIndex((res) => res?.value === value.value);
       if (index !== -1){
         unique_mapped_attribute.splice(index, 1);
       }
