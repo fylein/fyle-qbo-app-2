@@ -159,6 +159,7 @@ export class EmployeeMappingComponent implements OnInit {
             console.log('employee', extendedEmployeeAttribute.employeemapping, this.qboData);
             console.log("if", this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_employee?.value) < 0);
             if (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_employee?.value) < 0) {
+              console.log('pushed',extendedEmployeeAttribute)
               this.qboData.push(extendedEmployeeAttribute.employeemapping[0].destination_employee);
             }
           } else {
@@ -221,6 +222,7 @@ export class EmployeeMappingComponent implements OnInit {
       }
       qboData$.subscribe((qboData: DestinationAttribute[]) => {
         this.qboData = qboData;
+        console.log('qboData',this.qboData);
         this.getMappings();
       });
     });
