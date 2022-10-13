@@ -19,7 +19,8 @@
           <app-simple-text-search [form]="mappingForm[element.index]"  [destinationType]="destinationType" [page]="SimpleSearchPage.MAPPING" [searchType]="SimpleSearchType.SELECT_FIELD" (searchResult)="searchResultHandler($event)"></app-simple-text-search>
 
           <mat-option *ngFor="let option of qboData | search : mappingForm[element.index].value.searchOption" [ngClass]="{'search-zero-state': option && option.value === 'No result found'}" [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" matTooltipClass="above" (click)="saveMapping(element, option, mappingForm[element.index]);" [value]="option.value">
-            <p (click)="$event.stopPropagation()" *ngIf="option.value === 'No result found'" class="align-center italic">{{ option.value }}</p>
+            <p (click)="$event.stopPropagation()" *ngIf="option.value === 'No result found' && loading" class="align-center italic">Searching...</p>
+            <p (click)="$event.stopPropagation()" *ngIf="option.value === 'No result found' && !loading" class="align-center italic">{{ option.value }}</p>
             <p *ngIf="option.value !== 'No result found'">{{ option.value | trimCharacter: 38 }}</p>
             <img *ngIf="option.value === mappingForm[element.index].value.destination" src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
           </mat-option>

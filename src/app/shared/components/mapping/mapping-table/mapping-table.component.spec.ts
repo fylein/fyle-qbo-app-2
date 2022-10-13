@@ -76,6 +76,10 @@ describe('MappingTableComponent', () => {
   });
 
   it('searchResultHandler function check', () => {
-    expect(component.searchResultHandler(destinationAttribute)).toBeUndefined();
+    const data = {
+      result: destinationAttribute,
+      loading: false
+    };
+    expect(component.searchResultHandler(data)).toBeUndefined();
   });
 });

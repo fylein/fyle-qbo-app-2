@@ -54,6 +54,36 @@ export const MappingStatsResponse:MappingStats= {
   all_attributes_count: 3,
   unmapped_attributes_count: 3
 };
+export const qboData2: DestinationAttribute[] = [{
+    id: 2,
+    attribute_type: 'EMPLOYEE',
+    display_name: "string Ash",
+    value: "string Ash",
+    destination_id: "stringAsg",
+    active: true,
+    created_at: new Date(),
+    updated_at: new Date(),
+    workspace: 2,
+    detail: {
+      email: 'String Ash',
+      fully_qualified_name: 'string Ash'
+    }
+  },
+  {
+    id: 4,
+    attribute_type: 'VENDOR',
+    display_name: "string Ash Ash",
+    value: "string Ash Ash",
+    destination_id: "stringasfash",
+    active: true,
+    created_at: new Date(),
+    updated_at: new Date(),
+    workspace: 2,
+    detail: {
+      email: 'String Ash Ash',
+      fully_qualified_name: 'string Ash Ash'
+    }
+  }];
 export const qboData: DestinationAttribute[] = [{
   id: 1,
   attribute_type: 'EMPLOYEE',
@@ -70,7 +100,7 @@ export const qboData: DestinationAttribute[] = [{
   }
 },
 {
-  id: 1,
+  id: 3,
   attribute_type: 'VENDOR',
   display_name: "string",
   value: "string",
@@ -83,7 +113,8 @@ export const qboData: DestinationAttribute[] = [{
     email: 'String',
     fully_qualified_name: 'string'
   }
-}];
+}
+];
 
 export const employeeMappingResponse: EmployeeMapping = {
   id: 1,
@@ -107,9 +138,9 @@ export const employeeMappingResponse: EmployeeMapping = {
       employee_code: 'FYIE1'
     }
   },
-  destination_employee: qboData[0],
-  destination_vendor: qboData[1],
-  destination_card_account: qboData[1],
+  destination_employee: qboData2[0],
+  destination_vendor: qboData2[1],
+  destination_card_account: qboData2[1],
   created_at: new Date(),
   updated_at: new Date(),
   workspace: +environment.tests.workspaceId
@@ -144,9 +175,9 @@ export const getEmployeeMappingResponse={
               employee_code: 'FYIE1'
             }
           },
-          destination_employee: qboData[0],
-          destination_vendor: qboData[1],
-          destination_card_account: qboData[1],
+          destination_employee: qboData2[0],
+          destination_vendor: qboData2[1],
+          destination_card_account: qboData2[1],
           created_at: new Date(),
           updated_at: new Date(),
           workspace: +environment.tests.workspaceId

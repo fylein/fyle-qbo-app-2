@@ -31,6 +31,8 @@ export class MappingTableComponent implements OnInit {
 
   SimpleSearchType = SimpleSearchType;
 
+  loading: boolean = false;
+
   constructor(
     public helperService: HelperService
   ) { }
@@ -53,7 +55,8 @@ export class MappingTableComponent implements OnInit {
     this.mappingSaveHandler.emit(selectedRow);
   }
 
-  searchResultHandler(results: DestinationAttribute[]){
+  searchResultHandler(result: any){
+  let results: DestinationAttribute[] = result.result;
   if (results.length>0){
     const data = this.mappings.data.filter((value) => value.state === 'MAPPED');
     const mapped_attribute: DestinationAttribute[]=[];
@@ -70,6 +73,7 @@ export class MappingTableComponent implements OnInit {
     results = results.concat(unique_mapped_attribute);
     this.qboData = results;
   }
+  this.loading = result.loading;
   }
 
   ngOnInit(): void {

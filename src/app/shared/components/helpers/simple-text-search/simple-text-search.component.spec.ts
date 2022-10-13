@@ -42,7 +42,7 @@ describe('SimpleTextSearchComponent', () => {
     const form= new FormGroup({
       dateRange: new FormControl([3]),
       start: new FormControl(['12/1/2021']),
-      searchOption: new FormControl('come'),
+      searchOption: new FormControl(['come']),
       end: new FormControl(['12/2/2021'])
     });
     component.destinationType = EmployeeFieldMapping.EMPLOYEE;
@@ -89,50 +89,7 @@ describe('SimpleTextSearchComponent', () => {
     expect(placeholder2.placeholder).toEqual(component.placeholder);
   });
 
-  it('search option check', () => {
-    const form= new FormGroup({
-      dateRange: new FormControl([3]),
-      start: new FormControl(['12/1/2021']),
-      searchOption: new FormControl(['come']),
-      end: new FormControl(['12/2/2021'])
-    });
-    component.form = form;
-    component.page = SimpleSearchPage.MAPPING;
-    component.destinationType = EmployeeFieldMapping.EMPLOYEE;
-    fixture.detectChanges();
-    expect((component as any).trackSimpleSearch()).toBeUndefined();
-  });
-
-  it('search option check', () => {
-    const form= new FormGroup({
-      dateRange: new FormControl([3]),
-      start: new FormControl(['12/1/2021']),
-      searchOption: new FormControl(['come']),
-      end: new FormControl(['12/2/2021'])
-    });
-    component.form = form;
-    component.page = SimpleSearchPage.MAPPING;
-    component.destinationType = EmployeeFieldMapping.VENDOR;
-    spyOn(component.searchResult, 'emit');
-    fixture.detectChanges();
-    expect((component as any).trackSimpleSearch()).toBeUndefined();
-  });
-
-  it('search option check', () => {
-    const form= new FormGroup({
-      dateRange: new FormControl([3]),
-      start: new FormControl(['12/1/2021']),
-      searchOption: new FormControl(['come']),
-      end: new FormControl(['12/2/2021'])
-    });
-    component.form = form;
-    component.page = SimpleSearchPage.MAPPING;
-    component.destinationType = QBOField.ACCOUNT;
-    fixture.detectChanges();
-    expect((component as any).trackSimpleSearch()).toBeUndefined();
-  });
-
-  it('search option check', () => {
+  it('clearText function search option check', () => {
     const form= new FormGroup({
       dateRange: new FormControl([3]),
       start: new FormControl(['12/1/2021']),
@@ -141,8 +98,15 @@ describe('SimpleTextSearchComponent', () => {
     });
     component.form = form;
     component.page = SimpleSearchPage.MAPPING;
-    component.destinationType = QBOField.ACCOUNT;
+    component.destinationType = EmployeeFieldMapping.VENDOR;
+    spyOn(component.searchResult, 'emit');
     fixture.detectChanges();
-    expect((component as any).trackSimpleSearch()).toBeUndefined();
+    expect(component.clearText()).toBeUndefined();
+    expect(component.searchResult.emit).toHaveBeenCalled();
+  });
+
+  it('keypress function check', () => {
+    expect(component.keypress()).toBeUndefined();
+    expect(component.loading).toBeTrue();
   });
 });

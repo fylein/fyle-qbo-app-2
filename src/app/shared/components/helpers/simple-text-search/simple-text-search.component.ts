@@ -25,7 +25,7 @@ export class SimpleTextSearchComponent implements OnInit, OnChanges {
 
   @Input() searchType: SimpleSearchType;
 
-  @Output() searchResult: EventEmitter<DestinationAttribute[]> =   new EventEmitter();
+  @Output() searchResult: EventEmitter<{result:DestinationAttribute[], loading:boolean}> =   new EventEmitter();
 
   private simpleSearchEventRecorded: boolean = false;
 
@@ -37,7 +37,24 @@ export class SimpleTextSearchComponent implements OnInit, OnChanges {
   ) { }
 
   clearText(): void {
+    this.loading = true;
     this.form.controls.searchOption.patchValue(null);
+    if (this.destinationType === EmployeeFieldMapping.EMPLOYEE) {
+      this.mappingService.getQBOEmployees().subscribe((employeeMappingResponse: DestinationAttribute[]) => {
+        this.searchResult.emit({result: employeeMappingResponse, loading: false});
+        this.loading = false;
+      });
+    } else if (this.destinationType === EmployeeFieldMapping.VENDOR) {
+      this.mappingService.getQBOVendors().subscribe((employeeMappingResponse: DestinationAttribute[]) => {
+        this.searchResult.emit({result: employeeMappingResponse, loading: false});
+        this.loading = false;
+      });
+    }
+    const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
+    this.mappingService.getSearchedQBODestinationAttributes(attribute).subscribe((employeeMappingResponse: DestinationAttribute[]) => {
+      this.searchResult.emit({result: employeeMappingResponse, loading: false});
+      this.loading = false;
+    });
   }
 
   private trackSimpleSearch(): void {
@@ -77,7 +94,7 @@ export class SimpleTextSearchComponent implements OnInit, OnChanges {
             return [];
         })
       ).subscribe((employeeMappingResponse: DestinationAttribute[]) => {
-           this.searchResult.emit(employeeMappingResponse);
+           this.searchResult.emit({result: employeeMappingResponse, loading: false});
            this.loading = false;
       });
     }
@@ -86,6 +103,11 @@ export class SimpleTextSearchComponent implements OnInit, OnChanges {
     if (changes.placeholder) {
       this.simpleSearchEventRecorded = false;
     }
+  }
+
+  keypress() {
+    this.loading = true;
+    this.searchResult.emit({result: [], loading: true});
   }
 
   ngOnInit(): void {
