@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeFieldMapping, QBOField, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -100,6 +100,26 @@ describe('SimpleTextSearchComponent', () => {
     component.page = SimpleSearchPage.MAPPING;
     component.destinationType = EmployeeFieldMapping.VENDOR;
     spyOn(component.searchResult, 'emit');
+    fixture.detectChanges();
+    expect(component.clearText()).toBeUndefined();
+    expect(component.searchResult.emit).toHaveBeenCalled();
+  });
+
+  it('clearText function search option check', () => {
+    const form= new FormGroup({
+      dateRange: new FormControl([3]),
+      start: new FormControl(['12/1/2021']),
+      searchOption: new FormControl(['co']),
+      end: new FormControl(['12/2/2021'])
+    });
+    component.form = form;
+    component.page = SimpleSearchPage.MAPPING;
+    component.destinationType = QBOField.ACCOUNT;
+    spyOn(component.searchResult, 'emit');
+    fixture.detectChanges();
+    expect(component.clearText()).toBeUndefined();
+    expect(component.searchResult.emit).toHaveBeenCalled();
+    component.destinationType = undefined;
     fixture.detectChanges();
     expect(component.clearText()).toBeUndefined();
     expect(component.searchResult.emit).toHaveBeenCalled();

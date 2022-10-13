@@ -49,12 +49,13 @@ export class SimpleTextSearchComponent implements OnInit, OnChanges {
         this.searchResult.emit({result: employeeMappingResponse, loading: false});
         this.loading = false;
       });
-    }
-    const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
-    this.mappingService.getSearchedQBODestinationAttributes(attribute).subscribe((employeeMappingResponse: DestinationAttribute[]) => {
-      this.searchResult.emit({result: employeeMappingResponse, loading: false});
-      this.loading = false;
+    } else {
+      const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
+      this.mappingService.getSearchedQBODestinationAttributes(attribute).subscribe((employeeMappingResponse: DestinationAttribute[]) => {
+        this.searchResult.emit({result: employeeMappingResponse, loading: false});
+        this.loading = false;
     });
+    }
   }
 
   private trackSimpleSearch(): void {
