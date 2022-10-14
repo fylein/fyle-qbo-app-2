@@ -169,6 +169,7 @@ export class GenericMappingComponent implements OnInit {
           this.qboData.push(extendedExpenseAttribute.mapping[0].destination);
         }
       });
+      this.qboData = this.qboData.sort((a, b) => (a.value > b.value ? 1 : -1));
       this.mappings = new MatTableDataSource(mappings);
       this.mappings.filterPredicate = this.searchByText;
       this.setupFyleQboMappingFormArray(mappings);

@@ -21,17 +21,10 @@ describe('SimpleTextSearchComponent', () => {
   let mappingService: MappingService;
 
   beforeEach(async () => {
-    service = {
-      getSearchedQBODestinationAttributes: () => of(destinationAttribute),
-      getQBOEmployees: () => of(qboData),
-      getQBOVendors: () => of(qboData)
-    };
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, FormsModule, ReactiveFormsModule, SharedModule, HttpClientTestingModule, HttpClientTestingModule, NoopAnimationsModule],
       declarations: [ SimpleTextSearchComponent ],
-      providers: [TrackingService,
-        { provide: MappingService, useValue: service }
-      ]
+      providers: [TrackingService]
     })
     .compileComponents();
   });
@@ -81,12 +74,21 @@ describe('SimpleTextSearchComponent', () => {
   });
 
   it('search function check', () => {
+    component.searchType = SimpleSearchType.SELECT_FIELD;
+    component.page = SimpleSearchPage.MAPPING;
+    const form= new FormGroup({
+      dateRange: new FormControl([3]),
+      start: new FormControl(['12/1/2021']),
+      searchOption: new FormControl(['ome']),
+      end: new FormControl(['12/2/2021'])
+    });
+    component.ngOnInit();
+    fixture.detectChanges();
     component.ngOnChanges({
-      placeholder: new SimpleChange(null, 'fyle', true)
+      form: new SimpleChange(null, form.controls.searchOption.setValue('derrr'), true)
     });
     fixture.detectChanges();
-    const placeholder2 = fixture.debugElement.query(By.css('input')).nativeElement;
-    expect(placeholder2.placeholder).toEqual(component.placeholder);
+    expect((component as any).simpleSearchEventRecorded).toBeFalse();
   });
 
   it('clearText function search option check', () => {
@@ -98,35 +100,23 @@ describe('SimpleTextSearchComponent', () => {
     });
     component.form = form;
     component.page = SimpleSearchPage.MAPPING;
-    component.destinationType = EmployeeFieldMapping.VENDOR;
+    component.searchType = SimpleSearchType.SELECT_FIELD;
     spyOn(component.searchResult, 'emit');
-    fixture.detectChanges();
-    expect(component.clearText()).toBeUndefined();
-    expect(component.searchResult.emit).toHaveBeenCalled();
-  });
-
-  it('clearText function search option check', () => {
-    const form= new FormGroup({
-      dateRange: new FormControl([3]),
-      start: new FormControl(['12/1/2021']),
-      searchOption: new FormControl(['co']),
-      end: new FormControl(['12/2/2021'])
-    });
-    component.form = form;
-    component.page = SimpleSearchPage.MAPPING;
-    component.destinationType = QBOField.ACCOUNT;
-    spyOn(component.searchResult, 'emit');
-    fixture.detectChanges();
-    expect(component.clearText()).toBeUndefined();
-    expect(component.searchResult.emit).toHaveBeenCalled();
-    component.destinationType = undefined;
     fixture.detectChanges();
     expect(component.clearText()).toBeUndefined();
     expect(component.searchResult.emit).toHaveBeenCalled();
   });
 
   it('keypress function check', () => {
+    component.searchType = SimpleSearchType.SELECT_FIELD;
+    component.page = SimpleSearchPage.MAPPING;
+    fixture.detectChanges();
     expect(component.keypress()).toBeUndefined();
-    expect(component.loading).toBeTrue();
+    expect(component.isSearchInProgress).toBeTrue();
+    component.searchType = SimpleSearchType.TEXT_FIELD;
+    component.page = SimpleSearchPage.MAPPING;
+    fixture.detectChanges();
+    expect(component.keypress()).toBeUndefined();
+    expect(component.isSearchInProgress).toBeFalse();
   });
 });

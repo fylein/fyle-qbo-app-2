@@ -2,7 +2,7 @@ import { DestinationAttribute } from "src/app/core/models/db/destination-attribu
 import { EmployeeMapping } from "src/app/core/models/db/employee-mapping.model";
 import { MappingSetting, MappingSettingResponse, MinimalMappingSetting } from "src/app/core/models/db/mapping-setting.model";
 import { MappingList, MappingPost, MappingStats } from "src/app/core/models/db/mapping.model";
-import { MappingDestinationField, MappingSourceField, MappingState } from "src/app/core/models/enum/enum.model";
+import { FyleField, MappingDestinationField, MappingSourceField, MappingState, QBOField } from "src/app/core/models/enum/enum.model";
 import { environment } from "src/environments/environment";
 const API_BASE_URL = environment.api_url;
 const workspace_id = environment.tests.workspaceId;
@@ -51,6 +51,11 @@ export const mappinglist: MappingList[] = [{
 }];
 export const minimaMappingSetting:MinimalMappingSetting = {
   source_field: MappingSourceField.PROJECT,
+  destination_field: MappingDestinationField.CUSTOMER
+};
+
+export const minimaMappingSetting2:MinimalMappingSetting = {
+  source_field: FyleField.CATEGORY,
   destination_field: MappingDestinationField.CUSTOMER
 };
 

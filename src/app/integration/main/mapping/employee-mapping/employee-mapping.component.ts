@@ -168,7 +168,7 @@ export class EmployeeMappingComponent implements OnInit {
             }
           }
         }
-
+        this.qboData = this.qboData.sort((a, b) => (a.value > b.value ? 1 : -1));
         mappings.push({
           fyle: {
             id: extendedEmployeeAttribute.id,

@@ -11,7 +11,7 @@ import { HttpTestingController, HttpClientTestingModule } from '@angular/common/
 import { environment } from 'src/environments/environment';
 import { MappingList, MappingStats } from 'src/app/core/models/db/mapping.model';
 import { ActivatedRoute } from '@angular/router';
-import { destinationAttribute, getMappingSettingResponse, getMappingsresponse, getMappingStats, mappinglist, mappingSetting, minimaMappingSetting, postMappingsresponse, response, response1 } from './generic-mapping.fixture';
+import { destinationAttribute, getMappingSettingResponse, getMappingsresponse, getMappingStats, mappinglist, mappingSetting, minimaMappingSetting, minimaMappingSetting2, postMappingsresponse, response, response1 } from './generic-mapping.fixture';
 import { of } from 'rxjs';
 import { PaginatorPage } from 'src/app/core/models/enum/enum.model';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
@@ -165,7 +165,7 @@ describe('GenericMappingComponent', () => {
       limit: 10,
       offset: 3
     };
-    component.mappingSetting = minimaMappingSetting;
+    component.mappingSetting = minimaMappingSetting2;
     fixture.detectChanges();
     expect(component.getMappings()).toBeUndefined();
   });

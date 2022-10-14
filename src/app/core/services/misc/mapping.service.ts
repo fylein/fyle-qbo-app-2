@@ -126,7 +126,7 @@ export class MappingService {
   }
 
   @Cacheable()
-  getQBOEmployees(searchTerm:string | void): Observable<DestinationAttribute[]> {
+  getQBOEmployees(searchTerm: string | void): Observable<DestinationAttribute[]> {
     const params: {search_term?: string} = {};
     if (searchTerm){
       params.search_term = searchTerm;

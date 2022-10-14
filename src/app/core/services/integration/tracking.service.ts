@@ -120,6 +120,10 @@ export class TrackingService {
     this.eventTrack('Simple search', properties);
   }
 
+  onAdvancedSearch(properties: {page: SimpleSearchPage, searchType: SimpleSearchType}): void {
+    this.eventTrack('Advanced search', properties);
+  }
+
   trackTimeSpent(event: OnboardingStep | Action, additionalProperties: Partial<TimeTakenAdditionalProperty>): void {
     const eventName = event !== Action.RESOLVE_ERROR ? `${event} Page` : event;
     this.eventTrack(`Time Spent on ${eventName}`, additionalProperties);

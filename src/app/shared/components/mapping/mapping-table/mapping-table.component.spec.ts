@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MappingList } from 'src/app/core/models/db/mapping.model';
-import { EmployeeFieldMapping } from 'src/app/core/models/enum/enum.model';
+import { EmployeeFieldMapping, QBOField } from 'src/app/core/models/enum/enum.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MappingTableComponent } from './mapping-table.component';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -11,16 +11,28 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { qboData } from 'src/app/integration/main/mapping/employee-mapping/employee-mapping.fixture';
+import { of } from 'rxjs';
+import { MappingService } from 'src/app/core/services/misc/mapping.service';
 
 describe('MappingTableComponent', () => {
   let component: MappingTableComponent;
   let fixture: ComponentFixture<MappingTableComponent>;
   let formBuilder: FormBuilder;
+  let service: any;
+
   beforeEach(async () => {
+    service = {
+      getSearchedQBODestinationAttributes: () => of(destinationAttribute),
+      getQBOEmployees: () => of(qboData),
+      getQBOVendors: () => of(qboData)
+    };
     await TestBed.configureTestingModule({
       imports: [SharedModule, BrowserAnimationsModule, HttpClientTestingModule],
       declarations: [MappingTableComponent],
-      providers: [FormBuilder],
+      providers: [FormBuilder,
+        { provide: MappingService, useValue: service }
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();
@@ -76,10 +88,24 @@ describe('MappingTableComponent', () => {
   });
 
   it('searchResultHandler function check', () => {
-    const data = {
-      result: destinationAttribute,
-      loading: false
-    };
-    expect(component.searchResultHandler(data)).toBeUndefined();
+    expect(component.searchResultHandler('string')).toBeUndefined();
+    expect(component.isSearchInProgress).toBeFalse();
+    component.destinationType = EmployeeFieldMapping.VENDOR;
+    fixture.detectChanges();
+    expect(component.searchResultHandler('string')).toBeUndefined();
+    expect(component.isSearchInProgress).toBeFalse();
+    component.destinationType = QBOField.ACCOUNT;
+    fixture.detectChanges();
+    expect(component.searchResultHandler('loading')).toBeUndefined();
+    expect(component.isSearchInProgress).toBeFalse();
+    component.destinationType = undefined;
+    fixture.detectChanges();
+    expect(component.searchResultHandler('loading')).toBeUndefined();
+    expect(component.isSearchInProgress).toBeFalse();
+    expect(component.searchResultHandler('loading...')).toBeUndefined();
+    expect(component.isSearchInProgress).toBeTrue();
+    fixture.detectChanges();
+    expect(component.searchResultHandler('')).toBeUndefined();
+    expect(component.isSearchInProgress).toBeFalse();
   });
 });

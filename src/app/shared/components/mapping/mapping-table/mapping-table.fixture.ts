@@ -32,4 +32,19 @@ export const destinationAttribute: DestinationAttribute[] = [{
   updated_at: new Date("2022-06-14T06:24:56.947727Z"),
   value: "Accounts Payable",
   workspace: 146
+},
+{
+  id: 2,
+  attribute_type: 'Account',
+  display_name: "string Ash",
+  value: "string",
+  destination_id: "stringAsg",
+  active: true,
+  created_at: new Date(),
+  updated_at: new Date(),
+  workspace: 2,
+  detail: {
+    email: 'String Ash',
+    fully_qualified_name: 'string Ash'
+  }
 }];

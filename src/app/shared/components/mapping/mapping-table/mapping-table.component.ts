@@ -3,8 +3,9 @@ import { FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { MappingList } from 'src/app/core/models/db/mapping.model';
-import { EmployeeFieldMapping, FyleField, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
+import { EmployeeFieldMapping, FyleField, QBOField, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
+import { MappingService } from 'src/app/core/services/misc/mapping.service';
 
 @Component({
   selector: 'app-mapping-table',
@@ -31,10 +32,13 @@ export class MappingTableComponent implements OnInit {
 
   SimpleSearchType = SimpleSearchType;
 
-  loading: boolean = false;
+  isSearchInProgress: boolean = false;
+
+  originQboData: DestinationAttribute[];
 
   constructor(
-    public helperService: HelperService
+    public helperService: HelperService,
+    private mappingService: MappingService
   ) { }
 
   saveMapping(selectedRow: MappingList, selectedOption: DestinationAttribute, searchForm: FormGroup): void {
@@ -55,9 +59,7 @@ export class MappingTableComponent implements OnInit {
     this.mappingSaveHandler.emit(selectedRow);
   }
 
-  searchResultHandler(result: any){
-  let results: DestinationAttribute[] = result.result;
-  if (results.length>0){
+  resultentQboData(results: DestinationAttribute[]){
     const data = this.mappings.data.filter((value) => value.state === 'MAPPED');
     const mapped_attribute: DestinationAttribute[]=[];
     data.forEach( (value) => {
@@ -71,12 +73,33 @@ export class MappingTableComponent implements OnInit {
       }
     });
     results = results.concat(unique_mapped_attribute);
-    this.qboData = results;
+    this.qboData = results.sort((a, b) => (a.value > b.value ? 1 : -1));
+    this.isSearchInProgress = false;
   }
-  this.loading = result.loading;
+
+  searchResultHandler(result: string){
+    if (result && result!=='loading...' && result.length>1){
+      let qboData$;
+      if (this.destinationType === EmployeeFieldMapping.EMPLOYEE) {
+        qboData$ = this.mappingService.getQBOEmployees(result);
+      } else if (this.destinationType === EmployeeFieldMapping.VENDOR) {
+        qboData$ = this.mappingService.getQBOVendors(result);
+      } else {
+        const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
+        qboData$ = this.mappingService.getSearchedQBODestinationAttributes(attribute);
+      }
+      qboData$.subscribe((response) => {
+        this.resultentQboData(response);
+      });
+    } else if (result && result==='loading...'){
+      this.isSearchInProgress = true;
+    } else {
+      this.resultentQboData(this.originQboData);
+    }
   }
 
   ngOnInit(): void {
+    this.originQboData = this.qboData;
   }
 
 }

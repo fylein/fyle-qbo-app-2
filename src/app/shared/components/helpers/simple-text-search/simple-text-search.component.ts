@@ -25,11 +25,11 @@ export class SimpleTextSearchComponent implements OnInit, OnChanges {
 
   @Input() searchType: SimpleSearchType;
 
-  @Output() searchResult: EventEmitter<{result:DestinationAttribute[], loading:boolean}> =   new EventEmitter();
+  @Output() searchResult: EventEmitter<string> =   new EventEmitter();
 
   private simpleSearchEventRecorded: boolean = false;
 
-  loading: boolean = false;
+  @Input() isSearchInProgress: boolean = false;
 
   constructor(
     private trackingService: TrackingService,
@@ -37,82 +37,65 @@ export class SimpleTextSearchComponent implements OnInit, OnChanges {
   ) { }
 
   clearText(): void {
-    this.loading = true;
     this.form.controls.searchOption.patchValue(null);
-    if (this.destinationType === EmployeeFieldMapping.EMPLOYEE) {
-      this.mappingService.getQBOEmployees().subscribe((employeeMappingResponse: DestinationAttribute[]) => {
-        this.searchResult.emit({result: employeeMappingResponse, loading: false});
-        this.loading = false;
-      });
-    } else if (this.destinationType === EmployeeFieldMapping.VENDOR) {
-      this.mappingService.getQBOVendors().subscribe((employeeMappingResponse: DestinationAttribute[]) => {
-        this.searchResult.emit({result: employeeMappingResponse, loading: false});
-        this.loading = false;
-      });
-    } else {
-      const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
-      this.mappingService.getSearchedQBODestinationAttributes(attribute).subscribe((employeeMappingResponse: DestinationAttribute[]) => {
-        this.searchResult.emit({result: employeeMappingResponse, loading: false});
-        this.loading = false;
-    });
+    if (this.searchType === SimpleSearchType.SELECT_FIELD && this.page === SimpleSearchPage.MAPPING){
+      this.searchResult.emit(this.form.controls.searchOption.value);
     }
   }
 
-  private trackSimpleSearch(): void {
-    this.form?.controls.searchOption?.valueChanges.subscribe((searchString: string) => {
-      if (!this.simpleSearchEventRecorded && searchString) {
-          this.trackingService.onSimpleSearch({page: this.page, searchType: this.searchType});
-          this.simpleSearchEventRecorded = true;
-        }
-    });
+  private trackSimpleSearch(isAdvancedSearch: boolean): void {
+    if (isAdvancedSearch){
+      this.form?.controls.searchOption?.valueChanges.subscribe((searchString: string) => {
+        if (!this.simpleSearchEventRecorded && searchString) {
+            this.trackingService.onAdvancedSearch({page: this.page, searchType: this.searchType});
+            this.simpleSearchEventRecorded = true;
+          }
+      });
+    } else {
+      this.form?.controls.searchOption?.valueChanges.subscribe((searchString: string) => {
+        if (!this.simpleSearchEventRecorded && searchString) {
+            this.trackingService.onSimpleSearch({page: this.page, searchType: this.searchType});
+            this.simpleSearchEventRecorded = true;
+          }
+      });
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.form) {
-      this.trackSimpleSearch();
-      if (this.page === SimpleSearchPage.MAPPING) {
-      this.form?.controls.searchOption?.valueChanges.pipe(
-        debounceTime(2000),
-        switchMap((search_term) => {
-          if (search_term && search_term.length > 1) {
-            if (this.destinationType === EmployeeFieldMapping.EMPLOYEE) {
-              return this.mappingService.getQBOEmployees(search_term);
-            } else if (this.destinationType === EmployeeFieldMapping.VENDOR) {
-              return this.mappingService.getQBOVendors(search_term);
-            }
-              const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
-              return this.mappingService.getSearchedQBODestinationAttributes(attribute, search_term);
-          } else if (search_term === '') {
-            if (this.destinationType === EmployeeFieldMapping.EMPLOYEE) {
-              return this.mappingService.getQBOEmployees();
-            } else if (this.destinationType === EmployeeFieldMapping.VENDOR) {
-              return this.mappingService.getQBOVendors();
-            }
-            const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
-            return this.mappingService.getSearchedQBODestinationAttributes(attribute);
-          }
-            this.loading = false;
-            return [];
-        })
-      ).subscribe((employeeMappingResponse: DestinationAttribute[]) => {
-           this.searchResult.emit({result: employeeMappingResponse, loading: false});
-           this.loading = false;
-      });
+      if (this.searchType === SimpleSearchType.SELECT_FIELD && this.page === SimpleSearchPage.MAPPING) {
+        this.form?.controls.searchOption?.valueChanges.pipe(
+        debounceTime(1500)
+        ).subscribe((search_term: string) => {
+            this.searchResult.emit(search_term);
+            this.trackSimpleSearch(true);
+        });
+      } else {
+        this.trackSimpleSearch(false);
+      }
     }
-  }
 
     if (changes.placeholder) {
       this.simpleSearchEventRecorded = false;
     }
   }
 
+  // This function is for triggering the loader while searching
   keypress() {
-    this.loading = true;
-    this.searchResult.emit({result: [], loading: true});
+    if (this.searchType === SimpleSearchType.SELECT_FIELD && this.page === SimpleSearchPage.MAPPING){
+      this.isSearchInProgress = true;
+      this.searchResult.emit('loading...');
+    } else {
+      this.isSearchInProgress = false;
+    }
   }
 
   ngOnInit(): void {
-    this.trackSimpleSearch();
+    if (this.searchType === SimpleSearchType.SELECT_FIELD && this.page === SimpleSearchPage.MAPPING){
+      this.trackSimpleSearch(true);
+    } else {
+      this.trackSimpleSearch(false);
+    }
   }
 
 }
