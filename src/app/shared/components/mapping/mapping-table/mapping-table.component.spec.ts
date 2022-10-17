@@ -87,25 +87,25 @@ describe('MappingTableComponent', () => {
     expect(mappingRowP[1].children[0].children[0].children[1].children[0].nativeElement.innerText).toBe('');
   });
 
-  it('searchResultHandler function check', () => {
-    expect(component.searchResultHandler('string')).toBeUndefined();
+  it('advancedSearchHandler function check', () => {
+    expect(component.advancedSearchHandler('string')).toBeUndefined();
     expect(component.isSearchInProgress).toBeFalse();
     component.destinationType = EmployeeFieldMapping.VENDOR;
     fixture.detectChanges();
-    expect(component.searchResultHandler('string')).toBeUndefined();
+    expect(component.advancedSearchHandler('string')).toBeUndefined();
     expect(component.isSearchInProgress).toBeFalse();
     component.destinationType = QBOField.ACCOUNT;
     fixture.detectChanges();
-    expect(component.searchResultHandler('loading')).toBeUndefined();
+    expect(component.advancedSearchHandler('loading')).toBeUndefined();
     expect(component.isSearchInProgress).toBeFalse();
     component.destinationType = undefined;
     fixture.detectChanges();
-    expect(component.searchResultHandler('loading')).toBeUndefined();
+    expect(component.advancedSearchHandler('loading')).toBeUndefined();
     expect(component.isSearchInProgress).toBeFalse();
-    expect(component.searchResultHandler('loading...')).toBeUndefined();
+    expect(component.advancedSearchHandler('loading...')).toBeUndefined();
     expect(component.isSearchInProgress).toBeTrue();
     fixture.detectChanges();
-    expect(component.searchResultHandler('')).toBeUndefined();
+    expect(component.advancedSearchHandler('')).toBeUndefined();
     expect(component.isSearchInProgress).toBeFalse();
   });
 });

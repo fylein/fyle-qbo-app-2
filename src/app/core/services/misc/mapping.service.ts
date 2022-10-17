@@ -39,7 +39,7 @@ export class MappingService {
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/destination_attributes/`, params);
   }
 
-  getSearchedQBODestinationAttributes(attributeType: string, search_term?: string | void, active:boolean = false): Observable<DestinationAttribute[]> {
+  getSearchedQBODestinationAttributes(attributeType: string, searchTerm?: string | void, active:boolean = false): Observable<DestinationAttribute[]> {
     const params: {attribute_type: string | string[], active?: boolean, search_term?: string} = {
       attribute_type: attributeType
     };
@@ -48,8 +48,8 @@ export class MappingService {
       params.active = true;
     }
 
-    if (search_term) {
-      params.search_term = search_term;
+    if (searchTerm) {
+      params.search_term = searchTerm;
     }
 
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/mapping_options/`, params);

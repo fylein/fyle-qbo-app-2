@@ -38,40 +38,35 @@ export class SimpleTextSearchComponent implements OnInit, OnChanges {
 
   clearText(): void {
     this.form.controls.searchOption.patchValue(null);
-    if (this.searchType === SimpleSearchType.SELECT_FIELD && this.page === SimpleSearchPage.MAPPING){
+    if (this.searchType === SimpleSearchType.SELECT_FIELD){
       this.searchResult.emit(this.form.controls.searchOption.value);
     }
   }
 
-  private trackSimpleSearch(isAdvancedSearch: boolean): void {
-    if (isAdvancedSearch){
-      this.form?.controls.searchOption?.valueChanges.subscribe((searchString: string) => {
-        if (!this.simpleSearchEventRecorded && searchString) {
-            this.trackingService.onAdvancedSearch({page: this.page, searchType: this.searchType});
-            this.simpleSearchEventRecorded = true;
-          }
-      });
-    } else {
-      this.form?.controls.searchOption?.valueChanges.subscribe((searchString: string) => {
-        if (!this.simpleSearchEventRecorded && searchString) {
-            this.trackingService.onSimpleSearch({page: this.page, searchType: this.searchType});
-            this.simpleSearchEventRecorded = true;
-          }
-      });
-    }
+  private trackTextSearch(isAdvancedSearch: boolean): void {
+    this.form?.controls.searchOption?.valueChanges.subscribe((searchString: string) => {
+      if (!this.simpleSearchEventRecorded && searchString) {
+        if (isAdvancedSearch) {
+          this.trackingService.onAdvancedSearch({page: this.page, searchType: this.searchType});
+        } else {
+          this.trackingService.onSimpleSearch({page: this.page, searchType: this.searchType});
+        }
+        this.simpleSearchEventRecorded = true;
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.form) {
       if (this.searchType === SimpleSearchType.SELECT_FIELD && this.page === SimpleSearchPage.MAPPING) {
-        this.form?.controls.searchOption?.valueChanges.pipe(
-        debounceTime(1500)
-        ).subscribe((search_term: string) => {
-            this.searchResult.emit(search_term);
-            this.trackSimpleSearch(true);
-        });
+          this.form?.controls.searchOption?.valueChanges.pipe(
+          debounceTime(1500)
+          ).subscribe((searchTerm: string) => {
+              this.searchResult.emit(searchTerm);
+              this.trackTextSearch(true);
+          });
       } else {
-        this.trackSimpleSearch(false);
+        this.trackTextSearch(false);
       }
     }
 
@@ -92,9 +87,9 @@ export class SimpleTextSearchComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     if (this.searchType === SimpleSearchType.SELECT_FIELD && this.page === SimpleSearchPage.MAPPING){
-      this.trackSimpleSearch(true);
+      this.trackTextSearch(true);
     } else {
-      this.trackSimpleSearch(false);
+      this.trackTextSearch(false);
     }
   }
 

@@ -3,7 +3,7 @@ import { AdvancedSettingPost } from '../../models/configuration/advanced-setting
 import { EmployeeSettingPost } from '../../models/configuration/employee-setting.model';
 import { ExportSettingPost } from '../../models/configuration/export-setting.model';
 import { ImportSettingPost } from '../../models/configuration/import-setting.model';
-import { Action, ClickEvent, DeleteEvent, OnboardingStep, ProgressPhase, SimpleSearchPage, SimpleSearchType, UpdateEvent } from '../../models/enum/enum.model';
+import { Action, ClickEvent, DeleteEvent, OnboardingStep, ProgressPhase, SearchType, SimpleSearchPage, SimpleSearchType, UpdateEvent } from '../../models/enum/enum.model';
 import { ClickEventAdditionalProperty, DeleteEventAdditionalProperty, MappingAlphabeticalFilterAdditionalProperty, ResolveMappingErrorProperty, TimeTakenAdditionalProperty, UpdateEventAdditionalProperty } from '../../models/misc/tracking.model';
 
 @Injectable({
@@ -120,7 +120,7 @@ export class TrackingService {
     this.eventTrack('Simple search', properties);
   }
 
-  onAdvancedSearch(properties: {page: SimpleSearchPage, searchType: SimpleSearchType}): void {
+  onAdvancedSearch(properties: {page: SimpleSearchPage, searchType: SearchType}): void {
     this.eventTrack('Advanced search', properties);
   }
 

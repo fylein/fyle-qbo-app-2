@@ -34,7 +34,7 @@ export class MappingTableComponent implements OnInit {
 
   isSearchInProgress: boolean = false;
 
-  originQboData: DestinationAttribute[];
+  existingQboOptions: DestinationAttribute[];
 
   constructor(
     public helperService: HelperService,
@@ -59,7 +59,7 @@ export class MappingTableComponent implements OnInit {
     this.mappingSaveHandler.emit(selectedRow);
   }
 
-  resultentQboData(results: DestinationAttribute[]){
+  prepareQBOOptions(results: DestinationAttribute[]){
     const data = this.mappings.data.filter((value) => value.state === 'MAPPED');
     const mapped_attribute: DestinationAttribute[]=[];
     data.forEach( (value) => {
@@ -77,29 +77,29 @@ export class MappingTableComponent implements OnInit {
     this.isSearchInProgress = false;
   }
 
-  searchResultHandler(result: string){
-    if (result && result!=='loading...' && result.length>1){
+  advancedSearchHandler(searchTerm: string){
+    if (searchTerm && searchTerm!=='loading...' && searchTerm.length>1){
       let qboData$;
       if (this.destinationType === EmployeeFieldMapping.EMPLOYEE) {
-        qboData$ = this.mappingService.getQBOEmployees(result);
+        qboData$ = this.mappingService.getQBOEmployees(searchTerm);
       } else if (this.destinationType === EmployeeFieldMapping.VENDOR) {
-        qboData$ = this.mappingService.getQBOVendors(result);
+        qboData$ = this.mappingService.getQBOVendors(searchTerm);
       } else {
         const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
         qboData$ = this.mappingService.getSearchedQBODestinationAttributes(attribute);
       }
       qboData$.subscribe((response) => {
-        this.resultentQboData(response);
+        this.prepareQBOOptions(response);
       });
-    } else if (result && result==='loading...'){
+    } else if (searchTerm && searchTerm==='loading...'){
       this.isSearchInProgress = true;
     } else {
-      this.resultentQboData(this.originQboData);
+      this.prepareQBOOptions(this.existingQboOptions);
     }
   }
 
   ngOnInit(): void {
-    this.originQboData = this.qboData;
+    this.existingQboOptions = this.qboData;
   }
 
 }
