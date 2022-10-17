@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EmployeeFieldMapping, QBOField, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
+import { EmployeeFieldMapping, QBOField, SearchType, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { SimpleTextSearchComponent } from './simple-text-search.component';
@@ -108,12 +108,12 @@ describe('SimpleTextSearchComponent', () => {
   });
 
   it('keypress function check', () => {
-    component.searchType = SimpleSearchType.SELECT_FIELD;
+    component.advancedSearchType = SearchType.SELECT_FIELD;
     component.page = SimpleSearchPage.MAPPING;
     fixture.detectChanges();
     expect(component.keypress()).toBeUndefined();
     expect(component.isSearchInProgress).toBeTrue();
-    component.searchType = SimpleSearchType.TEXT_FIELD;
+    component.advancedSearchType = SearchType.TEXT_FIELD;
     component.page = SimpleSearchPage.MAPPING;
     fixture.detectChanges();
     expect(component.keypress()).toBeUndefined();
