@@ -61,7 +61,7 @@ export class SimpleTextSearchComponent implements OnInit, OnChanges {
     if (changes.form) {
       if (this.advancedSearchType === SearchType.SELECT_FIELD && this.page === SimpleSearchPage.MAPPING) {
           this.form?.controls.searchOption?.valueChanges.pipe(
-          debounceTime(1000)
+            debounceTime(1000)
           ).subscribe((searchTerm: string) => {
               this.searchResult.emit(searchTerm);
               this.trackTextSearch(true);
@@ -80,7 +80,7 @@ export class SimpleTextSearchComponent implements OnInit, OnChanges {
   keypress() {
     if (this.advancedSearchType === SearchType.SELECT_FIELD && this.page === SimpleSearchPage.MAPPING){
       this.isSearchInProgress = true;
-      this.searchResult.emit('loading...');
+      this.searchResult.emit('searchingInProcess...');
     } else {
       this.isSearchInProgress = false;
     }

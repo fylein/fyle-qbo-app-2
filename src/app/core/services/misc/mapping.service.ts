@@ -27,8 +27,8 @@ export class MappingService {
     private workspaceService: WorkspaceService
   ) { }
 
-  getQBODestinationAttributes(attributeTypes: string | string[], active:boolean = false): Observable<DestinationAttribute[]> {
-    const params: {attribute_types: string | string[], active?: boolean} = {
+  getQBODestinationAttributes(attributeTypes: string | string[], active: boolean = false): Observable<DestinationAttribute[]> {
+    const params: { attribute_types: string | string[], active?: boolean } = {
       attribute_types: attributeTypes
     };
 
@@ -39,8 +39,8 @@ export class MappingService {
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/destination_attributes/`, params);
   }
 
-  getSearchedQBODestinationAttributes(attributeType: string, searchTerm?: string | void, active:boolean = false): Observable<DestinationAttribute[]> {
-    const params: {attribute_type: string | string[], active?: boolean, search_term?: string} = {
+  getSearchedQBODestinationAttributes(attributeType: string, searchTerm?: string | void, active: boolean = false): Observable<DestinationAttribute[]> {
+    const params: { attribute_type: string | string[], active?: boolean, search_term?: string } = {
       attribute_type: attributeType
     };
 
@@ -127,17 +127,17 @@ export class MappingService {
 
   @Cacheable()
   getQBOEmployees(searchTerm: string | void): Observable<DestinationAttribute[]> {
-    const params: {search_term?: string} = {};
-    if (searchTerm){
+    const params: { search_term?: string } = {};
+    if (searchTerm) {
       params.search_term = searchTerm;
     }
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/employees/`, params);
   }
 
   @Cacheable()
-  getQBOVendors(searchTerm:string | void): Observable<DestinationAttribute[]> {
-    const params: {search_term?: string} = {};
-    if (searchTerm){
+  getQBOVendors(searchTerm: string | void): Observable<DestinationAttribute[]> {
+    const params: { search_term?: string } = {};
+    if (searchTerm) {
       params.search_term = searchTerm;
     }
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/vendors/`, params);

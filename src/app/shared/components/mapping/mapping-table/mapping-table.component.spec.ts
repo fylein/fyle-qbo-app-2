@@ -102,7 +102,7 @@ describe('MappingTableComponent', () => {
     fixture.detectChanges();
     expect(component.advancedSearchHandler('loading')).toBeUndefined();
     expect(component.isSearchInProgress).toBeFalse();
-    expect(component.advancedSearchHandler('loading...')).toBeUndefined();
+    expect(component.advancedSearchHandler('searchingInProcess...')).toBeUndefined();
     expect(component.isSearchInProgress).toBeTrue();
     fixture.detectChanges();
     expect(component.advancedSearchHandler('')).toBeUndefined();

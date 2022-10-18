@@ -59,26 +59,8 @@ export class MappingTableComponent implements OnInit {
     this.mappingSaveHandler.emit(selectedRow);
   }
 
-  prepareQBOOptions(results: DestinationAttribute[]){
-    const data = this.mappings.data.filter((value) => value.state === 'MAPPED');
-    const mapped_attribute: DestinationAttribute[]=[];
-    data.forEach( (value) => {
-      mapped_attribute.push(this.qboData.filter((results) => results.value === value.qbo.value)[0]);
-  });
-    const unique_mapped_attribute = [...new Set(mapped_attribute)];
-    results.forEach((value) => {
-      var index = unique_mapped_attribute.findIndex((res) => res?.value === value.value);
-      if (index !== -1){
-        unique_mapped_attribute.splice(index, 1);
-      }
-    });
-    results = results.concat(unique_mapped_attribute);
-    this.qboData = results.sort((a, b) => (a.value > b.value ? 1 : -1));
-    this.isSearchInProgress = false;
-  }
-
   advancedSearchHandler(searchTerm: string){
-    if (searchTerm && searchTerm!=='loading...' && searchTerm.length>1){
+    if (searchTerm && searchTerm!=='searchingInProcess...' && searchTerm.length>1){
       let qboData$;
       if (this.destinationType === EmployeeFieldMapping.EMPLOYEE) {
         qboData$ = this.mappingService.getQBOEmployees(searchTerm);
@@ -86,12 +68,12 @@ export class MappingTableComponent implements OnInit {
         qboData$ = this.mappingService.getQBOVendors(searchTerm);
       } else {
         const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
-        qboData$ = this.mappingService.getSearchedQBODestinationAttributes(attribute);
+        qboData$ = this.mappingService.getSearchedQBODestinationAttributes(attribute, searchTerm);
       }
       qboData$.subscribe((response) => {
-        this.prepareQBOOptions(response);
+        this.prepareQBOOptions(this.existingQboOptions, response);
       });
-    } else if (searchTerm && searchTerm==='loading...'){
+    } else if (searchTerm && searchTerm==='searchingInProcess...'){
       this.isSearchInProgress = true;
     } else {
       this.prepareQBOOptions(this.existingQboOptions);
@@ -99,7 +81,38 @@ export class MappingTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.existingQboOptions = this.qboData;
+    this.existingQboOptions = this.qboData.concat();
+  }
+
+  removeDuplicateAndSortOptions(qboOptions: DestinationAttribute[]): DestinationAttribute[] {
+    // Creating an ID map for options, optionsIDMap will look something like [312, 531, 234, 312]
+    const optionsIDMap: number[] = qboOptions.map(option => option.id);
+
+    // Filtering qboOptions by checking if they exist in optionsIDMap array to remove duplicate options and sorting them alphabetically based on their name
+    return qboOptions.filter((option: DestinationAttribute, index: number) => !optionsIDMap.includes(option.id, index + 1)).sort(
+      (firstOption: DestinationAttribute, secondOption: DestinationAttribute) => (firstOption.value > secondOption.value ? 1 : -1)
+    );
+  }
+
+  prepareQBOOptions(existingOptions: DestinationAttribute[], newOptions: DestinationAttribute[] | void){
+    // Value for newOptions will be sent after searchTerm results are returned from backend
+    // Value for newOptions will be undefined when user tries to clear search term
+    if (newOptions) {
+      // Append newOptions to existing options (Warning: There can be duplicates)
+      this.qboData = this.qboData.concat(newOptions);
+    } else {
+      // Assign existing values to qboData since search term would have been cleared
+      // And also after mapping display mapped options
+      const mapped_data = this.mappings.data.filter((value) => value.state === 'MAPPED');
+      const mapped_attributes: DestinationAttribute[]=[];
+      mapped_data.forEach( (value) => {
+        mapped_attributes.push(this.qboData.filter((results) => results.value === value.qbo.value)[0]);
+      });
+      this.qboData = existingOptions.concat(mapped_attributes);
+    }
+    // Remove duplicates if any are found and sort the options alphabetically
+    this.qboData = this.removeDuplicateAndSortOptions(this.qboData);
+    this.isSearchInProgress = false;
   }
 
 }
