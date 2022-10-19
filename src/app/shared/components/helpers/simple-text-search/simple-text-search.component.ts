@@ -80,7 +80,7 @@ export class SimpleTextSearchComponent implements OnInit, OnChanges {
   keypress() {
     if (this.advancedSearchType === SearchType.SELECT_FIELD && this.page === SimpleSearchPage.MAPPING){
       this.isSearchInProgress = true;
-      this.searchResult.emit('searchingInProcess...');
+      this.searchResult.emit('initiateSearch...');
     } else {
       this.isSearchInProgress = false;
     }

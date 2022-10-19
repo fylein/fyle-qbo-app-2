@@ -59,31 +59,6 @@ export class MappingTableComponent implements OnInit {
     this.mappingSaveHandler.emit(selectedRow);
   }
 
-  advancedSearchHandler(searchTerm: string){
-    if (searchTerm && searchTerm!=='searchingInProcess...' && searchTerm.length>1){
-      let qboData$;
-      if (this.destinationType === EmployeeFieldMapping.EMPLOYEE) {
-        qboData$ = this.mappingService.getQBOEmployees(searchTerm);
-      } else if (this.destinationType === EmployeeFieldMapping.VENDOR) {
-        qboData$ = this.mappingService.getQBOVendors(searchTerm);
-      } else {
-        const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
-        qboData$ = this.mappingService.getSearchedQBODestinationAttributes(attribute, searchTerm);
-      }
-      qboData$.subscribe((response) => {
-        this.prepareQBOOptions(this.existingQboOptions, response);
-      });
-    } else if (searchTerm && searchTerm==='searchingInProcess...'){
-      this.isSearchInProgress = true;
-    } else {
-      this.prepareQBOOptions(this.existingQboOptions);
-    }
-  }
-
-  ngOnInit(): void {
-    this.existingQboOptions = this.qboData.concat();
-  }
-
   removeDuplicateAndSortOptions(qboOptions: DestinationAttribute[]): DestinationAttribute[] {
     // Creating an ID map for options, optionsIDMap will look something like [312, 531, 234, 312]
     const optionsIDMap: number[] = qboOptions.map(option => option.id);
@@ -100,19 +75,39 @@ export class MappingTableComponent implements OnInit {
     if (newOptions) {
       // Append newOptions to existing options (Warning: There can be duplicates)
       this.qboData = this.qboData.concat(newOptions);
+      // Remove duplicates if any are found and sort the options alphabetically
+      this.qboData = this.removeDuplicateAndSortOptions(this.qboData);
     } else {
       // Assign existing values to qboData since search term would have been cleared
       // And also after mapping display mapped options
-      const mapped_data = this.mappings.data.filter((value) => value.state === 'MAPPED');
-      const mapped_attributes: DestinationAttribute[]=[];
-      mapped_data.forEach( (value) => {
-        mapped_attributes.push(this.qboData.filter((results) => results.value === value.qbo.value)[0]);
-      });
-      this.qboData = existingOptions.concat(mapped_attributes);
+      this.qboData = existingOptions;
     }
-    // Remove duplicates if any are found and sort the options alphabetically
-    this.qboData = this.removeDuplicateAndSortOptions(this.qboData);
     this.isSearchInProgress = false;
+  }
+
+  advancedSearchHandler(searchTerm: string){
+    if (searchTerm && searchTerm!=='initiateSearch...' && searchTerm.length>1){
+      let qboData$;
+      if (this.destinationType === EmployeeFieldMapping.EMPLOYEE) {
+        qboData$ = this.mappingService.getQBOEmployees(searchTerm);
+      } else if (this.destinationType === EmployeeFieldMapping.VENDOR) {
+        qboData$ = this.mappingService.getQBOVendors(searchTerm);
+      } else {
+        const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
+        qboData$ = this.mappingService.getSearchedQBODestinationAttributes(attribute, searchTerm);
+      }
+      qboData$.subscribe((response) => {
+        this.prepareQBOOptions(this.existingQboOptions, response);
+      });
+    } else if (searchTerm && searchTerm==='initiateSearch...'){
+      this.isSearchInProgress = true;
+    } else {
+      this.prepareQBOOptions(this.qboData);
+    }
+  }
+
+  ngOnInit(): void {
+    this.existingQboOptions = this.qboData.concat();
   }
 
 }
