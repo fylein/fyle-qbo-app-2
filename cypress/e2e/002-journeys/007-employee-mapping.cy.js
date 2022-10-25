@@ -72,4 +72,15 @@ describe('employee mapping view/create/update', () => {
     cy.get('.mat-option').eq(0).click()
     cy.get('.mapping-table--form-field').eq(0).contains('Ashwin')
   })
+
+  it('advanced search without data', () => {
+    cy.get('.mapping-header-section--card-content-text-header').contains('Unmapped Employees').click()
+    cy.get('.mapping-table--form-field').eq(0).contains('Select Vendor').click()
+    cy.get('.search-select--search-input').eq(1).type('ashwinlp')
+    cy.get('.mat-option').eq(0).contains('Searching...')
+    cy.wait(1000)
+    cy.get('.mat-option').eq(0).contains('No result found')
+    cy.get('.mat-column-fyle').eq(1).click({force: true})
+    cy.get('.mapping-table--form-field').eq(0).contains('Select Vendor')
+  })
 })
