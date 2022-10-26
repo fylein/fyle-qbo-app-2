@@ -35,8 +35,8 @@ describe('employee mapping view/create/update', () => {
 
       cy.get('.mapping-table--form-field').eq(index).contains('Select Vendor').click()
 
-      // Random option number, from 1 -> 50
-      cy.get('.mat-option').eq(Math.floor((Math.random() * (50)) + 1)).click()
+      // Random option number, from 1 -> 10
+      cy.get('.mat-option').eq(Math.floor((Math.random() * (10)) + 1)).click()
       cy.get('.mat-column-state').eq(index + 1).contains('Mapped')
 
       // Stop execution
@@ -59,7 +59,7 @@ describe('employee mapping view/create/update', () => {
 
       cy.get('@employeeMappingRow').find('.mapping-table--form-field').click()
       // Select 1st option
-      cy.get('.mat-option').eq(el.index()+1).click()
+      cy.get('.mat-option').eq(0).click()
     })
     cy.get('@employeeMappingRow').find('.mapping-table--form-field').should('not.have.text', existingMappingValue)
   })
@@ -68,7 +68,9 @@ describe('employee mapping view/create/update', () => {
     cy.get('.mapping-header-section--card-content-text-header').contains('Unmapped Employees').click()
     cy.get('.mapping-table--form-field').eq(0).contains('Select Vendor').click()
     cy.get('.search-select--search-input').eq(1).type('ashwin')
+    cy.wait(1000)
     cy.get('.mat-option').eq(0).contains('Ashwin')
+    cy.wait('@getQBOVendors').its('response.statusCode').should('equal', 200)
     cy.get('.mat-option').eq(0).click()
     cy.get('.mapping-table--form-field').eq(0).contains('Ashwin')
   })
@@ -79,6 +81,7 @@ describe('employee mapping view/create/update', () => {
     cy.get('.search-select--search-input').eq(1).type('ashwinlp')
     cy.get('.mat-option').eq(0).contains('Searching...')
     cy.wait(1000)
+    cy.wait('@getQBOVendors').its('response.statusCode').should('equal', 200)
     cy.get('.mat-option').eq(0).contains('No result found')
     cy.get('.mat-column-fyle').eq(1).click({force: true})
     cy.get('.mapping-table--form-field').eq(0).contains('Select Vendor')

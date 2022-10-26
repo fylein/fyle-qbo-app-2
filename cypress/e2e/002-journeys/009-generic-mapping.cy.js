@@ -58,7 +58,7 @@ describe('generic mapping view/create/update', () => {
 
       cy.get('@projectMappingRow').find('.mapping-table--form-field').click()
       // Select 1st option
-      cy.get('.mat-option').eq(el.index()+1).click()
+      cy.get('.mat-option').eq(0).click()
     })
     cy.get('@projectMappingRow').find('.mapping-table--form-field').should('not.have.text', existingMappingValue)
   })

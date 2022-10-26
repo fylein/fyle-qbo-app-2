@@ -64,7 +64,9 @@ describe('resolve qbo error', () => {
     cy.get('@categoryMappingRow').find('.mat-column-fyle').contains('Food')
 
     cy.get('@categoryMappingRow').find('.mapping-table--form-field').click()
-    cy.get('.mat-option').contains('Automobile').click()
+    cy.get('.search-select--search-input').eq(1).type('food')
+    cy.wait(1000)
+    cy.get('.mat-option').contains('Food').click()
     cy.navigateToModule('Dashboard')
     // Export
     cy.url().should('include', '/workspaces/main/dashboard')
