@@ -56,6 +56,7 @@ describe('resolve qbo error', () => {
 
     cy.get('.mapping-filter--filter-alphabet-list').contains('F').click()
     cy.wait('@getMappings').its('response.statusCode').should('equal', 200)
+    cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
 
     cy.get('.mapping-filter--filter-alphabet-list').as('alphabet')
     cy.get('@alphabet').contains('F').click()
