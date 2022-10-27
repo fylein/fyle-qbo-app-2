@@ -299,7 +299,7 @@ describe('update configuration', () => {
 
     cy.get('@categoryMappingRow').find('.mapping-table--form-field').click()
     cy.get('.search-select--search-input').eq(1).type('Opening Balance Equity')
-    cy.wait(1000)
+    cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
     cy.get('.mat-option').contains('Opening Balance Equity').click()
 
   })
@@ -308,7 +308,7 @@ describe('update configuration', () => {
     cy.navigateToModule('Mappings')
     cy.navigateToMappingPage('Project Mapping')
     cy.url().should('include', '/workspaces/main/mapping/project')
-    cy.wait('@getQBOCategories').its('response.statusCode').should('equal', 200)
+    cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
 
     cy.get('.mapping-filter--filter-alphabet-list').contains('F').click()
     cy.get('.mapping-table--row').eq(1).as('projectMappingRow')

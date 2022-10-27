@@ -82,7 +82,7 @@ Cypress.Commands.add('setupHttpListeners', () => {
 
   setupInterceptor('GET', '/qbo/vendors/', 'getQBOVendors')
 
-  setupInterceptor('GET', '/qbo/mapping_options/', 'getQBOCategories')
+  setupInterceptor('GET', '/qbo/mapping_options/', 'getMappingOptions')
 });
 
 Cypress.Commands.add('selectMatOption', (optionName) => {
