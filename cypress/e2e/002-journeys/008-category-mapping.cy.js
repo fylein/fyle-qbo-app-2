@@ -36,7 +36,7 @@ describe('category mapping view/create/update', () => {
       cy.get('.mapping-table--form-field').eq(index).contains('Select Account').click()
 
       // Random option number, from 1 -> 70
-      cy.get('.mat-option').eq(Math.floor((Math.random() * (10)) + 1)).click()
+      cy.get('.mat-option').eq(Math.floor((Math.random() * (9)) + 1)).click()
       cy.get('.mat-column-state').eq(index + 1).contains('Mapped')
 
       // Stop execution
