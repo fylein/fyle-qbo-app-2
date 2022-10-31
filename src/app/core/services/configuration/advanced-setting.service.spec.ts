@@ -1,7 +1,7 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
 import { AdvancedSettingService } from './advanced-setting.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { AdvancedSettingGet, AdvancedSettingPost, AdvancedSettingWorkspaceSchedulePost } from '../../models/configuration/advanced-setting.model';
+import { AdvancedSettingGet, AdvancedSettingPost } from '../../models/configuration/advanced-setting.model';
 import { environment } from 'src/environments/environment';
 import { WorkspaceScheduleEmailOptions } from '../../models/db/workspace-schedule.model';
 

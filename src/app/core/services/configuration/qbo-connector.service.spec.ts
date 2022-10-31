@@ -4,7 +4,6 @@ import { QBOCredentials } from '../../models/configuration/qbo-connector.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { QBOPreference } from '../../models/misc/qbo-preference.model';
 import { environment } from 'src/environments/environment';
-import { of } from 'rxjs';
 import { WorkspaceService } from '../workspace/workspace.service';
 
 describe('QboConnectorService', () => {

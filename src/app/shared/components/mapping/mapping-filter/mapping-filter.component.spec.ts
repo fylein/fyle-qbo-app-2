@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
@@ -14,7 +15,7 @@ describe('MappingFilterComponent', () => {
   let formBuilder: FormBuilder;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SharedModule],
+      imports: [SharedModule, HttpClientTestingModule],
       declarations: [ MappingFilterComponent ],
       providers: [FormBuilder],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]

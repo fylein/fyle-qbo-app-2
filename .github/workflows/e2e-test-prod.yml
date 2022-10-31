@@ -31,7 +31,7 @@ jobs:
         if: failure()
         with:
           token: ${{ secrets.SLACK_TOKEN }}
-          channels: 'integration_test_runs'
+          channels: 'integration_github_events'
           message-text: ':pepe-dance: End to End tests (on prod) just got completed. I have placed the screenshots and videos in this thread :pepe-dance:'
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

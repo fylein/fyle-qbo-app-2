@@ -56,6 +56,7 @@ describe('resolve qbo error', () => {
 
     cy.get('.mapping-filter--filter-alphabet-list').contains('F').click()
     cy.wait('@getMappings').its('response.statusCode').should('equal', 200)
+    cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
 
     cy.get('.mapping-filter--filter-alphabet-list').as('alphabet')
     cy.get('@alphabet').contains('F').click()
@@ -64,6 +65,8 @@ describe('resolve qbo error', () => {
     cy.get('@categoryMappingRow').find('.mat-column-fyle').contains('Food')
 
     cy.get('@categoryMappingRow').find('.mapping-table--form-field').click()
+    cy.get('.search-select--search-input').eq(1).type('food')
+    cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
     cy.get('.mat-option').contains('Food').click()
     cy.navigateToModule('Dashboard')
     // Export

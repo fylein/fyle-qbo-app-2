@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -13,7 +14,7 @@ describe('EmailMultiSelectFieldComponent', () => {
   let formBuilder: FormBuilder;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SharedModule, MatDialogModule, NoopAnimationsModule],
+      imports: [SharedModule, MatDialogModule, NoopAnimationsModule, HttpClientTestingModule],
       declarations: [ EmailMultiSelectFieldComponent ]
     })
     .compileComponents();

@@ -165,8 +165,11 @@ export class GenericMappingComponent implements OnInit {
           autoMapped: extendedExpenseAttribute.auto_mapped,
           index: index
         });
+        if ((extendedExpenseAttribute.mapping.length) && (this.qboData.findIndex((data) => data.value === extendedExpenseAttribute.mapping[0].destination.value) < 0)) {
+          this.qboData.push(extendedExpenseAttribute.mapping[0].destination);
+        }
       });
-
+      this.qboData = this.qboData.sort((a, b) => (a.value > b.value ? 1 : -1));
       this.mappings = new MatTableDataSource(mappings);
       this.mappings.filterPredicate = this.searchByText;
       this.setupFyleQboMappingFormArray(mappings);
@@ -197,8 +200,7 @@ export class GenericMappingComponent implements OnInit {
             (this.mappingSetting.source_field === 'CATEGORY')){
             active = true;
         }
-
-        this.mappingService.getQBODestinationAttributes(this.mappingSetting.destination_field, active).subscribe((qboData: DestinationAttribute[]) => {
+        this.mappingService.getSearchedQBODestinationAttributes(this.mappingSetting.destination_field, undefined, active).subscribe((qboData: DestinationAttribute[]) => {
           this.qboData = qboData;
           this.getMappings();
         });
