@@ -453,7 +453,6 @@ describe('MappingService', () => {
       workspace: +workspace_id,
       detail: {
         email: 'dummy@gmail.com',
-        account_type: 'expense',
         fully_qualified_name: 'Fyle'
       }
     };
@@ -526,7 +525,6 @@ describe('MappingService', () => {
       workspace: +workspace_id,
       detail: {
         email: 'dummy@gmail.com',
-        account_type: 'expense',
         fully_qualified_name: 'Fyle'
       }
     };

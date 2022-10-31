@@ -32,6 +32,7 @@ Please refer this link to find the [documentation](https://fylein.github.io/fyle
     ```
         "workspace_id": "",
         "refresh_token": "",
+        "org_id": ""
     ```
 
 * Create an sql function to partially setup an org to run tests -

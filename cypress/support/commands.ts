@@ -79,6 +79,10 @@ Cypress.Commands.add('setupHttpListeners', () => {
   setupInterceptor('GET', '/fyle/expense_fields', 'getFyleExpenseFields')
 
   setupInterceptor('GET', '/mappings/employee_attributes/', 'getEmployeeMappings')
+
+  setupInterceptor('GET', '/qbo/vendors/', 'getQBOVendors')
+
+  setupInterceptor('GET', '/qbo/mapping_options/', 'getMappingOptions')
 });
 
 Cypress.Commands.add('selectMatOption', (optionName) => {

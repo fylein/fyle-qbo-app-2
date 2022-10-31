@@ -296,8 +296,11 @@ describe('update configuration', () => {
 
     cy.get('.mapping-table--row').eq(3).as('categoryMappingRow')
     cy.get('@categoryMappingRow').find('.mat-column-fyle').contains('Food')
+    cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
 
     cy.get('@categoryMappingRow').find('.mapping-table--form-field').click()
+    cy.get('.search-select--search-input').eq(1).type('Opening Balance Equity')
+    cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
     cy.get('.mat-option').contains('Opening Balance Equity').click()
 
   })
@@ -306,10 +309,9 @@ describe('update configuration', () => {
     cy.navigateToModule('Mappings')
     cy.navigateToMappingPage('Project Mapping')
     cy.url().should('include', '/workspaces/main/mapping/project')
+    cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
 
     cy.get('.mapping-filter--filter-alphabet-list').contains('F').click()
-    cy.wait('@getDestinationAttributes').its('response.statusCode').should('equal', 200)
-
     cy.get('.mapping-table--row').eq(1).as('projectMappingRow')
     cy.get('@projectMappingRow').find('.mat-column-fyle').contains('Aaron Abbott')
 
