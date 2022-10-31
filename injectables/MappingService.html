@@ -129,6 +129,9 @@
                                 <a href="#getQBOVendors" >getQBOVendors</a>
                             </li>
                             <li>
+                                <a href="#getSearchedQBODestinationAttributes" >getSearchedQBODestinationAttributes</a>
+                            </li>
+                            <li>
                                 <a href="#postEmployeeMapping" >postEmployeeMapping</a>
                             </li>
                             <li>
@@ -241,8 +244,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="145"
-                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:145</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="169"
+                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:169</a></div>
                 </td>
             </tr>
 
@@ -310,8 +313,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="137"
-                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:137</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="161"
+                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:161</a></div>
                 </td>
             </tr>
 
@@ -347,8 +350,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:58</a></div>
                 </td>
             </tr>
 
@@ -416,8 +419,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:90</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:106</a></div>
                 </td>
             </tr>
 
@@ -545,8 +548,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:83</a></div>
                 </td>
             </tr>
 
@@ -582,8 +585,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:64</a></div>
                 </td>
             </tr>
 
@@ -651,8 +654,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:87</a></div>
                 </td>
             </tr>
 
@@ -792,8 +795,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="127"
-                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:127</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="151"
+                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:151</a></div>
                 </td>
             </tr>
 
@@ -829,8 +832,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="122"
-                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:122</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="146"
+                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:146</a></div>
                 </td>
             </tr>
 
@@ -990,7 +993,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getQBOEmployees()</code>
+<code>getQBOEmployees(searchTerm: string | void)</code>
                 </td>
             </tr>
 
@@ -1004,8 +1007,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="113"
-                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:113</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:129</a></div>
                 </td>
             </tr>
 
@@ -1014,8 +1017,40 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>searchTerm</td>
+                                    <td>
+                                            <code>string | void</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
                         <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#DestinationAttribute" target="_self" >Observable&lt;DestinationAttribute[]&gt;</a></code>
 
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -1034,7 +1069,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getQBOVendors()</code>
+<code>getQBOVendors(searchTerm: string | void)</code>
                 </td>
             </tr>
 
@@ -1048,8 +1083,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="118"
-                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:118</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="138"
+                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:138</a></div>
                 </td>
             </tr>
 
@@ -1058,8 +1093,141 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>searchTerm</td>
+                                    <td>
+                                            <code>string | void</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
                         <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#DestinationAttribute" target="_self" >Observable&lt;DestinationAttribute[]&gt;</a></code>
 
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSearchedQBODestinationAttributes"></a>
+                    <span class="name">
+                        <span ><b>getSearchedQBODestinationAttributes</b></span>
+                        <a href="#getSearchedQBODestinationAttributes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getSearchedQBODestinationAttributes(attributeType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, searchTerm?: string | void, active: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:42</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>attributeType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>searchTerm</td>
+                                    <td>
+                                            <code>string | void</code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>active</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>false</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#DestinationAttribute" target="_self" >Observable&lt;DestinationAttribute[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -1085,8 +1253,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="104"
-                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:104</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="120"
+                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:120</a></div>
                 </td>
             </tr>
 
@@ -1154,8 +1322,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:86</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="102"
+                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:102</a></div>
                 </td>
             </tr>
 
@@ -1223,8 +1391,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="141"
-                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:141</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="165"
+                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:165</a></div>
                 </td>
             </tr>
 
@@ -1292,8 +1460,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="131"
-                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:131</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:155</a></div>
                 </td>
             </tr>
 
@@ -1329,8 +1497,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:108</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="124"
+                            class="link-to-prism">src/app/core/services/misc/mapping.service.ts:124</a></div>
                 </td>
             </tr>
 
@@ -1418,8 +1586,8 @@ export class MappingService {
     private workspaceService: WorkspaceService
   ) { }
 
-  getQBODestinationAttributes(attributeTypes: string | string[], active:boolean &#x3D; false): Observable&lt;DestinationAttribute[]&gt; {
-    const params: {attribute_types: string | string[], active?: boolean} &#x3D; {
+  getQBODestinationAttributes(attributeTypes: string | string[], active: boolean &#x3D; false): Observable&lt;DestinationAttribute[]&gt; {
+    const params: { attribute_types: string | string[], active?: boolean } &#x3D; {
       attribute_types: attributeTypes
     };
 
@@ -1428,6 +1596,22 @@ export class MappingService {
     }
 
     return this.apiService.get(&#x60;/workspaces/${this.workspaceId}/qbo/destination_attributes/&#x60;, params);
+  }
+
+  getSearchedQBODestinationAttributes(attributeType: string, searchTerm?: string | void, active: boolean &#x3D; false): Observable&lt;DestinationAttribute[]&gt; {
+    const params: { attribute_type: string | string[], active?: boolean, search_term?: string } &#x3D; {
+      attribute_type: attributeType
+    };
+
+    if (active) {
+      params.active &#x3D; true;
+    }
+
+    if (searchTerm) {
+      params.search_term &#x3D; searchTerm;
+    }
+
+    return this.apiService.get(&#x60;/workspaces/${this.workspaceId}/qbo/mapping_options/&#x60;, params);
   }
 
   getDistinctQBODestinationAttributes(attributeTypes: string[]): Observable&lt;DestinationAttribute[]&gt; {
@@ -1501,13 +1685,21 @@ export class MappingService {
   }
 
   @Cacheable()
-  getQBOEmployees(): Observable&lt;DestinationAttribute[]&gt; {
-    return this.apiService.get(&#x60;/workspaces/${this.workspaceId}/qbo/employees/&#x60;, {});
+  getQBOEmployees(searchTerm: string | void): Observable&lt;DestinationAttribute[]&gt; {
+    const params: { search_term?: string } &#x3D; {};
+    if (searchTerm) {
+      params.search_term &#x3D; searchTerm;
+    }
+    return this.apiService.get(&#x60;/workspaces/${this.workspaceId}/qbo/employees/&#x60;, params);
   }
 
   @Cacheable()
-  getQBOVendors(): Observable&lt;DestinationAttribute[]&gt; {
-    return this.apiService.get(&#x60;/workspaces/${this.workspaceId}/qbo/vendors/&#x60;, {});
+  getQBOVendors(searchTerm: string | void): Observable&lt;DestinationAttribute[]&gt; {
+    const params: { search_term?: string } &#x3D; {};
+    if (searchTerm) {
+      params.search_term &#x3D; searchTerm;
+    }
+    return this.apiService.get(&#x60;/workspaces/${this.workspaceId}/qbo/vendors/&#x60;, params);
   }
 
   getMappingStats(sourceType: string, destinationType: string): Observable&lt;MappingStats&gt; {

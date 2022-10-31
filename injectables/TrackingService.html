@@ -106,6 +106,9 @@
                                 <a href="#flattenObject" >flattenObject</a>
                             </li>
                             <li>
+                                <a href="#onAdvancedSearch" >onAdvancedSearch</a>
+                            </li>
+                            <li>
                                 <a href="#onClickEvent" >onClickEvent</a>
                             </li>
                             <li>
@@ -349,6 +352,75 @@
                     </div>
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onAdvancedSearch"></a>
+                    <span class="name">
+                        <span ><b>onAdvancedSearch</b></span>
+                        <a href="#onAdvancedSearch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onAdvancedSearch(properties: literal type)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/app/core/services/integration/tracking.service.ts:123</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>properties</td>
+                                    <td>
+                                            <code>literal type</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                     </div>
                     <div class="io-description">
@@ -609,8 +681,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="128"
-                            class="link-to-prism">src/app/core/services/integration/tracking.service.ts:128</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="132"
+                            class="link-to-prism">src/app/core/services/integration/tracking.service.ts:132</a></div>
                 </td>
             </tr>
 
@@ -678,8 +750,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="132"
-                            class="link-to-prism">src/app/core/services/integration/tracking.service.ts:132</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">src/app/core/services/integration/tracking.service.ts:136</a></div>
                 </td>
             </tr>
 
@@ -1380,8 +1452,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="123"
-                            class="link-to-prism">src/app/core/services/integration/tracking.service.ts:123</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="127"
+                            class="link-to-prism">src/app/core/services/integration/tracking.service.ts:127</a></div>
                 </td>
             </tr>
 
@@ -1539,7 +1611,7 @@ import { AdvancedSettingPost } from &#x27;../../models/configuration/advanced-se
 import { EmployeeSettingPost } from &#x27;../../models/configuration/employee-setting.model&#x27;;
 import { ExportSettingPost } from &#x27;../../models/configuration/export-setting.model&#x27;;
 import { ImportSettingPost } from &#x27;../../models/configuration/import-setting.model&#x27;;
-import { Action, ClickEvent, DeleteEvent, OnboardingStep, ProgressPhase, SimpleSearchPage, SimpleSearchType, UpdateEvent } from &#x27;../../models/enum/enum.model&#x27;;
+import { Action, ClickEvent, DeleteEvent, OnboardingStep, ProgressPhase, SearchType, SimpleSearchPage, SimpleSearchType, UpdateEvent } from &#x27;../../models/enum/enum.model&#x27;;
 import { ClickEventAdditionalProperty, DeleteEventAdditionalProperty, MappingAlphabeticalFilterAdditionalProperty, ResolveMappingErrorProperty, TimeTakenAdditionalProperty, UpdateEventAdditionalProperty } from &#x27;../../models/misc/tracking.model&#x27;;
 
 @Injectable({
@@ -1654,6 +1726,10 @@ export class TrackingService {
 
   onSimpleSearch(properties: {page: SimpleSearchPage, searchType: SimpleSearchType}): void {
     this.eventTrack(&#x27;Simple search&#x27;, properties);
+  }
+
+  onAdvancedSearch(properties: {page: SimpleSearchPage, searchType: SearchType}): void {
+    this.eventTrack(&#x27;Advanced search&#x27;, properties);
   }
 
   trackTimeSpent(event: OnboardingStep | Action, additionalProperties: Partial&lt;TimeTakenAdditionalProperty&gt;): void {

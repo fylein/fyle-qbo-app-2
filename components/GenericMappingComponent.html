@@ -452,8 +452,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="187"
-                            class="link-to-prism">src/app/shared/components/mapping/generic-mapping/generic-mapping.component.ts:187</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="190"
+                            class="link-to-prism">src/app/shared/components/mapping/generic-mapping/generic-mapping.component.ts:190</a></div>
                 </td>
             </tr>
 
@@ -597,8 +597,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="227"
-                            class="link-to-prism">src/app/shared/components/mapping/generic-mapping/generic-mapping.component.ts:227</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="229"
+                            class="link-to-prism">src/app/shared/components/mapping/generic-mapping/generic-mapping.component.ts:229</a></div>
                 </td>
             </tr>
 
@@ -634,8 +634,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="209"
-                            class="link-to-prism">src/app/shared/components/mapping/generic-mapping/generic-mapping.component.ts:209</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="211"
+                            class="link-to-prism">src/app/shared/components/mapping/generic-mapping/generic-mapping.component.ts:211</a></div>
                 </td>
             </tr>
 
@@ -705,8 +705,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="183"
-                            class="link-to-prism">src/app/shared/components/mapping/generic-mapping/generic-mapping.component.ts:183</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="186"
+                            class="link-to-prism">src/app/shared/components/mapping/generic-mapping/generic-mapping.component.ts:186</a></div>
                 </td>
             </tr>
 
@@ -1582,8 +1582,11 @@ export class GenericMappingComponent implements OnInit {
           autoMapped: extendedExpenseAttribute.auto_mapped,
           index: index
         });
+        if ((extendedExpenseAttribute.mapping.length) &amp;&amp; (this.qboData.findIndex((data) &#x3D;&gt; data.value &#x3D;&#x3D;&#x3D; extendedExpenseAttribute.mapping[0].destination.value) &lt; 0)) {
+          this.qboData.push(extendedExpenseAttribute.mapping[0].destination);
+        }
       });
-
+      this.qboData &#x3D; this.qboData.sort((a, b) &#x3D;&gt; (a.value &gt; b.value ? 1 : -1));
       this.mappings &#x3D; new MatTableDataSource(mappings);
       this.mappings.filterPredicate &#x3D; this.searchByText;
       this.setupFyleQboMappingFormArray(mappings);
@@ -1614,8 +1617,7 @@ export class GenericMappingComponent implements OnInit {
             (this.mappingSetting.source_field &#x3D;&#x3D;&#x3D; &#x27;CATEGORY&#x27;)){
             active &#x3D; true;
         }
-
-        this.mappingService.getQBODestinationAttributes(this.mappingSetting.destination_field, active).subscribe((qboData: DestinationAttribute[]) &#x3D;&gt; {
+        this.mappingService.getSearchedQBODestinationAttributes(this.mappingSetting.destination_field, undefined, active).subscribe((qboData: DestinationAttribute[]) &#x3D;&gt; {
           this.qboData &#x3D; qboData;
           this.getMappings();
         });
