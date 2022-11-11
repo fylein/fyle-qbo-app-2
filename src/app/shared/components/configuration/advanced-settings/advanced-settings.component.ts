@@ -47,6 +47,10 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   paymentSyncOptions: AdvancedSettingFormOption[] = [
     {
+      label: 'None',
+      value: null
+    },
+    {
       label: 'Export Fyle ACH Payments to QuickBooks Online',
       value: PaymentSyncDirection.FYLE_TO_QBO
     },
