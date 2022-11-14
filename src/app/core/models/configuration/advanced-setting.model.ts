@@ -53,7 +53,7 @@ export type AdvancedSettingAddEmailModel = {
 }
 
 export interface AdvancedSettingFormOption extends SelectFormOption {
-  value: PaymentSyncDirection | number;
+  value: PaymentSyncDirection | number | null;
 }
 
 export class AdvancedSettingModel {
