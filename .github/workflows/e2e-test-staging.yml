@@ -28,6 +28,7 @@ jobs:
           filters: |
             src:
               - 'src/**'
+              - 'cypress/**'
       - name: Install dependencies
         if: steps.filter.outputs.src == 'true'
         run: npm install --prefix cypress
