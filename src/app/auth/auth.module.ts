@@ -16,10 +16,10 @@ import { SharedLoginComponent } from './shared-login/shared-login.component';
   declarations: [
     LoginComponent,
     LogoutComponent,
-       
-    FyleCallbackComponent,   
+
+    FyleCallbackComponent,
     AuthComponent,
-    SharedLoginComponent   
+    SharedLoginComponent
   ],
   imports: [
     CommonModule,

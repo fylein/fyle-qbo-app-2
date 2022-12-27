@@ -25,7 +25,7 @@ export class DashboardHeaderSectionComponent implements OnInit {
     this.workspaceService.refreshFyleDimensions().subscribe(
 
 
-      
+
     );
     this.snackBar.open('Refreshing data dimensions from QuickBooks Online...');
     }
