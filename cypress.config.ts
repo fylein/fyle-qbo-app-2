@@ -6,8 +6,8 @@ export default defineConfig({
   e2e: {
     baseUrl: environment.app_url,
     setupNodeEvents(on, config) {
-      require('@cypress/code-coverage/task')(on, config)
-      return config
+      require('@cypress/code-coverage/task')(on, config);
+      return config;
     }
   },
   viewportHeight: 980,
