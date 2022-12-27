@@ -26,13 +26,6 @@ jobs:
           record: true
           browser: chrome
           tag: ${{ secrets.E2E_TESTS_ENV }}
-      - name: 'Upload screenshots and videos to Slack'
-        uses: trymbill/cypress-slack-video-upload-action@v1.3.0
-        if: failure()
-        with:
-          token: ${{ secrets.SLACK_TOKEN }}
-          channels: 'integration_github_events'
-          message-text: ':pepe-dance: End to End tests (on prod) just got completed. I have placed the screenshots and videos in this thread :pepe-dance:'
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
