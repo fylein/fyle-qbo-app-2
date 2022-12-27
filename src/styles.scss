@@ -479,7 +479,7 @@ th.mat-header-cell:last-of-type {
   }
 
   &--footer-contents {
-    padding: 20px 20px;
+    padding: 20px;
   }
 
   &--back-btn {
@@ -514,7 +514,7 @@ th.mat-header-cell:last-of-type {
   }
 
   &--toggle-form-field {
-    padding: 22.5px 0px 0px 0px;
+    padding: 22.5px 0px 0px;
   }
 
   &--input-toggle-section {
@@ -544,7 +544,7 @@ th.mat-header-cell:last-of-type {
 
   &--form-field {
     width: 401px;
-    padding: 2px 0px 0px 0px;
+    padding: 2px 0px 0px;
     @media only screen and (max-width: 1440px) {
       padding: 2px 8px 0px 10px;
     }
@@ -623,7 +623,7 @@ th.mat-header-cell:last-of-type {
   }
 
   &--help-text {
-    padding: 12px 0px 12px 0px;
+    padding: 12px 0px;
     margin-top: 2px;
     color: #2C304E;
   }
