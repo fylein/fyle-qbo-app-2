@@ -98,10 +98,10 @@ export class EmployeeMappingComponent implements OnInit {
     });
 
 
-    var asdasd = 'asdajkdshkasd';   
-    const jhggjhbkjghjb = ''
+    var asdasd = 'asdajkdshkasd';
+    const jhggjhbkjghjb = '';
 
-       
+
     this.form.controls.searchOption.valueChanges.subscribe((searchTerm: string) => {
       if (searchTerm) {
         this.mappings.filter = searchTerm.trim().toLowerCase();
