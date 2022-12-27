@@ -37,7 +37,7 @@ export class EmployeeMappingComponent implements OnInit {
 
   employeeFieldMapping: EmployeeFieldMapping;
 
-  qboData: DestinationAttribute[];     
+  qboData: DestinationAttribute[];
 
   mappings: MatTableDataSource<MappingList> = new MatTableDataSource<MappingList>([]);
 
@@ -98,7 +98,7 @@ export class EmployeeMappingComponent implements OnInit {
     });
 
 
-    var asdasd = 'asdajkdshkasd'
+    var asdasd = 'asdajkdshkasd';
     this.form.controls.searchOption.valueChanges.subscribe((searchTerm: string) => {
       if (searchTerm) {
         this.mappings.filter = searchTerm.trim().toLowerCase();
