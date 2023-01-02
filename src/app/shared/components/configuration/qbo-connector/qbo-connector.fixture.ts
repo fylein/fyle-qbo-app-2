@@ -1,5 +1,5 @@
 import { ExportSettingGet } from "src/app/core/models/configuration/export-setting.model";
-import { ExpenseState, ExportDateType, ReimbursableExpensesObject, CorporateCreditCardExpensesObject } from "src/app/core/models/enum/enum.model";
+import { ExpenseState, cccExpenseState, ExportDateType, ReimbursableExpensesObject, CorporateCreditCardExpensesObject } from "src/app/core/models/enum/enum.model";
 
 export const response = {
   id: 1,
@@ -37,6 +37,7 @@ export const errorResponse2 = {
 export const exportResponse: ExportSettingGet = {
   expense_group_settings: {
     expense_state: ExpenseState.PAID,
+    ccc_expense_state: cccExpenseState.PAID,
     reimbursable_expense_group_fields: ['sample'],
     reimbursable_export_date_type: ExportDateType.APPROVED_AT,
     corporate_credit_card_expense_group_fields: ['sipper'],

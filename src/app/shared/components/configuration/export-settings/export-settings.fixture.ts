@@ -1,7 +1,7 @@
 import { ExportSettingFormOption, ExportSettingGet } from "src/app/core/models/configuration/export-setting.model";
 import { GroupedDestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
-import { AutoMapEmployee, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseState, ExportDateType, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
+import { AutoMapEmployee, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseState, cccExpenseState, ExportDateType, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
 
 export const export_settings: ExportSettingFormOption[] = [
   {
@@ -111,6 +111,7 @@ export const destinationAttribute: GroupedDestinationAttribute ={
 export const exportResponse: ExportSettingGet = {
   expense_group_settings: {
     expense_state: ExpenseState.PAID,
+    ccc_expense_state: cccExpenseState.PAID,
     reimbursable_expense_group_fields: ['sample'],
     reimbursable_export_date_type: ExportDateType.APPROVED_AT,
     corporate_credit_card_expense_group_fields: ['sipper'],

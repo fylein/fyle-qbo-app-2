@@ -14,6 +14,11 @@ export enum ExpenseState {
   PAID = 'PAID'
 }
 
+export enum cccExpenseState {
+  PAYMENT_PROCESSING = 'PAYMENT_PROCESSING',
+  PAID = 'PAID'
+}
+
 export enum ExportDateType {
   LAST_SPENT_AT = 'last_spent_at',
   SPENT_AT = 'spent_at',

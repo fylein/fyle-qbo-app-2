@@ -3,7 +3,7 @@ import { getTestBed, TestBed } from '@angular/core/testing';
 import { ExportLogService } from './export-log.service';
 import { ExpenseGroupSetting } from '../../models/db/expense-group-setting.model';
 import { ExpenseGroup, ExpenseGroupDescription, ExpenseGroupResponse } from '../../models/db/expense-group.model';
-import { ExpenseState, ExportDateType, FyleReferenceType } from '../../models/enum/enum.model';
+import { ExpenseState, cccExpenseState, ExportDateType, FyleReferenceType } from '../../models/enum/enum.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
 
@@ -33,6 +33,7 @@ describe('ExportLogService', () => {
       corporate_credit_card_expense_group_fields: ["employee_email", "report_id", "claim_number", "fund_source"],
       created_at: new Date("2022-04-13T10:29:18.802702Z"),
       expense_state: ExpenseState.PAYMENT_PROCESSING,
+      ccc_expense_state: cccExpenseState.PAYMENT_PROCESSING,
       id: 1,
       import_card_credits: false,
       reimbursable_expense_group_fields: ["employee_email", "report_id", "claim_number", "fund_source"],
