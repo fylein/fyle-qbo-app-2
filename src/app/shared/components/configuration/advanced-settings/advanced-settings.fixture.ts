@@ -6,6 +6,7 @@ import { AutoMapEmployee, CorporateCreditCardExpensesObject, EmployeeFieldMappin
 
 export const response:WorkspaceGeneralSetting = {
   auto_create_destination_entity: true,
+  is_simplify_report_closure_enabled: true,
   auto_map_employees: AutoMapEmployee.EMAIL,
   category_sync_version: "v1",
   change_accounting_period: true,
