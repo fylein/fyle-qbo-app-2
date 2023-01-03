@@ -241,7 +241,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
         this.exportSettingsForm.controls.creditCardExportType.clearValidators();
         this.exportSettingsForm.controls.creditCardExportGroup.clearValidators();
         this.exportSettingsForm.controls.creditCardExportDate.clearValidators();
-        this.exportSettingsForm.controls.cccExpenseState.clearValidators();
+        this.exportSettingsForm.controls.cccExpenseState.setValue(null);
         this.exportSettingsForm.controls.creditCardExportType.setValue(null);
         this.exportSettingsForm.controls.creditCardExportGroup.setValue(null);
         this.exportSettingsForm.controls.creditCardExportDate.setValue(null);
