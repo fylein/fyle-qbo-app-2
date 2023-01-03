@@ -10,6 +10,7 @@ import { QBOCredentials } from "src/app/core/models/configuration/qbo-connector.
 const workspaceresponse:WorkspaceGeneralSetting = {
   auto_create_destination_entity: true,
   auto_create_merchants_as_vendors: true,
+  is_simplify_report_closure_enabled: true,
   auto_map_employees: null,
   category_sync_version: "v1",
   change_accounting_period: true,

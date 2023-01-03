@@ -57,6 +57,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       label: 'Paid'
     }
   ];
+
   cccExpenseStateOptions: ExportSettingFormOption[]  = [
     {
       value: cccExpenseState.PAYMENT_PROCESSING,
@@ -67,7 +68,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       label: 'Paid'
     }
   ];
-  
+
   expenseGroupingFieldOptions: ExportSettingFormOption[] = [
     {
       label: 'Report',
