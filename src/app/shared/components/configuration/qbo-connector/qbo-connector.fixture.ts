@@ -45,7 +45,8 @@ export const exportResponse: ExportSettingGet = {
   },
   workspace_general_settings: {
     reimbursable_expenses_object: null,
-    corporate_credit_card_expenses_object: null
+    corporate_credit_card_expenses_object: null,
+    is_simplify_report_closure_enabled: true
   },
   general_mappings: {
     bank_account: { id: '1', name: 'Fyle' },
