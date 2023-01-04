@@ -11,13 +11,13 @@ export enum AutoMapEmployee {
 
 export enum ExpenseState {
   PAYMENT_PROCESSING = 'PAYMENT_PROCESSING',
-  PAID = 'PAID',
-  APPROVED = 'APPROVED'
+  PAID = 'PAID'
 }
 
-export enum cccExpenseState {
+export enum CCCExpenseState {
   PAYMENT_PROCESSING = 'PAYMENT_PROCESSING',
-  PAID = 'PAID'
+  PAID = 'PAID',
+  APPROVED = 'APPROVED'
 }
 
 export enum ExportDateType {

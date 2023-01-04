@@ -1,5 +1,5 @@
 import { FormGroup } from "@angular/forms";
-import { CorporateCreditCardExpensesObject, ExpenseGroupingFieldOption, ExpenseState, cccExpenseState, ExportDateType, ReimbursableExpensesObject } from "../enum/enum.model";
+import { CorporateCreditCardExpensesObject, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject } from "../enum/enum.model";
 import { ExpenseGroupSettingGet, ExpenseGroupSettingPost } from "../db/expense-group-setting.model";
 import { DefaultDestinationAttribute, GeneralMapping } from "../db/general-mapping.model";
 import { SelectFormOption } from "../misc/select-form-option.model";
@@ -7,7 +7,6 @@ import { SelectFormOption } from "../misc/select-form-option.model";
 export type ExportSettingWorkspaceGeneralSetting = {
   reimbursable_expenses_object: ReimbursableExpensesObject | null,
   corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject | null,
-  is_simplify_report_closure_enabled: boolean
 }
 
 export type ExportSettingGeneralMapping = {
@@ -33,7 +32,7 @@ export type ExportSettingGet = {
 }
 
 export interface ExportSettingFormOption extends SelectFormOption {
-  value: ExpenseState | cccExpenseState | ReimbursableExpensesObject | CorporateCreditCardExpensesObject | ExpenseGroupingFieldOption | ExportDateType;
+  value: ExpenseState | CCCExpenseState | ReimbursableExpensesObject | CorporateCreditCardExpensesObject | ExpenseGroupingFieldOption | ExportDateType;
 }
 
 export class ExportSettingModel {
@@ -51,7 +50,6 @@ export class ExportSettingModel {
       workspace_general_settings: {
         reimbursable_expenses_object: exportSettingsForm.get('reimbursableExportType')?.value,
         corporate_credit_card_expenses_object: exportSettingsForm.get('creditCardExportType')?.value,
-        is_simplify_report_closure_enabled: exportSettingsForm.get('is_simplify_report_closure_enabled')?.value
       },
       general_mappings: {
         bank_account: exportSettingsForm.get('bankAccount')?.value ? exportSettingsForm.get('bankAccount')?.value : emptyDestinationAttribute,

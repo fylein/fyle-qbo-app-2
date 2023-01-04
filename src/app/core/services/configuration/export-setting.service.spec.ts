@@ -1,7 +1,7 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
 import { ExportSettingService } from './export-setting.service';
 import { ExportSettingGet, ExportSettingPost } from '../../models/configuration/export-setting.model';
-import { ExpenseState, cccExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, ExportDateType } from '../../models/enum/enum.model';
+import { ExpenseState, CCCExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, ExportDateType } from '../../models/enum/enum.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
 
@@ -31,7 +31,7 @@ describe('ExportSettingService', () => {
     const response: ExportSettingGet = {
       expense_group_settings: {
         expense_state: ExpenseState.PAID,
-        ccc_expense_state: cccExpenseState.PAID,
+        ccc_expense_state: CCCExpenseState.PAID,
         reimbursable_expense_group_fields: ['sample'],
         reimbursable_export_date_type: ExportDateType.APPROVED_AT,
         corporate_credit_card_expense_group_fields: ['sipper'],
@@ -40,7 +40,6 @@ describe('ExportSettingService', () => {
       workspace_general_settings: {
         reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
         corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL,
-        is_simplify_report_closure_enabled: true
       },
       general_mappings: {
         bank_account: { id: '1', name: 'Fyle' },
@@ -67,7 +66,7 @@ describe('ExportSettingService', () => {
     const exportSettingPayload: ExportSettingPost = {
       expense_group_settings: {
         expense_state: ExpenseState.PAID,
-        ccc_expense_state: cccExpenseState.PAID,
+        ccc_expense_state: CCCExpenseState.PAID,
         reimbursable_expense_group_fields: ['sample'],
         reimbursable_export_date_type: null,
         corporate_credit_card_expense_group_fields: ['sipper'],
@@ -75,8 +74,7 @@ describe('ExportSettingService', () => {
       },
       workspace_general_settings: {
         reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
-        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL,
-        is_simplify_report_closure_enabled: true
+        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL
       },
       general_mappings: {
         bank_account: { id: '1', name: 'Fyle' },
@@ -90,7 +88,7 @@ describe('ExportSettingService', () => {
     const response={
       expense_group_settings: {
         expense_state: ExpenseState.PAID,
-        ccc_expense_state: cccExpenseState.PAID,
+        ccc_expense_state: CCCExpenseState.PAID,
         reimbursable_expense_group_fields: ['sample'],
         reimbursable_export_date_type: null,
         corporate_credit_card_expense_group_fields: ['sipper'],
