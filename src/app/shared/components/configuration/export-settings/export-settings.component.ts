@@ -47,25 +47,27 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   windowReference: Window;
 
+  is_simplify_report_closure_enabled: boolean = false
+
   expenseStateOptions: ExportSettingFormOption[] = [
     {
       value: ExpenseState.PAYMENT_PROCESSING,
-      label: 'Payment Processing'
+      label: this.is_simplify_report_closure_enabled ? 'Processing' : 'Payment Processing',
     },
     {
-      value: ExpenseState.PAID,
-      label: 'Paid'
+      label: this.is_simplify_report_closure_enabled ? 'Closed' : 'Paid',
+      value: ExpenseState.PAID
     }
   ];
 
   cccExpenseStateOptions: ExportSettingFormOption[]  = [
     {
-      value: cccExpenseState.PAYMENT_PROCESSING,
-      label: 'Payment Processing'
+      label: this.is_simplify_report_closure_enabled ? 'Approved' : 'Payment Processing',
+      value: this.is_simplify_report_closure_enabled ? ExpenseState.APPROVED: ExpenseState.PAYMENT_PROCESSING
     },
     {
-      value: cccExpenseState.PAID,
-      label: 'Paid'
+      label: this.is_simplify_report_closure_enabled ? 'Closed' : 'Paid',
+      value: ExpenseState.PAID
     }
   ];
 
@@ -465,7 +467,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       this.accountsPayables = response[1].ACCOUNTS_PAYABLE;
       this.vendors = response[1].VENDOR;
       this.expenseAccounts = this.bankAccounts.concat(this.cccAccounts);
-
+      this.is_simplify_report_closure_enabled = response[2].is_simplify_report_closure_enabled;
       this.setupForm();
     });
   }

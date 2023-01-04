@@ -6,7 +6,8 @@ import { SelectFormOption } from "../misc/select-form-option.model";
 
 export type ExportSettingWorkspaceGeneralSetting = {
   reimbursable_expenses_object: ReimbursableExpensesObject | null,
-  corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject | null
+  corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject | null,
+  is_simplify_report_closure_enabled: boolean
 }
 
 export type ExportSettingGeneralMapping = {
@@ -49,7 +50,8 @@ export class ExportSettingModel {
       },
       workspace_general_settings: {
         reimbursable_expenses_object: exportSettingsForm.get('reimbursableExportType')?.value,
-        corporate_credit_card_expenses_object: exportSettingsForm.get('creditCardExportType')?.value
+        corporate_credit_card_expenses_object: exportSettingsForm.get('creditCardExportType')?.value,
+        is_simplify_report_closure_enabled: exportSettingsForm.get('is_simplify_report_closure_enabled')?.value
       },
       general_mappings: {
         bank_account: exportSettingsForm.get('bankAccount')?.value ? exportSettingsForm.get('bankAccount')?.value : emptyDestinationAttribute,
