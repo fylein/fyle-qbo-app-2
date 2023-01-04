@@ -47,12 +47,12 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   windowReference: Window;
 
-  is_simplify_report_closure_enabled: boolean = false
+  is_simplify_report_closure_enabled: boolean = false;
 
   expenseStateOptions: ExportSettingFormOption[] = [
     {
       value: ExpenseState.PAYMENT_PROCESSING,
-      label: this.is_simplify_report_closure_enabled ? 'Processing' : 'Payment Processing',
+      label: this.is_simplify_report_closure_enabled ? 'Processing' : 'Payment Processing'
     },
     {
       label: this.is_simplify_report_closure_enabled ? 'Closed' : 'Paid',
