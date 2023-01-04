@@ -49,7 +49,7 @@ export class ExportSettingModel {
       },
       workspace_general_settings: {
         reimbursable_expenses_object: exportSettingsForm.get('reimbursableExportType')?.value,
-        corporate_credit_card_expenses_object: exportSettingsForm.get('creditCardExportType')?.value,
+        corporate_credit_card_expenses_object: exportSettingsForm.get('creditCardExportType')?.value
       },
       general_mappings: {
         bank_account: exportSettingsForm.get('bankAccount')?.value ? exportSettingsForm.get('bankAccount')?.value : emptyDestinationAttribute,
