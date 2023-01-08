@@ -6,7 +6,7 @@ import { SelectFormOption } from "../misc/select-form-option.model";
 
 export type ExportSettingWorkspaceGeneralSetting = {
   reimbursable_expenses_object: ReimbursableExpensesObject | null,
-  corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject | null,
+  corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject | null
 }
 
 export type ExportSettingGeneralMapping = {
