@@ -1,7 +1,7 @@
 import { EmployeeSettingGet } from "src/app/core/models/configuration/employee-setting.model";
 import { ExportSettingGet } from "src/app/core/models/configuration/export-setting.model";
 import { DestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
-import { EmployeeFieldMapping, AutoMapEmployee, ExpenseState, ExportDateType, ReimbursableExpensesObject, CorporateCreditCardExpensesObject } from "src/app/core/models/enum/enum.model";
+import { EmployeeFieldMapping, AutoMapEmployee, ExpenseState, ExportDateType, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, CCCExpenseState } from "src/app/core/models/enum/enum.model";
 
 export const response: EmployeeSettingGet = {
   workspace_general_settings: { employee_field_mapping: EmployeeFieldMapping.EMPLOYEE, auto_map_employees: AutoMapEmployee.EMPLOYEE_CODE },
@@ -10,6 +10,7 @@ export const response: EmployeeSettingGet = {
 export const response1: ExportSettingGet = {
   expense_group_settings: {
     expense_state: ExpenseState.PAID,
+    ccc_expense_state: CCCExpenseState.PAID,
     reimbursable_expense_group_fields: ['sample'],
     reimbursable_export_date_type: ExportDateType.APPROVED_AT,
     corporate_credit_card_expense_group_fields: ['sipper'],

@@ -12,6 +12,7 @@ export const workspaceResponse:Workspace[] = [{
   cluster_domain: "",
   onboarding_state: OnboardingState.CONNECTION,
   last_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
+  ccc_last_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
   source_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
   destination_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
   created_at: new Date("2022-04-13T10:29:18.796760Z"),

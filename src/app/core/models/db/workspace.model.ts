@@ -10,6 +10,7 @@ export type Workspace = {
   cluster_domain: string;
   onboarding_state: OnboardingState;
   last_synced_at: Date;
+  ccc_last_synced_at: Date;
   source_synced_at: Date;
   destination_synced_at: Date;
   created_at: Date;

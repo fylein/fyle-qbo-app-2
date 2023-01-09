@@ -1,7 +1,7 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
 import { ExportSettingService } from './export-setting.service';
 import { ExportSettingGet, ExportSettingPost } from '../../models/configuration/export-setting.model';
-import { ExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, ExportDateType } from '../../models/enum/enum.model';
+import { ExpenseState, CCCExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, ExportDateType } from '../../models/enum/enum.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
 
@@ -31,6 +31,7 @@ describe('ExportSettingService', () => {
     const response: ExportSettingGet = {
       expense_group_settings: {
         expense_state: ExpenseState.PAID,
+        ccc_expense_state: CCCExpenseState.PAID,
         reimbursable_expense_group_fields: ['sample'],
         reimbursable_export_date_type: ExportDateType.APPROVED_AT,
         corporate_credit_card_expense_group_fields: ['sipper'],
@@ -65,6 +66,7 @@ describe('ExportSettingService', () => {
     const exportSettingPayload: ExportSettingPost = {
       expense_group_settings: {
         expense_state: ExpenseState.PAID,
+        ccc_expense_state: CCCExpenseState.PAID,
         reimbursable_expense_group_fields: ['sample'],
         reimbursable_export_date_type: null,
         corporate_credit_card_expense_group_fields: ['sipper'],
@@ -86,6 +88,7 @@ describe('ExportSettingService', () => {
     const response={
       expense_group_settings: {
         expense_state: ExpenseState.PAID,
+        ccc_expense_state: CCCExpenseState.PAID,
         reimbursable_expense_group_fields: ['sample'],
         reimbursable_export_date_type: null,
         corporate_credit_card_expense_group_fields: ['sipper'],

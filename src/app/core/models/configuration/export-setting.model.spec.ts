@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup } from '@angular/forms';
-import { CorporateCreditCardExpensesObject, ExpenseState, ReimbursableExpensesObject } from '../enum/enum.model';
+import { CorporateCreditCardExpensesObject, ExpenseState, CCCExpenseState, ReimbursableExpensesObject } from '../enum/enum.model';
 import { ExportSettingModel, ExportSettingPost } from "./export-setting.model";
 
 describe('ExportSettingModel', () => {
@@ -16,6 +16,7 @@ describe('ExportSettingModel', () => {
   it('Should return ExportSettingModel[]', () => {
     const exportSettingsForm= new FormGroup({
       expenseState: new FormControl('PAID'),
+      cccExpenseState: new FormControl('PAID'),
       reimbursableExpense: new FormControl(true),
       reimbursableExportType: new FormControl('BILL'),
       reimbursableExportGroup: new FormControl('sample'),
@@ -35,6 +36,7 @@ describe('ExportSettingModel', () => {
     const exportSettingPayload: ExportSettingPost = {
       expense_group_settings: {
         expense_state: ExpenseState.PAID,
+        ccc_expense_state: CCCExpenseState.PAID,
         reimbursable_expense_group_fields: ['sample'],
         reimbursable_export_date_type: null,
         corporate_credit_card_expense_group_fields: ['sipper'],

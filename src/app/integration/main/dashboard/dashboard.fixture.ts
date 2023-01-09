@@ -1,5 +1,5 @@
 import { WorkspaceGeneralSetting } from "../../../core/models/db/workspace-general-setting.model";
-import { EmployeeFieldMapping, ErrorType, ExpenseState, ExportDateType, ExportMode, TaskLogState, TaskLogType } from "../../../core/models/enum/enum.model";
+import { EmployeeFieldMapping, ErrorType, ExpenseState, CCCExpenseState, ExportDateType, ExportMode, TaskLogState, TaskLogType } from "../../../core/models/enum/enum.model";
 import { ExpenseGroupSetting } from '../../../core/models/db/expense-group-setting.model';
 import { MinimalUser } from "src/app/core/models/db/user.model";
 import { LastExport } from "src/app/core/models/db/last-export.model";
@@ -11,6 +11,7 @@ const workspace_id = environment.tests.workspaceId;
 
 export const workspaceGeneralSettingResponse:WorkspaceGeneralSetting = {
   auto_create_destination_entity: true,
+  is_simplify_report_closure_enabled: true,
   auto_create_merchants_as_vendors: true,
   auto_map_employees: null,
   category_sync_version: "v1",
@@ -40,6 +41,7 @@ export const expenseGroupSettingResponse:ExpenseGroupSetting = {
   corporate_credit_card_expense_group_fields: ["employee_email", "report_id", "expense_id", "fund_source"],
   created_at: new Date("2022-04-13T10:29:18.802702Z"),
   expense_state: ExpenseState.PAYMENT_PROCESSING,
+  ccc_expense_state: CCCExpenseState.PAYMENT_PROCESSING,
   id: 1,
   import_card_credits: false,
   reimbursable_expense_group_fields: ["employee_email", "report_id", "claim_number", "fund_source"],
@@ -52,6 +54,7 @@ export const expenseGroupSettingResponse1 = {
   corporate_credit_card_expense_group_fields: ["employee_email", "report_id", "expense_id", "fund_source"],
   created_at: new Date("2022-04-13T10:29:18.802702Z"),
   expense_state: ExpenseState.PAYMENT_PROCESSING,
+  ccc_expense_state: CCCExpenseState.PAYMENT_PROCESSING,
   id: 1,
   import_card_credits: false,
   reimbursable_export_date_type: ExportDateType.CURRENT_DATE,

@@ -55,6 +55,7 @@ describe('WorkspaceService', () => {
       cluster_domain: "",
       onboarding_state: OnboardingState.CONNECTION,
       last_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
+      ccc_last_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       source_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       destination_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       created_at: new Date("2022-04-13T10:29:18.796760Z"),
@@ -81,6 +82,7 @@ describe('WorkspaceService', () => {
       cluster_domain: "",
       onboarding_state: OnboardingState.CONNECTION,
       last_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
+      ccc_last_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       source_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       destination_synced_at: new Date("2022-04-13T10:29:18.796760Z"),
       created_at: new Date("2022-04-13T10:29:18.796760Z"),
@@ -121,7 +123,8 @@ describe('WorkspaceService', () => {
       sync_fyle_to_qbo_payments: false,
       sync_qbo_to_fyle_payments: false,
       updated_at: new Date("2022-04-28T12:48:39.150177Z"),
-      workspace: 1
+      workspace: 1,
+      is_simplify_report_closure_enabled: true
     };
     service.getWorkspaceGeneralSettings().subscribe((value) => {
       expect(value).toEqual(response);

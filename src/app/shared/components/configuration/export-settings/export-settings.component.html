@@ -3,19 +3,6 @@
   <div *ngIf="!isLoading" class="configuration--contents">
     <app-configuration-step-header-section [showSyncButton]="isOnboarding" [phase]="isOnboarding ? ProgressPhase.ONBOARDING : ProgressPhase.POST_ONBOARDING"></app-configuration-step-header-section>
     <form [formGroup]="exportSettingsForm">
-      <app-configuration-select-field
-        [form]="exportSettingsForm"
-        [options]="expenseStateOptions"
-        [isFieldMandatory]="true"
-        [mandatoryErrorListName]="'expense state'"
-        [iconPath]="'assets/images/svgs/actions/question-mark.svg'"
-        [label]="'At which state should the expenses be ready to export from Fyle?'"
-        [subLabel]="'You could choose to export expenses when they have been approved and are awaiting payment clearance, OR simply when they have been paid out.'"
-        [placeholder]="'Select expense state'"
-        [formControllerName]="'expenseState'"
-        >
-      </app-configuration-select-field>
-
       <div class="export-settings--field-toggle-section">
         <app-configuration-toggle-field
           [form]="exportSettingsForm"
@@ -27,6 +14,19 @@
       </div>
 
       <div *ngIf="exportSettingsForm.value.reimbursableExpense">
+        <app-configuration-select-field
+          [form]="exportSettingsForm"
+          [options]="expenseStateOptions"
+          [isFieldMandatory]="true"
+          [mandatoryErrorListName]="'expense state'"
+          [iconPath]="'assets/images/svgs/actions/question-mark.svg'"
+          [label]="'At which state should the expenses be ready to export from Fyle?'"
+          [subLabel]="'You could choose to export expenses when they have been approved and are awaiting payment clearance, OR simply when they have been paid out.'"
+          [placeholder]="'Select expense state'"
+          [formControllerName]="'expenseState'"
+          >
+        </app-configuration-select-field>
+
         <app-configuration-select-field
           [form]="exportSettingsForm"
           [options]="reimbursableExportTypes"
@@ -125,6 +125,18 @@
       </div>
 
       <div *ngIf="exportSettingsForm.value.creditCardExpense">
+        <app-configuration-select-field
+          [form]="exportSettingsForm"
+          [options]="cccExpenseStateOptions"
+          [isFieldMandatory]="true"
+          [mandatoryErrorListName]="'expense state'"
+          [iconPath]="'assets/images/svgs/actions/question-mark.svg'"
+          [label]="'At which state should the expenses be ready to export from Fyle?'"
+          [subLabel]="'You could choose to export CCC expenses when they have been approved and are awaiting payment clearance, OR simply when they have been paid out.'"
+          [placeholder]="'Select CCC expense state'"
+          [formControllerName]="'cccExpenseState'"
+          >
+        </app-configuration-select-field>
         <app-configuration-select-field
           [form]="exportSettingsForm"
           [options]="creditCardExportTypes"

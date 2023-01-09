@@ -25,4 +25,5 @@ export type WorkspaceGeneralSetting = {
   map_fyle_cards_qbo_account?: boolean;
   map_merchant_to_vendor?: boolean;
   skip_cards_mapping?: boolean;
+  is_simplify_report_closure_enabled: boolean;
 };
