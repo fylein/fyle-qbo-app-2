@@ -474,12 +474,12 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   private setupForm(): void {
     this.exportSettingsForm = this.formBuilder.group({
-      expenseState: [this.exportSettings.expense_group_settings?.expense_state, Validators.required],
+      expenseState: [this.exportSettings.expense_group_settings?.expense_state],
       reimbursableExpense: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? true : false, this.exportSelectionValidator()],
       reimbursableExportType: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object],
       reimbursableExportGroup: [this.getExportGroup(this.exportSettings.expense_group_settings?.reimbursable_expense_group_fields)],
       reimbursableExportDate: [this.exportSettings.expense_group_settings?.reimbursable_export_date_type],
-      cccExpenseState: [this.exportSettings.expense_group_settings?.ccc_expense_state, Validators.required],
+      cccExpenseState: [this.exportSettings.expense_group_settings?.ccc_expense_state],
       creditCardExpense: [this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object ? true : false, this.exportSelectionValidator()],
       creditCardExportType: [this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object],
       creditCardExportGroup: [this.getExportGroup(this.exportSettings.expense_group_settings?.corporate_credit_card_expense_group_fields)],
