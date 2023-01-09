@@ -84,10 +84,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ExpenseState, ExportDateType } from &quot;../enum/enum.model&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ExpenseState, CCCExpenseState, ExportDateType } from &quot;../enum/enum.model&quot;;
 
 export type ExpenseGroupSettingPost &#x3D; {
   expense_state: ExpenseState;
+  ccc_expense_state: CCCExpenseState;
   reimbursable_expense_group_fields: string[] | null;
   reimbursable_export_date_type: ExportDateType | null;
   corporate_credit_card_expense_group_fields: string[] | null;

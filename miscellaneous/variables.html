@@ -820,6 +820,7 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
   auto_create_destination_entity: true,
+  is_simplify_report_closure_enabled: true,
   auto_map_employees: AutoMapEmployee.EMAIL,
   category_sync_version: &quot;v1&quot;,
   change_accounting_period: true,
@@ -985,6 +986,7 @@
   corporate_credit_card_expense_group_fields: [&quot;employee_email&quot;, &quot;report_id&quot;, &quot;expense_id&quot;, &quot;fund_source&quot;],
   created_at: new Date(&quot;2022-04-13T10:29:18.802702Z&quot;),
   expense_state: ExpenseState.PAYMENT_PROCESSING,
+  ccc_expense_state: CCCExpenseState.PAYMENT_PROCESSING,
   id: 1,
   import_card_credits: false,
   reimbursable_expense_group_fields: [&quot;employee_email&quot;, &quot;report_id&quot;, &quot;claim_number&quot;, &quot;fund_source&quot;],
@@ -1022,6 +1024,7 @@
   corporate_credit_card_expense_group_fields: [&quot;employee_email&quot;, &quot;report_id&quot;, &quot;expense_id&quot;, &quot;fund_source&quot;],
   created_at: new Date(&quot;2022-04-13T10:29:18.802702Z&quot;),
   expense_state: ExpenseState.PAYMENT_PROCESSING,
+  ccc_expense_state: CCCExpenseState.PAYMENT_PROCESSING,
   id: 1,
   import_card_credits: false,
   reimbursable_export_date_type: ExportDateType.CURRENT_DATE,
@@ -1317,6 +1320,7 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
   auto_create_destination_entity: true,
+  is_simplify_report_closure_enabled: true,
   auto_create_merchants_as_vendors: true,
   auto_map_employees: null,
   category_sync_version: &quot;v1&quot;,
@@ -1848,6 +1852,7 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
   auto_create_destination_entity: true,
+  is_simplify_report_closure_enabled: true,
   auto_create_merchants_as_vendors: true,
   auto_map_employees: null,
   category_sync_version: &quot;v1&quot;,
@@ -2868,6 +2873,7 @@
                         <i>Default value : </i><code>{
   auto_create_destination_entity: true,
   auto_create_merchants_as_vendors: true,
+  is_simplify_report_closure_enabled: true,
   auto_map_employees: null,
   category_sync_version: &quot;v1&quot;,
   change_accounting_period: true,
@@ -3084,6 +3090,7 @@
                         <i>Default value : </i><code>{
   expense_group_settings: {
     expense_state: ExpenseState.PAID,
+    ccc_expense_state: CCCExpenseState.PAID,
     reimbursable_expense_group_fields: [&#x27;sample&#x27;],
     reimbursable_export_date_type: ExportDateType.APPROVED_AT,
     corporate_credit_card_expense_group_fields: [&#x27;sipper&#x27;],
@@ -3197,6 +3204,7 @@ features that could help customize and automate your integration workflows.&#x60
                         <i>Default value : </i><code>{
   auto_create_destination_entity: true,
   auto_create_merchants_as_vendors: true,
+  is_simplify_report_closure_enabled: true,
   auto_map_employees: AutoMapEmployee.EMAIL,
   category_sync_version: &quot;v1&quot;,
   change_accounting_period: true,
@@ -3809,6 +3817,7 @@ features that could help customize and automate your integration workflows.&#x60
   cluster_domain: &quot;&quot;,
   onboarding_state: OnboardingState.CONNECTION,
   last_synced_at: new Date(&quot;2022-04-13T10:29:18.796760Z&quot;),
+  ccc_last_synced_at: new Date(&quot;2022-04-13T10:29:18.796760Z&quot;),
   source_synced_at: new Date(&quot;2022-04-13T10:29:18.796760Z&quot;),
   destination_synced_at: new Date(&quot;2022-04-13T10:29:18.796760Z&quot;),
   created_at: new Date(&quot;2022-04-13T10:29:18.796760Z&quot;),
@@ -4103,6 +4112,7 @@ features that could help customize and automate your integration workflows.&#x60
                         <i>Default value : </i><code>{
   expense_group_settings: {
     expense_state: ExpenseState.PAID,
+    ccc_expense_state: CCCExpenseState.PAID,
     reimbursable_expense_group_fields: [&#x27;sample&#x27;],
     reimbursable_export_date_type: ExportDateType.APPROVED_AT,
     corporate_credit_card_expense_group_fields: [&#x27;sipper&#x27;],
@@ -5683,6 +5693,7 @@ features that could help customize and automate your integration workflows.&#x60
                         <i>Default value : </i><code>{
   expense_group_settings: {
     expense_state: ExpenseState.PAID,
+    ccc_expense_state: CCCExpenseState.PAID,
     reimbursable_expense_group_fields: [&#x27;sample&#x27;],
     reimbursable_export_date_type: ExportDateType.APPROVED_AT,
     corporate_credit_card_expense_group_fields: [&#x27;sipper&#x27;],
