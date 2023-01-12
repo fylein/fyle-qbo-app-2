@@ -49,27 +49,9 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   is_simplify_report_closure_enabled: boolean = false;
 
-  expenseStateOptions: ExportSettingFormOption[] = [
-    {
-      value: ExpenseState.PAYMENT_PROCESSING,
-      label: this.is_simplify_report_closure_enabled ? 'Processing' : 'Payment Processing'
-    },
-    {
-      label: this.is_simplify_report_closure_enabled ? 'Closed' : 'Paid',
-      value: ExpenseState.PAID
-    }
-  ];
+  expenseStateOptions: ExportSettingFormOption[];
 
-  cccExpenseStateOptions: ExportSettingFormOption[]  = [
-    {
-      label: this.is_simplify_report_closure_enabled ? 'Approved' : 'Payment Processing',
-      value: this.is_simplify_report_closure_enabled ? CCCExpenseState.APPROVED: CCCExpenseState.PAYMENT_PROCESSING
-    },
-    {
-      label: this.is_simplify_report_closure_enabled ? 'Closed' : 'Paid',
-      value: CCCExpenseState.PAID
-    }
-  ];
+  cccExpenseStateOptions: ExportSettingFormOption[];
 
   expenseGroupingFieldOptions: ExportSettingFormOption[] = [
     {
@@ -283,7 +265,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
   private exportSelectionValidator(): ValidatorFn {
     return (control: AbstractControl): {[key: string]: object} | null => {
       let forbidden = true;
-      if (this.exportSettingsForm && this.exportSettingsForm.value.expenseState) {
+      if (this.exportSettingsForm && (this.exportSettingsForm.value.expenseState || this.exportSettingsForm.value.cccExpenseState)) {
         if (typeof control.value === 'boolean') {
           if (control.value) {
             forbidden = false;
@@ -292,12 +274,15 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
               forbidden = false;
             }
           }
-        } else if ((control.value === ExpenseState.PAID || control.value === ExpenseState.PAYMENT_PROCESSING) && (control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value)) {
+        } else if ((control.value === ExpenseState.PAID || control.value === ExpenseState.PAYMENT_PROCESSING) 
+        || (control.value === CCCExpenseState.PAID || control.value === CCCExpenseState.PAYMENT_PROCESSING || control.value == CCCExpenseState.APPROVED) 
+        && (control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value)) {
           forbidden = false;
         }
 
         if (!forbidden) {
           control.parent?.get('expenseState')?.setErrors(null);
+          control.parent?.get('cccExpenseState')?.setErrors(null);
           control.parent?.get('reimbursableExpense')?.setErrors(null);
           control.parent?.get('creditCardExpense')?.setErrors(null);
           return null;
@@ -468,6 +453,29 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       this.vendors = response[1].VENDOR;
       this.expenseAccounts = this.bankAccounts.concat(this.cccAccounts);
       this.is_simplify_report_closure_enabled = response[2].is_simplify_report_closure_enabled;
+
+      this.cccExpenseStateOptions = [
+        {
+          label: this.is_simplify_report_closure_enabled ? 'Approved' : 'Payment Processing',
+          value: this.is_simplify_report_closure_enabled ? CCCExpenseState.APPROVED: CCCExpenseState.PAYMENT_PROCESSING
+        },
+        {
+          label: this.is_simplify_report_closure_enabled ? 'Closed' : 'Paid',
+          value: CCCExpenseState.PAID
+        }
+      ];
+
+      this.expenseStateOptions = [
+        {
+          label: this.is_simplify_report_closure_enabled ? 'Approved' : 'Payment Processing',
+          value: this.is_simplify_report_closure_enabled ? CCCExpenseState.APPROVED: CCCExpenseState.PAYMENT_PROCESSING
+        },
+        {
+          label: this.is_simplify_report_closure_enabled ? 'Closed' : 'Paid',
+          value: CCCExpenseState.PAID
+        }
+      ];
+      
       this.setupForm();
     });
   }
