@@ -274,8 +274,8 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
               forbidden = false;
             }
           }
-        } else if ((control.value === ExpenseState.PAID || control.value === ExpenseState.PAYMENT_PROCESSING) 
-        || (control.value === CCCExpenseState.PAID || control.value === CCCExpenseState.PAYMENT_PROCESSING || control.value == CCCExpenseState.APPROVED) 
+        } else if ((control.value === ExpenseState.PAID || control.value === ExpenseState.PAYMENT_PROCESSING ||
+          control.value === CCCExpenseState.PAID || control.value === CCCExpenseState.PAYMENT_PROCESSING || control.value === CCCExpenseState.APPROVED)
         && (control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value)) {
           forbidden = false;
         }
@@ -475,7 +475,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
           value: CCCExpenseState.PAID
         }
       ];
-      
+
       this.setupForm();
     });
   }
