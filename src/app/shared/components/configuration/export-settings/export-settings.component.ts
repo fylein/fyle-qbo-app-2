@@ -265,7 +265,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
   private exportSelectionValidator(): ValidatorFn {
     return (control: AbstractControl): {[key: string]: object} | null => {
       let forbidden = true;
-      if (this.exportSettingsForm && (this.exportSettingsForm.value.expenseState || this.exportSettingsForm.value.cccExpenseState)) {
+      if (this.exportSettingsForm) {
         if (typeof control.value === 'boolean') {
           if (control.value) {
             forbidden = false;
@@ -274,8 +274,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
               forbidden = false;
             }
           }
-        } else if ((control.value === ExpenseState.PAID || control.value === ExpenseState.PAYMENT_PROCESSING ||
-          control.value === CCCExpenseState.PAID || control.value === CCCExpenseState.PAYMENT_PROCESSING || control.value === CCCExpenseState.APPROVED)
+        } else if ((control.value === ExpenseState.PAID || control.value === ExpenseState.PAYMENT_PROCESSING || control.value === CCCExpenseState.APPROVED)
         && (control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value)) {
           forbidden = false;
         }
