@@ -195,6 +195,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
     this.exportSettingsForm.controls.reimbursableExpense.valueChanges.subscribe((isReimbursableExpenseSelected) => {
       if (isReimbursableExpenseSelected) {
         this.exportSettingsForm.controls.expenseState.setValidators(Validators.required);
+        this.exportSettingsForm.controls.expenseState.setValue(this.exportSettings.expense_group_settings?.expense_state ? this.exportSettings.expense_group_settings?.expense_state : ExpenseState.PAYMENT_PROCESSING);
         this.exportSettingsForm.controls.reimbursableExportType.setValidators(Validators.required);
         this.exportSettingsForm.controls.reimbursableExportGroup.setValidators(Validators.required);
         this.exportSettingsForm.controls.reimbursableExportDate.setValidators(Validators.required);
@@ -217,6 +218,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
     this.exportSettingsForm.controls.creditCardExpense.valueChanges.subscribe((isCreditCardExpenseSelected) => {
       if (isCreditCardExpenseSelected) {
         this.exportSettingsForm.controls.cccExpenseState.setValidators(Validators.required);
+        this.exportSettingsForm.controls.cccExpenseState.setValue(this.exportSettings.expense_group_settings?.ccc_expense_state ? this.exportSettings.expense_group_settings?.ccc_expense_state : this.is_simplify_report_closure_enabled ? CCCExpenseState.APPROVED: CCCExpenseState.PAYMENT_PROCESSING);
         this.exportSettingsForm.controls.creditCardExportType.setValidators(Validators.required);
         this.exportSettingsForm.controls.creditCardExportGroup.setValidators(Validators.required);
         this.exportSettingsForm.controls.creditCardExportDate.setValidators(Validators.required);
@@ -466,12 +468,12 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
       this.expenseStateOptions = [
         {
-          label: this.is_simplify_report_closure_enabled ? 'Approved' : 'Payment Processing',
-          value: this.is_simplify_report_closure_enabled ? CCCExpenseState.APPROVED: CCCExpenseState.PAYMENT_PROCESSING
+          label: this.is_simplify_report_closure_enabled ? 'Processing' : 'Payment Processing',
+          value: ExpenseState.PAYMENT_PROCESSING
         },
         {
           label: this.is_simplify_report_closure_enabled ? 'Closed' : 'Paid',
-          value: CCCExpenseState.PAID
+          value: ExpenseState.PAID
         }
       ];
 
