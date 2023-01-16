@@ -468,12 +468,12 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
       this.expenseStateOptions = [
         {
-          label: this.is_simplify_report_closure_enabled ? 'Processing' : 'Payment Processing',
-          value: ExpenseState.PAYMENT_PROCESSING
+          label: this.is_simplify_report_closure_enabled ? 'Approved' : 'Payment Processing',
+          value: this.is_simplify_report_closure_enabled ? CCCExpenseState.APPROVED: CCCExpenseState.PAYMENT_PROCESSING
         },
         {
           label: this.is_simplify_report_closure_enabled ? 'Closed' : 'Paid',
-          value: ExpenseState.PAID
+          value: CCCExpenseState.PAID
         }
       ];
 
