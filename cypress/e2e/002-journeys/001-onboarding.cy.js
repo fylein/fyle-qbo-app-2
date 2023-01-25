@@ -3,7 +3,6 @@
 describe('onboarding journey', () => {
   beforeEach(() => {
     cy.login()
-    cy.visit('/')
   })
 
   function completeEmployeeSettingOnboarding() {
@@ -21,12 +20,9 @@ describe('onboarding journey', () => {
     // Check if user is taken to export settings page after employee setting form submission
     cy.url().should('include', '/workspaces/onboarding/export_settings')
 
-    // Select export setting form values
-    cy.selectConfigurationField(0, 'Payment Processing')
-
     // Expand reimbursable expenses section
     cy.enableConfigurationToggle(0)
-
+    cy.selectConfigurationField(0, 'Payment Processing')
     cy.selectConfigurationField(1, 'Check')
     cy.selectConfigurationField(2, 'Checking')
     cy.selectConfigurationField(3, 'Report')
@@ -34,8 +30,12 @@ describe('onboarding journey', () => {
 
     // Expand non-reimbursable expenses section
     cy.enableConfigurationToggle(1)
-    cy.selectConfigurationField(5, 'Credit Card Purchase')
-    cy.selectConfigurationField(6, 'Visa')
+    cy.selectConfigurationField(5, 'Payment Processing')
+    cy.selectConfigurationField(6, 'Bill')
+    cy.selectConfigurationField(7, 'Ashwin')
+    cy.selectConfigurationField(8, 'Advertising')
+    cy.selectConfigurationField(9, 'Report')
+    cy.selectConfigurationField(10, 'Current Date')
 
     cy.saveSetting('Save')
   }
@@ -79,6 +79,8 @@ describe('onboarding journey', () => {
   }
 
   it('completes onboarding QBO for a workspace', () => {
+    cy.visit('/workspaces/onboarding/employee_settings')
+
     completeEmployeeSettingOnboarding()
 
     completeExportSettingOnboarding()
