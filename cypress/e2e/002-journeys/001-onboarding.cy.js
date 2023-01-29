@@ -3,6 +3,7 @@
 describe('onboarding journey', () => {
   beforeEach(() => {
     cy.login()
+    cy.visit('/')
   })
 
   function completeEmployeeSettingOnboarding() {
@@ -31,11 +32,8 @@ describe('onboarding journey', () => {
     // Expand non-reimbursable expenses section
     cy.enableConfigurationToggle(1)
     cy.selectConfigurationField(5, 'Payment Processing')
-    cy.selectConfigurationField(6, 'Bill')
-    cy.selectConfigurationField(7, 'Ashwin')
-    cy.selectConfigurationField(8, 'Advertising')
-    cy.selectConfigurationField(9, 'Report')
-    cy.selectConfigurationField(10, 'Current Date')
+    cy.selectConfigurationField(6, 'Credit Card Purchase')
+    cy.selectConfigurationField(7, 'Visa')
 
     cy.saveSetting('Save')
   }
