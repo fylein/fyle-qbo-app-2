@@ -77,7 +77,6 @@ describe('onboarding journey', () => {
   }
 
   it('completes onboarding QBO for a workspace', () => {
-    cy.visit('/workspaces/onboarding/employee_settings')
 
     completeEmployeeSettingOnboarding()
 
