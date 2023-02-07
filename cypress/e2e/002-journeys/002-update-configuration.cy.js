@@ -220,7 +220,8 @@ describe('update configuration', () => {
     cy.get('.expense-form-preview--close-icon').click()
 
     cy.getMatToggle(1).click()
-    cy.selectConfigurationField(5, 'Credit Card Purchase')
+    cy.selectConfigurationField(5, 'Payment Processing')
+    cy.selectConfigurationField(6, 'Credit Card Purchase')
 
     cy.get('.configuration-select-field--preview-text').eq(1).contains('here').click()
 
@@ -247,9 +248,9 @@ describe('update configuration', () => {
     cy.enableConfigurationToggle(1)
 
     cy.enableConfigurationToggle(1)
-    assertConfigurationOption(5, 'Select expense export type', true)
+    assertConfigurationOption(6, 'Select expense export type', true)
     cy.selectMatOption('Journal Entry')
-    assertConfigurationOption(8, 'Select the date', true)
+    assertConfigurationOption(9, 'Select the date', true)
     cy.selectMatOption('Last Spend Date')
 
     cy.enableConfigurationToggle(1)
