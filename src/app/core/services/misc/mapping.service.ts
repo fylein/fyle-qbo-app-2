@@ -94,7 +94,7 @@ export class MappingService {
     };
 
     if (alphabetsFilter.length) {
-      params.mapping_source_alphabets = alphabetsFilter;
+      params.mapping_source_alphabets = alphabetsFilter
     };
 
     return this.apiService.get(`/workspaces/${this.workspaceId}/mappings/expense_attributes/`, params);
@@ -113,7 +113,7 @@ export class MappingService {
     };
 
     if (alphabetsFilter.length) {
-      params.mapping_source_alphabets = alphabetsFilter; 
+      params.mapping_source_alphabets = alphabetsFilter
     }
 
     return this.apiService.get(`/workspaces/${this.workspaceId}/mappings/employee_attributes/`, params);
