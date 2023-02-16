@@ -84,37 +84,39 @@ export class MappingService {
     return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expense_fields/`, {});
   }
 
-  getMappings(mappingState: MappingState, allAlphabets: boolean, limit: number, offset: number, alphabetsFilter: string[], sourceType: string, destinationType: string): Observable<ExtendedExpenseAttributeResponse> {
-    return this.apiService.get(
-      `/workspaces/${this.workspaceId}/mappings/expense_attributes/`,
-      {
-        limit,
-        offset,
-        all_alphabets: allAlphabets,
-        mapped: mappingState === MappingState.ALL ? MappingState.ALL : false,
-        mapping_source_alphabets: alphabetsFilter.length ? alphabetsFilter : null,
-        source_type: sourceType,
-        destination_type: destinationType
-      }
-    );
+  getMappings(mappingState: MappingState, limit: number, offset: number, alphabetsFilter: string[], sourceType: string, destinationType: string): Observable<ExtendedExpenseAttributeResponse> {
+    const params: any = {
+      limit,
+      offset,
+      mapped: mappingState === MappingState.ALL ? MappingState.ALL : false,
+      source_type: sourceType,
+      destination_type: destinationType
+    };
+
+    if (alphabetsFilter.length) {
+      params.mapping_source_alphabets = alphabetsFilter;
+    };
+
+    return this.apiService.get(`/workspaces/${this.workspaceId}/mappings/expense_attributes/`, params);
   }
 
   postMapping(mapping: MappingPost): Observable<EmployeeMapping> {
     return this.apiService.post(`/workspaces/${this.workspaceId}/mappings/`, mapping);
   }
 
-  getEmployeeMappings(mappingState: MappingState, allAlphabets: boolean, limit: number, offset: number, alphabetsFilter: string[], destinationType: string): Observable<ExtendedEmployeeAttributeResponse> {
-    return this.apiService.get(
-      `/workspaces/${this.workspaceId}/mappings/employee_attributes/`,
-      {
-        limit,
-        offset,
-        all_alphabets: allAlphabets,
-        mapped: mappingState === MappingState.ALL ? MappingState.ALL : false,
-        mapping_source_alphabets: alphabetsFilter.length ? alphabetsFilter : null,
-        destination_type: destinationType
-      }
-    );
+  getEmployeeMappings(mappingState: MappingState, limit: number, offset: number, alphabetsFilter: string[], destinationType: string): Observable<ExtendedEmployeeAttributeResponse> {
+    const params: any = {
+      limit,
+      offset,
+      mapped: mappingState === MappingState.ALL ? MappingState.ALL : false,
+      destination_type: destinationType
+    };
+
+    if (alphabetsFilter.length) {
+      params.mapping_source_alphabets = alphabetsFilter; 
+    }
+
+    return this.apiService.get(`/workspaces/${this.workspaceId}/mappings/employee_attributes/`, params);
   }
 
   postEmployeeMapping(employeeMapping: EmployeeMappingPost): Observable<EmployeeMapping> {

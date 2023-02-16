@@ -105,8 +105,8 @@ export const response:EmployeeMapping = {
 };
 export const response1 = {
   "count": 125,
-  "next": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?all_alphabets=true&destination_type=ACCOUNT&limit=3&mapped=ALL&mapping_source_alphabets=null&offset=6&source_type=CATEGORY`,
-  "previous": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?all_alphabets=true&destination_type=ACCOUNT&limit=3&mapped=ALL&mapping_source_alphabets=null&source_type=CATEGORY`,
+  "next": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?destination_type=ACCOUNT&limit=3&mapped=ALL&mapping_source_alphabets=null&offset=6&source_type=CATEGORY`,
+  "previous": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?destination_type=ACCOUNT&limit=3&mapped=ALL&mapping_source_alphabets=null&source_type=CATEGORY`,
   "results": [
     {
       mapping: [{

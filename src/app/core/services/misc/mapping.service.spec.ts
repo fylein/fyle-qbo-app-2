@@ -145,8 +145,8 @@ describe('MappingService', () => {
   it('getMappings() service check', () => {
     const response={
       "count": 125,
-      "next": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?all_alphabets=true&destination_type=ACCOUNT&limit=3&mapped=ALL&mapping_source_alphabets=null&offset=6&source_type=CATEGORY`,
-      "previous": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?all_alphabets=true&destination_type=ACCOUNT&limit=3&mapped=ALL&mapping_source_alphabets=null&source_type=CATEGORY`,
+      "next": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?destination_type=ACCOUNT&limit=3&mapped=ALL&mapping_source_alphabets=null&offset=6&source_type=CATEGORY`,
+      "previous": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?destination_type=ACCOUNT&limit=3&mapped=ALL&mapping_source_alphabets=null&source_type=CATEGORY`,
       "results": [
         {
           "id": 36,
@@ -165,14 +165,14 @@ describe('MappingService', () => {
       }
       ]
   };
-    service.getMappings(MappingState.ALL, true, 1, 1, [], FyleField.CATEGORY, QBOField.ACCOUNT).subscribe(value => {
+    service.getMappings(MappingState.ALL, 1, 1, [], FyleField.CATEGORY, QBOField.ACCOUNT).subscribe(value => {
       const responseKeys = Object.keys(response).sort();
       const actualResponseKeys = Object.keys(value).sort();
       expect(actualResponseKeys).toEqual(responseKeys);
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?limit=1&offset=1&all_alphabets=true&mapped=ALL&mapping_source_alphabets=null&source_type=CATEGORY&destination_type=ACCOUNT`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?limit=1&offset=1&mapped=ALL&mapping_source_alphabets=null&source_type=CATEGORY&destination_type=ACCOUNT`
     });
       req.flush(response);
   });
@@ -180,8 +180,8 @@ describe('MappingService', () => {
   it('getMappings() service check', () => {
     const response={
       "count": 125,
-      "next": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?all_alphabets=true&destination_type=ACCOUNT&limit=3&mapped=ALL&mapping_source_alphabets=null&offset=6&source_type=CATEGORY`,
-      "previous": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?all_alphabets=true&destination_type=ACCOUNT&limit=3&mapped=ALL&mapping_source_alphabets=null&source_type=CATEGORY`,
+      "next": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?destination_type=ACCOUNT&limit=3&mapped=ALL&mapping_source_alphabets=null&offset=6&source_type=CATEGORY`,
+      "previous": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?destination_type=ACCOUNT&limit=3&mapped=ALL&mapping_source_alphabets=null&source_type=CATEGORY`,
       "results": [
         {
           "id": 36,
@@ -207,7 +207,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?limit=1&offset=1&all_alphabets=true&mapped=false&mapping_source_alphabets=all&source_type=CATEGORY&destination_type=ACCOUNT`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?limit=1&offset=1&mapped=false&mapping_source_alphabets=all&source_type=CATEGORY&destination_type=ACCOUNT`
     });
       req.flush(response);
   });
@@ -291,8 +291,8 @@ describe('MappingService', () => {
   it('getMappings() service check', () => {
     const response={
       "count": 3,
-      "next": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?all_alphabets=true&destination_type=EMPLOYEE&limit=1&mapped=ALL&mapping_source_alphabets=null&offset=2`,
-      "previous": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?all_alphabets=true&destination_type=EMPLOYEE&limit=1&mapped=ALL&mapping_source_alphabets=null`,
+      "next": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?destination_type=EMPLOYEE&limit=1&mapped=ALL&mapping_source_alphabets=null&offset=2`,
+      "previous": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?destination_type=EMPLOYEE&limit=1&mapped=ALL&mapping_source_alphabets=null`,
       "results": [
         {
           "id": 3,
@@ -326,7 +326,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?limit=1&offset=1&all_alphabets=true&mapped=ALL&mapping_source_alphabets=null&destination_type=EMPLOYEE`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?limit=1&offset=1&mapped=ALL&mapping_source_alphabets=null&destination_type=EMPLOYEE`
     });
       req.flush(response);
   });
@@ -334,8 +334,8 @@ describe('MappingService', () => {
   it('getMappings() service check', () => {
     const response={
       "count": 3,
-      "next": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?all_alphabets=true&destination_type=EMPLOYEE&limit=1&mapped=ALL&mapping_source_alphabets=null&offset=2`,
-      "previous": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?all_alphabets=true&destination_type=EMPLOYEE&limit=1&mapped=ALL&mapping_source_alphabets=null`,
+      "next": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?destination_type=EMPLOYEE&limit=1&mapped=ALL&mapping_source_alphabets=null&offset=2`,
+      "previous": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?destination_type=EMPLOYEE&limit=1&mapped=ALL&mapping_source_alphabets=null`,
       "results": [
         {
           "id": 3,
@@ -369,7 +369,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?limit=1&offset=1&all_alphabets=true&mapped=false&mapping_source_alphabets=all&destination_type=EMPLOYEE`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?limit=1&offset=1&mapped=false&mapping_source_alphabets=all&destination_type=EMPLOYEE`
     });
       req.flush(response);
   });
