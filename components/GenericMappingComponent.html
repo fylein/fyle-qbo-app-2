@@ -1561,7 +1561,7 @@ export class GenericMappingComponent implements OnInit {
       }
     }
 
-    this.mappingService.getMappings(mappingState, allAlphabets, paginator.limit, paginator.offset, alphabetsFilter, this.mappingSetting.source_field, this.mappingSetting.destination_field).subscribe((extendedExpenseAttributeResponse: ExtendedExpenseAttributeResponse) &#x3D;&gt; {
+    this.mappingService.getMappings(mappingState, paginator.limit, paginator.offset, alphabetsFilter, this.mappingSetting.source_field, this.mappingSetting.destination_field).subscribe((extendedExpenseAttributeResponse: ExtendedExpenseAttributeResponse) &#x3D;&gt; {
       this.totalCount &#x3D; extendedExpenseAttributeResponse.count;
 
       if (this.mappingSetting.source_field &#x3D;&#x3D;&#x3D; &#x27;CATEGORY&#x27;) {

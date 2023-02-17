@@ -1569,7 +1569,7 @@ export class EmployeeMappingComponent implements OnInit {
       }
     }
 
-    this.mappingService.getEmployeeMappings(mappingState, allAlphabets, paginator.limit, paginator.offset, alphabetsFilter, this.employeeFieldMapping).subscribe((extendedEmployeeAttributeResponse: ExtendedEmployeeAttributeResponse) &#x3D;&gt; {
+    this.mappingService.getEmployeeMappings(mappingState, paginator.limit, paginator.offset, alphabetsFilter, this.employeeFieldMapping).subscribe((extendedEmployeeAttributeResponse: ExtendedEmployeeAttributeResponse) &#x3D;&gt; {
       this.totalCount &#x3D; extendedEmployeeAttributeResponse.count;
       extendedEmployeeAttributeResponse.results.forEach((extendedEmployeeAttribute: ExtendedEmployeeAttribute, index: number) &#x3D;&gt; {
 
