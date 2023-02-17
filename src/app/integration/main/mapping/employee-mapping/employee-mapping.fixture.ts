@@ -148,8 +148,8 @@ export const employeeMappingResponse: EmployeeMapping = {
 };
 export const getEmployeeMappingResponse={
   "count": 3,
-  "next": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?all_alphabets=true&destination_type=EMPLOYEE&limit=1&mapped=ALL&mapping_source_alphabets=null&offset=2`,
-  "previous": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?all_alphabets=true&destination_type=EMPLOYEE&limit=1&mapped=ALL&mapping_source_alphabets=null`,
+  "next": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?destination_type=EMPLOYEE&limit=1&mapped=ALL&mapping_source_alphabets=null&offset=2`,
+  "previous": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?destination_type=EMPLOYEE&limit=1&mapped=ALL&mapping_source_alphabets=null`,
   "results": [
     {
       "id": 3,
