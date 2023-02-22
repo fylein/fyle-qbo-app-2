@@ -156,7 +156,7 @@ export class GenericMappingComponent implements OnInit {
             this.mappingStats.unmapped_attributes_count -= 1;
             this.isMappingStatsUpdated = true;
           }
-          return expenseAttribute.value !== 'Activity'
+          return expenseAttribute.value !== 'Activity';
         });
       }
 
