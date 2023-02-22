@@ -24,6 +24,8 @@ export class GenericMappingComponent implements OnInit {
 
   sourceType: string;
 
+  isMappingStatsUpdated: boolean;
+
   totalCardActive: boolean = true;
 
   isLoading: boolean = true;
@@ -148,7 +150,14 @@ export class GenericMappingComponent implements OnInit {
       this.totalCount = extendedExpenseAttributeResponse.count;
 
       if (this.mappingSetting.source_field === 'CATEGORY') {
-        extendedExpenseAttributeResponse.results = extendedExpenseAttributeResponse.results.filter(expenseAttribute => expenseAttribute.value !== 'Activity');
+        extendedExpenseAttributeResponse.results = extendedExpenseAttributeResponse.results.filter(expenseAttribute => {
+          if (expenseAttribute.value === 'Activity' && !this.isMappingStatsUpdated) {
+            this.mappingStats.all_attributes_count -= 1;
+            this.mappingStats.unmapped_attributes_count -= 1;
+            this.isMappingStatsUpdated = true;
+          }
+          return expenseAttribute.value !== 'Activity';
+        });
       }
 
       extendedExpenseAttributeResponse.results.forEach((extendedExpenseAttribute: ExtendedExpenseAttribute, index: number) => {
