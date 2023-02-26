@@ -88,6 +88,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   // Skip Export
   tooltip: boolean = false;
+  skipFilterCount: number = 0;
   skippedCondition1: string;
   skippedCondition2: string;
   isDisabledChip1: boolean = false;
@@ -182,10 +183,21 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     });
   }
 
+  private skipExportWatcher(): void {
+    this.advancedSettingsForm.controls['skipExport'].valueChanges.subscribe((skipExportToggle) => {
+      if (!skipExportToggle) {
+        this.resetSkipExport();
+        this.skipFilterCount = 0;
+        this.updateAdditionalFilterVisibility(false);
+      }
+    });
+  }
+
   private setCustomValidators(): void {
     this.createPaymentSyncWatcher();
     this.createScheduledWatcher();
     this.createMemoStructureWatcher();
+    this.skipExportWatcher();
   }
 
   private formatMemoPreview(): void {
@@ -249,7 +261,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       exportSchedule: [this.advancedSettings.workspace_schedules?.enabled ? this.advancedSettings.workspace_schedules.interval_hours : false],
       exportScheduleFrequency: [this.advancedSettings.workspace_schedules?.enabled ? this.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [this.advancedSettings.workspace_general_settings.memo_structure],
-      skipExport: [],
+      skipExport: [this.skipFilterCount ? true : false],
       searchOption: [],
       emails: [this.advancedSettings.workspace_schedules?.emails_selected ? this.advancedSettings.workspace_schedules?.emails_selected : []],
       addedEmail: []
@@ -259,18 +271,158 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     this.isLoading = false;
   }
 
-  private getSettingsAndSetupForm(): void {
+  private getSettingsAndSetupForm(conditionArray: ConditionField[]): void {
     this.isOnboarding = this.windowReference.location.pathname.includes('onboarding');
     forkJoin([
       this.advancedSettingService.getAdvancedSettings(),
       this.mappingService.getQBODestinationAttributes('BANK_ACCOUNT'),
       this.workspaceService.getWorkspaceGeneralSettings(),
-      this.advancedSettingService.getWorkspaceAdmins()
+      this.advancedSettingService.getWorkspaceAdmins(),
+      this.mappingService.getFyleCustomFields(),
+      this.advancedSettingService.getSkipExport(this.workspaceId)
+
     ]).subscribe(response => {
       this.advancedSettings = response[0];
       this.billPaymentAccounts = response[1];
       this.workspaceGeneralSettings = response[2];
       this.adminEmails = this.advancedSettings.workspace_schedules?.additional_email_options ? this.advancedSettings.workspace_schedules?.additional_email_options.concat(response[3]) : response[3];
+
+      this.skipFilterCount = response[5].count;
+      this.conditionFieldOptions = response[4];
+      response[5].results.forEach((element) => {
+        const selectedConditionOption = {
+          field_name: element.condition,
+          type: '',
+          is_custom: element.is_custom,
+        };
+        const type = this.conditionFieldOptions.filter(
+          (fieldOption) => fieldOption.field_name === element.condition
+        )[0].type;
+        selectedConditionOption.type = type;
+        conditionArray.push(selectedConditionOption);
+      });
+
+      if (conditionArray.length) {
+        if (response[5].results[0].is_custom) {
+          this.setCustomOperatorOptions(response[5].results[0].rank, response[5].results[0].custom_field_type);
+        } else {
+          this.operatorFieldOptions1 = this.setDefaultOperatorOptions(
+            response[5].results[0].condition
+          );
+        }
+        if (response[5].results[0].join_by !== null) {
+          this.updateAdditionalFilterVisibility(true);
+          if (response[5].results[1].is_custom) {
+            this.setCustomOperatorOptions(response[5].results[1].rank, response[5].results[1].custom_field_type);
+          } else {
+            this.operatorFieldOptions2 = this.setDefaultOperatorOptions(
+              response[5].results[1].condition
+            );
+          }
+        }
+      }
+
+      if (response[5].count > 0) {
+      this.skippedCondition1 = conditionArray[0].field_name;
+      if (response[5].count > 1 && response[5].results[0].join_by) {
+        this.skippedCondition2 = conditionArray[1].field_name;
+      }
+    }
+      let selectedOperator1 = '';
+      let selectedOperator2 = '';
+      let valueFC1;
+      let valueFC2;
+      let customFieldTypeFC1;
+      let joinByFC;
+      if (response[5].count > 0) {
+        if (response[5].results[0].operator === 'isnull') {
+          if (response[5].results[0].values[0] === 'True') {
+            selectedOperator1 = 'is_empty';
+          } else {
+            selectedOperator1 = 'is_not_empty';
+          }
+        } else {
+          selectedOperator1 = response[5].results[0].operator;
+        }
+        if (
+          selectedOperator1 === 'is_empty' ||
+          selectedOperator1 === 'is_not_empty'
+        ) {
+          this.isDisabledChip1 = true;
+        } else {
+          if (conditionArray[0].type === 'DATE') {
+            valueFC1 = new Date(response[5].results[0].values[0]);
+          } else if (conditionArray[0].field_name === 'report_title') {
+            valueFC1 = response[5].results[0].values[0];
+          } else {
+            this.valueOption1 = response[5].results[0].values;
+          }
+        }
+        customFieldTypeFC1 = response[5].results[0].custom_field_type;
+      }
+      if (response[5].count > 1) {
+        if (response[5].results[1].operator === 'isnull') {
+          if (response[5].results[1].values[0] === 'True') {
+            selectedOperator2 = 'is_empty';
+          } else {
+            selectedOperator2 = 'is_not_empty';
+          }
+        } else {
+          selectedOperator2 = response[5].results[1].operator;
+        }
+        if (response[5].results[0].join_by !== null) {
+          if (
+            selectedOperator2 === 'is_empty' ||
+            selectedOperator2 === 'is_not_empty'
+          ) {
+            this.isDisabledChip2 = true;
+          } else {
+            if (conditionArray[1].type === 'DATE') {
+              valueFC2 = new Date(response[5].results[1].values[0]);
+            } else if (conditionArray[1].field_name === 'report_title') {
+              valueFC2 = response[5].results[1].values[0];
+            } else {
+              this.valueOption2 = response[5].results[1].values;
+            }
+          }
+        }
+        if (response[5].results[0].join_by !== null) {
+          joinByFC = response[5].results[0].join_by;
+        }
+      }
+
+      if (selectedOperator1 === 'in') {
+        selectedOperator1 = 'iexact';
+      }
+      if (selectedOperator2 === 'in') {
+        selectedOperator2 = 'iexact';
+      }
+
+      this.skipExportForm = this.formBuilder.group({
+        condition1: [
+          conditionArray.length > 0 ? conditionArray[0] : '',
+          [Validators.required],
+        ],
+        operator1: [
+          selectedOperator1.length !== 0 ? selectedOperator1 : '',
+          [Validators.required],
+        ],
+        value1: [valueFC1 ? valueFC1 : '', [Validators.required]],
+        customFieldType1: [customFieldTypeFC1 ? customFieldTypeFC1 : ''],
+        join_by: [joinByFC ? joinByFC : '', [Validators.required]],
+        condition2: [joinByFC ? conditionArray[1] : '', [Validators.required]],
+        operator2: [
+          joinByFC && selectedOperator2 ? selectedOperator2 : '',
+          [Validators.required],
+        ],
+        value2: [valueFC2 ? valueFC2 : '', [Validators.required]],
+        customFieldType2: joinByFC
+          ? [response[5].results[1].custom_field_type]
+          : [''],
+      });
+      this.fieldWatcher();
+      this.isLoading = false;
+
       this.setupForm();
     });
   }
@@ -299,7 +451,8 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   }
 
   save(): void {
-    if (this.advancedSettingsForm.valid && !this.saveInProgress) {
+    this.saveSkipExportFields();
+    if (this.advancedSettingsForm.valid && !this.saveInProgress && this.skipExportForm.valid) {
       const advancedSettingPayload = AdvancedSettingModel.constructPayload(this.advancedSettingsForm);
       this.saveInProgress = true;
 
@@ -404,11 +557,14 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     }
   }
 
-  resetOptions() {
+  resetAdditionalFilter() {
     this.skipExportForm.controls.join_by.reset();
     this.skipExportForm.controls.condition2.reset();
-    this.skipExportForm.controls.operator2.reset();
-    this.skipExportForm.controls.value2.reset();
+  }
+
+  resetSkipExport() {
+    this.skipExportForm.controls.condition1.reset();
+    this.resetAdditionalFilter();
   }
 
   resetFields(operator: AbstractControl, value: AbstractControl, conditionSelected: ConditionField, rank: number) {
@@ -444,78 +600,34 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   remCondition() {
     this.showAdditionalCondition = false;
     this.showAddButton = true;
-    this.resetOptions();
+    this.skipFilterCount = 1;
+    this.resetAdditionalFilter();
   }
 
   checkValidationCondition() {
     const condition1 = this.skipExportForm.controls.condition1;
     const condition2 = this.skipExportForm.controls.condition2;
-  
-    if (condition1.valid && condition2.valid) {
+    if (condition1.valid && condition2.valid && this.skipFilterCount>1) {
       return condition1.value.field_name === condition2.value.field_name;
     }
   
     return false;
   }
   
-  checkValidation() {
-    if (!this.showAdditionalCondition) {
-      const condition1 = this.skipExportForm.get('condition1');
-      const operator1 = this.skipExportForm.get('operator1');
-      const value1 = this.skipExportForm.get('value1');
-  
-      if (condition1?.valid && operator1?.valid) {
-        if (
-          this.valueOption1.length !== 0 ||
-          (condition1.value.field_name === 'spent_at' && value1?.valid) ||
-          operator1.value === 'is_empty' ||
-          operator1.value === 'is_not_empty'
-        ) {
-          return true;
-        }
-      }
-  
-      return false;
-    }
-  
-    const condition1 = this.skipExportForm.controls.condition1;
-    const condition2 = this.skipExportForm.controls.condition2;
-    const operator1 = this.skipExportForm.controls.operator1;
-    const operator2 = this.skipExportForm.controls.operator2;
-    const value1 = this.skipExportForm.controls.value1;
-    const value2 = this.skipExportForm.controls.value2;
-    const join_by = this.skipExportForm.controls.join_by;
-  
-    if (condition1.valid && condition2.valid && join_by.valid) {
-      if (condition1.value.field_name !== condition2.value.field_name) {
-        if (
-          (condition1.value.field_name === 'spent_at' && value1.valid) ||
-          (condition1.value.field_name === 'report_title' && value1.valid) ||
-          this.valueOption1.length !== 0 ||
-          operator1.value === 'is_empty' ||
-          operator1.value === 'is_not_empty'
-        ) {
-          if (
-            (condition2.value.field_name === 'spent_at' && value2.valid) ||
-            (condition2.value.field_name === 'report_title' && value2.valid) ||
-            this.valueOption2.length !== 0 ||
-            operator2.value === 'is_empty' ||
-            operator2.value === 'is_not_empty'
-          ) {
-            return true;
-          }
-        }
-      }
-    }
-  
-    return false;
-  }
-  
-
   saveSkipExportFields() {
     const that = this;
     that.isLoading = true;
     const valueField = this.skipExportForm.getRawValue();
+    // if(!this.skipExportForm.get('condition1')?.valid)
+    // {
+    //   console.log('both filters deleted');
+    //   // delete call For Rank 1 and 2
+    //   this.advancedSettingService
+    //   .deleteSkipExport(that.workspaceId, ['1', '2'])
+    //   .subscribe((skipExport1: SkipExport) => {
+    //   });
+    //   that.isLoading = false;
+    // } else {
     if (valueField.condition1.field_name !== 'report_title' && valueField.operator1 === 'iexact') {
       valueField.operator1 = 'in';
     }
@@ -577,28 +689,38 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
           if (typeof valueField.value2 === 'string') {
             valueField.value2 = [valueField.value2];
           }
-          const payload2 = {
-            condition: valueField.condition2.field_name,
-            operator: valueField.operator2,
-            values:
-              valueField.condition2.type === 'DATE' ||
-              valueField.operator2 === 'isnull' || valueField.condition2.field_name === 'report_title'
-                ? valueField.value2
-                : this.valueOption2,
-            rank: 2,
-            join_by: null,
-            is_custom: valueField.condition2.is_custom,
-            custom_field_type: valueField.condition2.is_custom
-              ? valueField.condition2.type
-              : null,
-          };
-          this.advancedSettingService
-            .postSkipExport(that.workspaceId, payload2)
-            .subscribe((skipExport2: SkipExport) => {});
+          // if (!valueField.join_by) {
+          //   //delete call for rank 2
+          //   this.advancedSettingService
+          //   .deleteSkipExport(that.workspaceId, ['2'])
+          //   .subscribe((skipExport1: SkipExport) => {
+          //     console.log('second filter deleted')
+          //   });
+          //   that.isLoading = false;
+          // } else {
+            const payload2 = {
+              condition: valueField.condition2.field_name,
+              operator: valueField.operator2,
+              values:
+                valueField.condition2.type === 'DATE' ||
+                valueField.operator2 === 'isnull' || valueField.condition2.field_name === 'report_title'
+                  ? valueField.value2
+                  : this.valueOption2,
+              rank: 2,
+              join_by: null,
+              is_custom: valueField.condition2.is_custom,
+              custom_field_type: valueField.condition2.is_custom
+                ? valueField.condition2.type
+                : null,
+            };
+            this.advancedSettingService
+              .postSkipExport(that.workspaceId, payload2)
+              .subscribe((skipExport2: SkipExport) => {}); 
+          // }
         }
         that.isLoading = false;
-        this.snackBar.open('Skip Export fields saved successfully');
       });
+    // }
   }
 
   setDefaultOperatorOptions(conditionField: string) {
@@ -700,19 +822,11 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       }
     );
   }
+  
 
   fieldWatcher() {
     this.conditionFieldWatcher();
     this.operatorFieldWatcher();
-  }
-
-  getCustomConditions() {
-    this.mappingService
-      .getFyleCustomFields()
-      .toPromise()
-      .then((conditionValue) => {
-        this.conditionFieldOptions = conditionValue;
-      });
   }
 
   compareObjects(selectedOption: any, listedOption: any): boolean {
@@ -722,149 +836,6 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  getAllSettings(conditionArray: ConditionField[]) {
-    forkJoin([
-      this.mappingService.getFyleCustomFields(),
-      this.advancedSettingService.getSkipExport(this.workspaceId),
-    ]).subscribe((responses) => {
-      this.conditionFieldOptions = responses[0];
-      // const conditionArray = [];
-      responses[1].results.forEach((element) => {
-        const selectedConditionOption = {
-          field_name: element.condition,
-          type: '',
-          is_custom: element.is_custom,
-        };
-        const type = this.conditionFieldOptions.filter(
-          (fieldOption) => fieldOption.field_name === element.condition
-        )[0].type;
-        selectedConditionOption.type = type;
-        conditionArray.push(selectedConditionOption);
-      });
-
-      if (conditionArray.length) {
-        if (responses[1].results[0].is_custom) {
-          this.setCustomOperatorOptions(responses[1].results[0].rank, responses[1].results[0].custom_field_type);
-        } else {
-          this.operatorFieldOptions1 = this.setDefaultOperatorOptions(
-            responses[1].results[0].condition
-          );
-        }
-        if (responses[1].results[0].join_by !== null) {
-          this.updateAdditionalFilterVisibility(true);
-          if (responses[1].results[1].is_custom) {
-            this.setCustomOperatorOptions(responses[1].results[1].rank, responses[1].results[1].custom_field_type);
-          } else {
-            this.operatorFieldOptions2 = this.setDefaultOperatorOptions(
-              responses[1].results[1].condition
-            );
-          }
-        }
-      }
-
-      if (responses[1].count > 0) {
-      this.skippedCondition1 = conditionArray[0].field_name;
-      if (responses[1].count > 1 && responses[1].results[0].join_by) {
-        this.skippedCondition2 = conditionArray[1].field_name;
-      }
-    }
-      let selectedOperator1 = '';
-      let selectedOperator2 = '';
-      let valueFC1;
-      let valueFC2;
-      let customFieldTypeFC1;
-      let joinByFC;
-      if (responses[1].count > 0) {
-        if (responses[1].results[0].operator === 'isnull') {
-          if (responses[1].results[0].values[0] === 'True') {
-            selectedOperator1 = 'is_empty';
-          } else {
-            selectedOperator1 = 'is_not_empty';
-          }
-        } else {
-          selectedOperator1 = responses[1].results[0].operator;
-        }
-        if (
-          selectedOperator1 === 'is_empty' ||
-          selectedOperator1 === 'is_not_empty'
-        ) {
-          this.isDisabledChip1 = true;
-        } else {
-          if (conditionArray[0].type === 'DATE') {
-            valueFC1 = new Date(responses[1].results[0].values[0]);
-          } else if (conditionArray[0].field_name === 'report_title') {
-            valueFC1 = responses[1].results[0].values[0];
-          } else {
-            this.valueOption1 = responses[1].results[0].values;
-          }
-        }
-        customFieldTypeFC1 = responses[1].results[0].custom_field_type;
-      }
-      if (responses[1].count > 1) {
-        if (responses[1].results[1].operator === 'isnull') {
-          if (responses[1].results[1].values[0] === 'True') {
-            selectedOperator2 = 'is_empty';
-          } else {
-            selectedOperator2 = 'is_not_empty';
-          }
-        } else {
-          selectedOperator2 = responses[1].results[1].operator;
-        }
-        if (responses[1].results[0].join_by !== null) {
-          if (
-            selectedOperator2 === 'is_empty' ||
-            selectedOperator2 === 'is_not_empty'
-          ) {
-            this.isDisabledChip2 = true;
-          } else {
-            if (conditionArray[1].type === 'DATE') {
-              valueFC2 = new Date(responses[1].results[1].values[0]);
-            } else if (conditionArray[1].field_name === 'report_title') {
-              valueFC2 = responses[1].results[1].values[0];
-            } else {
-              this.valueOption2 = responses[1].results[1].values;
-            }
-          }
-        }
-        if (responses[1].results[0].join_by !== null) {
-          joinByFC = responses[1].results[0].join_by;
-        }
-      }
-
-      if (selectedOperator1 === 'in') {
-        selectedOperator1 = 'iexact';
-      }
-      if (selectedOperator2 === 'in') {
-        selectedOperator2 = 'iexact';
-      }
-
-      this.skipExportForm = this.formBuilder.group({
-        condition1: [
-          conditionArray.length > 0 ? conditionArray[0] : '',
-          [Validators.required],
-        ],
-        operator1: [
-          selectedOperator1.length !== 0 ? selectedOperator1 : '',
-          [Validators.required],
-        ],
-        value1: [valueFC1 ? valueFC1 : '', [Validators.required]],
-        customFieldType1: [customFieldTypeFC1 ? customFieldTypeFC1 : ''],
-        join_by: [joinByFC ? joinByFC : '', [Validators.required]],
-        condition2: [joinByFC ? conditionArray[1] : '', [Validators.required]],
-        operator2: [
-          joinByFC && selectedOperator2 ? selectedOperator2 : '',
-          [Validators.required],
-        ],
-        value2: [valueFC2 ? valueFC2 : '', [Validators.required]],
-        customFieldType2: joinByFC
-          ? [responses[1].results[1].custom_field_type]
-          : [''],
-      });
-      this.fieldWatcher();
-      this.isLoading = false;
-    });
-  }
-
   ngOnDestroy(): void {
     if (!this.timeSpentEventRecorded) {
       this.trackSessionTime('navigated');
@@ -872,8 +843,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getSettingsAndSetupForm();
-    this.getAllSettings([]);
+    this.getSettingsAndSetupForm([]);
   }
 
 }

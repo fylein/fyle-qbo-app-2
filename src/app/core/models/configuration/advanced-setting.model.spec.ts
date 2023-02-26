@@ -25,7 +25,8 @@ describe('AdvancedSettingModel', () => {
       memoStructure: new FormControl(['Fyle']),
       searchOption: new FormControl([]),
       emails: new FormControl([]),
-      addedEmail: new FormControl([])
+      addedEmail: new FormControl([]),
+      skipExport: new FormControl(true),
     });
 
     const advancedSettingPayload:AdvancedSettingPost = {
@@ -36,7 +37,8 @@ describe('AdvancedSettingModel', () => {
         auto_create_merchants_as_vendors: true,
         je_single_credit_line: true,
         change_accounting_period: true,
-        memo_structure: ['Fyle']
+        memo_structure: ['Fyle'],
+        skip_export: true
       },
       general_mappings: {
         bill_payment_account: {id: '1', name: 'Fyle'}
