@@ -1,5 +1,3 @@
-/* tslint:disable */
-
 export type SkipExport = {
   condition: string;
   custom_field_type: any;

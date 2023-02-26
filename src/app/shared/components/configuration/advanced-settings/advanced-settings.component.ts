@@ -88,24 +88,39 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   // Skip Export
   tooltip: boolean = false;
+
   skipFilterCount: number = 0;
+
   skippedCondition1: string;
+
   skippedCondition2: string;
+
   isDisabledChip1: boolean = false;
+
   isDisabledChip2: boolean = false;
+
   skipExportForm: FormGroup;
+
   showAdditionalCondition: boolean = false;
+
   showAddButton: boolean = true;
+
   workspaceId: number;
+
   conditionFieldOptions: Array<{
     field_name: string;
     type: string;
     is_custom: boolean;
   }>;
+
   valueFieldOptions1 = [];
+
   valueFieldOptions2 = [];
+
   operatorFieldOptions1: { label: string; value: string }[];
+
   operatorFieldOptions2: { label: string; value: string }[];
+
   joinByOptions = [{ value: 'AND' }, { value: 'OR' }];
 
   constructor(
@@ -129,30 +144,35 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   customOperatorOptions = [
     {
       label: 'Is',
-      value: 'iexact',
+      value: 'iexact'
     },
     {
       label: 'Is empty',
-      value: 'is_empty',
+      value: 'is_empty'
     },
     {
       label: 'Is not empty',
-      value: 'is_not_empty',
-    },
+      value: 'is_not_empty'
+    }
   ];
+
   customSelectOperatorOptions = [
     {
       label: 'Is',
-      value: 'iexact',
+      value: 'iexact'
     },
     {
       label: 'Is not',
       value: 'not_in'
     }
   ];
+
   valueOption1: any[] = [];
+
   valueOption2: any[] = [];
+
   separatorKeysCodes: number[] = [ENTER, COMMA];
+
   private createPaymentSyncWatcher(): void {
     this.advancedSettingsForm.controls.paymentSync.valueChanges.subscribe((ispaymentSyncSelected) => {
       if (ispaymentSyncSelected && ispaymentSyncSelected === PaymentSyncDirection.FYLE_TO_QBO) {
@@ -184,7 +204,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   }
 
   private skipExportWatcher(): void {
-    this.advancedSettingsForm.controls['skipExport'].valueChanges.subscribe((skipExportToggle) => {
+    this.advancedSettingsForm.controls.skipExport.valueChanges.subscribe((skipExportToggle) => {
       if (!skipExportToggle) {
         this.resetSkipExport();
         this.skipFilterCount = 0;

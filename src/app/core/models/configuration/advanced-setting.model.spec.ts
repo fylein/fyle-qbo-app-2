@@ -26,7 +26,7 @@ describe('AdvancedSettingModel', () => {
       searchOption: new FormControl([]),
       emails: new FormControl([]),
       addedEmail: new FormControl([]),
-      skipExport: new FormControl(true),
+      skipExport: new FormControl(true)
     });
 
     const advancedSettingPayload:AdvancedSettingPost = {
