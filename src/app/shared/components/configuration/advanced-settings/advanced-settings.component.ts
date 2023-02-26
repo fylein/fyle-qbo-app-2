@@ -443,7 +443,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
         value2: [valueFC2 ? valueFC2 : '', [Validators.required]],
         customFieldType2: joinByFC
           ? [response[5].results[1].custom_field_type]
-          : [''],
+          : ['']
       });
       this.fieldWatcher();
       this.isLoading = false;
@@ -714,15 +714,15 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
           if (typeof valueField.value2 === 'string') {
             valueField.value2 = [valueField.value2];
           }
-          //C if (!valueField.join_by) {
-          //C   //delete call for rank 2
-          //C   this.advancedSettingService
-          //C   .deleteSkipExport(that.workspaceId, ['2'])
-          //C   .subscribe((skipExport1: SkipExport) => {
-          //C     console.log('second filter deleted')
-          //C   });
-          //C   that.isLoading = false;
-          //C } else {
+          // C if (!valueField.join_by) {
+          // C   //delete call for rank 2
+          // C   this.advancedSettingService
+          // C   .deleteSkipExport(that.workspaceId, ['2'])
+          // C   .subscribe((skipExport1: SkipExport) => {
+          // C     console.log('second filter deleted')
+          // C   });
+          // C   that.isLoading = false;
+          // C } else {
             const payload2 = {
               condition: valueField.condition2.field_name,
               operator: valueField.operator2,
@@ -741,11 +741,11 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
             this.advancedSettingService
               .postSkipExport(that.workspaceId, payload2)
               .subscribe((skipExport2: SkipExport) => {});
-          //C }
+          // C }
         }
         that.isLoading = false;
       });
-    //C }
+    // C }
   }
 
   setDefaultOperatorOptions(conditionField: string) {
