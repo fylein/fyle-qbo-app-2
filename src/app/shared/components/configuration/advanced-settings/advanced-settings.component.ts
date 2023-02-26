@@ -643,16 +643,16 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     const that = this;
     that.isLoading = true;
     const valueField = this.skipExportForm.getRawValue();
-    //C if(!this.skipExportForm.get('condition1')?.valid)
-    //C {
-    //C   console.log('both filters deleted');
-    //C   // delete call For Rank 1 and 2
-    //C   this.advancedSettingService
-    //C   .deleteSkipExport(that.workspaceId, ['1', '2'])
-    //C   .subscribe((skipExport1: SkipExport) => {
-    //C   });
-    //C   that.isLoading = false;
-    //C } else {
+    // C if(!this.skipExportForm.get('condition1')?.valid)
+    // C {
+    // C   console.log('both filters deleted');
+    // C   // delete call For Rank 1 and 2
+    // C   this.advancedSettingService
+    // C   .deleteSkipExport(that.workspaceId, ['1', '2'])
+    // C   .subscribe((skipExport1: SkipExport) => {
+    // C   });
+    // C   that.isLoading = false;
+    // C } else {
     if (valueField.condition1.field_name !== 'report_title' && valueField.operator1 === 'iexact') {
       valueField.operator1 = 'in';
     }
