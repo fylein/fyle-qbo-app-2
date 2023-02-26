@@ -137,10 +137,15 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   ) {
     this.windowReference = this.windowService.nativeWindow;
   }
+
   visible = true;
+
   selectable = true;
+
   removable = true;
+
   addOnBlur = true;
+
   customOperatorOptions = [
     {
       label: 'Is',
@@ -313,7 +318,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
         const selectedConditionOption = {
           field_name: element.condition,
           type: '',
-          is_custom: element.is_custom,
+          is_custom: element.is_custom
         };
         const type = this.conditionFieldOptions.filter(
           (fieldOption) => fieldOption.field_name === element.condition
@@ -421,11 +426,11 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       this.skipExportForm = this.formBuilder.group({
         condition1: [
           conditionArray.length > 0 ? conditionArray[0] : '',
-          [Validators.required],
+          [Validators.required]
         ],
         operator1: [
           selectedOperator1.length !== 0 ? selectedOperator1 : '',
-          [Validators.required],
+          [Validators.required]
         ],
         value1: [valueFC1 ? valueFC1 : '', [Validators.required]],
         customFieldType1: [customFieldTypeFC1 ? customFieldTypeFC1 : ''],
@@ -433,7 +438,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
         condition2: [joinByFC ? conditionArray[1] : '', [Validators.required]],
         operator2: [
           joinByFC && selectedOperator2 ? selectedOperator2 : '',
-          [Validators.required],
+          [Validators.required]
         ],
         value2: [valueFC2 ? valueFC2 : '', [Validators.required]],
         customFieldType2: joinByFC
@@ -630,24 +635,24 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     if (condition1.valid && condition2.valid && this.skipFilterCount>1) {
       return condition1.value.field_name === condition2.value.field_name;
     }
-  
+
     return false;
   }
-  
+
   saveSkipExportFields() {
     const that = this;
     that.isLoading = true;
     const valueField = this.skipExportForm.getRawValue();
-    // if(!this.skipExportForm.get('condition1')?.valid)
-    // {
-    //   console.log('both filters deleted');
-    //   // delete call For Rank 1 and 2
-    //   this.advancedSettingService
-    //   .deleteSkipExport(that.workspaceId, ['1', '2'])
-    //   .subscribe((skipExport1: SkipExport) => {
-    //   });
-    //   that.isLoading = false;
-    // } else {
+    //C if(!this.skipExportForm.get('condition1')?.valid)
+    //C {
+    //C   console.log('both filters deleted');
+    //C   // delete call For Rank 1 and 2
+    //C   this.advancedSettingService
+    //C   .deleteSkipExport(that.workspaceId, ['1', '2'])
+    //C   .subscribe((skipExport1: SkipExport) => {
+    //C   });
+    //C   that.isLoading = false;
+    //C } else {
     if (valueField.condition1.field_name !== 'report_title' && valueField.operator1 === 'iexact') {
       valueField.operator1 = 'in';
     }
@@ -686,7 +691,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       is_custom: valueField.condition1.is_custom,
       custom_field_type: valueField.condition1.is_custom
         ? valueField.condition1.type
-        : null,
+        : null
     };
     this.advancedSettingService
       .postSkipExport(that.workspaceId, payload1)
@@ -709,15 +714,15 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
           if (typeof valueField.value2 === 'string') {
             valueField.value2 = [valueField.value2];
           }
-          // if (!valueField.join_by) {
-          //   //delete call for rank 2
-          //   this.advancedSettingService
-          //   .deleteSkipExport(that.workspaceId, ['2'])
-          //   .subscribe((skipExport1: SkipExport) => {
-          //     console.log('second filter deleted')
-          //   });
-          //   that.isLoading = false;
-          // } else {
+          //C if (!valueField.join_by) {
+          //C   //delete call for rank 2
+          //C   this.advancedSettingService
+          //C   .deleteSkipExport(that.workspaceId, ['2'])
+          //C   .subscribe((skipExport1: SkipExport) => {
+          //C     console.log('second filter deleted')
+          //C   });
+          //C   that.isLoading = false;
+          //C } else {
             const payload2 = {
               condition: valueField.condition2.field_name,
               operator: valueField.operator2,
@@ -731,16 +736,16 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
               is_custom: valueField.condition2.is_custom,
               custom_field_type: valueField.condition2.is_custom
                 ? valueField.condition2.type
-                : null,
+                : null
             };
             this.advancedSettingService
               .postSkipExport(that.workspaceId, payload2)
-              .subscribe((skipExport2: SkipExport) => {}); 
-          // }
+              .subscribe((skipExport2: SkipExport) => {});
+          //C }
         }
         that.isLoading = false;
       });
-    // }
+    //C }
   }
 
   setDefaultOperatorOptions(conditionField: string) {
@@ -752,22 +757,22 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     ) {
       operatorList.push({
         value: 'iexact',
-        label: 'Is',
+        label: 'Is'
       });
     } else if (conditionField === 'spent_at') {
       operatorList.push({
         value: 'lt',
-        label: 'Is before',
+        label: 'Is before'
       });
       operatorList.push({
         value: 'lte',
-        label: 'Is it on or before',
+        label: 'Is it on or before'
       });
     }
     if (conditionField === 'report_title') {
       operatorList.push({
         value: 'icontains',
-        label: 'contains',
+        label: 'contains'
       });
     }
     return operatorList;
@@ -842,7 +847,6 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       }
     );
   }
-  
 
   fieldWatcher() {
     this.conditionFieldWatcher();
