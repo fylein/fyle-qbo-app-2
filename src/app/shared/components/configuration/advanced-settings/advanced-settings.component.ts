@@ -461,7 +461,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
         customFieldType2: joinByFC ? [response[5].results[1].custom_field_type] : ['']
       });
 
-      if(joinByFC !== null) {
+      if (joinByFC !== null) {
         this.updateAdditionalFilterVisibility(true);
       }
 
@@ -667,8 +667,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     const condition1 = this.skipExportForm.controls.condition1;
     const condition2 = this.skipExportForm.controls.condition2;
     if (condition1.valid && condition2.valid && this.showAdditionalCondition) {
-      if(condition1.value?.field_name === condition2.value?.field_name)
-        {
+      if (condition1.value?.field_name === condition2.value?.field_name) {
           this.skipExportForm.controls.operator2.setValue(null);
           return true;
         }
@@ -686,8 +685,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       .subscribe((skipExport1: SkipExport) => {
       });
     }
-    if(!this.advancedSettingsForm.controls.skipExport.value)
-    {
+    if (!this.advancedSettingsForm.controls.skipExport.value) {
       this.advancedSettingService
       .deleteSkipExport(1)
       .subscribe((skipExport1: SkipExport) => {
