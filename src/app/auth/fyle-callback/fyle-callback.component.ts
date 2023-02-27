@@ -61,9 +61,7 @@ export class FyleCallbackComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.authService.checkLoginStatusAndLogout();
 
-    // this.login();
   }
 
 }

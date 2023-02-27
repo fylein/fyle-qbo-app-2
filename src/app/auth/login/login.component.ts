@@ -25,11 +25,10 @@ export class LoginComponent implements OnInit {
     const popup = window.open(url, "popup", "popup=true,width=500,height=800,left=500");
     const checkPopup = setInterval(() => {
       if (popup?.location?.href?.includes("code")) {
-          let callbackURL = popup?.location.href
-          popup.close()
-          this.getQueryParam(callbackURL)
-      }
-      else if (!popup || !popup.closed) {
+          const callbackURL = popup?.location.href;
+          popup.close();
+          this.getQueryParam(callbackURL);
+      } else if (!popup || !popup.closed) {
         return;
       }
       clearInterval(checkPopup);
@@ -57,7 +56,7 @@ export class LoginComponent implements OnInit {
       this.redirectToLogin();
     });
   }
-  
+
   private redirectToLogin(): void {
     this.authService.logout();
     this.router.navigate(['auth/login']);
@@ -67,8 +66,8 @@ export class LoginComponent implements OnInit {
   }
 
   private getQueryParam(callbackURL:string): void {
-    const code = callbackURL.substring(callbackURL.indexOf('=')+1, callbackURL.indexOf('&'))
-    this.saveUserProfileAndNavigate(code);    
+    const code = callbackURL.substring(callbackURL.indexOf('=')+1, callbackURL.indexOf('&'));
+    this.saveUserProfileAndNavigate(code);
   }
 
   private redirectLoggedInUser(): void {
