@@ -151,3 +151,4 @@ export const emailResponse: WorkspaceSchedule = {
 };
 export const adminEmails: WorkspaceScheduleEmailOptions[] = [ {name: 'fyle', email: 'fyle@fyle.in'}, {name: 'fyle2', email: 'fyle2@fyle.in'}];
 export const memo = ['employee_email', 'merchant', 'purpose', 'category', 'report_number', 'expense_link'];
+export const customFields = ['Team', 'User Dimension', 'Operating Systems', 'User Dimension 2']

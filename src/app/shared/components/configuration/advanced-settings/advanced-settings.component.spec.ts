@@ -5,7 +5,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { adminEmails, advancedSettingResponse, destinationAttribute, emailResponse, errorResponse, getadvancedSettingResponse, getadvancedSettingResponse2, memo, previewResponse, response } from './advanced-settings.fixture';
+import { adminEmails, advancedSettingResponse, destinationAttribute, emailResponse, errorResponse, getadvancedSettingResponse, getadvancedSettingResponse2, memo, previewResponse, response, customFields } from './advanced-settings.fixture';
 import { Router } from '@angular/router';
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
@@ -42,7 +42,8 @@ describe('AdvancedSettingsComponent', () => {
     service1 = {
       postAdvancedSettings: () => of(advancedSettingResponse),
       getAdvancedSettings: () => of(getadvancedSettingResponse),
-      getWorkspaceAdmins: () => of(adminEmails)
+      getWorkspaceAdmins: () => of(adminEmails),
+      getFyleCustomFields: () => of(customFields)
     };
 
     service2 = {
