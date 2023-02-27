@@ -643,16 +643,24 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     const that = this;
     that.isLoading = true;
     const valueField = this.skipExportForm.getRawValue();
-    // C if(!this.skipExportForm.get('condition1')?.valid)
-    // C {
-    // C   console.log('both filters deleted');
-    // C   // delete call For Rank 1 and 2
-    // C   this.advancedSettingService
-    // C   .deleteSkipExport(that.workspaceId, ['1', '2'])
-    // C   .subscribe((skipExport1: SkipExport) => {
-    // C   });
-    // C   that.isLoading = false;
-    // C } else {
+    if (this.showAddButton) {
+      this.advancedSettingService
+      .deleteSkipExport(2)
+      .subscribe((skipExport1: SkipExport) => {
+      });
+    }
+    if(!this.skipExportForm.get('condition1')?.valid)
+    {
+      this.advancedSettingService
+      .deleteSkipExport(1)
+      .subscribe((skipExport1: SkipExport) => {
+      });
+      this.advancedSettingService
+      .deleteSkipExport(2)
+      .subscribe((skipExport1: SkipExport) => {
+      });
+      that.isLoading = false;
+    } else {
     if (valueField.condition1.field_name !== 'report_title' && valueField.operator1 === 'iexact') {
       valueField.operator1 = 'in';
     }
@@ -714,15 +722,6 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
           if (typeof valueField.value2 === 'string') {
             valueField.value2 = [valueField.value2];
           }
-          // C if (!valueField.join_by) {
-          // C   //delete call for rank 2
-          // C   this.advancedSettingService
-          // C   .deleteSkipExport(that.workspaceId, ['2'])
-          // C   .subscribe((skipExport1: SkipExport) => {
-          // C     console.log('second filter deleted')
-          // C   });
-          // C   that.isLoading = false;
-          // C } else {
             const payload2 = {
               condition: valueField.condition2.field_name,
               operator: valueField.operator2,
@@ -741,11 +740,10 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
             this.advancedSettingService
               .postSkipExport(that.workspaceId, payload2)
               .subscribe((skipExport2: SkipExport) => {});
-          // C }
         }
         that.isLoading = false;
       });
-    // C }
+    }
   }
 
   setDefaultOperatorOptions(conditionField: string) {

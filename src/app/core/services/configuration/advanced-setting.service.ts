@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Cacheable, CacheBuster } from 'ts-cacheable';
@@ -47,6 +48,13 @@ export class AdvancedSettingService {
   })
   postSkipExport(workspaceId: number, skipExport: SkipExport): Observable<SkipExport> {
     return this.apiService.post(`/workspaces/${this.workspaceService.getWorkspaceId()}/fyle/expense_filters/`, skipExport);
+  }
+
+  @CacheBuster({
+    cacheBusterNotifier: skipExportCache
+  })
+  deleteSkipExport(rank: number): Observable<SkipExport> {
+    return this.apiService.delete(`/workspaces/${this.workspaceService.getWorkspaceId()}/fyle/expense_filters/?rank=${rank}`);
   }
 
   getWorkspaceAdmins(): Observable<[WorkspaceScheduleEmailOptions]> {
