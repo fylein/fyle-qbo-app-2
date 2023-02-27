@@ -210,8 +210,35 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   private skipExportWatcher(): void {
     this.advancedSettingsForm.controls.skipExport.valueChanges.subscribe((skipExportToggle) => {
-      if (!skipExportToggle) {
+      if (skipExportToggle) {
+        this.skipExportForm.controls.condition1.setValidators(Validators.required);
+        this.skipExportForm.controls.operator1.setValidators(Validators.required);
+        this.skipExportForm.controls.value1.setValidators(Validators.required);
+        this.updateAdditionalFilterVisibility(false);
+        this.skipExportForm.controls.join_by.clearValidators();
+        this.skipExportForm.controls.join_by.setValue(null);
+        this.skipExportForm.controls.condition2.clearValidators();
+        this.skipExportForm.controls.operator2.clearValidators();
+        this.skipExportForm.controls.condition2.setValue(null);
+        this.skipExportForm.controls.operator2.setValue(null);
+        this.skipExportForm.controls.value2.clearValidators();
+        this.skipExportForm.controls.value2.setValue(null);
+      } else {
         this.resetSkipExport();
+        this.skipExportForm.controls.condition1.clearValidators();
+        this.skipExportForm.controls.operator1.clearValidators();
+        this.skipExportForm.controls.condition1.setValue(null);
+        this.skipExportForm.controls.operator1.setValue(null);
+        this.skipExportForm.controls.value1.clearValidators();
+        this.skipExportForm.controls.value1.setValue(null);
+        this.skipExportForm.controls.join_by.clearValidators();
+        this.skipExportForm.controls.join_by.setValue(null);
+        this.skipExportForm.controls.condition2.clearValidators();
+        this.skipExportForm.controls.operator2.clearValidators();
+        this.skipExportForm.controls.condition2.setValue(null);
+        this.skipExportForm.controls.operator2.setValue(null);
+        this.skipExportForm.controls.value2.clearValidators();
+        this.skipExportForm.controls.value2.setValue(null);
         this.skipFilterCount = 0;
         this.updateAdditionalFilterVisibility(false);
       }
@@ -336,7 +363,6 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
           );
         }
         if (response[5].results[0].join_by !== null) {
-          this.updateAdditionalFilterVisibility(true);
           if (response[5].results[1].is_custom) {
             this.setCustomOperatorOptions(response[5].results[1].rank, response[5].results[1].custom_field_type);
           } else {
@@ -424,27 +450,21 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       }
 
       this.skipExportForm = this.formBuilder.group({
-        condition1: [
-          conditionArray.length > 0 ? conditionArray[0] : '',
-          [Validators.required]
-        ],
-        operator1: [
-          selectedOperator1.length !== 0 ? selectedOperator1 : '',
-          [Validators.required]
-        ],
-        value1: [valueFC1 ? valueFC1 : '', [Validators.required]],
+        condition1: [conditionArray.length > 0 ? conditionArray[0] : ''],
+        operator1: [selectedOperator1.length !== 0 ? selectedOperator1 : ''],
+        value1: [valueFC1 ? valueFC1 : ''],
         customFieldType1: [customFieldTypeFC1 ? customFieldTypeFC1 : ''],
-        join_by: [joinByFC ? joinByFC : '', [Validators.required]],
-        condition2: [joinByFC ? conditionArray[1] : '', [Validators.required]],
-        operator2: [
-          joinByFC && selectedOperator2 ? selectedOperator2 : '',
-          [Validators.required]
-        ],
-        value2: [valueFC2 ? valueFC2 : '', [Validators.required]],
-        customFieldType2: joinByFC
-          ? [response[5].results[1].custom_field_type]
-          : ['']
+        join_by: [joinByFC ? joinByFC : ''],
+        condition2: [joinByFC ? conditionArray[1] : ''],
+        operator2: [joinByFC && selectedOperator2 ? selectedOperator2 : ''],
+        value2: [valueFC2 ? valueFC2 : ''],
+        customFieldType2: joinByFC ? [response[5].results[1].custom_field_type] : ['']
       });
+
+      if(joinByFC !== null) {
+        this.updateAdditionalFilterVisibility(true);
+      }
+
       this.fieldWatcher();
       this.isLoading = false;
 
@@ -620,6 +640,12 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   updateAdditionalFilterVisibility(show: boolean) {
     this.showAdditionalCondition = show;
     this.showAddButton = !show;
+    if (this.showAdditionalCondition) {
+      this.skipExportForm.controls.join_by.setValidators(Validators.required);
+      this.skipExportForm.controls.condition2.setValidators(Validators.required);
+      this.skipExportForm.controls.operator2.setValidators(Validators.required);
+      this.skipExportForm.controls.value2.setValidators(Validators.required);
+    }
   }
 
   remCondition() {
@@ -627,15 +653,26 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     this.showAddButton = true;
     this.skipFilterCount = 1;
     this.resetAdditionalFilter();
+    this.skipExportForm.controls.join_by.clearValidators();
+    this.skipExportForm.controls.join_by.setValue(null);
+    this.skipExportForm.controls.condition2.clearValidators();
+    this.skipExportForm.controls.operator2.clearValidators();
+    this.skipExportForm.controls.condition2.setValue(null);
+    this.skipExportForm.controls.operator2.setValue(null);
+    this.skipExportForm.controls.value2.clearValidators();
+    this.skipExportForm.controls.value2.setValue(null);
   }
 
   checkValidationCondition() {
     const condition1 = this.skipExportForm.controls.condition1;
     const condition2 = this.skipExportForm.controls.condition2;
-    if (condition1.valid && condition2.valid && this.skipFilterCount>1) {
-      return condition1.value.field_name === condition2.value.field_name;
+    if (condition1.valid && condition2.valid && this.showAdditionalCondition) {
+      if(condition1.value?.field_name === condition2.value?.field_name)
+        {
+          this.skipExportForm.controls.operator2.setValue(null);
+          return true;
+        }
     }
-
     return false;
   }
 
@@ -649,7 +686,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       .subscribe((skipExport1: SkipExport) => {
       });
     }
-    if(!this.skipExportForm.get('condition1')?.valid)
+    if(!this.advancedSettingsForm.controls.skipExport.value)
     {
       this.advancedSettingService
       .deleteSkipExport(1)
