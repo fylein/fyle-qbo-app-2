@@ -10,6 +10,7 @@ import { MappingSettingResponse } from '../../models/db/mapping-setting.model';
 import { EmployeeMapping, EmployeeMappingPost } from '../../models/db/employee-mapping.model';
 import { DestinationAttribute } from '../../models/db/destination-attribute.model';
 import { mappingSettingPayload, postMappingSettingResponse } from './mapping.service.fixture';
+import { ConditionField } from '../../models/misc/condition-field.model';
 
 describe('MappingService', () => {
   let service: MappingService;
@@ -141,6 +142,38 @@ describe('MappingService', () => {
     });
       req.flush(response);
   });
+
+  it('should return the correct Fyle custom fields', () => {
+    const expectedFields: ConditionField[] = [
+      {
+        "field_name": "Team",
+        "type": "SELECT",
+        "is_custom": true
+      },
+      {
+        "field_name": "Project",
+        "type": "SELECT",
+        "is_custom": true
+      }
+    ];
+    const workspaceId = 1;
+  
+    service.getFyleCustomFields().subscribe(fields => {
+      expect(fields).toEqual(expectedFields);
+      expect(fields.length).toEqual(2);
+  
+      const firstField = fields[0];
+      expect(firstField).toEqual(expectedFields[0]);
+  
+      const secondField = fields[1];
+      expect(secondField).toEqual(expectedFields[1]);
+    });
+  
+    const req = httpMock.expectOne(`${API_BASE_URL}/workspaces/${workspaceId}/fyle/custom_fields/`);
+    expect(req.request.method).toEqual('GET');
+    req.flush(expectedFields);
+  });
+  
 
   it('getMappings() service check', () => {
     const response={
