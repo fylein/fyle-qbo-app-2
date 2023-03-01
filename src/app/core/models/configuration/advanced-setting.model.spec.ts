@@ -37,8 +37,7 @@ describe('AdvancedSettingModel', () => {
         auto_create_merchants_as_vendors: true,
         je_single_credit_line: true,
         change_accounting_period: true,
-        memo_structure: ['Fyle'],
-        skip_export: true
+        memo_structure: ['Fyle']
       },
       general_mappings: {
         bill_payment_account: {id: '1', name: 'Fyle'}
