@@ -50,19 +50,19 @@ export interface SkipExportList {
   claim_number: string;
 }
 
-export type SkipExportLogResponse = {
-  count: number;
-  next: string;
-  previous: string;
-  results: SkipExportLog[];
-};
-
 export type SkipExportLog = {
   employee_name: string;
   employee_email: string;
   claim_number: string;
   updated_at: Date;
   fund_source: string;
+};
+
+export type SkipExportLogResponse = {
+  count: number;
+  next: string;
+  previous: string;
+  results: SkipExportLog[];
 };
 
 export type ExportableExpenseGroup = {
