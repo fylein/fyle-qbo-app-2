@@ -3,9 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Cacheable, CacheBuster } from 'ts-cacheable';
 import { AdvancedSettingGet, AdvancedSettingPost, AdvancedSettingWorkspaceSchedulePost } from '../../models/configuration/advanced-setting.model';
-import { ExpenseFilterResponse } from '../../models/configuration/skip-export-response';
 import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from '../../models/db/workspace-schedule.model';
-import { SkipExport } from '../../models/misc/skip-export.model';
+import { ExpenseFilterResponse, SkipExport } from '../../models/misc/skip-export.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
 
@@ -39,21 +38,21 @@ export class AdvancedSettingService {
   @Cacheable({
     cacheBusterObserver: skipExportCache
   })
-  getSkipExport(workspaceId: number): Observable<ExpenseFilterResponse> {
+  getExpenseFilter(): Observable<ExpenseFilterResponse> {
     return this.apiService.get(`/workspaces/${this.workspaceService.getWorkspaceId()}/fyle/expense_filters/`, {});
   }
 
   @CacheBuster({
     cacheBusterNotifier: skipExportCache
   })
-  postSkipExport(workspaceId: number, skipExport: SkipExport): Observable<SkipExport> {
+  postExpenseFilter(skipExport: SkipExport): Observable<SkipExport> {
     return this.apiService.post(`/workspaces/${this.workspaceService.getWorkspaceId()}/fyle/expense_filters/`, skipExport);
   }
 
   @CacheBuster({
     cacheBusterNotifier: skipExportCache
   })
-  deleteSkipExport(rank: number): Observable<SkipExport> {
+  deleteExpenseFilter(rank: number): Observable<SkipExport> {
     return this.apiService.delete(`/workspaces/${this.workspaceService.getWorkspaceId()}/fyle/expense_filters/?rank=${rank}`);
   }
 

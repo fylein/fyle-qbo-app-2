@@ -210,11 +210,6 @@
 .skip-export-form2 {
   margin-top: 2em;
 }
-// :host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
-//   max-height: 150px;
-//   justify-content: center !important;
-//   align-items: center !important;
-// }
 
 :host ::ng-deep .join-by .mat-form-field-flex{
   width: 80px !important;
@@ -222,11 +217,6 @@
   justify-content: center !important;
   align-items: center !important;
 }
-
-// ::ng-deep .mat-chip-list-wrapper .mat-standard-chip,
-// .mat-chip-list-wrapper input.mat-input-element {
-//   margin: 1px;
-// }
 
 ::ng-deep .mat-chip-list-wrapper {
   max-height: 104px;
@@ -253,18 +243,10 @@
 :host ::ng-deep .mat-datepicker-toggle-default-icon {
   padding-bottom: 16px !important;
 }
-// :host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
-//   padding: 0.5em 0.5em 0.5em 0.5em;
-//   display: flex !important;
-//   min-height: 40px !important;
-//   max-height: 200px !important;
-// }
 
 :host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
   max-height: 150px !important;
   min-height: 40px !important;
-  // justify-content: center !important;
-  // align-items: center !important;
 }
 
 :host ::ng-deep .mat-chip-list-wrapper::-webkit-scrollbar {
@@ -297,7 +279,6 @@
   max-width: 20px !important;
   max-height: 20px !important;
   margin-left: 26.5px !important;
-  // padding-bottom: 25px !important;
 }
 
 .mat-select-arrow-closed {

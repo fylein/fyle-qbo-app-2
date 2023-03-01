@@ -1,0 +1,48 @@
+<table mat-table [dataSource]="skipExport">
+
+  <ng-container matColumnDef="updated_at">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>Export Skipped On</h4>
+    </th>
+    <td app-skip-export-log-table mat-cell *matCellDef="let element">
+      <h4>
+        {{element.updated_at | date: 'dd MMM, yyyy'}}
+      </h4>
+      <h5 class="export-log-table--sub-row">
+        {{element.updated_at | date: 'HH:mm'}}
+      </h5>
+    </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="claim_number">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>Reference ID</h4>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.claim_number}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>Employee Name and ID</h4>
+    </th>
+    <td app-skip-export-log-table mat-cell *matCellDef="let element">
+      <h4>
+        {{element.employee[0]}}
+      </h4>
+      <h5 class="export-log-table--sub-row">
+        {{element.employee[1]}}
+      </h5>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="expenseType">
+    <th mat-header-cell *matHeaderCellDef>
+      <h4>Expense Type</h4>
+    </th>
+    <td app-skip-export-log-table mat-cell *matCellDef="let element"> {{element.expenseType}} </td>
+  </ng-container>
+
+  <tr class="export-log-table--heading" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr class="export-log-table--row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

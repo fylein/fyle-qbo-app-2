@@ -10,7 +10,7 @@ import { MappingSettingResponse } from '../../models/db/mapping-setting.model';
 import { EmployeeMapping, EmployeeMappingPost } from '../../models/db/employee-mapping.model';
 import { DestinationAttribute } from '../../models/db/destination-attribute.model';
 import { mappingSettingPayload, postMappingSettingResponse } from './mapping.service.fixture';
-import { ConditionField } from '../../models/misc/condition-field.model';
+import { ConditionField } from '../../models/misc/skip-export.model';
 
 describe('MappingService', () => {
   let service: MappingService;

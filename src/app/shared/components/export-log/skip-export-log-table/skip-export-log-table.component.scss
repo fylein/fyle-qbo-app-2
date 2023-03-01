@@ -1,0 +1,24 @@
+.export-log-table {
+  &--sub-row {
+    color: #A9ACBC;
+  }
+
+  &--reference-id {
+    text-decoration-line: underline;
+  }
+
+  &--heading {
+    background: #F5F5F5;
+    border: 1px solid #DFDFE2;
+    border-radius: 4px;
+    height: 40px;
+  }
+
+  &--row {
+    height: 70px;
+
+    &:hover {
+      background: #FAFCFF;
+    }
+  }
+}

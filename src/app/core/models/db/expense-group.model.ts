@@ -43,6 +43,28 @@ export interface ExpenseGroupList {
   expenses: Expense[];
 }
 
+export interface SkipExportList {
+  updated_at: Date;
+  employee: [string, string];
+  expenseType: 'Credit Card' | 'Reimbursable';
+  claim_number: string;
+}
+
+export type SkipExportLogResponse = {
+  count: number;
+  next: string;
+  previous: string;
+  results: SkipExportLog[];
+};
+
+export type SkipExportLog = {
+  employee_name: string;
+  employee_email: string;
+  claim_number: string;
+  updated_at: Date;
+  fund_source: string;
+};
+
 export type ExportableExpenseGroup = {
   exportable_expense_group_ids: number[];
 };
