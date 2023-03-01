@@ -93,7 +93,6 @@ export class ExportLogComponent implements OnInit {
       filterType,
       ...selectedDateFilter
     };
-    console.log(selectedDateFilter);
     this.trackingService.onDateFilter(trackingProperty);
   }
 
