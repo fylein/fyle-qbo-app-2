@@ -19,7 +19,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from 'src/app/core/models/db/workspace-schedule.model';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { List } from 'cypress/types/lodash';
 import { SkipExport, ConditionField, ExpenseFilterResponse } from 'src/app/core/models/misc/skip-export.model';
 
 @Component({
