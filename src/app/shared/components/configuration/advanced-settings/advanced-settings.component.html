@@ -129,8 +129,8 @@
         [subLabel]="'You could choose to skip the export of certain expenses from Fyle to QBO by setting up a conditional rule.'"
         [formControllerName]="'skipExport'">
       </app-configuration-toggle-field>
-      <div *ngIf="advancedSettingsForm.value.skipExport">
-       <div *ngIf="!isLoading" fxLayout="column" fxLayoutAlign="start stretch">
+      <div *ngIf="advancedSettingsForm.value.skipExport && !isLoading">
+       <div fxLayout="column" fxLayoutAlign="start stretch">
           <form class="skip-export--form" [formGroup] = "skipExportForm" fxLayout="column" fxLayoutAlign="start stretch">
              <div fxLayout="row" fxLayoutAlign="start center">
                 <div fxFlex="15"></div>

@@ -19,7 +19,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from 'src/app/core/models/db/workspace-schedule.model';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { SkipExport, ConditionField, ExpenseFilterResponse } from 'src/app/core/models/misc/skip-export.model';
+import { SkipExport, ConditionField, ExpenseFilterResponse, constructPayload1, constructPayload2 } from 'src/app/core/models/misc/skip-export.model';
 
 @Component({
   selector: 'app-advanced-settings',
@@ -436,7 +436,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     this.fieldWatcher();
   }
 
-  private getSettingsAndSetupForm(conditionArray: ConditionField[]): void {
+  private getSettingsAndSetupForm(): void {
     this.isOnboarding = this.windowReference.location.pathname.includes('onboarding');
     forkJoin([
       this.advancedSettingService.getAdvancedSettings(),
@@ -453,7 +453,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       this.adminEmails = this.advancedSettings.workspace_schedules?.additional_email_options ? this.advancedSettings.workspace_schedules?.additional_email_options.concat(response[3]) : response[3];
 
       this.conditionFieldOptions = response[4];
-      this.setupSkipExportForm(response[5], conditionArray);
+      this.setupSkipExportForm(response[5], []);
 
       this.isLoading = false;
 
@@ -746,21 +746,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     if (typeof valueField.value1 === 'string') {
       valueField.value1 = [valueField.value1];
     }
-    const payload1 = {
-      condition: valueField.condition1.field_name,
-      operator: valueField.operator1,
-      values:
-        valueField.condition1.type === 'DATE' ||
-        valueField.operator1 === 'isnull' || valueField.condition1.field_name === 'report_title'
-          ? valueField.value1
-          : this.valueOption1,
-      rank: 1,
-      join_by: valueField.join_by ? valueField.join_by : null,
-      is_custom: valueField.condition1.is_custom,
-      custom_field_type: valueField.condition1.is_custom
-        ? valueField.condition1.type
-        : null
-    };
+    const payload1 = constructPayload1(valueField, this.valueOption1);
     this.advancedSettingService
       .postExpenseFilter(payload1)
       .subscribe((skipExport1: SkipExport) => {
@@ -782,21 +768,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
           if (typeof valueField.value2 === 'string') {
             valueField.value2 = [valueField.value2];
           }
-            const payload2 = {
-              condition: valueField.condition2.field_name,
-              operator: valueField.operator2,
-              values:
-                valueField.condition2.type === 'DATE' ||
-                valueField.operator2 === 'isnull' || valueField.condition2.field_name === 'report_title'
-                  ? valueField.value2
-                  : this.valueOption2,
-              rank: 2,
-              join_by: null,
-              is_custom: valueField.condition2.is_custom,
-              custom_field_type: valueField.condition2.is_custom
-                ? valueField.condition2.type
-                : null
-            };
+            const payload2 = constructPayload2(valueField, this.valueOption2);
             this.advancedSettingService
               .postExpenseFilter(payload2)
               .subscribe((skipExport2: SkipExport) => {});
@@ -931,7 +903,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getSettingsAndSetupForm([]);
+    this.getSettingsAndSetupForm();
   }
 
 }
