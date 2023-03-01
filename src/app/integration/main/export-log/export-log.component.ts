@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
-import { ExpenseGroup, ExpenseGroupList, ExpenseGroupResponse } from 'src/app/core/models/db/expense-group.model';
+import { ExpenseGroup, ExpenseGroupList, ExpenseGroupResponse, SkipExportList, SkipExportLog, SkipExportLogResponse } from 'src/app/core/models/db/expense-group.model';
 import { FyleReferenceType, PaginatorPage, SimpleSearchPage, SimpleSearchType, ZeroStatePage } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
@@ -23,11 +23,21 @@ export class ExportLogComponent implements OnInit {
 
   emptyExpenseGroup: MatTableDataSource<ExpenseGroupList> = new MatTableDataSource<ExpenseGroupList>([]);
 
+  skipExport: MatTableDataSource<SkipExportList> = new MatTableDataSource<SkipExportList>([]);
+
+  emptySkipExportList: MatTableDataSource<SkipExportList> = new MatTableDataSource<SkipExportList>([]);
+
   displayedColumns: string[] = ['exportedAt', 'name', 'fundSource', 'referenceID', 'exportType', 'link'];
+
+  skippedExpenseColumns: string[] = ['updated_at', 'claim_number', 'name', 'expenseType'];
 
   isLoading: boolean = true;
 
+  state: string = 'COMPLETE';
+
   exportLogForm: FormGroup;
+
+  skipExportLogForm: FormGroup;
 
   limit: number;
 
@@ -35,9 +45,13 @@ export class ExportLogComponent implements OnInit {
 
   totalCount: number;
 
+  totalSkipCount: number;
+
   FyleReferenceType = FyleReferenceType;
 
   selectedDateFilter: SelectedDateFilter | null;
+
+  selectedDateFilterSkipExport: SelectedDateFilter | null;
 
   dateOptions: DateFilter[] = [
     {
@@ -79,6 +93,7 @@ export class ExportLogComponent implements OnInit {
       filterType,
       ...selectedDateFilter
     };
+    console.log(selectedDateFilter);
     this.trackingService.onDateFilter(trackingProperty);
   }
 
@@ -113,6 +128,50 @@ export class ExportLogComponent implements OnInit {
     });
   }
 
+  private setupSkipExportForm(): void {
+    this.skipExportLogForm = this.formBuilder.group({
+      searchOption: [''],
+      dateRange: [null],
+      start: [''],
+      end: ['']
+    });
+
+    this.skipExportLogForm.controls.searchOption.valueChanges.subscribe((searchTerm: string) => {
+      if (searchTerm) {
+        this.skipExport.filter = searchTerm.trim().toLowerCase();
+      } else {
+        this.skipExport.filter = '';
+      }
+    });
+
+    this.skipExportLogForm.controls.dateRange.valueChanges.subscribe((dateRange) => {
+      if (dateRange) {
+        this.selectedDateFilterSkipExport = {
+          startDate: dateRange.startDate,
+          endDate: dateRange.endDate
+        };
+        this.trackDateFilter('existing', this.selectedDateFilterSkipExport);
+
+        const paginator: Paginator = this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
+        this.getSkipExportLog(paginator);
+      }
+    });
+  }
+
+  changeState(state: string) {
+    const that = this;
+    if (that.state !== state) {
+      if (state === 'SKIP') {
+        const paginator: Paginator = this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
+        this.getSkipExportLog(paginator);
+      } else {
+        const paginator: Paginator = this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
+        this.getExpenseGroups(paginator);
+      }
+      that.state = state;
+    }
+  }
+
   clearDateFilter(): void {
     this.selectedDateFilter = null;
     this.totalCount = 0;
@@ -125,6 +184,18 @@ export class ExportLogComponent implements OnInit {
     this.getExpenseGroups(paginator);
   }
 
+  clearDateFilterSkipExport(): void {
+    this.selectedDateFilterSkipExport = null;
+    this.totalSkipCount = 0;
+    event?.stopPropagation();
+    this.skipExportLogForm.controls.dateRange.patchValue(null);
+    this.skipExportLogForm.controls.start.patchValue('');
+    this.skipExportLogForm.controls.end.patchValue('');
+
+    const paginator: Paginator = this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
+    this.getSkipExportLog(paginator);
+  }
+
   dateFilterHandler(): void {
     this.selectedDateFilter = {
       startDate: this.exportLogForm.controls.start.value,
@@ -135,6 +206,18 @@ export class ExportLogComponent implements OnInit {
 
     const paginator: Paginator = this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
     this.getExpenseGroups(paginator);
+  }
+
+  dateFilterHandlerSkipExport(): void {
+    this.selectedDateFilterSkipExport = {
+      startDate: this.skipExportLogForm.controls.start.value,
+      endDate: this.skipExportLogForm.controls.end.value
+    };
+
+    this.trackDateFilter('custom', this.selectedDateFilterSkipExport);
+
+    const paginator: Paginator = this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
+    this.getSkipExportLog(paginator);
   }
 
   getExpenseGroups(data: Paginator): void {
@@ -183,13 +266,49 @@ export class ExportLogComponent implements OnInit {
     });
   }
 
+  getSkipExportLog(data: Paginator): void {
+    this.isLoading = true;
+    const skipExport: SkipExportList[] = [];
+
+    // Store page size when user changes it
+    if (this.limit !== data.limit) {
+      this.paginatorService.storePageSize(PaginatorPage.EXPORT_LOG, data.limit);
+    }
+
+    this.limit = data.limit;
+    this.offset = data.offset;
+
+    this.exportLogService.getSkippedExpenses(data.limit, data.offset, this.selectedDateFilterSkipExport).subscribe((skipExportResponse: SkipExportLogResponse) => {
+      this.totalSkipCount = skipExportResponse.count;
+      skipExportResponse.results.forEach((skippedExpense: SkipExportLog) => {
+        skipExport.push({
+          updated_at: skippedExpense.updated_at,
+          employee: [skippedExpense.employee_name, skippedExpense.employee_email],
+          expenseType: skippedExpense.fund_source === 'CCC' ? 'Credit Card' : 'Reimbursable',
+          claim_number: skippedExpense.claim_number
+        });
+      });
+      this.skipExport = new MatTableDataSource(skipExport);
+      this.skipExport.filterPredicate = this.searchByTextSkipExport;
+
+      this.isLoading = false;
+    });
+  }
+
   private searchByText(expenseGroup: ExpenseGroupList, filterText: string) {
     filterText = filterText.toLowerCase();
     return expenseGroup.employee[0].toLowerCase().includes(filterText) || expenseGroup.employee[1].toLowerCase().includes(filterText) || expenseGroup.referenceNumber.toLowerCase().includes(filterText);
   }
 
+  private searchByTextSkipExport(skipExport: SkipExportList, filterText: string) {
+    filterText = filterText.toLowerCase();
+    return skipExport.employee[0].toLowerCase().includes(filterText) || skipExport.employee[1].toLowerCase().includes(filterText) || skipExport.claim_number.toLowerCase().includes(filterText);
+  }
+
   private getExpenseGroupsAndSetupPage(): void {
     this.setupForm();
+
+    this.setupSkipExportForm();
 
     const paginator: Paginator = this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
 

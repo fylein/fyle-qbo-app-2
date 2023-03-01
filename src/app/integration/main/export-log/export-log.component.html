@@ -1,9 +1,19 @@
+<div class="page-header">
+  <nav mat-tab-nav-bar data-cy="export-nav">
+    <a mat-tab-link (click)="changeState('COMPLETE')" [active]="state==='COMPLETE'">
+      Complete
+    </a>
+    <a mat-tab-link (click)="changeState('SKIP')" [active]="state==='SKIP'">
+      Skipped
+    </a>
+  </nav>
+</div>
 <div class="configuration-main">
   <div class="configuration-main--bg-top"></div>
   <div class="configuration-main--bg-bottom"></div>
 </div>
 <div class="export-log">
-  <div class="export-log--content">
+  <div class="export-log--content" *ngIf="state==='COMPLETE'">
     <!-- header -->
     <div class="export-log--header-section">
       <div fxLayout="row" class="export-log--simple-search" [class.active]="selectedDateFilter">
@@ -82,5 +92,91 @@
     </div>
 
     <app-paginator *ngIf="expenseGroups.filteredData.length" [page]="PaginatorPage.EXPORT_LOG" [totalCount]="totalCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getExpenseGroups($event)"></app-paginator>
+  </div>
+
+  <!-- For Skipped Tab -->
+  <div class="export-log--content" *ngIf="state==='SKIP'">
+
+
+    <!-- header -->
+    <div class="export-log--header-section">
+      <div fxLayout="row" class="export-log--simple-search" [class.active]="selectedDateFilterSkipExport">
+        <app-simple-text-search *ngIf="isLoading || totalSkipCount || selectedDateFilterSkipExport" [page]="SimpleSearchPage.EXPORT_LOG" [searchType]="SimpleSearchType.TEXT_FIELD" [form]="skipExportLogForm" [placeholder]="'Search by Employee Name or Reference ID'" [showBackgroundColor]="false"></app-simple-text-search>
+
+        <div *ngIf="isLoading && !totalCount">
+          <mat-form-field floatLabel="always" appearance="outline" class="export-log--date-filter">
+            <mat-select placeholder="Select date range"></mat-select>
+            <div class="mat-select-arrow-closed"></div>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="!isLoading && (totalSkipCount || selectedDateFilterSkipExport)">
+          <mat-form-field [formGroup]="skipExportLogForm" floatLabel="always" appearance="outline" class="export-log--date-filter">
+            <mat-select placeholder="Select date range" formControlName="dateRange">
+              <mat-select-trigger *ngIf="selectedDateFilterSkipExport" class="export-log--selected-date">
+                {{ selectedDateFilterSkipExport.startDate | date: 'MMM dd, yyyy' }} - {{ selectedDateFilterSkipExport.endDate | date: 'MMM dd, yyyy' }}
+                <img src="assets/images/svgs/actions/clear-date-filter.svg" (click)="clearDateFilterSkipExport()" class="export-log--clear-date-filter" width="12px" height="12px">
+              </mat-select-trigger>
+              <mat-option class="export-log--date-select-option" *ngFor="let dateOption of dateOptions" [value]="dateOption">
+                <div>
+                  <div class="sub-text-color">{{ dateOption.dateRange }}</div>
+                  <div class="export-log--date-range">{{ dateOption.startDate | date: 'MMM dd, yyyy' }} - {{ dateOption.endDate | date: 'MMM dd, yyyy' }}</div>
+                </div>
+              </mat-option>
+              <mat-option class="export-log--date-select-option" [value]="''" (click)="picker.open();">
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                  <div class="sub-text-color">Custom dates</div>
+                  <img src="assets/images/svgs/actions/arrow-right-export-log.svg" class="configuration--icon">
+                </div>
+              </mat-option>
+            </mat-select>
+            <div *ngIf="!selectedDateFilterSkipExport" class="mat-select-arrow-closed"></div>
+          </mat-form-field>
+          <div class="export-log--date-field">
+            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field export-log--date-filter">
+              <mat-date-range-input [formGroup]="skipExportLogForm" [rangePicker]="picker">
+                <input matStartDate formControlName="start" placeholder="Start date">
+                <input (dateChange)="dateFilterHandlerSkipExport()" matEndDate formControlName="end" placeholder="End date">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker>
+                <mat-date-range-picker-actions>
+                  <div class="export-log--cancel-btn pointer" matDateRangePickerCancel>
+                    <h5 class="export-log--cancel-btn-text align-center">Cancel</h5>
+                  </div>
+                  <div class="export-log--done pointer" matDateRangePickerApply>
+                    <h5 class="export-log--done-text align-center">Done</h5>
+                  </div>
+                </mat-date-range-picker-actions>
+              </mat-date-range-picker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- header -->
+
+
+
+    <!-- shimmers -->
+    <div *ngIf="isLoading">
+      <app-skip-export-log-table [displayedColumns]="skippedExpenseColumns" [skipExport]="emptySkipExportList"></app-skip-export-log-table>
+      <div *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" fxLayout="row" fxLayoutAlign="start center" class="skeleton-loader-list-view--row-box">
+        <div class="skeleton-loader-list-view--init-box-section">
+          <div class="shimmers skeleton-loader-list-view--init-box-export-log"></div>
+        </div>
+        <div class="skeleton-loader-list-view--end-box-section">
+          <div class="shimmers skeleton-loader-list-view--end-box-export-log"></div>
+        </div>
+      </div>
+    </div>
+    <!-- shimmers -->
+
+    <div *ngIf="!isLoading" class="export-log--table">
+      <app-skip-export-log-table *ngIf="totalSkipCount || selectedDateFilterSkipExport" [displayedColumns]="skippedExpenseColumns" [skipExport]="skipExport"></app-skip-export-log-table>
+      <app-zero-state-with-illustration [page]="ZeroStatePage.export_log" [form]="skipExportLogForm" [data]="skipExport" [searchTerm]="'Employee Name or Expense ID'" [dateFilter]="selectedDateFilterSkipExport"></app-zero-state-with-illustration>
+    </div>
+
+    <app-paginator *ngIf="skipExport.filteredData.length" [page]="PaginatorPage.EXPORT_LOG" [totalCount]="totalSkipCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getSkipExportLog($event)"></app-paginator>
   </div>
 </div>

@@ -53,8 +53,18 @@ export class ExportLogService {
   }
 
   @Cacheable()
-  getSkippedExpenses(limit: number, offset: number): Observable<SkipExportLogResponse> {
-    return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expenses/`, {limit, offset});
+  getSkippedExpenses(limit: number, offset: number, selectedDateFilter: SelectedDateFilter | null): Observable<SkipExportLogResponse> {
+    const params: any = {
+      limit,
+      offset
+    };
+    if (selectedDateFilter) {
+      const startDate = selectedDateFilter.startDate.toLocaleDateString().split('/');
+      const endDate = selectedDateFilter.endDate.toLocaleDateString().split('/');
+      params.start_date = `${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00`;
+      params.end_date = `${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59`;
+    }
+    return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expenses/`, params);
   }
 
   generateExportTypeAndId(expenseGroup: ExpenseGroup) {
