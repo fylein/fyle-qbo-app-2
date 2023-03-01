@@ -412,7 +412,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     if (response.count) {
       this.skipExportForm.controls.condition1.setValidators(Validators.required);
       this.skipExportForm.controls.operator1.setValidators(Validators.required);
-      if(!this.valueOption1) {
+      if (!this.valueOption1) {
         this.skipExportForm.controls.value1.setValidators(Validators.required);
       }
       if (response.count == 2) {
@@ -624,7 +624,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       this.skipExportForm.controls.join_by.setValidators(Validators.required);
       this.skipExportForm.controls.condition2.setValidators(Validators.required);
       this.skipExportForm.controls.operator2.setValidators(Validators.required);
-      if(this.valueOption2.length===0) {
+      if (this.valueOption2.length===0) {
         this.skipExportForm.controls.value2.setValidators(Validators.required);
       }
     }

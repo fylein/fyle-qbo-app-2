@@ -256,8 +256,8 @@ export enum Operator {
 }
 
 export const JoinOptions = {
-  AND:  { value: 'AND' },
-  OR:   { value: 'OR' }
+  AND: { value: 'AND' },
+  OR: { value: 'OR' }
 };
 
 export enum JoinOption {
