@@ -197,6 +197,20 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
         this.skipExportForm.controls.value1.setValidators(Validators.required);
       } else {
         this.skipExportForm.reset();
+        this.skipExportForm.controls.condition1.clearValidators();
+        this.skipExportForm.controls.operator1.clearValidators();
+        this.skipExportForm.controls.condition1.setValue(null);
+        this.skipExportForm.controls.operator1.setValue(null);
+        this.skipExportForm.controls.value1.clearValidators();
+        this.skipExportForm.controls.value1.setValue(null);
+        this.skipExportForm.controls.join_by.clearValidators();
+        this.skipExportForm.controls.join_by.setValue(null);
+        this.skipExportForm.controls.condition2.clearValidators();
+        this.skipExportForm.controls.operator2.clearValidators();
+        this.skipExportForm.controls.condition2.setValue(null);
+        this.skipExportForm.controls.operator2.setValue(null);
+        this.skipExportForm.controls.value2.clearValidators();
+        this.skipExportForm.controls.value2.setValue(null);
         this.showAdditionalCondition = false;
         this.showAddButton = true;
       }
