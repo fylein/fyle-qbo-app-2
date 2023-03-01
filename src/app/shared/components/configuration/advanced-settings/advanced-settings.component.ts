@@ -415,7 +415,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       if (!this.valueOption1) {
         this.skipExportForm.controls.value1.setValidators(Validators.required);
       }
-      if (response.count == 2) {
+      if (response.count === 2) {
         this.updateAdditionalFilterVisibility(true);
       }
     }
