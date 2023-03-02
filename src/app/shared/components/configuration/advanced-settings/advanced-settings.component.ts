@@ -656,13 +656,11 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   // For conditionally adding and removing Value fields from layout
   showValueHeader1(): boolean {
-    const skipJoinBy = !this.skipExportForm.value.join_by;
-    const skipOperator1 = this.skipExportForm.value.operator1 !== 'is_empty' && this.skipExportForm.value.operator1 !== 'is_not_empty';
-    return skipJoinBy && skipOperator1;
+    return (this.skipExportForm.value.operator1 !== 'is_empty') && (this.skipExportForm.value.operator1 !== 'is_not_empty');
   }
 
   showValueHeader2() {
-    return (this.skipExportForm.value.join_by === 'AND' || this.skipExportForm.value.join_by === 'OR') && (((this.skipExportForm.value.operator1 !== 'is_empty') && (this.skipExportForm.value.operator1 !== 'is_not_empty')) || ((this.skipExportForm.value.operator2 !== 'is_empty') && (this.skipExportForm.value.operator2 !== 'is_not_empty')));
+    return (this.skipExportForm.value.operator2 !== 'is_empty') && (this.skipExportForm.value.operator2 !== 'is_not_empty');
   }
 
   showInputField1() {

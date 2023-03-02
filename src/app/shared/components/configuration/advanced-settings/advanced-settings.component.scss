@@ -85,7 +85,7 @@
 }
 
 .where-text {
-  padding-left: 72px;
+  padding-left: 100px;
   width: 70px;
   height: 18px;
   font-style: normal;
@@ -101,7 +101,7 @@
   padding-bottom: 25px;
   max-width: 24px;
   max-height: 24px;
-  margin-right: 10px;
+  margin-right: 8px;
 }
 
 .add-row-text {
@@ -110,7 +110,12 @@
 }
 
 .add-condition-btn {
+  margin-left: 40px;
   margin-top: 50px;
+}
+.add-condition-btn:hover {
+  color: #FF3366;
+  cursor: pointer;
 }
 
 .validation-text {
@@ -188,6 +193,10 @@
   justify-content: center !important;
   align-items: center !important;
   padding: 0.5em;
+}
+
+:host ::ng-deep .text-input .mat-form-field-flex {
+  width: 306px !important;
 }
 
 :host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
@@ -283,6 +292,14 @@
 
 .mat-select-arrow-closed {
   right: 8px !important;
+}
+
+:host ::ng-deep .mat-form-field-label, .mat-hint {
+  margin-left: -10px !important; /* adjust the value to shift the hint as desired */
+}
+
+:host ::ng-deep .required-error {
+  margin-left: -10px !important;
 }
 
 .cdk-drag-preview {

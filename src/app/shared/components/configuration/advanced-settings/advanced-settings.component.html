@@ -146,10 +146,6 @@
                    Value
                    <app-mandatory-field></app-mandatory-field>
                 </div>
-                <div class="fields-header-3" fxFlex="25" *ngIf = "showValueHeader2()">
-                   Value
-                   <app-mandatory-field></app-mandatory-field>
-                </div>
              </div>
              <div fxLayout="row" fxLayoutAlign="start center">
                 <span fxFlex="15" class="where-text">
@@ -206,10 +202,25 @@
           </form>
           <div *ngIf="showAdditionalCondition">
              <form class="skip-export-form2" [formGroup] = "skipExportForm" fxLayout="column" fxLayoutAlign="start stretch">
+              <div fxLayout="row" fxLayoutAlign="start center">
+                <div fxFlex="15"></div>
+                <div class="fields-header-1" fxFlex="25">
+                   Condition
+                   <app-mandatory-field></app-mandatory-field>
+                </div>
+                <div class="fields-header-2" fxFlex="25">
+                   Operator
+                   <app-mandatory-field></app-mandatory-field>
+                </div>
+                <div class="fields-header-3" fxFlex="25" *ngIf = "showValueHeader2()">
+                   Value
+                   <app-mandatory-field></app-mandatory-field>
+                </div>
+             </div>
                 <div fxLayout="row" fxLayoutAlign="start center">
                    <div fxFlex="5"></div>
                    <mat-form-field class="join-by" floatLabel="always" fxFlex="10" appearance="outline">
-                      <mat-select placeholder="AND/OR" formControlName="join_by">
+                      <mat-select placeholder="AND" formControlName="join_by">
                          <mat-option *ngFor = "let joinBy of joinByOptions" [value]="joinBy.value">
                          {{ joinBy.value }}
                          </mat-option>
@@ -266,7 +277,7 @@
                         </div>
                       </mat-form-field>                      
                    </div>
-                   <img class="delete-icon" src="assets/images/pngs/delete.svg" (click)="remCondition()" matTooltip="Delete">
+                   <img class="delete-icon" src="assets/images/pngs/delete.svg" (click)="remCondition()" matTooltip="Remove condition">
                 </div>
                 <div class="validation-text" *ngIf = "checkValidationCondition()">
                    <p>Condition selected should be distinct.</p>
