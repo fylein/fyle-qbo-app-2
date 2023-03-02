@@ -56,8 +56,10 @@ export class ExportLogService {
   getSkippedExpenses(limit: number, offset: number, selectedDateFilter: SelectedDateFilter | null): Observable<SkipExportLogResponse> {
     const params: any = {
       limit,
-      offset
+      offset,
+      is_skipped: 'true'
     };
+    
     if (selectedDateFilter) {
       const startDate = selectedDateFilter.startDate.toLocaleDateString().split('/');
       const endDate = selectedDateFilter.endDate.toLocaleDateString().split('/');
