@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SkipExportLogTableComponent } from './skip-export-log-table.component';
 
 describe('SkipExportLogTableComponent', () => {

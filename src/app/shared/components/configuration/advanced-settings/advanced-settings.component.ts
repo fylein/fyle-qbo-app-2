@@ -191,6 +191,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   private skipExportWatcher(): void {
     this.advancedSettingsForm.controls.skipExport.valueChanges.subscribe((skipExportToggle) => {
       if (skipExportToggle) {
+        this.showExpenseFilters = true;
         this.skipExportForm.controls.condition1.setValidators(Validators.required);
         this.skipExportForm.controls.operator1.setValidators(Validators.required);
         this.skipExportForm.controls.value1.setValidators(Validators.required);
@@ -212,6 +213,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
         this.skipExportForm.controls.value2.setValue(null);
         this.showAdditionalCondition = false;
         this.showAddButton = true;
+        this.showExpenseFilters = false;
       }
     });
   }
@@ -470,8 +472,10 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   }
 
   save(): void {
-    if (this.advancedSettingsForm.valid && !this.saveInProgress && this.skipExportForm.valid) {
-      this.saveSkipExportFields();
+    if (this.advancedSettingsForm.valid && !this.saveInProgress) {
+      if (this.showExpenseFilters && this.skipExportForm.valid) {
+          this.saveSkipExportFields();
+      }
       const advancedSettingPayload = AdvancedSettingModel.constructPayload(this.advancedSettingsForm);
       this.saveInProgress = true;
 
@@ -645,11 +649,13 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   checkValidationCondition() {
     const condition1 = this.skipExportForm.controls.condition1;
     const condition2 = this.skipExportForm.controls.condition2;
-    if (condition1.valid && condition2.valid && this.showAdditionalCondition) {
-      if (condition1.value?.field_name === condition2.value?.field_name) {
-          this.skipExportForm.controls.operator2.setValue(null);
-          return true;
-        }
+    if (this.showAdditionalCondition) {
+      if (condition1.valid && condition2.valid) {
+        if (condition1.value?.field_name === condition2.value?.field_name) {
+            this.skipExportForm.controls.operator2.setValue(null);
+            return true;
+          }
+      }
     }
     return false;
   }

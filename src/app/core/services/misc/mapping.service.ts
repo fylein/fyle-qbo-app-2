@@ -86,9 +86,7 @@ export class MappingService {
   }
 
   getFyleCustomFields(): Observable<ConditionField[]> {
-    const workspaceId = this.workspaceService.getWorkspaceId();
-
-    return this.apiService.get(`/workspaces/${workspaceId}/fyle/custom_fields/`, {});
+    return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/custom_fields/`, {});
   }
 
   getMappings(mappingState: MappingState, limit: number, offset: number, alphabetsFilter: string[], sourceType: string, destinationType: string): Observable<ExtendedExpenseAttributeResponse> {

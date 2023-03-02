@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { SkipExportList } from 'src/app/core/models/db/expense-group.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
@@ -19,7 +18,6 @@ export class SkipExportLogTableComponent implements OnInit {
   @Input() allowChildViewing: boolean = true;
 
   constructor(
-    private dialog: MatDialog,
     public helperService: HelperService
   ) { }
 
