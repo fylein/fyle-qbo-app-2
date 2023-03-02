@@ -343,7 +343,6 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   getSelectedOperator(operator: string, value: any, condition: ConditionField) {
     switch (operator) {
       case 'isnull': {
-        this.isDisabledChip1 = true;
         return value === 'True' ? 'is_empty' : 'is_not_empty';
       }
       case 'in':
@@ -381,6 +380,8 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       selectedOperator1 = this.getSelectedOperator(response.results[0].operator, response.results[0].values[0], conditionArray[0]);
       if (!(selectedOperator1 === 'is_empty' || selectedOperator1 === 'is_not_empty')) {
         valueFC1 = this.getFieldValue(response.results[0].values, conditionArray[0], response.results[0].rank);
+      } else {
+        this.isDisabledChip1 = true;
       }
       customFieldTypeFC1 = response.results[0].custom_field_type;
     }
@@ -391,6 +392,8 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
         joinByFC = response.results[0].join_by;
         if (!(selectedOperator2 === 'is_empty' || selectedOperator2 === 'is_not_empty')) {
           valueFC2 = this.getFieldValue(response.results[1].values, conditionArray[1], response.results[1].rank);
+        } else {
+          this.isDisabledChip2 = true;
         }
       }
     }
