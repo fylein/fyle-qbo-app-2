@@ -294,14 +294,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     this.isLoading = false;
   }
 
-  setupSkipExportForm(response: ExpenseFilterResponse, conditionArray: ConditionField[]) {
-
-    if (response.count > 0) {
-      this.showExpenseFilters = true;
-    } else {
-      this.showExpenseFilters = false;
-    }
-
+  private setConditionFields(response: ExpenseFilterResponse, conditionArray: ConditionField[]) {
     response.results.forEach((element) => {
       const selectedConditionOption = {
         field_name: element.condition,
@@ -314,118 +307,110 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       selectedConditionOption.type = type;
       conditionArray.push(selectedConditionOption);
     });
+  }
 
+  private setOperatorFieldOptions(response: ExpenseFilterResponse, conditionArray: ConditionField[]) {
     if (conditionArray.length) {
       if (response.results[0].is_custom) {
         this.setCustomOperatorOptions(response.results[0].rank, response.results[0].custom_field_type);
       } else {
-        this.operatorFieldOptions1 = this.setDefaultOperatorOptions(
-          response.results[0].condition
-        );
+        this.operatorFieldOptions1 = this.setDefaultOperatorOptions(response.results[0].condition);
       }
       if (response.results[0].join_by !== null) {
         if (response.results[1].is_custom) {
           this.setCustomOperatorOptions(response.results[1].rank, response.results[1].custom_field_type);
         } else {
-          this.operatorFieldOptions2 = this.setDefaultOperatorOptions(
-            response.results[1].condition
-          );
+          this.operatorFieldOptions2 = this.setDefaultOperatorOptions(response.results[1].condition);
         }
       }
-    }
-
-    if (response.count > 0) {
-    this.skippedCondition1 = conditionArray[0].field_name;
-    if (response.count > 1 && response.results[0].join_by) {
-      this.skippedCondition2 = conditionArray[1].field_name;
     }
   }
-    let selectedOperator1 = '';
-    let selectedOperator2 = '';
-    let valueFC1;
-    let valueFC2;
-    let customFieldTypeFC1;
-    let joinByFC;
+
+  private setSkippedConditions(response: ExpenseFilterResponse, conditionArray: ConditionField[]) {
     if (response.count > 0) {
-      if (response.results[0].operator === 'isnull') {
-        if (response.results[0].values[0] === 'True') {
-          selectedOperator1 = 'is_empty';
-        } else {
-          selectedOperator1 = 'is_not_empty';
-        }
+      this.skippedCondition1 = conditionArray[0].field_name;
+      if (response.count > 1 && response.results[0].join_by) {
+        this.skippedCondition2 = conditionArray[1].field_name;
       } else {
-        selectedOperator1 = response.results[0].operator;
+        this.skippedCondition2 = '';
       }
-      if (
-        selectedOperator1 === 'is_empty' ||
-        selectedOperator1 === 'is_not_empty'
-      ) {
+    } else {
+      this.skippedCondition1 = '';
+      this.skippedCondition2 = '';
+    }
+  }
+
+  getSelectedOperator(operator: string, value: any, condition: ConditionField) {
+    switch (operator) {
+      case 'isnull': {
         this.isDisabledChip1 = true;
-      } else {
-        if (conditionArray[0].type === 'DATE') {
-          valueFC1 = new Date(response.results[0].values[0]);
-        } else if (conditionArray[0].field_name === 'report_title') {
-          valueFC1 = response.results[0].values[0];
-        } else {
-          this.valueOption1 = response.results[0].values;
-        }
+        return value === 'True' ? 'is_empty' : 'is_not_empty';
+      }
+      case 'in':
+        return 'iexact';
+      case 'iexact': return operator;
+      default: return operator;
+    }
+  }
+
+  getFieldValue(value: any, condition: ConditionField, rank: number) {
+    if (condition.type === 'DATE') {
+      return new Date(value[0]);
+    } else if (condition.field_name === 'report_title') {
+      return value[0];
+    }
+      if (rank === 1) {
+        this.valueOption1 = value;
+      } else if (rank === 2) {
+        this.valueOption2 = value;
+      }
+        return '';
+
+  }
+
+  setupSkipExportForm(response: ExpenseFilterResponse, conditionArray: ConditionField[]) {
+    this.showExpenseFilters = response.count > 0;
+    this.setConditionFields(response, conditionArray);
+    this.setOperatorFieldOptions(response, conditionArray);
+    this.setSkippedConditions(response, conditionArray);
+    let [selectedOperator1, valueFC1, customFieldTypeFC1] = ['', '', ''];
+    let [selectedOperator2, valueFC2] = ['', ''];
+    let joinByFC = '';
+
+    if (response.count > 0) {
+      selectedOperator1 = this.getSelectedOperator(response.results[0].operator, response.results[0].values[0], conditionArray[0]);
+      if (!(selectedOperator1 === 'is_empty' || selectedOperator1 === 'is_not_empty')) {
+        valueFC1 = this.getFieldValue(response.results[0].values, conditionArray[0], response.results[0].rank);
       }
       customFieldTypeFC1 = response.results[0].custom_field_type;
     }
+
     if (response.count > 1) {
-      if (response.results[1].operator === 'isnull') {
-        if (response.results[1].values[0] === 'True') {
-          selectedOperator2 = 'is_empty';
-        } else {
-          selectedOperator2 = 'is_not_empty';
-        }
-      } else {
-        selectedOperator2 = response.results[1].operator;
-      }
-      if (response.results[0].join_by !== null) {
-        if (
-          selectedOperator2 === 'is_empty' ||
-          selectedOperator2 === 'is_not_empty'
-        ) {
-          this.isDisabledChip2 = true;
-        } else {
-          if (conditionArray[1].type === 'DATE') {
-            valueFC2 = new Date(response.results[1].values[0]);
-          } else if (conditionArray[1].field_name === 'report_title') {
-            valueFC2 = response.results[1].values[0];
-          } else {
-            this.valueOption2 = response.results[1].values;
-          }
-        }
-      }
+      selectedOperator2 = this.getSelectedOperator(response.results[1].operator, response.results[1].values[0], conditionArray[1]);
       if (response.results[0].join_by !== null) {
         joinByFC = response.results[0].join_by;
+        if (!(selectedOperator2 === 'is_empty' || selectedOperator2 === 'is_not_empty')) {
+          valueFC2 = this.getFieldValue(response.results[1].values, conditionArray[1], response.results[1].rank);
+        }
       }
-    }
-
-    if (selectedOperator1 === 'in') {
-      selectedOperator1 = 'iexact';
-    }
-    if (selectedOperator2 === 'in') {
-      selectedOperator2 = 'iexact';
     }
 
     this.skipExportForm = this.formBuilder.group({
       condition1: [conditionArray.length > 0 ? conditionArray[0] : ''],
-      operator1: [selectedOperator1.length !== 0 ? selectedOperator1 : ''],
-      value1: [valueFC1 ? valueFC1 : ''],
-      customFieldType1: [customFieldTypeFC1 ? customFieldTypeFC1 : ''],
-      join_by: [joinByFC ? joinByFC : ''],
+      operator1: [selectedOperator1],
+      value1: [valueFC1],
+      customFieldType1: [customFieldTypeFC1],
+      join_by: [joinByFC],
       condition2: [joinByFC ? conditionArray[1] : ''],
       operator2: [joinByFC && selectedOperator2 ? selectedOperator2 : ''],
-      value2: [valueFC2 ? valueFC2 : ''],
+      value2: [valueFC2],
       customFieldType2: joinByFC ? [response.results[1].custom_field_type] : ['']
     });
 
     if (response.count) {
       this.skipExportForm.controls.condition1.setValidators(Validators.required);
       this.skipExportForm.controls.operator1.setValidators(Validators.required);
-      if (!this.valueOption1) {
+      if (!this.valueOption1.length) {
         this.skipExportForm.controls.value1.setValidators(Validators.required);
       }
       if (response.count === 2) {
@@ -861,7 +846,9 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
           this.skipExportForm.controls.value1.setValue(null);
         } else {
           this.isDisabledChip1 = false;
-          this.skipExportForm.controls.value1.setValidators(Validators.required);
+          this.skipExportForm.controls.value1.setValidators([Validators.required]);
+          this.skipExportForm.controls.value1.setValue(null, {emitEvent: false});
+
         }
       }
     );
@@ -878,7 +865,8 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
           this.skipExportForm.controls.value2.setValue(null);
         } else {
           this.isDisabledChip2 = false;
-          this.skipExportForm.controls.value2.setValidators(Validators.required);
+          this.skipExportForm.controls.value2.setValidators([Validators.required]);
+          this.skipExportForm.controls.value2.setValue(null, {emitEvent: false});
         }
       }
     );
