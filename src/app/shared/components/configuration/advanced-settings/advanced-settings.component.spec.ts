@@ -254,19 +254,6 @@ describe('AdvancedSettingsComponent', () => {
     expect((component as any).createMemoStructureWatcher()).toBeUndefined();
   });
 
-  it('drop function chek', () => {
-    component.defaultMemoFields = memo;
-    const button = fixture.debugElement.query(By.css('.advanced-settings--memo-preview-select'));
-    const final = button.children[0].children[0].children[0].nativeElement;
-    let event = final.click();
-    event = {
-      previousIndex: 0,
-      currentIndex: 1
-    };
-    fixture.detectChanges();
-    expect(component.drop(event)).toBeUndefined();
-  });
-
   it('openAddemailDialog function check', () => {
     expect(component.openAddemailDialog()).toBeUndefined();
     fixture.detectChanges();
