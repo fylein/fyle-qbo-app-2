@@ -59,7 +59,7 @@ export class ExportLogService {
       offset,
       is_skipped: 'true'
     };
-    
+
     if (selectedDateFilter) {
       const startDate = selectedDateFilter.startDate.toLocaleDateString().split('/');
       const endDate = selectedDateFilter.endDate.toLocaleDateString().split('/');
