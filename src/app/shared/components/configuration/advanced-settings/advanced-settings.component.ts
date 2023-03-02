@@ -413,7 +413,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     if (response.count) {
       this.skipExportForm.controls.condition1.setValidators(Validators.required);
       this.skipExportForm.controls.operator1.setValidators(Validators.required);
-      if (!this.valueOption1.length && !(selectedOperator2 === 'is_empty' || selectedOperator2 === 'is_not_empty')) {
+      if (!this.valueOption1.length && !(selectedOperator1 === 'is_empty' || selectedOperator1 === 'is_not_empty')) {
         this.skipExportForm.controls.value1.setValidators(Validators.required);
       }
       if (response.count === 2) {
