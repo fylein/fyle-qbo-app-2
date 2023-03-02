@@ -101,7 +101,7 @@ describe('AdvancedSettingsComponent', () => {
       condition2: ['report_title'],
       operator2: ['in'],
       value2: ['anish'],
-      customFieldType2: [null],
+      customFieldType2: [null]
     });
     component.advancedSettingsForm = form;
     router = TestBed.inject(Router);
