@@ -79,13 +79,22 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#deleteExpenseFilter" >deleteExpenseFilter</a>
+                            </li>
+                            <li>
                                 <a href="#getAdvancedSettings" >getAdvancedSettings</a>
+                            </li>
+                            <li>
+                                <a href="#getExpenseFilter" >getExpenseFilter</a>
                             </li>
                             <li>
                                 <a href="#getWorkspaceAdmins" >getWorkspaceAdmins</a>
                             </li>
                             <li>
                                 <a href="#postAdvancedSettings" >postAdvancedSettings</a>
+                            </li>
+                            <li>
+                                <a href="#postExpenseFilter" >postExpenseFilter</a>
                             </li>
                         </ul>
                     </td>
@@ -110,7 +119,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -169,6 +178,82 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="deleteExpenseFilter"></a>
+                    <span class="name">
+                        <span ><b>deleteExpenseFilter</b></span>
+                        <a href="#deleteExpenseFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteExpenseFilter(rank: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@CacheBuster({cacheBusterNotifier: skipExportCache})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:55</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rank</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#SkipExport" target="_self" >Observable&lt;SkipExport&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getAdvancedSettings"></a>
                     <span class="name">
                         <span ><b>getAdvancedSettings</b></span>
@@ -192,8 +277,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -203,6 +288,50 @@
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#AdvancedSettingGet" target="_self" >Observable&lt;AdvancedSettingGet&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getExpenseFilter"></a>
+                    <span class="name">
+                        <span ><b>getExpenseFilter</b></span>
+                        <a href="#getExpenseFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getExpenseFilter()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cacheable({cacheBusterObserver: skipExportCache})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:41</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;ExpenseFilterResponse&gt;</code>
 
                     </div>
                 </td>
@@ -229,8 +358,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:59</a></div>
                 </td>
             </tr>
 
@@ -273,8 +402,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:34</a></div>
                 </td>
             </tr>
 
@@ -322,21 +451,101 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="postExpenseFilter"></a>
+                    <span class="name">
+                        <span ><b>postExpenseFilter</b></span>
+                        <a href="#postExpenseFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>postExpenseFilter(skipExport: <a href="../undefineds/SkipExport.html" target="_self">SkipExport</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@CacheBuster({cacheBusterNotifier: skipExportCache})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:48</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>skipExport</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#SkipExport" target="_self" >SkipExport</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#SkipExport" target="_self" >Observable&lt;SkipExport&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpParams } from &#x27;@angular/common/http&#x27;;
+import { Injectable } from &#x27;@angular/core&#x27;;
 import { Observable, Subject } from &#x27;rxjs&#x27;;
 import { Cacheable, CacheBuster } from &#x27;ts-cacheable&#x27;;
 import { AdvancedSettingGet, AdvancedSettingPost, AdvancedSettingWorkspaceSchedulePost } from &#x27;../../models/configuration/advanced-setting.model&#x27;;
 import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from &#x27;../../models/db/workspace-schedule.model&#x27;;
+import { ExpenseFilterResponse, SkipExport } from &#x27;../../models/misc/skip-export.model&#x27;;
 import { ApiService } from &#x27;../core/api.service&#x27;;
 import { WorkspaceService } from &#x27;../workspace/workspace.service&#x27;;
 
 const advancedSettingsCache$ &#x3D; new Subject&lt;void&gt;();
+const skipExportCache &#x3D; new Subject&lt;void&gt;();
+
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
@@ -359,6 +568,27 @@ export class AdvancedSettingService {
   })
   postAdvancedSettings(exportSettingsPayload: AdvancedSettingPost): Observable&lt;AdvancedSettingGet&gt; {
     return this.apiService.put(&#x60;/v2/workspaces/${this.workspaceService.getWorkspaceId()}/advanced_configurations/&#x60;, exportSettingsPayload);
+  }
+
+  @Cacheable({
+    cacheBusterObserver: skipExportCache
+  })
+  getExpenseFilter(): Observable&lt;ExpenseFilterResponse&gt; {
+    return this.apiService.get(&#x60;/workspaces/${this.workspaceService.getWorkspaceId()}/fyle/expense_filters/&#x60;, {});
+  }
+
+  @CacheBuster({
+    cacheBusterNotifier: skipExportCache
+  })
+  postExpenseFilter(skipExport: SkipExport): Observable&lt;SkipExport&gt; {
+    return this.apiService.post(&#x60;/workspaces/${this.workspaceService.getWorkspaceId()}/fyle/expense_filters/&#x60;, skipExport);
+  }
+
+  @CacheBuster({
+    cacheBusterNotifier: skipExportCache
+  })
+  deleteExpenseFilter(rank: number): Observable&lt;SkipExport&gt; {
+    return this.apiService.delete(&#x60;/workspaces/${this.workspaceService.getWorkspaceId()}/fyle/expense_filters/?rank&#x3D;${rank}&#x60;);
   }
 
   getWorkspaceAdmins(): Observable&lt;[WorkspaceScheduleEmailOptions]&gt; {

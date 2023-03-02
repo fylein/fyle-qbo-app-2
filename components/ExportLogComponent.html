@@ -147,6 +147,9 @@
                                 <a href="#emptyExpenseGroup" >emptyExpenseGroup</a>
                             </li>
                             <li>
+                                <a href="#emptySkipExportList" >emptySkipExportList</a>
+                            </li>
+                            <li>
                                 <a href="#expenseGroups" >expenseGroups</a>
                             </li>
                             <li>
@@ -175,13 +178,31 @@
                                 <a href="#selectedDateFilter" >selectedDateFilter</a>
                             </li>
                             <li>
+                                <a href="#selectedDateFilterSkipExport" >selectedDateFilterSkipExport</a>
+                            </li>
+                            <li>
                                 <a href="#SimpleSearchPage" >SimpleSearchPage</a>
                             </li>
                             <li>
                                 <a href="#SimpleSearchType" >SimpleSearchType</a>
                             </li>
                             <li>
+                                <a href="#skipExport" >skipExport</a>
+                            </li>
+                            <li>
+                                <a href="#skipExportLogForm" >skipExportLogForm</a>
+                            </li>
+                            <li>
+                                <a href="#skippedExpenseColumns" >skippedExpenseColumns</a>
+                            </li>
+                            <li>
+                                <a href="#state" >state</a>
+                            </li>
+                            <li>
                                 <a href="#totalCount" >totalCount</a>
+                            </li>
+                            <li>
+                                <a href="#totalSkipCount" >totalSkipCount</a>
                             </li>
                             <li>
                                 <a href="#ZeroStatePage" >ZeroStatePage</a>
@@ -199,10 +220,19 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#changeState" >changeState</a>
+                            </li>
+                            <li>
                                 <a href="#clearDateFilter" >clearDateFilter</a>
                             </li>
                             <li>
+                                <a href="#clearDateFilterSkipExport" >clearDateFilterSkipExport</a>
+                            </li>
+                            <li>
                                 <a href="#dateFilterHandler" >dateFilterHandler</a>
+                            </li>
+                            <li>
+                                <a href="#dateFilterHandlerSkipExport" >dateFilterHandlerSkipExport</a>
                             </li>
                             <li>
                                 <a href="#getExpenseGroups" >getExpenseGroups</a>
@@ -210,6 +240,9 @@
                             <li>
                                     <span class="modifier">Private</span>
                                 <a href="#getExpenseGroupsAndSetupPage" >getExpenseGroupsAndSetupPage</a>
+                            </li>
+                            <li>
+                                <a href="#getSkipExportLog" >getSkipExportLog</a>
                             </li>
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
@@ -220,7 +253,15 @@
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                <a href="#searchByTextSkipExport" >searchByTextSkipExport</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#setupForm" >setupForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setupSkipExportForm" >setupSkipExportForm</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -249,7 +290,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:80</a></div>
                             </td>
                         </tr>
 
@@ -360,6 +401,75 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="changeState"></a>
+                    <span class="name">
+                        <span ><b>changeState</b></span>
+                        <a href="#changeState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeState(state: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="160"
+                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:160</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>state</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="clearDateFilter"></a>
                     <span class="name">
                         <span ><b>clearDateFilter</b></span>
@@ -376,8 +486,45 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="174"
+                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:174</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clearDateFilterSkipExport"></a>
+                    <span class="name">
+                        <span ><b>clearDateFilterSkipExport</b></span>
+                        <a href="#clearDateFilterSkipExport"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clearDateFilterSkipExport()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="186"
+                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:186</a></div>
                 </td>
             </tr>
 
@@ -413,8 +560,45 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="128"
-                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:128</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="198"
+                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:198</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dateFilterHandlerSkipExport"></a>
+                    <span class="name">
+                        <span ><b>dateFilterHandlerSkipExport</b></span>
+                        <a href="#dateFilterHandlerSkipExport"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>dateFilterHandlerSkipExport()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="210"
+                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:210</a></div>
                 </td>
             </tr>
 
@@ -450,8 +634,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="140"
-                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:140</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="222"
+                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:222</a></div>
                 </td>
             </tr>
 
@@ -521,8 +705,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="191"
-                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:191</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="307"
+                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:307</a></div>
                 </td>
             </tr>
 
@@ -533,6 +717,75 @@
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSkipExportLog"></a>
+                    <span class="name">
+                        <span ><b>getSkipExportLog</b></span>
+                        <a href="#getSkipExportLog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getSkipExportLog(data: <a href="../undefineds/Paginator.html" target="_self">Paginator</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="268"
+                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:268</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#Paginator" target="_self" >Paginator</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -558,8 +811,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="199"
-                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:199</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="317"
+                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:317</a></div>
                 </td>
             </tr>
 
@@ -597,8 +850,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="186"
-                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:186</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="297"
+                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:297</a></div>
                 </td>
             </tr>
 
@@ -662,6 +915,89 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="searchByTextSkipExport"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>searchByTextSkipExport</b></span>
+                        <a href="#searchByTextSkipExport"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>searchByTextSkipExport(skipExport: <a href="../interfaces/SkipExportList.html" target="_self">SkipExportList</a>, filterText: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="302"
+                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:302</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>skipExport</td>
+                                    <td>
+                                                <code><a href="../interfaces/SkipExportList.html" target="_self" >SkipExportList</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>filterText</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="setupForm"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
@@ -680,8 +1016,47 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:99</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setupSkipExportForm"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>setupSkipExportForm</b></span>
+                        <a href="#setupSkipExportForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setupSkipExportForm()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="130"
+                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:130</a></div>
                 </td>
             </tr>
 
@@ -719,8 +1094,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:91</a></div>
                 </td>
             </tr>
 
@@ -826,7 +1201,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -853,7 +1228,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -884,7 +1259,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -916,6 +1291,37 @@
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="emptySkipExportList"></a>
+                    <span class="name">
+                        <span ><b>emptySkipExportList</b></span>
+                        <a href="#emptySkipExportList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/SkipExportList.html" target="_self" >MatTableDataSource&lt;SkipExportList&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MatTableDataSource&lt;SkipExportList&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -972,7 +1378,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -997,7 +1403,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -1024,7 +1430,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:72</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:86</a></div>
                         </td>
                     </tr>
 
@@ -1055,7 +1461,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -1081,7 +1487,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -1107,7 +1513,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -1132,7 +1538,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -1158,7 +1564,33 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedDateFilterSkipExport"></a>
+                    <span class="name">
+                        <span ><b>selectedDateFilterSkipExport</b></span>
+                        <a href="#selectedDateFilterSkipExport"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>SelectedDateFilter | null</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -1183,7 +1615,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:62</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -1208,7 +1640,126 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:64</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="skipExport"></a>
+                    <span class="name">
+                        <span ><b>skipExport</b></span>
+                        <a href="#skipExport"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/SkipExportList.html" target="_self" >MatTableDataSource&lt;SkipExportList&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MatTableDataSource&lt;SkipExportList&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="skipExportLogForm"></a>
+                    <span class="name">
+                        <span ><b>skipExportLogForm</b></span>
+                        <a href="#skipExportLogForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="skippedExpenseColumns"></a>
+                    <span class="name">
+                        <span ><b>skippedExpenseColumns</b></span>
+                        <a href="#skippedExpenseColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[&#x27;updated_at&#x27;, &#x27;claim_number&#x27;, &#x27;name&#x27;, &#x27;expenseType&#x27;]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="state"></a>
+                    <span class="name">
+                        <span ><b>state</b></span>
+                        <a href="#state"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;COMPLETE&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -1234,7 +1785,33 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="totalSkipCount"></a>
+                    <span class="name">
+                        <span ><b>totalSkipCount</b></span>
+                        <a href="#totalSkipCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -1259,7 +1836,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/integration/main/export-log/export-log.component.ts:80</a></div>
                         </td>
                     </tr>
 
@@ -1275,7 +1852,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { FormBuilder, FormGroup } from &#x27;@angular/forms&#x27;;
 import { environment } from &#x27;src/environments/environment&#x27;;
-import { ExpenseGroup, ExpenseGroupList, ExpenseGroupResponse } from &#x27;src/app/core/models/db/expense-group.model&#x27;;
+import { ExpenseGroup, ExpenseGroupList, ExpenseGroupResponse, SkipExportList, SkipExportLog, SkipExportLogResponse } from &#x27;src/app/core/models/db/expense-group.model&#x27;;
 import { FyleReferenceType, PaginatorPage, SimpleSearchPage, SimpleSearchType, ZeroStatePage } from &#x27;src/app/core/models/enum/enum.model&#x27;;
 import { Paginator } from &#x27;src/app/core/models/misc/paginator.model&#x27;;
 import { PaginatorService } from &#x27;src/app/core/services/core/paginator.service&#x27;;
@@ -1297,11 +1874,21 @@ export class ExportLogComponent implements OnInit {
 
   emptyExpenseGroup: MatTableDataSource&lt;ExpenseGroupList&gt; &#x3D; new MatTableDataSource&lt;ExpenseGroupList&gt;([]);
 
+  skipExport: MatTableDataSource&lt;SkipExportList&gt; &#x3D; new MatTableDataSource&lt;SkipExportList&gt;([]);
+
+  emptySkipExportList: MatTableDataSource&lt;SkipExportList&gt; &#x3D; new MatTableDataSource&lt;SkipExportList&gt;([]);
+
   displayedColumns: string[] &#x3D; [&#x27;exportedAt&#x27;, &#x27;name&#x27;, &#x27;fundSource&#x27;, &#x27;referenceID&#x27;, &#x27;exportType&#x27;, &#x27;link&#x27;];
+
+  skippedExpenseColumns: string[] &#x3D; [&#x27;updated_at&#x27;, &#x27;claim_number&#x27;, &#x27;name&#x27;, &#x27;expenseType&#x27;];
 
   isLoading: boolean &#x3D; true;
 
+  state: string &#x3D; &#x27;COMPLETE&#x27;;
+
   exportLogForm: FormGroup;
+
+  skipExportLogForm: FormGroup;
 
   limit: number;
 
@@ -1309,9 +1896,13 @@ export class ExportLogComponent implements OnInit {
 
   totalCount: number;
 
+  totalSkipCount: number;
+
   FyleReferenceType &#x3D; FyleReferenceType;
 
   selectedDateFilter: SelectedDateFilter | null;
+
+  selectedDateFilterSkipExport: SelectedDateFilter | null;
 
   dateOptions: DateFilter[] &#x3D; [
     {
@@ -1387,6 +1978,50 @@ export class ExportLogComponent implements OnInit {
     });
   }
 
+  private setupSkipExportForm(): void {
+    this.skipExportLogForm &#x3D; this.formBuilder.group({
+      searchOption: [&#x27;&#x27;],
+      dateRange: [null],
+      start: [&#x27;&#x27;],
+      end: [&#x27;&#x27;]
+    });
+
+    this.skipExportLogForm.controls.searchOption.valueChanges.subscribe((searchTerm: string) &#x3D;&gt; {
+      if (searchTerm) {
+        this.skipExport.filter &#x3D; searchTerm.trim().toLowerCase();
+      } else {
+        this.skipExport.filter &#x3D; &#x27;&#x27;;
+      }
+    });
+
+    this.skipExportLogForm.controls.dateRange.valueChanges.subscribe((dateRange) &#x3D;&gt; {
+      if (dateRange) {
+        this.selectedDateFilterSkipExport &#x3D; {
+          startDate: dateRange.startDate,
+          endDate: dateRange.endDate
+        };
+        this.trackDateFilter(&#x27;existing&#x27;, this.selectedDateFilterSkipExport);
+
+        const paginator: Paginator &#x3D; this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
+        this.getSkipExportLog(paginator);
+      }
+    });
+  }
+
+  changeState(state: string) {
+    const that &#x3D; this;
+    if (that.state !&#x3D;&#x3D; state) {
+      if (state &#x3D;&#x3D;&#x3D; &#x27;SKIP&#x27;) {
+        const paginator: Paginator &#x3D; this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
+        this.getSkipExportLog(paginator);
+      } else {
+        const paginator: Paginator &#x3D; this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
+        this.getExpenseGroups(paginator);
+      }
+      that.state &#x3D; state;
+    }
+  }
+
   clearDateFilter(): void {
     this.selectedDateFilter &#x3D; null;
     this.totalCount &#x3D; 0;
@@ -1399,6 +2034,18 @@ export class ExportLogComponent implements OnInit {
     this.getExpenseGroups(paginator);
   }
 
+  clearDateFilterSkipExport(): void {
+    this.selectedDateFilterSkipExport &#x3D; null;
+    this.totalSkipCount &#x3D; 0;
+    event?.stopPropagation();
+    this.skipExportLogForm.controls.dateRange.patchValue(null);
+    this.skipExportLogForm.controls.start.patchValue(&#x27;&#x27;);
+    this.skipExportLogForm.controls.end.patchValue(&#x27;&#x27;);
+
+    const paginator: Paginator &#x3D; this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
+    this.getSkipExportLog(paginator);
+  }
+
   dateFilterHandler(): void {
     this.selectedDateFilter &#x3D; {
       startDate: this.exportLogForm.controls.start.value,
@@ -1409,6 +2056,18 @@ export class ExportLogComponent implements OnInit {
 
     const paginator: Paginator &#x3D; this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
     this.getExpenseGroups(paginator);
+  }
+
+  dateFilterHandlerSkipExport(): void {
+    this.selectedDateFilterSkipExport &#x3D; {
+      startDate: this.skipExportLogForm.controls.start.value,
+      endDate: this.skipExportLogForm.controls.end.value
+    };
+
+    this.trackDateFilter(&#x27;custom&#x27;, this.selectedDateFilterSkipExport);
+
+    const paginator: Paginator &#x3D; this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
+    this.getSkipExportLog(paginator);
   }
 
   getExpenseGroups(data: Paginator): void {
@@ -1457,13 +2116,49 @@ export class ExportLogComponent implements OnInit {
     });
   }
 
+  getSkipExportLog(data: Paginator): void {
+    this.isLoading &#x3D; true;
+    const skipExport: SkipExportList[] &#x3D; [];
+
+    // Store page size when user changes it
+    if (this.limit !&#x3D;&#x3D; data.limit) {
+      this.paginatorService.storePageSize(PaginatorPage.EXPORT_LOG, data.limit);
+    }
+
+    this.limit &#x3D; data.limit;
+    this.offset &#x3D; data.offset;
+
+    this.exportLogService.getSkippedExpenses(data.limit, data.offset, this.selectedDateFilterSkipExport).subscribe((skipExportResponse: SkipExportLogResponse) &#x3D;&gt; {
+      this.totalSkipCount &#x3D; skipExportResponse.count;
+      skipExportResponse.results.forEach((skippedExpense: SkipExportLog) &#x3D;&gt; {
+        skipExport.push({
+          updated_at: skippedExpense.updated_at,
+          employee: [skippedExpense.employee_name, skippedExpense.employee_email],
+          expenseType: skippedExpense.fund_source &#x3D;&#x3D;&#x3D; &#x27;CCC&#x27; ? &#x27;Credit Card&#x27; : &#x27;Reimbursable&#x27;,
+          claim_number: skippedExpense.claim_number
+        });
+      });
+      this.skipExport &#x3D; new MatTableDataSource(skipExport);
+      this.skipExport.filterPredicate &#x3D; this.searchByTextSkipExport;
+
+      this.isLoading &#x3D; false;
+    });
+  }
+
   private searchByText(expenseGroup: ExpenseGroupList, filterText: string) {
     filterText &#x3D; filterText.toLowerCase();
     return expenseGroup.employee[0].toLowerCase().includes(filterText) || expenseGroup.employee[1].toLowerCase().includes(filterText) || expenseGroup.referenceNumber.toLowerCase().includes(filterText);
   }
 
+  private searchByTextSkipExport(skipExport: SkipExportList, filterText: string) {
+    filterText &#x3D; filterText.toLowerCase();
+    return skipExport.employee[0].toLowerCase().includes(filterText) || skipExport.employee[1].toLowerCase().includes(filterText) || skipExport.claim_number.toLowerCase().includes(filterText);
+  }
+
   private getExpenseGroupsAndSetupPage(): void {
     this.setupForm();
+
+    this.setupSkipExportForm();
 
     const paginator: Paginator &#x3D; this.paginatorService.getPageSize(PaginatorPage.EXPORT_LOG);
 
@@ -1479,12 +2174,22 @@ export class ExportLogComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;configuration-main&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;page-header&quot;&gt;
+  &lt;nav mat-tab-nav-bar&gt;
+    &lt;a mat-tab-link (click)&#x3D;&quot;changeState(&#x27;COMPLETE&#x27;)&quot; [active]&#x3D;&quot;state&#x3D;&#x3D;&#x3D;&#x27;COMPLETE&#x27;&quot;&gt;
+      Complete
+    &lt;/a&gt;
+    &lt;a mat-tab-link (click)&#x3D;&quot;changeState(&#x27;SKIP&#x27;)&quot; [active]&#x3D;&quot;state&#x3D;&#x3D;&#x3D;&#x27;SKIP&#x27;&quot;&gt;
+      Skipped
+    &lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/div&gt;
+&lt;div class&#x3D;&quot;configuration-main&quot;&gt;
   &lt;div class&#x3D;&quot;configuration-main--bg-top&quot;&gt;&lt;/div&gt;
   &lt;div class&#x3D;&quot;configuration-main--bg-bottom&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class&#x3D;&quot;export-log&quot;&gt;
-  &lt;div class&#x3D;&quot;export-log--content&quot;&gt;
+  &lt;div class&#x3D;&quot;export-log--content&quot; *ngIf&#x3D;&quot;state&#x3D;&#x3D;&#x3D;&#x27;COMPLETE&#x27;&quot;&gt;
     &lt;!-- header --&gt;
     &lt;div class&#x3D;&quot;export-log--header-section&quot;&gt;
       &lt;div fxLayout&#x3D;&quot;row&quot; class&#x3D;&quot;export-log--simple-search&quot; [class.active]&#x3D;&quot;selectedDateFilter&quot;&gt;
@@ -1563,6 +2268,92 @@ export class ExportLogComponent implements OnInit {
     &lt;/div&gt;
 
     &lt;app-paginator *ngIf&#x3D;&quot;expenseGroups.filteredData.length&quot; [page]&#x3D;&quot;PaginatorPage.EXPORT_LOG&quot; [totalCount]&#x3D;&quot;totalCount&quot; [limit]&#x3D;&quot;limit&quot; [offset]&#x3D;&quot;offset&quot; (pageChangeEvent)&#x3D;&quot;getExpenseGroups($event)&quot;&gt;&lt;/app-paginator&gt;
+  &lt;/div&gt;
+
+  &lt;!-- For Skipped Tab --&gt;
+  &lt;div class&#x3D;&quot;export-log--content&quot; *ngIf&#x3D;&quot;state&#x3D;&#x3D;&#x3D;&#x27;SKIP&#x27;&quot;&gt;
+
+
+    &lt;!-- header --&gt;
+    &lt;div class&#x3D;&quot;export-log--header-section&quot;&gt;
+      &lt;div fxLayout&#x3D;&quot;row&quot; class&#x3D;&quot;export-log--simple-search&quot; [class.active]&#x3D;&quot;selectedDateFilterSkipExport&quot;&gt;
+        &lt;app-simple-text-search *ngIf&#x3D;&quot;isLoading || totalSkipCount || selectedDateFilterSkipExport&quot; [page]&#x3D;&quot;SimpleSearchPage.EXPORT_LOG&quot; [searchType]&#x3D;&quot;SimpleSearchType.TEXT_FIELD&quot; [form]&#x3D;&quot;skipExportLogForm&quot; [placeholder]&#x3D;&quot;&#x27;Search by Employee Name or Reference ID&#x27;&quot; [showBackgroundColor]&#x3D;&quot;false&quot;&gt;&lt;/app-simple-text-search&gt;
+
+        &lt;div *ngIf&#x3D;&quot;isLoading &amp;&amp; !totalCount&quot;&gt;
+          &lt;mat-form-field floatLabel&#x3D;&quot;always&quot; appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;export-log--date-filter&quot;&gt;
+            &lt;mat-select placeholder&#x3D;&quot;Select date range&quot;&gt;&lt;/mat-select&gt;
+            &lt;div class&#x3D;&quot;mat-select-arrow-closed&quot;&gt;&lt;/div&gt;
+          &lt;/mat-form-field&gt;
+        &lt;/div&gt;
+
+        &lt;div *ngIf&#x3D;&quot;!isLoading &amp;&amp; (totalSkipCount || selectedDateFilterSkipExport)&quot;&gt;
+          &lt;mat-form-field [formGroup]&#x3D;&quot;skipExportLogForm&quot; floatLabel&#x3D;&quot;always&quot; appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;export-log--date-filter&quot;&gt;
+            &lt;mat-select placeholder&#x3D;&quot;Select date range&quot; formControlName&#x3D;&quot;dateRange&quot;&gt;
+              &lt;mat-select-trigger *ngIf&#x3D;&quot;selectedDateFilterSkipExport&quot; class&#x3D;&quot;export-log--selected-date&quot;&gt;
+                {{ selectedDateFilterSkipExport.startDate | date: &#x27;MMM dd, yyyy&#x27; }} - {{ selectedDateFilterSkipExport.endDate | date: &#x27;MMM dd, yyyy&#x27; }}
+                &lt;img src&#x3D;&quot;assets/images/svgs/actions/clear-date-filter.svg&quot; (click)&#x3D;&quot;clearDateFilterSkipExport()&quot; class&#x3D;&quot;export-log--clear-date-filter&quot; width&#x3D;&quot;12px&quot; height&#x3D;&quot;12px&quot;&gt;
+              &lt;/mat-select-trigger&gt;
+              &lt;mat-option class&#x3D;&quot;export-log--date-select-option&quot; *ngFor&#x3D;&quot;let dateOption of dateOptions&quot; [value]&#x3D;&quot;dateOption&quot;&gt;
+                &lt;div&gt;
+                  &lt;div class&#x3D;&quot;sub-text-color&quot;&gt;{{ dateOption.dateRange }}&lt;/div&gt;
+                  &lt;div class&#x3D;&quot;export-log--date-range&quot;&gt;{{ dateOption.startDate | date: &#x27;MMM dd, yyyy&#x27; }} - {{ dateOption.endDate | date: &#x27;MMM dd, yyyy&#x27; }}&lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/mat-option&gt;
+              &lt;mat-option class&#x3D;&quot;export-log--date-select-option&quot; [value]&#x3D;&quot;&#x27;&#x27;&quot; (click)&#x3D;&quot;picker.open();&quot;&gt;
+                &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;space-between center&quot;&gt;
+                  &lt;div class&#x3D;&quot;sub-text-color&quot;&gt;Custom dates&lt;/div&gt;
+                  &lt;img src&#x3D;&quot;assets/images/svgs/actions/arrow-right-export-log.svg&quot; class&#x3D;&quot;configuration--icon&quot;&gt;
+                &lt;/div&gt;
+              &lt;/mat-option&gt;
+            &lt;/mat-select&gt;
+            &lt;div *ngIf&#x3D;&quot;!selectedDateFilterSkipExport&quot; class&#x3D;&quot;mat-select-arrow-closed&quot;&gt;&lt;/div&gt;
+          &lt;/mat-form-field&gt;
+          &lt;div class&#x3D;&quot;export-log--date-field&quot;&gt;
+            &lt;mat-form-field floatLabel&#x3D;&quot;always&quot; appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;configuration--form-field export-log--date-filter&quot;&gt;
+              &lt;mat-date-range-input [formGroup]&#x3D;&quot;skipExportLogForm&quot; [rangePicker]&#x3D;&quot;picker&quot;&gt;
+                &lt;input matStartDate formControlName&#x3D;&quot;start&quot; placeholder&#x3D;&quot;Start date&quot;&gt;
+                &lt;input (dateChange)&#x3D;&quot;dateFilterHandlerSkipExport()&quot; matEndDate formControlName&#x3D;&quot;end&quot; placeholder&#x3D;&quot;End date&quot;&gt;
+              &lt;/mat-date-range-input&gt;
+              &lt;mat-datepicker-toggle matSuffix [for]&#x3D;&quot;picker&quot;&gt;&lt;/mat-datepicker-toggle&gt;
+              &lt;mat-date-range-picker #picker&gt;
+                &lt;mat-date-range-picker-actions&gt;
+                  &lt;div class&#x3D;&quot;export-log--cancel-btn pointer&quot; matDateRangePickerCancel&gt;
+                    &lt;h5 class&#x3D;&quot;export-log--cancel-btn-text align-center&quot;&gt;Cancel&lt;/h5&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;export-log--done pointer&quot; matDateRangePickerApply&gt;
+                    &lt;h5 class&#x3D;&quot;export-log--done-text align-center&quot;&gt;Done&lt;/h5&gt;
+                  &lt;/div&gt;
+                &lt;/mat-date-range-picker-actions&gt;
+              &lt;/mat-date-range-picker&gt;
+            &lt;/mat-form-field&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- header --&gt;
+
+
+
+    &lt;!-- shimmers --&gt;
+    &lt;div *ngIf&#x3D;&quot;isLoading&quot;&gt;
+      &lt;app-skip-export-log-table [displayedColumns]&#x3D;&quot;skippedExpenseColumns&quot; [skipExport]&#x3D;&quot;emptySkipExportList&quot;&gt;&lt;/app-skip-export-log-table&gt;
+      &lt;div *ngFor&#x3D;&quot;let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]&quot; fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;start center&quot; class&#x3D;&quot;skeleton-loader-list-view--row-box&quot;&gt;
+        &lt;div class&#x3D;&quot;skeleton-loader-list-view--init-box-section&quot;&gt;
+          &lt;div class&#x3D;&quot;shimmers skeleton-loader-list-view--init-box-export-log&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;skeleton-loader-list-view--end-box-section&quot;&gt;
+          &lt;div class&#x3D;&quot;shimmers skeleton-loader-list-view--end-box-export-log&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- shimmers --&gt;
+
+    &lt;div *ngIf&#x3D;&quot;!isLoading&quot; class&#x3D;&quot;export-log--table&quot;&gt;
+      &lt;app-skip-export-log-table *ngIf&#x3D;&quot;totalSkipCount || selectedDateFilterSkipExport&quot; [displayedColumns]&#x3D;&quot;skippedExpenseColumns&quot; [skipExport]&#x3D;&quot;skipExport&quot;&gt;&lt;/app-skip-export-log-table&gt;
+      &lt;app-zero-state-with-illustration [page]&#x3D;&quot;ZeroStatePage.export_log&quot; [form]&#x3D;&quot;skipExportLogForm&quot; [data]&#x3D;&quot;skipExport&quot; [searchTerm]&#x3D;&quot;&#x27;Employee Name or Expense ID&#x27;&quot; [dateFilter]&#x3D;&quot;selectedDateFilterSkipExport&quot;&gt;&lt;/app-zero-state-with-illustration&gt;
+    &lt;/div&gt;
+
+    &lt;app-paginator *ngIf&#x3D;&quot;skipExport.filteredData.length&quot; [page]&#x3D;&quot;PaginatorPage.EXPORT_LOG&quot; [totalCount]&#x3D;&quot;totalSkipCount&quot; [limit]&#x3D;&quot;limit&quot; [offset]&#x3D;&quot;offset&quot; (pageChangeEvent)&#x3D;&quot;getSkipExportLog($event)&quot;&gt;&lt;/app-paginator&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
@@ -1666,7 +2457,14 @@ export class ExportLogComponent implements OnInit {
     right: 12px;
   }
 }
-</code></pre>
+
+:host ::ng-deep .mat-ink-bar {
+  background-color: black !important;
+}
+
+:host ::ng-deep .mat-tab-link:hover {
+  background-color: #eee !important;
+}</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -1694,8 +2492,8 @@ export class ExportLogComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="configuration-main">  <div class="configuration-main--bg-top"></div>  <div class="configuration-main--bg-bottom"></div></div><div class="export-log">  <div class="export-log--content">    <!-- header -->    <div class="export-log--header-section">      <div fxLayout="row" class="export-log--simple-search" [class.active]="selectedDateFilter">        <app-simple-text-search *ngIf="isLoading || totalCount || selectedDateFilter" [page]="SimpleSearchPage.EXPORT_LOG" [searchType]="SimpleSearchType.TEXT_FIELD" [form]="exportLogForm" [placeholder]="\'Search by Employee Name or Reference ID\'" [showBackgroundColor]="false"></app-simple-text-search>        <div *ngIf="isLoading && !totalCount">          <mat-form-field floatLabel="always" appearance="outline" class="export-log--date-filter">            <mat-select placeholder="Select date range"></mat-select>            <div class="mat-select-arrow-closed"></div>          </mat-form-field>        </div>        <div *ngIf="!isLoading && (totalCount || selectedDateFilter)">          <mat-form-field [formGroup]="exportLogForm" floatLabel="always" appearance="outline" class="export-log--date-filter">            <mat-select placeholder="Select date range" formControlName="dateRange">              <mat-select-trigger *ngIf="selectedDateFilter" class="export-log--selected-date">                {{ selectedDateFilter.startDate | date: \'MMM dd, yyyy\' }} - {{ selectedDateFilter.endDate | date: \'MMM dd, yyyy\' }}                <img src="assets/images/svgs/actions/clear-date-filter.svg" (click)="clearDateFilter()" class="export-log--clear-date-filter" width="12px" height="12px">              </mat-select-trigger>              <mat-option class="export-log--date-select-option" *ngFor="let dateOption of dateOptions" [value]="dateOption">                <div>                  <div class="sub-text-color">{{ dateOption.dateRange }}</div>                  <div class="export-log--date-range">{{ dateOption.startDate | date: \'MMM dd, yyyy\' }} - {{ dateOption.endDate | date: \'MMM dd, yyyy\' }}</div>                </div>              </mat-option>              <mat-option class="export-log--date-select-option" [value]="\'\'" (click)="picker.open();">                <div fxLayout="row" fxLayoutAlign="space-between center">                  <div class="sub-text-color">Custom dates</div>                  <img src="assets/images/svgs/actions/arrow-right-export-log.svg" class="configuration--icon">                </div>              </mat-option>            </mat-select>            <div *ngIf="!selectedDateFilter" class="mat-select-arrow-closed"></div>          </mat-form-field>          <div class="export-log--date-field">            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field export-log--date-filter">              <mat-date-range-input [formGroup]="exportLogForm" [rangePicker]="picker">                <input matStartDate formControlName="start" placeholder="Start date">                <input (dateChange)="dateFilterHandler()" matEndDate formControlName="end" placeholder="End date">              </mat-date-range-input>              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>              <mat-date-range-picker #picker>                <mat-date-range-picker-actions>                  <div class="export-log--cancel-btn pointer" matDateRangePickerCancel>                    <h5 class="export-log--cancel-btn-text align-center">Cancel</h5>                  </div>                  <div class="export-log--done pointer" matDateRangePickerApply>                    <h5 class="export-log--done-text align-center">Done</h5>                  </div>                </mat-date-range-picker-actions>              </mat-date-range-picker>            </mat-form-field>          </div>        </div>      </div>    </div>    <!-- header -->    <!-- shimmers -->    <div *ngIf="isLoading">      <app-export-log-table [displayedColumns]="displayedColumns" [expenseGroups]="emptyExpenseGroup"></app-export-log-table>      <div *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" fxLayout="row" fxLayoutAlign="start center" class="skeleton-loader-list-view--row-box">        <div class="skeleton-loader-list-view--init-box-section">          <div class="shimmers skeleton-loader-list-view--init-box-export-log"></div>        </div>        <div class="skeleton-loader-list-view--end-box-section">          <div class="shimmers skeleton-loader-list-view--end-box-export-log"></div>        </div>      </div>    </div>    <!-- shimmers -->    <div *ngIf="!isLoading" class="export-log--table">      <app-export-log-table *ngIf="totalCount || selectedDateFilter" [displayedColumns]="displayedColumns" [expenseGroups]="expenseGroups"></app-export-log-table>      <app-zero-state-with-illustration [page]="ZeroStatePage.export_log" [form]="exportLogForm" [data]="expenseGroups" [searchTerm]="\'Employee Name or Expense ID\'" [dateFilter]="selectedDateFilter"></app-zero-state-with-illustration>    </div>    <app-paginator *ngIf="expenseGroups.filteredData.length" [page]="PaginatorPage.EXPORT_LOG" [totalCount]="totalCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getExpenseGroups($event)"></app-paginator>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AddEmailDialogComponent', 'selector': 'app-add-email-dialog'},{'name': 'AdvancedSettingsComponent', 'selector': 'app-advanced-settings'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'ConfigurationAdvancedSettingsComponent', 'selector': 'app-configuration-advanced-settings'},{'name': 'ConfigurationComponent', 'selector': 'app-configuration'},{'name': 'ConfigurationEmployeeSettingsComponent', 'selector': 'app-configuration-employee-settings'},{'name': 'ConfigurationExportSettingsComponent', 'selector': 'app-configuration-export-settings'},{'name': 'ConfigurationImportSettingsComponent', 'selector': 'app-configuration-import-settings'},{'name': 'ConfigurationSelectFieldComponent', 'selector': 'app-configuration-select-field'},{'name': 'ConfigurationStepFooterSectionComponent', 'selector': 'app-configuration-step-footer-section'},{'name': 'ConfigurationStepHeaderSectionComponent', 'selector': 'app-configuration-step-header-section'},{'name': 'ConfigurationToggleFieldComponent', 'selector': 'app-configuration-toggle-field'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'CustomMappingComponent', 'selector': 'app-custom-mapping'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardExportLogDialogComponent', 'selector': 'app-dashboard-export-log-dialog'},{'name': 'DashboardHeaderSectionComponent', 'selector': 'app-dashboard-header-section'},{'name': 'DashboardQboErrorDialogComponent', 'selector': 'app-dashboard-qbo-error-dialog'},{'name': 'DashboardResolveMappingErrorDialogComponent', 'selector': 'app-dashboard-resolve-mapping-error-dialog'},{'name': 'EmailMultiSelectFieldComponent', 'selector': 'app-email-multi-select-field'},{'name': 'EmployeeMappingComponent', 'selector': 'app-employee-mapping'},{'name': 'EmployeeSettingsComponent', 'selector': 'app-employee-settings'},{'name': 'ExpenseFieldCreationDialogComponent', 'selector': 'app-expense-field-creation-dialog'},{'name': 'ExportLogChildDialogComponent', 'selector': 'app-export-log-child-dialog'},{'name': 'ExportLogChildTableComponent', 'selector': 'app-export-log-child-table'},{'name': 'ExportLogComponent', 'selector': 'app-export-log'},{'name': 'ExportLogTableComponent', 'selector': 'app-export-log-table'},{'name': 'ExportSettingsComponent', 'selector': 'app-export-settings'},{'name': 'FyleCallbackComponent', 'selector': 'app-fyle-callback'},{'name': 'GenericMappingComponent', 'selector': 'app-generic-mapping'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImportSettingsComponent', 'selector': 'app-import-settings'},{'name': 'IntegrationComponent', 'selector': 'app-integration'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'MandatoryErrorMessageComponent', 'selector': 'app-mandatory-error-message'},{'name': 'MandatoryFieldComponent', 'selector': 'app-mandatory-field'},{'name': 'MappingComponent', 'selector': 'app-mapping'},{'name': 'MappingFilterComponent', 'selector': 'app-mapping-filter'},{'name': 'MappingHeaderSectionComponent', 'selector': 'app-mapping-header-section'},{'name': 'MappingTableComponent', 'selector': 'app-mapping-table'},{'name': 'OnboardingAdvancedSettingsComponent', 'selector': 'app-onboarding-advanced-settings'},{'name': 'OnboardingComponent', 'selector': 'app-onboarding'},{'name': 'OnboardingDoneComponent', 'selector': 'app-onboarding-done'},{'name': 'OnboardingEmployeeSettingsComponent', 'selector': 'app-onboarding-employee-settings'},{'name': 'OnboardingExportSettingsComponent', 'selector': 'app-onboarding-export-settings'},{'name': 'OnboardingFooterComponent', 'selector': 'app-onboarding-footer'},{'name': 'OnboardingImportSettingsComponent', 'selector': 'app-onboarding-import-settings'},{'name': 'OnboardingLandingComponent', 'selector': 'app-onboarding-landing'},{'name': 'OnboardingQboConnectorComponent', 'selector': 'app-onboarding-qbo-connector'},{'name': 'OnboardingStepperComponent', 'selector': 'app-onboarding-stepper'},{'name': 'PaginatorComponent', 'selector': 'app-paginator'},{'name': 'PreviewDialogComponent', 'selector': 'app-preview-dialog'},{'name': 'QboCallbackComponent', 'selector': 'app-qbo-callback'},{'name': 'QboConnectorComponent', 'selector': 'app-qbo-connector'},{'name': 'SharedLoginComponent', 'selector': 'app-shared-login'},{'name': 'SimpleTextSearchComponent', 'selector': 'app-simple-text-search'},{'name': 'ZeroStateWithIllustrationComponent', 'selector': 'app-zero-state-with-illustration'}];
+        var COMPONENT_TEMPLATE = '<div><div class="page-header">  <nav mat-tab-nav-bar>    <a mat-tab-link (click)="changeState(\'COMPLETE\')" [active]="state===\'COMPLETE\'">      Complete    </a>    <a mat-tab-link (click)="changeState(\'SKIP\')" [active]="state===\'SKIP\'">      Skipped    </a>  </nav></div><div class="configuration-main">  <div class="configuration-main--bg-top"></div>  <div class="configuration-main--bg-bottom"></div></div><div class="export-log">  <div class="export-log--content" *ngIf="state===\'COMPLETE\'">    <!-- header -->    <div class="export-log--header-section">      <div fxLayout="row" class="export-log--simple-search" [class.active]="selectedDateFilter">        <app-simple-text-search *ngIf="isLoading || totalCount || selectedDateFilter" [page]="SimpleSearchPage.EXPORT_LOG" [searchType]="SimpleSearchType.TEXT_FIELD" [form]="exportLogForm" [placeholder]="\'Search by Employee Name or Reference ID\'" [showBackgroundColor]="false"></app-simple-text-search>        <div *ngIf="isLoading && !totalCount">          <mat-form-field floatLabel="always" appearance="outline" class="export-log--date-filter">            <mat-select placeholder="Select date range"></mat-select>            <div class="mat-select-arrow-closed"></div>          </mat-form-field>        </div>        <div *ngIf="!isLoading && (totalCount || selectedDateFilter)">          <mat-form-field [formGroup]="exportLogForm" floatLabel="always" appearance="outline" class="export-log--date-filter">            <mat-select placeholder="Select date range" formControlName="dateRange">              <mat-select-trigger *ngIf="selectedDateFilter" class="export-log--selected-date">                {{ selectedDateFilter.startDate | date: \'MMM dd, yyyy\' }} - {{ selectedDateFilter.endDate | date: \'MMM dd, yyyy\' }}                <img src="assets/images/svgs/actions/clear-date-filter.svg" (click)="clearDateFilter()" class="export-log--clear-date-filter" width="12px" height="12px">              </mat-select-trigger>              <mat-option class="export-log--date-select-option" *ngFor="let dateOption of dateOptions" [value]="dateOption">                <div>                  <div class="sub-text-color">{{ dateOption.dateRange }}</div>                  <div class="export-log--date-range">{{ dateOption.startDate | date: \'MMM dd, yyyy\' }} - {{ dateOption.endDate | date: \'MMM dd, yyyy\' }}</div>                </div>              </mat-option>              <mat-option class="export-log--date-select-option" [value]="\'\'" (click)="picker.open();">                <div fxLayout="row" fxLayoutAlign="space-between center">                  <div class="sub-text-color">Custom dates</div>                  <img src="assets/images/svgs/actions/arrow-right-export-log.svg" class="configuration--icon">                </div>              </mat-option>            </mat-select>            <div *ngIf="!selectedDateFilter" class="mat-select-arrow-closed"></div>          </mat-form-field>          <div class="export-log--date-field">            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field export-log--date-filter">              <mat-date-range-input [formGroup]="exportLogForm" [rangePicker]="picker">                <input matStartDate formControlName="start" placeholder="Start date">                <input (dateChange)="dateFilterHandler()" matEndDate formControlName="end" placeholder="End date">              </mat-date-range-input>              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>              <mat-date-range-picker #picker>                <mat-date-range-picker-actions>                  <div class="export-log--cancel-btn pointer" matDateRangePickerCancel>                    <h5 class="export-log--cancel-btn-text align-center">Cancel</h5>                  </div>                  <div class="export-log--done pointer" matDateRangePickerApply>                    <h5 class="export-log--done-text align-center">Done</h5>                  </div>                </mat-date-range-picker-actions>              </mat-date-range-picker>            </mat-form-field>          </div>        </div>      </div>    </div>    <!-- header -->    <!-- shimmers -->    <div *ngIf="isLoading">      <app-export-log-table [displayedColumns]="displayedColumns" [expenseGroups]="emptyExpenseGroup"></app-export-log-table>      <div *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" fxLayout="row" fxLayoutAlign="start center" class="skeleton-loader-list-view--row-box">        <div class="skeleton-loader-list-view--init-box-section">          <div class="shimmers skeleton-loader-list-view--init-box-export-log"></div>        </div>        <div class="skeleton-loader-list-view--end-box-section">          <div class="shimmers skeleton-loader-list-view--end-box-export-log"></div>        </div>      </div>    </div>    <!-- shimmers -->    <div *ngIf="!isLoading" class="export-log--table">      <app-export-log-table *ngIf="totalCount || selectedDateFilter" [displayedColumns]="displayedColumns" [expenseGroups]="expenseGroups"></app-export-log-table>      <app-zero-state-with-illustration [page]="ZeroStatePage.export_log" [form]="exportLogForm" [data]="expenseGroups" [searchTerm]="\'Employee Name or Expense ID\'" [dateFilter]="selectedDateFilter"></app-zero-state-with-illustration>    </div>    <app-paginator *ngIf="expenseGroups.filteredData.length" [page]="PaginatorPage.EXPORT_LOG" [totalCount]="totalCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getExpenseGroups($event)"></app-paginator>  </div>  <!-- For Skipped Tab -->  <div class="export-log--content" *ngIf="state===\'SKIP\'">    <!-- header -->    <div class="export-log--header-section">      <div fxLayout="row" class="export-log--simple-search" [class.active]="selectedDateFilterSkipExport">        <app-simple-text-search *ngIf="isLoading || totalSkipCount || selectedDateFilterSkipExport" [page]="SimpleSearchPage.EXPORT_LOG" [searchType]="SimpleSearchType.TEXT_FIELD" [form]="skipExportLogForm" [placeholder]="\'Search by Employee Name or Reference ID\'" [showBackgroundColor]="false"></app-simple-text-search>        <div *ngIf="isLoading && !totalCount">          <mat-form-field floatLabel="always" appearance="outline" class="export-log--date-filter">            <mat-select placeholder="Select date range"></mat-select>            <div class="mat-select-arrow-closed"></div>          </mat-form-field>        </div>        <div *ngIf="!isLoading && (totalSkipCount || selectedDateFilterSkipExport)">          <mat-form-field [formGroup]="skipExportLogForm" floatLabel="always" appearance="outline" class="export-log--date-filter">            <mat-select placeholder="Select date range" formControlName="dateRange">              <mat-select-trigger *ngIf="selectedDateFilterSkipExport" class="export-log--selected-date">                {{ selectedDateFilterSkipExport.startDate | date: \'MMM dd, yyyy\' }} - {{ selectedDateFilterSkipExport.endDate | date: \'MMM dd, yyyy\' }}                <img src="assets/images/svgs/actions/clear-date-filter.svg" (click)="clearDateFilterSkipExport()" class="export-log--clear-date-filter" width="12px" height="12px">              </mat-select-trigger>              <mat-option class="export-log--date-select-option" *ngFor="let dateOption of dateOptions" [value]="dateOption">                <div>                  <div class="sub-text-color">{{ dateOption.dateRange }}</div>                  <div class="export-log--date-range">{{ dateOption.startDate | date: \'MMM dd, yyyy\' }} - {{ dateOption.endDate | date: \'MMM dd, yyyy\' }}</div>                </div>              </mat-option>              <mat-option class="export-log--date-select-option" [value]="\'\'" (click)="picker.open();">                <div fxLayout="row" fxLayoutAlign="space-between center">                  <div class="sub-text-color">Custom dates</div>                  <img src="assets/images/svgs/actions/arrow-right-export-log.svg" class="configuration--icon">                </div>              </mat-option>            </mat-select>            <div *ngIf="!selectedDateFilterSkipExport" class="mat-select-arrow-closed"></div>          </mat-form-field>          <div class="export-log--date-field">            <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field export-log--date-filter">              <mat-date-range-input [formGroup]="skipExportLogForm" [rangePicker]="picker">                <input matStartDate formControlName="start" placeholder="Start date">                <input (dateChange)="dateFilterHandlerSkipExport()" matEndDate formControlName="end" placeholder="End date">              </mat-date-range-input>              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>              <mat-date-range-picker #picker>                <mat-date-range-picker-actions>                  <div class="export-log--cancel-btn pointer" matDateRangePickerCancel>                    <h5 class="export-log--cancel-btn-text align-center">Cancel</h5>                  </div>                  <div class="export-log--done pointer" matDateRangePickerApply>                    <h5 class="export-log--done-text align-center">Done</h5>                  </div>                </mat-date-range-picker-actions>              </mat-date-range-picker>            </mat-form-field>          </div>        </div>      </div>    </div>    <!-- header -->    <!-- shimmers -->    <div *ngIf="isLoading">      <app-skip-export-log-table [displayedColumns]="skippedExpenseColumns" [skipExport]="emptySkipExportList"></app-skip-export-log-table>      <div *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" fxLayout="row" fxLayoutAlign="start center" class="skeleton-loader-list-view--row-box">        <div class="skeleton-loader-list-view--init-box-section">          <div class="shimmers skeleton-loader-list-view--init-box-export-log"></div>        </div>        <div class="skeleton-loader-list-view--end-box-section">          <div class="shimmers skeleton-loader-list-view--end-box-export-log"></div>        </div>      </div>    </div>    <!-- shimmers -->    <div *ngIf="!isLoading" class="export-log--table">      <app-skip-export-log-table *ngIf="totalSkipCount || selectedDateFilterSkipExport" [displayedColumns]="skippedExpenseColumns" [skipExport]="skipExport"></app-skip-export-log-table>      <app-zero-state-with-illustration [page]="ZeroStatePage.export_log" [form]="skipExportLogForm" [data]="skipExport" [searchTerm]="\'Employee Name or Expense ID\'" [dateFilter]="selectedDateFilterSkipExport"></app-zero-state-with-illustration>    </div>    <app-paginator *ngIf="skipExport.filteredData.length" [page]="PaginatorPage.EXPORT_LOG" [totalCount]="totalSkipCount" [limit]="limit" [offset]="offset" (pageChangeEvent)="getSkipExportLog($event)"></app-paginator>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddEmailDialogComponent', 'selector': 'app-add-email-dialog'},{'name': 'AdvancedSettingsComponent', 'selector': 'app-advanced-settings'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'ConfigurationAdvancedSettingsComponent', 'selector': 'app-configuration-advanced-settings'},{'name': 'ConfigurationComponent', 'selector': 'app-configuration'},{'name': 'ConfigurationEmployeeSettingsComponent', 'selector': 'app-configuration-employee-settings'},{'name': 'ConfigurationExportSettingsComponent', 'selector': 'app-configuration-export-settings'},{'name': 'ConfigurationImportSettingsComponent', 'selector': 'app-configuration-import-settings'},{'name': 'ConfigurationSelectFieldComponent', 'selector': 'app-configuration-select-field'},{'name': 'ConfigurationStepFooterSectionComponent', 'selector': 'app-configuration-step-footer-section'},{'name': 'ConfigurationStepHeaderSectionComponent', 'selector': 'app-configuration-step-header-section'},{'name': 'ConfigurationToggleFieldComponent', 'selector': 'app-configuration-toggle-field'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'CustomMappingComponent', 'selector': 'app-custom-mapping'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardExportLogDialogComponent', 'selector': 'app-dashboard-export-log-dialog'},{'name': 'DashboardHeaderSectionComponent', 'selector': 'app-dashboard-header-section'},{'name': 'DashboardQboErrorDialogComponent', 'selector': 'app-dashboard-qbo-error-dialog'},{'name': 'DashboardResolveMappingErrorDialogComponent', 'selector': 'app-dashboard-resolve-mapping-error-dialog'},{'name': 'EmailMultiSelectFieldComponent', 'selector': 'app-email-multi-select-field'},{'name': 'EmployeeMappingComponent', 'selector': 'app-employee-mapping'},{'name': 'EmployeeSettingsComponent', 'selector': 'app-employee-settings'},{'name': 'ExpenseFieldCreationDialogComponent', 'selector': 'app-expense-field-creation-dialog'},{'name': 'ExportLogChildDialogComponent', 'selector': 'app-export-log-child-dialog'},{'name': 'ExportLogChildTableComponent', 'selector': 'app-export-log-child-table'},{'name': 'ExportLogComponent', 'selector': 'app-export-log'},{'name': 'ExportLogTableComponent', 'selector': 'app-export-log-table'},{'name': 'ExportSettingsComponent', 'selector': 'app-export-settings'},{'name': 'FyleCallbackComponent', 'selector': 'app-fyle-callback'},{'name': 'GenericMappingComponent', 'selector': 'app-generic-mapping'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImportSettingsComponent', 'selector': 'app-import-settings'},{'name': 'IntegrationComponent', 'selector': 'app-integration'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'MandatoryErrorMessageComponent', 'selector': 'app-mandatory-error-message'},{'name': 'MandatoryFieldComponent', 'selector': 'app-mandatory-field'},{'name': 'MappingComponent', 'selector': 'app-mapping'},{'name': 'MappingFilterComponent', 'selector': 'app-mapping-filter'},{'name': 'MappingHeaderSectionComponent', 'selector': 'app-mapping-header-section'},{'name': 'MappingTableComponent', 'selector': 'app-mapping-table'},{'name': 'OnboardingAdvancedSettingsComponent', 'selector': 'app-onboarding-advanced-settings'},{'name': 'OnboardingComponent', 'selector': 'app-onboarding'},{'name': 'OnboardingDoneComponent', 'selector': 'app-onboarding-done'},{'name': 'OnboardingEmployeeSettingsComponent', 'selector': 'app-onboarding-employee-settings'},{'name': 'OnboardingExportSettingsComponent', 'selector': 'app-onboarding-export-settings'},{'name': 'OnboardingFooterComponent', 'selector': 'app-onboarding-footer'},{'name': 'OnboardingImportSettingsComponent', 'selector': 'app-onboarding-import-settings'},{'name': 'OnboardingLandingComponent', 'selector': 'app-onboarding-landing'},{'name': 'OnboardingQboConnectorComponent', 'selector': 'app-onboarding-qbo-connector'},{'name': 'OnboardingStepperComponent', 'selector': 'app-onboarding-stepper'},{'name': 'PaginatorComponent', 'selector': 'app-paginator'},{'name': 'PreviewDialogComponent', 'selector': 'app-preview-dialog'},{'name': 'QboCallbackComponent', 'selector': 'app-qbo-callback'},{'name': 'QboConnectorComponent', 'selector': 'app-qbo-connector'},{'name': 'SharedLoginComponent', 'selector': 'app-shared-login'},{'name': 'SimpleTextSearchComponent', 'selector': 'app-simple-text-search'},{'name': 'SkipExportLogTableComponent', 'selector': 'app-skip-export-log-table'},{'name': 'ZeroStateWithIllustrationComponent', 'selector': 'app-zero-state-with-illustration'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ExportLogComponent'};
 </script>

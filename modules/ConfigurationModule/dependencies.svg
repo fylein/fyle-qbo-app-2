@@ -14,103 +14,103 @@
 <title>cluster_ConfigurationModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-157.8 1606,-157.8 1606,-32.8 8,-32.8"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_ConfigurationModule_declarations</title>
-<polygon fill="none" stroke="black" points="340,-40.8 340,-92.8 1598,-92.8 1598,-40.8 340,-40.8"/>
-</g>
 <g id="clust8" class="cluster">
 <title>cluster_ConfigurationModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 332,-92.8 332,-40.8 16,-40.8"/>
+<polygon fill="none" stroke="black" points="1282,-40.8 1282,-92.8 1598,-92.8 1598,-40.8 1282,-40.8"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_ConfigurationModule_declarations</title>
+<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 1274,-92.8 1274,-40.8 16,-40.8"/>
 </g>
 <!-- ConfigurationAdvancedSettingsComponent -->
 <g id="node1" class="node">
 <title>ConfigurationAdvancedSettingsComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="1589.75,-84.8 1328.25,-84.8 1328.25,-48.8 1589.75,-48.8 1589.75,-84.8"/>
-<text text-anchor="middle" x="1459" y="-62.6" font-family="Times,serif" font-size="14.00">ConfigurationAdvancedSettingsComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="1265.75,-84.8 1004.25,-84.8 1004.25,-48.8 1265.75,-48.8 1265.75,-84.8"/>
+<text text-anchor="middle" x="1135" y="-62.6" font-family="Times,serif" font-size="14.00">ConfigurationAdvancedSettingsComponent</text>
 </g>
 <!-- ConfigurationModule -->
 <g id="node6" class="node">
 <title>ConfigurationModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="800.1,-149.8 797.1,-153.8 776.1,-153.8 773.1,-149.8 661.9,-149.8 661.9,-113.8 800.1,-113.8 800.1,-149.8"/>
-<text text-anchor="middle" x="731" y="-127.6" font-family="Times,serif" font-size="14.00">ConfigurationModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="975.1,-149.8 972.1,-153.8 951.1,-153.8 948.1,-149.8 836.9,-149.8 836.9,-113.8 975.1,-113.8 975.1,-149.8"/>
+<text text-anchor="middle" x="906" y="-127.6" font-family="Times,serif" font-size="14.00">ConfigurationModule</text>
 </g>
 <!-- ConfigurationAdvancedSettingsComponent&#45;&gt;ConfigurationModule -->
 <g id="edge1" class="edge">
 <title>ConfigurationAdvancedSettingsComponent&#45;&gt;ConfigurationModule</title>
-<path fill="none" stroke="black" d="M1459,-85.09C1459,-107.01 1459,-140.8 1459,-140.8 1459,-140.8 810.14,-140.8 810.14,-140.8"/>
-<polygon fill="black" stroke="black" points="810.14,-137.3 800.14,-140.8 810.14,-144.3 810.14,-137.3"/>
+<path fill="none" stroke="black" d="M1135,-84.83C1135,-101.2 1135,-122.8 1135,-122.8 1135,-122.8 985.33,-122.8 985.33,-122.8"/>
+<polygon fill="black" stroke="black" points="985.33,-119.3 975.33,-122.8 985.33,-126.3 985.33,-119.3"/>
 </g>
 <!-- ConfigurationComponent -->
 <g id="node2" class="node">
 <title>ConfigurationComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="1309.88,-84.8 1150.12,-84.8 1150.12,-48.8 1309.88,-48.8 1309.88,-84.8"/>
-<text text-anchor="middle" x="1230" y="-62.6" font-family="Times,serif" font-size="14.00">ConfigurationComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="985.88,-84.8 826.12,-84.8 826.12,-48.8 985.88,-48.8 985.88,-84.8"/>
+<text text-anchor="middle" x="906" y="-62.6" font-family="Times,serif" font-size="14.00">ConfigurationComponent</text>
 </g>
 <!-- ConfigurationComponent&#45;&gt;ConfigurationModule -->
 <g id="edge2" class="edge">
 <title>ConfigurationComponent&#45;&gt;ConfigurationModule</title>
-<path fill="none" stroke="black" d="M1230,-84.91C1230,-104.14 1230,-131.8 1230,-131.8 1230,-131.8 810.12,-131.8 810.12,-131.8"/>
-<polygon fill="black" stroke="black" points="810.12,-128.3 800.12,-131.8 810.12,-135.3 810.12,-128.3"/>
+<path fill="none" stroke="black" d="M906,-84.91C906,-84.91 906,-103.79 906,-103.79"/>
+<polygon fill="black" stroke="black" points="902.5,-103.79 906,-113.79 909.5,-103.79 902.5,-103.79"/>
 </g>
 <!-- ConfigurationEmployeeSettingsComponent -->
 <g id="node3" class="node">
 <title>ConfigurationEmployeeSettingsComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="1131.75,-84.8 870.25,-84.8 870.25,-48.8 1131.75,-48.8 1131.75,-84.8"/>
-<text text-anchor="middle" x="1001" y="-62.6" font-family="Times,serif" font-size="14.00">ConfigurationEmployeeSettingsComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="807.75,-84.8 546.25,-84.8 546.25,-48.8 807.75,-48.8 807.75,-84.8"/>
+<text text-anchor="middle" x="677" y="-62.6" font-family="Times,serif" font-size="14.00">ConfigurationEmployeeSettingsComponent</text>
 </g>
 <!-- ConfigurationEmployeeSettingsComponent&#45;&gt;ConfigurationModule -->
 <g id="edge3" class="edge">
 <title>ConfigurationEmployeeSettingsComponent&#45;&gt;ConfigurationModule</title>
-<path fill="none" stroke="black" d="M1001,-84.83C1001,-101.2 1001,-122.8 1001,-122.8 1001,-122.8 810.18,-122.8 810.18,-122.8"/>
-<polygon fill="black" stroke="black" points="810.18,-119.3 800.18,-122.8 810.18,-126.3 810.18,-119.3"/>
+<path fill="none" stroke="black" d="M677,-84.83C677,-101.2 677,-122.8 677,-122.8 677,-122.8 826.67,-122.8 826.67,-122.8"/>
+<polygon fill="black" stroke="black" points="826.67,-126.3 836.67,-122.8 826.67,-119.3 826.67,-126.3"/>
 </g>
 <!-- ConfigurationExportSettingsComponent -->
 <g id="node4" class="node">
 <title>ConfigurationExportSettingsComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="852.6,-84.8 609.4,-84.8 609.4,-48.8 852.6,-48.8 852.6,-84.8"/>
-<text text-anchor="middle" x="731" y="-62.6" font-family="Times,serif" font-size="14.00">ConfigurationExportSettingsComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="528.6,-84.8 285.4,-84.8 285.4,-48.8 528.6,-48.8 528.6,-84.8"/>
+<text text-anchor="middle" x="407" y="-62.6" font-family="Times,serif" font-size="14.00">ConfigurationExportSettingsComponent</text>
 </g>
 <!-- ConfigurationExportSettingsComponent&#45;&gt;ConfigurationModule -->
 <g id="edge4" class="edge">
 <title>ConfigurationExportSettingsComponent&#45;&gt;ConfigurationModule</title>
-<path fill="none" stroke="black" d="M731,-84.91C731,-84.91 731,-103.79 731,-103.79"/>
-<polygon fill="black" stroke="black" points="727.5,-103.79 731,-113.79 734.5,-103.79 727.5,-103.79"/>
+<path fill="none" stroke="black" d="M407,-84.91C407,-104.14 407,-131.8 407,-131.8 407,-131.8 826.88,-131.8 826.88,-131.8"/>
+<polygon fill="black" stroke="black" points="826.88,-135.3 836.88,-131.8 826.88,-128.3 826.88,-135.3"/>
 </g>
 <!-- ConfigurationImportSettingsComponent -->
 <g id="node5" class="node">
 <title>ConfigurationImportSettingsComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="591.6,-84.8 348.4,-84.8 348.4,-48.8 591.6,-48.8 591.6,-84.8"/>
-<text text-anchor="middle" x="470" y="-62.6" font-family="Times,serif" font-size="14.00">ConfigurationImportSettingsComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="267.6,-84.8 24.4,-84.8 24.4,-48.8 267.6,-48.8 267.6,-84.8"/>
+<text text-anchor="middle" x="146" y="-62.6" font-family="Times,serif" font-size="14.00">ConfigurationImportSettingsComponent</text>
 </g>
 <!-- ConfigurationImportSettingsComponent&#45;&gt;ConfigurationModule -->
 <g id="edge5" class="edge">
 <title>ConfigurationImportSettingsComponent&#45;&gt;ConfigurationModule</title>
-<path fill="none" stroke="black" d="M470,-84.83C470,-101.2 470,-122.8 470,-122.8 470,-122.8 651.74,-122.8 651.74,-122.8"/>
-<polygon fill="black" stroke="black" points="651.74,-126.3 661.74,-122.8 651.74,-119.3 651.74,-126.3"/>
+<path fill="none" stroke="black" d="M146,-85.09C146,-107.01 146,-140.8 146,-140.8 146,-140.8 826.88,-140.8 826.88,-140.8"/>
+<polygon fill="black" stroke="black" points="826.88,-144.3 836.88,-140.8 826.88,-137.3 826.88,-144.3"/>
 </g>
 <!-- ConfigurationRoutingModule -->
 <g id="node7" class="node">
 <title>ConfigurationRoutingModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="323.71,-84.8 320.71,-88.8 299.71,-88.8 296.71,-84.8 140.29,-84.8 140.29,-48.8 323.71,-48.8 323.71,-84.8"/>
-<text text-anchor="middle" x="232" y="-62.6" font-family="Times,serif" font-size="14.00">ConfigurationRoutingModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="1589.71,-84.8 1586.71,-88.8 1565.71,-88.8 1562.71,-84.8 1406.29,-84.8 1406.29,-48.8 1589.71,-48.8 1589.71,-84.8"/>
+<text text-anchor="middle" x="1498" y="-62.6" font-family="Times,serif" font-size="14.00">ConfigurationRoutingModule</text>
 </g>
 <!-- ConfigurationRoutingModule&#45;&gt;ConfigurationModule -->
 <g id="edge6" class="edge">
 <title>ConfigurationRoutingModule&#45;&gt;ConfigurationModule</title>
-<path fill="none" stroke="black" d="M232,-84.91C232,-104.14 232,-131.8 232,-131.8 232,-131.8 651.88,-131.8 651.88,-131.8"/>
-<polygon fill="black" stroke="black" points="651.88,-135.3 661.88,-131.8 651.88,-128.3 651.88,-135.3"/>
+<path fill="none" stroke="black" d="M1498,-85.09C1498,-107.01 1498,-140.8 1498,-140.8 1498,-140.8 985.07,-140.8 985.07,-140.8"/>
+<polygon fill="black" stroke="black" points="985.07,-137.3 975.07,-140.8 985.07,-144.3 985.07,-137.3"/>
 </g>
 <!-- SharedModule -->
 <g id="node8" class="node">
 <title>SharedModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="122.43,-84.8 119.43,-88.8 98.43,-88.8 95.43,-84.8 23.57,-84.8 23.57,-48.8 122.43,-48.8 122.43,-84.8"/>
-<text text-anchor="middle" x="73" y="-62.6" font-family="Times,serif" font-size="14.00">SharedModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="1388.43,-84.8 1385.43,-88.8 1364.43,-88.8 1361.43,-84.8 1289.57,-84.8 1289.57,-48.8 1388.43,-48.8 1388.43,-84.8"/>
+<text text-anchor="middle" x="1339" y="-62.6" font-family="Times,serif" font-size="14.00">SharedModule</text>
 </g>
 <!-- SharedModule&#45;&gt;ConfigurationModule -->
 <g id="edge7" class="edge">
 <title>SharedModule&#45;&gt;ConfigurationModule</title>
-<path fill="none" stroke="black" d="M73,-85.09C73,-107.01 73,-140.8 73,-140.8 73,-140.8 651.83,-140.8 651.83,-140.8"/>
-<polygon fill="black" stroke="black" points="651.83,-144.3 661.83,-140.8 651.83,-137.3 651.83,-144.3"/>
+<path fill="none" stroke="black" d="M1339,-84.91C1339,-104.14 1339,-131.8 1339,-131.8 1339,-131.8 985.09,-131.8 985.09,-131.8"/>
+<polygon fill="black" stroke="black" points="985.09,-128.3 975.09,-131.8 985.09,-135.3 985.09,-128.3"/>
 </g>
 </g>
 </svg>

@@ -171,13 +171,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/ExportLogModule.html" data-type="entity-link" >ExportLogModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-ExportLogModule-6d72c0f4a70c3cd23306f2bce4c96b63d499104403ff56817c2805d427ccf345b99ae7bfd631987b19fbf2c70ae67286c722a1635ae5097e2dd5e00447ab7195"' : 'data-target="#xs-components-links-module-ExportLogModule-6d72c0f4a70c3cd23306f2bce4c96b63d499104403ff56817c2805d427ccf345b99ae7bfd631987b19fbf2c70ae67286c722a1635ae5097e2dd5e00447ab7195"' }>
+                                            'data-target="#components-links-module-ExportLogModule-496bd99fe550550f56f7d9d270433f6602ac69e013ce004448401870a2f1da1e45b757483fb43c01b9d917c89b89fe6866e77c77506544a812876ad60bdb74c1"' : 'data-target="#xs-components-links-module-ExportLogModule-496bd99fe550550f56f7d9d270433f6602ac69e013ce004448401870a2f1da1e45b757483fb43c01b9d917c89b89fe6866e77c77506544a812876ad60bdb74c1"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-ExportLogModule-6d72c0f4a70c3cd23306f2bce4c96b63d499104403ff56817c2805d427ccf345b99ae7bfd631987b19fbf2c70ae67286c722a1635ae5097e2dd5e00447ab7195"' :
-                                            'id="xs-components-links-module-ExportLogModule-6d72c0f4a70c3cd23306f2bce4c96b63d499104403ff56817c2805d427ccf345b99ae7bfd631987b19fbf2c70ae67286c722a1635ae5097e2dd5e00447ab7195"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-ExportLogModule-496bd99fe550550f56f7d9d270433f6602ac69e013ce004448401870a2f1da1e45b757483fb43c01b9d917c89b89fe6866e77c77506544a812876ad60bdb74c1"' :
+                                            'id="xs-components-links-module-ExportLogModule-496bd99fe550550f56f7d9d270433f6602ac69e013ce004448401870a2f1da1e45b757483fb43c01b9d917c89b89fe6866e77c77506544a812876ad60bdb74c1"' }>
                                             <li class="link">
                                                 <a href="components/ExportLogChildDialogComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ExportLogChildDialogComponent</a>
                                             </li>
@@ -321,13 +321,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/SharedModule.html" data-type="entity-link" >SharedModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-SharedModule-6838e2c1e866e517bf12126d3fa1d48a64ff23faac772d0a50397da8340f3400bf99daf7874594d9169c50dc7e4cc4668a5c2c9d504ac9b4848d4ffee9860f15"' : 'data-target="#xs-components-links-module-SharedModule-6838e2c1e866e517bf12126d3fa1d48a64ff23faac772d0a50397da8340f3400bf99daf7874594d9169c50dc7e4cc4668a5c2c9d504ac9b4848d4ffee9860f15"' }>
+                                            'data-target="#components-links-module-SharedModule-ca56da6c80ac11d9fcf9eb5cd6ca9dc351545920296d6a8d62f8651d8c0d480ec376efaf155a9f955d6409ffbbb50d4559af77d18ced2a72ad22f14befd7abb7"' : 'data-target="#xs-components-links-module-SharedModule-ca56da6c80ac11d9fcf9eb5cd6ca9dc351545920296d6a8d62f8651d8c0d480ec376efaf155a9f955d6409ffbbb50d4559af77d18ced2a72ad22f14befd7abb7"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SharedModule-6838e2c1e866e517bf12126d3fa1d48a64ff23faac772d0a50397da8340f3400bf99daf7874594d9169c50dc7e4cc4668a5c2c9d504ac9b4848d4ffee9860f15"' :
-                                            'id="xs-components-links-module-SharedModule-6838e2c1e866e517bf12126d3fa1d48a64ff23faac772d0a50397da8340f3400bf99daf7874594d9169c50dc7e4cc4668a5c2c9d504ac9b4848d4ffee9860f15"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SharedModule-ca56da6c80ac11d9fcf9eb5cd6ca9dc351545920296d6a8d62f8651d8c0d480ec376efaf155a9f955d6409ffbbb50d4559af77d18ced2a72ad22f14befd7abb7"' :
+                                            'id="xs-components-links-module-SharedModule-ca56da6c80ac11d9fcf9eb5cd6ca9dc351545920296d6a8d62f8651d8c0d480ec376efaf155a9f955d6409ffbbb50d4559af77d18ced2a72ad22f14befd7abb7"' }>
                                             <li class="link">
                                                 <a href="components/AddEmailDialogComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AddEmailDialogComponent</a>
                                             </li>
@@ -425,19 +425,22 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                                 <a href="components/SimpleTextSearchComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SimpleTextSearchComponent</a>
                                             </li>
                                             <li class="link">
+                                                <a href="components/SkipExportLogTableComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SkipExportLogTableComponent</a>
+                                            </li>
+                                            <li class="link">
                                                 <a href="components/ZeroStateWithIllustrationComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ZeroStateWithIllustrationComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#pipes-links-module-SharedModule-6838e2c1e866e517bf12126d3fa1d48a64ff23faac772d0a50397da8340f3400bf99daf7874594d9169c50dc7e4cc4668a5c2c9d504ac9b4848d4ffee9860f15"' : 'data-target="#xs-pipes-links-module-SharedModule-6838e2c1e866e517bf12126d3fa1d48a64ff23faac772d0a50397da8340f3400bf99daf7874594d9169c50dc7e4cc4668a5c2c9d504ac9b4848d4ffee9860f15"' }>
+                                            'data-target="#pipes-links-module-SharedModule-ca56da6c80ac11d9fcf9eb5cd6ca9dc351545920296d6a8d62f8651d8c0d480ec376efaf155a9f955d6409ffbbb50d4559af77d18ced2a72ad22f14befd7abb7"' : 'data-target="#xs-pipes-links-module-SharedModule-ca56da6c80ac11d9fcf9eb5cd6ca9dc351545920296d6a8d62f8651d8c0d480ec376efaf155a9f955d6409ffbbb50d4559af77d18ced2a72ad22f14befd7abb7"' }>
                                             <span class="icon ion-md-add"></span>
                                             <span>Pipes</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="pipes-links-module-SharedModule-6838e2c1e866e517bf12126d3fa1d48a64ff23faac772d0a50397da8340f3400bf99daf7874594d9169c50dc7e4cc4668a5c2c9d504ac9b4848d4ffee9860f15"' :
-                                            'id="xs-pipes-links-module-SharedModule-6838e2c1e866e517bf12126d3fa1d48a64ff23faac772d0a50397da8340f3400bf99daf7874594d9169c50dc7e4cc4668a5c2c9d504ac9b4848d4ffee9860f15"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="pipes-links-module-SharedModule-ca56da6c80ac11d9fcf9eb5cd6ca9dc351545920296d6a8d62f8651d8c0d480ec376efaf155a9f955d6409ffbbb50d4559af77d18ced2a72ad22f14befd7abb7"' :
+                                            'id="xs-pipes-links-module-SharedModule-ca56da6c80ac11d9fcf9eb5cd6ca9dc351545920296d6a8d62f8651d8c0d480ec376efaf155a9f955d6409ffbbb50d4559af77d18ced2a72ad22f14befd7abb7"' }>
                                             <li class="link">
                                                 <a href="pipes/SearchPipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SearchPipe</a>
                                             </li>
@@ -621,6 +624,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/QboConnectorPost.html" data-type="entity-link" >QboConnectorPost</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/SkipExportList.html" data-type="entity-link" >SkipExportList</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/User.html" data-type="entity-link" >User</a>
                             </li>
                         </ul>
@@ -635,6 +641,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <ul class="links collapse " ${ isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"' }>
                             <li class="link">
                                 <a href="miscellaneous/enumerations.html" data-type="entity-link">Enums</a>
+                            </li>
+                            <li class="link">
+                                <a href="miscellaneous/functions.html" data-type="entity-link">Functions</a>
                             </li>
                             <li class="link">
                                 <a href="miscellaneous/typealiases.html" data-type="entity-link">Type aliases</a>
