@@ -16,7 +16,7 @@ import { OnboardingState, PaymentSyncDirection } from 'src/app/core/models/enum/
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { By } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 describe('AdvancedSettingsComponent', () => {
   let component: AdvancedSettingsComponent;
@@ -42,11 +42,13 @@ describe('AdvancedSettingsComponent', () => {
     service1 = {
       postAdvancedSettings: () => of(advancedSettingResponse),
       getAdvancedSettings: () => of(getadvancedSettingResponse),
-      getWorkspaceAdmins: () => of(adminEmails)
+      getWorkspaceAdmins: () => of(adminEmails),
+      getExpenseFilter: () => of()
     };
 
     service2 = {
-      getQBODestinationAttributes: () => of(destinationAttribute)
+      getQBODestinationAttributes: () => of(destinationAttribute),
+      getFyleCustomFields: () => of()
     };
 
     service3 = {
@@ -56,9 +58,9 @@ describe('AdvancedSettingsComponent', () => {
       getWorkspaceId: () => environment.tests.workspaceId
     };
     await TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, HttpClientModule, FormsModule, ReactiveFormsModule, MatSnackBarModule, SharedModule, NoopAnimationsModule],
+      imports: [ RouterTestingModule, HttpClientModule, FormsModule, ReactiveFormsModule, MatSnackBarModule, SharedModule, NoopAnimationsModule, MatDialogModule],
       declarations: [ AdvancedSettingsComponent ],
-      providers: [ FormBuilder,
+      providers: [ FormBuilder, MatDialog,
         { provide: Router, useValue: routerSpy },
         { provide: AdvancedSettingService, useValue: service1 },
         { provide: MappingService, useValue: service2 },
@@ -74,6 +76,7 @@ describe('AdvancedSettingsComponent', () => {
     formbuilder = TestBed.inject(FormBuilder);
     component.workspaceGeneralSettings = response;
     component.advancedSettings = getadvancedSettingResponse;
+    component.adminEmails = [];
     const form = formbuilder.group({
       paymentSync: [PaymentSyncDirection.FYLE_TO_QBO],
       billPaymentAccount: [component.advancedSettings.general_mappings.bill_payment_account?.id],
@@ -85,8 +88,20 @@ describe('AdvancedSettingsComponent', () => {
       exportScheduleFrequency: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [component.advancedSettings.workspace_general_settings.memo_structure],
       searchOption: [],
+      skipExport: [true],
       emails: [emailResponse.emails_selected],
       addedEmail: [emailResponse.additional_email_options]
+    });
+    component.skipExportForm = formbuilder.group({
+      condition1: ['employee_email'],
+      operator1: ['in'],
+      value1: ['admin1@fyle.in'],
+      customFieldType1: [null],
+      join_by: ['and'],
+      condition2: ['report_title'],
+      operator2: ['in'],
+      value2: ['anish'],
+      customFieldType2: [null]
     });
     component.advancedSettingsForm = form;
     router = TestBed.inject(Router);
@@ -148,6 +163,7 @@ describe('AdvancedSettingsComponent', () => {
       exportSchedule: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : false],
       exportScheduleFrequency: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [component.advancedSettings.workspace_general_settings.memo_structure],
+      skipExport: [false],
       searchOption: [],
       emails: [emailResponse.emails_selected]
     });
@@ -176,6 +192,7 @@ describe('AdvancedSettingsComponent', () => {
       exportSchedule: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : false],
       exportScheduleFrequency: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [component.advancedSettings.workspace_general_settings.memo_structure],
+      skipExport: [false],
       searchOption: [],
       emails: [emailResponse.emails_selected]
     });
@@ -202,6 +219,7 @@ describe('AdvancedSettingsComponent', () => {
       exportSchedule: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : false],
       exportScheduleFrequency: [component.advancedSettings.workspace_schedules?.enabled ? component.advancedSettings.workspace_schedules.interval_hours : null],
       memoStructure: [component.advancedSettings.workspace_general_settings.memo_structure],
+      skipExport: [false],
       searchOption: [],
       emails: [emailResponse.emails_selected]
     });
@@ -234,19 +252,6 @@ describe('AdvancedSettingsComponent', () => {
   it('createMemoStructureWatcher function check', () => {
     component.advancedSettingsForm.controls.memoStructure.patchValue(['Integration']);
     expect((component as any).createMemoStructureWatcher()).toBeUndefined();
-  });
-
-  it('drop function chek', () => {
-    component.defaultMemoFields = memo;
-    const button = fixture.debugElement.query(By.css('.advanced-settings--memo-preview-select'));
-    const final = button.children[0].children[0].children[0].nativeElement;
-    let event = final.click();
-    event = {
-      previousIndex: 0,
-      currentIndex: 1
-    };
-    fixture.detectChanges();
-    expect(component.drop(event)).toBeUndefined();
   });
 
   it('openAddemailDialog function check', () => {

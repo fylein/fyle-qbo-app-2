@@ -246,3 +246,27 @@ export enum ZeroStatePage {
   dashboard_error = 'dashboard_error',
   custom_mapping = 'custom_mapping'
 }
+
+export enum Operator {
+  IsNull = "isnull",
+  IExact = "iexact",
+  IContains = "icontains",
+  LessThan = "lt",
+  LessThanOrEqual = "lte"
+}
+
+export const JoinOptions = {
+  AND: { value: 'AND' },
+  OR: { value: 'OR' }
+};
+
+export enum JoinOption {
+  AND = "AND",
+  OR = "OR"
+}
+
+export enum CustomOperatorOption {
+  Is = "iexact",
+  IsEmpty = "is_empty",
+  IsNotEmpty = "is_not_empty"
+}

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Cacheable } from 'ts-cacheable';
 import { ExpenseGroupSetting } from '../../models/db/expense-group-setting.model';
-import { ExpenseGroup, ExpenseGroupDescription, ExpenseGroupResponse } from '../../models/db/expense-group.model';
+import { ExpenseGroup, ExpenseGroupDescription, ExpenseGroupResponse, SkipExportLogResponse } from '../../models/db/expense-group.model';
 import { FyleReferenceType } from '../../models/enum/enum.model';
 import { SelectedDateFilter } from '../../models/misc/date-filter.model';
 import { ApiService } from '../core/api.service';
@@ -50,6 +50,23 @@ export class ExportLogService {
   @Cacheable()
   getExpenseGroupSettings(): Observable<ExpenseGroupSetting> {
     return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expense_group_settings/`, {});
+  }
+
+  @Cacheable()
+  getSkippedExpenses(limit: number, offset: number, selectedDateFilter: SelectedDateFilter | null): Observable<SkipExportLogResponse> {
+    const params: any = {
+      limit,
+      offset,
+      is_skipped: 'true'
+    };
+
+    if (selectedDateFilter) {
+      const startDate = selectedDateFilter.startDate.toLocaleDateString().split('/');
+      const endDate = selectedDateFilter.endDate.toLocaleDateString().split('/');
+      params.start_date = `${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00`;
+      params.end_date = `${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59`;
+    }
+    return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expenses/`, params);
   }
 
   generateExportTypeAndId(expenseGroup: ExpenseGroup) {

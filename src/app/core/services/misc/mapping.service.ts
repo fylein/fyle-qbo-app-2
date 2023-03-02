@@ -7,6 +7,7 @@ import { ExtendedExpenseAttributeResponse } from '../../models/db/expense-attrib
 import { MappingSetting, MappingSettingPost, MappingSettingResponse } from '../../models/db/mapping-setting.model';
 import { MappingPost, MappingStats } from '../../models/db/mapping.model';
 import { EmployeeFieldMapping, MappingState } from '../../models/enum/enum.model';
+import { ConditionField } from '../../models/misc/skip-export.model';
 import { ExpenseField } from '../../models/misc/expense-field.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
@@ -82,6 +83,10 @@ export class MappingService {
 
   getFyleExpenseFields(): Observable<ExpenseField[]> {
     return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expense_fields/`, {});
+  }
+
+  getFyleCustomFields(): Observable<ConditionField[]> {
+    return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/custom_fields/`, {});
   }
 
   getMappings(mappingState: MappingState, limit: number, offset: number, alphabetsFilter: string[], sourceType: string, destinationType: string): Observable<ExtendedExpenseAttributeResponse> {

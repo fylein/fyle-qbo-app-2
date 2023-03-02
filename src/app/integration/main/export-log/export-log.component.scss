@@ -92,3 +92,11 @@
     right: 12px;
   }
 }
+
+:host ::ng-deep .mat-ink-bar {
+  background-color: black !important;
+}
+
+:host ::ng-deep .mat-tab-link:hover {
+  background-color: #eee !important;
+}

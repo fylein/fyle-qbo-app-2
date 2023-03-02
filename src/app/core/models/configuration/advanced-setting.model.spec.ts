@@ -25,7 +25,8 @@ describe('AdvancedSettingModel', () => {
       memoStructure: new FormControl(['Fyle']),
       searchOption: new FormControl([]),
       emails: new FormControl([]),
-      addedEmail: new FormControl([])
+      addedEmail: new FormControl([]),
+      skipExport: new FormControl(true)
     });
 
     const advancedSettingPayload:AdvancedSettingPost = {

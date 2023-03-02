@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +15,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatChipsModule, MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import { Component } from '@angular/core';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 // Pipes
 import { TrimCharacterPipe } from './pipes/trim-character.pipe';
@@ -55,6 +63,7 @@ import { ConfirmationDialogComponent } from './components/core/confirmation-dial
 import { MandatoryErrorMessageComponent } from './components/helpers/mandatory-error-message/mandatory-error-message.component';
 import { AddEmailDialogComponent } from './components/configuration/advanced-settings/add-email-dialog/add-email-dialog.component';
 import { EmailMultiSelectFieldComponent } from './components/configuration/email-multi-select-field/email-multi-select-field.component';
+import { SkipExportLogTableComponent } from './components/export-log/skip-export-log-table/skip-export-log-table.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +103,8 @@ import { EmailMultiSelectFieldComponent } from './components/configuration/email
     ConfirmationDialogComponent,
     MandatoryErrorMessageComponent,
     AddEmailDialogComponent,
-    EmailMultiSelectFieldComponent
+    EmailMultiSelectFieldComponent,
+    SkipExportLogTableComponent
   ],
   imports: [
     CommonModule,
@@ -110,7 +120,12 @@ import { EmailMultiSelectFieldComponent } from './components/configuration/email
     MatDialogModule,
     MatTooltipModule,
     MatTableModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatChipsModule,
+    MatInputModule,
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     LoaderComponent,
@@ -138,11 +153,22 @@ import { EmailMultiSelectFieldComponent } from './components/configuration/email
     MappingTableComponent,
     GenericMappingComponent,
     ExportLogTableComponent,
+    SkipExportLogTableComponent,
     DashboardHeaderSectionComponent,
     DashboardResolveMappingErrorDialogComponent,
     ExportLogChildTableComponent,
-    MandatoryErrorMessageComponent
+    MandatoryErrorMessageComponent,
+    MatChipsModule
   ],
-  providers: []
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [
+    {
+      provide: MAT_CHIPS_DEFAULT_OPTIONS,
+      useValue: {
+        separatorKeyCodes: [ENTER, COMMA]
+      }
+    },
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+  ]
 })
 export class SharedModule { }

@@ -123,9 +123,193 @@
         [formControllerName]="'autoCreateMerchantsAsVendors'">
       </app-configuration-toggle-field>
 
+      <app-configuration-toggle-field *ngIf="!isLoading" [form]="advancedSettingsForm"
+        [iconPath]="'assets/images/pngs/vector-skip.svg'"
+        [label]="'Skip export of specific expenses from Fyle to QuickBooks Online'"
+        [subLabel]="'You could choose to skip the export of certain expenses from Fyle to QBO by setting up a conditional rule.'"
+        [formControllerName]="'skipExport'">
+      </app-configuration-toggle-field>
+      <div *ngIf="advancedSettingsForm.value.skipExport && !isLoading">
+       <div fxLayout="column" fxLayoutAlign="start stretch">
+          <form class="skip-export--form" [formGroup] = "skipExportForm" fxLayout="column" fxLayoutAlign="start stretch">
+             <div fxLayout="row" fxLayoutAlign="start center">
+                <div fxFlex="15"></div>
+                <div class="fields-header-1" fxFlex="25">
+                   Condition
+                   <app-mandatory-field></app-mandatory-field>
+                </div>
+                <div class="fields-header-2" fxFlex="25">
+                   Operator
+                   <app-mandatory-field></app-mandatory-field>
+                </div>
+                <div class="fields-header-3" fxFlex="25" *ngIf = "showValueHeader1()">
+                   Value
+                   <app-mandatory-field></app-mandatory-field>
+                </div>
+             </div>
+             <div fxLayout="row" fxLayoutAlign="start center">
+                <span fxFlex="15" class="where-text">
+                Where
+                </span>
+                <mat-form-field floatLabel="always" fxFlex="25" fxLayoutAlign="start stretch" appearance="outline">
+                   <mat-select placeholder="Select the condition" formControlName="condition1" [compareWith]="compareObjects">
+                      <mat-option *ngFor = "let conditionFieldOption of conditionFieldOptions" [value]="conditionFieldOption">
+                      {{ (conditionFieldOption?.field_name === 'claim_number' ? 'report_number' : conditionFieldOption?.field_name) | titlecase | snakeCaseToSpaceCase }}
+                      </mat-option>
+                   </mat-select>
+                   <div class="mat-select-arrow-closed"></div>
+                   <mat-hint><app-mandatory-error-message *ngIf="skipExportForm.controls.condition1.touched && !skipExportForm.controls.condition1.valid"
+                   [customErrorMessage]="'Please select the condition'"></app-mandatory-error-message></mat-hint>
+                </mat-form-field>
+                <mat-form-field floatLabel="always" fxFlex="25" fxLayoutAlign="start stretch" appearance="outline">
+                   <mat-select placeholder="Select the operator" formControlName="operator1">
+                      <mat-option *ngFor = "let operatorFieldOption1 of operatorFieldOptions1" [value]="operatorFieldOption1.value">
+                      {{ operatorFieldOption1.label }}
+                      </mat-option>
+                   </mat-select>
+                   <div class="mat-select-arrow-closed"></div>
+                   <mat-hint><app-mandatory-error-message *ngIf="skipExportForm.controls.operator1.touched && !skipExportForm.controls.operator1.valid"
+                    [customErrorMessage]="'Please select the operator'"></app-mandatory-error-message></mat-hint>
+                </mat-form-field>
+                <mat-form-field class="text-input" floatLabel="always" fxFlex="25" fxLayoutAlign="start stretch" appearance="outline" *ngIf="showInputField1()">
+                   <input matInput type="text" formControlName="value1" placeholder="Enter a value">
+                </mat-form-field>
+                <mat-form-field class="custom-mat-form-field" floatLabel="always" fxFlex="25" fxLayoutAlign="start stretch" appearance="outline" *ngIf="showChipField1()">
+                   <mat-chip-list #chipList aria-label="" [disabled]="isDisabledChip1">
+                   <mat-chip *ngFor="let item of valueOption1" [selectable]="true"
+                   [removable]="true" (removed)="remove1(item)">
+                   {{item}}
+                   <img class="divider-icon" matChipRemove *ngIf="true" src="assets/images/pngs/vector-divider.svg">
+                   <img class="cross-icon" matChipRemove *ngIf="true" src="assets/images/pngs/vector-cross.svg">
+                   </mat-chip>
+                   <input [placeholder]="valueOption1.length ? '' : 'Enter the value'"
+                   formControlName="value1"
+                   [matChipInputFor]="chipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]="true"
+                   (matChipInputTokenEnd)="add1($event)">
+                   </mat-chip-list>
+                   <mat-hint>Separate your values with a comma or enter key.</mat-hint>
+                </mat-form-field>
+                <mat-form-field class="date-field" floatLabel="always" fxFlex="25" fxLayoutAlign="start stretch" appearance="outline" *ngIf="showDateField1()">
+                   <div class="datePicker">
+                      <input matInput class="datePickerInput" [matDatepicker]="picker" formControlName="value1" placeholder="Select the date" readonly>
+                      <mat-datepicker-toggle class="calendar-icon" matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker startView="month"></mat-datepicker>
+                   </div>
+                </mat-form-field>
+             </div>
+          </form>
+          <div *ngIf="showAdditionalCondition">
+             <form class="skip-export-form2" [formGroup] = "skipExportForm" fxLayout="column" fxLayoutAlign="start stretch">
+              <div fxLayout="row" fxLayoutAlign="start center">
+                <div fxFlex="15"></div>
+                <div class="fields-header-1" fxFlex="25">
+                   Condition
+                   <app-mandatory-field></app-mandatory-field>
+                </div>
+                <div class="fields-header-2" fxFlex="25">
+                   Operator
+                   <app-mandatory-field></app-mandatory-field>
+                </div>
+                <div class="fields-header-3" fxFlex="25" *ngIf = "showValueHeader2()">
+                   Value
+                   <app-mandatory-field></app-mandatory-field>
+                </div>
+             </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                   <div fxFlex="5"></div>
+                   <mat-form-field class="join-by" floatLabel="always" fxFlex="10" appearance="outline">
+                      <mat-select placeholder="AND" formControlName="join_by">
+                         <mat-option *ngFor = "let joinBy of joinByOptions" [value]="joinBy.value">
+                         {{ joinBy.value }}
+                         </mat-option>
+                      </mat-select>
+                      <div class="mat-select-arrow-closed"></div>
+                   </mat-form-field>
+                   
+                   <mat-form-field class="skip-export-select" floatLabel="always" fxFlex="25" fxLayoutAlign="start stretch" appearance="outline">
+                      <mat-select placeholder="Select the condition" formControlName="condition2" [compareWith]="compareObjects">
+                         <mat-option *ngFor = "let conditionFieldOption of conditionFieldOptions" [value]="conditionFieldOption">
+                         {{ (conditionFieldOption?.field_name === 'claim_number' ? 'report_number' : conditionFieldOption?.field_name) | titlecase | snakeCaseToSpaceCase}}
+                         </mat-option>
+                      </mat-select>
+                      <div class="mat-select-arrow-closed"></div>
+                      <mat-hint><app-mandatory-error-message *ngIf="skipExportForm.controls.condition2.touched && !skipExportForm.controls.condition2.valid"
+                      [customErrorMessage]="'Please select the condition'"></app-mandatory-error-message></mat-hint>
+                   </mat-form-field>
+                   <mat-form-field class="skip-export-select" floatLabel="always" fxFlex="25" fxLayoutAlign="start stretch" appearance="outline">
+                      <mat-select placeholder="Select the operator" formControlName="operator2">
+                         <mat-option *ngFor = "let opertorFieldOption2 of operatorFieldOptions2" [value]="opertorFieldOption2.value">
+                         {{ opertorFieldOption2.label }}
+                         </mat-option>
+                      </mat-select>
+                      <div class="mat-select-arrow-closed"></div>
+                      <mat-hint><app-mandatory-error-message *ngIf="skipExportForm.controls.operator2.touched && !skipExportForm.controls.operator2.valid"
+                      [customErrorMessage]="'Please select the operator'"></app-mandatory-error-message></mat-hint>
+                   </mat-form-field>
+                   <div *ngIf="!showAddButton">
+                      <mat-form-field class="text-input" floatLabel="always" fxFlex="25" fxLayoutAlign="start stretch" appearance="outline" *ngIf="showInputField2()">
+                         <input matInput type="text" formControlName="value2" placeholder="Enter a value">
+                      </mat-form-field>
+                      <mat-form-field floatLabel="always" fxFlex="25" fxLayoutAlign="start stretch" appearance="outline" *ngIf="showChipField2()">
+                         <mat-chip-list #chipList aria-label="" [disabled]="isDisabledChip2">
+                         <mat-chip *ngFor="let item of valueOption2" [selectable]="true"
+                         [removable]="true" (removed)="remove2(item)">
+                         {{item}}
+                         <img class="divider-icon" matChipRemove *ngIf="true" src="assets/images/pngs/vector-divider.svg">
+                         <img class="cross-icon" matChipRemove *ngIf="true" src="assets/images/pngs/vector-cross.svg">
+                         </mat-chip>
+                         <input [placeholder]="valueOption2.length ? '' : 'Enter the value'"
+                         formControlName="value2"
+                         [matChipInputFor]="chipList"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         [matChipInputAddOnBlur]="true"
+                         (matChipInputTokenEnd)="add2($event)">
+                         </mat-chip-list>
+                         <mat-hint>Separate your values with a comma or enter key.</mat-hint>
+                      </mat-form-field>
+                      <mat-form-field class="date-field" floatLabel="always" fxFlex="25" fxLayoutAlign="start stretch" appearance="outline" *ngIf="skipExportForm?.value?.condition2?.type === 'DATE'">
+                        <div class="datePicker">
+                          <input class="datePickerInput" matInput [matDatepicker]="picker" formControlName="value2" placeholder="Select the date" readonly>
+                          <mat-datepicker-toggle class="calendar-icon" matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker startView="month"></mat-datepicker>
+                        </div>
+                      </mat-form-field>                      
+                   </div>
+                   <img class="delete-icon" src="assets/images/pngs/delete.svg" (click)="remCondition()" matTooltip="Remove condition">
+                </div>
+                <div class="validation-text" *ngIf = "checkValidationCondition()">
+                   <p>Condition selected should be distinct.</p>
+                </div>
+             </form>
+          </div>
+          <div *ngIf="!isLoading && skippedCondition1 && !skippedCondition2" class="info-box-one" fxLayout="row" fxLayoutAlign="start center">
+             <div fxFlex="75" class="info-box-one-text" *ngIf="skippedCondition1==='claim_number' || skippedCondition1==='spent_at'">
+               <mat-icon [inline]="true" class="info-icon main">info</mat-icon>
+               The values for {{ (skippedCondition1 === 'claim_number' ? 'report_number' : skippedCondition1)  | titlecase | snakeCaseToSpaceCase }} condition will get removed once the integration skip these expenses. 
+             </div>
+             <div fxFlex="25"></div>
+           </div>
+           <div *ngIf="!isLoading && skippedCondition1 && skippedCondition2" class="info-box-one" fxLayout="row" fxLayoutAlign="start center">
+             <div fxFlex="75" class="info-box-one-text" *ngIf="(skippedCondition1==='claim_number' || skippedCondition1==='spent_at') && (skippedCondition2==='claim_number' || skippedCondition2==='spent_at')">
+               <mat-icon [inline]="true" class="info-icon main">info</mat-icon>
+               The values for {{ (skippedCondition1 === 'claim_number' ? 'report_number' : skippedCondition1)  | titlecase | snakeCaseToSpaceCase }} and {{ (skippedCondition2 === 'claim_number' ? 'report_number' : skippedCondition2)  | titlecase | snakeCaseToSpaceCase }} conditions will get removed once the integration skip these expenses. 
+             </div>
+             <div fxFlex="25"></div>
+           </div>
+          <div class="add-condition-btn" fxLayoutAlign="start stretch" fxLayout="row" *ngIf = "showAddButton">
+             <img class="add-icon" src="assets/images/pngs/add.svg" (click)="updateAdditionalFilterVisibility(true)">
+             <a class="add-row-text" (click)="updateAdditionalFilterVisibility(true)">
+             Add Condition
+             </a>
+          </div>
+       </div>
+      </div>
+
       <app-configuration-step-footer-section
         [ctaText]="!saveInProgress ? (isOnboarding ? ConfigurationCtaText.SAVE_AND_CONTINUE : ConfigurationCtaText.SAVE) : ConfigurationCtaText.SAVING"
-        [showBackButton]="isOnboarding" [isButtonDisabled]="!advancedSettingsForm.valid || saveInProgress"
+        [showBackButton]="isOnboarding" [isButtonDisabled]="!advancedSettingsForm.valid || saveInProgress || !skipExportForm.valid"
         (navigateToPreviousStep)="navigateToPreviousStep()" (save)="save()"></app-configuration-step-footer-section>
 
     </form>

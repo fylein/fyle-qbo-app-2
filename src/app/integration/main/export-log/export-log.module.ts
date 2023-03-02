@@ -9,6 +9,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
 
 import { ExportLogRoutingModule } from './export-log-routing.module';
 import { ExportLogComponent } from './export-log.component';
@@ -35,6 +37,8 @@ import { ExportLogChildDialogComponent } from './export-log-child-dialog/export-
     MatNativeDateModule,
     MatButtonModule,
     FormsModule,
+    MatTabsModule,
+    MatIconModule,
     ReactiveFormsModule
   ]
 })

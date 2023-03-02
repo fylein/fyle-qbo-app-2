@@ -63,6 +63,245 @@
   }
 }
 
+.fields-header-1 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #5a5d72;
+}
+
+.fields-header-2 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #5a5d72;
+}
+
+.fields-header-3 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #5a5d72;
+}
+
+.where-text {
+  padding-left: 100px;
+  width: 70px;
+  height: 18px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.add-icon {
+  text-align: center;
+  cursor: pointer;
+  padding-left: 30px;
+  padding-bottom: 25px;
+  max-width: 24px;
+  max-height: 24px;
+  margin-right: 8px;
+}
+
+.add-row-text {
+  cursor: pointer;
+  font-weight: 350;
+}
+
+.add-condition-btn {
+  margin-left: 40px;
+  margin-top: 50px;
+}
+.add-condition-btn:hover {
+  color: #FF3366;
+  cursor: pointer;
+}
+
+.validation-text {
+  padding-left: 70px !important;
+  padding-bottom: 15px !important;
+}
+
+.info-box-one {
+  margin: 16px 24px;
+}
+
+.info-box-one-text {
+  font-size: 13.25px;
+  border: 1px solid rgba(0, 98, 255, 4%);
+  padding: 2px;
+  background: rgba(0, 98, 255, 2%);
+  background-clip: padding-box;
+}
+
+.info-icon {
+  color: #68b9d4;
+  text-align: center;
+  cursor: default;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  font-size: 20px;
+  max-height: 24px;
+  vertical-align: middle;
+}
+
+.divider-icon {
+  max-height: 22px;
+  max-width: 2px;
+  width: 2px;
+}
+
+.cross-icon {
+  max-width: 7.75px;
+  max-height: 7.75px;
+}
+
+::ng-deep .mat-chip.mat-standard-chip {
+  background: #ffffff;
+  border: 1px solid #dfdfe2;
+  border-radius: 12px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+::ng-deep .mat-chip.mat-standard-chip::after {
+  background: #ffffff;
+}
+
+:host ::ng-deep .mat-standard-chip.mat-chip-with-trailing-icon {
+  font-size: 12px;
+}
+
+:host ::ng-deep .mat-standard-chip {
+  min-height: 22px;
+}
+
+:host ::ng-deep .mat-form-field-type-mat-select .mat-form-field-flex {
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 8px !important;
+}
+
+:host ::ng-deep .mat-form-field-type-mat-chip-list .mat-form-field-flex {
+  width: 306px;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0.5em;
+}
+
+:host ::ng-deep .text-input .mat-form-field-flex {
+  width: 306px !important;
+}
+
+:host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  border-top-width: 8px !important;
+  padding: 2px;
+}
+
+.mat-input-element {
+  font-size: 14px !important;
+}
+
+.mat-hint {
+  padding-top: 8px !important;
+}
+
+.error-message {
+  padding-top: 8px !important;
+}
+
+.skip-export-form2 {
+  margin-top: 2em;
+}
+
+:host ::ng-deep .join-by .mat-form-field-flex{
+  width: 80px !important;
+  height: 28px !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+::ng-deep .mat-chip-list-wrapper {
+  max-height: 104px;
+  overflow-y: auto;
+}
+
+:host .datePicker {
+  display: inline-flex;
+}
+
+:ng-deep .mat-datepicker-toggle {
+  transform: scale(0.8);
+}
+
+:host ::ng-deep .calendar-icon .mat-icon-button {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+:host ::ng-deep .datePickerInput .mat-input-element {
+  padding-bottom: 4px !important;
+}
+
+:host ::ng-deep .mat-datepicker-toggle-default-icon {
+  padding-bottom: 16px !important;
+}
+
+:host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  max-height: 150px !important;
+  min-height: 40px !important;
+}
+
+:host ::ng-deep .mat-chip-list-wrapper::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+:host ::ng-deep .mat-chip-list-wrapper::-webkit-scrollbar:vertical {
+  width: 4px !important;
+  background-color: transparent !important;
+}
+
+:host ::ng-deep .mat-chip-list-wrapper::-webkit-scrollbar:horizontal {
+  height: 4px !important;
+  background-color: transparent !important;
+}
+
+:host ::ng-deep .mat-chip-list-wrapper::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 2px solid #D8D8D8 !important;
+  background-color: #D8D8D8;
+}
+
+:host ::ng-deep .text-input .mat-form-field-infix {
+  padding-top: 5px !important;
+}
+
+.delete-icon {
+  text-align: center !important;
+  cursor: pointer !important;
+  max-width: 20px !important;
+  max-height: 20px !important;
+  margin-left: 26.5px !important;
+}
+
+.mat-select-arrow-closed {
+  right: 8px !important;
+}
+
+:host ::ng-deep .mat-form-field-label, .mat-hint {
+  margin-left: -10px !important; /* adjust the value to shift the hint as desired */
+}
+
+:host ::ng-deep .required-error {
+  margin-left: -10px !important;
+}
+
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;
@@ -77,4 +316,15 @@
 
 .cdk-drag-animating {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+:host ::ng-deep .cdk-overlay-pane {
+  transform-origin: top center;
+}
+
+:host ::ng-deep .cdk-overlay-pane mat-card {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  padding: 16px;
 }
