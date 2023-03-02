@@ -191,7 +191,6 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   private skipExportWatcher(): void {
     this.advancedSettingsForm.controls.skipExport.valueChanges.subscribe((skipExportToggle) => {
       if (skipExportToggle) {
-        this.showExpenseFilters = true;
         this.skipExportForm.controls.condition1.setValidators(Validators.required);
         this.skipExportForm.controls.operator1.setValidators(Validators.required);
         this.skipExportForm.controls.value1.setValidators(Validators.required);
@@ -213,7 +212,6 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
         this.skipExportForm.controls.value2.setValue(null);
         this.showAdditionalCondition = false;
         this.showAddButton = true;
-        this.showExpenseFilters = false;
       }
     });
   }
@@ -345,7 +343,6 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   getSelectedOperator(operator: string, value: any, condition: ConditionField) {
     switch (operator) {
       case 'isnull': {
-        this.isDisabledChip1 = true;
         return value === 'True' ? 'is_empty' : 'is_not_empty';
       }
       case 'in':
@@ -383,6 +380,8 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       selectedOperator1 = this.getSelectedOperator(response.results[0].operator, response.results[0].values[0], conditionArray[0]);
       if (!(selectedOperator1 === 'is_empty' || selectedOperator1 === 'is_not_empty')) {
         valueFC1 = this.getFieldValue(response.results[0].values, conditionArray[0], response.results[0].rank);
+      } else {
+        this.isDisabledChip1 = true;
       }
       customFieldTypeFC1 = response.results[0].custom_field_type;
     }
@@ -393,6 +392,8 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
         joinByFC = response.results[0].join_by;
         if (!(selectedOperator2 === 'is_empty' || selectedOperator2 === 'is_not_empty')) {
           valueFC2 = this.getFieldValue(response.results[1].values, conditionArray[1], response.results[1].rank);
+        } else {
+          this.isDisabledChip2 = true;
         }
       }
     }
@@ -412,11 +413,18 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     if (response.count) {
       this.skipExportForm.controls.condition1.setValidators(Validators.required);
       this.skipExportForm.controls.operator1.setValidators(Validators.required);
-      if (!this.valueOption1.length) {
+      if (!this.valueOption1.length && !(selectedOperator1 === 'is_empty' || selectedOperator1 === 'is_not_empty')) {
         this.skipExportForm.controls.value1.setValidators(Validators.required);
       }
       if (response.count === 2) {
-        this.updateAdditionalFilterVisibility(true);
+        this.showAdditionalCondition = true;
+        this.showAddButton = false;
+        this.skipExportForm.controls.condition2.setValidators(Validators.required);
+        this.skipExportForm.controls.operator2.setValidators(Validators.required);
+        this.skipExportForm.controls.join_by.setValidators(Validators.required);
+        if (!this.valueOption2.length && !(selectedOperator2 === 'is_empty' || selectedOperator2 === 'is_not_empty')) {
+          this.skipExportForm.controls.value2.setValidators(Validators.required);
+        }
       }
     }
 
@@ -473,7 +481,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   save(): void {
     if (this.advancedSettingsForm.valid && !this.saveInProgress) {
-      if (this.showExpenseFilters && this.skipExportForm.valid) {
+      if (this.skipExportForm.valid) {
           this.saveSkipExportFields();
       }
       const advancedSettingPayload = AdvancedSettingModel.constructPayload(this.advancedSettingsForm);
