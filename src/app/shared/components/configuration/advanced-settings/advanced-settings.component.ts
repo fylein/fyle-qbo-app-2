@@ -191,7 +191,6 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   private skipExportWatcher(): void {
     this.advancedSettingsForm.controls.skipExport.valueChanges.subscribe((skipExportToggle) => {
       if (skipExportToggle) {
-        this.showExpenseFilters = true;
         this.skipExportForm.controls.condition1.setValidators(Validators.required);
         this.skipExportForm.controls.operator1.setValidators(Validators.required);
         this.skipExportForm.controls.value1.setValidators(Validators.required);
@@ -213,7 +212,6 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
         this.skipExportForm.controls.value2.setValue(null);
         this.showAdditionalCondition = false;
         this.showAddButton = true;
-        this.showExpenseFilters = false;
       }
     });
   }
@@ -473,7 +471,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   save(): void {
     if (this.advancedSettingsForm.valid && !this.saveInProgress) {
-      if (this.showExpenseFilters && this.skipExportForm.valid) {
+      if (this.skipExportForm.valid) {
           this.saveSkipExportFields();
       }
       const advancedSettingPayload = AdvancedSettingModel.constructPayload(this.advancedSettingsForm);
