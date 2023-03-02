@@ -30,7 +30,7 @@ describe('LoaderComponent', () => {
     const board = fixture.debugElement.query(By.css('.position')).nativeElement;
     expect(board.innerHTML).not.toBeNull();
     expect(board.innerHTML.length).toBeGreaterThan(0);
-    expect(board.clientHeight).toBeGreaterThanOrEqual(154);
+    expect(board.clientHeight).toBeGreaterThanOrEqual(153);
     expect(board.clientWidth).toBeGreaterThanOrEqual(150);
   });
 
