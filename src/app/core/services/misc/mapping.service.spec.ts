@@ -156,7 +156,6 @@ describe('MappingService', () => {
         "is_custom": true
       }
     ];
-    const workspaceId = 1;
 
     service.getFyleCustomFields().subscribe(fields => {
       expect(fields).toEqual(expectedFields);
@@ -169,7 +168,7 @@ describe('MappingService', () => {
       expect(secondField).toEqual(expectedFields[1]);
     });
 
-    const req = httpMock.expectOne(`${API_BASE_URL}/workspaces/${workspaceId}/fyle/custom_fields/`);
+    const req = httpMock.expectOne(`${API_BASE_URL}/workspaces/${workspace_id}/fyle/custom_fields/`);
     expect(req.request.method).toEqual('GET');
     req.flush(expectedFields);
   });
