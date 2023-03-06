@@ -2,7 +2,8 @@ import { AdvancedSettingGet, AdvancedSettingPost } from "src/app/core/models/con
 import { DestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
 import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from "src/app/core/models/db/workspace-schedule.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
-import { AutoMapEmployee, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
+import { AutoMapEmployee, CorporateCreditCardExpensesObject, CustomOperatorOption, EmployeeFieldMapping, Operator, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
+import { ConditionField, ExpenseFilterResponse, SkipExport } from "src/app/core/models/misc/skip-export.model";
 
 export const response:WorkspaceGeneralSetting = {
   auto_create_destination_entity: true,
@@ -146,6 +147,102 @@ export const emailResponse: WorkspaceSchedule = {
   emails_selected: ['fyle@fyle.in', 'integrations@fyle.in' ],
   additional_email_options: [{name: 'fyle3', email: 'fyle3@fyle.in'}]
 };
+
+export const postExpenseFilterResponse: SkipExport = {
+  condition: 'employee_email',
+  custom_field_type: null,
+  operator: Operator.IExact,
+  values: ['anish@email.com', 'ashwin@fyle.in'],
+  rank: 1,
+  join_by: null,
+  is_custom: false
+}
+
+export const getExpenseFilterResponse: ExpenseFilterResponse = {
+  count: 1,
+  results: [
+    {
+      condition: 'employee_email',
+      custom_field_type: null,
+      operator: Operator.IExact,
+      values: ['anish@email.com', 'ashwin@fyle.in'],
+      rank: 1,
+      is_custom: false,
+      join_by: null
+    }
+  ]
+};
+
+export const conditionFieldOptions = [
+  { field_name: 'employee_email', type: 'SELECT', is_custom: false},
+  { field_name: 'report_number', type: 'SELECT', is_custom: false}
+];
+
 export const adminEmails: WorkspaceScheduleEmailOptions[] = [ {name: 'fyle', email: 'fyle@fyle.in'}, {name: 'fyle2', email: 'fyle2@fyle.in'}];
 export const memo = ['employee_email', 'merchant', 'purpose', 'category', 'report_number', 'expense_link'];
 export const customFields = ['Team', 'User Dimension', 'Operating Systems', 'User Dimension 2'];
+
+export const conditionMock1: ConditionField = {
+  field_name: 'employee_email',
+  type: 'SELECT',
+  is_custom: false
+};
+
+export const conditionMock2: ConditionField = {
+  field_name: 'report_title',
+  type: 'TEXT',
+  is_custom: false
+};
+
+export const conditionMock3: ConditionField = {
+  field_name: 'spent_at',
+  type: 'DATE',
+  is_custom: false
+};
+
+export const conditionMock4: ConditionField = {
+  field_name: 'Custom Expense Field',
+  type: 'SELECT',
+  is_custom: true
+};
+
+export const customOperatorMock1 = {
+  label: 'Is',
+  value: CustomOperatorOption.Is
+}
+
+export const customOperatorMock2 = {
+  label: 'IsEmpty',
+  value: CustomOperatorOption.IsEmpty
+}
+
+export const customOperatorMock3 = {
+  label: 'Is',
+  value: CustomOperatorOption.Is
+}
+
+export const customOperatorMock4 = {
+  label: 'Is not',
+  value: 'not_in'
+}
+
+export const claimNumberOperators = [{
+  value: 'iexact',
+  label: 'Is'
+}];
+
+export const spentAtOperators = [{
+  value: 'lt',
+  label: 'Is before'
+}, {
+  value: 'lte',
+  label: 'Is it on or before'
+}];
+
+export const reportTitleOperators = [{
+  value: 'iexact',
+  label: 'Is'
+}, {
+  value: 'icontains',
+  label: 'contains'
+}];
