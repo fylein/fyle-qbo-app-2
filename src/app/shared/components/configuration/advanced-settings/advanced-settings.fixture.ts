@@ -156,7 +156,7 @@ export const postExpenseFilterResponse: SkipExport = {
   rank: 1,
   join_by: null,
   is_custom: false
-}
+};
 
 export const getExpenseFilterResponse: ExpenseFilterResponse = {
   count: 1,
@@ -209,22 +209,22 @@ export const conditionMock4: ConditionField = {
 export const customOperatorMock1 = {
   label: 'Is',
   value: CustomOperatorOption.Is
-}
+};
 
 export const customOperatorMock2 = {
   label: 'IsEmpty',
   value: CustomOperatorOption.IsEmpty
-}
+};
 
 export const customOperatorMock3 = {
   label: 'Is',
   value: CustomOperatorOption.Is
-}
+};
 
 export const customOperatorMock4 = {
   label: 'Is not',
   value: 'not_in'
-}
+};
 
 export const claimNumberOperators = [{
   value: 'iexact',
