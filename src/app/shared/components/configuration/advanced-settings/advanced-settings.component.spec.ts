@@ -5,7 +5,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { adminEmails, advancedSettingResponse, customFields, destinationAttribute, emailResponse, errorResponse, postExpenseFilterResponse, getadvancedSettingResponse, getadvancedSettingResponse2, getExpenseFilterResponse, memo, previewResponse, response, conditionMock1, conditionMock2, conditionMock3, customOperatorMock1, customOperatorMock2, customOperatorMock3, customOperatorMock4, claimNumberOperators, spentAtOperators, reportTitleOperators, conditionMock4, conditionFieldOptions } from './advanced-settings.fixture';
+import { adminEmails, advancedSettingResponse, customFields, destinationAttribute, emailResponse, errorResponse, postExpenseFilterResponse, getadvancedSettingResponse, getadvancedSettingResponse2, getExpenseFilterResponse, memo, previewResponse, response, conditionMock1, conditionMock2, conditionMock3, customOperatorMock1, customOperatorMock2, customOperatorMock3, customOperatorMock4, claimNumberOperators, spentAtOperators, reportTitleOperators, conditionMock4, conditionFieldOptions, getExpenseFilterResponse2, getExpenseFilterResponse3 } from './advanced-settings.fixture';
 import { Router } from '@angular/router';
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
@@ -125,6 +125,7 @@ describe('AdvancedSettingsComponent', () => {
 
   it('should update skipExport control value', () => {
     // Set initial value to false
+    (component as any).skipExportWatcher();
     component.advancedSettingsForm.patchValue({ skipExport: false });
     expect(component.advancedSettingsForm.controls.skipExport.value).toBe(false);
 
@@ -380,6 +381,7 @@ describe('AdvancedSettingsComponent', () => {
   it('should return a Date object when the condition type is DATE', () => {
     const conditionDate: ConditionField = conditionMock3;
     const conditionTitle: ConditionField = conditionMock2;
+    const conditionEmail: ConditionField = conditionMock1;
     const value = ['2022-12-31T23:59:59.999Z'];
     const result = component.getFieldValue(value, conditionDate, 1);
     expect(result).toBeInstanceOf(Date);
@@ -387,6 +389,8 @@ describe('AdvancedSettingsComponent', () => {
     const value1 = ['My Report'];
     const result1 = component.getFieldValue(value1, conditionTitle, 2);
     expect(result1).toBe('My Report');
+    const value2 = ['admin1@email.com'];
+    const result2 = component.getFieldValue(value2, conditionEmail, 2);
   });
 
   it('should return true when the objects have the same properties and values', () => {
@@ -526,6 +530,13 @@ describe('AdvancedSettingsComponent', () => {
     expect(advancedSettingService.postAdvancedSettings).toHaveBeenCalled();
     expect(component.saveInProgress).toBeFalse();
   });
+
+  it('setup skip export form', () => {
+    let conditionArr = conditionFieldOptions;
+    component.setupSkipExportForm(getExpenseFilterResponse, conditionArr);
+    component.setupSkipExportForm(getExpenseFilterResponse2, conditionArr);
+    component.setupSkipExportForm(getExpenseFilterResponse3, conditionArr);
+  })
 
   it('createPaymentSyncWatcher function check', () => {
     component.advancedSettingsForm.controls.paymentSync.patchValue(PaymentSyncDirection.FYLE_TO_QBO);

@@ -1,4 +1,4 @@
-import { ExpenseGroupList, ExpenseGroupResponse } from "src/app/core/models/db/expense-group.model";
+import { ExpenseGroupList, ExpenseGroupResponse, SkipExportList } from "src/app/core/models/db/expense-group.model";
 import { FyleReferenceType } from "src/app/core/models/enum/enum.model";
 import { environment } from "src/environments/environment";
 
@@ -16,6 +16,12 @@ export const EXPENSE_GROUP_LISTS: ExpenseGroupList[] = [
     expenses: []
   }
 ];
+export const mockSkipExportList: SkipExportList = {
+  updated_at: new Date('2022-03-06T10:30:00Z'),
+  employee: ['John', 'Doe'],
+  expenseType: 'Reimbursable',
+  claim_number: '123456'
+};
 export const pageinatorResponse = {
   offset: 0,
   limit: 50

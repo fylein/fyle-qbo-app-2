@@ -77,8 +77,6 @@ describe('WorkspacesGuard', () => {
     expect(qbo.getQBOCredentials).toHaveBeenCalled();
     expect(qbo.getPreferences).toHaveBeenCalled();
     expect(workspace.getWorkspaceId).toHaveBeenCalled();
-    // Expect(workspace.getOnboardingState).toHaveBeenCalled();
-    // Expect(router.navigateByUrl).toHaveBeenCalledWith('workspaces/onboarding/qbo_connector');
   });
 
 });

@@ -2,7 +2,7 @@ import { AdvancedSettingGet, AdvancedSettingPost } from "src/app/core/models/con
 import { DestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
 import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from "src/app/core/models/db/workspace-schedule.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
-import { AutoMapEmployee, CorporateCreditCardExpensesObject, CustomOperatorOption, EmployeeFieldMapping, Operator, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
+import { AutoMapEmployee, CorporateCreditCardExpensesObject, CustomOperatorOption, EmployeeFieldMapping, JoinOption, Operator, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
 import { ConditionField, ExpenseFilterResponse, SkipExport } from "src/app/core/models/misc/skip-export.model";
 
 export const response:WorkspaceGeneralSetting = {
@@ -173,9 +173,59 @@ export const getExpenseFilterResponse: ExpenseFilterResponse = {
   ]
 };
 
+export const getExpenseFilterResponse2: ExpenseFilterResponse = {
+  count: 1,
+  results: [
+    {
+      condition: 'employee_email',
+      custom_field_type: null,
+      operator: Operator.IExact,
+      values: ['anish@email.com', 'ashwin@fyle.in'],
+      rank: 1,
+      is_custom: false,
+      join_by: JoinOption.AND
+    },
+    {
+      condition: 'claim_number',
+      custom_field_type: null,
+      operator: Operator.IExact,
+      values: ['1234', '5678'],
+      rank: 2,
+      is_custom: false,
+      join_by: null
+    }
+  ]
+};
+
+export const getExpenseFilterResponse3: ExpenseFilterResponse = {
+  count: 1,
+  results: [
+    {
+      condition: 'Custom Expense Field',
+      custom_field_type: 'TEXT',
+      operator: Operator.IExact,
+      values: ['TSDR1234', 'TSDR1256'],
+      rank: 1,
+      is_custom: true,
+      join_by: JoinOption.AND
+    },
+    {
+      condition: 'claim_number',
+      custom_field_type: null,
+      operator: Operator.IExact,
+      values: ['1234', '5678'],
+      rank: 2,
+      is_custom: false,
+      join_by: null
+    }
+  ]
+};
+
 export const conditionFieldOptions = [
   { field_name: 'employee_email', type: 'SELECT', is_custom: false},
-  { field_name: 'report_number', type: 'SELECT', is_custom: false}
+  { field_name: 'report_title', type: 'TEXT', is_custom: false},
+  { field_name: 'Custom Expense Field', type: 'TEXT', is_custom: false},
+  { field_name: 'claim_number', type: 'SELECT', is_custom: false},
 ];
 
 export const adminEmails: WorkspaceScheduleEmailOptions[] = [ {name: 'fyle', email: 'fyle@fyle.in'}, {name: 'fyle2', email: 'fyle2@fyle.in'}];
