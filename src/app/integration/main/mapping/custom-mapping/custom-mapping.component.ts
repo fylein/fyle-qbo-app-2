@@ -1,5 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
@@ -39,13 +39,13 @@ export class CustomMappingComponent implements OnInit {
 
   fyleFields: ExpenseField[];
 
-  mappingSettingForm: FormGroup;
+  mappingSettingForm: UntypedFormGroup;
 
   mappingSettings: MappingSetting[];
 
   constructor(
     private dialog: MatDialog,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private helperService: HelperService,
     private mappingService: MappingService,
     private snackBar: MatSnackBar,
@@ -193,7 +193,7 @@ export class CustomMappingComponent implements OnInit {
   }
 
   get mappingSetting() {
-    return this.mappingSettingForm.get('mappingSetting') as FormArray;
+    return this.mappingSettingForm.get('mappingSetting') as UntypedFormArray;
   }
 
   private setupPage(): void {

@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
@@ -22,7 +22,7 @@ describe('EmployeeMappingComponent', () => {
   let workspace: WorkspaceService;
   let mappingService: MappingService;
   let paginator: PaginatorService;
-  let formBuilder: FormBuilder;
+  let formBuilder: UntypedFormBuilder;
   let dialogSpy: jasmine.Spy;
   const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({}), close: null });
   dialogRefSpyObj.componentInstance = { body: '' };
@@ -61,7 +61,7 @@ describe('EmployeeMappingComponent', () => {
     workspace = TestBed.inject(WorkspaceService);
     mappingService = TestBed.inject(MappingService);
     paginator = TestBed.inject(PaginatorService);
-    formBuilder = TestBed.inject(FormBuilder);
+    formBuilder = TestBed.inject(UntypedFormBuilder);
     dialogSpy = spyOn(TestBed.get(MatSnackBar), 'open').and.returnValue(dialogRefSpyObj);
     component.fyleQboMappingFormArray = mappingList.map((mapping: MappingList) => {
       return formBuilder.group({

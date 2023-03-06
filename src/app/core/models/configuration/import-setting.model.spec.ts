@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MappingSetting } from '../db/mapping-setting.model';
 import { MappingDestinationField, MappingSourceField } from '../enum/enum.model';
 import { ImportSettingModel, ImportSettingPost } from "./import-setting.model";
@@ -8,7 +8,7 @@ describe('ImportSettingModel', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormGroup],
+      imports: [UntypedFormGroup],
       declarations: [ ImportSettingModel ]
     })
     .compileComponents();
@@ -22,14 +22,14 @@ describe('ImportSettingModel', () => {
       is_custom: true,
       source_placeholder: 'Fyle'
     }];
-    const importSettingsForm= new FormGroup({
-      chartOfAccount: new FormControl(true),
-      chartOfAccountTypes: new FormControl([{enabled: true, name: 'expence'}]),
-      expenseFields: new FormControl(expence_Field),
-      taxCode: new FormControl(true),
-      defaultTaxCode: new FormControl({id: '1', name: 'Fyle'}),
-      searchOption: new FormControl([]),
-      importVendorsAsMerchants: new FormControl(true)
+    const importSettingsForm= new UntypedFormGroup({
+      chartOfAccount: new UntypedFormControl(true),
+      chartOfAccountTypes: new UntypedFormControl([{enabled: true, name: 'expence'}]),
+      expenseFields: new UntypedFormControl(expence_Field),
+      taxCode: new UntypedFormControl(true),
+      defaultTaxCode: new UntypedFormControl({id: '1', name: 'Fyle'}),
+      searchOption: new UntypedFormControl([]),
+      importVendorsAsMerchants: new UntypedFormControl(true)
     });
     const employeeSettingPayload: ImportSettingPost = {
       workspace_general_settings: {

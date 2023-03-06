@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { CorporateCreditCardExpensesObject, ExpenseState, CCCExpenseState, ReimbursableExpensesObject } from '../enum/enum.model';
 import { ExportSettingModel, ExportSettingPost } from "./export-setting.model";
 
@@ -7,31 +7,31 @@ describe('ExportSettingModel', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormGroup],
+      imports: [UntypedFormGroup],
       declarations: [ ExportSettingModel ]
     })
     .compileComponents();
   });
 
   it('Should return ExportSettingModel[]', () => {
-    const exportSettingsForm= new FormGroup({
-      expenseState: new FormControl('PAID'),
-      cccExpenseState: new FormControl('PAID'),
-      reimbursableExpense: new FormControl(true),
-      reimbursableExportType: new FormControl('BILL'),
-      reimbursableExportGroup: new FormControl('sample'),
-      reimbursableExportDate: new FormControl(null),
-      creditCardExpense: new FormControl(true),
-      creditCardExportType: new FormControl('BILL'),
-      creditCardExportGroup: new FormControl('sipper'),
-      creditCardExportDate: new FormControl(null),
-      bankAccount: new FormControl({id: '1', name: 'Fyle'}),
-      defaultCCCAccount: new FormControl({id: '1', name: 'Fyle'}),
-      accountsPayable: new FormControl({id: '1', name: 'Fyle'}),
-      defaultCreditCardVendor: new FormControl({id: '1', name: 'Fyle'}),
-      qboExpenseAccount: new FormControl({id: '1', name: 'Fyle'}),
-      defaultDebitCardAccount: new FormControl({id: '1', name: 'Fyle'}),
-      searchOption: new FormControl([])
+    const exportSettingsForm= new UntypedFormGroup({
+      expenseState: new UntypedFormControl('PAID'),
+      cccExpenseState: new UntypedFormControl('PAID'),
+      reimbursableExpense: new UntypedFormControl(true),
+      reimbursableExportType: new UntypedFormControl('BILL'),
+      reimbursableExportGroup: new UntypedFormControl('sample'),
+      reimbursableExportDate: new UntypedFormControl(null),
+      creditCardExpense: new UntypedFormControl(true),
+      creditCardExportType: new UntypedFormControl('BILL'),
+      creditCardExportGroup: new UntypedFormControl('sipper'),
+      creditCardExportDate: new UntypedFormControl(null),
+      bankAccount: new UntypedFormControl({id: '1', name: 'Fyle'}),
+      defaultCCCAccount: new UntypedFormControl({id: '1', name: 'Fyle'}),
+      accountsPayable: new UntypedFormControl({id: '1', name: 'Fyle'}),
+      defaultCreditCardVendor: new UntypedFormControl({id: '1', name: 'Fyle'}),
+      qboExpenseAccount: new UntypedFormControl({id: '1', name: 'Fyle'}),
+      defaultDebitCardAccount: new UntypedFormControl({id: '1', name: 'Fyle'}),
+      searchOption: new UntypedFormControl([])
     });
     const exportSettingPayload: ExportSettingPost = {
       expense_group_settings: {

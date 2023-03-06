@@ -1,5 +1,5 @@
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { of, throwError } from 'rxjs';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
@@ -22,7 +22,7 @@ describe('DashboardComponent', () => {
   let dashboard: DashboardService;
   let userService: UserService;
   let exportLogService: ExportLogService;
-  let formBuilder: FormBuilder;
+  let formBuilder: UntypedFormBuilder;
   let dialogSpy: jasmine.Spy;
   const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({}), close: null });
   dialogRefSpyObj.componentInstance = { body: '' };

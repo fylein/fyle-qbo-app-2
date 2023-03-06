@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { EmployeeSettingsComponent } from './employee-settings.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -24,7 +24,7 @@ describe('EmployeeSettingsComponent', () => {
   let component: EmployeeSettingsComponent;
   let fixture: ComponentFixture<EmployeeSettingsComponent>;
   const routerSpy = { navigate: jasmine.createSpy('navigate'), url: '/path' };
-  let formBuilder: FormBuilder;
+  let formBuilder: UntypedFormBuilder;
   let injector: TestBed;
   let httpMock: HttpTestingController;
   let service: any;
@@ -56,7 +56,7 @@ describe('EmployeeSettingsComponent', () => {
       imports: [RouterTestingModule, HttpClientTestingModule, MatSnackBarModule, NoopAnimationsModule, FormsModule, ReactiveFormsModule, MatDialogModule, SharedModule],
       declarations: [EmployeeSettingsComponent],
       providers: [{ provide: Router, useValue: routerSpy },
-      { provide: EmployeeSettingService, useValue: service1 }, FormBuilder,
+      { provide: EmployeeSettingService, useValue: service1 }, UntypedFormBuilder,
       { provide: ExportSettingService, useValue: service2 },
       { provide: MappingService, useValue: service }
       ]
@@ -67,7 +67,7 @@ describe('EmployeeSettingsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(EmployeeSettingsComponent);
     component = fixture.componentInstance;
-    formBuilder = TestBed.inject(FormBuilder);
+    formBuilder = TestBed.inject(UntypedFormBuilder);
     injector = getTestBed();
     httpMock = injector.inject(HttpTestingController);
     mappingService = TestBed.inject(MappingService);

@@ -1,4 +1,4 @@
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { CorporateCreditCardExpensesObject, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject } from "../enum/enum.model";
 import { ExpenseGroupSettingGet, ExpenseGroupSettingPost } from "../db/expense-group-setting.model";
 import { DefaultDestinationAttribute, GeneralMapping } from "../db/general-mapping.model";
@@ -36,7 +36,7 @@ export interface ExportSettingFormOption extends SelectFormOption {
 }
 
 export class ExportSettingModel {
-  static constructPayload(exportSettingsForm: FormGroup): ExportSettingPost {
+  static constructPayload(exportSettingsForm: UntypedFormGroup): ExportSettingPost {
     const emptyDestinationAttribute = {id: null, name: null};
     const exportSettingPayload: ExportSettingPost = {
       expense_group_settings: {

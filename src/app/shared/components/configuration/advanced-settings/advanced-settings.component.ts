@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
@@ -40,7 +40,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   billPaymentAccounts: DestinationAttribute[];
 
-  advancedSettingsForm: FormGroup;
+  advancedSettingsForm: UntypedFormGroup;
 
   defaultMemoFields: string[] = ['employee_email', 'merchant', 'purpose', 'category', 'spent_on', 'report_number', 'expense_link'];
 
@@ -95,7 +95,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   isDisabledChip2: boolean = false;
 
-  skipExportForm: FormGroup;
+  skipExportForm: UntypedFormGroup;
 
   showAdditionalCondition: boolean = false;
 
@@ -113,7 +113,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   constructor(
     private advancedSettingService: AdvancedSettingService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public helperService: HelperService,
     private mappingService: MappingService,
     private router: Router,

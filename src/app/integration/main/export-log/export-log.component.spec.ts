@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HttpClientModule } from '@angular/common/http';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ExportLogComponent } from './export-log.component';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -21,7 +21,7 @@ import { FyleReferenceType } from 'src/app/core/models/enum/enum.model';
 describe('ExportLogComponent', () => {
   let component: ExportLogComponent;
   let fixture: ComponentFixture<ExportLogComponent>;
-  let formBuilder: FormBuilder;
+  let formBuilder: UntypedFormBuilder;
   let exportService: ExportLogService;
   let pageinator: PaginatorService;
   beforeEach(async () => {
@@ -39,7 +39,7 @@ describe('ExportLogComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ ExportLogComponent ],
       imports: [FormsModule, ReactiveFormsModule, MatDialogModule, RouterTestingModule, HttpClientTestingModule, HttpClientModule, ExportLogModule, NoopAnimationsModule],
-      providers: [ FormBuilder,
+      providers: [ UntypedFormBuilder,
         { provide: ExportLogService, useValue: service1 },
         { provide: PaginatorService, useValue: service2 }
       ]
@@ -50,7 +50,7 @@ describe('ExportLogComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ExportLogComponent);
     component = fixture.componentInstance;
-    formBuilder = TestBed.inject(FormBuilder);
+    formBuilder = TestBed.inject(UntypedFormBuilder);
     exportService = TestBed.inject(ExportLogService);
     pageinator = TestBed.inject(PaginatorService);
     component.expenseGroups = new MatTableDataSource<ExpenseGroupList>(EXPENSE_GROUP_LISTS);

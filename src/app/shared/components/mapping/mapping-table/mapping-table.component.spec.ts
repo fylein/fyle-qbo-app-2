@@ -4,7 +4,7 @@ import { EmployeeFieldMapping, QBOField } from 'src/app/core/models/enum/enum.mo
 import { MatTableDataSource } from '@angular/material/table';
 import { MappingTableComponent } from './mapping-table.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { destinationAttribute, mappingList } from './mapping-table.fixture';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,7 +18,7 @@ import { MappingService } from 'src/app/core/services/misc/mapping.service';
 describe('MappingTableComponent', () => {
   let component: MappingTableComponent;
   let fixture: ComponentFixture<MappingTableComponent>;
-  let formBuilder: FormBuilder;
+  let formBuilder: UntypedFormBuilder;
   let service: any;
 
   beforeEach(async () => {
@@ -30,7 +30,7 @@ describe('MappingTableComponent', () => {
     await TestBed.configureTestingModule({
       imports: [SharedModule, BrowserAnimationsModule, HttpClientTestingModule],
       declarations: [MappingTableComponent],
-      providers: [FormBuilder,
+      providers: [UntypedFormBuilder,
         { provide: MappingService, useValue: service }
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -42,7 +42,7 @@ describe('MappingTableComponent', () => {
     fixture = TestBed.createComponent(MappingTableComponent);
     component = fixture.componentInstance;
     component.mappings = new MatTableDataSource<MappingList>(mappingList);
-    formBuilder = TestBed.inject(FormBuilder);
+    formBuilder = TestBed.inject(UntypedFormBuilder);
     const fyleQboMappingFormArray = mappingList.map((mapping: MappingList) => {
       return formBuilder.group({
         searchOption: ['string'],
@@ -57,8 +57,8 @@ describe('MappingTableComponent', () => {
       filterOption: [[]],
       cardUpdated: [false]
     });
-    const mappingForm = form.controls.fyleQboMapping as FormArray;
-    component.mappingForm = mappingForm.controls as FormGroup[];
+    const mappingForm = form.controls.fyleQboMapping as UntypedFormArray;
+    component.mappingForm = mappingForm.controls as UntypedFormGroup[];
     component.sourceType = 'EMPLOYEE';
     component.destinationType = EmployeeFieldMapping.EMPLOYEE;
     component.qboData = destinationAttribute;

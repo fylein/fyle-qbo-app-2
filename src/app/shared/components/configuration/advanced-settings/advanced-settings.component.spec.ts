@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AdvancedSettingsComponent } from './advanced-settings.component';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -29,7 +29,7 @@ describe('AdvancedSettingsComponent', () => {
   let service1: any;
   let service2: any;
   let service3: any;
-  let formbuilder: FormBuilder;
+  let formbuilder: UntypedFormBuilder;
   let dialogSpy: jasmine.Spy;
   let dialogSpy1: jasmine.Spy;
   const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({hours: 1,
@@ -60,7 +60,7 @@ describe('AdvancedSettingsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ RouterTestingModule, HttpClientModule, FormsModule, ReactiveFormsModule, MatSnackBarModule, SharedModule, NoopAnimationsModule, MatDialogModule],
       declarations: [ AdvancedSettingsComponent ],
-      providers: [ FormBuilder, MatDialog,
+      providers: [ UntypedFormBuilder, MatDialog,
         { provide: Router, useValue: routerSpy },
         { provide: AdvancedSettingService, useValue: service1 },
         { provide: MappingService, useValue: service2 },
@@ -73,7 +73,7 @@ describe('AdvancedSettingsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AdvancedSettingsComponent);
     component = fixture.componentInstance;
-    formbuilder = TestBed.inject(FormBuilder);
+    formbuilder = TestBed.inject(UntypedFormBuilder);
     component.workspaceGeneralSettings = response;
     component.advancedSettings = getadvancedSettingResponse;
     component.adminEmails = [];

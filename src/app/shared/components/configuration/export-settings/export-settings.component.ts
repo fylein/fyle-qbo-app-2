@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
@@ -31,7 +31,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   employeeFieldMapping: EmployeeFieldMapping;
 
-  exportSettingsForm: FormGroup;
+  exportSettingsForm: UntypedFormGroup;
 
   exportSettings: ExportSettingGet;
 
@@ -124,7 +124,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   constructor(
     private dialog: MatDialog,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private exportSettingService: ExportSettingService,
     public helperService: HelperService,
     private mappingService: MappingService,

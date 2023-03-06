@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef, MatDialog } from "@angular/material/dialog";
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExpenseFieldCreationDialogComponent } from './expense-field-creation-dialog.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { of } from 'rxjs';
@@ -15,7 +15,7 @@ describe('ExpenseFieldCreationDialogComponent', () => {
   const dialogMock = {
     close: () => { }
   };
-  let formBuilder: FormBuilder;
+  let formBuilder: UntypedFormBuilder;
   let dialogSpy: jasmine.Spy;
   const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({}), close: '' });
   dialogRefSpyObj.componentInstance = { body: '' };
@@ -24,7 +24,7 @@ describe('ExpenseFieldCreationDialogComponent', () => {
       imports: [HttpClientModule, RouterTestingModule, MatDialogModule, FormsModule, ReactiveFormsModule, SharedModule],
       declarations: [ExpenseFieldCreationDialogComponent],
       providers: [
-        FormBuilder,
+        UntypedFormBuilder,
         {
           provide: MAT_DIALOG_DATA,
           useValue: {
@@ -42,7 +42,7 @@ describe('ExpenseFieldCreationDialogComponent', () => {
   });
 
   beforeEach(() => {
-    formBuilder = TestBed.inject(FormBuilder);
+    formBuilder = TestBed.inject(UntypedFormBuilder);
     fixture = TestBed.createComponent(ExpenseFieldCreationDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

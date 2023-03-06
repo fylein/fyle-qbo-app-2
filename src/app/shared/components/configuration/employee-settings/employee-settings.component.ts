@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Validators, UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -23,7 +23,7 @@ import { ConfirmationDialogComponent } from '../../core/confirmation-dialog/conf
 })
 export class EmployeeSettingsComponent implements OnInit, OnDestroy {
 
-  employeeSettingsForm: FormGroup;
+  employeeSettingsForm: UntypedFormGroup;
 
   isLoading: boolean = true;
 
@@ -79,7 +79,7 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
 
   constructor(
     private dialog: MatDialog,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private employeeSettingService: EmployeeSettingService,
     private exportSettingService: ExportSettingService,
     private mappingService: MappingService,

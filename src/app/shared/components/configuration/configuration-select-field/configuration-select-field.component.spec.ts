@@ -3,7 +3,7 @@ import { SearchPipe } from '../../../pipes/search.pipe';
 import { ConfigurationSelectFieldComponent } from './configuration-select-field.component';
 import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { EmployeeSettingFormOption } from 'src/app/core/models/configuration/employee-setting.model';
 import { EmployeeFieldMapping } from 'src/app/core/models/enum/enum.model';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,7 +13,7 @@ import { By } from '@angular/platform-browser';
 describe('ConfigurationSelectFieldComponent', () => {
   let component: ConfigurationSelectFieldComponent;
   let fixture: ComponentFixture<ConfigurationSelectFieldComponent>;
-  let formBuilder: FormBuilder;
+  let formBuilder: UntypedFormBuilder;
   let dialogSpy: jasmine.Spy;
   const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({}), close: null });
   dialogRefSpyObj.componentInstance = { body: '' };
@@ -27,12 +27,12 @@ describe('ConfigurationSelectFieldComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ConfigurationSelectFieldComponent);
-    formBuilder = TestBed.inject(FormBuilder);
+    formBuilder = TestBed.inject(UntypedFormBuilder);
     component = fixture.componentInstance;
-    const form = new FormGroup({
-      employeeMapping: new FormControl(['EMPLOYEE']),
-      autoMapEmployee: new FormControl([true]),
-      emails: new FormControl(['fyle@fyle.in', 'integrations@fyle.in' ])
+    const form = new UntypedFormGroup({
+      employeeMapping: new UntypedFormControl(['EMPLOYEE']),
+      autoMapEmployee: new UntypedFormControl([true]),
+      emails: new UntypedFormControl(['fyle@fyle.in', 'integrations@fyle.in' ])
     });
     const employeeMappingOptions: EmployeeSettingFormOption[] = [
       {

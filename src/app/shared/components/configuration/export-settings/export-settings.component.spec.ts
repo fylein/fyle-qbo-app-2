@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AbstractControl, FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { ExportSettingsComponent } from './export-settings.component';
@@ -26,7 +26,7 @@ describe('ExportSettingsComponent', () => {
   let service3: any;
   const routerSpy = { navigate: jasmine.createSpy('navigate'), url: '/path' };
   let router: Router;
-  let formbuilder: FormBuilder;
+  let formbuilder: UntypedFormBuilder;
   let dialogSpy: jasmine.Spy;
   const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({}), close: null });
   dialogRefSpyObj.componentInstance = { body: '' };
@@ -47,7 +47,7 @@ describe('ExportSettingsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [FormsModule, ReactiveFormsModule, HttpClientModule, RouterTestingModule, MatSnackBarModule, SharedModule, NoopAnimationsModule],
       declarations: [ ExportSettingsComponent ],
-      providers: [ FormBuilder,
+      providers: [ UntypedFormBuilder,
         { provide: Router, useValue: routerSpy },
         { provide: ExportSettingService, useValue: service1 },
         { provide: MappingService, useValue: service2 },
@@ -61,7 +61,7 @@ describe('ExportSettingsComponent', () => {
     fixture = TestBed.createComponent(ExportSettingsComponent);
     component = fixture.componentInstance;
     router = TestBed.inject(Router);
-    formbuilder = TestBed.inject(FormBuilder);
+    formbuilder = TestBed.inject(UntypedFormBuilder);
     workspace = TestBed.inject(WorkspaceService);
     mappingService = TestBed.inject(MappingService);
     exportSettingService = TestBed.inject(ExportSettingService);

@@ -1,9 +1,9 @@
-import { FormBuilder } from "@angular/forms";
+import { UntypedFormBuilder } from "@angular/forms";
 import { DestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
 import { MappingList } from "src/app/core/models/db/mapping.model";
 import { MappingState } from "src/app/core/models/enum/enum.model";
 
-let formBuilder: FormBuilder;
+let formBuilder: UntypedFormBuilder;
 export const mappingList: MappingList[] = [{
   fyle: {
     id: 1,

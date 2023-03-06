@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { AdvancedSettingFormOption } from 'src/app/core/models/configuration/advanced-setting.model';
 import { EmployeeSettingFormOption } from 'src/app/core/models/configuration/employee-setting.model';
 import { ExportSettingFormOption } from 'src/app/core/models/configuration/export-setting.model';
@@ -15,7 +15,7 @@ import { HelperService } from 'src/app/core/services/core/helper.service';
 })
 export class EmailMultiSelectFieldComponent implements OnInit {
 
-  @Input() form: FormGroup;
+  @Input() form: UntypedFormGroup;
 
   @Input() options: WorkspaceScheduleEmailOptions[];
 

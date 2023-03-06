@@ -1,4 +1,4 @@
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { PaymentSyncDirection } from "../enum/enum.model";
 import { DefaultDestinationAttribute, GeneralMapping } from "../db/general-mapping.model";
 import { SelectFormOption } from "../misc/select-form-option.model";
@@ -57,7 +57,7 @@ export interface AdvancedSettingFormOption extends SelectFormOption {
 }
 
 export class AdvancedSettingModel {
-  static constructPayload(advancedSettingsForm: FormGroup): AdvancedSettingPost {
+  static constructPayload(advancedSettingsForm: UntypedFormGroup): AdvancedSettingPost {
     const emptyDestinationAttribute = {id: null, name: null};
     const advancedSettingPayload: AdvancedSettingPost = {
       workspace_general_settings: {

@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 const SYSTEM_FIELDS: string[] = ['employee id', 'organisation name', 'employee name', 'employee email', 'expense date', 'expense date', 'expense id', 'report id', 'employee id', 'department', 'state', 'reporter', 'report', 'purpose', 'vendor', 'category', 'category code', 'mileage distance', 'mileage unit', 'flight from city', 'flight to city', 'flight from date', 'flight to date', 'flight from class', 'flight to class', 'hotel checkin', 'hotel checkout', 'hotel location', 'hotel breakfast', 'currency', 'amount', 'foreign currency', 'foreign amount', 'tax', 'approver', 'project', 'billable', 'cost center', 'cost center code', 'approved on', 'reimbursable', 'receipts', 'paid date', 'expense created date'];
@@ -11,14 +11,14 @@ const SYSTEM_FIELDS: string[] = ['employee id', 'organisation name', 'employee n
 })
 export class ExpenseFieldCreationDialogComponent implements OnInit {
 
-  expenseFieldsCreationForm: FormGroup;
+  expenseFieldsCreationForm: UntypedFormGroup;
 
   existingFields: string[];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: string[],
     public dialogRef: MatDialogRef<ExpenseFieldCreationDialogComponent>,
-    private formBuilder: FormBuilder
+    private formBuilder: UntypedFormBuilder
   ) { }
 
   private setupForm(): void {

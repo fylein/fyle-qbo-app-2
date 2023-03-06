@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -11,7 +11,7 @@ describe('EmailMultiSelectFieldComponent', () => {
   let component: EmailMultiSelectFieldComponent;
   let fixture: ComponentFixture<EmailMultiSelectFieldComponent>;
 
-  let formBuilder: FormBuilder;
+  let formBuilder: UntypedFormBuilder;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SharedModule, MatDialogModule, NoopAnimationsModule, HttpClientTestingModule],
@@ -23,7 +23,7 @@ describe('EmailMultiSelectFieldComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(EmailMultiSelectFieldComponent);
     component = fixture.componentInstance;
-    formBuilder = TestBed.inject(FormBuilder);
+    formBuilder = TestBed.inject(UntypedFormBuilder);
     const form = formBuilder.group({
       searchOption: [],
       emails: [['fyle@fyle.in', 'integrations@fyle.in']],

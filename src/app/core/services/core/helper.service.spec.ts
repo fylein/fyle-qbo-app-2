@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { DefaultDestinationAttribute } from '../../models/db/general-mapping.model';
 
 import { HelperService } from './helper.service';
@@ -17,8 +17,8 @@ describe('HelperService', () => {
   });
 
   it('clearSearchText service check', () => {
-    const form=new FormGroup({
-      searchOption: new FormControl('fyle')
+    const form=new UntypedFormGroup({
+      searchOption: new UntypedFormControl('fyle')
     });
     service.clearSearchText(form);
     expect(form.controls.searchOption.value).toBeNull();

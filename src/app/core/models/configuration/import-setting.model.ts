@@ -1,4 +1,4 @@
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { MappingDestinationField, MappingSourceField } from "../enum/enum.model";
 import { DefaultDestinationAttribute, GeneralMapping } from "../db/general-mapping.model";
 import { MappingSetting } from "../db/mapping-setting.model";
@@ -51,7 +51,7 @@ export interface ImportSettingFormOption extends SelectFormOption {
 
 
 export class ImportSettingModel {
-  static constructPayload(importSettingsForm: FormGroup, customMappingSettings: MappingSetting[]): ImportSettingPost {
+  static constructPayload(importSettingsForm: UntypedFormGroup, customMappingSettings: MappingSetting[]): ImportSettingPost {
     const emptyDestinationAttribute = {id: null, name: null};
     const employeeSettingPayload: ImportSettingPost = {
       workspace_general_settings: {

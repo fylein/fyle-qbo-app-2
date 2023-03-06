@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { environment } from 'src/environments/environment';
@@ -16,7 +16,7 @@ import { ZeroStatePage } from 'src/app/core/models/enum/enum.model';
 })
 export class ExportLogChildDialogComponent implements OnInit {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   displayedColumns: string[] = ['expenseID', 'merchant', 'category', 'amount'];
 
@@ -29,7 +29,7 @@ export class ExportLogChildDialogComponent implements OnInit {
   ZeroStatePage = ZeroStatePage;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: Expense[],
     public dialogRef: MatDialogRef<ExportLogChildDialogComponent>,
     public helperService: HelperService,

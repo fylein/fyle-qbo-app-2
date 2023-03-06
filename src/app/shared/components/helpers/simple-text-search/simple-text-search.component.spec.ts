@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeFieldMapping, QBOField, SearchType, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
@@ -32,11 +32,11 @@ describe('SimpleTextSearchComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SimpleTextSearchComponent);
     component = fixture.componentInstance;
-    const form= new FormGroup({
-      dateRange: new FormControl([3]),
-      start: new FormControl(['12/1/2021']),
-      searchOption: new FormControl(['come']),
-      end: new FormControl(['12/2/2021'])
+    const form= new UntypedFormGroup({
+      dateRange: new UntypedFormControl([3]),
+      start: new UntypedFormControl(['12/1/2021']),
+      searchOption: new UntypedFormControl(['come']),
+      end: new UntypedFormControl(['12/2/2021'])
     });
     component.destinationType = EmployeeFieldMapping.EMPLOYEE;
     component.page = SimpleSearchPage.EXPORT_LOG;
@@ -76,11 +76,11 @@ describe('SimpleTextSearchComponent', () => {
   it('search function check', () => {
     component.searchType = SimpleSearchType.SELECT_FIELD;
     component.page = SimpleSearchPage.MAPPING;
-    const form= new FormGroup({
-      dateRange: new FormControl([3]),
-      start: new FormControl(['12/1/2021']),
-      searchOption: new FormControl(['ome']),
-      end: new FormControl(['12/2/2021'])
+    const form= new UntypedFormGroup({
+      dateRange: new UntypedFormControl([3]),
+      start: new UntypedFormControl(['12/1/2021']),
+      searchOption: new UntypedFormControl(['ome']),
+      end: new UntypedFormControl(['12/2/2021'])
     });
     component.ngOnInit();
     fixture.detectChanges();
@@ -92,11 +92,11 @@ describe('SimpleTextSearchComponent', () => {
   });
 
   it('clearText function search option check', () => {
-    const form= new FormGroup({
-      dateRange: new FormControl([3]),
-      start: new FormControl(['12/1/2021']),
-      searchOption: new FormControl(['co']),
-      end: new FormControl(['12/2/2021'])
+    const form= new UntypedFormGroup({
+      dateRange: new UntypedFormControl([3]),
+      start: new UntypedFormControl(['12/1/2021']),
+      searchOption: new UntypedFormControl(['co']),
+      end: new UntypedFormControl(['12/2/2021'])
     });
     component.form = form;
     component.page = SimpleSearchPage.MAPPING;

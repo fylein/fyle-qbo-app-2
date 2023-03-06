@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ExportLogChildDialogComponent } from './export-log-child-dialog.component';
 import {MatDialogModule, MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
@@ -16,7 +16,7 @@ import { MatTableDataSource } from '@angular/material/table';
 describe('ExportLogChildDialogComponent', () => {
   let component: ExportLogChildDialogComponent;
   let fixture: ComponentFixture<ExportLogChildDialogComponent>;
-  let formBuilder: FormBuilder;
+  let formBuilder: UntypedFormBuilder;
   beforeEach(async () => {
     const service1 = {
       getUserProfile: () => of(user)
@@ -25,7 +25,7 @@ describe('ExportLogChildDialogComponent', () => {
       declarations: [ ExportLogChildDialogComponent ],
       imports: [HttpClientModule, FormsModule, ReactiveFormsModule, MatDialogModule, HttpClientTestingModule, ExportLogModule],
       providers: [
-        FormBuilder,
+        UntypedFormBuilder,
         { provide: UserService, useValue: service1},
       {
         provide: MAT_DIALOG_DATA,
@@ -50,7 +50,7 @@ describe('ExportLogChildDialogComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ExportLogChildDialogComponent);
     component = fixture.componentInstance;
-    formBuilder = TestBed.inject(FormBuilder);
+    formBuilder = TestBed.inject(UntypedFormBuilder);
     component.data = expense;
     component.expenses = new MatTableDataSource<ExpenseList>(expenseList);
     component.form = formBuilder.group({

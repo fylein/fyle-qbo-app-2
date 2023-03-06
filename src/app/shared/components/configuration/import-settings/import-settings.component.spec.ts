@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { RouterTestingModule } from '@angular/router/testing';
-import { FormArray, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ImportSettingsComponent } from './import-settings.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,7 +21,7 @@ describe('ImportSettingsComponent', () => {
   let fixture: ComponentFixture<ImportSettingsComponent>;
   const routerSpy = { navigate: jasmine.createSpy('navigate'), url: '/path' };
   let router: Router;
-  let formbuilder: FormBuilder;
+  let formbuilder: UntypedFormBuilder;
   let importSettingService: ImportSettingService;
   let workspace: WorkspaceService;
   let qboConnectorService: QboConnectorService;
@@ -59,7 +59,7 @@ describe('ImportSettingsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ MatDialogModule, NoopAnimationsModule, RouterTestingModule, HttpClientModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatSnackBarModule, SharedModule],
       declarations: [ ImportSettingsComponent ],
-      providers: [ FormBuilder,
+      providers: [ UntypedFormBuilder,
         { provide: Router, useValue: routerSpy },
         { provide: ImportSettingService, useValue: service1 },
         { provide: MappingService, useValue: service2 },
@@ -74,7 +74,7 @@ describe('ImportSettingsComponent', () => {
     fixture = TestBed.createComponent(ImportSettingsComponent);
     component = fixture.componentInstance;
     router = TestBed.inject(Router);
-    formbuilder = TestBed.inject(FormBuilder);
+    formbuilder = TestBed.inject(UntypedFormBuilder);
     workspace = TestBed.inject(WorkspaceService);
     mappingService = TestBed.inject(MappingService);
     importSettingService = TestBed.inject(ImportSettingService);
@@ -240,7 +240,7 @@ describe('ImportSettingsComponent', () => {
   });
 
   it('chartOfAccountTypes function check', () => {
-    const response = component.importSettingsForm.get('chartOfAccountTypes') as FormArray;
+    const response = component.importSettingsForm.get('chartOfAccountTypes') as UntypedFormArray;
     expect(component.chartOfAccountTypes).toEqual(response);
   });
 });
