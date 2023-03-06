@@ -10,16 +10,16 @@ import { ConditionField, constructPayload1, constructPayload2, SkipExport } from
       join_by?: SkipExport['join_by'];
     };
     let valueOption1: any[];
-  
+
     beforeEach(() => {
       valueField = {
         condition1: { field_name: 'some_field', type: 'STRING', is_custom: false },
         operator1: Operator.IExact,
-        value1: ['some_value'],
+        value1: ['some_value']
       };
       valueOption1 = ['some_option'];
     });
-  
+
     it('should return a SkipExport object', () => {
       const result = constructPayload1(valueField, valueOption1);
     });

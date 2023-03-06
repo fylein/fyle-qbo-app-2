@@ -296,15 +296,8 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   private setConditionFields(response: ExpenseFilterResponse, conditionArray: ConditionField[]) {
     response.results.forEach((element) => {
-      const selectedConditionOption = {
-        field_name: element.condition,
-        type: '',
-        is_custom: element.is_custom
-      };
-      const type = this.conditionFieldOptions.filter(
-        (fieldOption) => fieldOption.field_name === element.condition
-      )[0].type;
-      selectedConditionOption.type = type;
+      const type = this.conditionFieldOptions.filter( (fieldOption) => fieldOption.field_name === element.condition);
+      const selectedConditionOption : ConditionField = type[0];
       conditionArray.push(selectedConditionOption);
     });
   }

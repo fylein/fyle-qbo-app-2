@@ -225,7 +225,7 @@ export const conditionFieldOptions = [
   { field_name: 'employee_email', type: 'SELECT', is_custom: false},
   { field_name: 'report_title', type: 'TEXT', is_custom: false},
   { field_name: 'Custom Expense Field', type: 'TEXT', is_custom: false},
-  { field_name: 'claim_number', type: 'SELECT', is_custom: false},
+  { field_name: 'claim_number', type: 'SELECT', is_custom: false}
 ];
 
 export const adminEmails: WorkspaceScheduleEmailOptions[] = [ {name: 'fyle', email: 'fyle@fyle.in'}, {name: 'fyle2', email: 'fyle2@fyle.in'}];

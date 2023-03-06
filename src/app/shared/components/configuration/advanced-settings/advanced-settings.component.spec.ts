@@ -532,11 +532,11 @@ describe('AdvancedSettingsComponent', () => {
   });
 
   it('setup skip export form', () => {
-    let conditionArr = conditionFieldOptions;
+    const conditionArr = conditionFieldOptions;
     component.setupSkipExportForm(getExpenseFilterResponse, conditionArr);
     component.setupSkipExportForm(getExpenseFilterResponse2, conditionArr);
     component.setupSkipExportForm(getExpenseFilterResponse3, conditionArr);
-  })
+  });
 
   it('createPaymentSyncWatcher function check', () => {
     component.advancedSettingsForm.controls.paymentSync.patchValue(PaymentSyncDirection.FYLE_TO_QBO);
