@@ -10,15 +10,15 @@ import { WorkspaceService } from 'src/app/core/services/workspace/workspace.serv
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { WorkspaceGeneralSetting } from 'src/app/core/models/db/workspace-general-setting.model';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { AddEmailDialogComponent } from './add-email-dialog/add-email-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from 'src/app/core/models/db/workspace-schedule.model';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { MatLegacyChipInputEvent as MatChipInputEvent } from '@angular/material/legacy-chips';
 import { SkipExport, ConditionField, ExpenseFilterResponse, constructPayload1, constructPayload2 } from 'src/app/core/models/misc/skip-export.model';
 
 @Component({

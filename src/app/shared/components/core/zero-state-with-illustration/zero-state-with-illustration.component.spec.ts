@@ -1,7 +1,7 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { By } from '@angular/platform-browser';
 import { ExpenseGroupList } from 'src/app/core/models/db/expense-group.model';
 import { ZeroStatePage } from 'src/app/core/models/enum/enum.model';

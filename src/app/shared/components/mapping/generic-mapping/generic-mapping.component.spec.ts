@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 import { UntypedFormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 
 import { GenericMappingComponent } from './generic-mapping.component';
 import { SharedModule } from 'src/app/shared/shared.module';

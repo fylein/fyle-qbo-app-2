@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ExpenseList } from 'src/app/core/models/db/expense.model';
 import { ExportLogChildTableComponent } from './export-log-child-table.component';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { DebugElement } from '@angular/core';
 import { expenseList } from './export-log-child-table.fixture';
 import { By } from '@angular/platform-browser';

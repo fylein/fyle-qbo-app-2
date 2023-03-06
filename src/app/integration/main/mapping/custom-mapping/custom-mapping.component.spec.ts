@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CustomMappingComponent } from './custom-mapping.component';
-import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import { MatLegacyDialog as MatDialog, MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { UntypedFormArray, UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { Router } from '@angular/router';

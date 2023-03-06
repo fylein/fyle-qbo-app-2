@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { SkipExportList } from 'src/app/core/models/db/expense-group.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 

@@ -6,8 +6,8 @@ import { FyleReferenceType, PaginatorPage, SimpleSearchPage, SimpleSearchType, Z
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { DateFilter, SelectedDateFilter } from 'src/app/core/models/misc/date-filter.model';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';

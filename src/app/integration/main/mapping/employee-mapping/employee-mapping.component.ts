@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { EmployeeMappingModel, ExtendedEmployeeAttribute, ExtendedEmployeeAttributeResponse } from 'src/app/core/models/db/employee-mapping.model';
 import { MappingList, MappingStats } from 'src/app/core/models/db/mapping.model';

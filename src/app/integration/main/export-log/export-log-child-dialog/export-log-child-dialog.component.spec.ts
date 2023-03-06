@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ExportLogChildDialogComponent } from './export-log-child-dialog.component';
-import {MatDialogModule, MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {MatLegacyDialogModule as MatDialogModule, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef} from "@angular/material/legacy-dialog";
 
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -11,7 +11,7 @@ import { of } from 'rxjs';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { ExportLogModule } from '../export-log.module';
 import { ExpenseList } from 'src/app/core/models/db/expense.model';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 
 describe('ExportLogChildDialogComponent', () => {
   let component: ExportLogChildDialogComponent;

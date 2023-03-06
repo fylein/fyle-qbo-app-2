@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AdvancedSettingsComponent } from './advanced-settings.component';
 import { UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { adminEmails, advancedSettingResponse, destinationAttribute, emailResponse, errorResponse, getadvancedSettingResponse, getadvancedSettingResponse2, memo, previewResponse, response } from './advanced-settings.fixture';
@@ -16,7 +16,7 @@ import { OnboardingState, PaymentSyncDirection } from 'src/app/core/models/enum/
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { By } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 
 describe('AdvancedSettingsComponent', () => {
   let component: AdvancedSettingsComponent;

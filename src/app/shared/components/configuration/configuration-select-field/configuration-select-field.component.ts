@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { AdvancedSettingFormOption } from 'src/app/core/models/configuration/advanced-setting.model';
 import { EmployeeSettingFormOption } from 'src/app/core/models/configuration/employee-setting.model';
 import { ExportSettingFormOption } from 'src/app/core/models/configuration/export-setting.model';

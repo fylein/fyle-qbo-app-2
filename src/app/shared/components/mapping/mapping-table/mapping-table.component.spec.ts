@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MappingList } from 'src/app/core/models/db/mapping.model';
 import { EmployeeFieldMapping, QBOField } from 'src/app/core/models/enum/enum.model';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { MappingTableComponent } from './mapping-table.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';

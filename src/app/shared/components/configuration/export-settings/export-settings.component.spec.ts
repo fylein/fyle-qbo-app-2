@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AbstractControl, UntypedFormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatLegacySnackBarModule as MatSnackBarModule} from '@angular/material/legacy-snack-bar';
 import { ExportSettingsComponent } from './export-settings.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -13,7 +13,7 @@ import { ExportSettingService } from 'src/app/core/services/configuration/export
 import { of, throwError } from 'rxjs';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 describe('ExportSettingsComponent', () => {
   let component: ExportSettingsComponent;

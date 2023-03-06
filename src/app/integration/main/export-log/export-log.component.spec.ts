@@ -5,10 +5,10 @@ import { UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/f
 
 import { ExportLogComponent } from './export-log.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MatDialogModule } from "@angular/material/dialog";
+import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
 import { ExportLogModule } from './export-log.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { ExpenseGroupList } from 'src/app/core/models/db/expense-group.model';
 import { expenseGroupresponse, expenseGroupresponse1, EXPENSE_GROUP_LISTS, exportTyperesponse, fyleURLresponse, pageinatorResponse } from './export-log.fixture';
 import { HttpClientTestingModule } from '@angular/common/http/testing';

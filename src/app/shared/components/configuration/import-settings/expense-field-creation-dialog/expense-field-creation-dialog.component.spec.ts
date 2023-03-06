@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef, MatDialog } from "@angular/material/dialog";
+import { MatLegacyDialogModule as MatDialogModule, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef, MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';

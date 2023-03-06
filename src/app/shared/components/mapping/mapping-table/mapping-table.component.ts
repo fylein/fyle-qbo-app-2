@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { MappingList } from 'src/app/core/models/db/mapping.model';
 import { EmployeeFieldMapping, FyleField, QBOField, SearchType, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';

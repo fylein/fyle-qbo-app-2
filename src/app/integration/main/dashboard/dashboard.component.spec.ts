@@ -7,12 +7,12 @@ import { DashboardComponent } from './dashboard.component';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardService } from 'src/app/core/services/dashboard/dashboard.service';
 import { workspaceGeneralSettingResponse, errorResponse, expenseGroupSettingResponse, user, getExportErrorsData, getLastExportResponse, allTasksResponse, getExportableGroupsIdsResponse, expenseGroupSettingResponse1 } from 'src/app/integration/main/dashboard/dashboard.fixture';
 import { DashboardModule } from './dashboard.module';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 import { ErrorType, ExportState, TaskLogState } from 'src/app/core/models/enum/enum.model';
 
 describe('DashboardComponent', () => {

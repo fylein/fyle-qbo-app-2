@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { Error } from 'src/app/core/models/db/error.model';
 import { Expense, ExpenseList } from 'src/app/core/models/db/expense.model';
 import { UserService } from 'src/app/core/services/misc/user.service';

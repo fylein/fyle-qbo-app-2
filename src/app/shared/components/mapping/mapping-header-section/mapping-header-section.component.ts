@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { MappingStats } from 'src/app/core/models/db/mapping.model';
 import { AutoMapEmployee } from 'src/app/core/models/enum/enum.model';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';

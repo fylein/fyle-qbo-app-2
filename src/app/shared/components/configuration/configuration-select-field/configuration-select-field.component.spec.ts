@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SearchPipe } from '../../../pipes/search.pipe';
 import { ConfigurationSelectFieldComponent } from './configuration-select-field.component';
-import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogModule as MatDialogModule, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { EmployeeSettingFormOption } from 'src/app/core/models/configuration/employee-setting.model';
