@@ -1,4 +1,4 @@
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { GlobalErrorHandler } from './app.errorhandling';
+import { createCustomElement } from '@angular/elements';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,14 @@ import { GlobalErrorHandler } from './app.errorhandling';
       })
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [],
+  entryComponents: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private injector: Injector) {
+    const el = createCustomElement(AppComponent, { injector });
+    customElements.define('momentum-element', el);
+  }
+
+  ngDoBootstrap() {}
+}
