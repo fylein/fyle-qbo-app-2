@@ -10,7 +10,7 @@ import { ExportLogModule } from './export-log.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { ExpenseGroupList } from 'src/app/core/models/db/expense-group.model';
-import { expenseGroupresponse, expenseGroupresponse1, EXPENSE_GROUP_LISTS, exportTyperesponse, fyleURLresponse, pageinatorResponse } from './export-log.fixture';
+import { expenseGroupresponse, expenseGroupresponse1, EXPENSE_GROUP_LISTS, exportTyperesponse, fyleURLresponse, mockSkipExportList, pageinatorResponse } from './export-log.fixture';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
@@ -80,10 +80,15 @@ describe('ExportLogComponent', () => {
     component.exportLogForm.controls.searchOption.patchValue('dh');
     expect((component as any).setupForm()).toBeUndefined();
     fixture.detectChanges();
+    component.skipExportLogForm.controls.searchOption.patchValue('dh');
+    expect((component as any).setupForm()).toBeUndefined();
+    fixture.detectChanges();
     component.exportLogForm.controls.dateRange.patchValue([{startDate: new Date(), endDate: new Date((new Date().getTime() + 24) * (60 * 60 * 1000))}]);
     expect((component as any).setupForm()).toBeUndefined();
     fixture.detectChanges();
     component.exportLogForm.controls.dateRange.patchValue('');
+    expect((component as any).setupForm()).toBeUndefined();
+    component.skipExportLogForm.controls.dateRange.patchValue('');
     expect((component as any).setupForm()).toBeUndefined();
   });
 
@@ -100,6 +105,10 @@ describe('ExportLogComponent', () => {
 
   it('searchByText function check', () => {
     expect((component as any).searchByText(EXPENSE_GROUP_LISTS[0], 'aswin')).toBeFalsy();
+  });
+
+  it('searchByText function check', () => {
+    expect((component as any).searchByTextSkipExport(mockSkipExportList, 'John')).toBeTrue();
   });
 
   it('getExpenseGroups function check', () => {

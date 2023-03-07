@@ -296,15 +296,8 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   private setConditionFields(response: ExpenseFilterResponse, conditionArray: ConditionField[]) {
     response.results.forEach((element) => {
-      const selectedConditionOption = {
-        field_name: element.condition,
-        type: '',
-        is_custom: element.is_custom
-      };
-      const type = this.conditionFieldOptions.filter(
-        (fieldOption) => fieldOption.field_name === element.condition
-      )[0].type;
-      selectedConditionOption.type = type;
+      const type = this.conditionFieldOptions.filter( (fieldOption) => fieldOption.field_name === element.condition);
+      const selectedConditionOption : ConditionField = type[0];
       conditionArray.push(selectedConditionOption);
     });
   }
@@ -376,27 +369,25 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     let [selectedOperator2, valueFC2] = ['', ''];
     let joinByFC = '';
 
-    if (response.count > 0) {
-      selectedOperator1 = this.getSelectedOperator(response.results[0].operator, response.results[0].values[0], conditionArray[0]);
-      if (!(selectedOperator1 === 'is_empty' || selectedOperator1 === 'is_not_empty')) {
-        valueFC1 = this.getFieldValue(response.results[0].values, conditionArray[0], response.results[0].rank);
-      } else {
-        this.isDisabledChip1 = true;
-      }
-      customFieldTypeFC1 = response.results[0].custom_field_type;
-    }
-
-    if (response.count > 1) {
-      selectedOperator2 = this.getSelectedOperator(response.results[1].operator, response.results[1].values[0], conditionArray[1]);
-      if (response.results[0].join_by !== null) {
+    response.results.forEach((result, index) => {
+      if (index === 0) {
+        selectedOperator1 = this.getSelectedOperator(result.operator, result.values[0], conditionArray[0]);
+        if (!(selectedOperator1 === 'is_empty' || selectedOperator1 === 'is_not_empty')) {
+          valueFC1 = this.getFieldValue(result.values, conditionArray[0], result.rank);
+        } else {
+          this.isDisabledChip1 = true;
+        }
+        customFieldTypeFC1 = result.custom_field_type;
+      } else if (index === 1 && response.results[0].join_by !== null) {
+        selectedOperator2 = this.getSelectedOperator(result.operator, result.values[0], conditionArray[1]);
         joinByFC = response.results[0].join_by;
         if (!(selectedOperator2 === 'is_empty' || selectedOperator2 === 'is_not_empty')) {
-          valueFC2 = this.getFieldValue(response.results[1].values, conditionArray[1], response.results[1].rank);
+          valueFC2 = this.getFieldValue(result.values, conditionArray[1], result.rank);
         } else {
           this.isDisabledChip2 = true;
         }
       }
-    }
+    });
 
     this.skipExportForm = this.formBuilder.group({
       condition1: [conditionArray.length > 0 ? conditionArray[0] : ''],

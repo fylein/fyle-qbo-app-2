@@ -419,6 +419,38 @@ describe('ExportLogService', () => {
     expect(reponse).toEqual(actualresponse);
   });
 
+    it('should call ApiService.get with correct params when selectedDateFilter is null', () => {
+    const limit = 10;
+    const offset = 0;
+    const selectedDateFilter = null;
+
+    const expectedParams = {
+      limit,
+      offset,
+      is_skipped: 'true'
+    };
+
+    service.getSkippedExpenses(limit, offset, selectedDateFilter).subscribe();
+  });
+
+  it('should call ApiService.get with correct params when selectedDateFilter is not null', () => {
+    const limit = 10;
+    const offset = 0;
+    const startDate = new Date('2022-01-01T00:00:00');
+    const endDate = new Date('2022-01-31T23:59:59');
+    const selectedDateFilter = { startDate, endDate };
+
+    const expectedParams = {
+      limit,
+      offset,
+      is_skipped: 'true',
+      start_date: '2022-01-01T00:00:00',
+      end_date: '2022-01-31T23:59:59'
+    };
+
+    service.getSkippedExpenses(limit, offset, selectedDateFilter).subscribe();
+  });
+
   it('generateExportTypeAndId() service Purchase ccc check', () => {
     const expencegroup:ExpenseGroup = {
       id: 1,
