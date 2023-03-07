@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AdvancedSettingsComponent } from './advanced-settings.component';
-import { UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -18,7 +18,7 @@ import { By } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { MatLegacyDialog as MatDialog, MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { ConditionField } from 'src/app/core/models/misc/skip-export.model';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { MatLegacyChipInputEvent } from '@angular/material/legacy-chips';
 
 describe('AdvancedSettingsComponent', () => {
   let component: AdvancedSettingsComponent;
@@ -337,7 +337,7 @@ describe('AdvancedSettingsComponent', () => {
         value: 'anish'
       },
       value: 'anish'
-    } as MatChipInputEvent;
+    } as MatLegacyChipInputEvent;
     // Add a new value
     component.add2(inputEvent);
 
