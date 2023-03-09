@@ -17,7 +17,7 @@ import { TrackingService } from 'src/app/core/services/integration/tracking.serv
 import { AddEmailDialogComponent } from './add-email-dialog/add-email-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from 'src/app/core/models/db/workspace-schedule.model';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { SkipExport, ConditionField, ExpenseFilterResponse, constructPayload1, constructPayload2 } from 'src/app/core/models/misc/skip-export.model';
 
@@ -110,6 +110,14 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   operatorFieldOptions2: { label: string; value: string }[];
 
   joinByOptions = [JoinOptions.AND, JoinOptions.OR];
+
+  getSkipExportSubLabel(): string {
+    const subLabel = "You could choose to skip the export of certain expenses from Fyle to QBO by setting up a conditional rule.";
+    const linkText = "Read more";
+    const linkUrl = "https://help.fylehq.com/en/articles/6967005-how-to-skip-exporting-specific-expenses-from-fyle-to-netsuite";
+    return `${subLabel}<a href='${linkUrl}' target='_blank' rel='noopener noreferrer' class='read-more-link'>${linkText}</a>`;
+  }
+  
 
   constructor(
     private advancedSettingService: AdvancedSettingService,
