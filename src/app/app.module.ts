@@ -1,4 +1,4 @@
-import { ErrorHandler, Injector, NgModule } from '@angular/core';
+import { ApplicationRef, APP_INITIALIZER, ErrorHandler, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,12 +8,15 @@ import { MatLegacySnackBarModule as MatSnackBarModule, MAT_LEGACY_SNACK_BAR_DEFA
 
 import * as Sentry from '@sentry/angular';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { GlobalErrorHandler } from './app.errorhandling';
+import { environment } from 'src/environments/environment';
 import { DashboardModule } from './integration/main/dashboard/dashboard.module';
-import { ExportLogModule } from './integration/main/export-log/export-log.module';
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +31,7 @@ import { ExportLogModule } from './integration/main/export-log/export-log.module
     ReactiveFormsModule,
     MatSnackBarModule,
     DashboardModule,
-    ExportLogModule
+    SharedModule
   ],
   providers: [
     {
@@ -59,10 +62,15 @@ import { ExportLogModule } from './integration/main/export-log/export-log.module
       })
     }
   ],
-  bootstrap: [AppComponent],
   entryComponents: [AppComponent]
 })
 export class AppModule {
 
-  ngDoBootstrap() {}
+  ngDoBootstrap(appRef: ApplicationRef) {
+    if (!environment.embed_app) {
+      console.error('yaaaayyaaaayyaaaayyaaaay')
+      appRef.bootstrap(AppComponent);
+    }
+
+  }
 }

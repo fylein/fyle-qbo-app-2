@@ -1,0 +1,14 @@
+{
+  "name": "qbo-test",
+  "version": "1.0.3",
+  "description": "Test QBO Integration 1.0.3",
+  "main": "fyle-qbo-app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "qbo"
+  ],
+  "author": "Ashwin",
+  "license": "ISC"
+}

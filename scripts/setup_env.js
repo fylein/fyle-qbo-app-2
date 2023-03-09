@@ -2,6 +2,7 @@ const { writeFile } = require("fs");
 
 const environment = {
   production: `${process.env.PRODUCTION ? process.env.PRODUCTION : "false"}`,
+  embed_app: `${process.env.EMBED_APP ? process.env.EMBED_APP : "false"}`,
   fyle_client_id: `${process.env.FYLE_CLIENT_ID ? process.env.FYLE_CLIENT_ID : '{{FYLE_CLIENT_ID}}'}`,
   callback_uri: `${process.env.CALLBACK_URI ? process.env.CALLBACK_URI : '{{CALLBACK_URI}}'}`,
   api_url: `${process.env.API_URL ? process.env.API_URL : '{{API_URL}}'}`,
