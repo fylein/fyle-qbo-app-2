@@ -126,7 +126,7 @@
       <app-configuration-toggle-field *ngIf="!isLoading" [form]="advancedSettingsForm"
         [iconPath]="'assets/images/pngs/vector-skip.svg'"
         [label]="'Skip export of specific expenses from Fyle to QuickBooks Online'"
-        [subLabel]="'You could choose to skip the export of certain expenses from Fyle to QBO by setting up a conditional rule.'"
+        [subLabel]="getSkipExportSubLabel()"
         [formControllerName]="'skipExport'">
       </app-configuration-toggle-field>
       <div *ngIf="advancedSettingsForm.value.skipExport && !isLoading">
