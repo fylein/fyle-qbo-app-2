@@ -8,15 +8,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  constructor(
-    private router: Router
-  ) {}
+  constructor() {}
 
   ngOnInit() {
-    this.nav();
-  }
-
-  nav() {
-    this.router.navigate(['/workspaces']);
   }
 }

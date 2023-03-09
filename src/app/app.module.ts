@@ -59,7 +59,7 @@ import { ExportLogModule } from './integration/main/export-log/export-log.module
       })
     }
   ],
-  bootstrap: [],
+  bootstrap: [AppComponent],
   entryComponents: [AppComponent]
 })
 export class AppModule {

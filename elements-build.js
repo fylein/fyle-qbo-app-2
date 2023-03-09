@@ -8,9 +8,9 @@ const concat = require('concat');
   const jsFiles = files.filter(f => f.endsWith('.js'));
   // add the path to the js files
   const filesToAdd = jsFiles.map(f => `./dist/fyle-qbo-app/${f}`);
-  await fs.ensureDir('elements');
-  await concat(filesToAdd, 'elements/fyle-qbo-app.js');
+  await fs.ensureDir('qbo');
+  await concat(filesToAdd, 'qbo/fyle-qbo-app.js');
 
   const cssFiles = files.filter(f => f.endsWith('.css'));
-  await concat(cssFiles.map(f => `./dist/fyle-qbo-app/${f}`), 'elements/styles.css');
+  await concat(cssFiles.map(f => `./dist/fyle-qbo-app/${f}`), 'qbo/styles.css');
 })();

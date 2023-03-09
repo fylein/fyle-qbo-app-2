@@ -30,7 +30,9 @@ import { createCustomElement } from '@angular/elements';
 export class DashboardModule {
   constructor(private injector: Injector) {
     const el = createCustomElement(DashboardComponent, { injector });
-    customElements.define('qbo-dashboard', el);
+    if (!customElements.get('qbo-dashboard')) {
+      customElements.define('qbo-dashboard', el);
+    }
   }
 
   ngDoBootstrap() {}

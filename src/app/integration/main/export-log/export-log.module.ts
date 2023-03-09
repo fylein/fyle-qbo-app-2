@@ -52,7 +52,9 @@ import { createCustomElement } from '@angular/elements';
 export class ExportLogModule {
   constructor(private injector: Injector) {
     const el = createCustomElement(ExportLogComponent, { injector });
-    customElements.define('qbo-export-log', el);
+    if (!customElements.get('qbo-export-log')) {
+      customElements.define('qbo-export-log', el);
+    }
   }
 
   ngDoBootstrap() {}
