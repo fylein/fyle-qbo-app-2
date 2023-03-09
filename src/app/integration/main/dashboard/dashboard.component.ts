@@ -18,6 +18,7 @@ import { ExpenseGroupSetting } from 'src/app/core/models/db/expense-group-settin
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { ResolveMappingErrorProperty } from 'src/app/core/models/misc/tracking.model';
 import { RefinerService } from 'src/app/core/services/integration/refiner.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -75,6 +76,7 @@ export class DashboardComponent implements OnInit {
     private dialog: MatDialog,
     private exportLogService: ExportLogService,
     private refinerService: RefinerService,
+    private router: Router,
     private trackingService: TrackingService,
     private userService: UserService,
     private workspaceService: WorkspaceService

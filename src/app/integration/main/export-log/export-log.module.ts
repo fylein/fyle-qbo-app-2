@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -16,6 +16,7 @@ import { ExportLogRoutingModule } from './export-log-routing.module';
 import { ExportLogComponent } from './export-log.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ExportLogChildDialogComponent } from './export-log-child-dialog/export-log-child-dialog.component';
+import { createCustomElement } from '@angular/elements';
 
 
 
@@ -40,6 +41,19 @@ import { ExportLogChildDialogComponent } from './export-log-child-dialog/export-
     MatTabsModule,
     MatIconModule,
     ReactiveFormsModule
+  ],
+  exports: [
+    ExportLogComponent
+  ],
+  entryComponents: [
+    ExportLogComponent
   ]
 })
-export class ExportLogModule { }
+export class ExportLogModule {
+  constructor(private injector: Injector) {
+    const el = createCustomElement(ExportLogComponent, { injector });
+    customElements.define('qbo-export-log', el);
+  }
+
+  ngDoBootstrap() {}
+}

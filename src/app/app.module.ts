@@ -12,7 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { GlobalErrorHandler } from './app.errorhandling';
-import { createCustomElement } from '@angular/elements';
+import { DashboardModule } from './integration/main/dashboard/dashboard.module';
+import { ExportLogModule } from './integration/main/export-log/export-log.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { createCustomElement } from '@angular/elements';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    DashboardModule,
+    ExportLogModule
   ],
   providers: [
     {
@@ -60,10 +63,6 @@ import { createCustomElement } from '@angular/elements';
   entryComponents: [AppComponent]
 })
 export class AppModule {
-  constructor(private injector: Injector) {
-    const el = createCustomElement(AppComponent, { injector });
-    customElements.define('momentum-element', el);
-  }
 
   ngDoBootstrap() {}
 }

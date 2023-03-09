@@ -15,7 +15,7 @@
     "remove_existing_code_coverage": "rm -rf .nyc_output cypress/coverage",
     "cypress": "cypress",
     "stop": "kill $(lsof -t -i:4200) || true",
-    "build:elements": "ng build --output-hashing none && node elements-build.js"
+    "build:elements": "ng build --output-hashing all && node elements-build.js"
   },
   "private": true,
   "dependencies": {
