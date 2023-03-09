@@ -163,11 +163,12 @@
 }
 
 .read-more-link {
-  text-decoration: none;
+  text-decoration: none !important;
   margin-left: 4px;
   font-weight: 420 !important;
   font-size: 15.5px !important;
-  &--icon {
+  
+  &__icon {
     font-size: 18px;
     height: auto;
     margin-left: 4px;
