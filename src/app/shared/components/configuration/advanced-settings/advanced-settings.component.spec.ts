@@ -183,6 +183,16 @@ describe('AdvancedSettingsComponent', () => {
     expect(component.isLoading).toBeFalse();
   });
 
+  it('setupForm function check with a different payment sync value', () => {
+    const advancedSettings = Object.assign(getadvancedSettingResponse2);
+    advancedSettings.workspace_general_settings.sync_fyle_to_qbo_payments = false;
+    advancedSettings.workspace_general_settings.sync_qbo_to_fyle_payments = true;
+
+    (component as any).setupForm();
+    fixture.detectChanges();
+    expect(component.isLoading).toBeFalse();
+  });
+
   it('formatememopreview function check', () => {
     component.memoStructure = memo;
     fixture.detectChanges();
@@ -539,8 +549,10 @@ describe('AdvancedSettingsComponent', () => {
   });
 
   it('createPaymentSyncWatcher function check', () => {
-    component.advancedSettingsForm.controls.paymentSync.patchValue(PaymentSyncDirection.FYLE_TO_QBO);
     expect((component as any).createPaymentSyncWatcher()).toBeUndefined();
+    expect((component as any).createScheduledWatcher()).toBeUndefined();
+    component.advancedSettingsForm.controls.paymentSync.patchValue(PaymentSyncDirection.FYLE_TO_QBO);
+    component.advancedSettingsForm.controls.exportSchedule.patchValue(true);
     fixture.detectChanges();
     component.advancedSettingsForm.controls.paymentSync.patchValue(PaymentSyncDirection.QBO_TO_FYLE);
     expect((component as any).createPaymentSyncWatcher()).toBeUndefined();
@@ -555,8 +567,8 @@ describe('AdvancedSettingsComponent', () => {
   });
 
   it('createMemoStructureWatcher function check', () => {
-    component.advancedSettingsForm.controls.memoStructure.patchValue(['Integration']);
     expect((component as any).createMemoStructureWatcher()).toBeUndefined();
+    component.advancedSettingsForm.controls.memoStructure.patchValue(['Integration']);
   });
 
   it('openAddemailDialog function check', () => {

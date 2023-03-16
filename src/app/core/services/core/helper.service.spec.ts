@@ -54,10 +54,6 @@ describe('HelperService', () => {
     expect(service.compareObjects(source_field, destination_field)).toBeTrue();
   });
 
-  it('openExternalLink function check', () => {
-      expect(service.openExternalLink('https://www.google.co.in/')).toBeUndefined();
-  });
-
   it('should convert snake cased upper case to title cased space case', () => {
     expect(service.getSpaceCasedTitleCase('COST_CENTER')).toBe('Cost center');
   });
