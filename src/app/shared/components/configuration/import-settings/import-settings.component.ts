@@ -50,7 +50,7 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
 
   chartOfAccountTypesList: string[] = [
     'Expense', 'Other Expense', 'Fixed Asset', 'Cost of Goods Sold', 'Current Liability', 'Equity',
-    'Other Current Asset', 'Other Current Liability', 'Long Term Liability', 'Current Asset'
+    'Other Current Asset', 'Other Current Liability', 'Long Term Liability', 'Current Asset', 'Income'
   ];
 
   windowReference: Window;
