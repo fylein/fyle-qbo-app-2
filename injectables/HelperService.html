@@ -184,7 +184,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>clearSearchText(form: <a href="https://angular.io/api/forms/FormGroup" target="_blank">FormGroup</a>)</code>
+<code>clearSearchText(form: UntypedFormGroup)</code>
                 </td>
             </tr>
 
@@ -215,7 +215,7 @@
                                 <tr>
                                     <td>form</td>
                                     <td>
-                                                <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                                            <code>UntypedFormGroup</code>
                                     </td>
 
                                     <td>
@@ -500,7 +500,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { TitleCasePipe } from &#x27;@angular/common&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
-import { FormGroup } from &#x27;@angular/forms&#x27;;
+import { UntypedFormGroup } from &#x27;@angular/forms&#x27;;
 import { SnakeCaseToSpaceCase } from &#x27;src/app/shared/pipes/snake-case-to-space-case.pipe&#x27;;
 import { DefaultDestinationAttribute } from &#x27;../../models/db/general-mapping.model&#x27;;
 import { WindowService } from &#x27;./window.service&#x27;;
@@ -516,7 +516,7 @@ export class HelperService {
     this.windowReference &#x3D; this.windowService.nativeWindow;
   }
 
-  clearSearchText(form: FormGroup): void {
+  clearSearchText(form: UntypedFormGroup): void {
     form.controls.searchOption.patchValue(null);
   }
 

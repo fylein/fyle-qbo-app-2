@@ -285,7 +285,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(dialog: MatDialog, exportLogService: <a href="../injectables/ExportLogService.html" target="_self">ExportLogService</a>, formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, helperService: <a href="../injectables/HelperService.html" target="_self">HelperService</a>, paginatorService: <a href="../injectables/PaginatorService.html" target="_self">PaginatorService</a>, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>)</code>
+<code>constructor(dialog: MatDialog, exportLogService: <a href="../injectables/ExportLogService.html" target="_self">ExportLogService</a>, formBuilder: UntypedFormBuilder, helperService: <a href="../injectables/HelperService.html" target="_self">HelperService</a>, paginatorService: <a href="../injectables/PaginatorService.html" target="_self">PaginatorService</a>, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -335,7 +335,7 @@
                                                         <td>formBuilder</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                                    <code>UntypedFormBuilder</code>
                                                         </td>
                                                   
                                                     <td>
@@ -1372,7 +1372,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
 
                     </td>
                 </tr>
@@ -1691,7 +1691,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
 
                     </td>
                 </tr>
@@ -1850,15 +1850,15 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { FormBuilder, FormGroup } from &#x27;@angular/forms&#x27;;
+import { UntypedFormBuilder, UntypedFormGroup } from &#x27;@angular/forms&#x27;;
 import { environment } from &#x27;src/environments/environment&#x27;;
 import { ExpenseGroup, ExpenseGroupList, ExpenseGroupResponse, SkipExportList, SkipExportLog, SkipExportLogResponse } from &#x27;src/app/core/models/db/expense-group.model&#x27;;
 import { FyleReferenceType, PaginatorPage, SimpleSearchPage, SimpleSearchType, ZeroStatePage } from &#x27;src/app/core/models/enum/enum.model&#x27;;
 import { Paginator } from &#x27;src/app/core/models/misc/paginator.model&#x27;;
 import { PaginatorService } from &#x27;src/app/core/services/core/paginator.service&#x27;;
 import { ExportLogService } from &#x27;src/app/core/services/export-log/export-log.service&#x27;;
-import { MatTableDataSource } from &#x27;@angular/material/table&#x27;;
-import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { MatLegacyTableDataSource as MatTableDataSource } from &#x27;@angular/material/legacy-table&#x27;;
+import { MatLegacyDialog as MatDialog } from &#x27;@angular/material/legacy-dialog&#x27;;
 import { HelperService } from &#x27;src/app/core/services/core/helper.service&#x27;;
 import { DateFilter, SelectedDateFilter } from &#x27;src/app/core/models/misc/date-filter.model&#x27;;
 import { TrackingService } from &#x27;src/app/core/services/integration/tracking.service&#x27;;
@@ -1886,9 +1886,9 @@ export class ExportLogComponent implements OnInit {
 
   state: string &#x3D; &#x27;COMPLETE&#x27;;
 
-  exportLogForm: FormGroup;
+  exportLogForm: UntypedFormGroup;
 
-  skipExportLogForm: FormGroup;
+  skipExportLogForm: UntypedFormGroup;
 
   limit: number;
 
@@ -1933,7 +1933,7 @@ export class ExportLogComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private exportLogService: ExportLogService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public helperService: HelperService,
     private paginatorService: PaginatorService,
     private trackingService: TrackingService

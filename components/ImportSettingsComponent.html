@@ -310,7 +310,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(dialog: MatDialog, importSettingService: <a href="../injectables/ImportSettingService.html" target="_self">ImportSettingService</a>, formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, helperService: <a href="../injectables/HelperService.html" target="_self">HelperService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, mappingService: <a href="../injectables/MappingService.html" target="_self">MappingService</a>, qboConnectorService: <a href="../injectables/QboConnectorService.html" target="_self">QboConnectorService</a>, snackBar: MatSnackBar, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>, windowService: <a href="../injectables/WindowService.html" target="_self">WindowService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
+<code>constructor(dialog: MatDialog, importSettingService: <a href="../injectables/ImportSettingService.html" target="_self">ImportSettingService</a>, formBuilder: UntypedFormBuilder, helperService: <a href="../injectables/HelperService.html" target="_self">HelperService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, mappingService: <a href="../injectables/MappingService.html" target="_self">MappingService</a>, qboConnectorService: <a href="../injectables/QboConnectorService.html" target="_self">QboConnectorService</a>, snackBar: MatSnackBar, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>, windowService: <a href="../injectables/WindowService.html" target="_self">WindowService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -360,7 +360,7 @@
                                                         <td>formBuilder</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                                    <code>UntypedFormBuilder</code>
                                                         </td>
                                                   
                                                     <td>
@@ -580,7 +580,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                        <b>Returns : </b>    <code>UntypedFormGroup</code>
 
                     </div>
                     <div class="io-description">
@@ -1539,7 +1539,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
 
                     </td>
                 </tr>
@@ -1934,8 +1934,8 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
-import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from &#x27;@angular/forms&#x27;;
-import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { AbstractControl, UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from &#x27;@angular/forms&#x27;;
+import { MatLegacyDialog as MatDialog } from &#x27;@angular/material/legacy-dialog&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 import { forkJoin } from &#x27;rxjs&#x27;;
 import { DestinationAttribute } from &#x27;src/app/core/models/db/destination-attribute.model&#x27;;
@@ -1946,7 +1946,7 @@ import { ImportSettingService } from &#x27;src/app/core/services/configuration/i
 import { HelperService } from &#x27;src/app/core/services/core/helper.service&#x27;;
 import { MappingService } from &#x27;src/app/core/services/misc/mapping.service&#x27;;
 import { ExpenseFieldCreationDialogComponent } from &#x27;./expense-field-creation-dialog/expense-field-creation-dialog.component&#x27;;
-import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { MatLegacySnackBar as MatSnackBar } from &#x27;@angular/material/legacy-snack-bar&#x27;;
 import { QboConnectorService } from &#x27;src/app/core/services/configuration/qbo-connector.service&#x27;;
 import { QBOCredentials } from &#x27;src/app/core/models/configuration/qbo-connector.model&#x27;;
 import { WindowService } from &#x27;src/app/core/services/core/window.service&#x27;;
@@ -1975,7 +1975,7 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
 
   autoCreateMerchantsAsVendors: boolean;
 
-  importSettingsForm: FormGroup;
+  importSettingsForm: UntypedFormGroup;
 
   taxCodes: DestinationAttribute[];
 
@@ -2005,7 +2005,7 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
   constructor(
     public dialog: MatDialog,
     private importSettingService: ImportSettingService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public helperService: HelperService,
     private router: Router,
     private mappingService: MappingService,
@@ -2018,7 +2018,7 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
     this.windowReference &#x3D; this.windowService.nativeWindow;
   }
 
-  createChartOfAccountField(type: string): FormGroup {
+  createChartOfAccountField(type: string): UntypedFormGroup {
     return this.formBuilder.group({
       enabled: [this.importSettings.workspace_general_settings.charts_of_accounts.includes(type) || type &#x3D;&#x3D;&#x3D; &#x27;Expense&#x27; ? true : false],
       name: [type]
@@ -2026,11 +2026,11 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
   }
 
   get chartOfAccountTypes() {
-    return this.importSettingsForm.get(&#x27;chartOfAccountTypes&#x27;) as FormArray;
+    return this.importSettingsForm.get(&#x27;chartOfAccountTypes&#x27;) as UntypedFormArray;
   }
 
   get expenseFields() {
-    return this.importSettingsForm.get(&#x27;expenseFields&#x27;) as FormArray;
+    return this.importSettingsForm.get(&#x27;expenseFields&#x27;) as UntypedFormArray;
   }
 
   private createTaxCodeWatcher(): void {

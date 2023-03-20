@@ -449,7 +449,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(advancedSettingService: <a href="../injectables/AdvancedSettingService.html" target="_self">AdvancedSettingService</a>, formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, helperService: <a href="../injectables/HelperService.html" target="_self">HelperService</a>, mappingService: <a href="../injectables/MappingService.html" target="_self">MappingService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, snackBar: MatSnackBar, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>, windowService: <a href="../injectables/WindowService.html" target="_self">WindowService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>, dialog: MatDialog)</code>
+<code>constructor(advancedSettingService: <a href="../injectables/AdvancedSettingService.html" target="_self">AdvancedSettingService</a>, formBuilder: UntypedFormBuilder, helperService: <a href="../injectables/HelperService.html" target="_self">HelperService</a>, mappingService: <a href="../injectables/MappingService.html" target="_self">MappingService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, snackBar: MatSnackBar, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>, windowService: <a href="../injectables/WindowService.html" target="_self">WindowService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>, dialog: MatDialog)</code>
                     </td>
                 </tr>
                         <tr>
@@ -487,7 +487,7 @@
                                                         <td>formBuilder</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                                    <code>UntypedFormBuilder</code>
                                                         </td>
                                                   
                                                     <td>
@@ -3256,7 +3256,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
 
                     </td>
                 </tr>
@@ -4100,7 +4100,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
 
                     </td>
                 </tr>
@@ -4344,7 +4344,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, OnDestroy, OnInit, Output } from &#x27;@angular/core&#x27;;
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
+import { AbstractControl, UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from &#x27;@angular/forms&#x27;;
 import { CdkDragDrop, moveItemInArray } from &#x27;@angular/cdk/drag-drop&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 import { forkJoin } from &#x27;rxjs&#x27;;
@@ -4355,15 +4355,15 @@ import { WorkspaceService } from &#x27;src/app/core/services/workspace/workspace
 import { AdvancedSettingService } from &#x27;src/app/core/services/configuration/advanced-setting.service&#x27;;
 import { MappingService } from &#x27;src/app/core/services/misc/mapping.service&#x27;;
 import { HelperService } from &#x27;src/app/core/services/core/helper.service&#x27;;
-import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { MatLegacySnackBar as MatSnackBar } from &#x27;@angular/material/legacy-snack-bar&#x27;;
 import { WorkspaceGeneralSetting } from &#x27;src/app/core/models/db/workspace-general-setting.model&#x27;;
 import { WindowService } from &#x27;src/app/core/services/core/window.service&#x27;;
 import { TrackingService } from &#x27;src/app/core/services/integration/tracking.service&#x27;;
 import { AddEmailDialogComponent } from &#x27;./add-email-dialog/add-email-dialog.component&#x27;;
-import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { MatLegacyDialog as MatDialog } from &#x27;@angular/material/legacy-dialog&#x27;;
 import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from &#x27;src/app/core/models/db/workspace-schedule.model&#x27;;
 import {COMMA, ENTER} from &#x27;@angular/cdk/keycodes&#x27;;
-import { MatChipInputEvent } from &#x27;@angular/material/chips&#x27;;
+import { MatLegacyChipInputEvent as MatChipInputEvent } from &#x27;@angular/material/legacy-chips&#x27;;
 import { SkipExport, ConditionField, ExpenseFilterResponse, constructPayload1, constructPayload2 } from &#x27;src/app/core/models/misc/skip-export.model&#x27;;
 
 @Component({
@@ -4385,7 +4385,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   billPaymentAccounts: DestinationAttribute[];
 
-  advancedSettingsForm: FormGroup;
+  advancedSettingsForm: UntypedFormGroup;
 
   defaultMemoFields: string[] &#x3D; [&#x27;employee_email&#x27;, &#x27;merchant&#x27;, &#x27;purpose&#x27;, &#x27;category&#x27;, &#x27;spent_on&#x27;, &#x27;report_number&#x27;, &#x27;expense_link&#x27;];
 
@@ -4440,7 +4440,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   isDisabledChip2: boolean &#x3D; false;
 
-  skipExportForm: FormGroup;
+  skipExportForm: UntypedFormGroup;
 
   showAdditionalCondition: boolean &#x3D; false;
 
@@ -4466,7 +4466,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   constructor(
     private advancedSettingService: AdvancedSettingService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public helperService: HelperService,
     private mappingService: MappingService,
     private router: Router,

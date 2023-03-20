@@ -1334,7 +1334,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
-import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { MatLegacySnackBar as MatSnackBar } from &#x27;@angular/material/legacy-snack-bar&#x27;;
 import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
 import { environment } from &#x27;src/environments/environment&#x27;;
 import { ExportSettingGet } from &#x27;src/app/core/models/configuration/export-setting.model&#x27;;
@@ -1347,7 +1347,7 @@ import { UserService } from &#x27;src/app/core/services/misc/user.service&#x27;;
 import { WorkspaceService } from &#x27;src/app/core/services/workspace/workspace.service&#x27;;
 import { ClickEvent, ConfigurationCtaText, OnboardingState, OnboardingStep, ProgressPhase } from &#x27;src/app/core/models/enum/enum.model&#x27;;
 import { ConfirmationDialog } from &#x27;src/app/core/models/misc/confirmation-dialog.model&#x27;;
-import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { MatLegacyDialog as MatDialog } from &#x27;@angular/material/legacy-dialog&#x27;;
 import { ConfirmationDialogComponent } from &#x27;../../core/confirmation-dialog/confirmation-dialog.component&#x27;;
 import { TrackingService } from &#x27;src/app/core/services/integration/tracking.service&#x27;;
 

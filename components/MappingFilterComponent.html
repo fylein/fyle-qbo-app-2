@@ -274,7 +274,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
 
                     </td>
                 </tr>
@@ -671,7 +671,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, OnInit, Output } from &#x27;@angular/core&#x27;;
-import { FormGroup } from &#x27;@angular/forms&#x27;;
+import { UntypedFormGroup } from &#x27;@angular/forms&#x27;;
 import { SimpleSearchPage, SimpleSearchType } from &#x27;src/app/core/models/enum/enum.model&#x27;;
 import { MappingAlphabeticalFilterAdditionalProperty } from &#x27;src/app/core/models/misc/tracking.model&#x27;;
 import { TrackingService } from &#x27;src/app/core/services/integration/tracking.service&#x27;;
@@ -683,7 +683,7 @@ import { TrackingService } from &#x27;src/app/core/services/integration/tracking
 })
 export class MappingFilterComponent implements OnInit {
 
-  @Input() form: FormGroup;
+  @Input() form: UntypedFormGroup;
 
   @Input() searchTerm: string;
 

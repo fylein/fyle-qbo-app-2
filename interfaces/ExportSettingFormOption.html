@@ -144,7 +144,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { FormGroup } from &quot;@angular/forms&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UntypedFormGroup } from &quot;@angular/forms&quot;;
 import { CorporateCreditCardExpensesObject, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject } from &quot;../enum/enum.model&quot;;
 import { ExpenseGroupSettingGet, ExpenseGroupSettingPost } from &quot;../db/expense-group-setting.model&quot;;
 import { DefaultDestinationAttribute, GeneralMapping } from &quot;../db/general-mapping.model&quot;;
@@ -182,7 +182,7 @@ export interface ExportSettingFormOption extends SelectFormOption {
 }
 
 export class ExportSettingModel {
-  static constructPayload(exportSettingsForm: FormGroup): ExportSettingPost {
+  static constructPayload(exportSettingsForm: UntypedFormGroup): ExportSettingPost {
     const emptyDestinationAttribute &#x3D; {id: null, name: null};
     const exportSettingPayload: ExportSettingPost &#x3D; {
       expense_group_settings: {

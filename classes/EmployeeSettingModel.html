@@ -121,7 +121,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>constructPayload(employeeSettingsForm: <a href="https://angular.io/api/forms/FormGroup" target="_blank">FormGroup</a>)</code>
+                    <code>constructPayload(employeeSettingsForm: UntypedFormGroup)</code>
                 </td>
             </tr>
 
@@ -152,7 +152,7 @@
                                 <tr>
                                     <td>employeeSettingsForm</td>
                                     <td>
-                                                <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                                            <code>UntypedFormGroup</code>
                                     </td>
 
                                     <td>
@@ -187,7 +187,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { FormGroup } from &quot;@angular/forms&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UntypedFormGroup } from &quot;@angular/forms&quot;;
 import { AutoMapEmployee, EmployeeFieldMapping } from &quot;../enum/enum.model&quot;;
 import { SelectFormOption } from &quot;../misc/select-form-option.model&quot;;
 
@@ -210,7 +210,7 @@ export interface EmployeeSettingFormOption extends SelectFormOption {
 }
 
 export class EmployeeSettingModel {
-  static constructPayload(employeeSettingsForm: FormGroup): EmployeeSettingPost {
+  static constructPayload(employeeSettingsForm: UntypedFormGroup): EmployeeSettingPost {
     const employeeSettingPayload: EmployeeSettingPost &#x3D; {
       workspace_general_settings: {
         employee_field_mapping: employeeSettingsForm.get(&#x27;employeeMapping&#x27;)?.value,

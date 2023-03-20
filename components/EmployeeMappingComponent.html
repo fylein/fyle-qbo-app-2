@@ -250,7 +250,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, helperService: <a href="../injectables/HelperService.html" target="_self">HelperService</a>, mappingService: <a href="../injectables/MappingService.html" target="_self">MappingService</a>, paginatorService: <a href="../injectables/PaginatorService.html" target="_self">PaginatorService</a>, snackBar: MatSnackBar, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
+<code>constructor(formBuilder: UntypedFormBuilder, helperService: <a href="../injectables/HelperService.html" target="_self">HelperService</a>, mappingService: <a href="../injectables/MappingService.html" target="_self">MappingService</a>, paginatorService: <a href="../injectables/PaginatorService.html" target="_self">PaginatorService</a>, snackBar: MatSnackBar, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -276,7 +276,7 @@
                                                         <td>formBuilder</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                                    <code>UntypedFormBuilder</code>
                                                         </td>
                                                   
                                                     <td>
@@ -1058,7 +1058,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
 
                     </td>
                 </tr>
@@ -1084,7 +1084,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>FormGroup[]</code>
+                        <i>Type : </i>    <code>UntypedFormGroup[]</code>
 
                     </td>
                 </tr>
@@ -1194,7 +1194,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>FormGroup[]</code>
+                        <i>Type : </i>    <code>UntypedFormGroup[]</code>
 
                     </td>
                 </tr>
@@ -1430,9 +1430,9 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { FormArray, FormBuilder, FormGroup } from &#x27;@angular/forms&#x27;;
-import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
-import { MatTableDataSource } from &#x27;@angular/material/table&#x27;;
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from &#x27;@angular/forms&#x27;;
+import { MatLegacySnackBar as MatSnackBar } from &#x27;@angular/material/legacy-snack-bar&#x27;;
+import { MatLegacyTableDataSource as MatTableDataSource } from &#x27;@angular/material/legacy-table&#x27;;
 import { DestinationAttribute } from &#x27;src/app/core/models/db/destination-attribute.model&#x27;;
 import { EmployeeMappingModel, ExtendedEmployeeAttribute, ExtendedEmployeeAttributeResponse } from &#x27;src/app/core/models/db/employee-mapping.model&#x27;;
 import { MappingList, MappingStats } from &#x27;src/app/core/models/db/mapping.model&#x27;;
@@ -1474,20 +1474,20 @@ export class EmployeeMappingComponent implements OnInit {
 
   emptyMapping: MatTableDataSource&lt;MappingList&gt; &#x3D; new MatTableDataSource&lt;MappingList&gt;([]);
 
-  fyleQboMappingFormArray: FormGroup[];
+  fyleQboMappingFormArray: UntypedFormGroup[];
 
   filterOptions: string[] &#x3D; [&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;, &#x27;D&#x27;, &#x27;E&#x27;, &#x27;F&#x27;, &#x27;G&#x27;, &#x27;H&#x27;, &#x27;I&#x27;, &#x27;J&#x27;, &#x27;K&#x27;, &#x27;L&#x27;, &#x27;M&#x27;, &#x27;N&#x27;, &#x27;O&#x27;, &#x27;P&#x27;, &#x27;Q&#x27;, &#x27;R&#x27;, &#x27;S&#x27;, &#x27;T&#x27;, &#x27;U&#x27;, &#x27;V&#x27;, &#x27;W&#x27;, &#x27;X&#x27;, &#x27;Y&#x27;, &#x27;Z&#x27;];
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
-  mappingForm: FormGroup[];
+  mappingForm: UntypedFormGroup[];
 
   PaginatorPage &#x3D; PaginatorPage;
 
   ZeroStatePage &#x3D; ZeroStatePage;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public helperService: HelperService,
     private mappingService: MappingService,
     private paginatorService: PaginatorService,
@@ -1536,8 +1536,8 @@ export class EmployeeMappingComponent implements OnInit {
       }
     });
 
-    const mappingForm &#x3D; this.form.controls.fyleQboMapping as FormArray;
-    this.mappingForm &#x3D; mappingForm.controls as FormGroup[];
+    const mappingForm &#x3D; this.form.controls.fyleQboMapping as UntypedFormArray;
+    this.mappingForm &#x3D; mappingForm.controls as UntypedFormGroup[];
   }
 
   getMappings(data: Paginator | void): void {

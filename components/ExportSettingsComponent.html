@@ -380,7 +380,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(dialog: MatDialog, formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, exportSettingService: <a href="../injectables/ExportSettingService.html" target="_self">ExportSettingService</a>, helperService: <a href="../injectables/HelperService.html" target="_self">HelperService</a>, mappingService: <a href="../injectables/MappingService.html" target="_self">MappingService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, snackBar: MatSnackBar, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>, windowService: <a href="../injectables/WindowService.html" target="_self">WindowService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
+<code>constructor(dialog: MatDialog, formBuilder: UntypedFormBuilder, exportSettingService: <a href="../injectables/ExportSettingService.html" target="_self">ExportSettingService</a>, helperService: <a href="../injectables/HelperService.html" target="_self">HelperService</a>, mappingService: <a href="../injectables/MappingService.html" target="_self">MappingService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, snackBar: MatSnackBar, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>, windowService: <a href="../injectables/WindowService.html" target="_self">WindowService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -418,7 +418,7 @@
                                                         <td>formBuilder</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                                    <code>UntypedFormBuilder</code>
                                                         </td>
                                                   
                                                     <td>
@@ -2615,7 +2615,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
 
                     </td>
                 </tr>
@@ -2995,7 +2995,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, OnDestroy, OnInit, Output } from &#x27;@angular/core&#x27;;
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from &#x27;@angular/forms&#x27;;
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from &#x27;@angular/forms&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 import { forkJoin } from &#x27;rxjs&#x27;;
 import { DestinationAttribute } from &#x27;src/app/core/models/db/destination-attribute.model&#x27;;
@@ -3004,11 +3004,11 @@ import { ExportSettingGet, ExportSettingFormOption, ExportSettingModel } from &#
 import { ExportSettingService } from &#x27;src/app/core/services/configuration/export-setting.service&#x27;;
 import { HelperService } from &#x27;src/app/core/services/core/helper.service&#x27;;
 import { MappingService } from &#x27;src/app/core/services/misc/mapping.service&#x27;;
-import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { MatLegacySnackBar as MatSnackBar } from &#x27;@angular/material/legacy-snack-bar&#x27;;
 import { WindowService } from &#x27;src/app/core/services/core/window.service&#x27;;
 import { WorkspaceService } from &#x27;src/app/core/services/workspace/workspace.service&#x27;;
 import { ConfirmationDialog } from &#x27;src/app/core/models/misc/confirmation-dialog.model&#x27;;
-import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { MatLegacyDialog as MatDialog } from &#x27;@angular/material/legacy-dialog&#x27;;
 import { ConfirmationDialogComponent } from &#x27;../../core/confirmation-dialog/confirmation-dialog.component&#x27;;
 import { TrackingService } from &#x27;src/app/core/services/integration/tracking.service&#x27;;
 
@@ -3027,7 +3027,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   employeeFieldMapping: EmployeeFieldMapping;
 
-  exportSettingsForm: FormGroup;
+  exportSettingsForm: UntypedFormGroup;
 
   exportSettings: ExportSettingGet;
 
@@ -3120,7 +3120,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   constructor(
     private dialog: MatDialog,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private exportSettingService: ExportSettingService,
     public helperService: HelperService,
     private mappingService: MappingService,
