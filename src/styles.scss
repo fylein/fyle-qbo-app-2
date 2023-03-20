@@ -440,6 +440,14 @@ th.mat-header-cell:last-of-type {
   background: #2C304E;
 }
 
+.mat-primary .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-full, .mat-primary .mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-full {
+  background: #2C304E;
+}
+
+.mat-pseudo-checkbox-full.mat-pseudo-checkbox-checked::after {
+  right: 2px !important;
+}
+
 .selected-value-check-mark {
   width: 15px;
   height: 15px;
