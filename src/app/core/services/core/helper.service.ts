@@ -1,6 +1,6 @@
 import { TitleCasePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { SnakeCaseToSpaceCase } from 'src/app/shared/pipes/snake-case-to-space-case.pipe';
 import { DefaultDestinationAttribute } from '../../models/db/general-mapping.model';
 import { WindowService } from './window.service';
@@ -16,7 +16,7 @@ export class HelperService {
     this.windowReference = this.windowService.nativeWindow;
   }
 
-  clearSearchText(form: FormGroup): void {
+  clearSearchText(form: UntypedFormGroup): void {
     form.controls.searchOption.patchValue(null);
   }
 

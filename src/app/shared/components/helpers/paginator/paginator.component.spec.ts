@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
+import { UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatLegacySelectModule as MatSelectModule } from '@angular/material/legacy-select';
 import { PaginatorComponent } from './paginator.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
@@ -9,13 +9,13 @@ import { PaginatorPage } from 'src/app/core/models/enum/enum.model';
 describe('PaginatorComponent', () => {
   let component: PaginatorComponent;
   let fixture: ComponentFixture<PaginatorComponent>;
-  let formBuilder: FormBuilder;
+  let formBuilder: UntypedFormBuilder;
   let form:any;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ BrowserAnimationsModule, FormsModule, ReactiveFormsModule, MatSelectModule],
       declarations: [ PaginatorComponent ],
-      providers: [FormBuilder]
+      providers: [UntypedFormBuilder]
     })
     .compileComponents();
   });
@@ -23,7 +23,7 @@ describe('PaginatorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PaginatorComponent);
     component = fixture.componentInstance;
-    formBuilder = TestBed.inject(FormBuilder);
+    formBuilder = TestBed.inject(UntypedFormBuilder);
     component.page = PaginatorPage.EXPORT_LOG;
     component.limit = 10;
     component.offset = 2;

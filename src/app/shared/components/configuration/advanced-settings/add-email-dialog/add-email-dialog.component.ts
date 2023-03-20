@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { AdvancedSettingAddEmailModel, AdvancedSettingWorkspaceSchedulePost } from 'src/app/core/models/configuration/advanced-setting.model';
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 
@@ -11,10 +11,10 @@ import { AdvancedSettingService } from 'src/app/core/services/configuration/adva
 })
 export class AddEmailDialogComponent implements OnInit {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public dialogRef: MatDialogRef<AddEmailDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: AdvancedSettingAddEmailModel,
     private settingsService: AdvancedSettingService

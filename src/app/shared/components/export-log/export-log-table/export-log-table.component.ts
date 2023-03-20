@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { ExpenseGroupList } from 'src/app/core/models/db/expense-group.model';
 import { Expense } from 'src/app/core/models/db/expense.model';
 import { FyleReferenceType } from 'src/app/core/models/enum/enum.model';

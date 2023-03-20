@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { QboConnectorComponent } from './qbo-connector.component';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { errorResponse, errorResponse2, exportResponse, response } from './qbo-c
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { AuthService } from 'src/app/core/services/core/auth.service';
 
 describe('QboConnectorComponent', () => {

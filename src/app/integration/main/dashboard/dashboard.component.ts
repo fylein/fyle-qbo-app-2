@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { forkJoin, from, interval, Observable, of } from 'rxjs';
 import { catchError, map, switchMap, takeWhile } from 'rxjs/operators';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { Error, GroupedErrors, GroupedErrorStat } from 'src/app/core/models/db/error.model';
 import { LastExport } from 'src/app/core/models/db/last-export.model';
 import { ClickEvent, EmployeeFieldMapping, ErrorType, ExpenseState, ExportState, FyleField, FyleReferenceType, QBOField, RefinerSurveyType, TaskLogState, TaskLogType, ZeroStatePage } from 'src/app/core/models/enum/enum.model';

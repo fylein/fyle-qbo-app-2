@@ -1,14 +1,14 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
-import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatLegacyDialogModule as MatDialogModule, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 import { DashboardResolveMappingErrorDialogComponent } from './dashboard-resolve-mapping-error-dialog.component';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { environment } from 'src/environments/environment';
 import { destinationAttributes, expenseAttribute, mappinglist, model, model2, response } from './dashboard-resolve-mapping.fixture';
 import { of } from 'rxjs';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MappingList } from 'src/app/core/models/db/mapping.model';
 
 describe('DashboardResolveMappingErrorDialogComponent', () => {
@@ -17,7 +17,7 @@ describe('DashboardResolveMappingErrorDialogComponent', () => {
   let service: MappingService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  let formBuilder: FormBuilder;
+  let formBuilder: UntypedFormBuilder;
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
   let dialogSpy: jasmine.Spy;
@@ -26,7 +26,7 @@ describe('DashboardResolveMappingErrorDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MatDialogModule, SharedModule, HttpClientTestingModule, MatSnackBarModule],
-      providers: [MappingService, FormBuilder, {
+      providers: [MappingService, UntypedFormBuilder, {
         // I was expecting this will pass the desired value
         provide: MAT_DIALOG_DATA,
         useValue: model
@@ -46,7 +46,7 @@ describe('DashboardResolveMappingErrorDialogComponent', () => {
     service = injector.inject(MappingService);
     httpMock = injector.inject(HttpTestingController);
     fixture = TestBed.createComponent(DashboardResolveMappingErrorDialogComponent);
-    formBuilder = TestBed.inject(FormBuilder);
+    formBuilder = TestBed.inject(UntypedFormBuilder);
     component = fixture.componentInstance;
     dialogSpy = spyOn(TestBed.get(MatSnackBar), 'open').and.returnValue(dialogRefSpyObj);
     fixture.detectChanges();
@@ -74,8 +74,8 @@ describe('DashboardResolveMappingErrorDialogComponent', () => {
       fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray)
     });
 
-    const mappingForm = form.controls.fyleQboMapping as FormArray;
-    component.mappingForm = mappingForm.controls as FormGroup[];
+    const mappingForm = form.controls.fyleQboMapping as UntypedFormArray;
+    component.mappingForm = mappingForm.controls as UntypedFormGroup[];
     fixture.detectChanges();
     component.saveMapping(mappinglist[0], destinationAttributes, component.mappingForm[0]);
     const req = httpMock.expectOne({
@@ -100,8 +100,8 @@ describe('DashboardResolveMappingErrorDialogComponent', () => {
       fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray)
     });
 
-    const mappingForm = form.controls.fyleQboMapping as FormArray;
-    component.mappingForm = mappingForm.controls as FormGroup[];
+    const mappingForm = form.controls.fyleQboMapping as UntypedFormArray;
+    component.mappingForm = mappingForm.controls as UntypedFormGroup[];
     fixture.detectChanges();
     component.saveMapping(mappinglist[0], destinationAttributes, component.mappingForm[0]);
     const req = httpMock.expectOne({

@@ -1,4 +1,4 @@
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { AutoMapEmployee, EmployeeFieldMapping } from "../enum/enum.model";
 import { SelectFormOption } from "../misc/select-form-option.model";
 
@@ -21,7 +21,7 @@ export interface EmployeeSettingFormOption extends SelectFormOption {
 }
 
 export class EmployeeSettingModel {
-  static constructPayload(employeeSettingsForm: FormGroup): EmployeeSettingPost {
+  static constructPayload(employeeSettingsForm: UntypedFormGroup): EmployeeSettingPost {
     const employeeSettingPayload: EmployeeSettingPost = {
       workspace_general_settings: {
         employee_field_mapping: employeeSettingsForm.get('employeeMapping')?.value,

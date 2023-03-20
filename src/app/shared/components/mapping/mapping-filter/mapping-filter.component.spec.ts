@@ -1,7 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, UntypedFormBuilder } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { MappingList } from 'src/app/core/models/db/mapping.model';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -12,12 +12,12 @@ import { MappingFilterComponent } from './mapping-filter.component';
 describe('MappingFilterComponent', () => {
   let component: MappingFilterComponent;
   let fixture: ComponentFixture<MappingFilterComponent>;
-  let formBuilder: FormBuilder;
+  let formBuilder: UntypedFormBuilder;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SharedModule, HttpClientTestingModule],
       declarations: [ MappingFilterComponent ],
-      providers: [FormBuilder],
+      providers: [UntypedFormBuilder],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
@@ -26,7 +26,7 @@ describe('MappingFilterComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MappingFilterComponent);
     component = fixture.componentInstance;
-    formBuilder = TestBed.inject(FormBuilder);
+    formBuilder = TestBed.inject(UntypedFormBuilder);
     const fyleQboMappingFormArray = mappingList.map((mapping: MappingList) => {
       return formBuilder.group({
         searchOption: ['string'],

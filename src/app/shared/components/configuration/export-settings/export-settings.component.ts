@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
@@ -8,11 +8,11 @@ import { ExportSettingGet, ExportSettingFormOption, ExportSettingModel } from 's
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { WindowService } from 'src/app/core/services/core/window.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { ConfirmationDialogComponent } from '../../core/confirmation-dialog/confirmation-dialog.component';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 
@@ -31,7 +31,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   employeeFieldMapping: EmployeeFieldMapping;
 
-  exportSettingsForm: FormGroup;
+  exportSettingsForm: UntypedFormGroup;
 
   exportSettings: ExportSettingGet;
 
@@ -124,7 +124,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   constructor(
     private dialog: MatDialog,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private exportSettingService: ExportSettingService,
     public helperService: HelperService,
     private mappingService: MappingService,

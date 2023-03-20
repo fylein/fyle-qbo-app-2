@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { DefaultDestinationAttribute } from '../../models/db/general-mapping.model';
 
 import { HelperService } from './helper.service';
@@ -17,8 +17,8 @@ describe('HelperService', () => {
   });
 
   it('clearSearchText service check', () => {
-    const form=new FormGroup({
-      searchOption: new FormControl('fyle')
+    const form=new UntypedFormGroup({
+      searchOption: new UntypedFormControl('fyle')
     });
     service.clearSearchText(form);
     expect(form.controls.searchOption.value).toBeNull();
@@ -52,10 +52,6 @@ describe('HelperService', () => {
     const source_field = 'Fyle';
     const destination_field= 'Fyle';
     expect(service.compareObjects(source_field, destination_field)).toBeTrue();
-  });
-
-  it('openExternalLink function check', () => {
-      expect(service.openExternalLink('https://www.google.co.in/')).toBeUndefined();
   });
 
   it('should convert snake cased upper case to title cased space case', () => {

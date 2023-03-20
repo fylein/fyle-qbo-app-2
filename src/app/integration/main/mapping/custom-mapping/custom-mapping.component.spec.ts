@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CustomMappingComponent } from './custom-mapping.component';
-import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import { MatLegacyDialog as MatDialog, MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { FormArray, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { UntypedFormArray, UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { Router } from '@angular/router';
@@ -19,7 +19,7 @@ describe('CustomMappingComponent', () => {
   let component: CustomMappingComponent;
   let fixture: ComponentFixture<CustomMappingComponent>;
   const routerSpy = { navigate: jasmine.createSpy('navigate'), url: '/path' };
-  let formbuilder: FormBuilder;
+  let formbuilder: UntypedFormBuilder;
   let dialogSpy: jasmine.Spy;
   const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({}), close: null });
   dialogRefSpyObj.componentInstance = { body: '' };
@@ -37,7 +37,7 @@ describe('CustomMappingComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ MatDialogModule, NoopAnimationsModule, RouterTestingModule, HttpClientModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatSnackBarModule, SharedModule],
       declarations: [ CustomMappingComponent ],
-      providers: [ FormBuilder,
+      providers: [ UntypedFormBuilder,
         { provide: Router, useValue: routerSpy },
         { provide: MappingService, useValue: service1 }
       ]
@@ -48,7 +48,7 @@ describe('CustomMappingComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CustomMappingComponent);
     component = fixture.componentInstance;
-    formbuilder = TestBed.inject(FormBuilder);
+    formbuilder = TestBed.inject(UntypedFormBuilder);
     dialogSpy = spyOn(TestBed.get(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
 
     component.mappingSettingForm = formbuilder.group({
@@ -63,7 +63,7 @@ describe('CustomMappingComponent', () => {
   });
 
   it('should return mappingSetting as a Form Array', () => {
-    const response = component.mappingSettingForm.get('mappingSetting') as FormArray;
+    const response = component.mappingSettingForm.get('mappingSetting') as UntypedFormArray;
     expect(component.mappingSetting).toEqual(response);
   });
 

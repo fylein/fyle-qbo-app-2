@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { environment } from 'src/environments/environment';
 import { Expense, ExpenseList } from 'src/app/core/models/db/expense.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
@@ -16,7 +16,7 @@ import { ZeroStatePage } from 'src/app/core/models/enum/enum.model';
 })
 export class ExportLogChildDialogComponent implements OnInit {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   displayedColumns: string[] = ['expenseID', 'merchant', 'category', 'amount'];
 
@@ -29,7 +29,7 @@ export class ExportLogChildDialogComponent implements OnInit {
   ZeroStatePage = ZeroStatePage;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: Expense[],
     public dialogRef: MatDialogRef<ExportLogChildDialogComponent>,
     public helperService: HelperService,

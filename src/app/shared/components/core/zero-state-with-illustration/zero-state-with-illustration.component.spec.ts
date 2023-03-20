@@ -1,7 +1,7 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControl, FormGroup } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { By } from '@angular/platform-browser';
 import { ExpenseGroupList } from 'src/app/core/models/db/expense-group.model';
 import { ZeroStatePage } from 'src/app/core/models/enum/enum.model';
@@ -27,11 +27,11 @@ describe('ZeroStateWithIllustrationComponent', () => {
     fixture = TestBed.createComponent(ZeroStateWithIllustrationComponent);
     component = fixture.componentInstance;
     el = fixture.debugElement;
-    const form= new FormGroup({
-      dateRange: new FormControl([3]),
-      start: new FormControl(['12/1/2021']),
-      searchOption: new FormControl('come'),
-      end: new FormControl(['12/2/2021'])
+    const form= new UntypedFormGroup({
+      dateRange: new UntypedFormControl([3]),
+      start: new UntypedFormControl(['12/1/2021']),
+      searchOption: new UntypedFormControl('come'),
+      end: new UntypedFormControl(['12/2/2021'])
     });
     const datefilter: SelectedDateFilter = {
       startDate: new Date(),
@@ -51,11 +51,11 @@ describe('ZeroStateWithIllustrationComponent', () => {
   });
 
   it('Zero state with page = export_log and with dateFilter data testing', () => {
-    const form= new FormGroup({
-      dateRange: new FormControl([3]),
-      start: new FormControl(['12/1/2021']),
-      searchOption: new FormControl('come'),
-      end: new FormControl(['12/2/2021'])
+    const form= new UntypedFormGroup({
+      dateRange: new UntypedFormControl([3]),
+      start: new UntypedFormControl(['12/1/2021']),
+      searchOption: new UntypedFormControl('come'),
+      end: new UntypedFormControl(['12/2/2021'])
     });
     const datefilter: SelectedDateFilter = {
       startDate: new Date(),
@@ -79,11 +79,11 @@ describe('ZeroStateWithIllustrationComponent', () => {
   });
 
   it('Zero state with page = export_log and with !dateFilter data testing', () => {
-    const form= new FormGroup({
-      dateRange: new FormControl([3]),
-      start: new FormControl(['12/1/2021']),
-      searchOption: new FormControl('come'),
-      end: new FormControl(['12/2/2021'])
+    const form= new UntypedFormGroup({
+      dateRange: new UntypedFormControl([3]),
+      start: new UntypedFormControl(['12/1/2021']),
+      searchOption: new UntypedFormControl('come'),
+      end: new UntypedFormControl(['12/2/2021'])
     });
     component.form = form;
     component.page = ZeroStatePage.export_log;
@@ -104,11 +104,11 @@ describe('ZeroStateWithIllustrationComponent', () => {
   });
 
   it('Zero state with page = mapping and with dateFilter data testing', () => {
-    const form= new FormGroup({
-      dateRange: new FormControl([3]),
-      start: new FormControl(['12/1/2021']),
-      searchOption: new FormControl('come'),
-      end: new FormControl(['12/2/2021'])
+    const form= new UntypedFormGroup({
+      dateRange: new UntypedFormControl([3]),
+      start: new UntypedFormControl(['12/1/2021']),
+      searchOption: new UntypedFormControl('come'),
+      end: new UntypedFormControl(['12/2/2021'])
     });
     const datefilter: SelectedDateFilter = {
       startDate: new Date(),
@@ -133,11 +133,11 @@ describe('ZeroStateWithIllustrationComponent', () => {
   });
 
   it('Zero state with page = dashboard and with dateFilter data testing', () => {
-    const form= new FormGroup({
-      dateRange: new FormControl([3]),
-      start: new FormControl(['12/1/2021']),
-      searchOption: new FormControl('come'),
-      end: new FormControl(['12/2/2021'])
+    const form= new UntypedFormGroup({
+      dateRange: new UntypedFormControl([3]),
+      start: new UntypedFormControl(['12/1/2021']),
+      searchOption: new UntypedFormControl('come'),
+      end: new UntypedFormControl(['12/2/2021'])
     });
     const datefilter: SelectedDateFilter = {
       startDate: new Date(),
@@ -158,11 +158,11 @@ describe('ZeroStateWithIllustrationComponent', () => {
   });
 
   it('Zero state with page = dashboard_error and with dateFilter data testing', () => {
-    const form= new FormGroup({
-      dateRange: new FormControl([3]),
-      start: new FormControl(['12/1/2021']),
-      searchOption: new FormControl('come'),
-      end: new FormControl(['12/2/2021'])
+    const form= new UntypedFormGroup({
+      dateRange: new UntypedFormControl([3]),
+      start: new UntypedFormControl(['12/1/2021']),
+      searchOption: new UntypedFormControl('come'),
+      end: new UntypedFormControl(['12/2/2021'])
     });
     const datefilter: SelectedDateFilter = {
       startDate: new Date(),

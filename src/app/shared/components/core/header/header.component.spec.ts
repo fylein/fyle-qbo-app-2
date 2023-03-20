@@ -2,7 +2,7 @@ import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HeaderComponent } from './header.component';
 import { TrimCharacterPipe } from '../../../pipes/trim-character.pipe';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
 import { AuthService } from 'src/app/core/services/core/auth.service';

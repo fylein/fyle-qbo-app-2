@@ -1,5 +1,5 @@
 import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { ExportState } from 'src/app/core/models/enum/enum.model';
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
 import { SharedModule } from 'src/app/shared/shared.module';

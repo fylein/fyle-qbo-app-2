@@ -1,7 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
-import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UntypedFormBuilder } from '@angular/forms';
+import { MatLegacyDialogModule as MatDialogModule, MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { of } from 'rxjs';
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { emailResponse } from '../advanced-settings.fixture';
@@ -11,7 +11,7 @@ describe('AddEmailDialogComponent', () => {
   let component: AddEmailDialogComponent;
   let fixture: ComponentFixture<AddEmailDialogComponent>;
   let advancedSettingService: AdvancedSettingService;
-  let formBuilder: FormBuilder;
+  let formBuilder: UntypedFormBuilder;
   const dialogMock = {
     close: () => of({ workspaceId: 1,
       hours: 1,
@@ -26,7 +26,7 @@ describe('AddEmailDialogComponent', () => {
     TestBed.configureTestingModule({
       imports: [ MatDialogModule, HttpClientTestingModule ],
       declarations: [ AddEmailDialogComponent ],
-      providers: [ FormBuilder,
+      providers: [ UntypedFormBuilder,
         {
           provide: MatDialogRef,
           useValue: dialogMock
@@ -52,7 +52,7 @@ describe('AddEmailDialogComponent', () => {
     fixture = TestBed.createComponent(AddEmailDialogComponent);
     component = fixture.componentInstance;
     advancedSettingService = TestBed.inject(AdvancedSettingService);
-    formBuilder = TestBed.inject(FormBuilder);
+    formBuilder = TestBed.inject(UntypedFormBuilder);
     component.form = formBuilder.group({
       name: 'Fyle',
       email: 'category@fyle.in'

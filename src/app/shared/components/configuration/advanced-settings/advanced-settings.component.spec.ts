@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AdvancedSettingsComponent } from './advanced-settings.component';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { UntypedFormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { adminEmails, advancedSettingResponse, customFields, destinationAttribute, emailResponse, errorResponse, postExpenseFilterResponse, getadvancedSettingResponse, getadvancedSettingResponse2, getExpenseFilterResponse, memo, previewResponse, response, conditionMock1, conditionMock2, conditionMock3, customOperatorMock1, customOperatorMock2, customOperatorMock3, customOperatorMock4, claimNumberOperators, spentAtOperators, reportTitleOperators, conditionMock4, conditionFieldOptions, getExpenseFilterResponse2, getExpenseFilterResponse3 } from './advanced-settings.fixture';
@@ -16,9 +16,9 @@ import { OnboardingState, PaymentSyncDirection } from 'src/app/core/models/enum/
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { By } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { ConditionField } from 'src/app/core/models/misc/skip-export.model';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { MatLegacyChipInputEvent } from '@angular/material/legacy-chips';
 
 describe('AdvancedSettingsComponent', () => {
   let component: AdvancedSettingsComponent;
@@ -31,7 +31,7 @@ describe('AdvancedSettingsComponent', () => {
   let service1: any;
   let service2: any;
   let service3: any;
-  let formbuilder: FormBuilder;
+  let formbuilder: UntypedFormBuilder;
   let dialogSpy: jasmine.Spy;
   let dialogSpy1: jasmine.Spy;
   const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({hours: 1,
@@ -64,7 +64,7 @@ describe('AdvancedSettingsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ RouterTestingModule, HttpClientModule, FormsModule, ReactiveFormsModule, MatSnackBarModule, SharedModule, NoopAnimationsModule, MatDialogModule],
       declarations: [ AdvancedSettingsComponent ],
-      providers: [ FormBuilder, MatDialog,
+      providers: [ UntypedFormBuilder, MatDialog,
         { provide: Router, useValue: routerSpy },
         { provide: AdvancedSettingService, useValue: service1 },
         { provide: MappingService, useValue: service2 },
@@ -77,7 +77,7 @@ describe('AdvancedSettingsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AdvancedSettingsComponent);
     component = fixture.componentInstance;
-    formbuilder = TestBed.inject(FormBuilder);
+    formbuilder = TestBed.inject(UntypedFormBuilder);
     component.workspaceGeneralSettings = response;
     component.advancedSettings = getadvancedSettingResponse;
     component.adminEmails = [];
@@ -178,6 +178,16 @@ describe('AdvancedSettingsComponent', () => {
 
   it('setupForm function check', () => {
     component.advancedSettings=getadvancedSettingResponse2;
+    (component as any).setupForm();
+    fixture.detectChanges();
+    expect(component.isLoading).toBeFalse();
+  });
+
+  it('setupForm function check with a different payment sync value', () => {
+    const advancedSettings = Object.assign(getadvancedSettingResponse2);
+    advancedSettings.workspace_general_settings.sync_fyle_to_qbo_payments = false;
+    advancedSettings.workspace_general_settings.sync_qbo_to_fyle_payments = true;
+
     (component as any).setupForm();
     fixture.detectChanges();
     expect(component.isLoading).toBeFalse();
@@ -337,7 +347,7 @@ describe('AdvancedSettingsComponent', () => {
         value: 'anish'
       },
       value: 'anish'
-    } as MatChipInputEvent;
+    } as MatLegacyChipInputEvent;
     // Add a new value
     component.add2(inputEvent);
 
@@ -539,8 +549,10 @@ describe('AdvancedSettingsComponent', () => {
   });
 
   it('createPaymentSyncWatcher function check', () => {
-    component.advancedSettingsForm.controls.paymentSync.patchValue(PaymentSyncDirection.FYLE_TO_QBO);
     expect((component as any).createPaymentSyncWatcher()).toBeUndefined();
+    expect((component as any).createScheduledWatcher()).toBeUndefined();
+    component.advancedSettingsForm.controls.paymentSync.patchValue(PaymentSyncDirection.FYLE_TO_QBO);
+    component.advancedSettingsForm.controls.exportSchedule.patchValue(true);
     fixture.detectChanges();
     component.advancedSettingsForm.controls.paymentSync.patchValue(PaymentSyncDirection.QBO_TO_FYLE);
     expect((component as any).createPaymentSyncWatcher()).toBeUndefined();
@@ -555,8 +567,8 @@ describe('AdvancedSettingsComponent', () => {
   });
 
   it('createMemoStructureWatcher function check', () => {
-    component.advancedSettingsForm.controls.memoStructure.patchValue(['Integration']);
     expect((component as any).createMemoStructureWatcher()).toBeUndefined();
+    component.advancedSettingsForm.controls.memoStructure.patchValue(['Integration']);
   });
 
   it('openAddemailDialog function check', () => {

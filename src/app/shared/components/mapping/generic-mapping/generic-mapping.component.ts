@@ -1,8 +1,8 @@
 import { TitleCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { ActivatedRoute } from '@angular/router';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { ExtendedExpenseAttribute, ExtendedExpenseAttributeResponse } from 'src/app/core/models/db/expense-attribute.model';
@@ -46,13 +46,13 @@ export class GenericMappingComponent implements OnInit {
 
   emptyMapping: MatTableDataSource<MappingList> = new MatTableDataSource<MappingList>([]);
 
-  fyleQboMappingFormArray: FormGroup[];
+  fyleQboMappingFormArray: UntypedFormGroup[];
 
   filterOptions: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
-  mappingForm: FormGroup[];
+  mappingForm: UntypedFormGroup[];
 
   page: string;
 
@@ -61,7 +61,7 @@ export class GenericMappingComponent implements OnInit {
   ZeroStatePage = ZeroStatePage;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private mappingService: MappingService,
     private paginatorService: PaginatorService,
     private route: ActivatedRoute,
@@ -103,8 +103,8 @@ export class GenericMappingComponent implements OnInit {
       }
     });
 
-    const mappingForm = this.form.controls.fyleQboMapping as FormArray;
-    this.mappingForm = mappingForm.controls as FormGroup[];
+    const mappingForm = this.form.controls.fyleQboMapping as UntypedFormArray;
+    this.mappingForm = mappingForm.controls as UntypedFormGroup[];
   }
 
   private setupFyleQboMappingFormArray(mappings: MappingList[]): void {

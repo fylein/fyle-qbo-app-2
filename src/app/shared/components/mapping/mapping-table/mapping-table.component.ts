@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
+import { UntypedFormGroup } from '@angular/forms';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { MappingList } from 'src/app/core/models/db/mapping.model';
 import { EmployeeFieldMapping, FyleField, QBOField, SearchType, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
@@ -20,7 +20,7 @@ export class MappingTableComponent implements OnInit {
 
   @Input() destinationType: string | undefined;
 
-  @Input() mappingForm: FormGroup[];
+  @Input() mappingForm: UntypedFormGroup[];
 
   @Input() qboData: DestinationAttribute[];
 
@@ -41,7 +41,7 @@ export class MappingTableComponent implements OnInit {
     private mappingService: MappingService
   ) { }
 
-  saveMapping(selectedRow: MappingList, selectedOption: DestinationAttribute, searchForm: FormGroup): void {
+  saveMapping(selectedRow: MappingList, selectedOption: DestinationAttribute, searchForm: UntypedFormGroup): void {
     searchForm.patchValue({
       destination: selectedOption.value,
       searchOption: '',

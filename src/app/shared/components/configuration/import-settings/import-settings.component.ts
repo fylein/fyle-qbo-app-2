@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { AbstractControl, UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
@@ -11,7 +11,7 @@ import { ImportSettingService } from 'src/app/core/services/configuration/import
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { ExpenseFieldCreationDialogComponent } from './expense-field-creation-dialog/expense-field-creation-dialog.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { QboConnectorService } from 'src/app/core/services/configuration/qbo-connector.service';
 import { QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
 import { WindowService } from 'src/app/core/services/core/window.service';
@@ -40,7 +40,7 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
 
   autoCreateMerchantsAsVendors: boolean;
 
-  importSettingsForm: FormGroup;
+  importSettingsForm: UntypedFormGroup;
 
   taxCodes: DestinationAttribute[];
 
@@ -70,7 +70,7 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
   constructor(
     public dialog: MatDialog,
     private importSettingService: ImportSettingService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public helperService: HelperService,
     private router: Router,
     private mappingService: MappingService,
@@ -83,7 +83,7 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
     this.windowReference = this.windowService.nativeWindow;
   }
 
-  createChartOfAccountField(type: string): FormGroup {
+  createChartOfAccountField(type: string): UntypedFormGroup {
     return this.formBuilder.group({
       enabled: [this.importSettings.workspace_general_settings.charts_of_accounts.includes(type) || type === 'Expense' ? true : false],
       name: [type]
@@ -91,11 +91,11 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
   }
 
   get chartOfAccountTypes() {
-    return this.importSettingsForm.get('chartOfAccountTypes') as FormArray;
+    return this.importSettingsForm.get('chartOfAccountTypes') as UntypedFormArray;
   }
 
   get expenseFields() {
-    return this.importSettingsForm.get('expenseFields') as FormArray;
+    return this.importSettingsForm.get('expenseFields') as UntypedFormArray;
   }
 
   private createTaxCodeWatcher(): void {

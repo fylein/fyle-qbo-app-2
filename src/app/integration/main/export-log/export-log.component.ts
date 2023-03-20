@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { ExpenseGroup, ExpenseGroupList, ExpenseGroupResponse, SkipExportList, SkipExportLog, SkipExportLogResponse } from 'src/app/core/models/db/expense-group.model';
 import { FyleReferenceType, PaginatorPage, SimpleSearchPage, SimpleSearchType, ZeroStatePage } from 'src/app/core/models/enum/enum.model';
 import { Paginator } from 'src/app/core/models/misc/paginator.model';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { DateFilter, SelectedDateFilter } from 'src/app/core/models/misc/date-filter.model';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
@@ -35,9 +35,9 @@ export class ExportLogComponent implements OnInit {
 
   state: string = 'COMPLETE';
 
-  exportLogForm: FormGroup;
+  exportLogForm: UntypedFormGroup;
 
-  skipExportLogForm: FormGroup;
+  skipExportLogForm: UntypedFormGroup;
 
   limit: number;
 
@@ -82,7 +82,7 @@ export class ExportLogComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private exportLogService: ExportLogService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public helperService: HelperService,
     private paginatorService: PaginatorService,
     private trackingService: TrackingService

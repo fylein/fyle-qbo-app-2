@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { Router } from '@angular/router';
 import { ClickEvent, ProgressPhase, RedirectLink } from 'src/app/core/models/enum/enum.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';

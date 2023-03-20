@@ -1,8 +1,8 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UntypedFormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 
 import { GenericMappingComponent } from './generic-mapping.component';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -23,7 +23,7 @@ describe('GenericMappingComponent', () => {
   let fixture: ComponentFixture<GenericMappingComponent>;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  let formBuilder: FormBuilder;
+  let formBuilder: UntypedFormBuilder;
   let activatedRoute: ActivatedRoute;
   let service: any;
   const API_BASE_URL = environment.api_url;
@@ -47,7 +47,7 @@ describe('GenericMappingComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [GenericMappingComponent],
       imports: [RouterTestingModule, FormsModule, ReactiveFormsModule, HttpClientModule, MatSnackBarModule, SharedModule, HttpClientTestingModule, NoopAnimationsModule],
-      providers: [FormBuilder, Validators, PaginatorService,
+      providers: [UntypedFormBuilder, Validators, PaginatorService,
         { provide: MappingService, useValue: service }
       ]
     })
@@ -57,7 +57,7 @@ describe('GenericMappingComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GenericMappingComponent);
     component = fixture.componentInstance;
-    formBuilder = TestBed.inject(FormBuilder);
+    formBuilder = TestBed.inject(UntypedFormBuilder);
     injector = getTestBed();
     httpMock = injector.inject(HttpTestingController);
     activatedRoute = TestBed.inject(ActivatedRoute);

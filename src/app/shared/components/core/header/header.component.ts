@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { NavigationStart, Router } from '@angular/router';
 import { QBOCredentials } from 'src/app/core/models/configuration/qbo-connector.model';
 import { MinimalUser } from 'src/app/core/models/db/user.model';

@@ -65,8 +65,7 @@
         "serve": {
           "builder": "ngx-build-plus:dev-server",
           "options": {
-            "browserTarget": "fyle-qbo-app:build",
-            "extraWebpackConfig": "./cypress/coverage.webpack.js"
+            "browserTarget": "fyle-qbo-app:build"
           }
         },
         "extract-i18n": {
@@ -106,8 +105,9 @@
       }
     }
   },
-  "defaultProject": "fyle-qbo-app",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

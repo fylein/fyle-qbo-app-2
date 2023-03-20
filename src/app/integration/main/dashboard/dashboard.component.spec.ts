@@ -1,5 +1,5 @@
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { of, throwError } from 'rxjs';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
@@ -7,12 +7,12 @@ import { DashboardComponent } from './dashboard.component';
 import { UserService } from 'src/app/core/services/misc/user.service';
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardService } from 'src/app/core/services/dashboard/dashboard.service';
 import { workspaceGeneralSettingResponse, errorResponse, expenseGroupSettingResponse, user, getExportErrorsData, getLastExportResponse, allTasksResponse, getExportableGroupsIdsResponse, expenseGroupSettingResponse1 } from 'src/app/integration/main/dashboard/dashboard.fixture';
 import { DashboardModule } from './dashboard.module';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 import { ErrorType, ExportState, TaskLogState } from 'src/app/core/models/enum/enum.model';
 
 describe('DashboardComponent', () => {
@@ -22,7 +22,7 @@ describe('DashboardComponent', () => {
   let dashboard: DashboardService;
   let userService: UserService;
   let exportLogService: ExportLogService;
-  let formBuilder: FormBuilder;
+  let formBuilder: UntypedFormBuilder;
   let dialogSpy: jasmine.Spy;
   const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({}), close: null });
   dialogRefSpyObj.componentInstance = { body: '' };

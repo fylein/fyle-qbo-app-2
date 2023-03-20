@@ -1,32 +1,32 @@
 import { TestBed } from '@angular/core/testing';
-import { FormControl, FormGroup} from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import { AdvancedSettingModel, AdvancedSettingPost} from "./advanced-setting.model";
 
 describe('AdvancedSettingModel', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormGroup],
+      imports: [UntypedFormGroup],
       declarations: [ AdvancedSettingModel ]
     })
     .compileComponents();
   });
 
   it('Should return AdvancedSettingModel[]', () => {
-    const advancedSettingsForm= new FormGroup({
-      paymentSync: new FormControl(true),
-      billPaymentAccount: new FormControl({id: '1', name: 'Fyle'}),
-      changeAccountingPeriod: new FormControl(true),
-      singleCreditLineJE: new FormControl(true),
-      autoCreateVendors: new FormControl(true),
-      autoCreateMerchantsAsVendors: new FormControl(true),
-      exportSchedule: new FormControl(true),
-      exportScheduleFrequency: new FormControl(10),
-      memoStructure: new FormControl(['Fyle']),
-      searchOption: new FormControl([]),
-      emails: new FormControl([]),
-      addedEmail: new FormControl([]),
-      skipExport: new FormControl(true)
+    const advancedSettingsForm= new UntypedFormGroup({
+      paymentSync: new UntypedFormControl(true),
+      billPaymentAccount: new UntypedFormControl({id: '1', name: 'Fyle'}),
+      changeAccountingPeriod: new UntypedFormControl(true),
+      singleCreditLineJE: new UntypedFormControl(true),
+      autoCreateVendors: new UntypedFormControl(true),
+      autoCreateMerchantsAsVendors: new UntypedFormControl(true),
+      exportSchedule: new UntypedFormControl(true),
+      exportScheduleFrequency: new UntypedFormControl(10),
+      memoStructure: new UntypedFormControl(['Fyle']),
+      searchOption: new UntypedFormControl([]),
+      emails: new UntypedFormControl([]),
+      addedEmail: new UntypedFormControl([]),
+      skipExport: new UntypedFormControl(true)
     });
 
     const advancedSettingPayload:AdvancedSettingPost = {

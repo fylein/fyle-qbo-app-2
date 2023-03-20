@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
+import { UntypedFormGroup } from '@angular/forms';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { RedirectLink, ZeroStatePage } from 'src/app/core/models/enum/enum.model';
 import { SelectedDateFilter } from 'src/app/core/models/misc/date-filter.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
@@ -15,7 +15,7 @@ export class ZeroStateWithIllustrationComponent implements OnInit {
   // Having any here is okay, we get the data from the export log / mapping module
   @Input() data: MatTableDataSource<any> = new MatTableDataSource<any>([]);
 
-  @Input() form: FormGroup;
+  @Input() form: UntypedFormGroup;
 
   @Input() searchTerm: string;
 

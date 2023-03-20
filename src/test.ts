@@ -7,12 +7,6 @@ import {
 } from '@angular/platform-browser-dynamic/testing';
 import { environment } from 'src/environments/environment';
 const API_BASE_URL = environment.api_url;
-declare const require: {
-  context(path: string, deep?: boolean, filter?: RegExp): {
-    keys(): string[];
-    <T>(id: string): T;
-  };
-};
 // First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
@@ -22,6 +16,3 @@ getTestBed().initTestEnvironment(
 );
 // Then we find all the tests.
 localStorage.setItem('workspaceId', environment.tests.workspaceId);
-const context = require.context('./', true, /\.spec\.ts$/);
-// And load the modules.
-context.keys().map(context);

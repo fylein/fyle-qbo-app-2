@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { SearchType, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
@@ -12,7 +12,7 @@ import { MappingService } from 'src/app/core/services/misc/mapping.service';
 })
 export class SimpleTextSearchComponent implements OnInit, OnChanges {
 
-  @Input() form: FormGroup;
+  @Input() form: UntypedFormGroup;
 
   @Input() showBackgroundColor: boolean = true;
 
