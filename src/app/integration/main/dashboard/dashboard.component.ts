@@ -104,7 +104,7 @@ export class DashboardComponent implements OnInit {
           this.lastExport = responses[1];
           this.isLoading = false;
         });
-        this.dashboardService.getAllTasks([TaskLogState.FAILED, TaskLogState.FATAL]).subscribe((taskResponse) => {
+        this.dashboardService.getAllTasks([TaskLogState.FAILED, TaskLogState.FATAL], undefined, this.taskType).subscribe((taskResponse) => {
           this.failedExpenseGroupCount = taskResponse.count;
           this.exportableExpenseGroupIds = taskResponse.results.map((task: Task) => task.expense_group);
           this.exportInProgress = false;
