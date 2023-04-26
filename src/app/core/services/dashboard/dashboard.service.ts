@@ -59,9 +59,13 @@ export class DashboardService {
   private getAllTasksInternal(limit: number, status: string[], expenseGroupIds: number[], taskType: string[], allTasks: TaskResponse): Promise<TaskResponse> {
     const that = this;
     return that.getTasks(limit, status, expenseGroupIds, taskType, allTasks.next).toPromise().then((taskResponse) => {
+
       if (allTasks.count === 0) {
         allTasks = taskResponse;
       } else {
+        allTasks.count = taskResponse.count;
+        allTasks.next = taskResponse.next;
+        allTasks.previous = taskResponse.previous;
         allTasks.results = allTasks.results.concat(taskResponse.results);
       }
 
@@ -92,7 +96,7 @@ export class DashboardService {
     }
 
     if (next) {
-      return this.apiService.get(next.split('api')[1], {});
+      return this.apiService.get(next.split('/api')[1], {});
     }
 
     return this.apiService.get(
