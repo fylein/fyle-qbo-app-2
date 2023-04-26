@@ -584,8 +584,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/app/core/services/dashboard/dashboard.service.ts:76</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/app/core/services/dashboard/dashboard.service.ts:80</a></div>
                 </td>
             </tr>
 
@@ -829,9 +829,13 @@ export class DashboardService {
   private getAllTasksInternal(limit: number, status: string[], expenseGroupIds: number[], taskType: string[], allTasks: TaskResponse): Promise&lt;TaskResponse&gt; {
     const that &#x3D; this;
     return that.getTasks(limit, status, expenseGroupIds, taskType, allTasks.next).toPromise().then((taskResponse) &#x3D;&gt; {
+
       if (allTasks.count &#x3D;&#x3D;&#x3D; 0) {
         allTasks &#x3D; taskResponse;
       } else {
+        allTasks.count &#x3D; taskResponse.count;
+        allTasks.next &#x3D; taskResponse.next;
+        allTasks.previous &#x3D; taskResponse.previous;
         allTasks.results &#x3D; allTasks.results.concat(taskResponse.results);
       }
 
@@ -862,7 +866,7 @@ export class DashboardService {
     }
 
     if (next) {
-      return this.apiService.get(next.split(&#x27;api&#x27;)[1], {});
+      return this.apiService.get(next.split(&#x27;/api&#x27;)[1], {});
     }
 
     return this.apiService.get(
