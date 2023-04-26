@@ -30,7 +30,8 @@ describe('ExportLogComponent', () => {
       getExpenseGroups: () => of(expenseGroupresponse),
       generateExportTypeAndId: () => exportTyperesponse,
       getReferenceType: () => 'settlement_id',
-      generateFyleUrl: () => fyleURLresponse
+      generateFyleUrl: () => fyleURLresponse,
+      getSkippedExpenses: () => of()
     };
     const service2 = {
       storePageSize: () => '2',
@@ -139,5 +140,9 @@ describe('ExportLogComponent', () => {
     fixture.detectChanges();
     expect(exportService.getExpenseGroups).toHaveBeenCalled();
     expect(exportService.generateExportTypeAndId).toHaveBeenCalled();
+  });
+
+  it('clearDateFilterSkipExport function check', () => {
+    expect(component.clearDateFilterSkipExport()).toBeUndefined();
   });
 });
