@@ -16,7 +16,7 @@ export class SimpleTextSearchComponent implements OnInit, OnChanges {
 
   @Input() showBackgroundColor: boolean = true;
 
-  @Input() placeholder: string = 'Search';
+  @Input() placeholder: string = 'Search For More';
 
   @Input() page: SimpleSearchPage;
 
