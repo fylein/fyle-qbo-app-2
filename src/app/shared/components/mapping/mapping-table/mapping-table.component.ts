@@ -20,6 +20,8 @@ export class MappingTableComponent implements OnInit {
 
   @Input() destinationType: string | undefined;
 
+  @Input() importItems: boolean;
+
   @Input() mappingForm: UntypedFormGroup[];
 
   @Input() qboData: DestinationAttribute[];
@@ -59,6 +61,13 @@ export class MappingTableComponent implements OnInit {
     this.mappingSaveHandler.emit(selectedRow);
   }
 
+  displayDestinationTypeHeader():string| undefined{
+    if (this.destinationType === 'ACCOUNT' && this.importItems){
+      return 'Account/ Products and Services';
+    }
+    return this.destinationType;
+  }
+
   removeDuplicateAndSortOptions(qboOptions: DestinationAttribute[]): DestinationAttribute[] {
     // Creating an ID map for options, optionsIDMap will look something like [312, 531, 234, 312]
     const optionsIDMap: number[] = qboOptions.map(option => option.id);
@@ -94,7 +103,11 @@ export class MappingTableComponent implements OnInit {
         qboData$ = this.mappingService.getQBOVendors(searchTerm);
       } else {
         const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
-        qboData$ = this.mappingService.getSearchedQBODestinationAttributes(attribute, searchTerm);
+        let displayName = undefined
+        if (this.destinationType === 'ACCOUNT'){
+          displayName = this.importItems ? 'Item,Account': 'Account';
+        }
+        qboData$ = this.mappingService.getSearchedQBODestinationAttributes(attribute, searchTerm, displayName);
       }
       qboData$.subscribe((response) => {
         this.prepareQBOOptions(this.existingQboOptions, response);

@@ -32,6 +32,15 @@
           </div>
         </div>
 
+        <div *ngIf="showImportItems()">
+          <app-configuration-toggle-field
+            [form]="importSettingsForm"
+            [label]="'Import items to fyle'"
+            [subLabel]="'Thsi is asub lalabel'"
+            [formControllerName]="'importItems'">
+          </app-configuration-toggle-field>
+        </div>
+
         <div formArrayName="expenseFields" class="paragraph">
           <div *ngFor="let expenseField of expenseFields.controls; let i = index" [formGroupName]="i">
             <div class="import-settings--field-toggle-section">

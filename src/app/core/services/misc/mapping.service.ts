@@ -40,8 +40,8 @@ export class MappingService {
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/destination_attributes/`, params);
   }
 
-  getSearchedQBODestinationAttributes(attributeType: string, searchTerm?: string | void, active: boolean = false): Observable<DestinationAttribute[]> {
-    const params: { attribute_type: string | string[], active?: boolean, search_term?: string } = {
+  getSearchedQBODestinationAttributes(attributeType: string, searchTerm?: string | void, displayName?:string, active: boolean = false, ): Observable<DestinationAttribute[]> {
+    const params: { attribute_type: string | string[], active?: boolean, search_term?: string, display_name?: string| string[]} = {
       attribute_type: attributeType
     };
 
@@ -51,6 +51,10 @@ export class MappingService {
 
     if (searchTerm) {
       params.search_term = searchTerm;
+    }
+
+    if (displayName) {
+      params.display_name = displayName;
     }
 
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/mapping_options/`, params);
