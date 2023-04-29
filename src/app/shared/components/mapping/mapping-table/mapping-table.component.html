@@ -16,8 +16,9 @@
     <td mat-cell *matCellDef="let element">
       <mat-form-field floatLabel="always" appearance="outline" class="mapping-table--form-field">
         <mat-select placeholder="Select {{ this.destinationType | titlecase | snakeCaseToSpaceCase }}" [value]="mappingForm[element.index]?.value?.destination" (closed)="helperService.clearSearchText(mappingForm[element.index])">
-          <app-simple-text-search [form]="mappingForm[element.index]"  [isSearchInProgress]="isSearchInProgress" [page]="SimpleSearchPage.MAPPING" [advancedSearchType]="SearchType.SELECT_FIELD" (searchResult)="advancedSearchHandler($event)"></app-simple-text-search>
-
+          <div fxLayout="row">
+          <app-simple-text-search [showToolTip] = "true" [form]="mappingForm[element.index]"  [isSearchInProgress]="isSearchInProgress" [page]="SimpleSearchPage.MAPPING" [advancedSearchType]="SearchType.SELECT_FIELD" (searchResult)="advancedSearchHandler($event)"></app-simple-text-search>
+          </div>
           <mat-option *ngFor="let option of qboData | search : mappingForm[element.index].value.searchOption" [ngClass]="{'search-zero-state': option && option.value === 'No result found'}" [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" matTooltipClass="above" (click)="saveMapping(element, option, mappingForm[element.index]);" [value]="option.value">
             <p (click)="$event.stopPropagation()" *ngIf="option.value === 'No result found' && isSearchInProgress" class="align-center italic">Searching...</p>
             <p (click)="$event.stopPropagation()" *ngIf="option.value === 'No result found' && !isSearchInProgress" class="align-center italic">{{ option.value }}</p>
