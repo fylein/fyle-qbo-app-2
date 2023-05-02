@@ -26,14 +26,16 @@ describe('ImportSettingModel', () => {
       chartOfAccount: new UntypedFormControl(true),
       chartOfAccountTypes: new UntypedFormControl([{enabled: true, name: 'expence'}]),
       expenseFields: new UntypedFormControl(expence_Field),
+      importItems: new UntypedFormControl(true),
       taxCode: new UntypedFormControl(true),
       defaultTaxCode: new UntypedFormControl({id: '1', name: 'Fyle'}),
       searchOption: new UntypedFormControl([]),
       importVendorsAsMerchants: new UntypedFormControl(true)
     });
-    const employeeSettingPayload: ImportSettingPost = {
+    const  employeeSettingPayload: ImportSettingPost = {
       workspace_general_settings: {
         import_categories: true,
+        import_items: true,
         charts_of_accounts: ImportSettingModel.formatChartOfAccounts([{enabled: true, name: 'expence'}]),
         import_tax_codes: true,
         import_vendors_as_merchants: true

@@ -11,12 +11,13 @@ import { HttpTestingController, HttpClientTestingModule } from '@angular/common/
 import { environment } from 'src/environments/environment';
 import { MappingList, MappingStats } from 'src/app/core/models/db/mapping.model';
 import { ActivatedRoute } from '@angular/router';
-import { destinationAttribute, getMappingSettingResponse, getMappingsresponse, getMappingStats, mappinglist, mappingSetting, minimaMappingSetting, minimaMappingSetting2, postMappingsresponse, response, response1 } from './generic-mapping.fixture';
+import { destinationAttribute, getMappingSettingResponse, getMappingsresponse, getMappingStats, mappinglist, mappingSetting, minimaMappingSetting, minimaMappingSetting2, postMappingsresponse, getWorkspaceGeneralSettingsResponse } from './generic-mapping.fixture';
 import { of } from 'rxjs';
 import { PaginatorPage } from 'src/app/core/models/enum/enum.model';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 describe('GenericMappingComponent', () => {
   let component: GenericMappingComponent;
@@ -39,6 +40,7 @@ describe('GenericMappingComponent', () => {
     service = {
       getMappingSettings: () => of(getMappingSettingResponse),
       getMappingStats: () => of(getMappingStats),
+      getWorkspaceGeneralSettings: () => of(getWorkspaceGeneralSettingsResponse),
       getSearchedQBODestinationAttributes: () => of(destinationAttribute),
       getMappings: () => of(getMappingsresponse),
       postMapping: () => of(postMappingsresponse)
@@ -48,7 +50,8 @@ describe('GenericMappingComponent', () => {
       declarations: [GenericMappingComponent],
       imports: [RouterTestingModule, FormsModule, ReactiveFormsModule, HttpClientModule, MatSnackBarModule, SharedModule, HttpClientTestingModule, NoopAnimationsModule],
       providers: [UntypedFormBuilder, Validators, PaginatorService,
-        { provide: MappingService, useValue: service }
+        { provide: MappingService, useValue: service },
+        { provide: WorkspaceService, useValue: service }
       ]
     })
       .compileComponents();

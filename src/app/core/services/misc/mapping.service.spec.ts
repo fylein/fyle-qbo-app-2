@@ -58,12 +58,12 @@ describe('MappingService', () => {
   });
 
   it('getQBODestinationAttributes() service check', () => {
-    service.getQBODestinationAttributes([EmployeeFieldMapping.EMPLOYEE, EmployeeFieldMapping.VENDOR], true).subscribe(value => {
+    service.getQBODestinationAttributes([EmployeeFieldMapping.EMPLOYEE, EmployeeFieldMapping.VENDOR]).subscribe(value => {
       expect(value).toEqual([]);
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_types=EMPLOYEE,VENDOR&active=true`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_types=EMPLOYEE,VENDOR`
     });
       req.flush([]);
 
@@ -82,7 +82,7 @@ describe('MappingService', () => {
   });
 
   it('getSearchedQBODestinationAttributes() service check', () => {
-    service.getSearchedQBODestinationAttributes(EmployeeFieldMapping.EMPLOYEE, 'ash', true).subscribe(value => {
+    service.getSearchedQBODestinationAttributes(EmployeeFieldMapping.EMPLOYEE, 'ash', undefined, true).subscribe(value => {
       expect(value).toEqual([]);
     });
     const req = httpMock.expectOne({

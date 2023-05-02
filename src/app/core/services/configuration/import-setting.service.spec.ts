@@ -51,6 +51,7 @@ describe('ImportSettingService', () => {
     const employeeSettingPayload: ImportSettingPost = {
       workspace_general_settings: {
         import_categories: true,
+        import_items: true,
         charts_of_accounts: ImportSettingModel.formatChartOfAccounts([{ enabled: true, name: 'expense' }]),
         import_tax_codes: true,
         import_vendors_as_merchants: true

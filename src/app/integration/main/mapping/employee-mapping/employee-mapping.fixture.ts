@@ -38,6 +38,7 @@ export const workspaceGeneralSettingResponse:WorkspaceGeneralSetting = {
   id: 1,
   import_categories: false,
   import_projects: false,
+  import_items: false,
   import_tax_codes: false,
   import_vendors_as_merchants: false,
   je_single_credit_line: true,

@@ -3,6 +3,7 @@ import { EmployeeMapping } from "src/app/core/models/db/employee-mapping.model";
 import { ExpenseAttribute } from "src/app/core/models/db/expense-attribute.model";
 import { ExpenseGroup } from "src/app/core/models/db/expense-group.model";
 import { MappingList, ResolveMappingError } from "src/app/core/models/db/mapping.model";
+import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
 import { FyleReferenceType, EmployeeFieldMapping, ErrorType, MappingState, QBOField } from "src/app/core/models/enum/enum.model";
 
 export   const expenseAttribute: ExpenseAttribute = {
@@ -138,4 +139,33 @@ export const response: EmployeeMapping = {
   created_at: new Date(),
   updated_at: new Date(),
   workspace: 2
+};
+
+export const getWorkspaceGeneralSettingsResponse: WorkspaceGeneralSetting = {
+  id: 1,
+  import_projects: true,
+  created_at: new Date("2022-06-14T06:24:56.947727Z"),
+  updated_at: new Date("2022-06-14T06:24:56.947727Z"),
+  workspace: 1,
+  employee_field_mapping: EmployeeFieldMapping.EMPLOYEE,
+  auto_map_employees: null,
+  reimbursable_expenses_object: null,
+  corporate_credit_card_expenses_object: null,
+  import_categories: true,
+  import_items: false,
+  import_vendors_as_merchants: false,
+  charts_of_accounts: ['Expense'],
+  import_tax_codes: false,
+  sync_fyle_to_qbo_payments: false,
+  sync_qbo_to_fyle_payments: false,
+  auto_create_destination_entity: false,
+  auto_create_merchants_as_vendors: false,
+  je_single_credit_line: false,
+  change_accounting_period: false,
+  memo_structure: ['employee_email', 'category', 'spent_on', 'report_number', 'purpose', 'expense_link'],
+  category_sync_version: 'v2',
+  map_fyle_cards_qbo_account: false,
+  map_merchant_to_vendor: false,
+  skip_cards_mapping: false,
+  is_simplify_report_closure_enabled: false
 };

@@ -6,10 +6,11 @@ import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarModule as MatSnackBa
 import { DashboardResolveMappingErrorDialogComponent } from './dashboard-resolve-mapping-error-dialog.component';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { environment } from 'src/environments/environment';
-import { destinationAttributes, expenseAttribute, mappinglist, model, model2, response } from './dashboard-resolve-mapping.fixture';
+import { destinationAttributes, expenseAttribute, getWorkspaceGeneralSettingsResponse, mappinglist, model, model2, response } from './dashboard-resolve-mapping.fixture';
 import { of } from 'rxjs';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MappingList } from 'src/app/core/models/db/mapping.model';
+import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 describe('DashboardResolveMappingErrorDialogComponent', () => {
   let component: DashboardResolveMappingErrorDialogComponent;
@@ -24,6 +25,10 @@ describe('DashboardResolveMappingErrorDialogComponent', () => {
   const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({}), close: null });
   dialogRefSpyObj.componentInstance = { body: '' }; // Attach componentInstance to the spy object...
   beforeEach(async () => {
+    const service1= {
+      getWorkspaceGeneralSettings: () => of(getWorkspaceGeneralSettingsResponse),
+      getWorkspaceId: () => workspace_id
+    };
     await TestBed.configureTestingModule({
       imports: [MatDialogModule, SharedModule, HttpClientTestingModule, MatSnackBarModule],
       providers: [MappingService, UntypedFormBuilder, {
@@ -35,7 +40,9 @@ describe('DashboardResolveMappingErrorDialogComponent', () => {
         // I was expecting this will pass the desired value
         provide: MatDialogRef,
         useValue: {}
-      }],
+      },
+      { provide: WorkspaceService, useValue: service1 }
+    ],
       declarations: [ DashboardResolveMappingErrorDialogComponent ]
     })
     .compileComponents();
