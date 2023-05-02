@@ -13,3 +13,13 @@ export class OnboardingExportSettingsComponent implements OnInit {
   }
 
 }
+
+function test_codecov(){
+  let x = 0
+  if (x == 0) {
+    let y =1
+  }
+  else {
+    let y=2
+  }
+}
