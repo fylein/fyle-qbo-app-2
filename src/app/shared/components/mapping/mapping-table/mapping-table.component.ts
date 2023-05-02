@@ -16,6 +16,8 @@ export class MappingTableComponent implements OnInit {
 
   @Input() mappings: MatTableDataSource<MappingList> = new MatTableDataSource<MappingList>([]);
 
+  toolTipContent: string;
+
   @Input() sourceType: string | undefined;
 
   @Input() destinationType: string | undefined;
@@ -106,8 +108,15 @@ export class MappingTableComponent implements OnInit {
     }
   }
 
+  titleCase(str: string): string {
+    return str.toLowerCase().replace(/(?:^|\s|-)\w/g, (match) => {
+      return match.toUpperCase();
+    });
+  }
+
   ngOnInit(): void {
     this.existingQboOptions = this.qboData.concat();
+    this.toolTipContent = this.sourceType === FyleField.CATEGORY ? this.titleCase('If you are unable to find an account in the dropdown, please use the search bar to find from your Chart of Accounts') : this.titleCase(`If you are enable to find a ${this.destinationType} in the dropdown please use the search bar to find from your ${this.destinationType}s`)
   }
 
 }

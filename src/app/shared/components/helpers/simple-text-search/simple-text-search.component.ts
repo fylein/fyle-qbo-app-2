@@ -30,6 +30,8 @@ export class SimpleTextSearchComponent implements OnInit, OnChanges {
 
   @Output() searchResult: EventEmitter<string> =   new EventEmitter();
 
+  @Input() toolTipContent: string;
+
   private simpleSearchEventRecorded: boolean = false;
 
   @Input() isSearchInProgress: boolean = false;
