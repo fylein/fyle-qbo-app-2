@@ -108,8 +108,8 @@ export class MappingTableComponent implements OnInit {
     }
   }
 
-  titleCase(str: string): string {
-    return str.toLowerCase().replace(/(?:^|\s|-)\w/g, (match) => {
+  titleCase(str: string | undefined): string | undefined {
+    return str?.toLowerCase().replace(/(?:^|\s|-)\w/g, (match) => {
       return match.toUpperCase();
     });
   }
@@ -118,12 +118,10 @@ export class MappingTableComponent implements OnInit {
     this.existingQboOptions = this.qboData.concat();
     this.toolTipContent =
       this.sourceType === FyleField.CATEGORY
-        ? this.titleCase(
-            'If you are unable to find an account in the dropdown, please use the search bar to find from your Chart of Accounts'
-          )
-        : this.titleCase(
-            `If you are enable to find a ${this.destinationType} in the dropdown please use the search bar to find from your ${this.destinationType}s`
-          );
+        ? 
+            'If you are unable to find an Account in the dropdown, please use the search bar to find from your chart of Accounts'
+        : 
+            `If you are enable to find a ${this.titleCase(this.destinationType)} in the dropdown please use the search bar to find from your ${this.titleCase(this.destinationType)}s`;
   }
 
 }
