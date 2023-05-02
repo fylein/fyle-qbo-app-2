@@ -40,7 +40,7 @@ export class MappingService {
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/destination_attributes/`, params);
   }
 
-  getSearchedQBODestinationAttributes(attributeType: string, searchTerm?: string | void, displayName?:string, active: boolean = false, ): Observable<DestinationAttribute[]> {
+  getSearchedQBODestinationAttributes(attributeType: string, searchTerm?: string | void, displayName?:string, active: boolean = false): Observable<DestinationAttribute[]> {
     const params: { attribute_type: string | string[], active?: boolean, search_term?: string, display_name?: string| string[]} = {
       attribute_type: attributeType
     };

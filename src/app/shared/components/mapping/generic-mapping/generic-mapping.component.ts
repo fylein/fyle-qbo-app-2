@@ -206,7 +206,7 @@ export class GenericMappingComponent implements OnInit {
     this.sourceType = this.route.snapshot.params.source_field;
     forkJoin([
       this.workspaceService.getWorkspaceGeneralSettings(),
-      this.mappingService.getMappingSettings(),
+      this.mappingService.getMappingSettings()
     ]).subscribe((response) => {
       this.workspaceGeneralSettings = response[0];
       const mappingSetting = response[1].results.filter((mappingSetting) => mappingSetting.source_field === this.sourceType.toUpperCase());
@@ -223,7 +223,7 @@ export class GenericMappingComponent implements OnInit {
         if (this.mappingSetting.source_field === 'CATEGORY') {
           displayName = this.workspaceGeneralSettings.import_items ? 'Item,Account': 'Account';
         }
-        // if this.workspacegeneralsettings.import_items 
+
         this.mappingService.getSearchedQBODestinationAttributes(this.mappingSetting.destination_field, undefined, displayName, active).subscribe((qboData: DestinationAttribute[]) => {
           this.qboData = qboData;
           this.getMappings();

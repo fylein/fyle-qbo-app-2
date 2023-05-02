@@ -146,8 +146,8 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
   }
 
   showImportItems(): boolean {
-    if(this.workspaceGeneralSettings.reimbursable_expenses_object === ReimbursableExpensesObject.JOURNAL_ENTRY 
-        || this.workspaceGeneralSettings.corporate_credit_card_expenses_object === CorporateCreditCardExpensesObject.JOURNAL_ENTRY) { 
+    if (this.workspaceGeneralSettings.reimbursable_expenses_object === ReimbursableExpensesObject.JOURNAL_ENTRY
+        || this.workspaceGeneralSettings.corporate_credit_card_expenses_object === CorporateCreditCardExpensesObject.JOURNAL_ENTRY) {
       return false;
     }
     return true;

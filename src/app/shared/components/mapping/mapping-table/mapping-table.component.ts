@@ -103,7 +103,7 @@ export class MappingTableComponent implements OnInit {
         qboData$ = this.mappingService.getQBOVendors(searchTerm);
       } else {
         const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
-        let displayName = undefined
+        let displayName = undefined;
         if (this.destinationType === 'ACCOUNT'){
           displayName = this.importItems ? 'Item,Account': 'Account';
         }
