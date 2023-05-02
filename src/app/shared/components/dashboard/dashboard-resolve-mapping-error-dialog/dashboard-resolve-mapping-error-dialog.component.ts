@@ -8,9 +8,11 @@ import { EmployeeMappingModel } from 'src/app/core/models/db/employee-mapping.mo
 import { Error } from 'src/app/core/models/db/error.model';
 import { MinimalMappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { MappingList, MappingModel, ResolveMappingError } from 'src/app/core/models/db/mapping.model';
+import { WorkspaceGeneralSetting } from 'src/app/core/models/db/workspace-general-setting.model';
 import { EmployeeFieldMapping, MappingState, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
+import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 @Component({
   selector: 'app-dashboard-resolve-mapping-error-dialog',
@@ -20,6 +22,8 @@ import { MappingService } from 'src/app/core/services/misc/mapping.service';
 export class DashboardResolveMappingErrorDialogComponent implements OnInit {
 
   isLoading: boolean = true;
+
+  workspaceGeneralSetting: WorkspaceGeneralSetting;
 
   mappings: MatTableDataSource<MappingList> = new MatTableDataSource<MappingList>([]);
 
@@ -43,7 +47,8 @@ export class DashboardResolveMappingErrorDialogComponent implements OnInit {
     private formBuilder: UntypedFormBuilder,
     public helperService: HelperService,
     private mappingService: MappingService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private workspaceService: WorkspaceService
   ) { }
 
   private showSuccessMessage(): void {
@@ -86,6 +91,13 @@ export class DashboardResolveMappingErrorDialogComponent implements OnInit {
     this.postMapping(selectedRow);
   }
 
+  displayDestinationTypeHeader():string| undefined{
+    if (this.data.destinationType === 'ACCOUNT' && this.workspaceGeneralSetting.import_items){
+      return 'Account/ Products and Services';
+    }
+    return this.data.destinationType;
+  }
+
   private setupFyleQboMappingFormArray(mappings: MappingList[]): void {
     this.fyleQboMappingFormArray = mappings.map((mapping: MappingList) => {
       return this.formBuilder.group({
@@ -107,32 +119,37 @@ export class DashboardResolveMappingErrorDialogComponent implements OnInit {
   }
 
   private setupPage(): void {
-    this.mappingService.getQBODestinationAttributes(this.data.destinationType).subscribe((qboData: DestinationAttribute[]) => {
-      this.qboData = qboData;
+    this.workspaceService.getWorkspaceGeneralSettings().subscribe(workspaceGeneralSetting => {
+      this.workspaceGeneralSetting = workspaceGeneralSetting;
+      let displayName = undefined;
+      if (this.data.destinationType === 'ACCOUNT') {
+        displayName = this.workspaceGeneralSetting.import_items ? 'Item,Account': 'Account';
+      }
 
-      const mappings: MappingList[] = [];
-
-      this.data.fyleAttributes.forEach((error: Error, index: number) => {
-        mappings.push({
-          fyle: {
-            id: error.expense_attribute.id,
-            value: error.expense_attribute.value
-          },
-          qbo: {
-            id: '',
-            value: ''
-          },
-          state: MappingState.MAPPED,
-          autoMapped: error.expense_attribute.auto_mapped,
-          index: index
+      this.mappingService.getQBODestinationAttributes(this.data.destinationType, displayName).subscribe((qboData: DestinationAttribute[]) => {
+        this.qboData = qboData;
+        const mappings: MappingList[] = [];
+        this.data.fyleAttributes.forEach((error: Error, index: number) => {
+          mappings.push({
+            fyle: {
+              id: error.expense_attribute.id,
+              value: error.expense_attribute.value
+            },
+            qbo: {
+              id: '',
+              value: ''
+            },
+            state: MappingState.MAPPED,
+            autoMapped: error.expense_attribute.auto_mapped,
+            index: index
+          });
         });
+
+        this.mappings = new MatTableDataSource(mappings);
+        this.setupFyleQboMappingFormArray(mappings);
+        this.setupForm();
+        this.isLoading = false;
       });
-
-      this.mappings = new MatTableDataSource(mappings);
-      this.setupFyleQboMappingFormArray(mappings);
-
-      this.setupForm();
-      this.isLoading = false;
     });
   }
 

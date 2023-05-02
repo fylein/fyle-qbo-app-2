@@ -28,13 +28,13 @@ export class MappingService {
     private workspaceService: WorkspaceService
   ) { }
 
-  getQBODestinationAttributes(attributeTypes: string | string[], active: boolean = false): Observable<DestinationAttribute[]> {
-    const params: { attribute_types: string | string[], active?: boolean } = {
+  getQBODestinationAttributes(attributeTypes: string | string[], displayName?:string): Observable<DestinationAttribute[]> {
+    const params: { attribute_types: string | string[], display_name?:string } = {
       attribute_types: attributeTypes
     };
 
-    if (active) {
-      params.active = true;
+    if (displayName) {
+      params.display_name = displayName;
     }
 
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/destination_attributes/`, params);
