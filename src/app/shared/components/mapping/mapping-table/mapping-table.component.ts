@@ -65,7 +65,7 @@ export class MappingTableComponent implements OnInit {
 
   displayDestinationTypeHeader():string| undefined{
     if (this.destinationType === 'ACCOUNT' && this.importItems){
-      return 'Account/Products and Services';
+      return 'Account/ Products and Services';
     }
     return this.destinationType;
   }
