@@ -118,10 +118,10 @@ export class MappingTableComponent implements OnInit {
     this.existingQboOptions = this.qboData.concat();
     this.toolTipContent =
       this.sourceType === FyleField.CATEGORY
-        ? 
-            'If you are unable to find an Account in the dropdown, please use the search bar to find from your chart of Accounts'
-        : 
-            `If you are enable to find a ${this.titleCase(this.destinationType)} in the dropdown please use the search bar to find from your ${this.titleCase(this.destinationType)}s`;
+        ?
+        'If you are unable to find an Account in the dropdown, please use the search bar to find from your chart of Accounts'
+        :
+        `If you are enable to find a ${this.titleCase(this.destinationType)} in the dropdown please use the search bar to find from your ${this.titleCase(this.destinationType)}s`;
   }
 
 }
