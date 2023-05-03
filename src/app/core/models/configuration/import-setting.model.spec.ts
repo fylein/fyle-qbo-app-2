@@ -32,7 +32,7 @@ describe('ImportSettingModel', () => {
       searchOption: new UntypedFormControl([]),
       importVendorsAsMerchants: new UntypedFormControl(true)
     });
-    const  employeeSettingPayload: ImportSettingPost = {
+    const employeeSettingPayload: ImportSettingPost = {
       workspace_general_settings: {
         import_categories: true,
         import_items: true,
