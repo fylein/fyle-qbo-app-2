@@ -2,12 +2,16 @@
 <!-- TODO: disable space search -->
 <div *ngIf="form" [formGroup]="form" [ngClass]="{'search-select': showBackgroundColor}">
   <div class="search-select--search-input" [ngClass]="{'search-select--search-section': !showBackgroundColor}">
-    <div fxLayout="row" class="search-select--search-area" [ngClass]="{'search-select--smaller-search-area': !showBackgroundColor}">
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="search-select--search-area" [ngClass]="{'search-select--smaller-search-area': !showBackgroundColor}">
+      <div fxLayout="row">
       <img class="search-select--search-icon" src="assets/images/svgs/actions/search.svg">
       <input class="search-select--input-field"
         [placeholder]="placeholder" class="export-settings--search" (keyup)="keypress()" formControlName="searchOption" cdkFocusInitial type="text" matInput>
         <div *ngIf="isSearchInProgress" class="search-select--loader"><mat-spinner mode="indeterminate" color="accent" diameter="20"></mat-spinner></div>
+        
         <img *ngIf="form.value.searchOption && !isSearchInProgress" width="12px" height="12px" src="assets/images/svgs/actions/clear-search.svg" class="search-select--clear-icon pointer" [ngClass]="{'search-select--clear-icon-smaller-area': !showBackgroundColor}" (click)="clearText()">
+      </div>
+      <img *ngIf="showToolTip && !form.value.searchOption && !isSearchInProgress" src="assets/images/svgs/general/info.svg" class="search-select--info-icon" width="16px" height="16px" [matTooltip]="toolTipContent" matTooltipPosition="left" matTooltipClass="left"  />
     </div>
   </div>
 </div>
