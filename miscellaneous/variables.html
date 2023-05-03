@@ -160,10 +160,10 @@
                             <a href="#environment" title="src/environments/environment.ts" ><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
                         </li>
                         <li>
-                            <a href="#errorResponse" title="src/app/integration/integration.fixture.ts" ><b>errorResponse</b>&nbsp;&nbsp;&nbsp;(src/.../integration.fixture.ts)</a>
+                            <a href="#errorResponse" title="src/app/qbo-callback/qbo-callback-routing.fixture.ts" ><b>errorResponse</b>&nbsp;&nbsp;&nbsp;(src/.../qbo-callback-routing.fixture.ts)</a>
                         </li>
                         <li>
-                            <a href="#errorResponse" title="src/app/qbo-callback/qbo-callback-routing.fixture.ts" ><b>errorResponse</b>&nbsp;&nbsp;&nbsp;(src/.../qbo-callback-routing.fixture.ts)</a>
+                            <a href="#errorResponse" title="src/app/integration/integration.fixture.ts" ><b>errorResponse</b>&nbsp;&nbsp;&nbsp;(src/.../integration.fixture.ts)</a>
                         </li>
                         <li>
                             <a href="#errorResponse" title="src/app/auth/fyle-callback/fyle-callback.fixture.ts" ><b>errorResponse</b>&nbsp;&nbsp;&nbsp;(src/.../fyle-callback.fixture.ts)</a>
@@ -4343,84 +4343,6 @@ features that could help customize and automate your integration workflows.&#x60
         </tbody>
     </table>
 </section>
-    <h3>src/app/integration/integration.fixture.ts</h3>
-    <section>
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="errorResponse"></a>
-                    <span class="name">
-                        <span ><b>errorResponse</b></span>
-                        <a href="#errorResponse"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>{
-  status: 400,
-  statusText: &quot;Not Found&quot;,
-  error: {
-    id: 1,
-    is_expired: true,
-    company_name: &#x27;QBO&#x27;
-  }
-}</code>
-                    </td>
-                </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="workspaceResponse"></a>
-                    <span class="name">
-                        <span ><b>workspaceResponse</b></span>
-                        <a href="#workspaceResponse"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Workspace" target="_self" >Workspace[]</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>[{
-  id: +environment.tests.workspaceId,
-  name: &quot;Test Sample Statement - GBP&quot;,
-  user: [1],
-  fyle_org_id: &quot;orunxXsIajSE&quot;,
-  fyle_currency: &quot;IND&quot;,
-  qbo_realm_id: &quot;&quot;,
-  cluster_domain: &quot;&quot;,
-  onboarding_state: OnboardingState.CONNECTION,
-  last_synced_at: new Date(&quot;2022-04-13T10:29:18.796760Z&quot;),
-  ccc_last_synced_at: new Date(&quot;2022-04-13T10:29:18.796760Z&quot;),
-  source_synced_at: new Date(&quot;2022-04-13T10:29:18.796760Z&quot;),
-  destination_synced_at: new Date(&quot;2022-04-13T10:29:18.796760Z&quot;),
-  created_at: new Date(&quot;2022-04-13T10:29:18.796760Z&quot;),
-  updated_at: new Date(&quot;2022-04-13T10:29:18.796760Z&quot;)
-}]</code>
-                    </td>
-                </tr>
-
-
-        </tbody>
-    </table>
-</section>
     <h3>src/app/qbo-callback/qbo-callback-routing.fixture.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -4522,6 +4444,84 @@ features that could help customize and automate your integration workflows.&#x60
   updated_at: new Date(),
   workspace: 2
 }</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/integration/integration.fixture.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorResponse"></a>
+                    <span class="name">
+                        <span ><b>errorResponse</b></span>
+                        <a href="#errorResponse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  status: 400,
+  statusText: &quot;Not Found&quot;,
+  error: {
+    id: 1,
+    is_expired: true,
+    company_name: &#x27;QBO&#x27;
+  }
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="workspaceResponse"></a>
+                    <span class="name">
+                        <span ><b>workspaceResponse</b></span>
+                        <a href="#workspaceResponse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Workspace" target="_self" >Workspace[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[{
+  id: +environment.tests.workspaceId,
+  name: &quot;Test Sample Statement - GBP&quot;,
+  user: [1],
+  fyle_org_id: &quot;orunxXsIajSE&quot;,
+  fyle_currency: &quot;IND&quot;,
+  qbo_realm_id: &quot;&quot;,
+  cluster_domain: &quot;&quot;,
+  onboarding_state: OnboardingState.CONNECTION,
+  last_synced_at: new Date(&quot;2022-04-13T10:29:18.796760Z&quot;),
+  ccc_last_synced_at: new Date(&quot;2022-04-13T10:29:18.796760Z&quot;),
+  source_synced_at: new Date(&quot;2022-04-13T10:29:18.796760Z&quot;),
+  destination_synced_at: new Date(&quot;2022-04-13T10:29:18.796760Z&quot;),
+  created_at: new Date(&quot;2022-04-13T10:29:18.796760Z&quot;),
+  updated_at: new Date(&quot;2022-04-13T10:29:18.796760Z&quot;)
+}]</code>
                     </td>
                 </tr>
 
