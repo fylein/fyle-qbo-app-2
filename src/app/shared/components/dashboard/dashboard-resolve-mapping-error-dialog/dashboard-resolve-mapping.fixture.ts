@@ -152,7 +152,7 @@ export const getWorkspaceGeneralSettingsResponse: WorkspaceGeneralSetting = {
   reimbursable_expenses_object: null,
   corporate_credit_card_expenses_object: null,
   import_categories: true,
-  import_items: false,
+  import_items: true,
   import_vendors_as_merchants: false,
   charts_of_accounts: ['Expense'],
   import_tax_codes: false,

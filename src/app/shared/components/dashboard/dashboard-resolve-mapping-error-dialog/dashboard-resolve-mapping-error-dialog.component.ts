@@ -93,9 +93,12 @@ export class DashboardResolveMappingErrorDialogComponent implements OnInit {
 
   displayDestinationTypeHeader():string| undefined{
     if (this.data.destinationType === 'ACCOUNT' && this.workspaceGeneralSetting.import_items){
-      return 'Account/ Products and Services';
+      return 'Account/Products and Services';
     }
-    return this.data.destinationType;
+    const destinationType = this.data.destinationType?.toLowerCase().split('_').map(word => {
+      return word.replace(word[0], word[0].toUpperCase());
+    });
+    return destinationType?.join(' ');
   }
 
   private setupFyleQboMappingFormArray(mappings: MappingList[]): void {

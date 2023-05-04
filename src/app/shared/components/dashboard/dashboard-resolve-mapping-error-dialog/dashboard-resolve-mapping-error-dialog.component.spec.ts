@@ -68,6 +68,12 @@ describe('DashboardResolveMappingErrorDialogComponent', () => {
       req.flush([]);
   });
 
+  it('should create 2', () => {
+    component.data = model2;
+    component.workspaceGeneralSetting = getWorkspaceGeneralSettingsResponse;
+    expect((component as any).setupPage()).toBeUndefined();
+  });
+
   it('saveMapping function check', () => {
     component.fyleQboMappingFormArray = mappinglist.map((mapping: MappingList) => {
       return formBuilder.group({

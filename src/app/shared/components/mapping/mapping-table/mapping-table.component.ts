@@ -65,9 +65,12 @@ export class MappingTableComponent implements OnInit {
 
   displayDestinationTypeHeader():string| undefined{
     if (this.destinationType === 'ACCOUNT' && this.importItems){
-      return 'Account/ Products and Services';
+      return 'Account/Products and Services';
     }
-    return this.destinationType;
+    const destinationType = this.destinationType?.toLowerCase().split('_').map(word => {
+      return word.replace(word[0], word[0].toUpperCase());
+    });
+    return destinationType?.join(' ');
   }
 
   removeDuplicateAndSortOptions(qboOptions: DestinationAttribute[]): DestinationAttribute[] {
