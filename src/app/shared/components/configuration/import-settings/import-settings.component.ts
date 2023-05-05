@@ -145,14 +145,6 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
     return !this.autoCreateMerchantsAsVendors;
   }
 
-  showImportItems(): boolean {
-    if (this.workspaceGeneralSettings.reimbursable_expenses_object === ReimbursableExpensesObject.JOURNAL_ENTRY
-        || this.workspaceGeneralSettings.corporate_credit_card_expenses_object === CorporateCreditCardExpensesObject.JOURNAL_ENTRY) {
-      return false;
-    }
-    return true;
-  }
-
   private setupForm(): void {
     const chartOfAccountTypeFormArray = this.chartOfAccountTypesList.map((type) => this.createChartOfAccountField(type));
     const expenseFieldsFormArray = this.qboExpenseFields.map((field) => {

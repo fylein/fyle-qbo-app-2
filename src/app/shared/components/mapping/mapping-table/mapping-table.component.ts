@@ -40,6 +40,8 @@ export class MappingTableComponent implements OnInit {
 
   existingQboOptions: DestinationAttribute[];
 
+  destinationHeader: string | undefined;
+
   constructor(
     public helperService: HelperService,
     private mappingService: MappingService
@@ -61,16 +63,6 @@ export class MappingTableComponent implements OnInit {
     selectedRow.qbo.value = selectedOption.value;
 
     this.mappingSaveHandler.emit(selectedRow);
-  }
-
-  displayDestinationTypeHeader():string| undefined{
-    if (this.destinationType === 'ACCOUNT' && this.importItems){
-      return 'Account/Products and Services';
-    }
-    const destinationType = this.destinationType?.toLowerCase().split('_').map(word => {
-      return word.replace(word[0], word[0].toUpperCase());
-    });
-    return destinationType?.join(' ');
   }
 
   removeDuplicateAndSortOptions(qboOptions: DestinationAttribute[]): DestinationAttribute[] {
@@ -108,10 +100,7 @@ export class MappingTableComponent implements OnInit {
         qboData$ = this.mappingService.getQBOVendors(searchTerm);
       } else {
         const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
-        let displayName = undefined;
-        if (this.destinationType === 'ACCOUNT'){
-          displayName = this.importItems ? 'Item,Account': 'Account';
-        }
+        const displayName = this.mappingService.constructDisplayNameFilter(this.destinationType, this.importItems);
         qboData$ = this.mappingService.getSearchedQBODestinationAttributes(attribute, searchTerm, displayName);
       }
       qboData$.subscribe((response) => {
@@ -132,6 +121,7 @@ export class MappingTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.existingQboOptions = this.qboData.concat();
+    this.destinationHeader = this.mappingService.displayDestinationTypeHeader(this.destinationType, this.importItems);
     this.toolTipContent =
       this.sourceType === FyleField.CATEGORY
         ?

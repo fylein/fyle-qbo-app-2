@@ -45,11 +45,11 @@
 
     <ng-container matColumnDef="qbo">
       <th mat-header-cell *matHeaderCellDef>
-        <h4 class="dashboard-resolve-mapping-dialog--row-heading-qbo">{{ displayDestinationTypeHeader() }} in QuickBooks Online</h4>
+        <h4 class="dashboard-resolve-mapping-dialog--row-heading-qbo">{{ destinationHeader }} in QuickBooks Online</h4>
       </th>
       <td mat-cell *matCellDef="let element">
         <mat-form-field floatLabel="always" appearance="outline" class="dashboard-resolve-mapping-dialog--form-field">
-          <mat-select placeholder="Select {{ displayDestinationTypeHeader() }}" [value]="mappingForm[element.index].value.destination" (closed)="helperService.clearSearchText(mappingForm[element.index])">
+          <mat-select placeholder="Select {{ destinationHeader }}" [value]="mappingForm[element.index].value.destination" (closed)="helperService.clearSearchText(mappingForm[element.index])">
             <app-simple-text-search [form]="mappingForm[element.index]" [page]="SimpleSearchPage.DASHBOARD" [searchType]="SimpleSearchType.SELECT_FIELD"></app-simple-text-search>
 
             <mat-option *ngFor="let option of qboData | search : mappingForm[element.index].value.searchOption" [ngClass]="{'search-zero-state': option && option.value === 'No result found'}" [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40" matTooltipPosition="above" matTooltipClass="above" (click)="saveMapping(element, option, mappingForm[element.index]);" [value]="option.value">

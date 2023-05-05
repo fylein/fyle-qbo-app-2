@@ -43,7 +43,9 @@ describe('GenericMappingComponent', () => {
       getWorkspaceGeneralSettings: () => of(getWorkspaceGeneralSettingsResponse),
       getSearchedQBODestinationAttributes: () => of(destinationAttribute),
       getMappings: () => of(getMappingsresponse),
-      postMapping: () => of(postMappingsresponse)
+      postMapping: () => of(postMappingsresponse),
+      constructDisplayNameFilter: () => of('Item,Account'),
+      displayDestinationTypeHeader: () => of('Account'),
 
     };
     await TestBed.configureTestingModule({

@@ -219,11 +219,8 @@ export class GenericMappingComponent implements OnInit {
             (this.mappingSetting.source_field === 'CATEGORY')){
             active = true;
         }
-        let displayName = undefined;
-        if (this.mappingSetting.source_field === 'CATEGORY') {
-          displayName = this.workspaceGeneralSettings.import_items ? 'Item,Account': 'Account';
-        }
 
+        const displayName = this.mappingService.constructDisplayNameFilter(this.mappingSetting.destination_field, this.workspaceGeneralSettings.import_items);
         this.mappingService.getSearchedQBODestinationAttributes(this.mappingSetting.destination_field, undefined, displayName, active).subscribe((qboData: DestinationAttribute[]) => {
           this.qboData = qboData;
           this.getMappings();

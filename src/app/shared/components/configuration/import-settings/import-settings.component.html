@@ -32,7 +32,7 @@
           </div>
         </div>
 
-        <div *ngIf="showImportItems()">
+        <div *ngIf=" workspaceGeneralSettings.reimbursable_expenses_object !== 'JOURNAL ENTRY' && workspaceGeneralSettings.corporate_credit_card_expenses_object !== 'JOURNAL ENTRY' ">
           <app-configuration-toggle-field
             [form]="importSettingsForm"
             [label]="'Import Products/Services from QuickBooks Online'"

@@ -41,6 +41,8 @@ export class DashboardResolveMappingErrorDialogComponent implements OnInit {
 
   SimpleSearchType = SimpleSearchType;
 
+  destinationHeader: string | undefined;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ResolveMappingError,
     public dialogRef: MatDialogRef<DashboardResolveMappingErrorDialogComponent>,
@@ -91,16 +93,6 @@ export class DashboardResolveMappingErrorDialogComponent implements OnInit {
     this.postMapping(selectedRow);
   }
 
-  displayDestinationTypeHeader():string| undefined{
-    if (this.data.destinationType === 'ACCOUNT' && this.workspaceGeneralSetting.import_items){
-      return 'Account/Products and Services';
-    }
-    const destinationType = this.data.destinationType?.toLowerCase().split('_').map(word => {
-      return word.replace(word[0], word[0].toUpperCase());
-    });
-    return destinationType?.join(' ');
-  }
-
   private setupFyleQboMappingFormArray(mappings: MappingList[]): void {
     this.fyleQboMappingFormArray = mappings.map((mapping: MappingList) => {
       return this.formBuilder.group({
@@ -124,11 +116,8 @@ export class DashboardResolveMappingErrorDialogComponent implements OnInit {
   private setupPage(): void {
     this.workspaceService.getWorkspaceGeneralSettings().subscribe(workspaceGeneralSetting => {
       this.workspaceGeneralSetting = workspaceGeneralSetting;
-      let displayName = undefined;
-      if (this.data.destinationType === 'ACCOUNT') {
-        displayName = this.workspaceGeneralSetting.import_items ? 'Item,Account': 'Account';
-      }
 
+      const displayName = this.mappingService.constructDisplayNameFilter(this.data.destinationType, this.workspaceGeneralSetting.import_items);
       this.mappingService.getQBODestinationAttributes(this.data.destinationType, displayName).subscribe((qboData: DestinationAttribute[]) => {
         this.qboData = qboData;
         const mappings: MappingList[] = [];
@@ -148,6 +137,7 @@ export class DashboardResolveMappingErrorDialogComponent implements OnInit {
           });
         });
 
+        this.destinationHeader = this.mappingService.displayDestinationTypeHeader(this.data.destinationType, this.workspaceGeneralSetting.import_items);
         this.mappings = new MatTableDataSource(mappings);
         this.setupFyleQboMappingFormArray(mappings);
         this.setupForm();

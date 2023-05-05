@@ -11,6 +11,8 @@ import { ConditionField } from '../../models/misc/skip-export.model';
 import { ExpenseField } from '../../models/misc/expense-field.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
+import { TitleCasePipe } from '@angular/common';
+import { SnakeCaseToSpaceCase } from 'src/app/shared/pipes/snake-case-to-space-case.pipe';
 
 @Injectable({
   providedIn: 'root'
@@ -180,4 +182,22 @@ export class MappingService {
   deleteMappingSetting(mappingSettingId: number): Observable<{}> {
     return this.apiService.delete(`/workspaces/${this.workspaceId}/mappings/settings/${mappingSettingId}/`);
   }
+
+  displayDestinationTypeHeader(destinationType: string | undefined, importItems: boolean): string | undefined{
+    if (destinationType === 'ACCOUNT' && importItems){
+      return 'Account/Products and Services';
+    }
+
+    let destinationTypeHeader = new TitleCasePipe().transform(destinationType);
+    destinationTypeHeader = new SnakeCaseToSpaceCase().transform(destinationTypeHeader);
+    return destinationTypeHeader;
+  }
+
+  constructDisplayNameFilter(destinationType: string | undefined, importItems: boolean ): string | undefined {
+    if (destinationType === 'ACCOUNT'){
+      return importItems ? 'Item,Account': 'Account';
+    }
+    return undefined;
+  }
+
 }
