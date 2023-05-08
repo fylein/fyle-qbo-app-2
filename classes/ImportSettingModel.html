@@ -136,8 +136,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/app/core/models/configuration/import-setting.model.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/app/core/models/configuration/import-setting.model.ts:55</a></div>
                 </td>
             </tr>
 
@@ -219,8 +219,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/app/core/models/configuration/import-setting.model.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/app/core/models/configuration/import-setting.model.ts:73</a></div>
                 </td>
             </tr>
 
@@ -290,8 +290,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/app/core/models/configuration/import-setting.model.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/app/core/models/configuration/import-setting.model.ts:77</a></div>
                 </td>
             </tr>
 
@@ -370,6 +370,7 @@ import { WorkspaceGeneralSetting } from &quot;../db/workspace-general-setting.mo
 
 export type ImportSettingWorkspaceGeneralSetting &#x3D; {
   import_categories: boolean,
+  import_items: boolean,
   import_vendors_as_merchants: boolean,
   charts_of_accounts: string[],
   import_tax_codes: boolean
@@ -419,6 +420,7 @@ export class ImportSettingModel {
     const employeeSettingPayload: ImportSettingPost &#x3D; {
       workspace_general_settings: {
         import_categories: importSettingsForm.get(&#x27;chartOfAccount&#x27;)?.value,
+        import_items: importSettingsForm.get(&#x27;importItems&#x27;)?.value,
         charts_of_accounts: ImportSettingModel.formatChartOfAccounts(importSettingsForm.get(&#x27;chartOfAccountTypes&#x27;)?.value),
         import_tax_codes: importSettingsForm.get(&#x27;taxCode&#x27;)?.value,
         import_vendors_as_merchants: importSettingsForm.get(&#x27;importVendorsAsMerchants&#x27;)?.value

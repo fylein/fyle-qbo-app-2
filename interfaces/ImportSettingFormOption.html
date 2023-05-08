@@ -153,6 +153,7 @@ import { WorkspaceGeneralSetting } from &quot;../db/workspace-general-setting.mo
 
 export type ImportSettingWorkspaceGeneralSetting &#x3D; {
   import_categories: boolean,
+  import_items: boolean,
   import_vendors_as_merchants: boolean,
   charts_of_accounts: string[],
   import_tax_codes: boolean
@@ -202,6 +203,7 @@ export class ImportSettingModel {
     const employeeSettingPayload: ImportSettingPost &#x3D; {
       workspace_general_settings: {
         import_categories: importSettingsForm.get(&#x27;chartOfAccount&#x27;)?.value,
+        import_items: importSettingsForm.get(&#x27;importItems&#x27;)?.value,
         charts_of_accounts: ImportSettingModel.formatChartOfAccounts(importSettingsForm.get(&#x27;chartOfAccountTypes&#x27;)?.value),
         import_tax_codes: importSettingsForm.get(&#x27;taxCode&#x27;)?.value,
         import_vendors_as_merchants: importSettingsForm.get(&#x27;importVendorsAsMerchants&#x27;)?.value
