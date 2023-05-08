@@ -11,6 +11,8 @@ import { ConditionField } from '../../models/misc/skip-export.model';
 import { ExpenseField } from '../../models/misc/expense-field.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
+import { TitleCasePipe } from '@angular/common';
+import { SnakeCaseToSpaceCase } from 'src/app/shared/pipes/snake-case-to-space-case.pipe';
 
 @Injectable({
   providedIn: 'root'
@@ -28,20 +30,20 @@ export class MappingService {
     private workspaceService: WorkspaceService
   ) { }
 
-  getQBODestinationAttributes(attributeTypes: string | string[], active: boolean = false): Observable<DestinationAttribute[]> {
-    const params: { attribute_types: string | string[], active?: boolean } = {
+  getQBODestinationAttributes(attributeTypes: string | string[], displayName?:string): Observable<DestinationAttribute[]> {
+    const params: { attribute_types: string | string[], display_name?:string } = {
       attribute_types: attributeTypes
     };
 
-    if (active) {
-      params.active = true;
+    if (displayName) {
+      params.display_name = displayName;
     }
 
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/destination_attributes/`, params);
   }
 
-  getSearchedQBODestinationAttributes(attributeType: string, searchTerm?: string | void, active: boolean = false): Observable<DestinationAttribute[]> {
-    const params: { attribute_type: string | string[], active?: boolean, search_term?: string } = {
+  getSearchedQBODestinationAttributes(attributeType: string, searchTerm?: string | void, displayName?:string, active: boolean = false): Observable<DestinationAttribute[]> {
+    const params: { attribute_type: string | string[], active?: boolean, search_term?: string, display_name?: string| string[]} = {
       attribute_type: attributeType
     };
 
@@ -51,6 +53,10 @@ export class MappingService {
 
     if (searchTerm) {
       params.search_term = searchTerm;
+    }
+
+    if (displayName) {
+      params.display_name = displayName;
     }
 
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/mapping_options/`, params);
@@ -176,4 +182,22 @@ export class MappingService {
   deleteMappingSetting(mappingSettingId: number): Observable<{}> {
     return this.apiService.delete(`/workspaces/${this.workspaceId}/mappings/settings/${mappingSettingId}/`);
   }
+
+  displayDestinationTypeHeader(destinationType: string | undefined, importItems: boolean): string | undefined{
+    if (destinationType === 'ACCOUNT' && importItems){
+      return 'Account/Products and Services';
+    }
+
+    let destinationTypeHeader = new TitleCasePipe().transform(destinationType);
+    destinationTypeHeader = new SnakeCaseToSpaceCase().transform(destinationTypeHeader);
+    return destinationTypeHeader;
+  }
+
+  constructDisplayNameFilter(destinationType: string | undefined, importItems: boolean ): string | undefined {
+    if (destinationType === 'ACCOUNT'){
+      return importItems ? 'Item,Account': 'Account';
+    }
+    return undefined;
+  }
+
 }

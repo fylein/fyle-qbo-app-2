@@ -8,9 +8,11 @@ import { EmployeeMappingModel } from 'src/app/core/models/db/employee-mapping.mo
 import { Error } from 'src/app/core/models/db/error.model';
 import { MinimalMappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { MappingList, MappingModel, ResolveMappingError } from 'src/app/core/models/db/mapping.model';
+import { WorkspaceGeneralSetting } from 'src/app/core/models/db/workspace-general-setting.model';
 import { EmployeeFieldMapping, MappingState, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
+import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 
 @Component({
   selector: 'app-dashboard-resolve-mapping-error-dialog',
@@ -20,6 +22,8 @@ import { MappingService } from 'src/app/core/services/misc/mapping.service';
 export class DashboardResolveMappingErrorDialogComponent implements OnInit {
 
   isLoading: boolean = true;
+
+  workspaceGeneralSetting: WorkspaceGeneralSetting;
 
   mappings: MatTableDataSource<MappingList> = new MatTableDataSource<MappingList>([]);
 
@@ -37,13 +41,16 @@ export class DashboardResolveMappingErrorDialogComponent implements OnInit {
 
   SimpleSearchType = SimpleSearchType;
 
+  destinationHeader: string | undefined;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ResolveMappingError,
     public dialogRef: MatDialogRef<DashboardResolveMappingErrorDialogComponent>,
     private formBuilder: UntypedFormBuilder,
     public helperService: HelperService,
     private mappingService: MappingService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private workspaceService: WorkspaceService
   ) { }
 
   private showSuccessMessage(): void {
@@ -107,32 +114,35 @@ export class DashboardResolveMappingErrorDialogComponent implements OnInit {
   }
 
   private setupPage(): void {
-    this.mappingService.getQBODestinationAttributes(this.data.destinationType).subscribe((qboData: DestinationAttribute[]) => {
-      this.qboData = qboData;
+    this.workspaceService.getWorkspaceGeneralSettings().subscribe(workspaceGeneralSetting => {
+      this.workspaceGeneralSetting = workspaceGeneralSetting;
 
-      const mappings: MappingList[] = [];
-
-      this.data.fyleAttributes.forEach((error: Error, index: number) => {
-        mappings.push({
-          fyle: {
-            id: error.expense_attribute.id,
-            value: error.expense_attribute.value
-          },
-          qbo: {
-            id: '',
-            value: ''
-          },
-          state: MappingState.MAPPED,
-          autoMapped: error.expense_attribute.auto_mapped,
-          index: index
+      const displayName = this.mappingService.constructDisplayNameFilter(this.data.destinationType, this.workspaceGeneralSetting.import_items);
+      this.mappingService.getQBODestinationAttributes(this.data.destinationType, displayName).subscribe((qboData: DestinationAttribute[]) => {
+        this.qboData = qboData;
+        const mappings: MappingList[] = [];
+        this.data.fyleAttributes.forEach((error: Error, index: number) => {
+          mappings.push({
+            fyle: {
+              id: error.expense_attribute.id,
+              value: error.expense_attribute.value
+            },
+            qbo: {
+              id: '',
+              value: ''
+            },
+            state: MappingState.MAPPED,
+            autoMapped: error.expense_attribute.auto_mapped,
+            index: index
+          });
         });
+
+        this.destinationHeader = this.mappingService.displayDestinationTypeHeader(this.data.destinationType, this.workspaceGeneralSetting.import_items);
+        this.mappings = new MatTableDataSource(mappings);
+        this.setupFyleQboMappingFormArray(mappings);
+        this.setupForm();
+        this.isLoading = false;
       });
-
-      this.mappings = new MatTableDataSource(mappings);
-      this.setupFyleQboMappingFormArray(mappings);
-
-      this.setupForm();
-      this.isLoading = false;
     });
   }
 

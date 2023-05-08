@@ -25,7 +25,9 @@ describe('MappingTableComponent', () => {
     service = {
       getSearchedQBODestinationAttributes: () => of(destinationAttribute),
       getQBOEmployees: () => of(qboData),
-      getQBOVendors: () => of(qboData)
+      getQBOVendors: () => of(qboData),
+      displayDestinationTypeHeader: () => 'Employee',
+      constructDisplayNameFilter: () => of(undefined)
     };
     await TestBed.configureTestingModule({
       imports: [SharedModule, BrowserAnimationsModule, HttpClientTestingModule],

@@ -22,6 +22,7 @@ const workspaceresponse:WorkspaceGeneralSetting = {
   import_categories: false,
   import_projects: false,
   import_tax_codes: false,
+  import_items: false,
   import_vendors_as_merchants: false,
   je_single_credit_line: true,
   map_fyle_cards_qbo_account: true,
