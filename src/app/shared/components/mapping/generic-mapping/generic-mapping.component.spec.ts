@@ -45,7 +45,7 @@ describe('GenericMappingComponent', () => {
       getMappings: () => of(getMappingsresponse),
       postMapping: () => of(postMappingsresponse),
       constructDisplayNameFilter: () => of('Item,Account'),
-      displayDestinationTypeHeader: () => of('Account'),
+      displayDestinationTypeHeader: () => 'Account'
 
     };
     await TestBed.configureTestingModule({

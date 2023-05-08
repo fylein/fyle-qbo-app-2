@@ -26,8 +26,8 @@ describe('MappingTableComponent', () => {
       getSearchedQBODestinationAttributes: () => of(destinationAttribute),
       getQBOEmployees: () => of(qboData),
       getQBOVendors: () => of(qboData),
-      displayDestinationTypeHeader: () => of('Employee'),
-      constructDisplayNameFilter: () => of(undefined),
+      displayDestinationTypeHeader: () => 'Employee',
+      constructDisplayNameFilter: () => of(undefined)
     };
     await TestBed.configureTestingModule({
       imports: [SharedModule, BrowserAnimationsModule, HttpClientTestingModule],
@@ -85,7 +85,7 @@ describe('MappingTableComponent', () => {
     const mappingRow = fixture.debugElement.queryAll(By.css('h4'));
     const mappingRowP = fixture.debugElement.queryAll(By.css('td'));
     expect(mappingRow[0].nativeElement.innerText).toBe('Employee in Fyle');
-    expect(mappingRow[1].nativeElement.innerText).toBe('Vendor in QuickBooks Online');
+    expect(mappingRow[1].nativeElement.innerText).toBe('Employee in QuickBooks Online');
     expect(mappingRowP[1].children[0].children[0].children[1].children[0].nativeElement.innerText).toBe('');
   });
 
