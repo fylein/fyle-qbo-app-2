@@ -49,6 +49,8 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   is_simplify_report_closure_enabled: boolean = false;
 
+  import_items: boolean = false;
+
   expenseStateOptions: ExportSettingFormOption[];
 
   cccExpenseStateOptions: ExportSettingFormOption[];
@@ -454,6 +456,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       this.vendors = response[1].VENDOR;
       this.expenseAccounts = this.bankAccounts.concat(this.cccAccounts);
       this.is_simplify_report_closure_enabled = response[2].is_simplify_report_closure_enabled;
+      this.import_items = response[2].import_items;
 
       this.cccExpenseStateOptions = [
         {
@@ -539,11 +542,20 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       in the <b>Advanced settings</b>. <br><br>Please revisit the <b>Advanced settings</b> to check and enable the features that could help customize and
       automate your integration workflows.`;
 
+    let content = '';
+    // If both are not none and it is an update case else for the new addition case
     if (updatedConfiguration !== 'None' && existingConfiguration !== 'None') {
-      return configurationUpdate.replace('$exportType', exportType).replace('$existingExportType', existingConfiguration.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())).replace('$updatedExportType', updatedConfiguration.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase()));
+      content = configurationUpdate.replace('$exportType', exportType).replace('$existingExportType', existingConfiguration.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase())).replace('$updatedExportType', updatedConfiguration.toLowerCase().replace(/^\w/, (c: string) => c.toUpperCase()));
+    } else {
+      content = newConfiguration.replace('$exportType', exportType);
     }
 
-    return newConfiguration.replace('$exportType', exportType);
+    // If any exoprt-type has been changed to journal entry, then add the below content and return
+    if (updatedConfiguration === ReimbursableExpensesObject.JOURNAL_ENTRY || updatedConfiguration === CorporateCreditCardExpensesObject.JOURNAL_ENTRY) {
+      return `${content} Also, Products/services previously imported as categories in Fyle will be disabled.`;
+    }
+    // If any export-type is not journal entry, simply return the normal constructed content
+    return content;
   }
 
   private constructWarningMessage(): string {
