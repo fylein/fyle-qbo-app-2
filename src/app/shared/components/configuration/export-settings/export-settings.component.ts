@@ -550,11 +550,11 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       content = newConfiguration.replace('$exportType', exportType);
     }
 
-    // If any exoprt-type has been changed to journal entry, then add the below content and return
-    if (updatedConfiguration === ReimbursableExpensesObject.JOURNAL_ENTRY || updatedConfiguration === CorporateCreditCardExpensesObject.JOURNAL_ENTRY) {
-      return `${content} Also, Products/services previously imported as categories in Fyle will be disabled.`;
+    // If any exoprt-type has been changed to journal entry and has import_items set to true, then add the below content and return
+    if ((updatedConfiguration === ReimbursableExpensesObject.JOURNAL_ENTRY || updatedConfiguration === CorporateCreditCardExpensesObject.JOURNAL_ENTRY) && this.import_items) {
+      return `${content} <br><br>Also, Products/services previously imported as categories in Fyle will be disabled.`;
     }
-    // If any export-type is not journal entry, simply return the normal constructed content
+    // If any export-type is not journal entry or import_items is set to false, simply return the normal constructed content
     return content;
   }
 
