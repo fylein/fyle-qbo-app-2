@@ -220,7 +220,7 @@ describe('update configuration', () => {
     cy.get('.expense-form-preview--close-icon').click()
 
     cy.getMatToggle(1).click()
-    cy.selectConfigurationField(5, 'Payment Processing')
+    cy.selectConfigurationField(5, 'Approved')
     cy.selectConfigurationField(6, 'Credit Card Purchase')
 
     cy.get('.configuration-select-field--preview-text').eq(1).contains('here').click()
