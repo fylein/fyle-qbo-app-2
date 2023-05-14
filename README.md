@@ -59,7 +59,7 @@ Follow instructions mentioned in [Integrations Central](https://github.com/fylei
 * Make sure the app and api is up and running
 * To open Cypress UI and run end to end test spec wise, use this command -
     ```bash
-    npm run cypress_open
+    npm run cypress_open 
     ```
     <b>Note</b>: *Running this command will decrease the code coverage since we run 1 test at a time*
 

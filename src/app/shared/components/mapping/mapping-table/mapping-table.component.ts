@@ -22,6 +22,8 @@ export class MappingTableComponent implements OnInit {
 
   @Input() destinationType: string | undefined;
 
+  @Input() importItems: boolean;
+
   @Input() mappingForm: UntypedFormGroup[];
 
   @Input() qboData: DestinationAttribute[];
@@ -37,6 +39,8 @@ export class MappingTableComponent implements OnInit {
   isSearchInProgress: boolean = false;
 
   existingQboOptions: DestinationAttribute[];
+
+  destinationHeader: string | undefined;
 
   constructor(
     public helperService: HelperService,
@@ -96,7 +100,8 @@ export class MappingTableComponent implements OnInit {
         qboData$ = this.mappingService.getQBOVendors(searchTerm);
       } else {
         const attribute = this.destinationType ? this.destinationType : QBOField.ACCOUNT;
-        qboData$ = this.mappingService.getSearchedQBODestinationAttributes(attribute, searchTerm);
+        const displayName = this.mappingService.constructDisplayNameFilter(this.destinationType, this.importItems);
+        qboData$ = this.mappingService.getSearchedQBODestinationAttributes(attribute, searchTerm, displayName);
       }
       qboData$.subscribe((response) => {
         this.prepareQBOOptions(this.existingQboOptions, response);
@@ -116,6 +121,7 @@ export class MappingTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.existingQboOptions = this.qboData.concat();
+    this.destinationHeader = this.mappingService.displayDestinationTypeHeader(this.destinationType, this.importItems);
     this.toolTipContent =
       this.sourceType === FyleField.CATEGORY
         ?

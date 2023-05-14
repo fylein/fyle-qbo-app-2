@@ -32,6 +32,15 @@
           </div>
         </div>
 
+        <div *ngIf=" workspaceGeneralSettings.reimbursable_expenses_object !== 'JOURNAL ENTRY' && workspaceGeneralSettings.corporate_credit_card_expenses_object !== 'JOURNAL ENTRY' ">
+          <app-configuration-toggle-field
+            [form]="importSettingsForm"
+            [label]="'Import Products/Services from QuickBooks Online'"
+            [subLabel]="'Products/services from QuickBooks Online will be imported as Categories in Fyle'"
+            [formControllerName]="'importItems'">
+          </app-configuration-toggle-field>
+        </div>
+
         <div formArrayName="expenseFields" class="paragraph">
           <div *ngFor="let expenseField of expenseFields.controls; let i = index" [formGroupName]="i">
             <div class="import-settings--field-toggle-section">

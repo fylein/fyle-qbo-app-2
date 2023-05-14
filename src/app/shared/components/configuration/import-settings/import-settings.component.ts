@@ -4,7 +4,7 @@ import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { ClickEvent, ConfigurationCtaText, MappingDestinationField, OnboardingState, OnboardingStep, ProgressPhase, SimpleSearchPage, SimpleSearchType, UpdateEvent } from 'src/app/core/models/enum/enum.model';
+import { ClickEvent, ConfigurationCtaText, MappingDestinationField, OnboardingState, OnboardingStep, ProgressPhase, SimpleSearchPage, SimpleSearchType, UpdateEvent, ReimbursableExpensesObject, CorporateCreditCardExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { ExpenseFieldsFormOption, ImportSettingGet, ImportSettingModel } from 'src/app/core/models/configuration/import-setting.model';
 import { MappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
@@ -20,6 +20,7 @@ import { PreviewDialogComponent } from '../preview-dialog/preview-dialog.compone
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { ClickEventAdditionalProperty } from 'src/app/core/models/misc/tracking.model';
+import { WorkspaceGeneralSetting } from 'src/app/core/models/db/workspace-general-setting.model';
 
 @Component({
   selector: 'app-import-settings',
@@ -31,6 +32,8 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
 
   saveInProgress: boolean;
+
+  workspaceGeneralSettings: WorkspaceGeneralSetting;
 
   isOnboarding: boolean = false;
 
@@ -156,6 +159,7 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
 
     this.importSettingsForm = this.formBuilder.group({
       chartOfAccount: [this.importSettings.workspace_general_settings.import_categories],
+      importItems: [this.importSettings.workspace_general_settings.import_items],
       chartOfAccountTypes: this.formBuilder.array(chartOfAccountTypeFormArray),
       expenseFields: this.formBuilder.array(expenseFieldsFormArray),
       taxCode: [this.importSettings.workspace_general_settings.import_tax_codes],
@@ -179,6 +183,7 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
       this.importSettings = response[0];
       this.fyleExpenseFields = response[1].map(field => field.attribute_type);
       this.autoCreateMerchantsAsVendors = response[3].auto_create_merchants_as_vendors;
+      this.workspaceGeneralSettings = response[3];
 
       // Remove custom mapped Fyle options
       const customMappedFyleFields = this.importSettings.mapping_settings.filter(setting => !setting.import_to_fyle).map(setting => setting.source_field);

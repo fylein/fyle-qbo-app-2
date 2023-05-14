@@ -7,6 +7,7 @@ import { WorkspaceGeneralSetting } from "../db/workspace-general-setting.model";
 
 export type ImportSettingWorkspaceGeneralSetting = {
   import_categories: boolean,
+  import_items: boolean,
   import_vendors_as_merchants: boolean,
   charts_of_accounts: string[],
   import_tax_codes: boolean
@@ -56,6 +57,7 @@ export class ImportSettingModel {
     const employeeSettingPayload: ImportSettingPost = {
       workspace_general_settings: {
         import_categories: importSettingsForm.get('chartOfAccount')?.value,
+        import_items: importSettingsForm.get('importItems')?.value,
         charts_of_accounts: ImportSettingModel.formatChartOfAccounts(importSettingsForm.get('chartOfAccountTypes')?.value),
         import_tax_codes: importSettingsForm.get('taxCode')?.value,
         import_vendors_as_merchants: importSettingsForm.get('importVendorsAsMerchants')?.value
