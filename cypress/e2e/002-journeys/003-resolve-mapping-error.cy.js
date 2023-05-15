@@ -72,6 +72,6 @@ describe('resolve mapping error journey', () => {
     cy.exportsPolling()
 
     // Integration Errors should not be visible since it is resolved
-    cy.get('app-zero-state-with-illustration').should('not.contain', 'Integration Errors')
+    cy.get('.errors--integration-error-contents').should('not.contain', 'Integration Errors')
   })
 })

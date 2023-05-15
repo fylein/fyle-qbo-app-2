@@ -300,9 +300,9 @@ describe('update configuration', () => {
     cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
 
     cy.get('@categoryMappingRow').find('.mapping-table--form-field').click()
-    cy.get('.search-select--search-input').eq(1).type('Opening Balance Equity')
+    cy.get('.search-select--search-input').eq(1).type('Utilities')
     cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
-    cy.get('.mat-option').contains('Opening Balance Equity').click()
+    cy.get('.mat-option').contains('Utilities').click()
     // TODO: change this 1000ms to proper API interception later
     cy.wait(1000)
   })
