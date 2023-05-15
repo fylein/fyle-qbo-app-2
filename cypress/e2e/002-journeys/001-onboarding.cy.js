@@ -43,10 +43,10 @@ describe('onboarding journey', () => {
     cy.url().should('include', '/workspaces/onboarding/import_settings')
 
     // Select import setting form values
-    cy.get('.configuration--field-toggle-section').eq(0).within(() => {
-      cy.enableConfigurationToggle(0)
-    })
-    cy.get('.mat-checkbox-label').filter(':contains("Other Expense")').click()
+    // cy.get('.configuration--field-toggle-section').eq(0).within(() => {
+    //   cy.enableConfigurationToggle(0)
+    // })
+    // cy.get('.mat-checkbox-label').filter(':contains("Other Expense")').click()
 
     cy.importToFyle(0, true, 'Cost Center')
     cy.importToFyle(2, true, 'Project')

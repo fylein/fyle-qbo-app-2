@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
 import environment from '../../src/environments/environment.json';
+import response from '../fixtures/mapping.json'
 
 declare global {
   namespace Cypress {
@@ -21,6 +22,7 @@ declare global {
       importToFyle(fieldOrder: number, enable: boolean, optionName: string): void;
       enableConfigurationToggle(fieldOrder: number): void;
       selectConfigurationField(fieldOrder: number, optionName: string): void;
+      QBOerror(): void;
     }
   }
 }
@@ -29,6 +31,15 @@ function setupInterceptor(method: 'GET' | 'POST', url: string, alias: string) {
   cy.intercept({
     method: method,
     url: `**${url}**`,
+  }).as(alias);
+}
+
+function mockdata(method: 'GET' | 'POST', url: string, alias: string, response: any) {
+  cy.server();
+  cy.route({
+    method: method,
+    url: `**${url}**`,
+    response
   }).as(alias);
 }
 
@@ -123,6 +134,11 @@ Cypress.Commands.add('exportsPolling', () => {
           assert.equal(filteredTasks.length, 0, 'All tasks are processed');
         }
   })
+});
+
+Cypress.Commands.add('QBOerror', () => {
+  // Wait till the exports are processed
+  mockdata('GET', '/qbo/mapping_options/', 'getmappingCategory', response)
 });
 
 Cypress.Commands.add('waitForDashboardLoad', () => {

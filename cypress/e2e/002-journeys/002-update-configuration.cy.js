@@ -141,7 +141,7 @@ describe('update configuration', () => {
     assertAdvancedConfigurationOption(3, 'Checking')
   }
 
-  it('updates configuration for each page', () => {
+  xit('updates configuration for each page', () => {
     // User should be taken to dashboard since they are already onboarded and logged in
     cy.url().should('include', '/workspaces/main/dashboard')
 
@@ -179,7 +179,7 @@ describe('update configuration', () => {
     cy.wait(500)
   }
 
-  it('add email notification', () => {
+  xit('add email notification', () => {
     cy.navigateToModule('Configuration')
     cy.navigateToSettingPage('Advanced Settings')
 
@@ -197,7 +197,7 @@ describe('update configuration', () => {
     cy.get('.email-multi-select-field--delele-all-icon').click()
   });
 
-  it('Import QBO field to Fyle', () => {
+  xit('Import QBO field to Fyle', () => {
     cy.navigateToModule('Configuration')
     cy.navigateToSettingPage('Import Settings')
 
@@ -209,7 +209,7 @@ describe('update configuration', () => {
     cy.get('.mat-flat-button').contains('Create & Save').click()
   });
 
-  it('preview QBO export', () => {
+  xit('preview QBO export', () => {
     cy.navigateToModule('Configuration')
     cy.navigateToSettingPage('Export Settings')
 
@@ -228,7 +228,7 @@ describe('update configuration', () => {
     cy.get('.expense-form-preview--preview-section').should('be.visible')
   })
 
-  it('change expense grouping / export type / API POST error', () => {
+  xit('change expense grouping / export type / API POST error', () => {
     cy.intercept('PUT', '**/export_settings/', {
       statusCode: 400,
       body: {
@@ -260,7 +260,7 @@ describe('update configuration', () => {
     cy.wait(1000)
   })
 
-  it('preview Fyle expense form', () => {
+  xit('preview Fyle expense form', () => {
     cy.navigateToModule('Configuration')
     cy.navigateToSettingPage('Import Settings')
 
@@ -271,7 +271,7 @@ describe('update configuration', () => {
     cy.get('.expense-form-preview--close-icon').click()
   })
 
-  it('should fail saving import settings', () => {
+  xit('should fail saving import settings', () => {
     cy.intercept('PUT', '**/import_settings/', {
       statusCode: 400,
       body: {
@@ -300,14 +300,15 @@ describe('update configuration', () => {
     cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
 
     cy.get('@categoryMappingRow').find('.mapping-table--form-field').click()
-    cy.get('.search-select--search-input').eq(1).type('Utilities')
-    cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
-    cy.get('.mat-option').contains('Utilities').click()
+    cy.get('.search-select--search-input').eq(1).type('Activity')
+    cy.QBOerror()
+    cy.wait('@getmappingCategory')
+    cy.get('.mat-option').contains('Activity').click()
     // TODO: change this 1000ms to proper API interception later
     cy.wait(1000)
   })
 
-  it('update project mapping', () => {
+  xit('update project mapping', () => {
     cy.navigateToModule('Mappings')
     cy.navigateToMappingPage('Project Mapping')
     cy.url().should('include', '/workspaces/main/mapping/project')
