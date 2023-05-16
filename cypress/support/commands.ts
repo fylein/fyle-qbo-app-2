@@ -1,7 +1,7 @@
-/// <reference types="cypress" />
+// / <reference types="cypress" />
 
 import environment from '../../src/environments/environment.json';
-import response from '../fixtures/mapping.json'
+import response from '../fixtures/mapping.json';
 
 declare global {
   namespace Cypress {
@@ -138,7 +138,7 @@ Cypress.Commands.add('exportsPolling', () => {
 
 Cypress.Commands.add('QBOerror', () => {
   // Wait till the exports are processed
-  mockdata('GET', '/qbo/mapping_options/', 'getmappingCategory', response)
+  mockdata('GET', '/qbo/mapping_options/', 'getmappingCategory', response);
 });
 
 Cypress.Commands.add('waitForDashboardLoad', () => {
