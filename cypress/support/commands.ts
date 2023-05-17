@@ -133,7 +133,7 @@ Cypress.Commands.add('exportsPolling', () => {
         } else {
           assert.equal(filteredTasks.length, 0, 'All tasks are processed');
         }
-  })
+  });
 });
 
 Cypress.Commands.add('QBOerror', () => {
