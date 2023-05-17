@@ -127,7 +127,7 @@ Cypress.Commands.add('exportsPolling', () => {
   cy.wait('@tasksPolling').its('response.body').then((body) => {
     const filteredTasks = body.results.filter(function (task: any) {
       return task.status === 'IN_PROGRESS' || task.status === 'ENQUEUED';
-    })
+    });
     if (filteredTasks.length > 0) {
           cy.exportsPolling();
         } else {
