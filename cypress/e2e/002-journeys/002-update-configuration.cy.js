@@ -2,6 +2,7 @@
 
 describe('update configuration', () => {
   beforeEach(() => {
+    cy.intercept('GET', '**/qbo/mapping_options/**', { fixture: 'mapping.json' })
     cy.ignoreTokenHealth()
     cy.login()
     cy.visit('/')
@@ -301,8 +302,6 @@ describe('update configuration', () => {
 
     cy.get('@categoryMappingRow').find('.mapping-table--form-field').click()
     cy.get('.search-select--search-input').eq(1).type('Activity')
-    cy.QBOerror()
-    cy.wait('@getmappingCategory')
     cy.get('.mat-option').contains('Activity').click()
     // TODO: change this 1000ms to proper API interception later
     cy.wait(1000)

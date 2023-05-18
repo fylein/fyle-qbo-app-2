@@ -57,8 +57,6 @@ describe('resolve mapping error journey', () => {
     cy.get('.dashboard-resolve-mapping-dialog--heading').should('be.visible')
     cy.get('.mat-column-qbo').eq(1).contains('Select Vendor').click()
     cy.selectMatOption('Amazon')
-    cy.get('.mat-column-qbo').eq(2).contains('Select Vendor').click()
-    cy.selectMatOption('Amazon')
 
     cy.wait('@postEmployeeMapping').its('response.statusCode').should('equal', 201)
 
