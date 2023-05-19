@@ -23,7 +23,7 @@ describe('onboarding journey', () => {
 
     // Expand reimbursable expenses section
     cy.enableConfigurationToggle(0)
-    cy.selectConfigurationField(0, 'Payment Processing')
+    cy.selectConfigurationField(0, 'Processing')
     cy.selectConfigurationField(1, 'Check')
     cy.selectConfigurationField(2, 'Checking')
     cy.selectConfigurationField(3, 'Report')
@@ -31,7 +31,7 @@ describe('onboarding journey', () => {
 
     // Expand non-reimbursable expenses section
     cy.enableConfigurationToggle(1)
-    cy.selectConfigurationField(5, 'Payment Processing')
+    cy.selectConfigurationField(5, 'Approved')
     cy.selectConfigurationField(6, 'Credit Card Purchase')
     cy.selectConfigurationField(7, 'Visa')
 

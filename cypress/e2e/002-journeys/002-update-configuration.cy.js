@@ -2,6 +2,7 @@
 
 describe('update configuration', () => {
   beforeEach(() => {
+    cy.intercept('GET', '**/qbo/mapping_options/**', { fixture: 'mapping.json' })
     cy.ignoreTokenHealth()
     cy.login()
     cy.visit('/')
@@ -220,7 +221,7 @@ describe('update configuration', () => {
     cy.get('.expense-form-preview--close-icon').click()
 
     cy.getMatToggle(1).click()
-    cy.selectConfigurationField(5, 'Payment Processing')
+    cy.selectConfigurationField(5, 'Approved')
     cy.selectConfigurationField(6, 'Credit Card Purchase')
 
     cy.get('.configuration-select-field--preview-text').eq(1).contains('here').click()
@@ -300,9 +301,8 @@ describe('update configuration', () => {
     cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
 
     cy.get('@categoryMappingRow').find('.mapping-table--form-field').click()
-    cy.get('.search-select--search-input').eq(1).type('Opening Balance Equity')
-    cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
-    cy.get('.mat-option').contains('Opening Balance Equity').click()
+    cy.get('.search-select--search-input').eq(1).type('Activity')
+    cy.get('.mat-option').contains('Activity').click()
     // TODO: change this 1000ms to proper API interception later
     cy.wait(1000)
   })

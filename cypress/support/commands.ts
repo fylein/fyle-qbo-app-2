@@ -113,14 +113,15 @@ Cypress.Commands.add('navigateToSettingPage', (pageName: string) => {
 
 Cypress.Commands.add('exportsPolling', () => {
   // Wait till the exports are processed
-  cy.wait('@tasksPolling').then((http) => {
-    const filteredTasks = http?.response?.body.results.filter((task: any) => (task.status === 'IN_PROGRESS' || task.status === 'ENQUEUED')).length;
-
-    if (filteredTasks > 0) {
-      cy.exportsPolling();
-    } else {
-      assert.equal(filteredTasks, 0, 'All tasks are processed');
-    }
+  cy.wait('@tasksPolling').its('response.body').then((body) => {
+    const filteredTasks = body.results.filter(function (task: any) {
+      return task.status === 'IN_PROGRESS' || task.status === 'ENQUEUED';
+    });
+    if (filteredTasks.length > 0) {
+          cy.exportsPolling();
+        } else {
+          assert.equal(filteredTasks.length, 0, 'All tasks are processed');
+        }
   });
 });
 

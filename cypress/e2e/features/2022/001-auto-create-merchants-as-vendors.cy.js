@@ -35,8 +35,8 @@ describe('auto create vendor', () => {
     cy.navigateToSettingPage('Export Settings')
     cy.enableConfigurationToggle(1)
 
-    cy.selectConfigurationField(5, 'Bill')
-    cy.selectConfigurationField(6, 'Alexandra Fitzgerald')
+    cy.selectConfigurationField(6, 'Bill')
+    cy.selectConfigurationField(7, 'Alexandra Fitzgerald')
 
     cy.saveSetting('Save')
 
@@ -46,8 +46,8 @@ describe('auto create vendor', () => {
 
     cy.navigateToSettingPage('Export Settings')
 
-    cy.selectConfigurationField(5, 'Credit Card Purchase')
-    cy.selectConfigurationField(6, 'Visa')
+    cy.selectConfigurationField(6, 'Credit Card Purchase')
+    cy.selectConfigurationField(7, 'Visa')
 
     cy.saveSetting('Save')
     cy.url().should('include', '/workspaces/main/dashboard')

@@ -67,12 +67,12 @@ describe('category mapping view/create/update', () => {
     cy.get('.mapping-header-section--card-content-text-header').contains('Unmapped Categories').click()
     cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
     cy.get('.mapping-table--form-field').eq(0).contains('Select Account').click()
-    cy.get('.search-select--search-input').eq(1).type('food')
+    cy.get('.search-select--search-input').eq(1).type('others')
     cy.get('.mat-option').eq(0).contains('Searching...')
     cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
-    cy.get('.mat-option').eq(0).contains('Food')
+    cy.get('.mat-option').eq(0).contains('Others')
     cy.get('.mat-option').eq(0).click()
-    cy.get('.mapping-table--form-field').eq(0).contains('Food')
+    cy.get('.mapping-table--form-field').eq(0).contains('Others')
   })
 
   it('advanced search without data', () => {
