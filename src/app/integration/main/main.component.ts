@@ -179,7 +179,7 @@ export class MainComponent implements OnInit {
         sourceFieldRoutes.push(`mapping/${mappingSetting.source_field.toLowerCase()}`);
         this.modules[2].childPages.push({
           name: `${mappingSetting.source_field.toLowerCase()} Mapping`,
-          route: `mapping/${mappingSetting.source_field.toLowerCase()}`,
+          route: `mapping/${encodeURIComponent(mappingSetting.source_field.toLowerCase())}`,
           isActive: false
         });
       }
