@@ -9,6 +9,7 @@ export class SnakeCaseToSpaceCase implements PipeTransform {
     if (value && typeof value === 'string') {
       let replacedValue = value.replace(/_/g, ' '); // Replace underscores with spaces
       replacedValue = replacedValue.replace(/%2f/gi, '/'); // Replace %2f with /
+      replacedValue = replacedValue.replace(/%252f/gi, '/'); // Replace %252f with /
       return replacedValue;
     }
 
