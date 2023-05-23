@@ -3,7 +3,7 @@
 describe('custom mapping create/view/delete', () => {
   beforeEach(() => {
     cy.ignoreTokenHealth()
-    cy.login()
+    cy.microActionsLogin()
     cy.visit('/')
     cy.navigateToModule('Mappings')
     cy.navigateToMappingPage('Custom Mapping')

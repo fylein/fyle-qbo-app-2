@@ -2,7 +2,7 @@
 
 describe('auth module', () => {
   beforeEach(() => {
-    cy.login()
+    cy.microActionsLogin()
     cy.visit('/workspaces/onboarding/qbo_connector')
   })
 

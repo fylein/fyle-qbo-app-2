@@ -3,7 +3,7 @@
 describe('pagination', () => {
   beforeEach(() => {
     cy.ignoreTokenHealth()
-    cy.login()
+    cy.microActionsLogin()
     cy.visit('/')
     cy.navigateToModule('Mappings')
     cy.navigateToMappingPage('Project Mapping')

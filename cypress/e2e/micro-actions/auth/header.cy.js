@@ -3,7 +3,7 @@
 describe('header', () => {
   beforeEach(() => {
     cy.ignoreTokenHealth()
-    cy.login()
+    cy.microActionsLogin()
     cy.visit('/')
   })
 

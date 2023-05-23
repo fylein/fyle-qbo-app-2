@@ -3,7 +3,7 @@
 describe('auto create vendor', () => {
   beforeEach(() => {
     cy.ignoreTokenHealth()
-    cy.login()
+    cy.microActionsLogin()
     cy.visit('/')
     cy.navigateToModule('Configuration')
   })

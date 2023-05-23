@@ -5,7 +5,8 @@ import environment from '../../src/environments/environment.json';
 declare global {
   namespace Cypress {
     interface Chainable {
-      login(): void;
+      journeyLogin(): void;
+      microActionsLogin(): void;
       selectMatOption(optionName: string): void;
       submitButton(content: string): Cypress.Chainable<JQuery<HTMLElement>>;
       saveSetting(content: string): void;
@@ -32,22 +33,42 @@ function setupInterceptor(method: 'GET' | 'POST', url: string, alias: string) {
   }).as(alias);
 }
 
-Cypress.Commands.add('login', () => {
+Cypress.Commands.add('journeyLogin', () => {
   const user = {
-    email: 'ashwin.t@fyle.in',
-    access_token: environment.e2e_tests.access_token,
-    refresh_token: environment.e2e_tests.refresh_token,
-    full_name: 'Ashwin',
+    email: 'admin1@fyleforjourney.in',
+    access_token: environment.e2e_tests.secret[0].access_token,
+    refresh_token: environment.e2e_tests.secret[0].refresh_token,
+    full_name: 'Theresa Brown',
     user_id: 'xyz',
-    org_id: environment.e2e_tests.org_id,
+    org_id: environment.e2e_tests.secret[0].org_id,
     org_name: 'XYZ Org'
   };
-  window.localStorage.setItem('user', JSON.stringify(user));
-  window.localStorage.setItem('workspaceId', environment.e2e_tests.workspace_id);
-
-  // Cy.login() will be used in all tests, hence adding http listener here
+  window.localStorage.setItem('user', JSON.stringify(user))
+  window.localStorage.setItem('workspaceId', JSON.stringify(environment.e2e_tests.secret[0].workspace_id))
+  window.localStorage.setItem('access_token', JSON.stringify(user.access_token))
+  window.localStorage.setItem('refresh_token', JSON.stringify(user.refresh_token))
   cy.setupHttpListeners();
-});
+})
+
+Cypress.Commands.add('microActionsLogin', () => {
+  const user = {
+    email: 'admin1@fyleformicro.testing',
+    access_token: environment.e2e_tests.secret[1].access_token,
+    refresh_token: environment.e2e_tests.secret[1].refresh_token,
+    full_name: 'Theresa Brown',
+    user_id: 'xyz',
+    org_id: environment.e2e_tests.secret[1].org_id,
+    org_name: 'XYZ Org'
+  };
+  window.localStorage.setItem('user', JSON.stringify(user))
+  window.localStorage.setItem('workspaceId', JSON.stringify(environment.e2e_tests.secret[1].workspace_id))
+  window.localStorage.setItem('onboarded', 'true')
+  window.localStorage.setItem('access_token', JSON.stringify(user.access_token))
+  window.localStorage.setItem('refresh_token', JSON.stringify(user.refresh_token))
+
+  // cy.login() will be used in all tests, hence adding http listener here
+  cy.setupHttpListeners();
+})
 
 Cypress.Commands.add('setupHttpListeners', () => {
   // This helps cypress to wait for the http requests to complete with 200, regardless of the defaultCommandTimeout (10s)
