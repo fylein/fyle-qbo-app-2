@@ -125,7 +125,7 @@ export class MainComponent implements OnInit {
       module.isExpanded = !module.isExpanded;
     } else {
       const route = module.route.split("/", 3)
-      if(route.length === 3) {
+      if (route.length === 3) {
         module.route = route[0]+'/'+route[1]+'_'+route[2];
       }
       this.router.navigate([`/workspaces/main/${module.route}`]);
