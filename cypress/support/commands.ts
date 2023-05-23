@@ -65,8 +65,6 @@ Cypress.Commands.add('microActionsLogin', () => {
   window.localStorage.setItem('onboarded', 'true');
   window.localStorage.setItem('access_token', JSON.stringify(user.access_token));
   window.localStorage.setItem('refresh_token', JSON.stringify(user.refresh_token));
-
-  // cy.login() will be used in all tests, hence adding http listener here
   cy.setupHttpListeners();
 })
 
