@@ -48,7 +48,7 @@ Cypress.Commands.add('journeyLogin', () => {
   window.localStorage.setItem('access_token', JSON.stringify(user.access_token));
   window.localStorage.setItem('refresh_token', JSON.stringify(user.refresh_token));
   cy.setupHttpListeners();
-})
+});
 
 Cypress.Commands.add('microActionsLogin', () => {
   const user = {
@@ -66,7 +66,7 @@ Cypress.Commands.add('microActionsLogin', () => {
   window.localStorage.setItem('access_token', JSON.stringify(user.access_token));
   window.localStorage.setItem('refresh_token', JSON.stringify(user.refresh_token));
   cy.setupHttpListeners();
-})
+});
 
 Cypress.Commands.add('setupHttpListeners', () => {
   // This helps cypress to wait for the http requests to complete with 200, regardless of the defaultCommandTimeout (10s)
