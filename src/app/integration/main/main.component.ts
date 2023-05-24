@@ -137,7 +137,7 @@ export class MainComponent implements OnInit {
       this.modules = this.modules.map(m => {
         if (m.childPages) {
           m.childPages.forEach(c => {
-            if (c.route === route) {
+            if (c.route === decodeURIComponent(route)) {
               c.isActive = true;
               m.isActive = true;
               m.isExpanded = true;
