@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">fyle-qbo-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -35,32 +35,37 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   DashboardComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
-        <li >
-            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
-        <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
         </li>
-        <li >
-            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -74,14 +79,15 @@
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                <code>OnInit</code>
     </p>
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
+
 
 
 
@@ -97,6 +103,8 @@
                 <td class="col-md-3">selector</td>
                 <td class="col-md-9"><code>app-dashboard</code></td>
             </tr>
+
+
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -121,7 +129,7 @@
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -257,7 +265,7 @@
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -382,7 +390,7 @@
 
 
 
-    <section>
+    <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -939,7 +947,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>showErrorStats(eventStartTime: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>, errorType: <a href="../undefineds/Error.html" target="_self">ErrorType</a>)</code>
+                    <code>showErrorStats(eventStartTime: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>, errorType: <a href="../undefineds/ErrorType.html" target="_self">ErrorType</a>)</code>
                 </td>
             </tr>
 
@@ -982,7 +990,7 @@
                                 <tr>
                                     <td>errorType</td>
                                     <td>
-                                                <code><a href="../miscellaneous/typealiases.html#Error" target="_self" >ErrorType</a></code>
+                                                <code><a href="../miscellaneous/enumerations.html#ErrorType" target="_self" >ErrorType</a></code>
                                     </td>
 
                                     <td>
@@ -1022,7 +1030,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>trackTimeTakenForResolvingMappingErrors(eventStartTime: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>, errorType: <a href="../undefineds/Error.html" target="_self">ErrorType</a>)</code>
+                    <code>trackTimeTakenForResolvingMappingErrors(eventStartTime: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>, errorType: <a href="../undefineds/ErrorType.html" target="_self">ErrorType</a>)</code>
                 </td>
             </tr>
 
@@ -1065,7 +1073,7 @@
                                 <tr>
                                     <td>errorType</td>
                                     <td>
-                                                <code><a href="../miscellaneous/typealiases.html#Error" target="_self" >ErrorType</a></code>
+                                                <code><a href="../miscellaneous/enumerations.html#ErrorType" target="_self" >ErrorType</a></code>
                                     </td>
 
                                     <td>
@@ -1091,7 +1099,7 @@
         </tbody>
     </table>
 </section>
-    <section>
+    <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -1109,7 +1117,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/Mapping.html" target="_self" >EmployeeFieldMapping</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#EmployeeFieldMapping" target="_self" >EmployeeFieldMapping</a></code>
 
                     </td>
                 </tr>
@@ -1515,7 +1523,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Expense" target="_self" >ExpenseState</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#ExpenseState" target="_self" >ExpenseState</a></code>
 
                     </td>
                 </tr>
@@ -1678,7 +1686,7 @@
 </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { forkJoin, from, interval, Observable, of } from &#x27;rxjs&#x27;;
 import { catchError, map, switchMap, takeWhile } from &#x27;rxjs/operators&#x27;;
@@ -2003,7 +2011,7 @@ export class DashboardComponent implements OnInit {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-templateData">
+    <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;dashboard&quot;&gt;
   &lt;app-dashboard-header-section [name]&#x3D;&quot;employeeName&quot;&gt;&lt;/app-dashboard-header-section&gt;
 
@@ -2258,7 +2266,7 @@ export class DashboardComponent implements OnInit {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-styleData">
+    <div class="tab-pane fade " id="styleData">
                 <p class="comment">
                     <code>./dashboard.component.scss</code>
                 </p>
@@ -2601,7 +2609,7 @@ h2 {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-tree">
+    <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">

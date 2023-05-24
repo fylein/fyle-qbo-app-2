@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">fyle-qbo-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -39,21 +39,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >AdvancedSettingService</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >AdvancedSettingService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -65,7 +71,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -79,21 +85,26 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#deleteExpenseFilter" >deleteExpenseFilter</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#getAdvancedSettings" >getAdvancedSettings</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#getExpenseFilter" >getExpenseFilter</a>
                             </li>
                             <li>
                                 <a href="#getWorkspaceAdmins" >getWorkspaceAdmins</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#postAdvancedSettings" >postAdvancedSettings</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#postExpenseFilter" >postExpenseFilter</a>
                             </li>
                         </ul>
@@ -108,7 +119,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -169,7 +180,7 @@
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -180,6 +191,7 @@
                 <td class="col-md-4">
                     <a name="deleteExpenseFilter"></a>
                     <span class="name">
+                        <span class="modifier"></span>
                         <span ><b>deleteExpenseFilter</b></span>
                         <a href="#deleteExpenseFilter"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -187,7 +199,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>deleteExpenseFilter(rank: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteExpenseFilter(rank: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -256,6 +269,7 @@
                 <td class="col-md-4">
                     <a name="getAdvancedSettings"></a>
                     <span class="name">
+                        <span class="modifier"></span>
                         <span ><b>getAdvancedSettings</b></span>
                         <a href="#getAdvancedSettings"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -263,7 +277,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getAdvancedSettings()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAdvancedSettings()</code>
                 </td>
             </tr>
 
@@ -300,6 +315,7 @@
                 <td class="col-md-4">
                     <a name="getExpenseFilter"></a>
                     <span class="name">
+                        <span class="modifier"></span>
                         <span ><b>getExpenseFilter</b></span>
                         <a href="#getExpenseFilter"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -307,7 +323,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getExpenseFilter()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getExpenseFilter()</code>
                 </td>
             </tr>
 
@@ -381,6 +398,7 @@
                 <td class="col-md-4">
                     <a name="postAdvancedSettings"></a>
                     <span class="name">
+                        <span class="modifier"></span>
                         <span ><b>postAdvancedSettings</b></span>
                         <a href="#postAdvancedSettings"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -388,7 +406,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>postAdvancedSettings(exportSettingsPayload: <a href="../undefineds/AdvancedSettingPost.html" target="_self">AdvancedSettingPost</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>postAdvancedSettings(exportSettingsPayload: <a href="../undefineds/AdvancedSettingPost.html" target="_self">AdvancedSettingPost</a>)</code>
                 </td>
             </tr>
 
@@ -457,6 +476,7 @@
                 <td class="col-md-4">
                     <a name="postExpenseFilter"></a>
                     <span class="name">
+                        <span class="modifier"></span>
                         <span ><b>postExpenseFilter</b></span>
                         <a href="#postExpenseFilter"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -464,7 +484,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>postExpenseFilter(skipExport: <a href="../undefineds/SkipExport.html" target="_self">SkipExport</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>postExpenseFilter(skipExport: <a href="../undefineds/SkipExport.html" target="_self">SkipExport</a>)</code>
                 </td>
             </tr>
 
@@ -532,7 +553,7 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpParams } from &#x27;@angular/common/http&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
 import { Observable, Subject } from &#x27;rxjs&#x27;;

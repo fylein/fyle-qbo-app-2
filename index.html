@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="./" class="navbar-brand">fyle-qbo-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -31,14 +31,14 @@
                <div class="content getting-started">
                    <div class="content-data">
 
-<h1 id="fyle-qbo-app">Fyle QBO App</h1>
+<h1>Fyle QBO App</h1>
 <p>Frontend Repository for Fyle &lt;&gt; Quickbooks Online Integration</p>
-<h2 id="documentation">Documentation</h2>
+<h2>Documentation</h2>
 <p>Please refer this link to find the <a href="https://fylein.github.io/fyle-qbo-app-2">documentation</a> of the project.</p>
-<h2 id="local-development-setup">Local development setup</h2>
-<h3 id="setup---1-recommended">Setup - 1 (Recommended)</h3>
+<h2>Local development setup</h2>
+<h3>Setup - 1 (Recommended)</h3>
 <p>Follow instructions mentioned in <a href="https://github.com/fylein/fyle-integrations-central/">Integrations Central</a></p>
-<h3 id="setup---2">Setup - 2</h3>
+<h3>Setup - 2</h3>
 <ul>
 <li><p>Install dependencies</p>
 <div><pre class="line-numbers"><code class="language-bash">npm install</code></pre></div></li>
@@ -47,8 +47,8 @@
 <li><p>Run app</p>
 <div><pre class="line-numbers"><code class="language-bash">npm start</code></pre></div></li>
 </ul>
-<h2 id="running-end-to-end-tests-on-local">Running End to End Tests on local</h2>
-<h3 id="setup-org-to-test">Setup Org to test</h3>
+<h2>Running End to End Tests on local</h2>
+<h3>Setup Org to test</h3>
 <p><b>Note:</b> <em>All the steps mentioned in this section are one time activity</em></p>
 <ul>
 <li><p>It would be very easy if we use this org for running tests since we have pre populated data in Fyle to run tests</p>
@@ -67,7 +67,7 @@
 <li><p>Partially reset the org using the sql script we created -</p>
 <div><pre class="line-numbers"><code class="language-sql">select reset_workspace_e2e(&lt;workspace_id_goes_here&gt;);</code></pre></div></li>
 </ul>
-<h3 id="helper-commands">Helper commands</h3>
+<h3>Helper commands</h3>
 <ul>
 <li><p>Make sure the app and api is up and running</p>
 </li>
@@ -81,14 +81,14 @@
 <li><p>To reset the org to initial data, use the <code>reset_workspace_e2e()</code> sql function and re run tests</p>
 </li>
 </ul>
-<h3 id="bonus-points">Bonus points</h3>
+<h3>Bonus points</h3>
 <ul>
 <li>Execute tests in the folder and files in a sequence as it present.
   For example, if we try to run <code>cypress/e2e/002-journeys/002-update-configuration.cy.js</code> initially without running <code>cypress/e2e/002-journeys/001-onboarding.cy.js</code>, the test will fail.</li>
 <li>Name the test file in the sequence followed and place them in the right folder. Cypress tests gets executed in an alphabetical manner, as of now.</li>
 <li>If we are writing a test that represent an user journey, create the test in the journey folder. Or if it represents a micro action, place it in the micro-actions folder. If we add a new feature and wanted to cover all possible scenarios to write a test, add it to the feature folder, along with month and year.</li>
 </ul>
-<h3 id="end-to-end-tests-on-github">End to End Tests on Github</h3>
+<h3>End to End Tests on Github</h3>
 <ul>
 <li>End to End tests runs on all PRs, after the PR is approved. Only if all tests pass, contributor will be able to merge it to master. This happens against the staging environment. We&#39;ll receive a comment in the PR about the run status and code coverage summary.</li>
 <li>End to End tests against production environment will run every Tuesday and Thursday at 2pm.</li>

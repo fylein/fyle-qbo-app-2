@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">fyle-qbo-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -35,32 +35,37 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   GenericMappingComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
-        <li >
-            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
-        <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
         </li>
-        <li >
-            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -74,14 +79,15 @@
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                <code>OnInit</code>
     </p>
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
+
 
 
 
@@ -97,6 +103,8 @@
                 <td class="col-md-3">selector</td>
                 <td class="col-md-9"><code>app-generic-mapping</code></td>
             </tr>
+
+
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -121,7 +129,7 @@
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -249,13 +257,13 @@
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(formBuilder: UntypedFormBuilder, mappingService: <a href="../injectables/MappingService.html" target="_self">MappingService</a>, paginatorService: <a href="../injectables/PaginatorService.html" target="_self">PaginatorService</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, snackBar: MatSnackBar, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
+<code>constructor(formBuilder: UntypedFormBuilder, mappingService: <a href="../injectables/MappingService.html" target="_self">MappingService</a>, paginatorService: <a href="../injectables/PaginatorService.html" target="_self">PaginatorService</a>, route: ActivatedRoute, snackBar: MatSnackBar, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -317,7 +325,7 @@
                                                         <td>route</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                                    <code>ActivatedRoute</code>
                                                         </td>
                                                   
                                                     <td>
@@ -374,7 +382,7 @@
 
 
 
-    <section>
+    <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -645,7 +653,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>save(selectedRow: <a href="../interfaces/Mapping.html" target="_self">MappingList</a>)</code>
+<code>save(selectedRow: <a href="../undefineds/MappingList.html" target="_self">MappingList</a>)</code>
                 </td>
             </tr>
 
@@ -676,7 +684,7 @@
                                 <tr>
                                     <td>selectedRow</td>
                                     <td>
-                                                <code><a href="../interfaces/Mapping.html" target="_self" >MappingList</a></code>
+                                                <code><a href="../miscellaneous/typealiases.html#MappingList" target="_self" >MappingList</a></code>
                                     </td>
 
                                     <td>
@@ -716,7 +724,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>searchByText(mapping: <a href="../interfaces/Mapping.html" target="_self">MappingList</a>, filterText: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>searchByText(mapping: <a href="../undefineds/MappingList.html" target="_self">MappingList</a>, filterText: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -747,7 +755,7 @@
                                 <tr>
                                     <td>mapping</td>
                                     <td>
-                                                <code><a href="../interfaces/Mapping.html" target="_self" >MappingList</a></code>
+                                                <code><a href="../miscellaneous/typealiases.html#MappingList" target="_self" >MappingList</a></code>
                                     </td>
 
                                     <td>
@@ -931,7 +939,7 @@
         </tbody>
     </table>
 </section>
-    <section>
+    <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -1203,7 +1211,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/Mapping.html" target="_self" >MinimalMappingSetting</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#MinimalMappingSetting" target="_self" >MinimalMappingSetting</a></code>
 
                     </td>
                 </tr>
@@ -1229,7 +1237,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/Mapping.html" target="_self" >MappingStats</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#MappingStats" target="_self" >MappingStats</a></code>
 
                     </td>
                 </tr>
@@ -1484,7 +1492,7 @@
 </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { TitleCasePipe } from &#x27;@angular/common&#x27;;
 import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from &#x27;@angular/forms&#x27;;
@@ -1690,7 +1698,7 @@ export class GenericMappingComponent implements OnInit {
   }
 
   private getMappingsAndSetupPage(): void {
-    this.sourceType &#x3D; this.route.snapshot.params.source_field;
+    this.sourceType &#x3D; decodeURIComponent(decodeURIComponent(this.route.snapshot.params.source_field));
     forkJoin([
       this.workspaceService.getWorkspaceGeneralSettings(),
       this.mappingService.getMappingSettings()
@@ -1753,7 +1761,7 @@ export class GenericMappingComponent implements OnInit {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-templateData">
+    <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;mapping&quot;&gt;
   &lt;app-mapping-header-section [mappingStats]&#x3D;&quot;mappingStats&quot; [totalCardActive]&#x3D;&quot;totalCardActive&quot; [sourceType]&#x3D;&quot;sourceType&quot; (mappingCardUpdateHandler)&#x3D;&quot;mappingCardUpdateHandler($event)&quot;&gt;&lt;/app-mapping-header-section&gt;
 
@@ -1788,14 +1796,14 @@ export class GenericMappingComponent implements OnInit {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-styleData">
+    <div class="tab-pane fade " id="styleData">
                 <p class="comment">
                     <code>./generic-mapping.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss"></code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-tree">
+    <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">
