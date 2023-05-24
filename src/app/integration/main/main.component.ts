@@ -137,7 +137,7 @@ export class MainComponent implements OnInit {
       this.modules = this.modules.map(m => {
         if (m.childPages) {
           m.childPages.forEach(c => {
-            if (c.route === route) {
+            if (c.route === decodeURIComponent(route)) {
               c.isActive = true;
               m.isActive = true;
               m.isExpanded = true;
@@ -179,7 +179,7 @@ export class MainComponent implements OnInit {
         sourceFieldRoutes.push(`mapping/${mappingSetting.source_field.toLowerCase()}`);
         this.modules[2].childPages.push({
           name: `${mappingSetting.source_field.toLowerCase()} Mapping`,
-          route: `mapping/${mappingSetting.source_field.toLowerCase()}`,
+          route: `mapping/${encodeURIComponent(mappingSetting.source_field.toLowerCase())}`,
           isActive: false
         });
       }
