@@ -77,6 +77,10 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  decode(arg: string): string {
+    return decodeURIComponent(decodeURIComponent(arg));
+  }
+
   private getActivePageName(currentPageUrl: string): string {
     if (currentPageUrl.indexOf('dashboard') > -1) {
       return 'Dashboard';

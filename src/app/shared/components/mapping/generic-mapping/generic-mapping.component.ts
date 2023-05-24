@@ -203,7 +203,7 @@ export class GenericMappingComponent implements OnInit {
   }
 
   private getMappingsAndSetupPage(): void {
-    this.sourceType = this.route.snapshot.params.source_field;
+    this.sourceType = decodeURIComponent(decodeURIComponent(this.route.snapshot.params.source_field));
     forkJoin([
       this.workspaceService.getWorkspaceGeneralSettings(),
       this.mappingService.getMappingSettings()
