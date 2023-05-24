@@ -191,4 +191,9 @@ describe('HeaderComponent', () => {
     expect(authService.redirectToOnboardingLanding).toHaveBeenCalled();
     expect(dialogSpy).toHaveBeenCalled();
   });
+
+  it('decode function check', () => {
+    const decodedValue = component.decode('add%2Fsub');
+    expect(decodedValue).toBe('add/sub');
+  });
 });

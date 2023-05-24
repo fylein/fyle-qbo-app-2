@@ -124,10 +124,6 @@ export class MainComponent implements OnInit {
     if (module.name === 'Mappings' || module.name === 'Configuration') {
       module.isExpanded = !module.isExpanded;
     } else {
-      const route = module.route.split("/", 3);
-      if (route.length === 3) {
-        module.route = route[0]+'/'+route[1]+'_'+route[2];
-      }
       this.router.navigate([`/workspaces/main/${module.route}`]);
     }
   }
@@ -183,7 +179,7 @@ export class MainComponent implements OnInit {
         sourceFieldRoutes.push(`mapping/${mappingSetting.source_field.toLowerCase()}`);
         this.modules[2].childPages.push({
           name: `${mappingSetting.source_field.toLowerCase()} Mapping`,
-          route: `mapping/${mappingSetting.source_field.toLowerCase()}`,
+          route: `mapping/${encodeURIComponent(mappingSetting.source_field.toLowerCase())}`,
           isActive: false
         });
       }
