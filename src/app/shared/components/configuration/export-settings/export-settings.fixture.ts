@@ -46,6 +46,34 @@ export const workspaceResponse:WorkspaceGeneralSetting = {
   updated_at: new Date("2022-04-28T12:48:39.150177Z"),
   workspace: 1
 };
+export const workspaceResponse1:WorkspaceGeneralSetting = {
+  auto_create_destination_entity: true,
+  auto_create_merchants_as_vendors: true,
+  is_simplify_report_closure_enabled: false,
+  auto_map_employees: AutoMapEmployee.EMAIL,
+  category_sync_version: "v1",
+  change_accounting_period: true,
+  charts_of_accounts: ['Expense'],
+  corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.JOURNAL_ENTRY,
+  created_at: new Date("2022-04-27T11:07:17.694377Z"),
+  employee_field_mapping: EmployeeFieldMapping.VENDOR,
+  id: 1,
+  import_categories: false,
+  import_projects: false,
+  import_items: false,
+  import_tax_codes: false,
+  import_vendors_as_merchants: false,
+  je_single_credit_line: true,
+  map_fyle_cards_qbo_account: true,
+  map_merchant_to_vendor: false,
+  memo_structure: ['Fyle'],
+  reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
+  skip_cards_mapping: false,
+  sync_fyle_to_qbo_payments: false,
+  sync_qbo_to_fyle_payments: false,
+  updated_at: new Date("2022-04-28T12:48:39.150177Z"),
+  workspace: 1
+};
 export const destinationAttribute: GroupedDestinationAttribute ={
   ACCOUNTS_PAYABLE: [{
     id: 1,
@@ -109,6 +137,47 @@ export const destinationAttribute: GroupedDestinationAttribute ={
   }],
   ACCOUNT: [],
   TAX_CODE: []
+};
+export const exportResponse1: ExportSettingGet = {
+  expense_group_settings: {
+    expense_state: ExpenseState.PAID,
+    ccc_expense_state: CCCExpenseState.PAID,
+    reimbursable_expense_group_fields: ['sample'],
+    reimbursable_export_date_type: ExportDateType.APPROVED_AT,
+    corporate_credit_card_expense_group_fields: ['sipper'],
+    ccc_export_date_type: ExportDateType.SPENT_AT
+  },
+  workspace_general_settings: {
+    reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
+    corporate_credit_card_expenses_object: null
+  },
+  workspace_id: 1,
+  general_mappings: {
+    bank_account: {
+      id: "",
+      name: ""
+    },
+    default_ccc_account: {
+      id: "",
+      name: ""
+    },
+    accounts_payable: {
+      id: "",
+      name: ""
+    },
+    default_ccc_vendor: {
+      id: "",
+      name: ""
+    },
+    qbo_expense_account: {
+      id: "",
+      name: ""
+    },
+    default_debit_card_account: {
+      id: "",
+      name: ""
+    }
+  }
 };
 export const exportResponse: ExportSettingGet = {
   expense_group_settings: {

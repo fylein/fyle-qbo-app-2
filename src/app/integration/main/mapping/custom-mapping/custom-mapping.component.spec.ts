@@ -11,9 +11,10 @@ import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { postMappingSettingResponse } from 'src/app/core/services/misc/mapping.service.fixture';
-import { fyleExpenseFields, mappedRowsFormArray, mappingRow, mappingSettingResponse } from './custom-mapping.fixture';
+import { fyleExpenseFields, mappedRowsFormArray, mappedRowsFormArray1, mappedRowsFormArray2, mappingRow, mappingSettingResponse } from './custom-mapping.fixture';
 import { FyleField, MappingDestinationField, MappingSourceField, QBOField } from 'src/app/core/models/enum/enum.model';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 describe('CustomMappingComponent', () => {
   let component: CustomMappingComponent;
@@ -39,7 +40,19 @@ describe('CustomMappingComponent', () => {
       declarations: [ CustomMappingComponent ],
       providers: [ UntypedFormBuilder,
         { provide: Router, useValue: routerSpy },
-        { provide: MappingService, useValue: service1 }
+        { provide: MappingService, useValue: service1 },
+        {
+          provide: MAT_DIALOG_DATA,
+          useValue: {
+            width: '784px',
+            height: '974px',
+            data: 1,
+            position: {
+              top: '0px',
+              right: '0px'
+            }
+          }
+        }
       ]
     })
     .compileComponents();
@@ -82,7 +95,7 @@ describe('CustomMappingComponent', () => {
 
   it('should delete mapping setting', () => {
     component.mappingSettingForm.patchValue({
-      mappingSetting: mappedRowsFormArray
+      mappingSetting: mappedRowsFormArray2
     });
     fixture.detectChanges();
     expect(component.deleteMappingSetting(0)).toBeUndefined();
@@ -92,6 +105,7 @@ describe('CustomMappingComponent', () => {
     component.mappingSettingForm.patchValue({
       mappingSetting: mappedRowsFormArray
     });
+    component.mappingRows = [mappingRow];
     const previousLength = component.mappingSettingForm.get('mappingSetting')?.value.length;
     expect(component.clearMappingRow(0)).toBeUndefined();
     expect(component.mappingSettingForm.get('mappingSetting')?.value.length).toEqual(previousLength - 1);
@@ -103,6 +117,14 @@ describe('CustomMappingComponent', () => {
     });
     fixture.detectChanges();
     expect(component.saveMappingSetting(0)).toBeUndefined();
+
+    component.mappingSettingForm.patchValue({
+      mappingSetting: mappedRowsFormArray1
+    });
+    fixture.detectChanges();
+    expect(component.saveMappingSetting(0)).toBeUndefined();
+
+    expect((component as any).constructPayloadAndSave(mappedRowsFormArray2[0])).toBeUndefined();
   });
 
   it('should update mapping row', () => {
