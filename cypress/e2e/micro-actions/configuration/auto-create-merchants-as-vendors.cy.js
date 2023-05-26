@@ -26,14 +26,11 @@ describe('auto create vendor', () => {
 
   it('Make Auto-create QBO Vendors visible', () => {
     cy.navigateToSettingPage('Import Settings')
-    cy.get('app-configuration-toggle-field').eq(1).within(() => {
-      cy.enableConfigurationToggle(0)
-    })
+    cy.get('.import-settings--vendor-section').click();
     cy.saveSetting('Save')
     cy.url().should('include', '/workspaces/main/dashboard')
 
     cy.navigateToSettingPage('Export Settings')
-    cy.enableConfigurationToggle(1)
 
     cy.selectConfigurationField(6, 'Bill')
     cy.selectConfigurationField(7, 'Alexandra Fitzgerald')

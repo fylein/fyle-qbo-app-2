@@ -66,7 +66,7 @@ describe('onboarding journey', () => {
     cy.enableConfigurationToggle(0)
     cy.selectConfigurationField(0, 'Processing')
     cy.selectConfigurationField(1, 'Bill')
-    cy.selectConfigurationField(2, 'Cost of sales')
+    cy.selectConfigurationField(2, 'Accounts Payable (A/P)')
     cy.selectConfigurationField(3, 'Report')
     cy.selectConfigurationField(4, 'Current Date')
 
@@ -74,11 +74,13 @@ describe('onboarding journey', () => {
     cy.enableConfigurationToggle(1)
     cy.selectConfigurationField(5, 'Approved')
     cy.selectConfigurationField(6, 'Credit Card Purchase')
-    cy.selectConfigurationField(7, 'Credit Card')
+    cy.selectConfigurationField(7, 'Visa')
 
     // Assert the existing option
     assertConfigurationOption(1, 'Bill')
-    assertConfigurationOption(2, 'Cost of sales')
+    assertConfigurationOption(2, 'Accounts Payable (A/P)')
+    assertConfigurationOption(6, 'Credit Card Purchase')
+    assertConfigurationOption(7, 'Visa')
 
     cy.saveSetting('Save')
   }
@@ -113,13 +115,13 @@ describe('onboarding journey', () => {
     cy.getMatToggle(1).click()
     cy.selectConfigurationField(2, 'Export Fyle ACH Payments to QuickBooks Online')
     cy.submitButton().should('have.class', 'btn-disabled')
-    cy.selectConfigurationField(3, 'Auto')
+    cy.selectConfigurationField(3, 'Checking')
 
     cy.submitButton().should('have.class', 'btn-enabled')
 
     // Assert the saved setting
     assertAdvancedConfigurationOption(2, 'Export Fyle ACH Payments to QuickBooks Online')
-    assertAdvancedConfigurationOption(3, 'Auto')
+    assertAdvancedConfigurationOption(3, 'Checking')
 
     cy.saveSetting('Save')
   }
@@ -135,21 +137,6 @@ describe('onboarding journey', () => {
     // Check if user is taken to dashboard page after onboarding is done
     cy.url().should('include', '/workspaces/main/dashboard')
   }
-
-  it('completes onboarding QBO for a workspace', () => {
-
-    completeEmployeeSettingOnboarding()
-
-    completeExportSettingOnboarding()
-
-    completeImportSettingOnboarding()
-
-    completeAdvancedSettingOnboarding()
-
-    completeOnboarding()
-
-    finalAssertion()
-  })
 
   function addEmailNotification(name, email) {
     // Adding 0.5 wait time at start and end of this function since it is causing some race condition rarely
@@ -173,6 +160,148 @@ describe('onboarding journey', () => {
     cy.get('.mat-flat-button').contains('Save').click()
     cy.wait(500)
   }
+
+  function readExpenseGroupRows() {
+    cy.get('.export-log-table--row').each((_, index, __) => {
+      if (index < 40) {
+        cy.get('.mat-column-exportedAt').eq(index + 1).as('exportedAt')
+        cy.get('@exportedAt').find('h4').contains(',').should('not.be.null')
+        cy.get('@exportedAt').find('h5').contains(':').should('have.class', 'export-log-table--sub-row')
+
+        cy.get('.mat-column-name').eq(index + 1).as('employee')
+        cy.get('@employee').find('h4').should('not.be.null')
+        cy.get('@employee').find('h5').contains('@').should('have.class', 'export-log-table--sub-row')
+
+        cy.get('.mat-column-fundSource').eq(index + 1).contains(/Credit Card|Reimbursable/g)
+
+        cy.get('.mat-column-referenceID').eq(index + 1).contains(/C|E|P/)
+
+        cy.get('.mat-column-exportType').eq(index + 1).contains(/Bill|Credit Card Purchase|Check|Journal Entry|Expense/g)
+
+        cy.get('.mat-column-link').eq(index + 1).should('not.be.null')
+      }
+    })
+  }
+
+  function selectCustomMapping(rowNumber, optionName, fieldType) {
+    const cssClass = fieldType === 'QBO' ? '.custom-mapping--qbo-field' : '.custom-mapping--fyle-field';
+    cy.get('@customMappingRows').find(cssClass).eq(rowNumber).click()
+    cy.selectMatOption(optionName)
+  }
+
+  function saveAndAssertConfirmationDialog(qbo, fyle, addSectionVisible = true) {
+    cy.saveSetting('Create Mapping')
+
+    cy.get('.confirmation-dialog--header-content').contains('Create Custom Mapping')
+    cy.get('.confirmation-dialog--info').contains(`You are creating a custom mapping between ${qbo} in QuickBooks Online and ${fyle} in Fyle.`)
+
+    cy.saveSetting('Save and Continue')
+
+    cy.get('.walk-through-tooltip').should('be.visible')
+
+    cy.get('.walk-through-tooltip--cta').click()
+
+    if (addSectionVisible) {
+      cy.get('.custom-mapping--add-section').within(() => {
+        cy.get('.actionable-text').click()
+      })
+    } else {
+      cy.get('.custom-mapping--limit-exceeded-text').should('be.visible')
+    }
+  }
+
+  function customMapping() {
+    cy.navigateToModule('Mappings')
+    cy.navigateToMappingPage('Custom Mapping')
+
+    it('Disable Import to Fyle', () => {
+      // Disabling Import to Fyle to have sufficient options on Custom Mappings Page
+      cy.navigateToModule('Configuration')
+      cy.navigateToSettingPage('Import Settings')
+      cy.importToFyle(0, false)
+      cy.importToFyle(2, false)
+  
+      cy.saveSetting('Save')
+    })
+  
+    it('create custom mapping rows', () => {
+      cy.wait(['@getMappingSettings', '@getFyleExpenseFields']).then(() => {
+        cy.get('.mapping-header-section--card-content-text-count').should('have.text', '0')
+        cy.get('.zero-state-with-illustration--zero-state-img-custom-mapping').should('be.visible')
+    
+        cy.saveSetting('Create Custom Mapping')
+    
+        cy.get('.custom-mapping--mapping-section').find('div').eq(2).as('customMappingRows')
+    
+        selectCustomMapping(0, 'Class', 'QBO')
+  
+        cy.submitButton().should('have.class', 'btn-disabled')
+  
+        selectCustomMapping(0, 'Cost Center', 'Fyle')
+  
+        cy.submitButton().should('have.class', 'btn-enabled')
+  
+        saveAndAssertConfirmationDialog('Class', 'Cost Center')
+  
+        selectCustomMapping(1, 'Customer', 'QBO')
+        selectCustomMapping(1, 'Team', 'Fyle')
+        saveAndAssertConfirmationDialog('Customer', 'Team', false)
+  
+        cy.get('.mapping-header-section--card-content-text-count').should('have.text', '2')
+      })
+    })
+  
+    it('view custom mapping rows', () => {
+      const fixture = {
+        0: {
+          qbo: 'Class',
+          fyle: 'Cost center'
+        },
+        1: {
+          qbo: 'Customer',
+          fyle: 'Team'
+        }
+      };
+      cy.wait(['@getMappingSettings', '@getFyleExpenseFields']).then(() => {
+        cy.get('.custom-mapping--mapping-section').find('div').eq(1).as('customMappingRows')
+        cy.get('@customMappingRows').children().each((_, index, __) => {
+          cy.get('.custom-mapping--qbo-field').eq(index).should('have.text', fixture[index].qbo)
+          cy.get('.custom-mapping--fyle-field').eq(index).should('have.text', fixture[index].fyle)
+        })
+      })
+    })
+  
+    it('delete custom mapping rows', () => {
+      cy.wait(['@getMappingSettings', '@getFyleExpenseFields']).then(() => {
+        cy.wait(500)
+        cy.get('.custom-mapping--mapping-section').find('div').eq(15).trigger('mouseenter')
+        cy.get('.custom-mapping--delete-section').find('.search-select--clear-icon').click()
+  
+        cy.get('.confirmation-dialog--header-content').contains('Delete Custom Mapping')
+        cy.get('.confirmation-dialog--info').contains(`You are deleting the custom mapping of Customer in QuickBooks Online to Team in Fyle.`)
+  
+        cy.saveSetting('Save and Continue')
+        cy.get('.mapping-header-section--card-content-text-count').should('have.text', '2')
+      })
+    })
+  }
+
+  it('completes onboarding QBO for a workspace', () => {
+
+    completeEmployeeSettingOnboarding()
+
+    completeExportSettingOnboarding()
+
+    completeImportSettingOnboarding()
+
+    completeAdvancedSettingOnboarding()
+
+    completeOnboarding()
+
+    finalAssertion()
+
+    customMapping()
+  })
 
   it('add email notification', () => {
     cy.navigateToModule('Configuration')
@@ -484,28 +613,6 @@ describe('onboarding journey', () => {
     cy.get('.dashboard-header-section--sync-btn').click()
     cy.wait('@refreshDimension').its('response.statusCode').should('equal', 200)
   })
-
-  function readExpenseGroupRows() {
-    cy.get('.export-log-table--row').each((_, index, __) => {
-      if (index < 40) {
-        cy.get('.mat-column-exportedAt').eq(index + 1).as('exportedAt')
-        cy.get('@exportedAt').find('h4').contains(',').should('not.be.null')
-        cy.get('@exportedAt').find('h5').contains(':').should('have.class', 'export-log-table--sub-row')
-
-        cy.get('.mat-column-name').eq(index + 1).as('employee')
-        cy.get('@employee').find('h4').should('not.be.null')
-        cy.get('@employee').find('h5').contains('@').should('have.class', 'export-log-table--sub-row')
-
-        cy.get('.mat-column-fundSource').eq(index + 1).contains(/Credit Card|Reimbursable/g)
-
-        cy.get('.mat-column-referenceID').eq(index + 1).contains(/C|E|P/)
-
-        cy.get('.mat-column-exportType').eq(index + 1).contains(/Bill|Credit Card Purchase|Check|Journal Entry|Expense/g)
-
-        cy.get('.mat-column-link').eq(index + 1).should('not.be.null')
-      }
-    })
-  }
 
   it('view expense groups rows', () => {
     y.navigateToModule('Export Log')
