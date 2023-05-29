@@ -615,13 +615,14 @@ describe('onboarding journey', () => {
   })
 
   it('view expense groups rows', () => {
-    y.navigateToModule('Export Log')
+    cy.navigateToModule('Export Log')
     cy.wait('@getExpenseGroups').its('response.statusCode').should('equal', 200)
     
     readExpenseGroupRows()
   })
 
   it('view child expenses', () => {
+    cy.navigateToModule('Export Log')
     cy.get('.export-log-table--row').each((_, index, __) => {
       cy.get('.mat-column-exportedAt').eq(index + 1).as('exportedAt').click()
 
@@ -636,6 +637,7 @@ describe('onboarding journey', () => {
   })
 
   it('simple text search', () => {
+    cy.navigateToModule('Export Log')
     cy.get('.export-settings--search').type('C/')
     expect(cy.get('.export-log-table--row').children.length > 0)
 
@@ -644,17 +646,7 @@ describe('onboarding journey', () => {
   })
 
   it('apply date filter', () => {
-    // Cypress is formatting new Date().toLocaleDateString() to 2021-22-12T23:59:59 and not 2021-12-22T23:59:59 which is causing 5xx, hence commenting code for now
-    // cy.get('.export-log--date-filter').eq(0).click()
-    // cy.selectMatOption('Today')
-    // cy.wait('@getExpenseGroups').its('response.statusCode').should('equal', 200)
-
-    // expect(cy.get('.export-log-table--row').children.length === 6)
-
-    // cy.get('.export-log--clear-date-filter').click()
-    // cy.wait('@getExpenseGroups').its('response.statusCode').should('equal', 200)
-    // expect(cy.get('.export-log-table--row').children.length === 6)
-
+    cy.navigateToModule('Export Log')
     cy.get('.export-log--date-filter').eq(0).click()
     cy.selectMatOption('Custom dates')
     cy.get('.mat-calendar-period-button').click()
@@ -675,11 +667,13 @@ describe('onboarding journey', () => {
   })
 
   it('apply date filter for coverage', () => {
+    cy.navigateToModule('Export Log')
     cy.get('.export-log--date-filter').eq(0).click()
     cy.selectMatOption('Today')
   })
 
   it('view expense groups from fixture', () => {
+    cy.navigateToModule('Export Log')
     cy.intercept('GET', '**/fyle/expense_groups/**', { fixture: 'export-logs.json' })
     cy.reload()
     readExpenseGroupRows()
