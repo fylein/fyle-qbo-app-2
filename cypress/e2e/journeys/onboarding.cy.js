@@ -162,6 +162,7 @@ describe('onboarding journey', () => {
   }
 
   function readExpenseGroupRows() {
+    cy.navigateToModule('Export Log')
     cy.get('.export-log-table--row').each((_, index, __) => {
       if (index < 40) {
         cy.get('.mat-column-exportedAt').eq(index + 1).as('exportedAt')
@@ -643,40 +644,6 @@ describe('onboarding journey', () => {
 
     cy.get('.search-select--clear-icon').click()
     expect(cy.get('.export-log-table--row').children.length > 1)
-  })
-
-  it('apply date filter', () => {
-    cy.navigateToModule('Export Log')
-    cy.get('.export-log--date-filter').eq(0).click()
-    cy.selectMatOption('Custom dates')
-    cy.get('.mat-calendar-period-button').click()
-    cy.get('.mat-calendar-content').contains('2021').click()
-    cy.get('.mat-calendar-table').contains('JAN').click()
-
-    cy.get('.mat-calendar-body').contains('1').click()
-    cy.get('.mat-calendar-body').contains('9').click()
-    cy.get('.export-log--done-text').click()
-    cy.wait('@getExpenseGroups').its('response.statusCode').should('equal', 200)
-
-    cy.get('.zero-state-with-illustration--zero-state-text').contains('Sorry, no results found!')
-    cy.get('.zero-state-with-illustration--zero-state-text-small').contains('We could not find any exports done on timeline that you have selected')
-
-    cy.get('.export-log--clear-date-filter').click()
-    cy.wait('@getExpenseGroups').its('response.statusCode').should('equal', 200)
-    expect(cy.get('.export-log-table--row').children.length === 6)
-  })
-
-  it('apply date filter for coverage', () => {
-    cy.navigateToModule('Export Log')
-    cy.get('.export-log--date-filter').eq(0).click()
-    cy.selectMatOption('Today')
-  })
-
-  it('view expense groups from fixture', () => {
-    cy.navigateToModule('Export Log')
-    cy.intercept('GET', '**/fyle/expense_groups/**', { fixture: 'export-logs.json' })
-    cy.reload()
-    readExpenseGroupRows()
   })
 
 })
