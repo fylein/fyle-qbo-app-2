@@ -18,6 +18,8 @@ import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { PaginatorService } from 'src/app/core/services/core/paginator.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource } from '@angular/material/legacy-table';
 
 describe('GenericMappingComponent', () => {
   let component: GenericMappingComponent;
@@ -62,6 +64,7 @@ describe('GenericMappingComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GenericMappingComponent);
     component = fixture.componentInstance;
+    component.mappings = new MatLegacyTableDataSource<MappingList>(mappinglist);
     formBuilder = TestBed.inject(UntypedFormBuilder);
     injector = getTestBed();
     httpMock = injector.inject(HttpTestingController);
@@ -83,7 +86,7 @@ describe('GenericMappingComponent', () => {
     });
     component.qboData = destinationAttribute;
     component.form = form;
-    activatedRoute.snapshot.params = { source_field: 'project'};
+    activatedRoute.snapshot.params = { source_field: 'Cost_center'};
     fixture.detectChanges();
   });
 
@@ -161,9 +164,9 @@ describe('GenericMappingComponent', () => {
 
   it('getMapping function check', () => {
     const form = formBuilder.group({
-      filterOption: [['dh', 'fy']],
-      sourceUpdated: [true],
-      searchOption: [[' fyle ']]
+      filterOption: [[]],
+      sourceUpdated: undefined,
+      searchOption: undefined
     });
     component.PaginatorPage = PaginatorPage;
     component.form = form;
@@ -171,7 +174,9 @@ describe('GenericMappingComponent', () => {
       limit: 10,
       offset: 3
     };
+    component.isMappingStatsUpdated = false;
     component.mappingSetting = minimaMappingSetting2;
+    component.qboData = [];
     fixture.detectChanges();
     expect(component.getMappings()).toBeUndefined();
   });
@@ -214,6 +219,7 @@ describe('GenericMappingComponent', () => {
     expect(ans1).toBeFalse();
   });
   it('setupForm function check', () => {
+    component.mappings = new MatLegacyTableDataSource<MappingList>(mappinglist);
     component.fyleQboMappingFormArray = mappinglist.map((mapping: MappingList) => {
       return formBuilder.group({
         searchOption: [''],
@@ -232,7 +238,10 @@ describe('GenericMappingComponent', () => {
     fixture.detectChanges();
     expect((component as any).setupForm([' dh '])).toBeUndefined();
     fixture.detectChanges();
-    component.form.controls.searchOption.patchValue(' dh ');
+    component.form.controls.searchOption.patchValue('');
+    expect((component as any).setupForm()).toBeUndefined();
+    fixture.detectChanges();
+    component.form.controls.searchOption.patchValue('dh');
     expect((component as any).setupForm([' dh '])).toBeUndefined();
   });
 });

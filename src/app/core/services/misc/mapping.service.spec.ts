@@ -82,12 +82,12 @@ describe('MappingService', () => {
   });
 
   it('getSearchedQBODestinationAttributes() service check', () => {
-    service.getSearchedQBODestinationAttributes(EmployeeFieldMapping.EMPLOYEE, 'ash', undefined, true).subscribe(value => {
+    service.getSearchedQBODestinationAttributes(EmployeeFieldMapping.EMPLOYEE, 'ash', 'undefined', true).subscribe(value => {
       expect(value).toEqual([]);
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/mapping_options/?attribute_type=EMPLOYEE&active=true&search_term=ash`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/mapping_options/?attribute_type=EMPLOYEE&active=true&search_term=ash&display_name=undefined`
     });
       req.flush([]);
 
@@ -197,14 +197,14 @@ describe('MappingService', () => {
       }
       ]
   };
-    service.getMappings(MappingState.ALL, 1, 1, [], FyleField.CATEGORY, QBOField.ACCOUNT).subscribe(value => {
+    service.getMappings(MappingState.ALL, 1, 1, ['a', 'b'], FyleField.CATEGORY, QBOField.ACCOUNT).subscribe(value => {
       const responseKeys = Object.keys(response).sort();
       const actualResponseKeys = Object.keys(value).sort();
       expect(actualResponseKeys).toEqual(responseKeys);
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?limit=1&offset=1&mapped=ALL&source_type=CATEGORY&destination_type=ACCOUNT`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/expense_attributes/?limit=1&offset=1&mapped=ALL&source_type=CATEGORY&destination_type=ACCOUNT&mapping_source_alphabets=a,b`
     });
       req.flush(response);
   });
@@ -394,14 +394,14 @@ describe('MappingService', () => {
         }
       ]
   };
-    service.getEmployeeMappings(MappingState.UNMAPPED, 1, 1, [], EmployeeFieldMapping.EMPLOYEE).subscribe(value => {
+    service.getEmployeeMappings(MappingState.UNMAPPED, 1, 1, ['a', 'b'], EmployeeFieldMapping.EMPLOYEE).subscribe(value => {
       const responseKeys = Object.keys(response).sort();
       const actualResponseKeys = Object.keys(value).sort();
       expect(actualResponseKeys).toEqual(responseKeys);
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?limit=1&offset=1&mapped=false&destination_type=EMPLOYEE`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?limit=1&offset=1&mapped=false&destination_type=EMPLOYEE&mapping_source_alphabets=a,b`
     });
       req.flush(response);
   });
@@ -640,5 +640,11 @@ describe('MappingService', () => {
     spyOn(service.showWalkThroughTooltip, 'emit');
     service.emitWalkThroughTooltip();
     expect(service.showWalkThroughTooltip.emit).toHaveBeenCalled();
+  });
+
+  it('displayDestinationTypeHeader() function check', () => {
+    const attribute_type = 'ACCOUNT';
+    expect(service.displayDestinationTypeHeader(attribute_type, true)).toBe('Account/Products and Services');
+    expect(service.constructDisplayNameFilter(attribute_type, false)).toBe('Account');
   });
 });

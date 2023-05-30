@@ -17,7 +17,7 @@ import { TrackingService } from 'src/app/core/services/integration/tracking.serv
 import { AddEmailDialogComponent } from './add-email-dialog/add-email-dialog.component';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from 'src/app/core/models/db/workspace-schedule.model';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {COMMA, ENTER, L} from '@angular/cdk/keycodes';
 import { MatLegacyChipInputEvent as MatChipInputEvent } from '@angular/material/legacy-chips';
 import { SkipExport, ConditionField, ExpenseFilterResponse, constructPayload1, constructPayload2 } from 'src/app/core/models/misc/skip-export.model';
 

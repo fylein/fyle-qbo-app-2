@@ -110,7 +110,7 @@ export const getadvancedSettingResponse:AdvancedSettingGet = {
 export const getadvancedSettingResponse2:AdvancedSettingGet = {
   workspace_general_settings: {
     sync_fyle_to_qbo_payments: true,
-    sync_qbo_to_fyle_payments: true,
+    sync_qbo_to_fyle_payments: false,
     auto_create_destination_entity: true,
     auto_create_merchants_as_vendors: true,
     je_single_credit_line: true,
@@ -180,7 +180,7 @@ export const getExpenseFilterResponse2: ExpenseFilterResponse = {
     {
       condition: 'employee_email',
       custom_field_type: null,
-      operator: Operator.IExact,
+      operator: Operator.IsNull,
       values: ['anish@email.com', 'ashwin@fyle.in'],
       rank: 1,
       is_custom: false,
@@ -205,7 +205,31 @@ export const getExpenseFilterResponse3: ExpenseFilterResponse = {
       condition: 'Custom Expense Field',
       custom_field_type: 'TEXT',
       operator: Operator.IExact,
-      values: ['TSDR1234', 'TSDR1256'],
+      values: [],
+      rank: 1,
+      is_custom: true,
+      join_by: JoinOption.AND
+    },
+    {
+      condition: 'claim_number',
+      custom_field_type: null,
+      operator: Operator.IsNull,
+      values: ['1234', '5678'],
+      rank: 2,
+      is_custom: true,
+      join_by: JoinOption.AND
+    }
+  ]
+};
+
+export const getExpenseFilterResponse4: ExpenseFilterResponse = {
+  count: 2,
+  results: [
+    {
+      condition: 'Custom Expense Field',
+      custom_field_type: 'TEXT',
+      operator: Operator.IsNull,
+      values: [],
       rank: 1,
       is_custom: true,
       join_by: JoinOption.AND
@@ -214,15 +238,15 @@ export const getExpenseFilterResponse3: ExpenseFilterResponse = {
       condition: 'claim_number',
       custom_field_type: null,
       operator: Operator.IExact,
-      values: ['1234', '5678'],
+      values: ['opooj'],
       rank: 2,
-      is_custom: false,
-      join_by: null
+      is_custom: true,
+      join_by: JoinOption.AND
     }
   ]
 };
 
-export const conditionFieldOptions = [
+export const conditionFieldOptions: ConditionField[] = [
   { field_name: 'employee_email', type: 'SELECT', is_custom: false},
   { field_name: 'report_title', type: 'TEXT', is_custom: false},
   { field_name: 'Custom Expense Field', type: 'TEXT', is_custom: false},

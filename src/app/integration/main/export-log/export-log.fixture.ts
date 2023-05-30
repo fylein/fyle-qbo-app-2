@@ -1,4 +1,4 @@
-import { ExpenseGroupList, ExpenseGroupResponse, SkipExportList } from "src/app/core/models/db/expense-group.model";
+import { ExpenseGroupList, ExpenseGroupResponse, SkipExportList, SkipExportLogResponse } from "src/app/core/models/db/expense-group.model";
 import { FyleReferenceType } from "src/app/core/models/enum/enum.model";
 import { environment } from "src/environments/environment";
 
@@ -95,7 +95,7 @@ export const expenseGroupresponse1: ExpenseGroupResponse= {
   results: [
     {
       id: 1,
-      fund_source: 'dummy',
+      fund_source: 'CCC',
       description: {
         employee_email: 'employee@gmail.com',
         expense_id: FyleReferenceType.EXPENSE,
@@ -152,3 +152,18 @@ export const expenseGroupresponse1: ExpenseGroupResponse= {
 };
 export const exportTyperesponse = ['expense', 1, 'expense'];
 export const fyleURLresponse:string = `${FYLE_APP_URL}/app/admin/#/settlements/settlement_id?org_id=dummy`;
+
+export const getSkippedExpensesResponse: SkipExportLogResponse = {
+  count: 0,
+  next: "jkjkjk",
+  previous: "kjjhj",
+  results: [
+    {
+      employee_name: "string",
+      employee_email: "string",
+      claim_number: "string",
+      updated_at: new Date(),
+      fund_source: "string"
+    }
+  ]
+};
