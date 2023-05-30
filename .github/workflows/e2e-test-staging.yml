@@ -30,7 +30,6 @@ jobs:
               - 'src/**'
               - 'cypress/**'
       - name: Prepare for end to end tests
-        if: steps.filter.outputs.src == 'true'
         run: npm run setup_e2e_test
       - name: Cache Dependencies
         uses: actions/cache@v3
@@ -77,8 +76,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14
-      - name: Prepare for end to end tests
-        run: npm run setup_e2e_test
       - name: Cache Dependencies
         uses: actions/cache@v3
         id: cache
