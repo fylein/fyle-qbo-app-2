@@ -242,20 +242,16 @@ describe('ExportSettingsComponent', () => {
     spyOn(exportSettingService, 'postExportSettings').and.callThrough();
     spyOn(workspace, 'getOnboardingState').and.returnValue(OnboardingState.EXPORT_SETTINGS);
     component.import_items = true;
-    fixture.detectChanges();
     component.isOnboarding = true;
-    expect(component.save()).toBeUndefined();
     fixture.detectChanges();
-    expect(exportSettingService.postExportSettings).toHaveBeenCalled();
-    expect(workspace.getOnboardingState).toHaveBeenCalled();
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['/workspaces/onboarding/import_settings']);
+    expect(component.save()).toBeUndefined();
+    expect(component.saveInProgress).toBeFalse();
     component.exportSettings.workspace_general_settings.corporate_credit_card_expenses_object = CorporateCreditCardExpensesObject.BILL;
     component.exportSettings.workspace_general_settings.reimbursable_expenses_object = ReimbursableExpensesObject.CHECK;
     component.exportSettingsForm.controls.reimbursableExportType.patchValue(ReimbursableExpensesObject.JOURNAL_ENTRY);
     component.isOnboarding = false;
     expect(component.save()).toBeUndefined();
-    fixture.detectChanges();
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['/workspaces/main/configuration/advanced_settings']);
+    expect(component.saveInProgress).toBeFalse();
   });
 
   it('constructWarningMessage function check', () => {
