@@ -242,7 +242,7 @@ describe('ExportSettingsComponent', () => {
     spyOn(exportSettingService, 'postExportSettings').and.callThrough();
     spyOn(workspace, 'getOnboardingState').and.returnValue(OnboardingState.EXPORT_SETTINGS);
     component.import_items = true;
-    fixture.detectChanges()
+    fixture.detectChanges();
     component.isOnboarding = true;
     expect(component.save()).toBeUndefined();
     fixture.detectChanges();
