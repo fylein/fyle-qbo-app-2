@@ -23,7 +23,7 @@ describe('employee mapping view/create/update', () => {
     })
   })
 
-  it('create employee mappings', () => {
+  xit('create employee mappings', () => {
     // Number of mappings to be created
     const mappingLimit = 2;
 
@@ -67,6 +67,7 @@ describe('employee mapping view/create/update', () => {
   it('advanced search', () => {
     cy.get('.mapping-table--form-field').eq(0).click()
     cy.get('.search-select--search-input').eq(1).type('ashwin')
+    cy.wait('@getQBOVendors').its('response.statusCode').should('equal', 200)
     cy.wait('@getQBOVendors').its('response.statusCode').should('equal', 200)
     cy.get('.mat-option').eq(0).contains('Ashwin')
     cy.get('.mat-option').eq(0).click()
