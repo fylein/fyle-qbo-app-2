@@ -14,7 +14,7 @@ import { WorkspaceService } from 'src/app/core/services/workspace/workspace.serv
 import { mappingList } from 'src/app/shared/components/mapping/mapping-table/mapping-table.fixture';
 import { environment } from 'src/environments/environment';
 import { EmployeeMappingComponent } from './employee-mapping.component';
-import { employeeMappingResponse, getEmployeeMappingResponse, mappinglist, MappingStatsResponse, qboData, workspaceGeneralSettingResponse } from './employee-mapping.fixture';
+import { employeeMappingResponse, getEmployeeMappingResponse, getEmployeeMappingResponse1, mappinglist, MappingStatsResponse, qboData, qboData2, workspaceGeneralSettingResponse } from './employee-mapping.fixture';
 
 describe('EmployeeMappingComponent', () => {
   let component: EmployeeMappingComponent;
@@ -37,7 +37,7 @@ describe('EmployeeMappingComponent', () => {
       getQBOEmployees: () => of(qboData),
       getQBOVendors: () => of(qboData),
       postEmployeeMapping: () => of(employeeMappingResponse),
-      getEmployeeMappings: () => of(getEmployeeMappingResponse)
+      getEmployeeMappings: () => of(getEmployeeMappingResponse1)
     };
     const service3 = {
       storePageSize: () => undefined,
@@ -77,6 +77,7 @@ describe('EmployeeMappingComponent', () => {
       filterOption: [''],
       cardUpdated: [false]
     });
+    component.qboData = qboData2;
     fixture.detectChanges();
   });
 
@@ -155,9 +156,13 @@ describe('EmployeeMappingComponent', () => {
     fixture.detectChanges();
     component.form.controls.searchOption.patchValue(' dh ');
     expect((component as any).setupForm([' dh '])).toBeUndefined();
+    fixture.detectChanges();
+    component.form.controls.searchOption.patchValue('');
+    expect((component as any).setupForm()).toBeUndefined();
   });
 
   it('getMappings function check', () => {
+    component.employeeFieldMapping = EmployeeFieldMapping.VENDOR;
     component.form = formBuilder.group({
       map: [''],
       fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray),
@@ -170,7 +175,25 @@ describe('EmployeeMappingComponent', () => {
       limit: 3,
       offset: 3
     };
-    spyOn(mappingService, 'getEmployeeMappings').and.callThrough();
+    expect(component.getMappings(parameter)).toBeUndefined();
+    expect(component.isLoading).toBeFalse();
+  });
+  it('getMappings function check', () => {
+    component.qboData = qboData2.slice(0, 1);
+    component.employeeFieldMapping = EmployeeFieldMapping.EMPLOYEE;
+    component.form = formBuilder.group({
+      map: [''],
+      fyleQboMapping: formBuilder.array(component.fyleQboMappingFormArray),
+      searchOption: [[' fyle ']],
+      filterOption: [[' dh ', 'fyle']],
+      cardUpdated: [false]
+    });
+    fixture.detectChanges();
+    const parameter:Paginator = {
+      limit: 3,
+      offset: 3
+    };
+    spyOn(mappingService, 'getEmployeeMappings').and.returnValue(of(getEmployeeMappingResponse));
     expect(component.getMappings(parameter)).toBeUndefined();
     fixture.detectChanges();
     expect(mappingService.getEmployeeMappings).toHaveBeenCalled();

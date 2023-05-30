@@ -62,3 +62,30 @@ export const mappedRowsFormArray = [
     existingMapping: false
   }
 ];
+
+export const mappedRowsFormArray1 = [
+  {
+    id: 1,
+    sourceField: 'PROJECT',
+    fyleField: MappingSourceField.PROJECT,
+    index: 0,
+    existingMapping: false
+  }
+];
+
+export const mappedRowsFormArray2 = [
+  {
+    id: 1,
+    sourceField: 'PROJECT',
+    fyleField: MappingSourceField.TAX_GROUP,
+    index: 0,
+    existingMapping: false
+  },
+  {
+  id: 1,
+  sourceField: 'PROJECT',
+  fyleField: MappingSourceField.PROJECT,
+  index: 1,
+  existingMapping: false
+}
+];

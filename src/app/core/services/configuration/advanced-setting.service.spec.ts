@@ -4,6 +4,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { AdvancedSettingGet, AdvancedSettingPost } from '../../models/configuration/advanced-setting.model';
 import { environment } from 'src/environments/environment';
 import { WorkspaceScheduleEmailOptions } from '../../models/db/workspace-schedule.model';
+import { ExpenseFilterResponse, SkipExport } from '../../models/misc/skip-export.model';
+import { JoinOption, Operator } from '../../models/enum/enum.model';
 
 describe('AdvancedSettingService', () => {
   let service: AdvancedSettingService;
@@ -123,5 +125,79 @@ describe('AdvancedSettingService', () => {
     });
   req.flush(response);
 
+  });
+
+  it('getExpenseFilter function check', () => {
+    const response: ExpenseFilterResponse = {
+      count: 1,
+      results: [
+        {
+          condition: 'employee_email',
+          custom_field_type: null,
+          operator: Operator.IExact,
+          values: ['anish@email.com', 'ashwin@fyle.in'],
+          rank: 1,
+          is_custom: false,
+          join_by: null
+        }
+      ]
+    };
+    service.getExpenseFilter().subscribe((value) => {
+      expect(value).toEqual(response);
+    });
+    const req = httpMock.expectOne({
+      method: 'GET',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_filters/`
+    });
+    req.flush(response);
+  });
+
+  it('postExpenseFilter function check', () => {
+    const response: SkipExport = {
+      condition: 'employee_email',
+      custom_field_type: null,
+      operator: Operator.IExact,
+      values: ['anish@email.com', 'ashwin@fyle.in'],
+      rank: 1,
+      join_by: null,
+      is_custom: false
+    };
+    const data = {
+      condition: 'string',
+      custom_field_type: 'any',
+      operator: Operator.IsNull,
+      values: [],
+      rank: 1,
+      join_by: JoinOption.AND,
+      is_custom: true
+    };
+    service.postExpenseFilter(data).subscribe((value) => {
+      expect(value).toEqual(response);
+    });
+    const req = httpMock.expectOne({
+      method: 'POST',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_filters/`
+    });
+    req.flush(response);
+  });
+
+  it('deleteExpenseFilter function check', () => {
+    const response: SkipExport = {
+      condition: 'employee_email',
+      custom_field_type: null,
+      operator: Operator.IExact,
+      values: ['anish@email.com', 'ashwin@fyle.in'],
+      rank: 1,
+      join_by: null,
+      is_custom: false
+    };
+    service.deleteExpenseFilter(1).subscribe((value) => {
+      expect(value).toEqual(response);
+    });
+    const req = httpMock.expectOne({
+      method: 'DELETE',
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_filters/?rank=1`
+    });
+    req.flush(response);
   });
 });

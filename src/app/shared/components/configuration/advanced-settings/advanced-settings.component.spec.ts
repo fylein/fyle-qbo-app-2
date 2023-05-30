@@ -5,19 +5,19 @@ import { UntypedFormBuilder, FormsModule, ReactiveFormsModule, Validators } from
 import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { adminEmails, advancedSettingResponse, customFields, destinationAttribute, emailResponse, errorResponse, postExpenseFilterResponse, getadvancedSettingResponse, getadvancedSettingResponse2, getExpenseFilterResponse, memo, previewResponse, response, conditionMock1, conditionMock2, conditionMock3, customOperatorMock1, customOperatorMock2, customOperatorMock3, customOperatorMock4, claimNumberOperators, spentAtOperators, reportTitleOperators, conditionMock4, conditionFieldOptions, getExpenseFilterResponse2, getExpenseFilterResponse3 } from './advanced-settings.fixture';
+import { adminEmails, advancedSettingResponse, customFields, destinationAttribute, emailResponse, errorResponse, postExpenseFilterResponse, getadvancedSettingResponse, getadvancedSettingResponse2, getExpenseFilterResponse, memo, previewResponse, response, conditionMock1, conditionMock2, conditionMock3, customOperatorMock1, customOperatorMock2, customOperatorMock3, customOperatorMock4, claimNumberOperators, spentAtOperators, reportTitleOperators, conditionMock4, conditionFieldOptions, getExpenseFilterResponse2, getExpenseFilterResponse3, getExpenseFilterResponse4 } from './advanced-settings.fixture';
 import { Router } from '@angular/router';
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { of, throwError } from 'rxjs';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { OnboardingState, PaymentSyncDirection } from 'src/app/core/models/enum/enum.model';
+import { CustomOperatorOption, OnboardingState, PaymentSyncDirection } from 'src/app/core/models/enum/enum.model';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { By } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { MatLegacyDialog as MatDialog, MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
-import { ConditionField } from 'src/app/core/models/misc/skip-export.model';
+import { ConditionField, ExpenseFilterResponse } from 'src/app/core/models/misc/skip-export.model';
 import { MatLegacyChipInputEvent } from '@angular/material/legacy-chips';
 
 describe('AdvancedSettingsComponent', () => {
@@ -147,6 +147,14 @@ describe('AdvancedSettingsComponent', () => {
     component.operatorFieldOptions2 = [customOperatorMock3, customOperatorMock2, customOperatorMock1];
     component.resetFields(component.skipExportForm.controls.operator2, component.skipExportForm.controls.value2, conditionMock1, 2);
 
+    component.skipExportForm.controls.operator2.patchValue('is');
+    component.skipExportForm.controls.value2.patchValue('test value');
+    component.valueOption2 = ['option1', 'option2'];
+    component.operatorFieldOptions2 = [customOperatorMock3, customOperatorMock2, customOperatorMock1];
+    const condition = conditionMock1;
+    condition.is_custom = true;
+    component.resetFields(component.skipExportForm.controls.operator2, component.skipExportForm.controls.value2, condition, 2);
+
     expect(component.skipExportForm.controls.operator1.value).toBeNull();
     expect(component.skipExportForm.controls.value1.value).toBeNull();
     expect(component.valueOption1).toEqual([]);
@@ -185,11 +193,14 @@ describe('AdvancedSettingsComponent', () => {
 
   it('setupForm function check with a different payment sync value', () => {
     const advancedSettings = Object.assign(getadvancedSettingResponse2);
-    advancedSettings.workspace_general_settings.sync_fyle_to_qbo_payments = false;
     advancedSettings.workspace_general_settings.sync_qbo_to_fyle_payments = true;
-
-    (component as any).setupForm();
+    // @ts-ignore
+    advancedSettings.general_mappings.bill_payment_account = null;
+    advancedSettings.workspace_schedules.enabled = false;
+    advancedSettings.workspace_schedules.emails_selected = null;
     fixture.detectChanges();
+    (component as any).setupForm();
+    // Fixture.detectChanges();
     expect(component.isLoading).toBeFalse();
   });
 
@@ -546,6 +557,7 @@ describe('AdvancedSettingsComponent', () => {
     component.setupSkipExportForm(getExpenseFilterResponse, conditionArr);
     component.setupSkipExportForm(getExpenseFilterResponse2, conditionArr);
     component.setupSkipExportForm(getExpenseFilterResponse3, conditionArr);
+    component.setupSkipExportForm(getExpenseFilterResponse4, conditionArr);
   });
 
   it('createPaymentSyncWatcher function check', () => {
@@ -590,6 +602,10 @@ describe('AdvancedSettingsComponent', () => {
     const result = component.checkValidationCondition();
     expect(result).toBeTrue();
     expect(component.skipExportForm.value.operator2).toBeNull();
+    component.showAdditionalCondition = false;
+    const result1 = component.checkValidationCondition();
+    expect(result1).toBeFalse();
+    expect(component.skipExportForm.value.operator2).toBeNull();
   });
 
   it('should reset additional filter and hide it after calling remCondition', () => {
@@ -627,7 +643,6 @@ describe('AdvancedSettingsComponent', () => {
   });
 
   it('should return true if condition1 field_name is report_title and operator1 is not "is_empty" or "is_not_empty"', () => {
-    const condition1 = { field_name: conditionMock2, operator: 'iexact', value: ['test'] };
     component.skipExportForm.controls.condition1.patchValue(conditionMock4);
     component.skipExportForm.controls.operator1.patchValue(customOperatorMock2);
     // Act
@@ -635,6 +650,14 @@ describe('AdvancedSettingsComponent', () => {
 
     // Assert
     expect(result).toBeFalse();
+
+    component.skipExportForm.controls.condition1.patchValue(conditionMock2);
+    component.skipExportForm.controls.operator1.patchValue(customOperatorMock3);
+    // Act
+    const result1 = component.showInputField1();
+
+    // Assert
+    expect(result1).toBeTrue();
   });
 
   it('should return "is_empty" if operator is "isnull" and value is "True"', () => {
@@ -645,6 +668,13 @@ describe('AdvancedSettingsComponent', () => {
     const result = component.getSelectedOperator(operator, value, condition);
 
     expect(result).toEqual('is_not_empty');
+    const operator1 = 'isnull';
+    const value1 = 'True';
+    const condition1 = conditionMock4;
+
+    const result1 = component.getSelectedOperator(operator1, value1, condition1);
+
+    expect(result1).toEqual('is_empty');
   });
 
   it('should return "iexact" if operator is "iexact"', () => {
@@ -675,5 +705,50 @@ describe('AdvancedSettingsComponent', () => {
     const result = component.getSelectedOperator(operator, value, condition);
 
     expect(result).toEqual('iexact');
+  });
+
+  it('Private function check', () => {
+    expect((component as any).setOperatorFieldOptions(getExpenseFilterResponse3, conditionMock1)).toBeUndefined();
+    getExpenseFilterResponse3.count = 2;
+    expect((component as any).setSkippedConditions(getExpenseFilterResponse3, [conditionMock1, conditionMock1])).toBeUndefined();
+    getExpenseFilterResponse3.count = 0;
+    expect((component as any).setSkippedConditions(getExpenseFilterResponse3, [conditionMock1])).toBeUndefined();
+    component.skipExportForm.controls.condition1.patchValue(conditionMock3);
+    component.skipExportForm.controls.operator1.patchValue(customOperatorMock1);
+    // Act
+    const result = component.showDateField1();
+
+    // Assert
+    expect(result).toBeTrue();
+
+    component.skipExportForm.controls.value1.patchValue([new Date('2022-10-01T00:00:00.000Z')]);
+    component.skipExportForm.controls.operator1.patchValue(claimNumberOperators[0].value);
+    component.skipExportForm.controls.operator2.patchValue(claimNumberOperators[0].value);
+    component.advancedSettingsForm.controls.skipExport.patchValue(true);
+    expect(component.saveSkipExportFields()).toBeUndefined();
+
+    component.skipExportForm.controls.operator1.patchValue(customOperatorMock2.value);
+    component.skipExportForm.controls.condition1.patchValue(conditionMock4);
+    component.advancedSettingsForm.controls.skipExport.patchValue(true);
+    expect(component.saveSkipExportFields()).toBeUndefined();
+
+    const customOperatorMock = {
+      label: 'IsNotEmpty',
+      value: CustomOperatorOption.IsNotEmpty
+    };
+    component.skipExportForm.controls.operator1.patchValue(customOperatorMock.value);
+    component.skipExportForm.controls.condition1.patchValue(conditionMock4);
+    component.advancedSettingsForm.controls.skipExport.patchValue(true);
+    expect(component.saveSkipExportFields()).toBeUndefined();
+
+    component.skipExportForm.controls.operator2.patchValue(customOperatorMock2.value);
+    component.skipExportForm.controls.condition2.patchValue(conditionMock4);
+    component.advancedSettingsForm.controls.skipExport.patchValue(true);
+    expect(component.saveSkipExportFields()).toBeUndefined();
+
+    component.skipExportForm.controls.operator2.patchValue(customOperatorMock.value);
+    component.skipExportForm.controls.condition2.patchValue(conditionMock4);
+    component.advancedSettingsForm.controls.skipExport.patchValue(true);
+    expect(component.saveSkipExportFields()).toBeUndefined();
   });
 });

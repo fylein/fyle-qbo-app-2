@@ -1,5 +1,5 @@
 import { DestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
-import { EmployeeMapping } from "src/app/core/models/db/employee-mapping.model";
+import { EmployeeMapping, ExtendedEmployeeAttributeResponse } from "src/app/core/models/db/employee-mapping.model";
 import { MappingList, MappingStats } from "src/app/core/models/db/mapping.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
 import { EmployeeFieldMapping, MappingState } from "src/app/core/models/enum/enum.model";
@@ -56,7 +56,8 @@ export const MappingStatsResponse:MappingStats= {
   all_attributes_count: 3,
   unmapped_attributes_count: 3
 };
-export const qboData2: DestinationAttribute[] = [{
+export const qboData2: DestinationAttribute[] = [
+  {
     id: 2,
     attribute_type: 'EMPLOYEE',
     display_name: "string Ash",
@@ -85,7 +86,23 @@ export const qboData2: DestinationAttribute[] = [{
       email: 'String Ash Ash',
       fully_qualified_name: 'string Ash Ash'
     }
-  }];
+  },
+  {
+    id: 3,
+    attribute_type: 'EMPLOYEE',
+    display_name: "string",
+    value: "string",
+    destination_id: "stringAsg",
+    active: true,
+    created_at: new Date(),
+    updated_at: new Date(),
+    workspace: 2,
+    detail: {
+      email: 'String',
+      fully_qualified_name: 'string'
+    }
+  }
+];
 export const qboData: DestinationAttribute[] = [{
   id: 1,
   attribute_type: 'EMPLOYEE',
@@ -147,7 +164,7 @@ export const employeeMappingResponse: EmployeeMapping = {
   updated_at: new Date(),
   workspace: +environment.tests.workspaceId
 };
-export const getEmployeeMappingResponse={
+export const getEmployeeMappingResponse: ExtendedEmployeeAttributeResponse={
   "count": 3,
   "next": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?destination_type=EMPLOYEE&limit=1&mapped=ALL&mapping_source_alphabets=null&offset=2`,
   "previous": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?destination_type=EMPLOYEE&limit=1&mapped=ALL&mapping_source_alphabets=null`,
@@ -177,7 +194,7 @@ export const getEmployeeMappingResponse={
               employee_code: 'FYIE1'
             }
           },
-          destination_employee: qboData2[0],
+          destination_employee: qboData2[2],
           destination_vendor: qboData2[1],
           destination_card_account: qboData2[1],
           created_at: new Date(),
@@ -188,22 +205,83 @@ export const getEmployeeMappingResponse={
       "attribute_type": "EMPLOYEE",
       "display_name": "Employee",
       "value": "gokul.kathiresan@fyle.in",
-      "source_id": "oupTTvXHXCuk",
+      "source_id": 9,
       "auto_mapped": false,
-      "auto_created": false,
-      "active": null,
+      // "auto_created": false,
+      "active": false,
       "detail": {
-          "user_id": "usCPKib1GyYP",
-          "location": null,
+          // "user_id": "usCPKib1GyYP",
+          "location": 'null',
           "full_name": "Gokul",
-          "department": null,
-          "department_id": null,
-          "employee_code": null,
-          "department_code": null
+          "department": 'null',
+          "department_id": 'null',
+          "employee_code": 'null',
+          "department_code": 'null'
       },
       "created_at": new Date("2022-04-29T07:14:57.819103Z"),
       "updated_at": new Date("2022-04-29T07:14:57.819149Z"),
-      "workspace": workspace_id
+      "workspace": +workspace_id
+    }
+  ]
+};
+
+export const getEmployeeMappingResponse1={
+  "count": 3,
+  "next": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?destination_type=EMPLOYEE&limit=1&mapped=ALL&mapping_source_alphabets=null&offset=2`,
+  "previous": `${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?destination_type=EMPLOYEE&limit=1&mapped=ALL&mapping_source_alphabets=null`,
+  "results": [
+    {
+      "id": 3,
+      "employeemapping": [
+        {
+          id: 1,
+          source_employee: {
+            id: 1,
+            attribute_type: 'VENDOR',
+            display_name: 'Vendor',
+            value: 'dummy',
+            source_id: 1,
+            auto_mapped: true,
+            active: true,
+            created_at: new Date(),
+            updated_at: new Date(),
+            workspace: +environment.tests.workspaceId,
+            detail: {
+              location: 'india',
+              full_name: 'Fyle Integrations',
+              department_id: '2',
+              department: 'Integrations',
+              department_code: 'FYI2',
+              employee_code: 'FYIE1'
+            }
+          },
+          destination_employee: null,
+          destination_vendor: qboData2[1],
+          destination_card_account: qboData2[1],
+          created_at: new Date(),
+          updated_at: new Date(),
+          workspace: +environment.tests.workspaceId
+        }
+      ],
+      "attribute_type": "EMPLOYEE",
+      "display_name": "Employee",
+      "value": "gokul.kathiresan@fyle.in",
+      "source_id": 7,
+      "auto_mapped": false,
+      // "auto_created": false,
+      "active": false,
+      "detail": {
+          // "user_id": "usCPKib1GyYP",
+          "location": 'null',
+          "full_name": "Gokul",
+          "department": 'null',
+          "department_id": 'null',
+          "employee_code": 'null',
+          "department_code": 'null'
+      },
+      "created_at": new Date("2022-04-29T07:14:57.819103Z"),
+      "updated_at": new Date("2022-04-29T07:14:57.819149Z"),
+      "workspace": +workspace_id
     }
   ]
 };
