@@ -1,4 +1,3 @@
-import { conditionFieldOptions } from "src/app/shared/components/configuration/advanced-settings/advanced-settings.fixture";
 import { Operator } from "../enum/enum.model";
 import { ConditionField, constructPayload1, constructPayload2, SkipExport } from "./skip-export.model";
 
