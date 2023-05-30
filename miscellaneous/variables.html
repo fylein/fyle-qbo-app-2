@@ -241,6 +241,9 @@
                             <a href="#exportResponse" title="src/app/shared/components/configuration/qbo-connector/qbo-connector.fixture.ts" ><b>exportResponse</b>&nbsp;&nbsp;&nbsp;(src/.../qbo-connector.fixture.ts)</a>
                         </li>
                         <li>
+                            <a href="#exportResponse1" title="src/app/shared/components/configuration/export-settings/export-settings.fixture.ts" ><b>exportResponse1</b>&nbsp;&nbsp;&nbsp;(src/.../export-settings.fixture.ts)</a>
+                        </li>
+                        <li>
                             <a href="#exportTyperesponse" title="src/app/integration/main/export-log/export-log.fixture.ts" ><b>exportTyperesponse</b>&nbsp;&nbsp;&nbsp;(src/.../export-log.fixture.ts)</a>
                         </li>
                         <li>
@@ -268,6 +271,9 @@
                             <a href="#getEmployeeMappingResponse" title="src/app/integration/main/mapping/employee-mapping/employee-mapping.fixture.ts" ><b>getEmployeeMappingResponse</b>&nbsp;&nbsp;&nbsp;(src/.../employee-mapping.fixture.ts)</a>
                         </li>
                         <li>
+                            <a href="#getEmployeeMappingResponse1" title="src/app/integration/main/mapping/employee-mapping/employee-mapping.fixture.ts" ><b>getEmployeeMappingResponse1</b>&nbsp;&nbsp;&nbsp;(src/.../employee-mapping.fixture.ts)</a>
+                        </li>
+                        <li>
                             <a href="#getExpenseFilterResponse" title="src/app/shared/components/configuration/advanced-settings/advanced-settings.fixture.ts" ><b>getExpenseFilterResponse</b>&nbsp;&nbsp;&nbsp;(src/.../advanced-settings.fixture.ts)</a>
                         </li>
                         <li>
@@ -275,6 +281,9 @@
                         </li>
                         <li>
                             <a href="#getExpenseFilterResponse3" title="src/app/shared/components/configuration/advanced-settings/advanced-settings.fixture.ts" ><b>getExpenseFilterResponse3</b>&nbsp;&nbsp;&nbsp;(src/.../advanced-settings.fixture.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#getExpenseFilterResponse4" title="src/app/shared/components/configuration/advanced-settings/advanced-settings.fixture.ts" ><b>getExpenseFilterResponse4</b>&nbsp;&nbsp;&nbsp;(src/.../advanced-settings.fixture.ts)</a>
                         </li>
                         <li>
                             <a href="#getExportableGroupsIdsResponse" title="src/app/integration/main/dashboard/dashboard.fixture.ts" ><b>getExportableGroupsIdsResponse</b>&nbsp;&nbsp;&nbsp;(src/.../dashboard.fixture.ts)</a>
@@ -298,6 +307,9 @@
                             <a href="#getMappingStats" title="src/app/shared/components/mapping/generic-mapping/generic-mapping.fixture.ts" ><b>getMappingStats</b>&nbsp;&nbsp;&nbsp;(src/.../generic-mapping.fixture.ts)</a>
                         </li>
                         <li>
+                            <a href="#getSkippedExpensesResponse" title="src/app/integration/main/export-log/export-log.fixture.ts" ><b>getSkippedExpensesResponse</b>&nbsp;&nbsp;&nbsp;(src/.../export-log.fixture.ts)</a>
+                        </li>
+                        <li>
                             <a href="#getWorkspaceGeneralSettingsResponse" title="src/app/shared/components/dashboard/dashboard-resolve-mapping-error-dialog/dashboard-resolve-mapping.fixture.ts" ><b>getWorkspaceGeneralSettingsResponse</b>&nbsp;&nbsp;&nbsp;(src/.../dashboard-resolve-mapping.fixture.ts)</a>
                         </li>
                         <li>
@@ -314,6 +326,12 @@
                         </li>
                         <li>
                             <a href="#mappedRowsFormArray" title="src/app/integration/main/mapping/custom-mapping/custom-mapping.fixture.ts" ><b>mappedRowsFormArray</b>&nbsp;&nbsp;&nbsp;(src/.../custom-mapping.fixture.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#mappedRowsFormArray1" title="src/app/integration/main/mapping/custom-mapping/custom-mapping.fixture.ts" ><b>mappedRowsFormArray1</b>&nbsp;&nbsp;&nbsp;(src/.../custom-mapping.fixture.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#mappedRowsFormArray2" title="src/app/integration/main/mapping/custom-mapping/custom-mapping.fixture.ts" ><b>mappedRowsFormArray2</b>&nbsp;&nbsp;&nbsp;(src/.../custom-mapping.fixture.ts)</a>
                         </li>
                         <li>
                             <a href="#mapping_settings" title="src/app/shared/components/configuration/import-settings/import-settings.fixture.ts" ><b>mapping_settings</b>&nbsp;&nbsp;&nbsp;(src/.../import-settings.fixture.ts)</a>
@@ -513,6 +531,9 @@
                         <li>
                             <a href="#workspaceResponse" title="src/app/shared/components/configuration/export-settings/export-settings.fixture.ts" ><b>workspaceResponse</b>&nbsp;&nbsp;&nbsp;(src/.../export-settings.fixture.ts)</a>
                         </li>
+                        <li>
+                            <a href="#workspaceResponse1" title="src/app/shared/components/configuration/export-settings/export-settings.fixture.ts" ><b>workspaceResponse1</b>&nbsp;&nbsp;&nbsp;(src/.../export-settings.fixture.ts)</a>
+                        </li>
                     </ul>
                 </td>
             </tr>
@@ -636,7 +657,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>[]</code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ConditionField" target="_self" >ConditionField[]</a></code>
 
                     </td>
                 </tr>
@@ -1108,7 +1129,7 @@
                         <i>Default value : </i><code>{
   workspace_general_settings: {
     sync_fyle_to_qbo_payments: true,
-    sync_qbo_to_fyle_payments: true,
+    sync_qbo_to_fyle_payments: false,
     auto_create_destination_entity: true,
     auto_create_merchants_as_vendors: true,
     je_single_credit_line: true,
@@ -1196,7 +1217,7 @@
     {
       condition: &#x27;employee_email&#x27;,
       custom_field_type: null,
-      operator: Operator.IExact,
+      operator: Operator.IsNull,
       values: [&#x27;anish@email.com&#x27;, &#x27;ashwin@fyle.in&#x27;],
       rank: 1,
       is_custom: false,
@@ -1245,7 +1266,55 @@
       condition: &#x27;Custom Expense Field&#x27;,
       custom_field_type: &#x27;TEXT&#x27;,
       operator: Operator.IExact,
-      values: [&#x27;TSDR1234&#x27;, &#x27;TSDR1256&#x27;],
+      values: [],
+      rank: 1,
+      is_custom: true,
+      join_by: JoinOption.AND
+    },
+    {
+      condition: &#x27;claim_number&#x27;,
+      custom_field_type: null,
+      operator: Operator.IsNull,
+      values: [&#x27;1234&#x27;, &#x27;5678&#x27;],
+      rank: 2,
+      is_custom: true,
+      join_by: JoinOption.AND
+    }
+  ]
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getExpenseFilterResponse4"></a>
+                    <span class="name">
+                        <span ><b>getExpenseFilterResponse4</b></span>
+                        <a href="#getExpenseFilterResponse4"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ExpenseFilterResponse" target="_self" >ExpenseFilterResponse</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  count: 2,
+  results: [
+    {
+      condition: &#x27;Custom Expense Field&#x27;,
+      custom_field_type: &#x27;TEXT&#x27;,
+      operator: Operator.IsNull,
+      values: [],
       rank: 1,
       is_custom: true,
       join_by: JoinOption.AND
@@ -1254,10 +1323,10 @@
       condition: &#x27;claim_number&#x27;,
       custom_field_type: null,
       operator: Operator.IExact,
-      values: [&#x27;1234&#x27;, &#x27;5678&#x27;],
+      values: [&#x27;opooj&#x27;],
       rank: 2,
-      is_custom: false,
-      join_by: null
+      is_custom: true,
+      join_by: JoinOption.AND
     }
   ]
 }</code>
@@ -2157,6 +2226,91 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ExtendedEmployeeAttributeResponse" target="_self" >ExtendedEmployeeAttributeResponse</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  &quot;count&quot;: 3,
+  &quot;next&quot;: &#x60;${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?destination_type&#x3D;EMPLOYEE&amp;limit&#x3D;1&amp;mapped&#x3D;ALL&amp;mapping_source_alphabets&#x3D;null&amp;offset&#x3D;2&#x60;,
+  &quot;previous&quot;: &#x60;${API_BASE_URL}/workspaces/${workspace_id}/mappings/employee_attributes/?destination_type&#x3D;EMPLOYEE&amp;limit&#x3D;1&amp;mapped&#x3D;ALL&amp;mapping_source_alphabets&#x3D;null&#x60;,
+  &quot;results&quot;: [
+    {
+      &quot;id&quot;: 3,
+      &quot;employeemapping&quot;: [
+        {
+          id: 1,
+          source_employee: {
+            id: 1,
+            attribute_type: &#x27;VENDOR&#x27;,
+            display_name: &#x27;Vendor&#x27;,
+            value: &#x27;dummy&#x27;,
+            source_id: 1,
+            auto_mapped: true,
+            active: true,
+            created_at: new Date(),
+            updated_at: new Date(),
+            workspace: +environment.tests.workspaceId,
+            detail: {
+              location: &#x27;india&#x27;,
+              full_name: &#x27;Fyle Integrations&#x27;,
+              department_id: &#x27;2&#x27;,
+              department: &#x27;Integrations&#x27;,
+              department_code: &#x27;FYI2&#x27;,
+              employee_code: &#x27;FYIE1&#x27;
+            }
+          },
+          destination_employee: qboData2[2],
+          destination_vendor: qboData2[1],
+          destination_card_account: qboData2[1],
+          created_at: new Date(),
+          updated_at: new Date(),
+          workspace: +environment.tests.workspaceId
+        }
+      ],
+      &quot;attribute_type&quot;: &quot;EMPLOYEE&quot;,
+      &quot;display_name&quot;: &quot;Employee&quot;,
+      &quot;value&quot;: &quot;gokul.kathiresan@fyle.in&quot;,
+      &quot;source_id&quot;: 9,
+      &quot;auto_mapped&quot;: false,
+      // &quot;auto_created&quot;: false,
+      &quot;active&quot;: false,
+      &quot;detail&quot;: {
+          // &quot;user_id&quot;: &quot;usCPKib1GyYP&quot;,
+          &quot;location&quot;: &#x27;null&#x27;,
+          &quot;full_name&quot;: &quot;Gokul&quot;,
+          &quot;department&quot;: &#x27;null&#x27;,
+          &quot;department_id&quot;: &#x27;null&#x27;,
+          &quot;employee_code&quot;: &#x27;null&#x27;,
+          &quot;department_code&quot;: &#x27;null&#x27;
+      },
+      &quot;created_at&quot;: new Date(&quot;2022-04-29T07:14:57.819103Z&quot;),
+      &quot;updated_at&quot;: new Date(&quot;2022-04-29T07:14:57.819149Z&quot;),
+      &quot;workspace&quot;: +workspace_id
+    }
+  ]
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEmployeeMappingResponse1"></a>
+                    <span class="name">
+                        <span ><b>getEmployeeMappingResponse1</b></span>
+                        <a href="#getEmployeeMappingResponse1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
 
                     </td>
@@ -2193,7 +2347,7 @@
               employee_code: &#x27;FYIE1&#x27;
             }
           },
-          destination_employee: qboData2[0],
+          destination_employee: null,
           destination_vendor: qboData2[1],
           destination_card_account: qboData2[1],
           created_at: new Date(),
@@ -2204,22 +2358,22 @@
       &quot;attribute_type&quot;: &quot;EMPLOYEE&quot;,
       &quot;display_name&quot;: &quot;Employee&quot;,
       &quot;value&quot;: &quot;gokul.kathiresan@fyle.in&quot;,
-      &quot;source_id&quot;: &quot;oupTTvXHXCuk&quot;,
+      &quot;source_id&quot;: 7,
       &quot;auto_mapped&quot;: false,
-      &quot;auto_created&quot;: false,
-      &quot;active&quot;: null,
+      // &quot;auto_created&quot;: false,
+      &quot;active&quot;: false,
       &quot;detail&quot;: {
-          &quot;user_id&quot;: &quot;usCPKib1GyYP&quot;,
-          &quot;location&quot;: null,
+          // &quot;user_id&quot;: &quot;usCPKib1GyYP&quot;,
+          &quot;location&quot;: &#x27;null&#x27;,
           &quot;full_name&quot;: &quot;Gokul&quot;,
-          &quot;department&quot;: null,
-          &quot;department_id&quot;: null,
-          &quot;employee_code&quot;: null,
-          &quot;department_code&quot;: null
+          &quot;department&quot;: &#x27;null&#x27;,
+          &quot;department_id&quot;: &#x27;null&#x27;,
+          &quot;employee_code&quot;: &#x27;null&#x27;,
+          &quot;department_code&quot;: &#x27;null&#x27;
       },
       &quot;created_at&quot;: new Date(&quot;2022-04-29T07:14:57.819103Z&quot;),
       &quot;updated_at&quot;: new Date(&quot;2022-04-29T07:14:57.819149Z&quot;),
-      &quot;workspace&quot;: workspace_id
+      &quot;workspace&quot;: +workspace_id
     }
   ]
 }</code>
@@ -2374,7 +2528,8 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[{
+                        <i>Default value : </i><code>[
+  {
     id: 2,
     attribute_type: &#x27;EMPLOYEE&#x27;,
     display_name: &quot;string Ash&quot;,
@@ -2403,7 +2558,23 @@
       email: &#x27;String Ash Ash&#x27;,
       fully_qualified_name: &#x27;string Ash Ash&#x27;
     }
-  }]</code>
+  },
+  {
+    id: 3,
+    attribute_type: &#x27;EMPLOYEE&#x27;,
+    display_name: &quot;string&quot;,
+    value: &quot;string&quot;,
+    destination_id: &quot;stringAsg&quot;,
+    active: true,
+    created_at: new Date(),
+    updated_at: new Date(),
+    workspace: 2,
+    detail: {
+      email: &#x27;String&#x27;,
+      fully_qualified_name: &#x27;string&#x27;
+    }
+  }
+]</code>
                     </td>
                 </tr>
 
@@ -2574,7 +2745,7 @@
   display_name: &quot;Account&quot;,
   id: 1,
   updated_at: new Date(&quot;2022-06-14T06:24:56.947727Z&quot;),
-  value: &quot;Accounts Payable&quot;,
+  value: &quot;Delhi&quot;,
   workspace: 146
 }]</code>
                     </td>
@@ -2630,7 +2801,183 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>{&quot;count&quot;: 6, &quot;next&quot;: null, &quot;previous&quot;: null, &quot;results&quot;: [{&quot;id&quot;: 363953, &quot;mapping&quot;: [{&quot;destination&quot;: {&quot;id&quot;: 50140, &quot;attribute_type&quot;: &quot;DEPARTMENT&quot;, &quot;display_name&quot;: &quot;Department&quot;, &quot;value&quot;: &quot;Accountants Inc&quot;, &quot;destination_id&quot;: &quot;4&quot;, &quot;auto_created&quot;: false, &quot;active&quot;: true, &quot;detail&quot;: null, &quot;created_at&quot;: &quot;2022-05-12T03:58:18.256948Z&quot;, &quot;updated_at&quot;: &quot;2022-05-12T03:58:18.256966Z&quot;, &quot;workspace&quot;: 286}, &quot;source_type&quot;: &quot;HGFH&quot;, &quot;destination_type&quot;: &quot;DEPARTMENT&quot;, &quot;created_at&quot;: &quot;2022-07-14T11:41:07.465208Z&quot;, &quot;updated_at&quot;: &quot;2022-07-14T11:41:07.465230Z&quot;}], &quot;attribute_type&quot;: &quot;HGFH&quot;, &quot;display_name&quot;: &quot;Hgfh&quot;, &quot;value&quot;: &quot;Accountants Inc&quot;, &quot;source_id&quot;: &quot;expense_custom_field.hgfh.1&quot;, &quot;auto_mapped&quot;: true, &quot;auto_created&quot;: false, &quot;active&quot;: true, &quot;detail&quot;: {&quot;placeholder&quot;: &quot;Select Hgfh&quot;, &quot;custom_field_id&quot;: 209230}, &quot;created_at&quot;: &quot;2022-07-14T11:41:06.207847Z&quot;, &quot;updated_at&quot;: &quot;2022-07-14T11:41:06.207873Z&quot;, &quot;workspace&quot;: 286}, {&quot;id&quot;: 363954, &quot;mapping&quot;: [{&quot;destination&quot;: {&quot;id&quot;: 50141, &quot;attribute_type&quot;: &quot;DEPARTMENT&quot;, &quot;display_name&quot;: &quot;Department&quot;, &quot;value&quot;: &quot;Bangalore&quot;, &quot;destination_id&quot;: &quot;1&quot;, &quot;auto_created&quot;: false, &quot;active&quot;: true, &quot;detail&quot;: null, &quot;created_at&quot;: &quot;2022-05-12T03:58:18.256990Z&quot;, &quot;updated_at&quot;: &quot;2022-05-12T03:58:18.256996Z&quot;, &quot;workspace&quot;: 286}, &quot;source_type&quot;: &quot;HGFH&quot;, &quot;destination_type&quot;: &quot;DEPARTMENT&quot;, &quot;created_at&quot;: &quot;2022-07-14T11:41:07.465250Z&quot;, &quot;updated_at&quot;: &quot;2022-07-14T11:41:07.465256Z&quot;}], &quot;attribute_type&quot;: &quot;HGFH&quot;, &quot;display_name&quot;: &quot;Hgfh&quot;, &quot;value&quot;: &quot;Bangalore&quot;, &quot;source_id&quot;: &quot;expense_custom_field.hgfh.2&quot;, &quot;auto_mapped&quot;: true, &quot;auto_created&quot;: false, &quot;active&quot;: true, &quot;detail&quot;: {&quot;placeholder&quot;: &quot;Select Hgfh&quot;, &quot;custom_field_id&quot;: 209230}, &quot;created_at&quot;: &quot;2022-07-14T11:41:06.207906Z&quot;, &quot;updated_at&quot;: &quot;2022-07-14T11:41:06.207913Z&quot;, &quot;workspace&quot;: 286}, {&quot;id&quot;: 363958, &quot;mapping&quot;: [{&quot;destination&quot;: {&quot;id&quot;: 50142, &quot;attribute_type&quot;: &quot;DEPARTMENT&quot;, &quot;display_name&quot;: &quot;Department&quot;, &quot;value&quot;: &quot;Bebe Rexha&quot;, &quot;destination_id&quot;: &quot;2&quot;, &quot;auto_created&quot;: false, &quot;active&quot;: true, &quot;detail&quot;: null, &quot;created_at&quot;: &quot;2022-05-12T03:58:18.257017Z&quot;, &quot;updated_at&quot;: &quot;2022-05-12T03:58:18.257023Z&quot;, &quot;workspace&quot;: 286}, &quot;source_type&quot;: &quot;HGFH&quot;, &quot;destination_type&quot;: &quot;DEPARTMENT&quot;, &quot;created_at&quot;: &quot;2022-07-14T11:41:07.465273Z&quot;, &quot;updated_at&quot;: &quot;2022-07-14T11:41:07.465279Z&quot;}], &quot;attribute_type&quot;: &quot;HGFH&quot;, &quot;display_name&quot;: &quot;Hgfh&quot;, &quot;value&quot;: &quot;Bebe Rexha&quot;, &quot;source_id&quot;: &quot;expense_custom_field.hgfh.6&quot;, &quot;auto_mapped&quot;: true, &quot;auto_created&quot;: false, &quot;active&quot;: true, &quot;detail&quot;: {&quot;placeholder&quot;: &quot;Select Hgfh&quot;, &quot;custom_field_id&quot;: 209230}, &quot;created_at&quot;: &quot;2022-07-14T11:41:06.208037Z&quot;, &quot;updated_at&quot;: &quot;2022-07-14T11:41:06.208043Z&quot;, &quot;workspace&quot;: 286}, {&quot;id&quot;: 363956, &quot;mapping&quot;: [{&quot;destination&quot;: {&quot;id&quot;: 58701, &quot;attribute_type&quot;: &quot;DEPARTMENT&quot;, &quot;display_name&quot;: &quot;Department&quot;, &quot;value&quot;: &quot;Chennai&quot;, &quot;destination_id&quot;: &quot;5&quot;, &quot;auto_created&quot;: false, &quot;active&quot;: true, &quot;detail&quot;: null, &quot;created_at&quot;: &quot;2022-07-14T11:41:04.540856Z&quot;, &quot;updated_at&quot;: &quot;2022-07-14T11:41:04.540879Z&quot;, &quot;workspace&quot;: 286}, &quot;source_type&quot;: &quot;HGFH&quot;, &quot;destination_type&quot;: &quot;DEPARTMENT&quot;, &quot;created_at&quot;: &quot;2022-07-14T11:41:07.465318Z&quot;, &quot;updated_at&quot;: &quot;2022-07-14T11:41:07.465323Z&quot;}], &quot;attribute_type&quot;: &quot;HGFH&quot;, &quot;display_name&quot;: &quot;Hgfh&quot;, &quot;value&quot;: &quot;Chennai&quot;, &quot;source_id&quot;: &quot;expense_custom_field.hgfh.4&quot;, &quot;auto_mapped&quot;: true, &quot;auto_created&quot;: false, &quot;active&quot;: true, &quot;detail&quot;: {&quot;placeholder&quot;: &quot;Select Hgfh&quot;, &quot;custom_field_id&quot;: 209230}, &quot;created_at&quot;: &quot;2022-07-14T11:41:06.207974Z&quot;, &quot;updated_at&quot;: &quot;2022-07-14T11:41:06.207979Z&quot;, &quot;workspace&quot;: 286}, {&quot;id&quot;: 363955, &quot;mapping&quot;: [{&quot;destination&quot;: {&quot;id&quot;: 58702, &quot;attribute_type&quot;: &quot;DEPARTMENT&quot;, &quot;display_name&quot;: &quot;Department&quot;, &quot;value&quot;: &quot;Delhi&quot;, &quot;destination_id&quot;: &quot;6&quot;, &quot;auto_created&quot;: false, &quot;active&quot;: true, &quot;detail&quot;: null, &quot;created_at&quot;: &quot;2022-07-14T11:41:04.540903Z&quot;, &quot;updated_at&quot;: &quot;2022-07-14T11:41:04.540909Z&quot;, &quot;workspace&quot;: 286}, &quot;source_type&quot;: &quot;HGFH&quot;, &quot;destination_type&quot;: &quot;DEPARTMENT&quot;, &quot;created_at&quot;: &quot;2022-07-14T11:41:07.465341Z&quot;, &quot;updated_at&quot;: &quot;2022-07-14T11:41:07.465346Z&quot;}], &quot;attribute_type&quot;: &quot;HGFH&quot;, &quot;display_name&quot;: &quot;Hgfh&quot;, &quot;value&quot;: &quot;Delhi&quot;, &quot;source_id&quot;: &quot;expense_custom_field.hgfh.3&quot;, &quot;auto_mapped&quot;: true, &quot;auto_created&quot;: false, &quot;active&quot;: true, &quot;detail&quot;: {&quot;placeholder&quot;: &quot;Select Hgfh&quot;, &quot;custom_field_id&quot;: 209230}, &quot;created_at&quot;: &quot;2022-07-14T11:41:06.207941Z&quot;, &quot;updated_at&quot;: &quot;2022-07-14T11:41:06.207947Z&quot;, &quot;workspace&quot;: 286}, {&quot;id&quot;: 363957, &quot;mapping&quot;: [{&quot;destination&quot;: {&quot;id&quot;: 50143, &quot;attribute_type&quot;: &quot;DEPARTMENT&quot;, &quot;display_name&quot;: &quot;Department&quot;, &quot;value&quot;: &quot;suhas_p1&quot;, &quot;destination_id&quot;: &quot;3&quot;, &quot;auto_created&quot;: false, &quot;active&quot;: true, &quot;detail&quot;: null, &quot;created_at&quot;: &quot;2022-05-12T03:58:18.257044Z&quot;, &quot;updated_at&quot;: &quot;2022-05-12T03:58:18.257050Z&quot;, &quot;workspace&quot;: 286}, &quot;source_type&quot;: &quot;HGFH&quot;, &quot;destination_type&quot;: &quot;DEPARTMENT&quot;, &quot;created_at&quot;: &quot;2022-07-14T11:41:07.465296Z&quot;, &quot;updated_at&quot;: &quot;2022-07-14T11:41:07.465301Z&quot;}], &quot;attribute_type&quot;: &quot;HGFH&quot;, &quot;display_name&quot;: &quot;Hgfh&quot;, &quot;value&quot;: &quot;suhas_p1&quot;, &quot;source_id&quot;: &quot;expense_custom_field.hgfh.5&quot;, &quot;auto_mapped&quot;: true, &quot;auto_created&quot;: false, &quot;active&quot;: true, &quot;detail&quot;: {&quot;placeholder&quot;: &quot;Select Hgfh&quot;, &quot;custom_field_id&quot;: 209230}, &quot;created_at&quot;: &quot;2022-07-14T11:41:06.208006Z&quot;, &quot;updated_at&quot;: &quot;2022-07-14T11:41:06.208011Z&quot;, &quot;workspace&quot;: 286}]}</code>
+                        <i>Default value : </i><code>{
+  &quot;count&quot;: 6,
+  &quot;next&quot;: null,
+  &quot;previous&quot;: null,
+  &quot;results&quot;: [
+    {
+      &quot;id&quot;: 363953,
+      &quot;mapping&quot;: [
+        {
+          &quot;destination&quot;: {
+            &quot;id&quot;: 50140,
+            &quot;attribute_type&quot;: &quot;DEPARTMENT&quot;,
+            &quot;display_name&quot;: &quot;Department&quot;,
+            &quot;value&quot;: &quot;Accountants Inc&quot;,
+            &quot;destination_id&quot;: &quot;4&quot;,
+            &quot;auto_created&quot;: false,
+            &quot;active&quot;: true,
+            &quot;detail&quot;: null,
+            &quot;created_at&quot;: &quot;2022-05-12T03:58:18.256948Z&quot;,
+            &quot;updated_at&quot;: &quot;2022-05-12T03:58:18.256966Z&quot;,
+            &quot;workspace&quot;: 286
+          },
+          &quot;source_type&quot;: &quot;HGFH&quot;,
+          &quot;destination_type&quot;: &quot;DEPARTMENT&quot;,
+          &quot;created_at&quot;: &quot;2022-07-14T11:41:07.465208Z&quot;,
+          &quot;updated_at&quot;: &quot;2022-07-14T11:41:07.465230Z&quot;
+        }
+      ],
+      &quot;attribute_type&quot;: &quot;HGFH&quot;,
+      &quot;display_name&quot;: &quot;Hgfh&quot;,
+      &quot;value&quot;: &quot;Activity&quot;,
+      &quot;source_id&quot;: &quot;expense_custom_field.hgfh.1&quot;,
+      &quot;auto_mapped&quot;: true,
+      &quot;auto_created&quot;: false,
+      &quot;active&quot;: true,
+      &quot;detail&quot;: {
+        &quot;placeholder&quot;: &quot;Select Hgfh&quot;,
+        &quot;custom_field_id&quot;: 209230
+      },
+      &quot;created_at&quot;: &quot;2022-07-14T11:41:06.207847Z&quot;,
+      &quot;updated_at&quot;: &quot;2022-07-14T11:41:06.207873Z&quot;,
+      &quot;workspace&quot;: 286
+    },
+    {
+      &quot;id&quot;: 363954,
+      &quot;mapping&quot;: [],
+      &quot;attribute_type&quot;: &quot;HGFH&quot;,
+      &quot;display_name&quot;: &quot;Hgfh&quot;,
+      &quot;value&quot;: &quot;Bangalore&quot;,
+      &quot;source_id&quot;: &quot;expense_custom_field.hgfh.2&quot;,
+      &quot;auto_mapped&quot;: true,
+      &quot;auto_created&quot;: false,
+      &quot;active&quot;: true,
+      &quot;detail&quot;: {
+        &quot;placeholder&quot;: &quot;Select Hgfh&quot;,
+        &quot;custom_field_id&quot;: 209230
+      },
+      &quot;created_at&quot;: &quot;2022-07-14T11:41:06.207906Z&quot;,
+      &quot;updated_at&quot;: &quot;2022-07-14T11:41:06.207913Z&quot;,
+      &quot;workspace&quot;: 286
+    },
+    {
+      &quot;id&quot;: 363958,
+      &quot;mapping&quot;: [
+        {
+          &quot;destination&quot;: {
+            &quot;id&quot;: 50142,
+            &quot;attribute_type&quot;: &quot;DEPARTMENT&quot;,
+            &quot;display_name&quot;: &quot;Department&quot;,
+            &quot;value&quot;: &quot;Bebe Rexha&quot;,
+            &quot;destination_id&quot;: &quot;2&quot;,
+            &quot;auto_created&quot;: false,
+            &quot;active&quot;: true,
+            &quot;detail&quot;: null,
+            &quot;created_at&quot;: &quot;2022-05-12T03:58:18.257017Z&quot;,
+            &quot;updated_at&quot;: &quot;2022-05-12T03:58:18.257023Z&quot;,
+            &quot;workspace&quot;: 286
+          },
+          &quot;source_type&quot;: &quot;HGFH&quot;,
+          &quot;destination_type&quot;: &quot;DEPARTMENT&quot;,
+          &quot;created_at&quot;: &quot;2022-07-14T11:41:07.465273Z&quot;,
+          &quot;updated_at&quot;: &quot;2022-07-14T11:41:07.465279Z&quot;
+        }
+      ],
+      &quot;attribute_type&quot;: &quot;HGFH&quot;,
+      &quot;display_name&quot;: &quot;Hgfh&quot;,
+      &quot;value&quot;: &quot;Bebe Rexha&quot;,
+      &quot;source_id&quot;: &quot;expense_custom_field.hgfh.6&quot;,
+      &quot;auto_mapped&quot;: true,
+      &quot;auto_created&quot;: false,
+      &quot;active&quot;: true,
+      &quot;detail&quot;: {
+        &quot;placeholder&quot;: &quot;Select Hgfh&quot;,
+        &quot;custom_field_id&quot;: 209230
+      },
+      &quot;created_at&quot;: &quot;2022-07-14T11:41:06.208037Z&quot;,
+      &quot;updated_at&quot;: &quot;2022-07-14T11:41:06.208043Z&quot;,
+      &quot;workspace&quot;: 286
+    },
+    {
+      &quot;id&quot;: 363956,
+      &quot;mapping&quot;: [
+        {
+          &quot;destination&quot;: {
+            &quot;id&quot;: 58701,
+            &quot;attribute_type&quot;: &quot;DEPARTMENT&quot;,
+            &quot;display_name&quot;: &quot;Department&quot;,
+            &quot;value&quot;: &quot;Chennai&quot;,
+            &quot;destination_id&quot;: &quot;5&quot;,
+            &quot;auto_created&quot;: false,
+            &quot;active&quot;: true,
+            &quot;detail&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-14T11:41:04.540856Z&quot;,
+            &quot;updated_at&quot;: &quot;2022-07-14T11:41:04.540879Z&quot;,
+            &quot;workspace&quot;: 286
+          },
+          &quot;source_type&quot;: &quot;HGFH&quot;,
+          &quot;destination_type&quot;: &quot;DEPARTMENT&quot;,
+          &quot;created_at&quot;: &quot;2022-07-14T11:41:07.465318Z&quot;,
+          &quot;updated_at&quot;: &quot;2022-07-14T11:41:07.465323Z&quot;
+        }
+      ],
+      &quot;attribute_type&quot;: &quot;HGFH&quot;,
+      &quot;display_name&quot;: &quot;Hgfh&quot;,
+      &quot;value&quot;: &quot;Chennai&quot;,
+      &quot;source_id&quot;: &quot;expense_custom_field.hgfh.4&quot;,
+      &quot;auto_mapped&quot;: true,
+      &quot;auto_created&quot;: false,
+      &quot;active&quot;: true,
+      &quot;detail&quot;: {
+        &quot;placeholder&quot;: &quot;Select Hgfh&quot;,
+        &quot;custom_field_id&quot;: 209230
+      },
+      &quot;created_at&quot;: &quot;2022-07-14T11:41:06.207974Z&quot;,
+      &quot;updated_at&quot;: &quot;2022-07-14T11:41:06.207979Z&quot;,
+      &quot;workspace&quot;: 286
+    },
+    {
+      &quot;id&quot;: 363955,
+      &quot;mapping&quot;: [
+        {
+          &quot;destination&quot;: {
+            &quot;id&quot;: 58702,
+            &quot;attribute_type&quot;: &quot;DEPARTMENT&quot;,
+            &quot;display_name&quot;: &quot;Department&quot;,
+            &quot;value&quot;: &quot;Delhi&quot;,
+            &quot;destination_id&quot;: &quot;6&quot;,
+            &quot;auto_created&quot;: false,
+            &quot;active&quot;: true,
+            &quot;detail&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-14T11:41:04.540903Z&quot;,
+            &quot;updated_at&quot;: &quot;2022-07-14T11:41:04.540909Z&quot;,
+            &quot;workspace&quot;: 286
+          },
+          &quot;source_type&quot;: &quot;HGFH&quot;,
+          &quot;destination_type&quot;: &quot;DEPARTMENT&quot;,
+          &quot;created_at&quot;: &quot;2022-07-14T11:41:07.465341Z&quot;,
+          &quot;updated_at&quot;: &quot;2022-07-14T11:41:07.465346Z&quot;
+        }
+      ],
+      &quot;attribute_type&quot;: &quot;HGFH&quot;,
+      &quot;display_name&quot;: &quot;Hgfh&quot;,
+      &quot;value&quot;: &quot;Delhi&quot;,
+      &quot;source_id&quot;: &quot;expense_custom_field.hgfh.3&quot;,
+      &quot;auto_mapped&quot;: true,
+      &quot;auto_created&quot;: false,
+      &quot;active&quot;: true,
+      &quot;detail&quot;: {
+        &quot;placeholder&quot;: &quot;Select Hgfh&quot;,
+        &quot;custom_field_id&quot;: 209230
+      },
+      &quot;created_at&quot;: &quot;2022-07-14T11:41:06.207941Z&quot;,
+      &quot;updated_at&quot;: &quot;2022-07-14T11:41:06.207947Z&quot;,
+      &quot;workspace&quot;: 286
+    }
+  ]
+}</code>
                     </td>
                 </tr>
 
@@ -3774,6 +4121,72 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="exportResponse1"></a>
+                    <span class="name">
+                        <span ><b>exportResponse1</b></span>
+                        <a href="#exportResponse1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ExportSettingGet" target="_self" >ExportSettingGet</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  expense_group_settings: {
+    expense_state: ExpenseState.PAID,
+    ccc_expense_state: CCCExpenseState.PAID,
+    reimbursable_expense_group_fields: [&#x27;sample&#x27;],
+    reimbursable_export_date_type: ExportDateType.APPROVED_AT,
+    corporate_credit_card_expense_group_fields: [&#x27;sipper&#x27;],
+    ccc_export_date_type: ExportDateType.SPENT_AT
+  },
+  workspace_general_settings: {
+    reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
+    corporate_credit_card_expenses_object: null
+  },
+  workspace_id: 1,
+  general_mappings: {
+    bank_account: {
+      id: &quot;&quot;,
+      name: &quot;&quot;
+    },
+    default_ccc_account: {
+      id: &quot;&quot;,
+      name: &quot;&quot;
+    },
+    accounts_payable: {
+      id: &quot;&quot;,
+      name: &quot;&quot;
+    },
+    default_ccc_vendor: {
+      id: &quot;&quot;,
+      name: &quot;&quot;
+    },
+    qbo_expense_account: {
+      id: &quot;&quot;,
+      name: &quot;&quot;
+    },
+    default_debit_card_account: {
+      id: &quot;&quot;,
+      name: &quot;&quot;
+    }
+  }
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="replacecontent1"></a>
                     <span class="name">
                         <span ><b>replacecontent1</b></span>
@@ -3859,6 +4272,59 @@ features that could help customize and automate your integration workflows.&#x60
   auto_create_destination_entity: true,
   auto_create_merchants_as_vendors: true,
   is_simplify_report_closure_enabled: true,
+  auto_map_employees: AutoMapEmployee.EMAIL,
+  category_sync_version: &quot;v1&quot;,
+  change_accounting_period: true,
+  charts_of_accounts: [&#x27;Expense&#x27;],
+  corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.JOURNAL_ENTRY,
+  created_at: new Date(&quot;2022-04-27T11:07:17.694377Z&quot;),
+  employee_field_mapping: EmployeeFieldMapping.VENDOR,
+  id: 1,
+  import_categories: false,
+  import_projects: false,
+  import_items: false,
+  import_tax_codes: false,
+  import_vendors_as_merchants: false,
+  je_single_credit_line: true,
+  map_fyle_cards_qbo_account: true,
+  map_merchant_to_vendor: false,
+  memo_structure: [&#x27;Fyle&#x27;],
+  reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
+  skip_cards_mapping: false,
+  sync_fyle_to_qbo_payments: false,
+  sync_qbo_to_fyle_payments: false,
+  updated_at: new Date(&quot;2022-04-28T12:48:39.150177Z&quot;),
+  workspace: 1
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="workspaceResponse1"></a>
+                    <span class="name">
+                        <span ><b>workspaceResponse1</b></span>
+                        <a href="#workspaceResponse1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#WorkspaceGeneralSetting" target="_self" >WorkspaceGeneralSetting</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  auto_create_destination_entity: true,
+  auto_create_merchants_as_vendors: true,
+  is_simplify_report_closure_enabled: false,
   auto_map_employees: AutoMapEmployee.EMAIL,
   category_sync_version: &quot;v1&quot;,
   change_accounting_period: true,
@@ -5284,7 +5750,7 @@ features that could help customize and automate your integration workflows.&#x60
   results: [
     {
       id: 1,
-      fund_source: &#x27;dummy&#x27;,
+      fund_source: &#x27;CCC&#x27;,
       description: {
         employee_email: &#x27;employee@gmail.com&#x27;,
         expense_id: FyleReferenceType.EXPENSE,
@@ -5411,6 +5877,45 @@ features that could help customize and automate your integration workflows.&#x60
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>&#x60;${FYLE_APP_URL}/app/admin/#/settlements/settlement_id?org_id&#x3D;dummy&#x60;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSkippedExpensesResponse"></a>
+                    <span class="name">
+                        <span ><b>getSkippedExpensesResponse</b></span>
+                        <a href="#getSkippedExpensesResponse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#SkipExportLogResponse" target="_self" >SkipExportLogResponse</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  count: 0,
+  next: &quot;jkjkjk&quot;,
+  previous: &quot;kjjhj&quot;,
+  results: [
+    {
+      employee_name: &quot;string&quot;,
+      employee_email: &quot;string&quot;,
+      claim_number: &quot;string&quot;,
+      updated_at: new Date(),
+      fund_source: &quot;string&quot;
+    }
+  ]
+}</code>
                     </td>
                 </tr>
 
@@ -5657,6 +6162,81 @@ features that could help customize and automate your integration workflows.&#x60
     index: 0,
     existingMapping: false
   }
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mappedRowsFormArray1"></a>
+                    <span class="name">
+                        <span ><b>mappedRowsFormArray1</b></span>
+                        <a href="#mappedRowsFormArray1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    id: 1,
+    sourceField: &#x27;PROJECT&#x27;,
+    fyleField: MappingSourceField.PROJECT,
+    index: 0,
+    existingMapping: false
+  }
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mappedRowsFormArray2"></a>
+                    <span class="name">
+                        <span ><b>mappedRowsFormArray2</b></span>
+                        <a href="#mappedRowsFormArray2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    id: 1,
+    sourceField: &#x27;PROJECT&#x27;,
+    fyleField: MappingSourceField.TAX_GROUP,
+    index: 0,
+    existingMapping: false
+  },
+  {
+  id: 1,
+  sourceField: &#x27;PROJECT&#x27;,
+  fyleField: MappingSourceField.PROJECT,
+  index: 1,
+  existingMapping: false
+}
 ]</code>
                     </td>
                 </tr>
