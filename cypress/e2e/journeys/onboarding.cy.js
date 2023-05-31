@@ -171,20 +171,18 @@ describe('onboarding journey', () => {
     cy.get('.search-select--search-input').eq(1).type('Activity')
     cy.get('.mat-option').contains('Activity').click()
     // TODO: change this 1000ms to proper API interception later
-    
+    cy.navigateToModule('Mappings')
   }
 
   function importExpenses() {
     cy.navigateToModule('Dashboard')
+    cy.waitForDashboardLoad()
+    cy.url().should('include', '/workspaces/main/dashboard')
     // Wait for sync import from Fyle to be completed
     cy.wait('@getPastExport').its('response.statusCode').should('equal', 400)
     cy.wait('@getErrors').its('response.statusCode').should('equal', 200)
     cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)
-    cy.waitForDashboardLoad()
-
-    // User should be taken to dashboard since they are already onboarded and logged in
-    cy.url().should('include', '/workspaces/main/dashboard')
-    
+    cy.wait(3000)
     // Check if exports are ready to be processed
     cy.get('.export--info-text').contains('Click on Export to start exporting expenses from Fyle as QuickBooks Online transactions.')
     cy.get('.zero-state-with-illustration--zero-state-img').should('be.visible')
@@ -218,6 +216,7 @@ describe('onboarding journey', () => {
 
     cy.get('.dashboard-resolve-mapping-dialog--header-section').should('be.visible')
     cy.get('.dashboard-resolve-mapping-dialog--heading').should('be.visible')
+    cy.wait(3000)
     cy.get('.mat-column-qbo').eq(1).contains('Select Vendor').click()
     cy.selectMatOption('Ashwin')
 
@@ -337,6 +336,7 @@ describe('onboarding journey', () => {
   }
 
   function triggerRefreshDimension() {
+    cy.navigateToModule('Dashboard')
     cy.get('.dashboard-header-section--sync-btn').click()
     cy.wait('@refreshDimension').its('response.statusCode').should('equal', 200)
   }
