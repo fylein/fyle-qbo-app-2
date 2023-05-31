@@ -74,6 +74,7 @@ describe('employee mapping view/create/update', () => {
       cy.get('@employeeMappingRow').find('.mapping-table--form-field').click()
       cy.get('.search-select--search-input').eq(1).type('ashwin')
       cy.wait('@getQBOVendors').its('response.statusCode').should('equal', 200)
+      cy.wait(2000)
       cy.get('.mat-option').eq(0).contains('Ashwin')
       cy.get('.mat-option').eq(0).click()
     })

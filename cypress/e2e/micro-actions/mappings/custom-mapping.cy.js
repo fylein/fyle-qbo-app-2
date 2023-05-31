@@ -102,9 +102,9 @@ describe('custom mapping create/view/delete', () => {
       cy.get('.confirmation-dialog--info').contains(`You are deleting the custom mapping of Customer in QuickBooks Online to Cost center in Fyle.`)
 
       cy.saveSetting('Save and Continue')
-
-      // cy.get('.custom-mapping--mapping-section').find('div').eq(15).trigger('mouseenter')
-      cy.get('.custom-mapping--delete-section').find('.search-select--clear-icon').eq(0).click({force: true})
+      cy.navigateToModule('Mappings')
+      cy.get('.custom-mapping--mapping-section').find('div').eq(6).trigger('mouseenter')
+      cy.get('.custom-mapping--delete-section').find('.search-select--clear-icon').click()
 
       cy.saveSetting('Save and Continue')
 
