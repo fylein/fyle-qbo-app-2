@@ -12,6 +12,6 @@ export default defineConfig({
   },
   viewportHeight: 980,
   viewportWidth: 1440,
-  defaultCommandTimeout: 60000,
-  requestTimeout: 60000
+  defaultCommandTimeout: environment.e2e_tests.env !== 'staging' ? 15000 : 30000,
+  requestTimeout: environment.e2e_tests.env !== 'staging' ? 15000 : 30000
 });
