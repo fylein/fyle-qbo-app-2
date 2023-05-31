@@ -29,6 +29,15 @@ describe('view export log', () => {
     })
   }
 
+  it('simple text search', () => {
+    cy.navigateToModule('Export Log')
+    cy.get('.export-settings--search').type('C/')
+    expect(cy.get('.export-log-table--row').children.length > 0)
+
+    cy.get('.search-select--clear-icon').click()
+    expect(cy.get('.export-log-table--row').children.length > 1)
+  })
+
   it('apply date filter', () => {
     cy.get('.export-log--date-filter').eq(0).click()
     cy.selectMatOption('Custom dates')

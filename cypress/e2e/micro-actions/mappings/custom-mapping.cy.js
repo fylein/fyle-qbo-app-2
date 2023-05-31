@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-xdescribe('custom mapping create/view/delete', () => {
+describe('custom mapping create/view/delete', () => {
   beforeEach(() => {
     cy.ignoreTokenHealth()
     cy.microActionsLogin()
@@ -14,7 +14,6 @@ xdescribe('custom mapping create/view/delete', () => {
     cy.navigateToModule('Configuration')
     cy.navigateToSettingPage('Import Settings')
     cy.importToFyle(0, false)
-    cy.importToFyle(2, false)
 
     cy.saveSetting('Save')
   })
@@ -103,7 +102,21 @@ xdescribe('custom mapping create/view/delete', () => {
       cy.get('.confirmation-dialog--info').contains(`You are deleting the custom mapping of Customer in QuickBooks Online to Cost center in Fyle.`)
 
       cy.saveSetting('Save and Continue')
-      cy.get('.mapping-header-section--card-content-text-count').should('have.text', '2')
+
+      // cy.get('.custom-mapping--mapping-section').find('div').eq(15).trigger('mouseenter')
+      cy.get('.custom-mapping--delete-section').find('.search-select--clear-icon').eq(0).click({force: true})
+
+      cy.saveSetting('Save and Continue')
+
+      cy.get('.mapping-header-section--card-content-text-count').should('have.text', '0')
     })
+  })
+
+  it('reset import setting', () => {
+    cy.navigateToModule('Configuration')
+    cy.navigateToSettingPage('Import Settings')
+    cy.importToFyle(0, true, 'Cost Center')
+
+    cy.saveSetting('Save')
   })
 })

@@ -76,7 +76,7 @@ jobs:
         with:
           node-version: 14
       - name: Prepare for end to end tests
-        run: npm run setup_e2e_test
+        run: npm run setup_env
       - name: Cache Dependencies
         uses: actions/cache@v3
         id: cache

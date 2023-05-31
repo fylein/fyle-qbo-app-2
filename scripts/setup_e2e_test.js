@@ -29,7 +29,7 @@ readFile('./src/environments/environment.json', 'utf8', (err, data) => {
     }
   };
 
-  function accessToken_2(options) {
+  function setupAccessTokenForMicroActions(options) {
       options.path = '/api/auth/refresh/';
       const payload = JSON.stringify({refresh_token: environment.e2e_tests.secret[1].refresh_token});
       options.headers['Content-Length'] = Buffer.byteLength(payload)
@@ -86,7 +86,7 @@ readFile('./src/environments/environment.json', 'utf8', (err, data) => {
       });
       request.write(payload);
       request.end();
-      accessToken_2(options)
+      setupAccessTokenForMicroActions(options)
     } else {
       console.log('Error preparing workspace for e2e tests', res.statusMessage);
       throw res.statusMessage;

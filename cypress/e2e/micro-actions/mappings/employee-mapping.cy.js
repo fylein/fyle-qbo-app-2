@@ -23,7 +23,7 @@ describe('employee mapping view/create/update', () => {
     })
   })
 
-  xit('create employee mappings', () => {
+  it('create employee mappings', () => {
     // Number of mappings to be created
     const mappingLimit = 2;
 
