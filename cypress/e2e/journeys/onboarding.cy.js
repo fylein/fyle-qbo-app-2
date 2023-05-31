@@ -171,10 +171,11 @@ describe('onboarding journey', () => {
     cy.get('.search-select--search-input').eq(1).type('Activity')
     cy.get('.mat-option').contains('Activity').click()
     // TODO: change this 1000ms to proper API interception later
-    cy.wait(1000)
+    
   }
 
   function importExpenses() {
+    cy.navigateToModule('Dashboard')
     // Wait for sync import from Fyle to be completed
     cy.wait('@getPastExport').its('response.statusCode').should('equal', 400)
     cy.wait('@getErrors').its('response.statusCode').should('equal', 200)
@@ -184,16 +185,13 @@ describe('onboarding journey', () => {
     // User should be taken to dashboard since they are already onboarded and logged in
     cy.url().should('include', '/workspaces/main/dashboard')
 
+    cy.wait(1000)
     // Check if exports are ready to be processed
     cy.get('.export--info-text').contains('Click on Export to start exporting expenses from Fyle as QuickBooks Online transactions.')
     cy.get('.zero-state-with-illustration--zero-state-img').should('be.visible')
   }
 
   function exportExpenses() {
-    cy.wait('@getPastExport').its('response.statusCode').should('equal', 400)
-    cy.wait('@getErrors').its('response.statusCode').should('equal', 200)
-    cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)
-    cy.waitForDashboardLoad()
     cy.submitButton('Export').click()
 
     // Check if the export is in progress
@@ -211,7 +209,6 @@ describe('onboarding journey', () => {
   }
 
   function resolveMappingError() {
-    cy.waitForDashboardLoad()
     // Check if past export details and errors are visible
     cy.get('.errors--mapping-error-contents').contains('Employee Mapping errors')
 
@@ -231,7 +228,7 @@ describe('onboarding journey', () => {
   }
 
   function reExportExpense() {
-    cy.waitForDashboardLoad()
+
     cy.submitButton('Export').click()
 
     cy.wait('@exportsTrigger').its('response.statusCode').should('equal', 200)
@@ -243,7 +240,6 @@ describe('onboarding journey', () => {
   }
 
   function viewailedExports() {
-    cy.waitForDashboardLoad()
     cy.get('.past-export--row').last().contains('View').click()
 
     cy.get('.dashboard-export-log--header-section').contains('Failed Expense Groups')
@@ -258,7 +254,6 @@ describe('onboarding journey', () => {
   }
 
   function displayFailedExports() {
-    cy.waitForDashboardLoad()
     // Iterate over all QBO errors and compare if the error title matches with Dialog's heading
     cy.get('.errors--qbo-error').each((_, index, __) => {
       cy.get('.errors--qbo-error').find('p').eq(index).then((el) => {
@@ -282,7 +277,6 @@ describe('onboarding journey', () => {
   }
 
   function updateCategoryMappingandTriggerExport() {
-    cy.waitForDashboardLoad()
 
     // Update category mapping
     cy.navigateToModule('Mappings')
@@ -318,7 +312,6 @@ describe('onboarding journey', () => {
   }
 
   function dashboardWithZeroStateImport() {
-    cy.waitForDashboardLoad()
 
     cy.get('.export--info-section').contains('Sit back and relax!')
     cy.get('.configuration--submit-btn').should('have.class', 'btn-disabled').contains('Export')
@@ -329,7 +322,7 @@ describe('onboarding journey', () => {
   }
 
   function viewSuccessfulExports() {
-    cy.waitForDashboardLoad()
+
     cy.get('.past-export--row').contains('View').click()
 
     cy.get('.dashboard-export-log--header-section').contains('Successful Expense Groups')
@@ -345,7 +338,6 @@ describe('onboarding journey', () => {
   }
 
   function triggerRefreshDimension() {
-    cy.waitForDashboardLoad()
     cy.get('.dashboard-header-section--sync-btn').click()
     cy.wait('@refreshDimension').its('response.statusCode').should('equal', 200)
   }
