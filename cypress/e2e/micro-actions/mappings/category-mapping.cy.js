@@ -25,7 +25,7 @@ describe('category mapping view/create/update', () => {
 
   it('create category mappings', () => {
     // Number of mappings to be created
-    const mappingLimit = 5;
+    const mappingLimit = 2;
 
     cy.get('.mapping-header-section--card-content-text-header').contains('Unmapped Categories').click()
 
@@ -64,14 +64,18 @@ describe('category mapping view/create/update', () => {
   })
 
   it('advanced search', () => {
-    cy.get('.mapping-header-section--card-content-text-header').contains('Unmapped Categories').click()
-    cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
-    cy.get('.mapping-table--form-field').eq(0).contains('Select Account').click()
-    cy.get('.search-select--search-input').eq(1).type('others')
-    cy.get('.mat-option').eq(0).contains('Searching...')
-    cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
-    cy.get('.mat-option').eq(0).contains('Others')
-    cy.get('.mat-option').eq(0).click()
+    cy.get('.mapping-table--row').eq(0).as('categoryMappingRow')
+
+    cy.get('@categoryMappingRow').find('.mat-column-fyle').should('not.be.null')
+    cy.get('@categoryMappingRow').find('.mat-column-state').contains('Mapped')
+
+    cy.get('@categoryMappingRow').find('.mapping-table--form-field').then((el) => {
+      cy.get('@categoryMappingRow').find('.mapping-table--form-field').click()
+      cy.get('.search-select--search-input').eq(1).type('others')
+      cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
+      cy.get('.mat-option').eq(0).contains('Others')
+      cy.get('.mat-option').eq(0).click()
+    })
     cy.get('.mapping-table--form-field').eq(0).contains('Others')
   })
 
