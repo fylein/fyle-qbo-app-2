@@ -111,7 +111,9 @@ describe('custom mapping create/view/delete', () => {
 
       cy.saveSetting('Save and Continue')
       cy.navigateToModule('Mappings')
-      cy.get('.custom-mapping--mapping-section').find('div').eq(3).trigger('mouseenter')
+      cy.get('.custom-mapping--mapping-section').find('div').eq(3).as('deleteRow')
+      cy.wait(900)
+      cy.get('@deleteRow').trigger('mouseenter')
       cy.get('.custom-mapping--delete-section').find('.search-select--clear-icon').click()
 
       cy.saveSetting('Save and Continue')
