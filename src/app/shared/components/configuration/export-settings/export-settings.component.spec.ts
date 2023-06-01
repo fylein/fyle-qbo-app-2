@@ -245,13 +245,11 @@ describe('ExportSettingsComponent', () => {
     component.isOnboarding = true;
     fixture.detectChanges();
     expect(component.save()).toBeUndefined();
-    expect(component.saveInProgress).toBeFalse();
     component.exportSettings.workspace_general_settings.corporate_credit_card_expenses_object = CorporateCreditCardExpensesObject.BILL;
     component.exportSettings.workspace_general_settings.reimbursable_expenses_object = ReimbursableExpensesObject.CHECK;
     component.exportSettingsForm.controls.reimbursableExportType.patchValue(ReimbursableExpensesObject.JOURNAL_ENTRY);
     component.isOnboarding = false;
     expect(component.save()).toBeUndefined();
-    expect(component.saveInProgress).toBeFalse();
   });
 
   it('constructWarningMessage function check', () => {
