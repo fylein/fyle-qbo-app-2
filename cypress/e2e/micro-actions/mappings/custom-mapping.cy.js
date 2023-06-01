@@ -45,6 +45,14 @@ describe('custom mapping create/view/delete', () => {
     }
   }
 
+  function resetImportSetting() {
+    cy.navigateToModule('Configuration')
+    cy.navigateToSettingPage('Import Settings')
+    cy.importToFyle(0, true, 'Cost Center')
+
+    cy.saveSetting('Save')
+  }
+
   it('create custom mapping rows', () => {
     cy.wait(['@getMappingSettings', '@getFyleExpenseFields']).then(() => {
       cy.get('.mapping-header-section--card-content-text-count').should('have.text', '0')
@@ -109,14 +117,7 @@ describe('custom mapping create/view/delete', () => {
       cy.saveSetting('Save and Continue')
 
       cy.get('.mapping-header-section--card-content-text-count').should('have.text', '0')
+      resetImportSetting();
     })
-  })
-
-  it('reset import setting', () => {
-    cy.navigateToModule('Configuration')
-    cy.navigateToSettingPage('Import Settings')
-    cy.importToFyle(0, true, 'Cost Center')
-
-    cy.saveSetting('Save')
   })
 })
