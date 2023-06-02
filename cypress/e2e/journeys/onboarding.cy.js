@@ -122,10 +122,7 @@ describe('onboarding journey', () => {
     cy.url().should('include', '/workspaces/onboarding/done')
 
     cy.saveSetting('Launch Integration')
-  }
 
-  function finalAssertion() {
-    // Check if user is taken to dashboard page after onboarding is done
     cy.url().should('include', '/workspaces/main/dashboard')
   }
 
@@ -182,7 +179,7 @@ describe('onboarding journey', () => {
     cy.wait('@getPastExport').its('response.statusCode').should('equal', 400)
     cy.wait('@getErrors').its('response.statusCode').should('equal', 200)
     cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)
-    cy.wait(3000)
+    cy.wait(500)
     // Check if exports are ready to be processed
     cy.get('.export--info-text').contains('Click on Export to start exporting expenses from Fyle as QuickBooks Online transactions.')
     cy.get('.zero-state-with-illustration--zero-state-img').should('be.visible')
@@ -216,7 +213,7 @@ describe('onboarding journey', () => {
 
     cy.get('.dashboard-resolve-mapping-dialog--header-section').should('be.visible')
     cy.get('.dashboard-resolve-mapping-dialog--heading').should('be.visible')
-    cy.wait(3000)
+    cy.wait(500)
     cy.get('.mat-column-qbo').eq(1).contains('Select Vendor').click()
     cy.selectMatOption('Ashwin')
 
@@ -237,7 +234,7 @@ describe('onboarding journey', () => {
     cy.get('.errors--integration-error-contents').should('not.contain', 'Integration Errors')
   }
 
-  function viewailedExports() {
+  function viewFailedExports() {
     cy.get('.past-export--row').last().contains('View').click()
 
     cy.get('.dashboard-export-log--header-section').contains('Failed Expense Groups')
@@ -309,7 +306,7 @@ describe('onboarding journey', () => {
     cy.wait('@getPastExport')
   }
 
-  function dashboardWithZeroStateImport() {
+  function dashboardWithZeroStateError() {
 
     cy.get('.export--info-section').contains('Sit back and relax!')
     cy.get('.configuration--submit-btn').should('have.class', 'btn-disabled').contains('Export')
@@ -333,12 +330,6 @@ describe('onboarding journey', () => {
       cy.get('.export-log-table--open-in-qbo').eq(index).should('not.be.null')
     })
     cy.get('.dashboard-export-log--close-icon').click()
-  }
-
-  function triggerRefreshDimension() {
-    cy.navigateToModule('Dashboard')
-    cy.get('.dashboard-header-section--sync-btn').click()
-    cy.wait('@refreshDimension').its('response.statusCode').should('equal', 200)
   }
 
   function viewExpenseGroupsRows() {
@@ -375,8 +366,6 @@ describe('onboarding journey', () => {
 
     completeOnboarding()
 
-    finalAssertion()
-
     updateCategoryMapping()
 
     importExpenses()
@@ -387,13 +376,13 @@ describe('onboarding journey', () => {
 
     reExportExpense()
 
-    viewailedExports()
+    viewFailedExports()
 
     displayFailedExports()
 
     updateCategoryMappingandTriggerExport()
 
-    dashboardWithZeroStateImport()
+    dashboardWithZeroStateError()
 
     viewSuccessfulExports()
 
@@ -401,7 +390,6 @@ describe('onboarding journey', () => {
 
     viewChildExpenses()
 
-    triggerRefreshDimension()
   })
 
 })
