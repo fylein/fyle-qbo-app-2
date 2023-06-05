@@ -52,7 +52,7 @@
 <p><b>Note:</b> <em>All the steps mentioned in this section are one time activity</em></p>
 <ul>
 <li><p>It would be very easy if we use this org for running tests since we have pre populated data in Fyle to run tests</p>
-<div><pre class="line-numbers"><code class="language-none">Email: ashwin.t&#64;fyle.in | Org Name: Fyle For QBO Angular Tests - Github Action</code></pre></div></li>
+<div><pre class="line-numbers"><code class="language-for onboarding">Email: ashwin.t&#64;fyle.in | Org Name: Fyle For QBO Angular Tests - Github Action</code></pre></div><div><pre class="line-numbers"><code class="language-for post onboarding">Email: admin1&#64;fyleformicro.testing | Org Name: Fyle For netsuiteMicroActiontesting</code></pre></div></li>
 <li><p>Login to this org on <a href="http:localhost:4200">local</a> once and complete QBO OAuth connection (Connect to <code>Sandbox Company_US_2</code> company in QBO)</p>
 </li>
 <li><p>Update values for these variables in <code>e2e_tests</code> key in <code>environment.json</code> (present in <code>src/environments</code>) -
@@ -83,10 +83,8 @@
 </ul>
 <h3>Bonus points</h3>
 <ul>
-<li>Execute tests in the folder and files in a sequence as it present.
-  For example, if we try to run <code>cypress/e2e/002-journeys/002-update-configuration.cy.js</code> initially without running <code>cypress/e2e/002-journeys/001-onboarding.cy.js</code>, the test will fail.</li>
-<li>Name the test file in the sequence followed and place them in the right folder. Cypress tests gets executed in an alphabetical manner, as of now.</li>
-<li>If we are writing a test that represent an user journey, create the test in the journey folder. Or if it represents a micro action, place it in the micro-actions folder. If we add a new feature and wanted to cover all possible scenarios to write a test, add it to the feature folder, along with month and year.</li>
+<li>Add new test for new feature in micro action</li>
+<li>Before running Journey test, do reset the db for the org, using <code>reset_workspace_e2e()</code></li>
 </ul>
 <h3>End to End Tests on Github</h3>
 <ul>
