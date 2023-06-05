@@ -179,7 +179,7 @@ describe('onboarding journey', () => {
     cy.wait('@getPastExport').its('response.statusCode').should('equal', 400)
     cy.wait('@getErrors').its('response.statusCode').should('equal', 200)
     cy.wait('@tasksPolling').its('response.statusCode').should('equal', 200)
-    cy.wait(500)
+    cy.wait(1000)
     // Check if exports are ready to be processed
     cy.get('.export--info-text').contains('Click on Export to start exporting expenses from Fyle as QuickBooks Online transactions.')
     cy.get('.zero-state-with-illustration--zero-state-img').should('be.visible')
