@@ -3,7 +3,7 @@
 describe('mapping filter', () => {
   beforeEach(() => {
     cy.ignoreTokenHealth()
-    cy.login()
+    cy.microActionsLogin()
     cy.visit('/')
     cy.navigateToModule('Mappings')
     cy.navigateToMappingPage('Employee Mapping')

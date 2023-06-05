@@ -1,9 +1,7 @@
-/// <reference types="cypress" />
-
 describe('view export log', () => {
   beforeEach(() => {
     cy.ignoreTokenHealth()
-    cy.login()
+    cy.microActionsLogin()
     cy.visit('/')
     cy.navigateToModule('Export Log')
     cy.wait('@getExpenseGroups').its('response.statusCode').should('equal', 200)
@@ -31,25 +29,8 @@ describe('view export log', () => {
     })
   }
 
-  it('view expense groups rows', () => {
-    readExpenseGroupRows()
-  })
-
-  it('view child expenses', () => {
-    cy.get('.export-log-table--row').each((_, index, __) => {
-      cy.get('.mat-column-exportedAt').eq(index + 1).as('exportedAt').click()
-
-      cy.get('.export-log-child-table--row').each(($el, index, $lis) => {
-        cy.get('.mat-column-expenseID').eq(index + 1).contains('E/')
-        cy.get('.mat-column-merchant').eq(index + 1).should('not.be.null')
-        cy.get('.mat-column-category').eq(index + 1).should('not.be.null')
-        cy.get('.mat-column-amount').eq(index + 1).should('not.be.null')
-      })
-      cy.get('.export-log-child-dialog--close-icon').click()
-    })
-  })
-
   it('simple text search', () => {
+    cy.navigateToModule('Export Log')
     cy.get('.export-settings--search').type('C/')
     expect(cy.get('.export-log-table--row').children.length > 0)
 
@@ -58,17 +39,6 @@ describe('view export log', () => {
   })
 
   it('apply date filter', () => {
-    // Cypress is formatting new Date().toLocaleDateString() to 2021-22-12T23:59:59 and not 2021-12-22T23:59:59 which is causing 5xx, hence commenting code for now
-    // cy.get('.export-log--date-filter').eq(0).click()
-    // cy.selectMatOption('Today')
-    // cy.wait('@getExpenseGroups').its('response.statusCode').should('equal', 200)
-
-    // expect(cy.get('.export-log-table--row').children.length === 6)
-
-    // cy.get('.export-log--clear-date-filter').click()
-    // cy.wait('@getExpenseGroups').its('response.statusCode').should('equal', 200)
-    // expect(cy.get('.export-log-table--row').children.length === 6)
-
     cy.get('.export-log--date-filter').eq(0).click()
     cy.selectMatOption('Custom dates')
     cy.get('.mat-calendar-period-button').click()

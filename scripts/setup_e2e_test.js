@@ -6,7 +6,7 @@ readFile('./src/environments/environment.json', 'utf8', (err, data) => {
   }
   const environment = JSON.parse(data);
   const baseUrl = environment.api_url;
-  const apiUrl = `${baseUrl}/workspaces/${environment.e2e_tests.workspace_id}/setup_e2e_test/`;
+  const apiUrl = `${baseUrl}/workspaces/${environment.e2e_tests.secret[0].workspace_id}/setup_e2e_test/`;
 
   let http;
   let host;
@@ -21,7 +21,7 @@ readFile('./src/environments/environment.json', 'utf8', (err, data) => {
   const options = {
     hostname: host,
     port: host === 'localhost' ? 8002 : 443,
-    path: `/api/workspaces/${environment.e2e_tests.workspace_id}/setup_e2e_test/`,
+    path: `/api/workspaces/${environment.e2e_tests.secret[0].workspace_id}/setup_e2e_test/`,
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -29,12 +29,9 @@ readFile('./src/environments/environment.json', 'utf8', (err, data) => {
     }
   };
 
-  http.request(options, function(res) {
-    if (res.statusCode === 200) {
-      console.log('Prepared workspace for e2e tests');
-
+  function setupAccessTokenForMicroActions(options) {
       options.path = '/api/auth/refresh/';
-      const payload = JSON.stringify({refresh_token: environment.e2e_tests.refresh_token});
+      const payload = JSON.stringify({refresh_token: environment.e2e_tests.secret[1].refresh_token});
       options.headers['Content-Length'] = Buffer.byteLength(payload)
 
       const request = http.request(options, function(response) {
@@ -44,7 +41,7 @@ readFile('./src/environments/environment.json', 'utf8', (err, data) => {
         });
         response.on('end', () => {
           const token = JSON.parse(body);
-          environment.e2e_tests.access_token = token.access_token;
+          environment.e2e_tests.secret[1].access_token = token.access_token;
 
           const targetPath = './src/environments/environment.json';
           writeFile(targetPath, JSON.stringify(environment), 'utf8', (err) => {
@@ -58,6 +55,38 @@ readFile('./src/environments/environment.json', 'utf8', (err, data) => {
       });
       request.write(payload);
       request.end();
+  }
+
+  http.request(options, function(res) {
+    if (res.statusCode === 200) {
+      console.log('Prepared workspace for e2e tests');
+
+      options.path = '/api/auth/refresh/';
+      const payload = JSON.stringify({refresh_token: environment.e2e_tests.secret[0].refresh_token});
+      options.headers['Content-Length'] = Buffer.byteLength(payload)
+
+      const request = http.request(options, function(response) {
+        let body = '';
+        response.on('data', (chunk) => {
+          body += chunk;
+        });
+        response.on('end', () => {
+          const token = JSON.parse(body);
+          environment.e2e_tests.secret[0].access_token = token.access_token;
+
+          const targetPath = './src/environments/environment.json';
+          writeFile(targetPath, JSON.stringify(environment), 'utf8', (err) => {
+            if (err) {
+              return console.error(err);
+            }
+
+            console.log('Updated access token');
+          });
+        });
+      });
+      request.write(payload);
+      request.end();
+      setupAccessTokenForMicroActions(options)
     } else {
       console.log('Error preparing workspace for e2e tests', res.statusMessage);
       throw res.statusMessage;

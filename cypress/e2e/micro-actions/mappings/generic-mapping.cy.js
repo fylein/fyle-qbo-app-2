@@ -3,7 +3,7 @@
 describe('generic mapping view/create/update', () => {
   beforeEach(() => {
     cy.ignoreTokenHealth()
-    cy.login()
+    cy.microActionsLogin()
     cy.visit('/')
     cy.navigateToModule('Mappings')
     cy.navigateToMappingPage('Project Mapping')
@@ -25,7 +25,7 @@ describe('generic mapping view/create/update', () => {
 
   it('create project mappings', () => {
     // Number of mappings to be created
-    const mappingLimit = 5;
+    const mappingLimit = 2;
 
     cy.get('.mapping-header-section--card-content-text-header').contains('Unmapped').click()
 

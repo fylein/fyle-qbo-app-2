@@ -3,7 +3,7 @@
 describe('auto create vendor', () => {
   beforeEach(() => {
     cy.ignoreTokenHealth()
-    cy.login()
+    cy.microActionsLogin()
     cy.visit('/')
     cy.navigateToModule('Configuration')
   })
@@ -11,7 +11,7 @@ describe('auto create vendor', () => {
 
   it('Enable Import Vendors from QuickBooks Online', () => {
     cy.navigateToSettingPage('Import Settings')
-    cy.get('app-configuration-toggle-field').eq(1).within(() => {
+    cy.get('app-configuration-toggle-field').eq(2).within(() => {
       cy.enableConfigurationToggle(0)
     })
     cy.saveSetting('Save')
@@ -26,14 +26,13 @@ describe('auto create vendor', () => {
 
   it('Make Auto-create QBO Vendors visible', () => {
     cy.navigateToSettingPage('Import Settings')
-    cy.get('app-configuration-toggle-field').eq(1).within(() => {
+    cy.get('app-configuration-toggle-field').eq(2).within(() => {
       cy.enableConfigurationToggle(0)
     })
     cy.saveSetting('Save')
     cy.url().should('include', '/workspaces/main/dashboard')
 
     cy.navigateToSettingPage('Export Settings')
-    cy.enableConfigurationToggle(1)
 
     cy.selectConfigurationField(6, 'Bill')
     cy.selectConfigurationField(7, 'Alexandra Fitzgerald')
@@ -68,6 +67,10 @@ describe('auto create vendor', () => {
 
     cy.url().should('include', '/workspaces/main/dashboard')
     cy.waitForDashboardLoad()
-    cy.submitButton('Export').click()
+    cy.navigateToSettingPage('Advanced Settings')
+    cy.get('app-configuration-toggle-field').eq(2).within(() => {
+      cy.getMatToggle(0).click()
+    })
+    cy.saveSetting('Save')
   })
 })

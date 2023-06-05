@@ -32,8 +32,12 @@ Follow instructions mentioned in [Integrations Central](https://github.com/fylei
 ### Setup Org to test
 <b>Note:</b> *All the steps mentioned in this section are one time activity*
 * It would be very easy if we use this org for running tests since we have pre populated data in Fyle to run tests
-    ```
+    ```for onboarding
     Email: ashwin.t@fyle.in | Org Name: Fyle For QBO Angular Tests - Github Action
+    ```
+
+    ```for post onboarding
+    Email: admin1@fyleformicro.testing | Org Name: Fyle For netsuiteMicroActiontesting
     ```
 * Login to this org on [local](http:localhost:4200) once and complete QBO OAuth connection (Connect to `Sandbox Company_US_2` company in QBO)
 * Update values for these variables in `e2e_tests` key in `environment.json` (present in `src/environments`) -
@@ -72,10 +76,8 @@ Follow instructions mentioned in [Integrations Central](https://github.com/fylei
 * To reset the org to initial data, use the `reset_workspace_e2e()` sql function and re run tests
 
 ### Bonus points
-* Execute tests in the folder and files in a sequence as it present.
-    For example, if we try to run `cypress/e2e/002-journeys/002-update-configuration.cy.js` initially without running `cypress/e2e/002-journeys/001-onboarding.cy.js`, the test will fail.
-* Name the test file in the sequence followed and place them in the right folder. Cypress tests gets executed in an alphabetical manner, as of now.
-* If we are writing a test that represent an user journey, create the test in the journey folder. Or if it represents a micro action, place it in the micro-actions folder. If we add a new feature and wanted to cover all possible scenarios to write a test, add it to the feature folder, along with month and year.
+* Add new test for new feature in micro action
+* Before running Journey test, do reset the db for the org, using `reset_workspace_e2e()`
 
 ### End to End Tests on Github
 * End to End tests runs on all PRs, after the PR is approved. Only if all tests pass, contributor will be able to merge it to master. This happens against the staging environment. We'll receive a comment in the PR about the run status and code coverage summary.

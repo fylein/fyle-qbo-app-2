@@ -3,7 +3,7 @@
 describe('custom mapping create/view/delete', () => {
   beforeEach(() => {
     cy.ignoreTokenHealth()
-    cy.login()
+    cy.microActionsLogin()
     cy.visit('/')
     cy.navigateToModule('Mappings')
     cy.navigateToMappingPage('Custom Mapping')
@@ -14,7 +14,6 @@ describe('custom mapping create/view/delete', () => {
     cy.navigateToModule('Configuration')
     cy.navigateToSettingPage('Import Settings')
     cy.importToFyle(0, false)
-    cy.importToFyle(2, false)
 
     cy.saveSetting('Save')
   })
@@ -46,6 +45,14 @@ describe('custom mapping create/view/delete', () => {
     }
   }
 
+  function resetImportSetting() {
+    cy.navigateToModule('Configuration')
+    cy.navigateToSettingPage('Import Settings')
+    cy.importToFyle(0, true, 'Cost Center')
+
+    cy.saveSetting('Save')
+  }
+
   it('create custom mapping rows', () => {
     cy.wait(['@getMappingSettings', '@getFyleExpenseFields']).then(() => {
       cy.get('.mapping-header-section--card-content-text-count').should('have.text', '0')
@@ -59,21 +66,17 @@ describe('custom mapping create/view/delete', () => {
 
       cy.submitButton().should('have.class', 'btn-disabled')
 
-      selectCustomMapping(0, 'Project', 'Fyle')
+      selectCustomMapping(0, 'Food', 'Fyle')
 
       cy.submitButton().should('have.class', 'btn-enabled')
 
-      saveAndAssertConfirmationDialog('Class', 'Project')
+      saveAndAssertConfirmationDialog('Class', 'Food')
 
-      selectCustomMapping(1, 'Department', 'QBO')
+      selectCustomMapping(1, 'Customer', 'QBO')
       selectCustomMapping(1, 'Cost Center', 'Fyle')
-      saveAndAssertConfirmationDialog('Department', 'Cost center')
+      saveAndAssertConfirmationDialog('Customer', 'Cost center', false)
 
-      selectCustomMapping(2, 'Customer', 'QBO')
-      selectCustomMapping(2, 'Xero Team', 'Fyle')
-      saveAndAssertConfirmationDialog('Customer', 'Xero team', false)
-
-      cy.get('.mapping-header-section--card-content-text-count').should('have.text', '3')
+      cy.get('.mapping-header-section--card-content-text-count').should('have.text', '2')
     })
   })
 
@@ -81,19 +84,15 @@ describe('custom mapping create/view/delete', () => {
     const fixture = {
       0: {
         qbo: 'Class',
-        fyle: 'Project'
+        fyle: 'Food'
       },
       1: {
-        qbo: 'Department',
-        fyle: 'Cost center'
-      },
-      2: {
         qbo: 'Customer',
-        fyle: 'Xero team'
+        fyle: 'Cost center'
       }
     };
     cy.wait(['@getMappingSettings', '@getFyleExpenseFields']).then(() => {
-      cy.get('.custom-mapping--mapping-section').find('div').eq(2).as('customMappingRows')
+      cy.get('.custom-mapping--mapping-section').find('div').eq(1).as('customMappingRows')
       cy.get('@customMappingRows').children().each((_, index, __) => {
         cy.get('.custom-mapping--qbo-field').eq(index).should('have.text', fixture[index].qbo)
         cy.get('.custom-mapping--fyle-field').eq(index).should('have.text', fixture[index].fyle)
@@ -104,14 +103,23 @@ describe('custom mapping create/view/delete', () => {
   it('delete custom mapping rows', () => {
     cy.wait(['@getMappingSettings', '@getFyleExpenseFields']).then(() => {
       cy.wait(500)
-      cy.get('.custom-mapping--mapping-section').find('div').eq(2).trigger('mouseenter')
+      cy.get('.custom-mapping--mapping-section').find('div').eq(15).trigger('mouseenter')
       cy.get('.custom-mapping--delete-section').find('.search-select--clear-icon').click()
 
       cy.get('.confirmation-dialog--header-content').contains('Delete Custom Mapping')
-      cy.get('.confirmation-dialog--info').contains(`You are deleting the custom mapping of Department in QuickBooks Online to Cost center in Fyle.`)
+      cy.get('.confirmation-dialog--info').contains(`You are deleting the custom mapping of Customer in QuickBooks Online to Cost center in Fyle.`)
 
       cy.saveSetting('Save and Continue')
-      cy.get('.mapping-header-section--card-content-text-count').should('have.text', '2')
+      cy.navigateToModule('Mappings')
+      cy.get('.custom-mapping--mapping-section').find('div').eq(3).as('deleteRow')
+      cy.wait(900)
+      cy.get('@deleteRow').trigger('mouseenter')
+      cy.get('.custom-mapping--delete-section').find('.search-select--clear-icon').click()
+
+      cy.saveSetting('Save and Continue')
+
+      cy.get('.mapping-header-section--card-content-text-count').should('have.text', '0')
+      resetImportSetting();
     })
   })
 })
