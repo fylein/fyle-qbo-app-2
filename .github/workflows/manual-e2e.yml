@@ -12,7 +12,7 @@ on:
         - End to End Test - Production
 
 jobs:
-  end-to-end-test-manual-trigger:
+  install:
     runs-on: macos-latest
     environment: End to End Test - Production
     steps:
