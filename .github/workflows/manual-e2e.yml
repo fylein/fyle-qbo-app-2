@@ -14,12 +14,14 @@ on:
 jobs:
   install:
     runs-on: macos-latest
-    environment: End to End Test - Production
+    environment:
+      name: ${{ github.event.inputs.env-name }}
     steps:
       - id: skip_check
         uses: fkirc/skip-duplicate-actions@v5
         with:
           concurrent_skipping: 'always'
+      - run: echo "Running e2e test on ${{ github.event.inputs.env-name }}!"
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
@@ -57,10 +59,10 @@ jobs:
       COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
       APP_URL: ${{ secrets.APP_URL }}
       API_URL: ${{ secrets.API_URL }}
-      E2E_TESTS_ENV: ${{ secrets.E2E_TESTS_ENV }}
+      E2E_TESTS_CLIENT_ID: ${{ secrets.E2E_TESTS_CLIENT_ID }}
       E2E_TESTS_WORKSPACE_ID_1: ${{ secrets.E2E_TESTS_WORKSPACE_ID_1 }}
       E2E_TESTS_WORKSPACE_ID_2: ${{ secrets.E2E_TESTS_WORKSPACE_ID_2 }}
-      E2E_TESTS_CLIENT_ID: ${{ secrets.E2E_TESTS_CLIENT_ID }}
+      E2E_TESTS_ENV: ${{ secrets.E2E_TESTS_ENV }}
       E2E_TESTS_REFRESH_TOKEN_1: ${{ secrets.E2E_TESTS_REFRESH_TOKEN_1 }}
       E2E_TESTS_ORG_ID_1: ${{ secrets.E2E_TESTS_ORG_ID_1 }}
       E2E_TESTS_REFRESH_TOKEN_2: ${{ secrets.E2E_TESTS_REFRESH_TOKEN_2 }}
@@ -68,7 +70,7 @@ jobs:
 
   end-to-end-test:
     runs-on: macos-latest
-    environment: End to End Test - Staging
+    environment: End to End Test - Production
     needs: install
     strategy:
       fail-fast: false
@@ -81,6 +83,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14
+      - name: Install dependencies
+        run: npm install --prefix cypress
       - name: Prepare for end to end tests
         run: npm run setup_env
       - name: Cache Dependencies
@@ -106,10 +110,10 @@ jobs:
       COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
       APP_URL: ${{ secrets.APP_URL }}
       API_URL: ${{ secrets.API_URL }}
-      E2E_TESTS_ENV: ${{ secrets.E2E_TESTS_ENV }}
+      E2E_TESTS_CLIENT_ID: ${{ secrets.E2E_TESTS_CLIENT_ID }}
       E2E_TESTS_WORKSPACE_ID_1: ${{ secrets.E2E_TESTS_WORKSPACE_ID_1 }}
       E2E_TESTS_WORKSPACE_ID_2: ${{ secrets.E2E_TESTS_WORKSPACE_ID_2 }}
-      E2E_TESTS_CLIENT_ID: ${{ secrets.E2E_TESTS_CLIENT_ID }}
+      E2E_TESTS_ENV: ${{ secrets.E2E_TESTS_ENV }}
       E2E_TESTS_REFRESH_TOKEN_1: ${{ secrets.E2E_TESTS_REFRESH_TOKEN_1 }}
       E2E_TESTS_ORG_ID_1: ${{ secrets.E2E_TESTS_ORG_ID_1 }}
       E2E_TESTS_REFRESH_TOKEN_2: ${{ secrets.E2E_TESTS_REFRESH_TOKEN_2 }}
