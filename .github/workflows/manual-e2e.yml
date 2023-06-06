@@ -39,6 +39,7 @@ jobs:
         if: steps.filter.outputs.src == 'true'
         run: npm install --prefix cypress
       - name: Prepare for end to end tests
+        if: steps.filter.outputs.src == 'true'
         run: npm run setup_e2e_test
       - name: Cache Dependencies
         uses: actions/cache@v3
