@@ -73,7 +73,7 @@ jobs:
 
   end-to-end-test:
     runs-on: macos-latest
-    environment: 
+    environment:
       name: ${{ github.event.inputs.env-name }}
     needs: install
     strategy:
