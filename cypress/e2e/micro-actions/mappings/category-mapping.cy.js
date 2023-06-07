@@ -50,6 +50,7 @@ describe('category mapping view/create/update', () => {
       cy.get('@categoryMappingRow').find('.mapping-table--form-field').click()
       cy.get('.search-select--search-input').eq(1).type('others')
       cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
+      cy.wait(500)
       cy.get('.mat-option').eq(0).contains('Others')
       cy.get('.mat-option').eq(0).click()
     })
