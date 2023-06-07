@@ -215,7 +215,7 @@ describe('onboarding journey', () => {
     cy.get('.dashboard-resolve-mapping-dialog--heading').should('be.visible')
     cy.wait(500)
     cy.get('.mat-column-qbo').eq(1).contains('Select Vendor').click()
-    cy.selectMatOption('Ashwin')
+    cy.selectMatOption('Amazon')
 
     cy.wait('@postEmployeeMapping').its('response.statusCode').should('equal', 201)
 
