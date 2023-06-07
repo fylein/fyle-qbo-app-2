@@ -11,10 +11,10 @@ describe('mapping filter', () => {
 
   it('simple search', () => {
     cy.wait('@getEmployeeMappings').its('response.statusCode').should('equal', 200)
-    cy.get('.search-select--search-input').type('ashwin')
+    cy.get('.search-select--search-input').type('admin')
 
     cy.get('.mapping-table--row').each((_, index, __) => {
-      cy.get('.mat-column-fyle').eq(index + 1).contains('ashwin')
+      cy.get('.mat-column-fyle').eq(index + 1).contains('admin')
     })
   })
 

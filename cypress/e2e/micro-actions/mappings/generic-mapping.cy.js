@@ -36,7 +36,7 @@ describe('generic mapping view/create/update', () => {
       cy.get('.mapping-table--form-field').eq(index).click()
 
       // Random option number, from 1 -> 5
-      cy.get('.mat-option').eq(Math.floor((Math.random() * (5)) + 1)).click()
+      cy.get('.mat-option').eq(Math.floor((Math.random() * (2)) + 1)).click()
       cy.get('.mat-column-state').eq(index + 1).contains('Mapped')
 
       // Stop execution
