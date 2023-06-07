@@ -6,8 +6,7 @@ describe('pagination', () => {
     cy.microActionsLogin()
     cy.visit('/')
     cy.navigateToModule('Mappings')
-    cy.navigateToMappingPage('Employee Mapping')
-    cy.intercept('GET', '**/mappings/employee/**', {fixture: 'employee.json'})
+    cy.navigateToMappingPage('Project Mapping')
   })
 
   function assertCurrentPageNumber(currentPageNumber) {
