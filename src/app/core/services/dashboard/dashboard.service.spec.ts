@@ -1,6 +1,5 @@
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { getTestBed, TestBed } from '@angular/core/testing';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ExportableExpenseGroup } from '../../models/db/expense-group.model';
 import { LastExport } from '../../models/db/last-export.model';
