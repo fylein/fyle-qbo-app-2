@@ -279,9 +279,6 @@ describe('onboarding journey', () => {
     cy.wait('@getMappings').its('response.statusCode').should('equal', 200)
     cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
 
-    cy.get('.mapping-filter--filter-alphabet-list').as('alphabet')
-    cy.get('@alphabet').contains('F').click()
-
     cy.get('.mapping-table--row').eq(3).as('categoryMappingRow')
     cy.get('@categoryMappingRow').find('.mat-column-fyle').contains('Food')
 
