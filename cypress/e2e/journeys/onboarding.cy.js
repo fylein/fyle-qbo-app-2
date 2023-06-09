@@ -283,9 +283,10 @@ describe('onboarding journey', () => {
     cy.get('@categoryMappingRow').find('.mat-column-fyle').contains('Food')
 
     cy.get('@categoryMappingRow').find('.mapping-table--form-field').click()
-    cy.get('.search-select--search-input').eq(1).type('Advertising')
+    cy.get('.search-select--search-input').eq(1).type('Food')
     cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
-    cy.get('.mat-option').contains('Advertising').click()
+    cy.get('.mat-option').contains('Food').click()
+    cy.wait(1500)
     cy.navigateToModule('Dashboard')
     // Export
     cy.url().should('include', '/workspaces/main/dashboard')
