@@ -286,7 +286,7 @@ describe('onboarding journey', () => {
     cy.get('.search-select--search-input').eq(1).type('Food')
     cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
     cy.wait(1500)
-    cy.get('.mat-option').contains('Advertising').click()
+    cy.get('.mat-option').contains('Food').click()
     cy.navigateToModule('Dashboard')
     // Export
     cy.url().should('include', '/workspaces/main/dashboard')
