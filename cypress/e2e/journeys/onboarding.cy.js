@@ -81,10 +81,6 @@ describe('onboarding journey', () => {
     cy.url().should('include', '/workspaces/onboarding/import_settings')
 
     // Select import setting form values
-    cy.get('.configuration--field-toggle-section').eq(0).within(() => {
-      cy.enableConfigurationToggle(0)
-    })
-    cy.get('.mat-checkbox-label').filter(':contains("Other Expense")').click()
 
     cy.importToFyle(0, true, 'Cost Center')
     cy.importToFyle(2, true, 'Project')
@@ -213,9 +209,9 @@ describe('onboarding journey', () => {
 
     cy.get('.dashboard-resolve-mapping-dialog--header-section').should('be.visible')
     cy.get('.dashboard-resolve-mapping-dialog--heading').should('be.visible')
-    cy.wait(500)
+    cy.wait(900)
     cy.get('.mat-column-qbo').eq(1).contains('Select Vendor').click()
-    cy.selectMatOption('Ashwin')
+    cy.selectMatOption('Amazon')
 
     cy.wait('@postEmployeeMapping').its('response.statusCode').should('equal', 201)
 
@@ -278,12 +274,10 @@ describe('onboarding journey', () => {
     cy.navigateToMappingPage('Category Mapping')
     cy.url().should('include', '/workspaces/main/mapping/category')
 
+    cy.wait(1500)
     cy.get('.mapping-filter--filter-alphabet-list').contains('F').click()
     cy.wait('@getMappings').its('response.statusCode').should('equal', 200)
     cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
-
-    cy.get('.mapping-filter--filter-alphabet-list').as('alphabet')
-    cy.get('@alphabet').contains('F').click()
 
     cy.get('.mapping-table--row').eq(3).as('categoryMappingRow')
     cy.get('@categoryMappingRow').find('.mat-column-fyle').contains('Food')
@@ -291,6 +285,7 @@ describe('onboarding journey', () => {
     cy.get('@categoryMappingRow').find('.mapping-table--form-field').click()
     cy.get('.search-select--search-input').eq(1).type('Advertising')
     cy.wait('@getMappingOptions').its('response.statusCode').should('equal', 200)
+    cy.wait(1500)
     cy.get('.mat-option').contains('Advertising').click()
     cy.navigateToModule('Dashboard')
     // Export

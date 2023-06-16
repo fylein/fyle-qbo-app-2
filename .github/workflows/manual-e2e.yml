@@ -73,7 +73,8 @@ jobs:
 
   end-to-end-test:
     runs-on: macos-latest
-    environment: End to End Test - Production
+    environment:
+      name: ${{ github.event.inputs.env-name }}
     needs: install
     strategy:
       fail-fast: false
