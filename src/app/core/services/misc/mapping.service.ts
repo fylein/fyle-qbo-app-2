@@ -140,10 +140,14 @@ export class MappingService {
 
   @Cacheable()
   getQBOEmployees(searchTerm: string | void): Observable<DestinationAttribute[]> {
-    const params: { search_term?: string } = {};
+    const params: { search_term?: string, attribute_type__in?: string, workspace_id?: string, active?: boolean} = {};
     if (searchTerm) {
       params.search_term = searchTerm;
     }
+    params.attribute_type__in = 'EMPLOYEE';
+    params.workspace_id = this.workspaceId;
+    params.active = true;
+    
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/employees/`, params);
   }
 
