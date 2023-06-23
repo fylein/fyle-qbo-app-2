@@ -93,7 +93,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
     }
   ];
 
-  cccExpenseGroupingDateOptions: ExportSettingFormOption[] = this.reimbursableExpenseGroupingDateOptions;
+  cccExpenseGroupingDateOptions: ExportSettingFormOption[];
 
   creditCardExportTypes: ExportSettingFormOption[] = [
     {
