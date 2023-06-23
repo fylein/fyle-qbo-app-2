@@ -39,7 +39,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/qbo_attributes/?attribute_types=EMPLOYEE,VENDOR`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/qbo_attributes/?attribute_type__in=EMPLOYEE,VENDOR`
     });
       req.flush([]);
 
@@ -51,7 +51,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_types=EMPLOYEE,VENDOR`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_type__in=EMPLOYEE,VENDOR&active=true`
     });
       req.flush([]);
 
@@ -63,7 +63,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_types=EMPLOYEE,VENDOR`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_type__in=EMPLOYEE,VENDOR&active=true`
     });
       req.flush([]);
 
@@ -75,7 +75,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/mapping_options/?attribute_type=EMPLOYEE`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/mapping_options/?attribute_type=EMPLOYEE&display_name=undefined&limit=10`
     });
       req.flush([]);
 
@@ -87,7 +87,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/mapping_options/?attribute_type=EMPLOYEE&active=true&search_term=ash&display_name=undefined`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/mapping_options/?attribute_type=EMPLOYEE&active=true&value=ash&display_name=undefined&limit=10`
     });
       req.flush([]);
 
@@ -99,7 +99,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/qbo_attributes/?attribute_types=EMPLOYEE,VENDOR`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/qbo_attributes/?attribute_type__in=EMPLOYEE,VENDOR`
     });
       req.flush([]);
   });
@@ -250,7 +250,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/employees/`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/employees/?attribute_type=EMPLOYEE&limit=10`
     });
       req.flush([]);
   });
@@ -261,7 +261,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/employees/?search_term=asd`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/employees/?search_term=asd&attribute_type=EMPLOYEE&limit=10`
     });
       req.flush([]);
   });
@@ -272,7 +272,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/vendors/`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/vendors/?attribute_type=VENDOR&limit=10`
     });
       req.flush([]);
   });
@@ -283,7 +283,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/vendors/?search_term=ash`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/vendors/?value=ash&attribute_type=VENDOR&limit=10`
     });
       req.flush([]);
   });
@@ -436,7 +436,7 @@ describe('MappingService', () => {
     expect(actualResponseKeys).toEqual(responseKeys);
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_types=BANK_ACCOUNT,CREDIT_CARD_ACCOUNT,ACCOUNTS_PAYABLE,VENDOR`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_type__in=BANK_ACCOUNT,CREDIT_CARD_ACCOUNT,ACCOUNTS_PAYABLE,VENDOR&active=true`
     });
       req.flush([{"id": 45531, "attribute_type": "CREDIT_CARD_ACCOUNT", "display_name": "Credit Card Account", "value": "2285 Fyle Credit Card", "destination_id": "106", "auto_created": false, "active": null, "detail": {"account_type": "Credit Card", "fully_qualified_name": "2285 Fyle Credit Card"}, "created_at": "2022-04-14T06:09:07.537182Z", "updated_at": "2022-04-14T06:09:07.537205Z", "workspace": 216}]);
   });
@@ -460,7 +460,7 @@ describe('MappingService', () => {
     expect(actualResponseKeys).toEqual(responseKeys);
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_types=BANK_ACCOUNT,CREDIT_CARD_ACCOUNT,ACCOUNTS_PAYABLE,VENDOR`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_type__in=BANK_ACCOUNT,CREDIT_CARD_ACCOUNT,ACCOUNTS_PAYABLE,VENDOR&active=true`
     });
       req.flush([]);
   });
