@@ -254,18 +254,18 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
         }];
     } else {
       this.exportSettingsForm.controls.creditCardExportGroup.enable();
-      this.cccExpenseGroupFn();
+      this.cccExpenseGroupFn(this.exportSettingsForm.controls.creditCardExportGroup.value);
     }
   }
 
-  cccExpenseGroupFn() {
-    if (this.exportSettingsForm.controls.creditCardExportGroup.value === ExpenseGroupingFieldOption.EXPENSE_ID) {
+  cccExpenseGroupFn(creditCardExportGroup: ExpenseGroupingFieldOption) {
+    if (creditCardExportGroup === ExpenseGroupingFieldOption.EXPENSE_ID) {
       this.cccExpenseGroupingDateOptions = this.reimbursableExpenseGroupingDateOptions.concat([{
         label: 'Posted Date',
         value: ExportDateType.POSTED_AT
       }]);
     } else {
-      this.cccExpenseGroupingDateOptions = this.reimbursableExpenseGroupingDateOptions;
+      this.cccExpenseGroupingDateOptions = this.reimbursableExpenseGroupingDateOptions.concat();
     }
   }
 
@@ -411,7 +411,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
   private createCreditCardExportGroupWatcher(): void {
     this.exportSettingsForm.controls.creditCardExportGroup.valueChanges.subscribe((creditCardExportGroup: ExpenseGroupingFieldOption) => {
       if (creditCardExportGroup && creditCardExportGroup === ExpenseGroupingFieldOption.EXPENSE_ID) {
-        this.cccExpenseGroupFn();
+        this.cccExpenseGroupFn(creditCardExportGroup);
         this.cccExpenseGroupingDateOptions = this.cccExpenseGroupingDateOptions.filter((option) => {
           return option.value !== ExportDateType.LAST_SPENT_AT;
         });
@@ -425,7 +425,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
             value: ExportDateType.LAST_SPENT_AT
           });
         }
-        this.cccExpenseGroupFn();
+        this.cccExpenseGroupFn(creditCardExportGroup);
       }
     });
   }
@@ -433,7 +433,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
   private setCustomValidatorsAndWatchers(): void {
 
     // Date grouping
-    this.cccExpenseGroupFn();
+    this.cccExpenseGroupFn(this.exportSettingsForm.controls.creditCardExportGroup.value);
 
     // Toggles
     this.createReimbursableExpenseWatcher();
