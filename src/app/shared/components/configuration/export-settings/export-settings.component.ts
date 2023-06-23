@@ -244,11 +244,28 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       this.exportSettingsForm.controls.creditCardExportGroup.setValue(ExpenseGroupingFieldOption.EXPENSE_ID);
       this.exportSettingsForm.controls.creditCardExportGroup.disable();
 
-      this.exportSettingsForm.controls.creditCardExportDate.setValue(ExportDateType.SPENT_AT);
-      this.exportSettingsForm.controls.creditCardExportDate.disable();
+      this.cccExpenseGroupingDateOptions = [{
+          label: 'Posted Date',
+          value: ExportDateType.POSTED_AT
+        },
+        {
+          label: 'Spend Date',
+          value: ExportDateType.SPENT_AT
+        }];
     } else {
       this.exportSettingsForm.controls.creditCardExportGroup.enable();
-      this.exportSettingsForm.controls.creditCardExportDate.enable();
+      this.cccExpenseGroupFn();
+    }
+  }
+
+  cccExpenseGroupFn() {
+    if (this.exportSettingsForm.controls.creditCardExportGroup.value === ExpenseGroupingFieldOption.EXPENSE_ID) {
+      this.cccExpenseGroupingDateOptions = this.reimbursableExpenseGroupingDateOptions.concat([{
+        label: 'Posted Date',
+        value: ExportDateType.POSTED_AT
+      }]);
+    } else {
+      this.cccExpenseGroupingDateOptions = this.reimbursableExpenseGroupingDateOptions;
     }
   }
 
@@ -394,19 +411,13 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
   private createCreditCardExportGroupWatcher(): void {
     this.exportSettingsForm.controls.creditCardExportGroup.valueChanges.subscribe((creditCardExportGroup: ExpenseGroupingFieldOption) => {
       if (creditCardExportGroup && creditCardExportGroup === ExpenseGroupingFieldOption.EXPENSE_ID) {
+        this.cccExpenseGroupFn();
         this.cccExpenseGroupingDateOptions = this.cccExpenseGroupingDateOptions.filter((option) => {
           return option.value !== ExportDateType.LAST_SPENT_AT;
         });
-        this.cccExpenseGroupingDateOptions = this.cccExpenseGroupingDateOptions.concat([{
-          label: 'Posted Date',
-          value: ExportDateType.POSTED_AT
-        }]);
       } else {
         const lastSpentAt = this.cccExpenseGroupingDateOptions.filter((option) => {
           return option.value === ExportDateType.LAST_SPENT_AT;
-        });
-        const postedAt = this.cccExpenseGroupingDateOptions.filter((option) => {
-          return option.value === ExportDateType.POSTED_AT;
         });
         if (!lastSpentAt.length) {
           this.cccExpenseGroupingDateOptions.push({
@@ -414,16 +425,16 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
             value: ExportDateType.LAST_SPENT_AT
           });
         }
-        if (postedAt.length) {
-          this.cccExpenseGroupingDateOptions = this.cccExpenseGroupingDateOptions.filter((option) => {
-            return option.value !== ExportDateType.POSTED_AT;
-          });
-        }
+        this.cccExpenseGroupFn();
       }
     });
   }
 
   private setCustomValidatorsAndWatchers(): void {
+
+    // Date grouping
+    this.cccExpenseGroupFn();
+
     // Toggles
     this.createReimbursableExpenseWatcher();
     this.createCreditCardExpenseWatcher();
