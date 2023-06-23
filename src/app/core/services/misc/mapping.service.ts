@@ -64,7 +64,7 @@ export class MappingService {
 
     if (Array.isArray(displayName)) {
       params.display_name__in = displayName;
-    }else{
+    } else {
       params.display_name = displayName;
     }
     params.limit = 10;
