@@ -145,7 +145,6 @@ export class MappingService {
       params.search_term = searchTerm;
     }
     params.attribute_type__in = 'EMPLOYEE';
-    params.workspace_id = this.workspaceId;
     params.active = true;
     
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/employees/`, params);
