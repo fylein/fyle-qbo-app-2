@@ -250,7 +250,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/employees/`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/employees/?attribute_type__in=EMPLOYEE&active=true`
     });
       req.flush([]);
   });
@@ -261,7 +261,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/employees/?search_term=asd`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/employees/?search_term=asd&attribute_type__in=EMPLOYEE&active=true`
     });
       req.flush([]);
   });
