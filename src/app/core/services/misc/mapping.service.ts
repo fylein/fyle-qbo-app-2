@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { Cacheable } from 'ts-cacheable';
-import { DestinationAttribute, GroupedDestinationAttribute } from '../../models/db/destination-attribute.model';
+import { DestinationAttribute, GroupedDestinationAttribute, PaginatedDestinationAttribute } from '../../models/db/destination-attribute.model';
 import { EmployeeMapping, EmployeeMappingPost, ExtendedEmployeeAttributeResponse } from '../../models/db/employee-mapping.model';
 import { ExtendedExpenseAttributeResponse } from '../../models/db/expense-attribute.model';
 import { MappingSetting, MappingSettingPost, MappingSettingResponse } from '../../models/db/mapping-setting.model';
@@ -46,7 +46,7 @@ export class MappingService {
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/destination_attributes/`, params);
   }
 
-  getSearchedQBODestinationAttributes(attributeType: string | string[], searchTerm?: string | void, displayName?:string | string[], active: boolean = false): Observable<DestinationAttribute[]> {
+  getSearchedQBODestinationAttributes(attributeType: string | string[], searchTerm?: string | void, displayName?:string | string[], active: boolean = false): Observable<PaginatedDestinationAttribute> {
     const params: { attribute_type?: string, attribute_type__in?: string[], active?: boolean, value?: string, display_name?: string, display_name__in?: string[], limit?: number} = {};
     if (Array.isArray(attributeType)) {
       params.attribute_type__in = attributeType;
@@ -149,7 +149,7 @@ export class MappingService {
   }
 
   @Cacheable()
-  getQBOEmployees(searchTerm: string | void): Observable<DestinationAttribute[]> {
+  getQBOEmployees(searchTerm: string | void): Observable<PaginatedDestinationAttribute> {
     const params: { search_term?: string, attribute_type?: string, limit?:number} = {};
     if (searchTerm) {
       params.search_term = searchTerm;
@@ -161,7 +161,7 @@ export class MappingService {
   }
 
   @Cacheable()
-  getQBOVendors(searchTerm: string | void): Observable<DestinationAttribute[]> {
+  getQBOVendors(searchTerm: string | void): Observable<PaginatedDestinationAttribute> {
     const params: { value?: string, attribute_type?: string, limit?: number} = {};
     if (searchTerm) {
       params.value = searchTerm;

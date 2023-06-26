@@ -3,6 +3,13 @@ export type DestinationAttributeDetail = {
   fully_qualified_name: string;
 };
 
+export type PaginatedDestinationAttribute ={
+  count: number;
+  next: string;
+  previous: string;
+  results: DestinationAttribute[];
+}
+
 export type DestinationAttribute = {
   id: number;
   attribute_type: string;

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
-import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
+import { DestinationAttribute, PaginatedDestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { EmployeeMappingModel, ExtendedEmployeeAttribute, ExtendedEmployeeAttributeResponse } from 'src/app/core/models/db/employee-mapping.model';
 import { MappingList, MappingStats } from 'src/app/core/models/db/mapping.model';
 import { WorkspaceGeneralSetting } from 'src/app/core/models/db/workspace-general-setting.model';
@@ -168,7 +168,6 @@ export class EmployeeMappingComponent implements OnInit {
             }
           }
         }
-        this.qboData = this.qboData.sort((a, b) => (a.value > b.value ? 1 : -1));
         mappings.push({
           fyle: {
             id: extendedEmployeeAttribute.id,
@@ -216,8 +215,8 @@ export class EmployeeMappingComponent implements OnInit {
       } else {
         qboData$ = this.mappingService.getQBOVendors();
       }
-      qboData$.subscribe((qboData: DestinationAttribute[]) => {
-        this.qboData = qboData;
+      qboData$.subscribe((qboData: PaginatedDestinationAttribute) => {
+        this.qboData = qboData.results;
         this.getMappings();
       });
     });
