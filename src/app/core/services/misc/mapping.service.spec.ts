@@ -71,25 +71,35 @@ describe('MappingService', () => {
 
   it('getSearchedQBODestinationAttributes() service check', () => {
     service.getSearchedQBODestinationAttributes(EmployeeFieldMapping.EMPLOYEE).subscribe(value => {
-      expect(value).toEqual([]);
+      expect(value.results).toEqual([]);
     });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/mapping_options/?attribute_type=EMPLOYEE&display_name=undefined&limit=10`
     });
-      req.flush([]);
+      req.flush({
+        results: [],
+        count: 0,
+        next: null,
+        previous: null
+      });
 
   });
 
   it('getSearchedQBODestinationAttributes() service check', () => {
     service.getSearchedQBODestinationAttributes(EmployeeFieldMapping.EMPLOYEE, 'ash', 'undefined', true).subscribe(value => {
-      expect(value).toEqual([]);
+      expect(value.results).toEqual([]);
     });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/mapping_options/?attribute_type=EMPLOYEE&active=true&value=ash&display_name=undefined&limit=10`
     });
-      req.flush([]);
+      req.flush({
+        results: [],
+        count: 0,
+        next: null,
+        previous: null
+      });
 
   });
 
@@ -246,46 +256,66 @@ describe('MappingService', () => {
 
   it('getQBOEmployees() service check', () => {
     service.getQBOEmployees().subscribe(value => {
-      expect(value).toEqual([]);
+      expect(value.results).toEqual([]);
     });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/employees/?attribute_type=EMPLOYEE&limit=10`
     });
-      req.flush([]);
+      req.flush({
+        results: [],
+        count: 0,
+        next: null,
+        previous: null
+      });
   });
 
   it('getQBOEmployees() service check', () => {
     service.getQBOEmployees('asd').subscribe(value => {
-      expect(value).toEqual([]);
+      expect(value.results).toEqual([]);
     });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/employees/?search_term=asd&attribute_type=EMPLOYEE&limit=10`
     });
-      req.flush([]);
+      req.flush({
+        results: [],
+        count: 0,
+        next: null,
+        previous: null
+      });
   });
 
   it('getQBOVendors() service check', () => {
     service.getQBOVendors().subscribe(value => {
-      expect(value).toEqual([]);
+      expect(value.results).toEqual([]);
     });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/vendors/?attribute_type=VENDOR&limit=10`
     });
-      req.flush([]);
+      req.flush({
+        results: [],
+        count: 0,
+        next: null,
+        previous: null
+      });
   });
 
   it('getQBOVendors() service check', () => {
     service.getQBOVendors('ash').subscribe(value => {
-      expect(value).toEqual([]);
+      expect(value.results).toEqual([]);
     });
     const req = httpMock.expectOne({
       method: 'GET',
       url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/vendors/?value=ash&attribute_type=VENDOR&limit=10`
     });
-      req.flush([]);
+      req.flush({
+        results: [],
+        count: 0,
+        next: null,
+        previous: null
+      });
   });
 
   it('getMappingSettings() service check', () => {
