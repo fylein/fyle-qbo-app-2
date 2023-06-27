@@ -1,4 +1,4 @@
-import { DestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
+import { DestinationAttribute, PaginatedDestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
 import { EmployeeMapping, ExtendedEmployeeAttributeResponse } from "src/app/core/models/db/employee-mapping.model";
 import { MappingList, MappingStats } from "src/app/core/models/db/mapping.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
@@ -56,43 +56,85 @@ export const MappingStatsResponse:MappingStats= {
   all_attributes_count: 3,
   unmapped_attributes_count: 3
 };
-export const qboData2: DestinationAttribute[] = [
-  {
-    id: 2,
-    attribute_type: 'EMPLOYEE',
-    display_name: "string Ash",
-    value: "string Ash",
-    destination_id: "stringAsg",
-    active: true,
-    created_at: new Date(),
-    updated_at: new Date(),
-    workspace: 2,
-    detail: {
-      email: 'String Ash',
-      fully_qualified_name: 'string Ash'
+export const qboData2: PaginatedDestinationAttribute = {
+  count: 3,
+  next: '',
+  previous: '',
+  results: [
+    {
+      id: 2,
+      attribute_type: 'EMPLOYEE',
+      display_name: "string Ash",
+      value: "string Ash",
+      destination_id: "stringAsg",
+      active: true,
+      created_at: new Date(),
+      updated_at: new Date(),
+      workspace: 2,
+      detail: {
+        email: 'String Ash',
+        fully_qualified_name: 'string Ash'
+      }
+    },
+    {
+      id: 4,
+      attribute_type: 'VENDOR',
+      display_name: "string Ash Ash",
+      value: "string Ash Ash",
+      destination_id: "stringasfash",
+      active: true,
+      created_at: new Date(),
+      updated_at: new Date(),
+      workspace: 2,
+      detail: {
+        email: 'String Ash Ash',
+        fully_qualified_name: 'string Ash Ash'
+      }
+    },
+    {
+      id: 3,
+      attribute_type: 'EMPLOYEE',
+      display_name: "string",
+      value: "string",
+      destination_id: "stringAsg",
+      active: true,
+      created_at: new Date(),
+      updated_at: new Date(),
+      workspace: 2,
+      detail: {
+        email: 'String',
+        fully_qualified_name: 'string'
+      }
     }
-  },
-  {
-    id: 4,
-    attribute_type: 'VENDOR',
-    display_name: "string Ash Ash",
-    value: "string Ash Ash",
-    destination_id: "stringasfash",
+  ]
+};
+
+
+export const qboData: PaginatedDestinationAttribute = {
+  count: 2,
+  next: '',
+  previous: '',
+  results: [{
+    id: 1,
+    attribute_type: 'EMPLOYEE',
+    display_name: "string",
+    value: "string",
+    destination_id: "string",
     active: true,
     created_at: new Date(),
     updated_at: new Date(),
     workspace: 2,
     detail: {
-      email: 'String Ash Ash',
-      fully_qualified_name: 'string Ash Ash'
+      email: 'String',
+      fully_qualified_name: 'string'
     }
   },
   {
     id: 3,
-    attribute_type: 'EMPLOYEE',
+    attribute_type: 'VENDOR',
     display_name: "string",
     value: "string",
-    destination_id: "stringAsg",
+    destination_id: "string",
     active: true,
     created_at: new Date(),
     updated_at: new Date(),
@@ -102,38 +144,9 @@ export const qboData2: DestinationAttribute[] = [
       fully_qualified_name: 'string'
     }
   }
-];
-export const qboData: DestinationAttribute[] = [{
-  id: 1,
-  attribute_type: 'EMPLOYEE',
-  display_name: "string",
-  value: "string",
-  destination_id: "string",
-  active: true,
-  created_at: new Date(),
-  updated_at: new Date(),
-  workspace: 2,
-  detail: {
-    email: 'String',
-    fully_qualified_name: 'string'
-  }
-},
-{
-  id: 3,
-  attribute_type: 'VENDOR',
-  display_name: "string",
-  value: "string",
-  destination_id: "string",
-  active: true,
-  created_at: new Date(),
-  updated_at: new Date(),
-  workspace: 2,
-  detail: {
-    email: 'String',
-    fully_qualified_name: 'string'
-  }
-}
-];
+  ]
+};
+
 
 export const employeeMappingResponse: EmployeeMapping = {
   id: 1,
@@ -157,9 +170,9 @@ export const employeeMappingResponse: EmployeeMapping = {
       employee_code: 'FYIE1'
     }
   },
-  destination_employee: qboData2[0],
-  destination_vendor: qboData2[1],
-  destination_card_account: qboData2[1],
+  destination_employee: qboData2.results[0],
+  destination_vendor: qboData2.results[1],
+  destination_card_account: qboData2.results[1],
   created_at: new Date(),
   updated_at: new Date(),
   workspace: +environment.tests.workspaceId
@@ -194,9 +207,9 @@ export const getEmployeeMappingResponse: ExtendedEmployeeAttributeResponse={
               employee_code: 'FYIE1'
             }
           },
-          destination_employee: qboData2[2],
-          destination_vendor: qboData2[1],
-          destination_card_account: qboData2[1],
+          destination_employee: qboData2.results[2],
+          destination_vendor: qboData2.results[1],
+          destination_card_account: qboData2.results[1],
           created_at: new Date(),
           updated_at: new Date(),
           workspace: +environment.tests.workspaceId
@@ -256,8 +269,8 @@ export const getEmployeeMappingResponse1={
             }
           },
           destination_employee: null,
-          destination_vendor: qboData2[1],
-          destination_card_account: qboData2[1],
+          destination_vendor: qboData2.results[1],
+          destination_card_account: qboData2.results[1],
           created_at: new Date(),
           updated_at: new Date(),
           workspace: +environment.tests.workspaceId

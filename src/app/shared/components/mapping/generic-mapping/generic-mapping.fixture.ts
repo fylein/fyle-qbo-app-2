@@ -1,4 +1,4 @@
-import { DestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
+import { DestinationAttribute, PaginatedDestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
 import { EmployeeMapping } from "src/app/core/models/db/employee-mapping.model";
 import { MappingSetting, MappingSettingResponse, MinimalMappingSetting } from "src/app/core/models/db/mapping-setting.model";
 import { MappingList, MappingPost, MappingStats } from "src/app/core/models/db/mapping.model";
@@ -193,18 +193,23 @@ export const getMappingStats: MappingStats = {
   all_attributes_count: 3,
   unmapped_attributes_count: 3
 };
-export const destinationAttribute: DestinationAttribute[] = [{
-  active: true,
-  attribute_type: "ACCOUNT",
-  created_at: new Date("2022-06-14T06:24:56.947727Z"),
-  destination_id: "800",
-  detail: { email: 'fyle@fyle.in', fully_qualified_name: 'Fyle' },
-  display_name: "Account",
-  id: 1,
-  updated_at: new Date("2022-06-14T06:24:56.947727Z"),
-  value: "Delhi",
-  workspace: 146
-}];
+export const destinationAttribute: PaginatedDestinationAttribute = {
+  count: 1,
+  next: '',
+  previous: '',
+  results: [{
+    active: true,
+    attribute_type: "ACCOUNT",
+    created_at: new Date("2022-06-14T06:24:56.947727Z"),
+    destination_id: "800",
+    detail: { email: 'fyle@fyle.in', fully_qualified_name: 'Fyle' },
+    display_name: "Account",
+    id: 1,
+    updated_at: new Date("2022-06-14T06:24:56.947727Z"),
+    value: "Delhi",
+    workspace: 146
+  }]
+};
 export const getMappingsresponse = {
   "count": 6,
   "next": null,

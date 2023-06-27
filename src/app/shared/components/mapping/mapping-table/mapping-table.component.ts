@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
-import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
+import { DestinationAttribute, PaginatedDestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { MappingList } from 'src/app/core/models/db/mapping.model';
 import { EmployeeFieldMapping, FyleField, QBOField, SearchType, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
@@ -103,8 +103,8 @@ export class MappingTableComponent implements OnInit {
         const displayName = this.mappingService.constructDisplayNameFilter(this.destinationType, this.importItems);
         qboData$ = this.mappingService.getSearchedQBODestinationAttributes(attribute, searchTerm, displayName);
       }
-      qboData$.subscribe((response) => {
-        this.prepareQBOOptions(this.existingQboOptions, response);
+      qboData$.subscribe((response: PaginatedDestinationAttribute) => {
+        this.prepareQBOOptions(this.existingQboOptions, response.results);
       });
     } else if (searchTerm && searchTerm==='initiateSearch...'){
       this.isSearchInProgress = true;

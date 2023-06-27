@@ -99,7 +99,7 @@ describe('JwtInterceptor', () => {
       }
     };
 
-    const requestMock = new HttpRequest('GET', `${API_BASE_URL}/api/auth/workspaces/${workspace_id}/qbo/employees/`);
+    const requestMock = new HttpRequest('GET', `${API_BASE_URL}/api/auth/workspaces/${workspace_id}/qbo/employees/?attribute_type=EMPLOYEE&limit=10`);
     let response;
     interceptor.intercept(requestMock, next).subscribe((res) => {
       response = res;
@@ -108,7 +108,7 @@ describe('JwtInterceptor', () => {
   }));
   it('isTokenMandatory function check', () => {
     // @ts-ignore
-    expect(interceptor.isTokenMandatory(`${API_BASE_URL}/workspaces/${workspace_id}/qbo/employees/`)).toBeTrue();
+    expect(interceptor.isTokenMandatory(`${API_BASE_URL}/workspaces/${workspace_id}/qbo/employees/?attribute_type=EMPLOYEE&limit=10`)).toBeTrue();
   });
 
   it('getAccessToken() function check', () => {

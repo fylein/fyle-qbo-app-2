@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { Cacheable } from 'ts-cacheable';
-import { DestinationAttribute, GroupedDestinationAttribute } from '../../models/db/destination-attribute.model';
+import { DestinationAttribute, GroupedDestinationAttribute, PaginatedDestinationAttribute } from '../../models/db/destination-attribute.model';
 import { EmployeeMapping, EmployeeMappingPost, ExtendedEmployeeAttributeResponse } from '../../models/db/employee-mapping.model';
 import { ExtendedExpenseAttributeResponse } from '../../models/db/expense-attribute.model';
 import { MappingSetting, MappingSettingPost, MappingSettingResponse } from '../../models/db/mapping-setting.model';
@@ -31,9 +31,13 @@ export class MappingService {
   ) { }
 
   getQBODestinationAttributes(attributeTypes: string | string[], displayName?:string): Observable<DestinationAttribute[]> {
-    const params: { attribute_types: string | string[], display_name?:string } = {
-      attribute_types: attributeTypes
-    };
+    const params: { attribute_type?: string, attribute_type__in?: string[], display_name?:string, active?:boolean} = {};
+    if (Array.isArray(attributeTypes)) {
+      params.attribute_type__in = attributeTypes;
+    } else {
+      params.attribute_type = attributeTypes;
+    }
+    params.active = true;
 
     if (displayName) {
       params.display_name = displayName;
@@ -42,29 +46,35 @@ export class MappingService {
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/destination_attributes/`, params);
   }
 
-  getSearchedQBODestinationAttributes(attributeType: string, searchTerm?: string | void, displayName?:string, active: boolean = false): Observable<DestinationAttribute[]> {
-    const params: { attribute_type: string | string[], active?: boolean, search_term?: string, display_name?: string| string[]} = {
-      attribute_type: attributeType
-    };
+  getSearchedQBODestinationAttributes(attributeType: string | string[], searchTerm?: string | void, displayName?:string | string[], active: boolean = false): Observable<PaginatedDestinationAttribute> {
+    const params: { attribute_type?: string, attribute_type__in?: string[], active?: boolean, value__icontains?: string, display_name?: string, display_name__in?: string[], limit?: number} = {};
+    if (Array.isArray(attributeType)) {
+      params.attribute_type__in = attributeType;
+    } else {
+      params.attribute_type = attributeType;
+    }
 
     if (active) {
       params.active = true;
     }
 
     if (searchTerm) {
-      params.search_term = searchTerm;
+      params.value__icontains = searchTerm;
     }
 
-    if (displayName) {
+    if (Array.isArray(displayName)) {
+      params.display_name__in = displayName;
+    } else if (displayName) {
       params.display_name = displayName;
     }
+    params.limit = 10;
 
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/mapping_options/`, params);
   }
 
   getDistinctQBODestinationAttributes(attributeTypes: string[]): Observable<DestinationAttribute[]> {
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/qbo_attributes/`, {
-      attribute_types: attributeTypes
+      attribute_type__in: attributeTypes
     });
   }
 
@@ -139,23 +149,26 @@ export class MappingService {
   }
 
   @Cacheable()
-  getQBOEmployees(searchTerm: string | void): Observable<DestinationAttribute[]> {
-    const params: { search_term?: string, attribute_type__in?: string, active?: boolean} = {};
+  getQBOEmployees(searchTerm: string | void): Observable<PaginatedDestinationAttribute> {
+    const params: { value__icontains?: string, attribute_type?: string, limit?:number} = {};
     if (searchTerm) {
-      params.search_term = searchTerm;
+      params.value__icontains = searchTerm;
     }
-    params.attribute_type__in = 'EMPLOYEE';
-    params.active = true;
+    params.attribute_type = 'EMPLOYEE';
+    params.limit = 10;
 
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/employees/`, params);
   }
 
   @Cacheable()
-  getQBOVendors(searchTerm: string | void): Observable<DestinationAttribute[]> {
-    const params: { search_term?: string } = {};
+  getQBOVendors(searchTerm: string | void): Observable<PaginatedDestinationAttribute> {
+    const params: { value__icontains?: string, attribute_type?: string, limit?: number} = {};
     if (searchTerm) {
-      params.search_term = searchTerm;
+      params.value__icontains = searchTerm;
     }
+    params.attribute_type = 'VENDOR';
+    params.limit = 10;
+
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/vendors/`, params);
   }
 
