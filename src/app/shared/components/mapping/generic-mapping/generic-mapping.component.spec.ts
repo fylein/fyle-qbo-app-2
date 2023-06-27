@@ -84,7 +84,7 @@ describe('GenericMappingComponent', () => {
       sourceUpdated: [true],
       searchOption: [[' fyle ']]
     });
-    component.qboData = destinationAttribute;
+    component.qboData = destinationAttribute.results;
     component.form = form;
     activatedRoute.snapshot.params = { source_field: 'Cost_center'};
     fixture.detectChanges();
