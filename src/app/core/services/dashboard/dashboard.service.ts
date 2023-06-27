@@ -82,8 +82,11 @@ export class DashboardService {
     const apiParams: TaskGetParams = {
       limit: limit,
       offset: offset,
-      status: status
     };
+    if (status.length) {
+      const statusKey = 'status__in';
+      apiParams[statusKey] = status;
+    }
 
     if (expenseGroupIds.length) {
       const expenseKey = 'expense_group_id__in';

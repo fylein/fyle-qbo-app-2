@@ -92,7 +92,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/mapping_options/?attribute_type=EMPLOYEE&active=true&value=ash&display_name=undefined&limit=10`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/mapping_options/?attribute_type=EMPLOYEE&active=true&value__icontains=ash&display_name=undefined&limit=10`
     });
       req.flush({
         results: [],
@@ -276,7 +276,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/employees/?search_term=asd&attribute_type=EMPLOYEE&limit=10`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/employees/?value__icontains=asd&attribute_type=EMPLOYEE&limit=10`
     });
       req.flush({
         results: [],
@@ -308,7 +308,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/vendors/?value=ash&attribute_type=VENDOR&limit=10`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/vendors/?value__icontains=ash&attribute_type=VENDOR&limit=10`
     });
       req.flush({
         results: [],

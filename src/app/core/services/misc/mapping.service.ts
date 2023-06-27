@@ -47,7 +47,7 @@ export class MappingService {
   }
 
   getSearchedQBODestinationAttributes(attributeType: string | string[], searchTerm?: string | void, displayName?:string | string[], active: boolean = false): Observable<PaginatedDestinationAttribute> {
-    const params: { attribute_type?: string, attribute_type__in?: string[], active?: boolean, value?: string, display_name?: string, display_name__in?: string[], limit?: number} = {};
+    const params: { attribute_type?: string, attribute_type__in?: string[], active?: boolean, value__icontains?: string, display_name?: string, display_name__in?: string[], limit?: number} = {};
     if (Array.isArray(attributeType)) {
       params.attribute_type__in = attributeType;
     } else {
@@ -59,7 +59,7 @@ export class MappingService {
     }
 
     if (searchTerm) {
-      params.value = searchTerm;
+      params.value__icontains = searchTerm;
     }
 
     if (Array.isArray(displayName)) {
@@ -150,9 +150,9 @@ export class MappingService {
 
   @Cacheable()
   getQBOEmployees(searchTerm: string | void): Observable<PaginatedDestinationAttribute> {
-    const params: { search_term?: string, attribute_type?: string, limit?:number} = {};
+    const params: { value__icontains?: string, attribute_type?: string, limit?:number} = {};
     if (searchTerm) {
-      params.search_term = searchTerm;
+      params.value__icontains = searchTerm;
     }
     params.attribute_type = 'EMPLOYEE';
     params.limit = 10;
@@ -162,9 +162,9 @@ export class MappingService {
 
   @Cacheable()
   getQBOVendors(searchTerm: string | void): Observable<PaginatedDestinationAttribute> {
-    const params: { value?: string, attribute_type?: string, limit?: number} = {};
+    const params: { value__icontains?: string, attribute_type?: string, limit?: number} = {};
     if (searchTerm) {
-      params.value = searchTerm;
+      params.value__icontains = searchTerm;
     }
     params.attribute_type = 'VENDOR';
     params.limit = 10;
