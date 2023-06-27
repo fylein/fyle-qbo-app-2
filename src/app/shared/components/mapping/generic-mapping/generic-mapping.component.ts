@@ -5,7 +5,7 @@ import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack
 import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
+import { DestinationAttribute, PaginatedDestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
 import { ExtendedExpenseAttribute, ExtendedExpenseAttributeResponse } from 'src/app/core/models/db/expense-attribute.model';
 import { MappingSettingResponse, MinimalMappingSetting } from 'src/app/core/models/db/mapping-setting.model';
 import { MappingList, MappingModel, MappingStats } from 'src/app/core/models/db/mapping.model';
@@ -221,8 +221,8 @@ export class GenericMappingComponent implements OnInit {
         }
 
         const displayName = this.mappingService.constructDisplayNameFilter(this.mappingSetting.destination_field, this.workspaceGeneralSettings.import_items);
-        this.mappingService.getSearchedQBODestinationAttributes(this.mappingSetting.destination_field, undefined, displayName, active).subscribe((qboData: DestinationAttribute[]) => {
-          this.qboData = qboData;
+        this.mappingService.getSearchedQBODestinationAttributes(this.mappingSetting.destination_field, undefined, displayName, active).subscribe((qboData: PaginatedDestinationAttribute) => {
+          this.qboData = qboData.results;
           this.getMappings();
         });
       });

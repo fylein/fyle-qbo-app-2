@@ -36,7 +36,7 @@ export type TaskResponse = {
 export type TaskGetParams = {
   limit?: number;
   offset?: number;
-  status?: string[];
-  expense_group_ids?: number[];
-  task_type?: string[];
+  status__in?: string[];
+  expense_group_id__in?: number[];
+  type__in?: string[];
 };

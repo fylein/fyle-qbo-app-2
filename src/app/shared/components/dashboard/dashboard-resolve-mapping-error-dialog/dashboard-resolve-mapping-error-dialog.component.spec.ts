@@ -63,7 +63,7 @@ describe('DashboardResolveMappingErrorDialogComponent', () => {
     expect(component).toBeTruthy();
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_types=VENDOR`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/destination_attributes/?attribute_type=VENDOR&active=true`
     });
       req.flush([]);
   });

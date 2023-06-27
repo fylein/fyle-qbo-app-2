@@ -81,17 +81,20 @@ export class DashboardService {
     const offset = 0;
     const apiParams: TaskGetParams = {
       limit: limit,
-      offset: offset,
-      status: status
+      offset: offset
     };
+    if (status.length) {
+      const statusKey = 'status__in';
+      apiParams[statusKey] = status;
+    }
 
     if (expenseGroupIds.length) {
-      const expenseKey = 'expense_group_ids';
+      const expenseKey = 'expense_group_id__in';
       apiParams[expenseKey] = expenseGroupIds;
     }
 
     if (taskType) {
-      const typeKey = 'task_type';
+      const typeKey = 'type__in';
       apiParams[typeKey] = taskType;
     }
 

@@ -77,7 +77,7 @@ describe('EmployeeMappingComponent', () => {
       filterOption: [''],
       cardUpdated: [false]
     });
-    component.qboData = qboData2;
+    component.qboData = qboData2.results;
     fixture.detectChanges();
   });
 
@@ -179,7 +179,7 @@ describe('EmployeeMappingComponent', () => {
     expect(component.isLoading).toBeFalse();
   });
   it('getMappings function check', () => {
-    component.qboData = qboData2.slice(0, 1);
+    component.qboData = qboData2.results.slice(0, 1);
     component.employeeFieldMapping = EmployeeFieldMapping.EMPLOYEE;
     component.form = formBuilder.group({
       map: [''],

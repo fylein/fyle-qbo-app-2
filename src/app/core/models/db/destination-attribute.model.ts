@@ -16,6 +16,13 @@ export type DestinationAttribute = {
   detail: DestinationAttributeDetail;
 };
 
+export type PaginatedDestinationAttribute ={
+  count: number;
+  next: string;
+  previous: string;
+  results: DestinationAttribute[];
+};
+
 export type GroupedDestinationAttribute = {
   BANK_ACCOUNT: DestinationAttribute[];
   CREDIT_CARD_ACCOUNT: DestinationAttribute[];
