@@ -75,7 +75,7 @@ describe('MappingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/mapping_options/?attribute_type=EMPLOYEE&display_name=undefined&limit=10`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/qbo/mapping_options/?attribute_type=EMPLOYEE&limit=10`
     });
       req.flush({
         results: [],
