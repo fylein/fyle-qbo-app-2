@@ -81,7 +81,7 @@ export class DashboardService {
     const offset = 0;
     const apiParams: TaskGetParams = {
       limit: limit,
-      offset: offset,
+      offset: offset
     };
     if (status.length) {
       const statusKey = 'status__in';

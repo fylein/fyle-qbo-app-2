@@ -208,8 +208,8 @@ export const destinationAttribute: PaginatedDestinationAttribute = {
     updated_at: new Date("2022-06-14T06:24:56.947727Z"),
     value: "Delhi",
     workspace: 146
-  }],
-}
+  }]
+};
 export const getMappingsresponse = {
   "count": 6,
   "next": null,

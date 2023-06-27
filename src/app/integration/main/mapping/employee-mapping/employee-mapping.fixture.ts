@@ -107,7 +107,7 @@ export const qboData2: PaginatedDestinationAttribute = {
       }
     }
   ]
-}
+};
 
 
 export const qboData: PaginatedDestinationAttribute = {
@@ -145,8 +145,7 @@ export const qboData: PaginatedDestinationAttribute = {
     }
   }
   ]
-}
-
+};
 
 
 export const employeeMappingResponse: EmployeeMapping = {

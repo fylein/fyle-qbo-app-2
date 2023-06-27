@@ -180,7 +180,6 @@ export class GenericMappingComponent implements OnInit {
           autoMapped: extendedExpenseAttribute.auto_mapped,
           index: index
         });
-        console.log(this.qboData)
         if ((extendedExpenseAttribute.mapping.length) && (this.qboData.findIndex((data) => data.value === extendedExpenseAttribute.mapping[0].destination.value) < 0)) {
           this.qboData.push(extendedExpenseAttribute.mapping[0].destination);
         }

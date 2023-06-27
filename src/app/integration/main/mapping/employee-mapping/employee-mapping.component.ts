@@ -156,7 +156,6 @@ export class EmployeeMappingComponent implements OnInit {
             qbo.id = extendedEmployeeAttribute.employeemapping[0].destination_employee?.id;
             qbo.value = extendedEmployeeAttribute.employeemapping[0].destination_employee?.value;
             preserveDestination.id = extendedEmployeeAttribute.employeemapping[0].destination_vendor?.id;
-            console.log(this.qboData);
             if ((extendedEmployeeAttribute.employeemapping[0].destination_employee) && (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_employee?.value) < 0)) {
               this.qboData.push(extendedEmployeeAttribute.employeemapping[0].destination_employee);
             }
@@ -164,7 +163,6 @@ export class EmployeeMappingComponent implements OnInit {
             qbo.id = extendedEmployeeAttribute.employeemapping[0].destination_vendor?.id;
             qbo.value = extendedEmployeeAttribute.employeemapping[0].destination_vendor?.value;
             preserveDestination.id = extendedEmployeeAttribute.employeemapping[0].destination_employee?.id;
-            console.log(this.qboData);
             if ((extendedEmployeeAttribute.employeemapping[0].destination_vendor) && (this.qboData.findIndex((data) => data.value === extendedEmployeeAttribute.employeemapping[0].destination_vendor?.value) < 0)) {
               this.qboData.push(extendedEmployeeAttribute.employeemapping[0].destination_vendor);
             }
