@@ -473,8 +473,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="206"
-                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:206</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="205"
+                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:205</a></div>
                 </td>
             </tr>
 
@@ -512,8 +512,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="202"
-                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:202</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="201"
+                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:201</a></div>
                 </td>
             </tr>
 
@@ -618,8 +618,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="244"
-                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:244</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="243"
+                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:243</a></div>
                 </td>
             </tr>
 
@@ -655,8 +655,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="227"
-                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:227</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="226"
+                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:226</a></div>
                 </td>
             </tr>
 
@@ -726,8 +726,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="198"
-                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:198</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="197"
+                            class="link-to-prism">src/app/integration/main/mapping/employee-mapping/employee-mapping.component.ts:197</a></div>
                 </td>
             </tr>
 
@@ -1441,7 +1441,7 @@
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from &#x27;@angular/forms&#x27;;
 import { MatLegacySnackBar as MatSnackBar } from &#x27;@angular/material/legacy-snack-bar&#x27;;
 import { MatLegacyTableDataSource as MatTableDataSource } from &#x27;@angular/material/legacy-table&#x27;;
-import { DestinationAttribute } from &#x27;src/app/core/models/db/destination-attribute.model&#x27;;
+import { DestinationAttribute, PaginatedDestinationAttribute } from &#x27;src/app/core/models/db/destination-attribute.model&#x27;;
 import { EmployeeMappingModel, ExtendedEmployeeAttribute, ExtendedEmployeeAttributeResponse } from &#x27;src/app/core/models/db/employee-mapping.model&#x27;;
 import { MappingList, MappingStats } from &#x27;src/app/core/models/db/mapping.model&#x27;;
 import { WorkspaceGeneralSetting } from &#x27;src/app/core/models/db/workspace-general-setting.model&#x27;;
@@ -1607,7 +1607,6 @@ export class EmployeeMappingComponent implements OnInit {
             }
           }
         }
-        this.qboData &#x3D; this.qboData.sort((a, b) &#x3D;&gt; (a.value &gt; b.value ? 1 : -1));
         mappings.push({
           fyle: {
             id: extendedEmployeeAttribute.id,
@@ -1655,8 +1654,8 @@ export class EmployeeMappingComponent implements OnInit {
       } else {
         qboData$ &#x3D; this.mappingService.getQBOVendors();
       }
-      qboData$.subscribe((qboData: DestinationAttribute[]) &#x3D;&gt; {
-        this.qboData &#x3D; qboData;
+      qboData$.subscribe((qboData: PaginatedDestinationAttribute) &#x3D;&gt; {
+        this.qboData &#x3D; qboData.results;
         this.getMappings();
       });
     });

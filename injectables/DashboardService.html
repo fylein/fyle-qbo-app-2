@@ -860,17 +860,20 @@ export class DashboardService {
     const offset &#x3D; 0;
     const apiParams: TaskGetParams &#x3D; {
       limit: limit,
-      offset: offset,
-      status: status
+      offset: offset
     };
+    if (status.length) {
+      const statusKey &#x3D; &#x27;status__in&#x27;;
+      apiParams[statusKey] &#x3D; status;
+    }
 
     if (expenseGroupIds.length) {
-      const expenseKey &#x3D; &#x27;expense_group_ids&#x27;;
+      const expenseKey &#x3D; &#x27;expense_group_id__in&#x27;;
       apiParams[expenseKey] &#x3D; expenseGroupIds;
     }
 
     if (taskType) {
-      const typeKey &#x3D; &#x27;task_type&#x27;;
+      const typeKey &#x3D; &#x27;type__in&#x27;;
       apiParams[typeKey] &#x3D; taskType;
     }
 

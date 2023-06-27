@@ -1127,7 +1127,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, OnInit, Output } from &#x27;@angular/core&#x27;;
 import { UntypedFormGroup } from &#x27;@angular/forms&#x27;;
 import { MatLegacyTableDataSource as MatTableDataSource } from &#x27;@angular/material/legacy-table&#x27;;
-import { DestinationAttribute } from &#x27;src/app/core/models/db/destination-attribute.model&#x27;;
+import { DestinationAttribute, PaginatedDestinationAttribute } from &#x27;src/app/core/models/db/destination-attribute.model&#x27;;
 import { MappingList } from &#x27;src/app/core/models/db/mapping.model&#x27;;
 import { EmployeeFieldMapping, FyleField, QBOField, SearchType, SimpleSearchPage, SimpleSearchType } from &#x27;src/app/core/models/enum/enum.model&#x27;;
 import { HelperService } from &#x27;src/app/core/services/core/helper.service&#x27;;
@@ -1229,8 +1229,8 @@ export class MappingTableComponent implements OnInit {
         const displayName &#x3D; this.mappingService.constructDisplayNameFilter(this.destinationType, this.importItems);
         qboData$ &#x3D; this.mappingService.getSearchedQBODestinationAttributes(attribute, searchTerm, displayName);
       }
-      qboData$.subscribe((response) &#x3D;&gt; {
-        this.prepareQBOOptions(this.existingQboOptions, response);
+      qboData$.subscribe((response: PaginatedDestinationAttribute) &#x3D;&gt; {
+        this.prepareQBOOptions(this.existingQboOptions, response.results);
       });
     } else if (searchTerm &amp;&amp; searchTerm&#x3D;&#x3D;&#x3D;&#x27;initiateSearch...&#x27;){
       this.isSearchInProgress &#x3D; true;
