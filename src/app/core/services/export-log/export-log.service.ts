@@ -40,7 +40,7 @@ export class ExportLogService {
     }
 
     if (exportedAt) {
-      params.exported_at__gte = exportedAt
+      params.exported_at__gte = exportedAt;
     }
 
     return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expense_groups/`, params);
