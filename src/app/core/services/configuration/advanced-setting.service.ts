@@ -52,8 +52,8 @@ export class AdvancedSettingService {
   @CacheBuster({
     cacheBusterNotifier: skipExportCache
   })
-  deleteExpenseFilter(rank: number): Observable<SkipExport> {
-    return this.apiService.delete(`/workspaces/${this.workspaceService.getWorkspaceId()}/fyle/expense_filters/?rank=${rank}`);
+  deleteExpenseFilter(expenseFilterId?: number): Observable<SkipExport> {
+    return this.apiService.delete(`/workspaces/${this.workspaceService.getWorkspaceId()}/fyle/expense_filters/${expenseFilterId}/`);
   }
 
   getWorkspaceAdmins(): Observable<[WorkspaceScheduleEmailOptions]> {
