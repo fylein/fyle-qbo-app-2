@@ -57,7 +57,8 @@ export class ExportLogService {
     const params: any = {
       limit,
       offset,
-      is_skipped: 'true'
+      is_skipped: 'true',
+      org_id: this.org_id
     };
 
     if (selectedDateFilter) {
@@ -65,7 +66,6 @@ export class ExportLogService {
       const endDate = selectedDateFilter.endDate.toLocaleDateString().split('/');
       params.updated_at__gte = `${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00`;
       params.updated_at__lte = `${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59`;
-      params.org_id = this.org_id;
     }
     return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expenses/`, params);
   }

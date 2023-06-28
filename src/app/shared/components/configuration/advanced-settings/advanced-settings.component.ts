@@ -714,12 +714,6 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       .deleteExpenseFilter(this.expenseFilters[0].id)
       .subscribe((skipExport1: SkipExport) => {
       });
-      if (this.expenseFilters.length > 1) {
-        this.advancedSettingService
-        .deleteExpenseFilter(this.expenseFilters[1].id)
-        .subscribe((skipExport1: SkipExport) => {
-        });
-      }
       that.isLoading = false;
     } else {
       if (!valueField.condition1.field_name) {
