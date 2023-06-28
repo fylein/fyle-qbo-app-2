@@ -91,7 +91,7 @@ describe('ExportLogService', () => {
     );
 
     expect(req.request.params.get('limit')).toBe('10');
-    expect(req.request.params.get('state')).toBe('COMPLETE');
+    expect(req.request.params.get('tasklog__status')).toBe('COMPLETE');
     expect(req.request.params.get('offset')).toBe('5');
 
     const startDate = dates.startDate.toLocaleDateString().split('/');
