@@ -29,9 +29,9 @@ export class ExportLogService {
   getExpenseGroups(state: string, limit: number, offset: number, selectedDateFilter: SelectedDateFilter | null, exportedAt: Date | void): Observable<ExpenseGroupResponse> {
     const params: any = {
       limit,
-      offset,
-      state
+      offset
     };
+    params.tasklog__status = state;
 
     if (selectedDateFilter) {
       const startDate = selectedDateFilter.startDate.toLocaleDateString().split('/');

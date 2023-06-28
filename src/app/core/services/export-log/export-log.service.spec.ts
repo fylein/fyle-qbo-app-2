@@ -64,7 +64,7 @@ describe('ExportLogService', () => {
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&tasklog__status=COMPLETE`
     });
       req.flush(response);
   });
@@ -125,7 +125,7 @@ describe('ExportLogService', () => {
     );
 
     expect(req.request.params.get('limit')).toBe('10');
-    expect(req.request.params.get('state')).toBe('COMPLETE');
+    expect(req.request.params.get('tasklog__status')).toBe('COMPLETE');
     expect(req.request.params.get('offset')).toBe('5');
 
     const startDate = dates.startDate.toLocaleDateString().split('/');
