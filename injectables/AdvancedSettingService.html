@@ -200,7 +200,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>deleteExpenseFilter(rank: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>deleteExpenseFilter(expenseFilterId?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -236,13 +236,13 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>rank</td>
+                                    <td>expenseFilterId</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
-                                        No
+                                        Yes
                                     </td>
 
 
@@ -608,8 +608,8 @@ export class AdvancedSettingService {
   @CacheBuster({
     cacheBusterNotifier: skipExportCache
   })
-  deleteExpenseFilter(rank: number): Observable&lt;SkipExport&gt; {
-    return this.apiService.delete(&#x60;/workspaces/${this.workspaceService.getWorkspaceId()}/fyle/expense_filters/?rank&#x3D;${rank}&#x60;);
+  deleteExpenseFilter(expenseFilterId?: number): Observable&lt;SkipExport&gt; {
+    return this.apiService.delete(&#x60;/workspaces/${this.workspaceService.getWorkspaceId()}/fyle/expense_filters/${expenseFilterId}/&#x60;);
   }
 
   getWorkspaceAdmins(): Observable&lt;[WorkspaceScheduleEmailOptions]&gt; {
