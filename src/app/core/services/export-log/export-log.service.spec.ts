@@ -97,8 +97,8 @@ describe('ExportLogService', () => {
     const startDate = dates.startDate.toLocaleDateString().split('/');
     const endDate = dates.endDate.toLocaleDateString().split('/');
 
-    expect(req.request.params.get('start_date')).toBe(`${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00`);
-    expect(req.request.params.get('end_date')).toBe(`${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59`);
+    expect(req.request.params.get('exported_at__gte')).toBe(`${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00`);
+    expect(req.request.params.get('exported_at__lte')).toBe(`${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59`);
 
     req.flush(response);
   });
@@ -131,8 +131,8 @@ describe('ExportLogService', () => {
     const startDate = dates.startDate.toLocaleDateString().split('/');
     const endDate = dates.endDate.toLocaleDateString().split('/');
 
-    expect(req.request.params.get('start_date')).toBe(`${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00`);
-    expect(req.request.params.get('end_date')).toBe(`${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59`);
+    expect(req.request.params.get('exported_at__gte')).toBe(`${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00`);
+    expect(req.request.params.get('exported_at__lte')).toBe(`${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59`);
 
     expect(req.request.params.get('exported_at')).toBeTruthy();
     req.flush(response);
