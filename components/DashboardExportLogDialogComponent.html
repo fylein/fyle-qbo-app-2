@@ -301,8 +301,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/app/shared/components/dashboard/dashboard-export-log-dialog/dashboard-export-log-dialog.component.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/app/shared/components/dashboard/dashboard-export-log-dialog/dashboard-export-log-dialog.component.ts:81</a></div>
                 </td>
             </tr>
 
@@ -631,7 +631,7 @@ export class DashboardExportLogDialogComponent implements OnInit {
   externalUrlType: string;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: {exportState: ExportState, lastExportedAt: string},
+    @Inject(MAT_DIALOG_DATA) public data: {exportState: ExportState, lastExportedAt: Date},
     public dialogRef: MatDialogRef&lt;DashboardExportLogDialogComponent&gt;,
     private exportLogService: ExportLogService
   ) { }
@@ -646,8 +646,9 @@ export class DashboardExportLogDialogComponent implements OnInit {
     }
 
     const expenseGroups: ExpenseGroupList[] &#x3D; [];
+    const state: string &#x3D; this.data.exportState &#x3D;&#x3D;&#x3D; ExportState.SUCCESS ? &#x27;COMPLETE&#x27; : &#x27;FAILED&#x27;;
 
-    this.exportLogService.getExpenseGroups(500, 0, null, this.data.lastExportedAt).subscribe((expenseGroupResponse: ExpenseGroupResponse) &#x3D;&gt; {
+    this.exportLogService.getExpenseGroups(state, 500, 0, null, this.data.lastExportedAt).subscribe((expenseGroupResponse: ExpenseGroupResponse) &#x3D;&gt; {
       expenseGroupResponse.results.forEach((expenseGroup: ExpenseGroup) &#x3D;&gt; {
         let type: string &#x3D; &#x27;&#x27;, id: string &#x3D; &#x27;&#x27;, exportType: string &#x3D; &#x27;&#x27;;
 

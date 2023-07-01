@@ -375,7 +375,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getExpenseGroups(limit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, offset: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, selectedDateFilter: SelectedDateFilter | null, exportedAt: string | void)</code>
+<code>getExpenseGroups(state: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, limit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, offset: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, selectedDateFilter: SelectedDateFilter | null, exportedAt: Date | void)</code>
                 </td>
             </tr>
 
@@ -403,6 +403,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>state</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
                                 <tr>
                                     <td>limit</td>
                                     <td>
@@ -442,7 +454,7 @@
                                 <tr>
                                     <td>exportedAt</td>
                                     <td>
-                                            <code>string | void</code>
+                                            <code>Date | void</code>
                                     </td>
 
                                     <td>
@@ -496,8 +508,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/app/core/services/export-log/export-log.service.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/app/core/services/export-log/export-log.service.ts:51</a></div>
                 </td>
             </tr>
 
@@ -611,8 +623,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/app/core/services/export-log/export-log.service.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/app/core/services/export-log/export-log.service.ts:56</a></div>
                 </td>
             </tr>
 
@@ -787,21 +799,22 @@ export class ExportLogService {
     private workspaceService: WorkspaceService
   ) { }
 
-  getExpenseGroups(limit: number, offset: number, selectedDateFilter: SelectedDateFilter | null, exportedAt: string | void): Observable&lt;ExpenseGroupResponse&gt; {
+  getExpenseGroups(state: string, limit: number, offset: number, selectedDateFilter: SelectedDateFilter | null, exportedAt: Date | void): Observable&lt;ExpenseGroupResponse&gt; {
     const params: any &#x3D; {
       limit,
-      offset
+      offset,
+      state
     };
 
     if (selectedDateFilter) {
       const startDate &#x3D; selectedDateFilter.startDate.toLocaleDateString().split(&#x27;/&#x27;);
       const endDate &#x3D; selectedDateFilter.endDate.toLocaleDateString().split(&#x27;/&#x27;);
-      params.exported_at__gte &#x3D; &#x60;${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00&#x60;;
-      params.exported_at__lte &#x3D; &#x60;${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59&#x60;;
+      params.start_date &#x3D; &#x60;${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00&#x60;;
+      params.end_date &#x3D; &#x60;${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59&#x60;;
     }
 
     if (exportedAt) {
-      params.exported_at__gte &#x3D; exportedAt;
+      params.exported_at &#x3D; exportedAt;
     }
 
     return this.apiService.get(&#x60;/workspaces/${this.workspaceId}/fyle/expense_groups/&#x60;, params);
@@ -817,15 +830,14 @@ export class ExportLogService {
     const params: any &#x3D; {
       limit,
       offset,
-      is_skipped: &#x27;true&#x27;,
-      org_id: this.org_id
+      is_skipped: &#x27;true&#x27;
     };
 
     if (selectedDateFilter) {
       const startDate &#x3D; selectedDateFilter.startDate.toLocaleDateString().split(&#x27;/&#x27;);
       const endDate &#x3D; selectedDateFilter.endDate.toLocaleDateString().split(&#x27;/&#x27;);
-      params.updated_at__gte &#x3D; &#x60;${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00&#x60;;
-      params.updated_at__lte &#x3D; &#x60;${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59&#x60;;
+      params.start_date &#x3D; &#x60;${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00&#x60;;
+      params.end_date &#x3D; &#x60;${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59&#x60;;
     }
     return this.apiService.get(&#x60;/workspaces/${this.workspaceId}/fyle/expenses/&#x60;, params);
   }
