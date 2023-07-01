@@ -1,7 +1,6 @@
 import { JoinOption, Operator } from "../enum/enum.model";
 
 export type SkipExport = {
-  id?: number;
   condition: string;
   custom_field_type: any;
   operator: Operator.IsNull | Operator.IExact | Operator.IContains | Operator.LessThan | Operator.LessThanOrEqual;

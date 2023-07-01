@@ -196,7 +196,7 @@ describe('AdvancedSettingService', () => {
     });
     const req = httpMock.expectOne({
       method: 'DELETE',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_filters/1/`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_filters/?rank=1`
     });
     req.flush(response);
   });

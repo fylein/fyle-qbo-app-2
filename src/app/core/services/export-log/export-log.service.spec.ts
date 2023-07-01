@@ -59,12 +59,12 @@ describe('ExportLogService', () => {
       previous: "xxx",
       results: []
     };
-    service.getExpenseGroups(10, 5, null ).subscribe(result => {
+    service.getExpenseGroups('COMPLETE', 10, 5, null ).subscribe(result => {
       expect(result).toEqual(response);
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&state=COMPLETE`
     });
       req.flush(response);
   });
@@ -82,7 +82,7 @@ describe('ExportLogService', () => {
       endDate: new Date()
     };
 
-    service.getExpenseGroups(10, 5, dates).subscribe(result => {
+    service.getExpenseGroups('COMPLETE', 10, 5, dates).subscribe(result => {
       expect(result).toEqual(response);
     });
 
@@ -91,13 +91,14 @@ describe('ExportLogService', () => {
     );
 
     expect(req.request.params.get('limit')).toBe('10');
+    expect(req.request.params.get('state')).toBe('COMPLETE');
     expect(req.request.params.get('offset')).toBe('5');
 
     const startDate = dates.startDate.toLocaleDateString().split('/');
     const endDate = dates.endDate.toLocaleDateString().split('/');
 
-    expect(req.request.params.get('exported_at__gte')).toBe(`${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00`);
-    expect(req.request.params.get('exported_at__lte')).toBe(`${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59`);
+    expect(req.request.params.get('start_date')).toBe(`${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00`);
+    expect(req.request.params.get('end_date')).toBe(`${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59`);
 
     req.flush(response);
   });
@@ -116,7 +117,7 @@ describe('ExportLogService', () => {
     };
 
     const exportAt = new Date();
-    service.getExpenseGroups(10, 5, dates, exportAt.toLocaleDateString()).subscribe(result => {
+    service.getExpenseGroups('COMPLETE', 10, 5, dates, exportAt).subscribe(result => {
       expect(result).toEqual(response);
     });
     const req = httpMock.expectOne(
@@ -124,9 +125,16 @@ describe('ExportLogService', () => {
     );
 
     expect(req.request.params.get('limit')).toBe('10');
+    expect(req.request.params.get('state')).toBe('COMPLETE');
     expect(req.request.params.get('offset')).toBe('5');
 
-    expect(req.request.params.get('exported_at__gte')).toBeTruthy();
+    const startDate = dates.startDate.toLocaleDateString().split('/');
+    const endDate = dates.endDate.toLocaleDateString().split('/');
+
+    expect(req.request.params.get('start_date')).toBe(`${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00`);
+    expect(req.request.params.get('end_date')).toBe(`${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59`);
+
+    expect(req.request.params.get('exported_at')).toBeTruthy();
     req.flush(response);
   });
 

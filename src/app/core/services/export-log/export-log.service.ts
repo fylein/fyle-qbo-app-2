@@ -26,21 +26,22 @@ export class ExportLogService {
     private workspaceService: WorkspaceService
   ) { }
 
-  getExpenseGroups(limit: number, offset: number, selectedDateFilter: SelectedDateFilter | null, exportedAt: string | void): Observable<ExpenseGroupResponse> {
+  getExpenseGroups(state: string, limit: number, offset: number, selectedDateFilter: SelectedDateFilter | null, exportedAt: Date | void): Observable<ExpenseGroupResponse> {
     const params: any = {
       limit,
-      offset
+      offset,
+      state
     };
 
     if (selectedDateFilter) {
       const startDate = selectedDateFilter.startDate.toLocaleDateString().split('/');
       const endDate = selectedDateFilter.endDate.toLocaleDateString().split('/');
-      params.exported_at__gte = `${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00`;
-      params.exported_at__lte = `${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59`;
+      params.start_date = `${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00`;
+      params.end_date = `${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59`;
     }
 
     if (exportedAt) {
-      params.exported_at__gte = exportedAt;
+      params.exported_at = exportedAt;
     }
 
     return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expense_groups/`, params);
@@ -56,15 +57,14 @@ export class ExportLogService {
     const params: any = {
       limit,
       offset,
-      is_skipped: 'true',
-      org_id: this.org_id
+      is_skipped: 'true'
     };
 
     if (selectedDateFilter) {
       const startDate = selectedDateFilter.startDate.toLocaleDateString().split('/');
       const endDate = selectedDateFilter.endDate.toLocaleDateString().split('/');
-      params.updated_at__gte = `${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00`;
-      params.updated_at__lte = `${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59`;
+      params.start_date = `${startDate[2]}-${startDate[1]}-${startDate[0]}T00:00:00`;
+      params.end_date = `${endDate[2]}-${endDate[1]}-${endDate[0]}T23:59:59`;
     }
     return this.apiService.get(`/workspaces/${this.workspaceId}/fyle/expenses/`, params);
   }
