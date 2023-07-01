@@ -74,9 +74,8 @@ describe('DashboardExportLogDialogComponent', () => {
       req.flush(response);
   });
   it('setup function check', () => {
-    const last_exported_at = new Date();
     component.data = {
-      exportState: ExportState.FAILED, lastExportedAt: last_exported_at.toLocaleDateString()
+      exportState: ExportState.FAILED, lastExportedAt: new Date()
     };
     fixture.detectChanges();
     const response = {

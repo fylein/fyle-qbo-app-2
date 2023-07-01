@@ -36,8 +36,6 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   advancedSettings: AdvancedSettingGet;
 
-  expenseFilters: SkipExport[];
-
   workspaceGeneralSettings: WorkspaceGeneralSetting;
 
   billPaymentAccounts: DestinationAttribute[];
@@ -446,7 +444,6 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       this.advancedSettings = response[0];
       this.billPaymentAccounts = response[1];
       this.workspaceGeneralSettings = response[2];
-      this.expenseFilters = response[5].results;
       this.adminEmails = this.advancedSettings.workspace_schedules?.additional_email_options ? this.advancedSettings.workspace_schedules?.additional_email_options.concat(response[3]) : response[3];
 
       this.conditionFieldOptions = response[4];
@@ -703,30 +700,31 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
     const that = this;
     that.isLoading = true;
     const valueField = this.skipExportForm.getRawValue();
-    if (this.showAddButton && this.expenseFilters.length > 1) {
+    if (this.showAddButton) {
       this.advancedSettingService
-      .deleteExpenseFilter(this.expenseFilters[1].id)
+      .deleteExpenseFilter(2)
       .subscribe((skipExport1: SkipExport) => {
       });
     }
-    if (!this.advancedSettingsForm.controls.skipExport.value && this.expenseFilters.length > 0) {
+    if (!this.advancedSettingsForm.controls.skipExport.value) {
       this.advancedSettingService
-      .deleteExpenseFilter(this.expenseFilters[0].id)
+      .deleteExpenseFilter(1)
+      .subscribe((skipExport1: SkipExport) => {
+      });
+      this.advancedSettingService
+      .deleteExpenseFilter(2)
       .subscribe((skipExport1: SkipExport) => {
       });
       that.isLoading = false;
     } else {
-      if (!valueField.condition1.field_name) {
-        return;
-      }
-      if (valueField.condition1.field_name !== 'report_title' && valueField.operator1 === 'iexact') {
-        valueField.operator1 = 'in';
-      }
-      if (valueField.join_by) {
-        if (valueField.condition2.field_name !== 'report_title' && valueField.operator2 === 'iexact') {
-          valueField.operator2 = 'in';
-        }
+    if (valueField.condition1.field_name !== 'report_title' && valueField.operator1 === 'iexact') {
+      valueField.operator1 = 'in';
     }
+    if (valueField.join_by) {
+      if (valueField.condition2.field_name !== 'report_title' && valueField.operator2 === 'iexact') {
+        valueField.operator2 = 'in';
+      }
+  }
     if (valueField.condition1.is_custom === true) {
       if (valueField.operator1 === 'is_empty') {
         valueField.value1 = ['True'];
