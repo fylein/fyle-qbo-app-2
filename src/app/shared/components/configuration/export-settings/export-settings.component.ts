@@ -254,11 +254,11 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
         }];
     } else {
       this.exportSettingsForm.controls.creditCardExportGroup.enable();
-      this.getCreditCardExpenseGroupingDateOptions(this.exportSettingsForm.controls.creditCardExportGroup.value);
+      this.setCreditCardExpenseGroupingDateOptions(this.exportSettingsForm.controls.creditCardExportGroup.value);
     }
   }
 
-  getCreditCardExpenseGroupingDateOptions(creditCardExportGroup: ExpenseGroupingFieldOption): void {
+  setCreditCardExpenseGroupingDateOptions(creditCardExportGroup: ExpenseGroupingFieldOption): void {
     if (creditCardExportGroup === ExpenseGroupingFieldOption.EXPENSE_ID) {
       this.cccExpenseGroupingDateOptions = this.reimbursableExpenseGroupingDateOptions.concat([{
         label: 'Posted Date',
@@ -411,10 +411,10 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
   private createCreditCardExportGroupWatcher(): void {
     this.exportSettingsForm.controls.creditCardExportGroup.valueChanges.subscribe((creditCardExportGroup: ExpenseGroupingFieldOption) => {
       if (creditCardExportGroup && creditCardExportGroup === ExpenseGroupingFieldOption.EXPENSE_ID) {
-        this.getCreditCardExpenseGroupingDateOptions(creditCardExportGroup);
         this.cccExpenseGroupingDateOptions = this.cccExpenseGroupingDateOptions.filter((option) => {
           return option.value !== ExportDateType.LAST_SPENT_AT;
         });
+        this.setCreditCardExpenseGroupingDateOptions(creditCardExportGroup);
       } else {
         const lastSpentAt = this.cccExpenseGroupingDateOptions.filter((option) => {
           return option.value === ExportDateType.LAST_SPENT_AT;
@@ -425,7 +425,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
             value: ExportDateType.LAST_SPENT_AT
           });
         }
-        this.getCreditCardExpenseGroupingDateOptions(creditCardExportGroup);
+        this.setCreditCardExpenseGroupingDateOptions(creditCardExportGroup);
       }
     });
   }
@@ -433,7 +433,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
   private setCustomValidatorsAndWatchers(): void {
 
     // Date grouping
-    this.getCreditCardExpenseGroupingDateOptions(this.exportSettingsForm.controls.creditCardExportGroup.value);
+    this.setCreditCardExpenseGroupingDateOptions(this.exportSettingsForm.controls.creditCardExportGroup.value);
 
     // Toggles
     this.createReimbursableExpenseWatcher();
