@@ -2090,7 +2090,7 @@ export class ExportLogComponent implements OnInit {
     this.limit &#x3D; data.limit;
     this.offset &#x3D; data.offset;
 
-    this.exportLogService.getExpenseGroups(&#x27;COMPLETE&#x27;, data.limit, data.offset, this.selectedDateFilter).subscribe((expenseGroupResponse: ExpenseGroupResponse) &#x3D;&gt; {
+    this.exportLogService.getExpenseGroups(data.limit, data.offset, this.selectedDateFilter).subscribe((expenseGroupResponse: ExpenseGroupResponse) &#x3D;&gt; {
       this.totalCount &#x3D; expenseGroupResponse.count;
       expenseGroupResponse.results.forEach((expenseGroup: ExpenseGroup) &#x3D;&gt; {
         const [type, id, exportType] &#x3D; this.exportLogService.generateExportTypeAndId(expenseGroup);
