@@ -25,7 +25,8 @@ export enum ExportDateType {
   SPENT_AT = 'spent_at',
   CURRENT_DATE = 'current_date',
   APPROVED_AT = 'approved_at',
-  VERIFIED_AT = 'verified_at'
+  VERIFIED_AT = 'verified_at',
+  POSTED_AT = 'posted_at'
 }
 
 export enum ReimbursableExpensesObject {
