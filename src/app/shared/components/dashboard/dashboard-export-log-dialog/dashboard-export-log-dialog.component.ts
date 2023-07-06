@@ -26,7 +26,7 @@ export class DashboardExportLogDialogComponent implements OnInit {
   externalUrlType: string;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: {exportState: ExportState, lastExportedAt: Date},
+    @Inject(MAT_DIALOG_DATA) public data: {exportState: ExportState, lastExportedAt: string},
     public dialogRef: MatDialogRef<DashboardExportLogDialogComponent>,
     private exportLogService: ExportLogService
   ) { }
@@ -41,9 +41,8 @@ export class DashboardExportLogDialogComponent implements OnInit {
     }
 
     const expenseGroups: ExpenseGroupList[] = [];
-    const state: string = this.data.exportState === ExportState.SUCCESS ? 'COMPLETE' : 'FAILED';
 
-    this.exportLogService.getExpenseGroups(state, 500, 0, null, this.data.lastExportedAt).subscribe((expenseGroupResponse: ExpenseGroupResponse) => {
+    this.exportLogService.getExpenseGroups(500, 0, null, this.data.lastExportedAt).subscribe((expenseGroupResponse: ExpenseGroupResponse) => {
       expenseGroupResponse.results.forEach((expenseGroup: ExpenseGroup) => {
         let type: string = '', id: string = '', exportType: string = '';
 
