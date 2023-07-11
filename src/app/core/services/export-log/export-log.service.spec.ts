@@ -3,7 +3,7 @@ import { getTestBed, TestBed } from '@angular/core/testing';
 import { ExportLogService } from './export-log.service';
 import { ExpenseGroupSetting } from '../../models/db/expense-group-setting.model';
 import { ExpenseGroup, ExpenseGroupDescription, ExpenseGroupResponse } from '../../models/db/expense-group.model';
-import { ExpenseState, CCCExpenseState, ExportDateType, FyleReferenceType } from '../../models/enum/enum.model';
+import { ExpenseState, CCCExpenseState, ExportDateType, FyleReferenceType, TaskLogState } from '../../models/enum/enum.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
 
@@ -59,12 +59,12 @@ describe('ExportLogService', () => {
       previous: "xxx",
       results: []
     };
-    service.getExpenseGroups('COMPLETE', 10, 5, null ).subscribe(result => {
+    service.getExpenseGroups(TaskLogState.COMPLETED, 10, 5, null ).subscribe(result => {
       expect(result).toEqual(response);
     });
     const req = httpMock.expectOne({
       method: 'GET',
-      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&tasklog__status=COMPLETE`
+      url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_groups/?limit=10&offset=5&tasklog__status=COMPLETED`
     });
       req.flush(response);
   });
@@ -82,7 +82,7 @@ describe('ExportLogService', () => {
       endDate: new Date()
     };
 
-    service.getExpenseGroups('COMPLETE', 10, 5, dates).subscribe(result => {
+    service.getExpenseGroups(TaskLogState.COMPLETED, 10, 5, dates).subscribe(result => {
       expect(result).toEqual(response);
     });
 
@@ -116,7 +116,7 @@ describe('ExportLogService', () => {
     };
 
     const exportAt = new Date();
-    service.getExpenseGroups('COMPLETE', 10, 5, dates, exportAt.toLocaleDateString()).subscribe(result => {
+    service.getExpenseGroups(TaskLogState.COMPLETED, 10, 5, dates, exportAt.toLocaleDateString()).subscribe(result => {
       expect(result).toEqual(response);
     });
     const req = httpMock.expectOne(

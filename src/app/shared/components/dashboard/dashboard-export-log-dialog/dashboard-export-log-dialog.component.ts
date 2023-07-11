@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { ExpenseGroup, ExpenseGroupList, ExpenseGroupResponse } from 'src/app/core/models/db/expense-group.model';
-import { ExportState, FyleReferenceType } from 'src/app/core/models/enum/enum.model';
+import { ExportState, FyleReferenceType, TaskLogState } from 'src/app/core/models/enum/enum.model';
 import { ExportLogService } from 'src/app/core/services/export-log/export-log.service';
 import { environment } from 'src/environments/environment';
 
@@ -41,7 +41,7 @@ export class DashboardExportLogDialogComponent implements OnInit {
     }
 
     const expenseGroups: ExpenseGroupList[] = [];
-    const state: string = this.data.exportState === ExportState.SUCCESS ? 'COMPLETE' : 'FAILED';
+    const state: TaskLogState = this.data.exportState === ExportState.SUCCESS ? TaskLogState.COMPLETED : TaskLogState.FAILED;
 
     this.exportLogService.getExpenseGroups(state, 500, 0, null, this.data.lastExportedAt).subscribe((expenseGroupResponse: ExpenseGroupResponse) => {
       expenseGroupResponse.results.forEach((expenseGroup: ExpenseGroup) => {
