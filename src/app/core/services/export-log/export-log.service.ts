@@ -26,12 +26,12 @@ export class ExportLogService {
     private workspaceService: WorkspaceService
   ) { }
 
-  getExpenseGroups(limit: number, offset: number, selectedDateFilter: SelectedDateFilter | null, exportedAt: string | void): Observable<ExpenseGroupResponse> {
+  getExpenseGroups(state: string, limit: number, offset: number, selectedDateFilter: SelectedDateFilter | null, exportedAt: string | void): Observable<ExpenseGroupResponse> {
     const params: any = {
       limit,
       offset
     };
-
+    params.tasklog__status = state;
     if (selectedDateFilter) {
       const startDate = selectedDateFilter.startDate.toLocaleDateString().split('/');
       const endDate = selectedDateFilter.endDate.toLocaleDateString().split('/');

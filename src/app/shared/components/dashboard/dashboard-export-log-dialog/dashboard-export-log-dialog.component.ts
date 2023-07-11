@@ -41,8 +41,9 @@ export class DashboardExportLogDialogComponent implements OnInit {
     }
 
     const expenseGroups: ExpenseGroupList[] = [];
+    const state: string = this.data.exportState === ExportState.SUCCESS ? 'COMPLETE' : 'FAILED';
 
-    this.exportLogService.getExpenseGroups(500, 0, null, this.data.lastExportedAt).subscribe((expenseGroupResponse: ExpenseGroupResponse) => {
+    this.exportLogService.getExpenseGroups(state, 500, 0, null, this.data.lastExportedAt).subscribe((expenseGroupResponse: ExpenseGroupResponse) => {
       expenseGroupResponse.results.forEach((expenseGroup: ExpenseGroup) => {
         let type: string = '', id: string = '', exportType: string = '';
 
