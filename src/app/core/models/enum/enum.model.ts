@@ -141,7 +141,7 @@ export enum TaskLogState {
   IN_PROGRESS = 'IN_PROGRESS',
   FAILED = 'FAILED',
   FATAL = 'FATAL',
-  COMPLETED = 'COMPLETED',
+  COMPLETE = 'COMPLETE',
 }
 
 export enum ExportMode {

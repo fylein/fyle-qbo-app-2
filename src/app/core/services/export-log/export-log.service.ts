@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Cacheable } from 'ts-cacheable';
 import { ExpenseGroupSetting } from '../../models/db/expense-group-setting.model';
 import { ExpenseGroup, ExpenseGroupDescription, ExpenseGroupResponse, SkipExportLogResponse } from '../../models/db/expense-group.model';
-import { FyleReferenceType } from '../../models/enum/enum.model';
+import { FyleReferenceType, TaskLogState } from '../../models/enum/enum.model';
 import { SelectedDateFilter } from '../../models/misc/date-filter.model';
 import { ApiService } from '../core/api.service';
 import { UserService } from '../misc/user.service';
@@ -26,12 +26,12 @@ export class ExportLogService {
     private workspaceService: WorkspaceService
   ) { }
 
-  getExpenseGroups(limit: number, offset: number, selectedDateFilter: SelectedDateFilter | null, exportedAt: string | void): Observable<ExpenseGroupResponse> {
+  getExpenseGroups(state: TaskLogState, limit: number, offset: number, selectedDateFilter: SelectedDateFilter | null, exportedAt: string | void): Observable<ExpenseGroupResponse> {
     const params: any = {
       limit,
       offset
     };
-
+    params.tasklog__status = state;
     if (selectedDateFilter) {
       const startDate = selectedDateFilter.startDate.toLocaleDateString().split('/');
       const endDate = selectedDateFilter.endDate.toLocaleDateString().split('/');
