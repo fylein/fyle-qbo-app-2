@@ -41,7 +41,7 @@ export class DashboardExportLogDialogComponent implements OnInit {
     }
 
     const expenseGroups: ExpenseGroupList[] = [];
-    const state: TaskLogState = this.data.exportState === ExportState.SUCCESS ? TaskLogState.COMPLETED : TaskLogState.FAILED;
+    const state: TaskLogState = this.data.exportState === ExportState.SUCCESS ? TaskLogState.COMPLETE : TaskLogState.FAILED;
 
     this.exportLogService.getExpenseGroups(state, 500, 0, null, this.data.lastExportedAt).subscribe((expenseGroupResponse: ExpenseGroupResponse) => {
       expenseGroupResponse.results.forEach((expenseGroup: ExpenseGroup) => {

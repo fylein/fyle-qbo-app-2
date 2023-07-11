@@ -75,7 +75,7 @@ describe('DashboardComponent', () => {
   });
 
   it('should create', () => {
-    allTasksResponse.results[0].status = TaskLogState.COMPLETED;
+    allTasksResponse.results[0].status = TaskLogState.COMPLETE;
     expect(component.ngOnInit()).toBeUndefined();
     fixture.detectChanges();
     expect(component.exportableExpenseGroupIds).toEqual([1, 2, 4]);

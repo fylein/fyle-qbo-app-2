@@ -198,7 +198,7 @@ describe('DashboardService', () => {
       id: 1,
       journal_entry: 1,
       bill_payment: 1,
-      status: TaskLogState.COMPLETED,
+      status: TaskLogState.COMPLETE,
       task_id: "string",
       type: TaskLogType.CREATING_BILL,
       updated_at: new Date(),
