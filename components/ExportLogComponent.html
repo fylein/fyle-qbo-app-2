@@ -1861,7 +1861,7 @@
 import { UntypedFormBuilder, UntypedFormGroup } from &#x27;@angular/forms&#x27;;
 import { environment } from &#x27;src/environments/environment&#x27;;
 import { ExpenseGroup, ExpenseGroupList, ExpenseGroupResponse, SkipExportList, SkipExportLog, SkipExportLogResponse } from &#x27;src/app/core/models/db/expense-group.model&#x27;;
-import { FyleReferenceType, PaginatorPage, SimpleSearchPage, SimpleSearchType, ZeroStatePage } from &#x27;src/app/core/models/enum/enum.model&#x27;;
+import { FyleReferenceType, PaginatorPage, SimpleSearchPage, SimpleSearchType, ZeroStatePage, TaskLogState } from &#x27;src/app/core/models/enum/enum.model&#x27;;
 import { Paginator } from &#x27;src/app/core/models/misc/paginator.model&#x27;;
 import { PaginatorService } from &#x27;src/app/core/services/core/paginator.service&#x27;;
 import { ExportLogService } from &#x27;src/app/core/services/export-log/export-log.service&#x27;;
@@ -2090,7 +2090,7 @@ export class ExportLogComponent implements OnInit {
     this.limit &#x3D; data.limit;
     this.offset &#x3D; data.offset;
 
-    this.exportLogService.getExpenseGroups(data.limit, data.offset, this.selectedDateFilter).subscribe((expenseGroupResponse: ExpenseGroupResponse) &#x3D;&gt; {
+    this.exportLogService.getExpenseGroups(TaskLogState.COMPLETE, data.limit, data.offset, this.selectedDateFilter).subscribe((expenseGroupResponse: ExpenseGroupResponse) &#x3D;&gt; {
       this.totalCount &#x3D; expenseGroupResponse.count;
       expenseGroupResponse.results.forEach((expenseGroup: ExpenseGroup) &#x3D;&gt; {
         const [type, id, exportType] &#x3D; this.exportLogService.generateExportTypeAndId(expenseGroup);

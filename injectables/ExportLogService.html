@@ -375,7 +375,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getExpenseGroups(limit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, offset: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, selectedDateFilter: SelectedDateFilter | null, exportedAt: string | void)</code>
+<code>getExpenseGroups(state: <a href="../undefineds/TaskLogState.html" target="_self">TaskLogState</a>, limit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, offset: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, selectedDateFilter: SelectedDateFilter | null, exportedAt: string | void)</code>
                 </td>
             </tr>
 
@@ -403,6 +403,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>state</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/enumerations.html#TaskLogState" target="_self" >TaskLogState</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
                                 <tr>
                                     <td>limit</td>
                                     <td>
@@ -765,7 +777,7 @@ import { environment } from &#x27;src/environments/environment&#x27;;
 import { Cacheable } from &#x27;ts-cacheable&#x27;;
 import { ExpenseGroupSetting } from &#x27;../../models/db/expense-group-setting.model&#x27;;
 import { ExpenseGroup, ExpenseGroupDescription, ExpenseGroupResponse, SkipExportLogResponse } from &#x27;../../models/db/expense-group.model&#x27;;
-import { FyleReferenceType } from &#x27;../../models/enum/enum.model&#x27;;
+import { FyleReferenceType, TaskLogState } from &#x27;../../models/enum/enum.model&#x27;;
 import { SelectedDateFilter } from &#x27;../../models/misc/date-filter.model&#x27;;
 import { ApiService } from &#x27;../core/api.service&#x27;;
 import { UserService } from &#x27;../misc/user.service&#x27;;
@@ -787,12 +799,12 @@ export class ExportLogService {
     private workspaceService: WorkspaceService
   ) { }
 
-  getExpenseGroups(limit: number, offset: number, selectedDateFilter: SelectedDateFilter | null, exportedAt: string | void): Observable&lt;ExpenseGroupResponse&gt; {
+  getExpenseGroups(state: TaskLogState, limit: number, offset: number, selectedDateFilter: SelectedDateFilter | null, exportedAt: string | void): Observable&lt;ExpenseGroupResponse&gt; {
     const params: any &#x3D; {
       limit,
       offset
     };
-
+    params.tasklog__status &#x3D; state;
     if (selectedDateFilter) {
       const startDate &#x3D; selectedDateFilter.startDate.toLocaleDateString().split(&#x27;/&#x27;);
       const endDate &#x3D; selectedDateFilter.endDate.toLocaleDateString().split(&#x27;/&#x27;);

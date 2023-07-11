@@ -301,8 +301,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/app/shared/components/dashboard/dashboard-export-log-dialog/dashboard-export-log-dialog.component.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/app/shared/components/dashboard/dashboard-export-log-dialog/dashboard-export-log-dialog.component.ts:81</a></div>
                 </td>
             </tr>
 
@@ -607,7 +607,7 @@
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from &#x27;@angular/material/legacy-dialog&#x27;;
 import { MatLegacyTableDataSource as MatTableDataSource } from &#x27;@angular/material/legacy-table&#x27;;
 import { ExpenseGroup, ExpenseGroupList, ExpenseGroupResponse } from &#x27;src/app/core/models/db/expense-group.model&#x27;;
-import { ExportState, FyleReferenceType } from &#x27;src/app/core/models/enum/enum.model&#x27;;
+import { ExportState, FyleReferenceType, TaskLogState } from &#x27;src/app/core/models/enum/enum.model&#x27;;
 import { ExportLogService } from &#x27;src/app/core/services/export-log/export-log.service&#x27;;
 import { environment } from &#x27;src/environments/environment&#x27;;
 
@@ -646,8 +646,9 @@ export class DashboardExportLogDialogComponent implements OnInit {
     }
 
     const expenseGroups: ExpenseGroupList[] &#x3D; [];
+    const state: TaskLogState &#x3D; this.data.exportState &#x3D;&#x3D;&#x3D; ExportState.SUCCESS ? TaskLogState.COMPLETE : TaskLogState.FAILED;
 
-    this.exportLogService.getExpenseGroups(500, 0, null, this.data.lastExportedAt).subscribe((expenseGroupResponse: ExpenseGroupResponse) &#x3D;&gt; {
+    this.exportLogService.getExpenseGroups(state, 500, 0, null, this.data.lastExportedAt).subscribe((expenseGroupResponse: ExpenseGroupResponse) &#x3D;&gt; {
       expenseGroupResponse.results.forEach((expenseGroup: ExpenseGroup) &#x3D;&gt; {
         let type: string &#x3D; &#x27;&#x27;, id: string &#x3D; &#x27;&#x27;, exportType: string &#x3D; &#x27;&#x27;;
 
