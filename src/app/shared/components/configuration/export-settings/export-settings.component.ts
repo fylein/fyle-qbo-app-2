@@ -245,7 +245,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       this.exportSettingsForm.controls.creditCardExportGroup.disable();
 
       this.cccExpenseGroupingDateOptions = [{
-          label: 'Posted Date',
+          label: 'Card Transaction Post date',
           value: ExportDateType.POSTED_AT
         },
         {
@@ -261,7 +261,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
   setCreditCardExpenseGroupingDateOptions(creditCardExportGroup: ExpenseGroupingFieldOption): void {
     if (creditCardExportGroup === ExpenseGroupingFieldOption.EXPENSE_ID) {
       this.cccExpenseGroupingDateOptions = this.reimbursableExpenseGroupingDateOptions.concat([{
-        label: 'Posted Date',
+        label: 'Card Transaction Post date',
         value: ExportDateType.POSTED_AT
       }]);
     } else {
