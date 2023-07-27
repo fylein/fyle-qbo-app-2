@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { CloneSetting } from 'src/app/core/models/configuration/clone-setting.model';
@@ -15,7 +15,7 @@ import { EmployeeFieldMapping, ReimbursableExpensesObject, ProgressPhase } from 
   templateUrl: './clone-settings.component.html',
   styleUrls: ['./clone-settings.component.scss']
 })
-export class CloneSettingsComponent {
+export class CloneSettingsComponent implements OnInit {
 
   isLoading: boolean = true;
   
@@ -45,7 +45,7 @@ export class CloneSettingsComponent {
     private exportSettingService: ExportSettingService,
     public helperService: HelperService,
     private formBuilder: FormBuilder,
-    private cloneSettingService: CloneSettingService,
+    private cloneSettingService: CloneSettingService
   ) { }
 
   getReimbursableExportTypes(employeeFieldMapping: EmployeeFieldMapping): ExportSettingFormOption[] {
