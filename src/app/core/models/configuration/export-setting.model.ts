@@ -6,9 +6,7 @@ import { SelectFormOption } from "../misc/select-form-option.model";
 
 export type ExportSettingWorkspaceGeneralSettingPost = {
   reimbursable_expenses_object: ReimbursableExpensesObject | null,
-  corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject | null,
-  employee_field_mapping: EmployeeFieldMapping | null,
-  auto_map_employees: AutoMapEmployee | null,
+  corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject | null
 }
 
 export interface ExportSettingWorkspaceGeneralSetting extends ExportSettingWorkspaceGeneralSettingPost {
@@ -55,9 +53,7 @@ export class ExportSettingModel {
       },
       workspace_general_settings: {
         reimbursable_expenses_object: exportSettingsForm.get('reimbursableExportType')?.value,
-        corporate_credit_card_expenses_object: exportSettingsForm.get('creditCardExportType')?.value,
-        auto_map_employees: exportSettingsForm.get('autoMapEmployees')?.value,
-        employee_field_mapping: exportSettingsForm.get('employee_field_mapping')?.value
+        corporate_credit_card_expenses_object: exportSettingsForm.get('creditCardExportType')?.value
       },
       general_mappings: {
         bank_account: exportSettingsForm.get('bankAccount')?.value ? exportSettingsForm.get('bankAccount')?.value : emptyDestinationAttribute,

@@ -18,7 +18,7 @@ import { EmployeeFieldMapping, ReimbursableExpensesObject, ProgressPhase } from 
 export class CloneSettingsComponent implements OnInit {
 
   isLoading: boolean = true;
-  
+
   cloneSettingsForm: FormGroup;
 
   autoMapEmployeeTypes: ExportSettingFormOption[] = this.exportSettingService.getAutoMapEmployeeOptions();
@@ -85,10 +85,10 @@ export class CloneSettingsComponent implements OnInit {
     this.cloneSettingsForm = this.formBuilder.group({
       reimbursableExpense: [this.cloneSettings.export_settings.workspace_general_settings.reimbursable_expenses_object],
       autoMapEmployees: [this.cloneSettings.employee_mappings.workspace_general_settings.auto_map_employees],
+      employeeFieldMapping: [this.cloneSettings.employee_mappings.workspace_general_settings.employee_field_mapping],
       reimbursableExportDate: [this.cloneSettings.export_settings.expense_group_settings.reimbursable_export_date_type],
       reimbursableExpenseState: [this.cloneSettings.export_settings.expense_group_settings.expense_state],
       reimbursableExportTypes: [this.cloneSettings.export_settings.workspace_general_settings.reimbursable_expenses_object],
-      employeeFieldMapping: [this.cloneSettings.employee_mappings.workspace_general_settings.employee_field_mapping],
       creditCardExpense: [this.cloneSettings.export_settings.workspace_general_settings.corporate_credit_card_expenses_object],
       cccExpenseState: [this.cloneSettings.export_settings.expense_group_settings.ccc_expense_state]
     });

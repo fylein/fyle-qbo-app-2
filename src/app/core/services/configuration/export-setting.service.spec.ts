@@ -39,7 +39,8 @@ describe('ExportSettingService', () => {
       },
       workspace_general_settings: {
         reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
-        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL
+        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL,
+        is_simplify_report_closure_enabled: true
       },
       general_mappings: {
         bank_account: { id: '1', name: 'Fyle' },
@@ -96,7 +97,8 @@ describe('ExportSettingService', () => {
       },
       workspace_general_settings: {
         reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
-        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL
+        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL,
+        is_simplify_report_closure_enabled: true
       },
       general_mappings: {
         bank_account: { id: '1', name: 'Fyle' },
