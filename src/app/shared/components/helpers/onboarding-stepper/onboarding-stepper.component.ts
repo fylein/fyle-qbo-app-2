@@ -86,7 +86,7 @@ export class OnboardingStepperComponent implements OnInit {
 
   private updateActiveAndCompletedSteps(): void {
 
-    if (this.currentStep == 'Clone Settings') {
+    if (this.currentStep === 'Clone Settings') {
       this.isCloneSettingsActive = true;
       this.onboardingSteps[0].completed = true;
       this.onboardingSteps = [this.onboardingSteps[0]];

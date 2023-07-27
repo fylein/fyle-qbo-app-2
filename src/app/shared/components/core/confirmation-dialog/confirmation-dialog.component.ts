@@ -10,6 +10,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ConfirmationDialogComponent implements OnInit {
 
   hideSecondaryCTA: boolean;
+
   hideWarningIcon: boolean;
 
   constructor(

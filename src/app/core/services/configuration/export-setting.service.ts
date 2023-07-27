@@ -76,7 +76,7 @@ export class ExportSettingService {
         label: 'Debit Card Expense',
         value: CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE
       }
-    ]
+    ];
   }
 
   getEmployeeFieldMappingOptions(): ExportSettingFormOption[] {

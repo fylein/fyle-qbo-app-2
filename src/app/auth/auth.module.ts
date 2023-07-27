@@ -25,7 +25,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     FlexLayoutModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatButtonModule,
+    MatButtonModule
   ]
 })
 export class AuthModule { }
