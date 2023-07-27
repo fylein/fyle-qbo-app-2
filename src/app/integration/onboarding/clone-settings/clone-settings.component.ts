@@ -18,7 +18,7 @@ import { EmployeeFieldMapping, ReimbursableExpensesObject, ProgressPhase } from 
 export class CloneSettingsComponent implements OnInit {
 
   isLoading: boolean = true;
-  
+
   cloneSettingsForm: FormGroup;
 
   autoMapEmployeeTypes: ExportSettingFormOption[] = this.exportSettingService.getAutoMapEmployeeOptions();
