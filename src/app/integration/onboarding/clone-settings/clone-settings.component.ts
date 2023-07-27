@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { CloneSetting } from 'src/app/core/models/configuration/clone-setting.model';
 import { ExportSettingFormOption } from 'src/app/core/models/configuration/export-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { CloneSettingService } from 'src/app/core/services/configuration/clone-setting.service';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
-import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
-import { ClickEvent, EmployeeFieldMapping, OnboardingStep, PaymentSyncDirection, ReimbursableExpensesObject, ProgressPhase, SimpleSearchPage, SimpleSearchType,  } from 'src/app/core/models/enum/enum.model';
+import { EmployeeFieldMapping, ReimbursableExpensesObject, ProgressPhase } from 'src/app/core/models/enum/enum.model';
 
 
 @Component({
@@ -22,23 +20,23 @@ export class CloneSettingsComponent {
   isLoading: boolean = true;
   
   cloneSettingsForm: FormGroup;
-  
+
   autoMapEmployeeTypes: ExportSettingFormOption[] = this.exportSettingService.getAutoMapEmployeeOptions();
-  
+
   reimbursableExportOptions: ExportSettingFormOption[];
-  
+
   reimbursableExpenseGroupingDateOptions: ExportSettingFormOption[] = this.exportSettingService.getReimbursableExpenseGroupingDateOptions();
 
   employeeFieldMappingOptions: ExportSettingFormOption[] = this.exportSettingService.getEmployeeFieldMappingOptions();
 
   bankAccounts: DestinationAttribute[];
-  
+
   cloneSettings: CloneSetting;
-  
+
   reimbursableExpenseStateOptions: ExportSettingFormOption[];
 
   cccExpenseStateOptions: ExportSettingFormOption[];
-  
+
   cccExpenseExportOptions: ExportSettingFormOption[];
 
   ProgressPhase = ProgressPhase;
@@ -49,8 +47,7 @@ export class CloneSettingsComponent {
     private formBuilder: FormBuilder,
     private cloneSettingService: CloneSettingService,
   ) { }
-  
-  
+
   getReimbursableExportTypes(employeeFieldMapping: EmployeeFieldMapping): ExportSettingFormOption[] {
     return {
       EMPLOYEE: [
@@ -84,7 +81,6 @@ export class CloneSettingsComponent {
     }[employeeFieldMapping];
   }
 
-  
   private setupForm(): void {
     this.cloneSettingsForm = this.formBuilder.group({
       reimbursableExpense: [this.cloneSettings.export_settings.workspace_general_settings.reimbursable_expenses_object],
@@ -102,7 +98,7 @@ export class CloneSettingsComponent {
 
   private setupPage(): void {
     forkJoin([
-      this.cloneSettingService.getCloneSettings(),
+      this.cloneSettingService.getCloneSettings()
     ]).subscribe(responses => {
       this.cloneSettings = responses[0];
       this.reimbursableExpenseStateOptions = this.exportSettingService.getReimbursableExpenseStateOptions(this.cloneSettings.export_settings.workspace_general_settings.is_simplify_report_closure_enabled);
@@ -116,6 +112,4 @@ export class CloneSettingsComponent {
   ngOnInit(): void {
     this.setupPage();
   }
-
-
 }

@@ -19,7 +19,7 @@ export class HelperService {
   constructor(
     private windowService: WindowService,
     private dialog: MatDialog,
-    private router: Router,
+    private router: Router
   ) {
     this.windowReference = this.windowService.nativeWindow;
   }

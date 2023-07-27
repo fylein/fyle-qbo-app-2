@@ -52,7 +52,7 @@ export class QboConnectorComponent implements OnInit, OnDestroy {
 
   private timeSpentEventRecorded: boolean = false;
 
-  private disableCloneSettings: boolean
+  private disableCloneSettings: boolean;
 
 
   constructor(
