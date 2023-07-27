@@ -136,4 +136,8 @@ export class TrackingService {
   onMappingsAlphabeticalFilter(properties: MappingAlphabeticalFilterAdditionalProperty): void {
     this.eventTrack('Mappings Alphabetical Filter', properties);
   }
+
+  onCloneSettingsSave(properties: Partial<UpdateEventAdditionalProperty>): void {
+    this.eventTrack('Clone Settings Saved', properties);
+  }
 }

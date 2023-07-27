@@ -15,6 +15,9 @@ import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { ConfirmationDialogComponent } from '../../core/confirmation-dialog/confirmation-dialog.component';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
+import { HelperService } from 'src/app/core/services/core/helper.service';
+import { CloneSettingService } from 'src/app/core/services/configuration/clone-setting.service';
+import { CloneSettingExist } from 'src/app/core/models/configuration/clone-setting.model';
 
 @Component({
   selector: 'app-qbo-connector',
@@ -49,6 +52,9 @@ export class QboConnectorComponent implements OnInit, OnDestroy {
 
   private timeSpentEventRecorded: boolean = false;
 
+  private disableCloneSettings: boolean
+
+
   constructor(
     private authService: AuthService,
     private dialog: MatDialog,
@@ -60,7 +66,9 @@ export class QboConnectorComponent implements OnInit, OnDestroy {
     private trackingService: TrackingService,
     private userService: UserService,
     private windowService: WindowService,
-    private workspaceService: WorkspaceService
+    private workspaceService: WorkspaceService,
+    private cloneSettingService: CloneSettingService,
+    private helperService: HelperService
   ) {
     this.windowReference = this.windowService.nativeWindow;
   }
@@ -72,13 +80,26 @@ export class QboConnectorComponent implements OnInit, OnDestroy {
     this.trackingService.trackTimeSpent(OnboardingStep.CONNECT_QBO, {phase: ProgressPhase.ONBOARDING, durationInSeconds: Math.floor(differenceInMs / 1000), eventState: eventState});
   }
 
+  checkCloneSettingsAvailablity(): void {
+    this.cloneSettingService.checkCloneSettingsExists().subscribe((response: CloneSettingExist) => {
+      if (response.is_available) {
+        this.showCloneSettingsDialog(response.workspace_name);
+      } else {
+        this.router.navigate(['/workspaces/onboarding/employee_settings']);
+      }
+    });
+  }
+
   continueToNextStep(): void {
     if (this.isContinueDisabled) {
+      return;
+    } else if (this.disableCloneSettings) {
+      this.router.navigate(['/workspaces/onboarding/employee_settings']);
       return;
     }
 
     this.trackSessionTime('success');
-    this.router.navigate([`/workspaces/onboarding/employee_settings`]);
+    this.checkCloneSettingsAvailablity();
   }
 
   switchFyleOrg(): void {
@@ -114,6 +135,21 @@ export class QboConnectorComponent implements OnInit, OnDestroy {
       this.showDisconnectQBO = true;
       this.isLoading = false;
     });
+  }
+
+  private showCloneSettingsDialog(workspaceName: string): void {
+    this.isContinueDisabled = false;
+    this.disableCloneSettings = true;
+    const data: ConfirmationDialog = {
+      title: 'Your settings are pre-filled',
+      contents: `Your previous organization's settings <b>(${workspaceName})</b> have been copied over to the current organization
+        <br><br>You can change the settings or reset the configuration to restart the process from the beginning<br>`,
+      primaryCtaText: 'Continue',
+      hideSecondaryCTA: true,
+      hideWarningIcon: true
+    };
+
+    this.helperService.openDialogAndSetupRedirection(data, '/workspaces/onboarding/clone_settings');
   }
 
   private showWarningDialog(): void {

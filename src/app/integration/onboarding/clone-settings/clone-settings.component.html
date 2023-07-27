@@ -1,0 +1,187 @@
+<app-onboarding-stepper [currentStep]="'Clone Settings'"></app-onboarding-stepper>
+
+<div class="clone-settings--section">
+    <div class="clone-settings--block">
+        <div *ngIf="!isLoading" [formGroup]="cloneSettingsForm">
+            <div>
+                <div fxLayoutAlign="start start" class="clone-settings--header-section"
+                    data-cy="configuration-contents">
+                    <div class="clone-settings--header-icon">
+                        <img src="assets/images/svgs/general/setting.svg">
+                    </div>
+                    <div>
+                        <h3>Employee Mappings</h3>
+                        <h5 class="clone-settings--header-caption sub-text-color">
+                            In this section, you can configure how map fyle employees to Quickbooks Vendor / Employee
+                        </h5>
+                    </div>
+                </div>
+
+                <div class="clone-settings--configuration-section">
+                    <div fxLayout="row">
+                        <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                            <img class="clone-settings--sub-options-icon"
+                                src="assets/images/svgs/general/calendar-disabled.svg">
+                            <p class="clone-settings--sub-options-text">Employee Field Mapping</p>
+                            <img class="clone-settings--info-icon" src="assets/images/svgs/general/info-disabled.svg"
+                                matTooltip="The selected date will reflect in expenses exported to Quickbooks Online"
+                                matTooltipPosition="above" matTooltipClass="clone-settings">
+                        </div>
+
+                        <div class="clone-settings--sub-options-text">
+                            <app-select [form]="cloneSettingsForm" [options]="employeeFieldMappingOptions"
+                                [isFieldMandatory]="true" [mandatoryErrorListName]="'Purchase Bill Date'"
+                                [placeholder]="'Select the Purchase Bill date'"
+                                [formControllerName]="'employeeFieldMapping'"
+                                [phase]="ProgressPhase.ONBOARDING"></app-select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clone-settings--configuration-section">
+                    <div fxLayout="row">
+                        <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                            <img class="clone-settings--sub-options-icon"
+                                src="assets/images/svgs/general/employee-disabled.svg">
+                            <p class="clone-settings--sub-options-text">Auto Map Employee</p>
+                            <img class="clone-settings--info-icon" src="assets/images/svgs/general/info-disabled.svg"
+                                matTooltip="Automatically map the employees in Fyle to their corresponding records in Quickbooks based on a unique parameter."
+                                matTooltipPosition="above" matTooltipClass="clone-settings">
+                        </div>
+
+                        <div>
+                            <div class="clone-settings--sub-options-text">
+                                <app-select [form]="cloneSettingsForm" [options]="autoMapEmployeeTypes"
+                                    [isFieldMandatory]="false" [placeholder]="'Select auto map employee type'"
+                                    [formControllerName]="'autoMapEmployees'"
+                                    [phase]="ProgressPhase.ONBOARDING"></app-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div fxLayoutAlign="start start" class="clone-settings--header-section"
+                    data-cy="configuration-contents">
+                    <div class="clone-settings--header-icon">
+                        <img src="assets/images/svgs/general/setting.svg">
+                    </div>
+                    <div>
+                        <h3>Export Settings</h3>
+                        <h5 class="clone-settings--header-caption sub-text-color">In this section, you can configure how
+                            and when expenses from Fyle need to be exported to Xero</h5>
+                    </div>
+                </div>
+                <div class="clone-settings--configuration-section">
+                    <div fxLayout="row">
+                        <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                            <p>Reimbursable Expense</p>
+                            <img class="clone-settings--info-icon" src="assets/images/svgs/general/info-disabled.svg"
+                                matTooltip="This section contains the settings for exporting Out-of pocket expenses from Fyle to Quickbooks"
+                                matTooltipPosition="above" matTooltipClass="clone-settings">
+                        </div>
+
+                        <div class="clone-settings--export-type">
+                            <app-toggle [isCloneSettings]="true" [form]="cloneSettingsForm"
+                                [formControllerName]="'reimbursableExpense'"></app-toggle>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="cloneSettingsForm.value.reimbursableExpense">
+                    <div class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/employee-disabled.svg">
+                                <p class="clone-settings--sub-options-text">To which Expense Account should the Expense
+                                    be posted to?</p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="All Entries will be posted to this account." matTooltipPosition="above"
+                                    matTooltipClass="clone-settings">
+                            </div>
+
+                            <div>
+                                <div class="clone-settings--sub-options-text">
+                                    <app-select [form]="cloneSettingsForm" [options]="autoMapEmployeeTypes"
+                                        [isFieldMandatory]="false" [placeholder]="'Select auto map employee type'"
+                                        [formControllerName]="'autoMapEmployees'"
+                                        [phase]="ProgressPhase.ONBOARDING"></app-select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/document-disabled.svg">
+                                <p class="clone-settings--sub-options-text">Mode of Export</p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="Reimbursable expense in Fyle will be exported to Quickbooks"
+                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                            </div>
+
+                            <app-select [form]="cloneSettingsForm" [options]="reimbursableExportOptions"
+                                [isFieldMandatory]="true" [mandatoryErrorListName]="'Purchase Bill Date'"
+                                [placeholder]="'Select the Purchase Bill date'"
+                                [formControllerName]="'reimbursableExportTypes'"
+                                [phase]="ProgressPhase.ONBOARDING"></app-select>
+                        </div>
+                    </div>
+
+                    <div class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/calendar-disabled.svg">
+                                <p class="clone-settings--sub-options-text">Date of export</p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="The selected date will reflect in expenses exported to Quickbooks Online"
+                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                            </div>
+
+                            <div class="clone-settings--sub-options-text">
+                                <app-select [form]="cloneSettingsForm"
+                                    [options]="reimbursableExpenseGroupingDateOptions" [isFieldMandatory]="true"
+                                    [mandatoryErrorListName]="'Purchase Bill Date'"
+                                    [placeholder]="'Select the Purchase Bill date'"
+                                    [formControllerName]="'reimbursableExportDate'"
+                                    [phase]="ProgressPhase.ONBOARDING"></app-select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/calendar-disabled.svg">
+                                <p class="clone-settings--sub-options-text">State of export</p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="You could choose to export expenses when they have been approved and are awaiting payment clearance, OR simply when they have been paid out."
+                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                            </div>
+
+                            <div class="clone-settings--sub-options-text">
+                                <app-select [form]="cloneSettingsForm" [options]="reimbursableExpenseStateOptions"
+                                    [isFieldMandatory]="true" [mandatoryErrorListName]="'Purchase Bill Date'"
+                                    [placeholder]="'Select the Expense State'"
+                                    [formControllerName]="'reimbursableExpenseState'"
+                                    [phase]="ProgressPhase.ONBOARDING"></app-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-onboarding-footer *ngIf="!isLoading"></app-onboarding-footer>

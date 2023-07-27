@@ -1,8 +1,7 @@
 <div class="stepper">
   <div class="stepper--header">
     <p class="stepper--header-text align-center">
-      Complete the following steps to configure your Integration.
-    </p>
+      {{ isCloneSettingsActive ? 'Fill in the below fields to complete your integration set up' : 'Complete the following steps to configure your Integration'}}    </p>
   </div>
 
   <div fxLayout="row" fxLayoutAlign="center center" class="stepper--steps">
@@ -14,11 +13,10 @@
             <img *ngIf="!onboardingStep.active && onboardingStep.completed" src="assets/images/svgs/general/tick.svg" class="stepper--icon" width="20px" height="14px">
             <img *ngIf="!onboardingStep.active && !onboardingStep.completed" src='{{ "assets/images/svgs/stepper/" + onboardingStep.icon + "-inactive.svg" }}' class="stepper--icon" [height]="onboardingStep.size.height" [width]="onboardingStep.size.width">
           </div>
-          <div *ngIf="onboardingStep.step !== 'Advanced Settings'" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? 'stepper--horizontal-separator-completed' : 'stepper--horizontal-separator', !onboardingStep.active && !onboardingStep.completed ? 'stepper--horizontal-separator' : '']"></div>
+          <div *ngIf="onboardingStep.step !== 'Advanced Settings' && onboardingStep.step !== 'Complete the Configurations'" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? 'stepper--horizontal-separator-completed' : 'stepper--horizontal-separator', !onboardingStep.active && !onboardingStep.completed ? 'stepper--horizontal-separator' : '']" data-cy="stepper-horizontal-separator"></div>
         </div>
         <div (click)="navigate(onboardingStep.completed, onboardingStep.route)" class="stepper--step-name" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? 'pointer' : 'cursor-disabled', !onboardingStep.active && !onboardingStep.completed ? 'sub-text-color cursor-disabled' : '']">
-          <h5 [ngClass]="{'stepper--step-1-text': onboardingStep.number === 1, 'stepper--step-2-text': onboardingStep.number === 2, 'stepper--step-3-4-text': onboardingStep.number === 3 || onboardingStep.number === 4, 'stepper--step-5-text': onboardingStep.number === 5}">{{onboardingStep.step}}</h5>
-        </div>
+          <h5 [ngClass]="{'stepper--step-1-2-text': onboardingStep.number === 1 || onboardingStep.number === 2, 'stepper--step-3-4-text': onboardingStep.number === 3 || onboardingStep.number === 4, 'stepper--step-5-text': onboardingStep.number === 5, 'stepper--step-6-text': onboardingStep.number === 6}" data-cy="step-number">{{onboardingStep.step}}</h5>        </div>
       </div>
     </div>
   </div>

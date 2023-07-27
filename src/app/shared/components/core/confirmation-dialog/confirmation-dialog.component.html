@@ -2,11 +2,11 @@
   <div class="confirmation-dialog--header-content">
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <div fxLayout="row" fxLayoutAlign="start center">
-        <div class="confirmation-dialog--warning-section">
+        <div  *ngIf="!hideWarningIcon" class="confirmation-dialog--warning-section">
           <img src="assets/images/svgs/general/alert.svg" class="confirmation-dialog--warning-icon" />
         </div>
-        <h3 class="confirmation-dialog--header-text">
-          {{ data.title }}
+        <h3 [ngClass]="!hideWarningIcon ? 'confirmation-dialog--header-text': ''">
+            {{ data.title }}
         </h3>
       </div>
       <img src="assets/images/svgs/actions/close.svg" (click)="this.dialogRef.close()" class="sub-text-color pointer" width="12px" height="12px" />

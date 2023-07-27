@@ -1,0 +1,21 @@
+.select-field {
+  &--preview-text {
+      font-size: 12px;
+      padding-top: 4px;
+      @media only screen and (max-width: 1440px) {
+        padding-left: 10px;
+      }
+  }
+
+  &--preview-btn {
+      color: #0660F6;
+  }
+
+  &--select-example-section {
+      padding: 2px 8px 0px 10px;
+  }
+
+  &--clone-settings-tax {
+      width: 280px;
+  }
+}

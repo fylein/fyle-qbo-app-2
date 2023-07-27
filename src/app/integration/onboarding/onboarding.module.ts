@@ -10,7 +10,9 @@ import { MatLegacySelectModule as MatSelectModule } from '@angular/material/lega
 import { MatLegacySlideToggleModule as MatSlideToggleModule } from '@angular/material/legacy-slide-toggle';
 import { MatLegacyCheckboxModule as MatCheckboxModule } from '@angular/material/legacy-checkbox';
 import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
-
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 // Components
@@ -23,6 +25,7 @@ import { OnboardingLandingComponent } from './onboarding-landing/onboarding-land
 import { OnboardingQboConnectorComponent } from './onboarding-qbo-connector/onboarding-qbo-connector.component';
 import { OnboardingEmployeeSettingsComponent } from './onboarding-employee-settings/onboarding-employee-settings.component';
 import { OnboardingRoutingModule } from './onboarding-routing.module';
+import { CloneSettingsComponent } from './clone-settings/clone-settings.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { OnboardingRoutingModule } from './onboarding-routing.module';
     OnboardingComponent,
     OnboardingLandingComponent,
     OnboardingQboConnectorComponent,
-    OnboardingEmployeeSettingsComponent
+    OnboardingEmployeeSettingsComponent,
+    CloneSettingsComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +50,11 @@ import { OnboardingRoutingModule } from './onboarding-routing.module';
     MatSlideToggleModule,
     MatCheckboxModule,
     MatDialogModule,
-    SharedModule
+    SharedModule,
+    MatMenuModule,
+    MatTooltipModule,
+    SharedModule,
+    MatProgressSpinnerModule
   ]
 })
 export class OnboardingModule { }

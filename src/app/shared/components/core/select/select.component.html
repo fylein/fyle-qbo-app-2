@@ -1,0 +1,56 @@
+<div [formGroup]="form">
+  <mat-form-field *ngIf="!exportType" floatLabel="always" appearance="outline" class="configuration--form-field" [ngClass]="{'select-field--clone-settings-tax': isCloneSettingField}">
+      <mat-select [placeholder]="placeholder" [formControlName]="formControllerName"
+          [compareWith]="helperService.compareObjects">
+          <mat-option *ngFor="let option of options" [value]="option.value">
+              {{ option.label }}
+              <img *ngIf="form.value[formControllerName] === option.value"
+                  src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
+          </mat-option>
+
+          <app-simple-text-search *ngIf="qboAttributes" [page]="SimpleSearchPage.CONFIGURATION"
+              [searchType]="SimpleSearchType.SELECT_FIELD" [form]="form"></app-simple-text-search>
+          <div *ngFor="let option of qboAttributes | search : form.value.searchOption">
+              <mat-option [ngClass]="{'search-zero-state': option && option.value === 'No result found'}"
+                  [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40"
+                  matTooltipPosition="above" matTooltipClass="above" (click)="helperService.clearSearchText(form)"
+                  [value]="{name: option.value, id: option.destination_id}">
+                  <p (click)="$event.stopPropagation()" *ngIf="option.value === 'No result found'"
+                      class="align-center italic">{{ option.value }}</p>
+                  <p *ngIf="option.value !== 'No result found'">{{ option.value }}</p>
+                  <img *ngIf="(form.value[formControllerName] | json) === ({name: option.value, id: option.destination_id} | json)"
+                      src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
+              </mat-option>
+          </div>
+      </mat-select>
+      <div class="mat-select-arrow-closed"></div>
+  </mat-form-field>
+  <app-mandatory-error-message
+      *ngIf="isFieldMandatory && form.controls[formControllerName].touched && !form.controls[formControllerName].valid && !form.controls[formControllerName].disabled"
+      [listName]="mandatoryErrorListName" [customErrorMessage]="customErrorMessage"></app-mandatory-error-message>
+  <div *ngIf="(formControllerName === 'reimbursableExportType' && form.value.reimbursableExportType) || (formControllerName === 'creditCardExportType' && form.value.creditCardExportType)"
+      class="select-field--preview-text sub-text-color">
+      <p *ngIf="formControllerName === 'reimbursableExportType' && !exportType ">Click <span
+              class="select-field--preview-btn pointer"
+              (click)="showQboExportPreview(form.value.reimbursableExportType, null)">here</span> to Preivew on how
+          it
+          looks on QuickBooks</p>
+      <p *ngIf="formControllerName === 'creditCardExportType'  && !exportType || qboAttributes ">Click <span
+              class="select-field--preview-btn pointer"
+              (click)="showQboExportPreview(null, form.value.creditCardExportType)">here</span> to Preivew on how it
+          looks on QuickBooks</p>
+  </div>
+
+  <div *ngIf="formControllerName === 'autoMapEmployees'"
+      class="select-field--select-example-section paragraph">
+      <h5 *ngIf="form.value.autoMapEmployees === 'NAME'" class="sub-text-color">
+          Example: Ryan Clark will map to Ryan Clark in QuickBooks.
+      </h5>
+      <h5 *ngIf="form.value.autoMapEmployees === 'EMAIL'" class="sub-text-color">
+          Example: ryan.clark@acme.com will map to ryan.clark@acme.com in QuickBooks.
+      </h5>
+      <h5 *ngIf="form.value.autoMapEmployees === 'EMPLOYEE_CODE'" class="sub-text-color">
+          Example: E0146 will map to E0146 in QuickBooks.
+      </h5>
+  </div>
+</div>
