@@ -6,8 +6,8 @@ import { DefaultDestinationAttribute } from '../../models/db/general-mapping.mod
 import { WindowService } from './window.service';
 import { ConfirmationDialog } from '../../models/misc/confirmation-dialog.model';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/core/confirmation-dialog/confirmation-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 @Injectable({
   providedIn: 'root'

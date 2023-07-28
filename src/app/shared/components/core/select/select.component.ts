@@ -6,8 +6,8 @@ import { DestinationAttribute } from 'src/app/core/models/db/destination-attribu
 import { ClickEvent, CorporateCreditCardExpensesObject, ProgressPhase, ReimbursableExpensesObject, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { PreviewDialogComponent } from '../../configuration/preview-dialog/preview-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 @Component({
   selector: 'app-select',
