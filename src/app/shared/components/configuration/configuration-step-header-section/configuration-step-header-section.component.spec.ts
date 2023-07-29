@@ -10,6 +10,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { environment } from 'src/environments/environment';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { OnboardingState } from 'src/app/core/models/enum/enum.model';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 
 describe('ConfigurationStepHeaderSectionComponent', () => {
   let component: ConfigurationStepHeaderSectionComponent;
@@ -25,7 +26,7 @@ describe('ConfigurationStepHeaderSectionComponent', () => {
   dialogRefSpyObj.componentInstance = { body: '' }; // Attach componentInstance to the spy object...
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientModule, MatSnackBarModule, BrowserAnimationsModule, HttpClientTestingModule],
+      imports: [RouterTestingModule, HttpClientModule, MatSnackBarModule, MatDialogModule, BrowserAnimationsModule, HttpClientTestingModule],
       declarations: [ ConfigurationStepHeaderSectionComponent],
       providers: [ WorkspaceService, {
         provide: Router,

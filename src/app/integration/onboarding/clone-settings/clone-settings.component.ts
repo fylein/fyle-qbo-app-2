@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { CloneSetting, CloneSettingModel } from 'src/app/core/models/configuration/clone-setting.model';
@@ -9,7 +9,7 @@ import { ExportSettingService } from 'src/app/core/services/configuration/export
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 import { HelperService } from 'src/app/core/services/core/helper.service';
-import { EmployeeFieldMapping, ReimbursableExpensesObject, ClickEvent, OnboardingStep, ProgressPhase  } from 'src/app/core/models/enum/enum.model';
+import { EmployeeFieldMapping, ReimbursableExpensesObject, ClickEvent, OnboardingStep, ProgressPhase, ExpenseGroupingFieldOption  } from 'src/app/core/models/enum/enum.model';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
@@ -22,7 +22,7 @@ import { MappingSetting } from 'src/app/core/models/db/mapping-setting.model';
   templateUrl: './clone-settings.component.html',
   styleUrls: ['./clone-settings.component.scss']
 })
-export class CloneSettingsComponent {
+export class CloneSettingsComponent implements OnInit {
 
   isLoading: boolean = true;
 
@@ -61,6 +61,21 @@ export class CloneSettingsComponent {
   mappingSettings: MappingSetting[];
 
   ProgressPhase = ProgressPhase;
+  
+  reimbursableExpenseGroupingFieldOptions: ExportSettingFormOption[] = [
+    {
+      label: 'Report',
+      value: ExpenseGroupingFieldOption.CLAIM_NUMBER
+    },
+    {
+      label: 'Payment',
+      value: ExpenseGroupingFieldOption.SETTLEMENT_ID
+    },
+    {
+      label: 'Expense',
+      value: ExpenseGroupingFieldOption.EXPENSE_ID
+    }
+  ];
 
   constructor(
     private exportSettingService: ExportSettingService,
@@ -175,6 +190,17 @@ export class CloneSettingsComponent {
 
     this.setGeneralMappingsValidator();
   }
+  
+  private getExportGroup(exportGroups: string[] | null): string {
+    if (exportGroups) {
+      const exportGroup = exportGroups.find((exportGroup) => {
+        return exportGroup === ExpenseGroupingFieldOption.EXPENSE_ID || exportGroup === ExpenseGroupingFieldOption.CLAIM_NUMBER || exportGroup === ExpenseGroupingFieldOption.SETTLEMENT_ID;
+      });
+      return exportGroup ? exportGroup : ExpenseGroupingFieldOption.CLAIM_NUMBER;
+    }
+
+    return '';
+  }
 
   private setupForm(): void {
     this.cloneSettingsForm = this.formBuilder.group({
@@ -188,6 +214,7 @@ export class CloneSettingsComponent {
       reimbursableExpenseState: [this.cloneSettings.export_settings.expense_group_settings.expense_state],
       reimbursableExportType: [this.cloneSettings.export_settings.workspace_general_settings.reimbursable_expenses_object],
       creditCardExpense: [this.cloneSettings.export_settings.workspace_general_settings.corporate_credit_card_expenses_object],
+      reimbursableExportGroup: [this.getExportGroup(this.cloneSettings.export_settings.expense_group_settings?.reimbursable_expense_group_fields)],
       cccExpenseState: [this.cloneSettings.export_settings.expense_group_settings.ccc_expense_state],
       qboExpenseAccount: [this.cloneSettings.export_settings.general_mappings.qbo_expense_account],
       accountsPayable: [this.cloneSettings.export_settings.general_mappings.accounts_payable],

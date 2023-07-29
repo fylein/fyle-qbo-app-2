@@ -137,5 +137,4 @@ export class OnboardingStepperComponent implements OnInit {
   ngOnInit(): void {
     this.updateActiveAndCompletedSteps();
   }
-
 }
