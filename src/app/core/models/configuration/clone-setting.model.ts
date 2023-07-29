@@ -29,8 +29,8 @@ export class CloneSettingModel {
     static constructPayload(cloneSettingsForm: FormGroup, customMappingSettings: MappingSetting[]): CloneSettingPost {
 
         const exportSettingPayload = ExportSettingModel.constructPayload(cloneSettingsForm);
-        // const importSettingPayload = ImportSettingModel.constructPayload(cloneSettingsForm, customMappingSettings);
-        // const advancedSettingPayload = AdvancedSettingModel.constructPayload(cloneSettingsForm);
+        // Const importSettingPayload = ImportSettingModel.constructPayload(cloneSettingsForm, customMappingSettings);
+        // Const advancedSettingPayload = AdvancedSettingModel.constructPayload(cloneSettingsForm);
         const employeeMappingPayload = EmployeeSettingModel.constructPayload(cloneSettingsForm);
 
         const cloneSettingPayload: CloneSettingPost = {
