@@ -6,7 +6,7 @@ import { DestinationAttribute } from 'src/app/core/models/db/destination-attribu
 import { ClickEvent, CorporateCreditCardExpensesObject, ProgressPhase, ReimbursableExpensesObject, SimpleSearchPage, SimpleSearchType } from 'src/app/core/models/enum/enum.model';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { PreviewDialogComponent } from '../../configuration/preview-dialog/preview-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 
 @Component({
@@ -50,8 +50,8 @@ export class SelectComponent implements OnInit {
 
   showQboExportPreview(reimbursableExportType: ReimbursableExpensesObject | null, creditCardExportType: CorporateCreditCardExpensesObject | null): void {
     const data = {
-      QboReimburse: reimbursableExportType,
-      QboCCC: creditCardExportType
+      qboReimburse: reimbursableExportType,
+      qboCCC: creditCardExportType
     };
 
     this.trackingService.onClickEvent(ClickEvent.PREVIEW_QBO_EXPORT, {phase: this.phase, exportType: reimbursableExportType || creditCardExportType});

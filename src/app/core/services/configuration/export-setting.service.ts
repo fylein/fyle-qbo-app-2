@@ -5,6 +5,7 @@ import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
 
 import { AutoMapEmployee, CCCExpenseState, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseState, ExportDateType, ReimbursableExpensesObject } from '../../models/enum/enum.model';
+import { AbstractControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 
 
 @Injectable({
@@ -23,6 +24,27 @@ export class ExportSettingService {
 
   postExportSettings(exportSettingsPayload: ExportSettingPost): Observable<ExportSettingGet> {
     return this.apiService.put(`/v2/workspaces/${this.workspaceService.getWorkspaceId()}/export_settings/`, exportSettingsPayload);
+  }
+
+  createReimbursableExpenseWatcher(form: FormGroup, exportSettings: ExportSettingGet): void {
+    form.controls.reimbursableExpense.valueChanges.subscribe((isReimbursableExpenseSelected) => {
+      if (isReimbursableExpenseSelected) {
+        form.controls.expenseState.setValidators(Validators.required);
+        form.controls.expenseState.setValue(exportSettings.expense_group_settings?.expense_state ? exportSettings.expense_group_settings?.expense_state : ExpenseState.PAYMENT_PROCESSING);
+        form.controls.reimbursableExportType.setValidators(Validators.required);
+        form.controls.reimbursableExportGroup.setValidators(Validators.required);
+        form.controls.reimbursableExportDate.setValidators(Validators.required);
+      } else {
+        form.controls.expenseState.clearValidators();
+        form.controls.reimbursableExportType.clearValidators();
+        form.controls.reimbursableExportGroup.clearValidators();
+        form.controls.reimbursableExportDate.clearValidators();
+        form.controls.expenseState.setValue(null);
+        form.controls.reimbursableExportType.setValue(null);
+        form.controls.reimbursableExportGroup.setValue(null);
+        form.controls.reimbursableExportDate.setValue(null);
+      }
+    });
   }
 
   getReimbursableExportTypeOptions(employeeFieldMapping: EmployeeFieldMapping): ExportSettingFormOption[] {
@@ -160,3 +182,4 @@ export class ExportSettingService {
     ];
   }
 }
+

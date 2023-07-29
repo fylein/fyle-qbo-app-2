@@ -24,6 +24,7 @@ import { MatLegacyChipInputEvent as MatChipInputEvent } from '@angular/material/
 import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
+
 // Pipes
 import { TrimCharacterPipe } from './pipes/trim-character.pipe';
 import { SearchPipe } from './pipes/search.pipe';

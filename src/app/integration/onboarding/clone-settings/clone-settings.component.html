@@ -2,6 +2,8 @@
 
 <div class="clone-settings--section">
     <div class="clone-settings--block">
+        <app-loader [phase]="'pre_onboarding'" *ngIf="isLoading" data-cy="configuration-loader"></app-loader>
+
         <div *ngIf="!isLoading" [formGroup]="cloneSettingsForm">
             <div>
                 <div fxLayoutAlign="start start" class="clone-settings--header-section"
@@ -32,7 +34,7 @@
                             <app-select [form]="cloneSettingsForm" [options]="employeeFieldMappingOptions"
                                 [isFieldMandatory]="true" [mandatoryErrorListName]="'Purchase Bill Date'"
                                 [placeholder]="'Select the Purchase Bill date'"
-                                [formControllerName]="'employeeFieldMapping'"
+                                [formControllerName]="'employeeMapping'"
                                 [phase]="ProgressPhase.ONBOARDING"></app-select>
                         </div>
                     </div>
@@ -53,7 +55,7 @@
                             <div class="clone-settings--sub-options-text">
                                 <app-select [form]="cloneSettingsForm" [options]="autoMapEmployeeTypes"
                                     [isFieldMandatory]="false" [placeholder]="'Select auto map employee type'"
-                                    [formControllerName]="'autoMapEmployees'"
+                                    [formControllerName]="'autoMapEmployee'"
                                     [phase]="ProgressPhase.ONBOARDING"></app-select>
                             </div>
                         </div>
@@ -94,30 +96,6 @@
                         <div fxLayout="row">
                             <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
                                 <img class="clone-settings--sub-options-icon"
-                                    src="assets/images/svgs/general/employee-disabled.svg">
-                                <p class="clone-settings--sub-options-text">To which Expense Account should the Expense
-                                    be posted to?</p>
-                                <img class="clone-settings--info-icon"
-                                    src="assets/images/svgs/general/info-disabled.svg"
-                                    matTooltip="All Entries will be posted to this account." matTooltipPosition="above"
-                                    matTooltipClass="clone-settings">
-                            </div>
-
-                            <div>
-                                <div class="clone-settings--sub-options-text">
-                                    <app-select [form]="cloneSettingsForm" [options]="autoMapEmployeeTypes"
-                                        [isFieldMandatory]="false" [placeholder]="'Select auto map employee type'"
-                                        [formControllerName]="'autoMapEmployees'"
-                                        [phase]="ProgressPhase.ONBOARDING"></app-select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="clone-settings--configuration-section">
-                        <div fxLayout="row">
-                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
-                                <img class="clone-settings--sub-options-icon"
                                     src="assets/images/svgs/general/document-disabled.svg">
                                 <p class="clone-settings--sub-options-text">Mode of Export</p>
                                 <img class="clone-settings--info-icon"
@@ -126,11 +104,64 @@
                                     matTooltipPosition="above" matTooltipClass="clone-settings">
                             </div>
 
-                            <app-select [form]="cloneSettingsForm" [options]="reimbursableExportOptions"
+                            <app-select 
+                                [form]="cloneSettingsForm" 
+                                [options]="reimbursableExportOptions"
                                 [isFieldMandatory]="true" [mandatoryErrorListName]="'Purchase Bill Date'"
                                 [placeholder]="'Select the Purchase Bill date'"
-                                [formControllerName]="'reimbursableExportTypes'"
-                                [phase]="ProgressPhase.ONBOARDING"></app-select>
+                                [formControllerName]="'reimbursableExportType'"
+                                [phase]="ProgressPhase.ONBOARDING">
+                            </app-select>
+                        </div>
+                    </div>
+                    
+                    <div class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/employee-disabled.svg">
+                                <p class="clone-settings--sub-options-text">To which Account should the Expense
+                                    be posted to?</p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="All Entries will be posted to this account." matTooltipPosition="above"
+                                    matTooltipClass="clone-settings">
+                            </div>
+
+                            <div>
+                                <div *ngIf="showExpenseAccountField()" class="clone-settings--sub-options-text">
+                                    <app-select 
+                                        [form]="cloneSettingsForm" 
+                                        [qboAttributes]="expenseAccounts"
+                                        [isFieldMandatory]="true" 
+                                        [placeholder]="'To which Expense Account'"
+                                        [formControllerName]="'qboExpenseAccount'"
+                                        [phase]="ProgressPhase.ONBOARDING">
+                                    </app-select>
+                                </div>
+
+                                <div *ngIf="showBankAccountField()" class="clone-settings--sub-options-text">
+                                    <app-select 
+                                        [form]="cloneSettingsForm" 
+                                        [qboAttributes]="bankAccounts"
+                                        [isFieldMandatory]="true" 
+                                        [placeholder]="'To which Bank Account Account'"
+                                        [formControllerName]="'bankAccount'"
+                                        [phase]="ProgressPhase.ONBOARDING">
+                                    </app-select>
+                                </div>
+
+                                <div *ngIf="showReimbursableAccountsPayableField()" class="clone-settings--sub-options-text">
+                                    <app-select 
+                                        [form]="cloneSettingsForm" 
+                                        [qboAttributes]="accountsPayables"
+                                        [isFieldMandatory]="true" 
+                                        [placeholder]="'To which Expense Account'"
+                                        [formControllerName]="'accountsPayable'"
+                                        [phase]="ProgressPhase.ONBOARDING">
+                                    </app-select>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -143,16 +174,18 @@
                                 <img class="clone-settings--info-icon"
                                     src="assets/images/svgs/general/info-disabled.svg"
                                     matTooltip="The selected date will reflect in expenses exported to Quickbooks Online"
-                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                                    matTooltipPosition="above" 
+                                    matTooltipClass="clone-settings">
                             </div>
 
                             <div class="clone-settings--sub-options-text">
-                                <app-select [form]="cloneSettingsForm"
+                                <app-select 
+                                    [form]="cloneSettingsForm"
                                     [options]="reimbursableExpenseGroupingDateOptions" [isFieldMandatory]="true"
-                                    [mandatoryErrorListName]="'Purchase Bill Date'"
                                     [placeholder]="'Select the Purchase Bill date'"
                                     [formControllerName]="'reimbursableExportDate'"
-                                    [phase]="ProgressPhase.ONBOARDING"></app-select>
+                                    [phase]="ProgressPhase.ONBOARDING">
+                                </app-select>
                             </div>
                         </div>
                     </div>
@@ -170,14 +203,42 @@
                             </div>
 
                             <div class="clone-settings--sub-options-text">
-                                <app-select [form]="cloneSettingsForm" [options]="reimbursableExpenseStateOptions"
-                                    [isFieldMandatory]="true" [mandatoryErrorListName]="'Purchase Bill Date'"
+                                <app-select 
+                                    [form]="cloneSettingsForm" 
+                                    [options]="reimbursableExpenseStateOptions"
+                                    [isFieldMandatory]="true" 
                                     [placeholder]="'Select the Expense State'"
                                     [formControllerName]="'reimbursableExpenseState'"
-                                    [phase]="ProgressPhase.ONBOARDING"></app-select>
+                                    [phase]="ProgressPhase.ONBOARDING">
+                                </app-select>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            
+            <div>
+                <div fxLayoutAlign="space-between center" class="clone-settings--footer-inner-section">
+                    <div fxLayoutAlign="start center">
+                        <div fxLayoutAlign="start center">
+                            <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--back-btn pointer clone-settings--back-btn" (click)="navigateToPreviousStep()" matTooltip="You will be able to re-configure the tenant by clicking here" matTooltipPosition="above" matTooltipClass="clone-settings">
+                                <img src="assets/images/svgs/actions/arrow-mark-left.svg" class="configuration--back-btn-arrow" width="13.5px" height="11.25px" />
+                                <h5 class="btn-icon align-center">Back</h5>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="center center" class="configuration--back-btn clone-settings--reset-btn pointer" (click)="resetConfiguraions()" matTooltip="You will be redirected to the step-wise configuration flow where you can configure each setting individually." matTooltipPosition="above" matTooltipClass="clone-settings">
+                                <h5>Reset Configurations</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="configuration--submit-btn pointer" [ngClass]="!cloneSettingsForm.valid || isSaveInProgress ? 'btn-disabled' : 'btn-enabled'" (click)="save()">
+                        <h5 class="btn-cta-text-with-icon single-line-text">
+                            {{ isSaveInProgress ? 'Saving' : 'Save & Continue'}}
+                        </h5>
+                        <img *ngIf="!isSaveInProgress" class="btn-icon" src="assets/images/svgs/actions/arrow-mark-right.svg" />
+                        <div *ngIf="isSaveInProgress" class="btn-loader">
+                          <mat-spinner diameter="20" color="white"></mat-spinner>
+                        </div>
+                      </div>
                 </div>
             </div>
         </div>

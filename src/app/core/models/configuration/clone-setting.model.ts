@@ -15,8 +15,8 @@ export type CloneSetting = {
 
 export type CloneSettingPost = {
     export_settings: ExportSettingPost,
-    import_settings: ImportSettingPost,
-    advanced_settings: AdvancedSettingPost,
+    // Import_settings: ImportSettingPost,
+    // Advanced_settings: AdvancedSettingPost,
     employee_mappings: EmployeeSettingPost
 }
 
@@ -27,15 +27,16 @@ export type CloneSettingExist = {
 
 export class CloneSettingModel {
     static constructPayload(cloneSettingsForm: FormGroup, customMappingSettings: MappingSetting[]): CloneSettingPost {
+
         const exportSettingPayload = ExportSettingModel.constructPayload(cloneSettingsForm);
         const importSettingPayload = ImportSettingModel.constructPayload(cloneSettingsForm, customMappingSettings);
-        const advancedSettingPayload = AdvancedSettingModel.constructPayload(cloneSettingsForm);
+        // Const advancedSettingPayload = AdvancedSettingModel.constructPayload(cloneSettingsForm);
         const employeeMappingPayload = EmployeeSettingModel.constructPayload(cloneSettingsForm);
 
         const cloneSettingPayload: CloneSettingPost = {
             export_settings: exportSettingPayload,
-            import_settings: importSettingPayload,
-            advanced_settings: advancedSettingPayload,
+            // Import_settings: importSettingPayload,
+            // Advanced_settings: advancedSettingPayload,
             employee_mappings: employeeMappingPayload
         };
 
