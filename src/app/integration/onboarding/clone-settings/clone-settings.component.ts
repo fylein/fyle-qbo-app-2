@@ -61,7 +61,7 @@ export class CloneSettingsComponent implements OnInit {
   mappingSettings: MappingSetting[];
 
   ProgressPhase = ProgressPhase;
-  
+
   reimbursableExpenseGroupingFieldOptions: ExportSettingFormOption[] = [
     {
       label: 'Report',
@@ -190,7 +190,7 @@ export class CloneSettingsComponent implements OnInit {
 
     this.setGeneralMappingsValidator();
   }
-  
+
   private getExportGroup(exportGroups: string[] | null): string {
     if (exportGroups) {
       const exportGroup = exportGroups.find((exportGroup) => {

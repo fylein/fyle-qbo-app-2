@@ -43,7 +43,7 @@ describe('QboConnectorComponent', () => {
     service = {
       getQBOCredentials: () => of(response),
       connectQBO: () => of(response),
-      disconnectQBOConnection: () => of(response),
+      disconnectQBOConnection: () => of(response)
     };
     service2 = {
       getExportSettings: () => of(exportResponse)
