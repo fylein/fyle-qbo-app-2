@@ -114,12 +114,6 @@ export class CloneSettingsComponent implements OnInit {
       this.cloneSettingService.saveCloneSettings(cloneSettingPayload).subscribe((response) => {
         this.isSaveInProgress = false;
         this.snackBar.open('Cloned settings successfully');
-        // This.trackingService.onCloneSettingsSave({
-        //   OldState: this.cloneSettings,
-        //   NewState: response
-        // });
-        // This.trackSessionTime();
-
         this.router.navigate([`/workspaces/onboarding/done`]);
       }, () => {
         this.isSaveInProgress = false;

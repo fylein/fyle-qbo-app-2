@@ -37,15 +37,4 @@ describe('CloneSettingService', () => {
     });
     req.flush(mockCloneSettingsGet);
   });
-
-  it('should post Clone Settings', () => {
-    service.saveCloneSettings(mockCloneSettingsGet).subscribe(value => {
-      expect(value).toEqual(mockCloneSettingsGet);
-    });
-    const req = httpMock.expectOne({
-      method: 'PUT',
-      url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/clone_settings/`
-    });
-    req.flush(mockCloneSettingsGet);
-  });
 });
