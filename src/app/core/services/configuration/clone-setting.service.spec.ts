@@ -38,7 +38,7 @@ describe('CloneSettingService', () => {
     });
     req.flush(mockCloneSettingsGet);
   });
-  
+
   it('should post Clone Settings', () => {
     service.postCloneSettings(mockCloneSettingsGet).subscribe(value => {
       expect(value).toEqual(mockCloneSettingsGet);
