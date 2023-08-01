@@ -65,9 +65,6 @@ import { MandatoryErrorMessageComponent } from './components/helpers/mandatory-e
 import { AddEmailDialogComponent } from './components/configuration/advanced-settings/add-email-dialog/add-email-dialog.component';
 import { EmailMultiSelectFieldComponent } from './components/configuration/email-multi-select-field/email-multi-select-field.component';
 import { SkipExportLogTableComponent } from './components/export-log/skip-export-log-table/skip-export-log-table.component';
-import { CloneAdvancedSettingsComponent } from './components/clone-settings/clone-advanced-settings/clone-advanced-settings.component';
-import { CloneExportSettingsComponent } from './components/clone-settings/clone-export-settings/clone-export-settings.component';
-import { CloneImportSettingsComponent } from './components/clone-settings/clone-import-settings/clone-import-settings.component';
 import { ToggleComponent } from './components/core/toggle/toggle.component';
 import { SelectComponent } from './components/core/select/select.component';
 
@@ -111,9 +108,6 @@ import { SelectComponent } from './components/core/select/select.component';
     AddEmailDialogComponent,
     EmailMultiSelectFieldComponent,
     SkipExportLogTableComponent,
-    CloneAdvancedSettingsComponent,
-    CloneExportSettingsComponent,
-    CloneImportSettingsComponent,
     ToggleComponent,
     SelectComponent
   ],
