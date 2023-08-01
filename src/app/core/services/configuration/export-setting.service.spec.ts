@@ -4,6 +4,7 @@ import { ExportSettingGet, ExportSettingPost } from '../../models/configuration/
 import { ExpenseState, CCCExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, ExportDateType } from '../../models/enum/enum.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
+import { AbstractControl, FormBuilder } from '@angular/forms';
 
 describe('ExportSettingService', () => {
   let service: ExportSettingService;
@@ -11,6 +12,8 @@ describe('ExportSettingService', () => {
   let httpMock: HttpTestingController;
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
+  let formbuilder: FormBuilder;
+
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -18,6 +21,7 @@ describe('ExportSettingService', () => {
       providers: [ExportSettingService]
     });
     injector = getTestBed();
+    formbuilder = TestBed.inject(FormBuilder);
     service = injector.inject(ExportSettingService);
     httpMock = injector.inject(HttpTestingController);
   });
@@ -119,6 +123,17 @@ describe('ExportSettingService', () => {
     });
     req.flush(response);
 
+  });
+
+  it('exportSelectionValidator function check', () => {
+    const control = { value: ExpenseState.PAID, parent: formbuilder.group({
+      reimbursableExpense: ReimbursableExpensesObject.BILL
+    }) };
+    expect((service as any).exportSelectionValidator()(control as AbstractControl)).toEqual({forbiddenOption: { value: 'PAID' }});
+    const control1 = { value: ExpenseState.PAYMENT_PROCESSING, parent: formbuilder.group({
+      creditCardExpense: CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE
+    }) };
+    expect((service as any).exportSelectionValidator()(control1 as AbstractControl)).toEqual({forbiddenOption: { value: 'PAYMENT_PROCESSING' }});
   });
 
 });
