@@ -48,8 +48,7 @@ export class ExportSettingService {
     });
   }
 
-
-  createCreditCardExpenseWatcher(form: FormGroup, exportSettings: ExportSettingGet, isCreditCardExpenseSelected: boolean): void {
+  createCreditCardExpenseWatcher(form: FormGroup, exportSettings: ExportSettingGet): void {
     form.controls.creditCardExpense.valueChanges.subscribe((isCreditCardExpenseSelected) => {
       if (isCreditCardExpenseSelected) {
         form.controls.cccExpenseState.setValidators(Validators.required);

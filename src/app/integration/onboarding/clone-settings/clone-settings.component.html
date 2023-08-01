@@ -205,25 +205,26 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="clone-settings--configuration-section">
+                    <div fxLayout="row">
+                        <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                            <p>Corporate Card Expense</p>
+                            <img class="clone-settings--info-icon"
+                                src="assets/images/svgs/general/info-disabled.svg"
+                                matTooltip="This section contains the settings for exporting Out-of pocket expenses from Fyle to Quickbooks"
+                                matTooltipPosition="above" matTooltipClass="clone-settings">
+                        </div>
 
-                <div *ngIf="cloneSettingsForm.value.creditCardExpense">
-                    <div class="clone-settings--configuration-section">
-                        <div fxLayout="row">
-                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
-                                <p>Corporate Card Expense</p>
-                                <img class="clone-settings--info-icon"
-                                    src="assets/images/svgs/general/info-disabled.svg"
-                                    matTooltip="This section contains the settings for exporting Out-of pocket expenses from Fyle to Quickbooks"
-                                    matTooltipPosition="above" matTooltipClass="clone-settings">
-                            </div>
-
-                            <div class="clone-settings--export-type">
-                                <app-toggle [isCloneSettings]="true" [form]="cloneSettingsForm"
-                                    [formControllerName]="'reimbursableExpense'"></app-toggle>
-                            </div>
+                        <div class="clone-settings--export-type">
+                            <app-toggle [isCloneSettings]="true" [form]="cloneSettingsForm"
+                                [formControllerName]="'creditCardExpense'"></app-toggle>
                         </div>
                     </div>
+                </div>
 
+
+                <div *ngIf="cloneSettingsForm.value.creditCardExpense">
                     <div class="clone-settings--configuration-section">
                         <div fxLayout="row">
                             <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
@@ -331,28 +332,28 @@
                                     [formControllerName]="'defaultCreditCardVendor'" [phase]="ProgressPhase.ONBOARDING">
                                 </app-select>
                             </div>
-
-                            <div *ngIf="showCCCAccountsPayableField() && !showReimbursableAccountsPayableField()">
-                                <div class="clone-settings--configuration-section">
-                                    <div fxLayout="row">
-                                        <div class="clone-settings--field-section" fxLayout="row"
-                                            fxLayoutAlign="start center">
-                                            <img class="clone-settings--sub-options-icon"
-                                                src="assets/images/svgs/general/calendar-disabled.svg">
-                                            <p class="clone-settings--sub-options-text">Date of export</p>
-                                            <img class="clone-settings--info-icon"
-                                                src="assets/images/svgs/general/info-disabled.svg"
-                                                matTooltip="The selected date will reflect in expenses exported to Quickbooks Online"
-                                                matTooltipPosition="above" matTooltipClass="clone-settings">
-                                        </div>
-
-                                        <app-select [form]="cloneSettingsForm" [qboAttributes]="accountsPayables"
-                                            [isFieldMandatory]="true"
-                                            [placeholder]="'The integration will post the offset credit entry in Bill to the selected Accounts Payable Account.'"
-                                            [formControllerName]="'accountsPayable'" [phase]="ProgressPhase.ONBOARDING">
-                                        </app-select>
-                                    </div>
+                        </div>
+                    </div>
+                    
+                    <div *ngIf="showCCCAccountsPayableField() && !showReimbursableAccountsPayableField()">
+                        <div class="clone-settings--configuration-section">
+                            <div fxLayout="row">
+                                <div class="clone-settings--field-section" fxLayout="row"
+                                    fxLayoutAlign="start center">
+                                    <img class="clone-settings--sub-options-icon"
+                                        src="assets/images/svgs/general/calendar-disabled.svg">
+                                    <p class="clone-settings--sub-options-text">Select Accounts Payable Account</p>
+                                    <img class="clone-settings--info-icon"
+                                        src="assets/images/svgs/general/info-disabled.svg"
+                                        matTooltip="The selected date will reflect in expenses exported to Quickbooks Online"
+                                        matTooltipPosition="above" matTooltipClass="clone-settings">
                                 </div>
+
+                                <app-select [form]="cloneSettingsForm" [qboAttributes]="accountsPayables"
+                                    [isFieldMandatory]="true"
+                                    [placeholder]="'The integration will post the offset credit entry in Bill to the selected Accounts Payable Account.'"
+                                    [formControllerName]="'accountsPayable'" [phase]="ProgressPhase.ONBOARDING">
+                                </app-select>
                             </div>
                         </div>
                     </div>

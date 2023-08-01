@@ -280,7 +280,7 @@ export class CloneSettingsComponent implements OnInit {
   private setCustomValidatorsAndWatchers(): void {
 
     this.exportSettingService.createReimbursableExpenseWatcher(this.cloneSettingsForm, this.cloneSettings.export_settings);
-    this.exportSettingService.createCreditCardExpenseWatcher(this.cloneSettingsForm, this.cloneSettings.export_settings, true);
+    this.exportSettingService.createCreditCardExpenseWatcher(this.cloneSettingsForm, this.cloneSettings.export_settings);
 
     // Export select fields
     this.createReimbursableExportTypeWatcher();

@@ -283,7 +283,6 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
     });
   }
 
-
   private exportSelectionValidator(): ValidatorFn {
     return (control: AbstractControl): {[key: string]: object} | null => {
       let forbidden = true;
