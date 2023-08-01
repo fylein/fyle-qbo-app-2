@@ -25,7 +25,7 @@ export class CloneSettingService {
     return this.apiService.get(`/v2/workspaces/${this.workspaceId}/clone_settings/`, {});
   }
 
-  saveCloneSettings(cloneSettingsPayload: CloneSettingPost): Observable<CloneSetting> {
+  postCloneSettings(cloneSettingsPayload: CloneSettingPost): Observable<CloneSetting> {
     return this.apiService.put(`/v2/workspaces/${this.workspaceId}/clone_settings/`, cloneSettingsPayload);
   }
 }

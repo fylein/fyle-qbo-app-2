@@ -36,7 +36,7 @@ export type ExportSettingGet = {
 }
 
 export interface ExportSettingFormOption extends SelectFormOption {
-  value: ExpenseState | CCCExpenseState | ReimbursableExpensesObject | CorporateCreditCardExpensesObject | ExpenseGroupingFieldOption | ExportDateType | AutoMapEmployee | EmployeeFieldMapping | null;
+  value: ExpenseState | CCCExpenseState | ReimbursableExpensesObject | CorporateCreditCardExpensesObject | ExpenseGroupingFieldOption | ExportDateType;
 }
 
 export class ExportSettingModel {

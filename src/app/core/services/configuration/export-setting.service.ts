@@ -4,8 +4,9 @@ import { ExportSettingGet, ExportSettingPost, ExportSettingFormOption } from '..
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
 
-import { AutoMapEmployee, CCCExpenseState, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseState, ExportDateType, ReimbursableExpensesObject } from '../../models/enum/enum.model';
+import { AutoMapEmployee, CCCExpenseState, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, ReimbursableExpensesObject } from '../../models/enum/enum.model';
 import { AbstractControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { EmployeeSettingFormOption } from '../../models/configuration/employee-setting.model';
 
 
 @Injectable({
@@ -45,6 +46,34 @@ export class ExportSettingService {
         form.controls.reimbursableExportDate.setValue(null);
       }
     });
+  }
+
+  getExportGroup(exportGroups: string[] | null): string {
+    if (exportGroups) {
+      const exportGroup = exportGroups.find((exportGroup) => {
+        return exportGroup === ExpenseGroupingFieldOption.EXPENSE_ID || exportGroup === ExpenseGroupingFieldOption.CLAIM_NUMBER || exportGroup === ExpenseGroupingFieldOption.SETTLEMENT_ID;
+      });
+      return exportGroup ? exportGroup : ExpenseGroupingFieldOption.CLAIM_NUMBER;
+    }
+
+    return '';
+  }
+
+  getReimbursableExpenseGroupingFieldOptions() {
+    return [
+      {
+        label: 'Report',
+        value: ExpenseGroupingFieldOption.CLAIM_NUMBER
+      },
+      {
+        label: 'Payment',
+        value: ExpenseGroupingFieldOption.SETTLEMENT_ID
+      },
+      {
+        label: 'Expense',
+        value: ExpenseGroupingFieldOption.EXPENSE_ID
+      }
+    ];
   }
 
   getReimbursableExportTypeOptions(employeeFieldMapping: EmployeeFieldMapping): ExportSettingFormOption[] {
@@ -101,7 +130,7 @@ export class ExportSettingService {
     ];
   }
 
-  getEmployeeFieldMappingOptions(): ExportSettingFormOption[] {
+  getEmployeeFieldMappingOptions(): EmployeeSettingFormOption[] {
     return [
       {
         label: 'Employees',
@@ -114,7 +143,7 @@ export class ExportSettingService {
     ];
   }
 
-  getAutoMapEmployeeOptions(): ExportSettingFormOption[] {
+  getAutoMapEmployeeOptions(): EmployeeSettingFormOption[] {
     return [
       {
         label: 'None',
