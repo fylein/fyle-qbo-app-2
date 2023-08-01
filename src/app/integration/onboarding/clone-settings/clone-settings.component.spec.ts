@@ -27,7 +27,7 @@ describe('CloneSettingsComponent', () => {
   beforeEach(async () => {
     service1 = {
       checkCloneSettingsExists: () => of(mockCloneSettingExist),
-      saveCloneSettings: () => of(mockCloneSettingsGet),
+      postCloneSettings: () => of(mockCloneSettingsGet),
       getCloneSettings: () => of(mockCloneSettingsGet)
     };
     service2 = {
