@@ -39,7 +39,7 @@ export class CloneSettingsComponent implements OnInit {
 
   employeeFieldMappingOptions: EmployeeSettingFormOption[] = this.exportSettingService.getEmployeeFieldMappingOptions();
 
-  reimbursableExpenseGroupingFieldOptions: ExportSettingFormOption[] = this.exportSettingService.getReimbursableExpenseGroupingFieldOptions()
+  reimbursableExpenseGroupingFieldOptions: ExportSettingFormOption[] = this.exportSettingService.getReimbursableExpenseGroupingFieldOptions();
 
   bankAccounts: DestinationAttribute[];
 
