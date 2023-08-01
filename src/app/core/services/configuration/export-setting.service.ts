@@ -4,7 +4,7 @@ import { ExportSettingGet, ExportSettingPost, ExportSettingFormOption } from '..
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
 
-import { AutoMapEmployee, CCCExpenseState, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseState, ExportDateType, ReimbursableExpensesObject } from '../../models/enum/enum.model';
+import { AutoMapEmployee, CCCExpenseState, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, ReimbursableExpensesObject } from '../../models/enum/enum.model';
 import { AbstractControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 
 
@@ -46,6 +46,29 @@ export class ExportSettingService {
       }
     });
   }
+
+
+  createCreditCardExpenseWatcher(form: FormGroup, exportSettings: ExportSettingGet, isCreditCardExpenseSelected: boolean): void {
+    form.controls.creditCardExpense.valueChanges.subscribe((isCreditCardExpenseSelected) => {
+      if (isCreditCardExpenseSelected) {
+        form.controls.cccExpenseState.setValidators(Validators.required);
+        form.controls.cccExpenseState.setValue(exportSettings.expense_group_settings?.ccc_expense_state ? exportSettings.expense_group_settings?.ccc_expense_state : exportSettings.workspace_general_settings.is_simplify_report_closure_enabled ? CCCExpenseState.APPROVED: CCCExpenseState.PAYMENT_PROCESSING);
+        form.controls.creditCardExportType.setValidators(Validators.required);
+        form.controls.creditCardExportGroup.setValidators(Validators.required);
+        form.controls.creditCardExportDate.setValidators(Validators.required);
+      } else {
+        form.controls.cccExpenseState.clearValidators();
+        form.controls.creditCardExportType.clearValidators();
+        form.controls.creditCardExportGroup.clearValidators();
+        form.controls.creditCardExportDate.clearValidators();
+        form.controls.cccExpenseState.setValue(null);
+        form.controls.creditCardExportType.setValue(null);
+        form.controls.creditCardExportGroup.setValue(null);
+        form.controls.creditCardExportDate.setValue(null);
+      }
+    });
+  }
+
 
   getReimbursableExportTypeOptions(employeeFieldMapping: EmployeeFieldMapping): ExportSettingFormOption[] {
     return {
@@ -180,6 +203,42 @@ export class ExportSettingService {
         value: CCCExpenseState.PAID
       }
     ];
+  }
+
+  exportSelectionValidator(exportSettingsForm: FormGroup, isCloneSetting: boolean = false): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: object} | null => {
+      let forbidden = true;
+      if (exportSettingsForm) {
+        if (typeof control.value === 'boolean') {
+          if (control.value) {
+            forbidden = false;
+          } else {
+            if (control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value) {
+              forbidden = false;
+            }
+          }
+        } else if ((control.value === ExpenseState.PAID || control.value === ExpenseState.PAYMENT_PROCESSING || control.value === CCCExpenseState.APPROVED)
+        && (control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value)) {
+          forbidden = false;
+        } else if (isCloneSetting && (control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value)) {
+          forbidden = false;
+        }
+
+        if (!forbidden) {
+          control.parent?.get('expenseState')?.setErrors(null);
+          control.parent?.get('cccExpenseState')?.setErrors(null);
+          control.parent?.get('reimbursableExpense')?.setErrors(null);
+          control.parent?.get('creditCardExpense')?.setErrors(null);
+          return null;
+        }
+      }
+
+      return {
+        forbiddenOption: {
+          value: control.value
+        }
+      };
+    };
   }
 }
 
