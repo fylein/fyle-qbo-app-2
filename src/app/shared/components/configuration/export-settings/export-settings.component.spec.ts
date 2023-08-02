@@ -6,7 +6,7 @@ import { ExportSettingsComponent } from './export-settings.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, OnboardingState, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
-import { destinationAttribute, errorResponse, exportResponse, exportResponse1, export_settings, replacecontent1, replacecontent2, replacecontent3, workspaceResponse, workspaceResponse1 } from './export-settings.fixture';
+import { destinationAttribute, errorResponse, exportResponse, exportResponse1, export_settings, mockCCCExpenseStateOptions, mockCreditCardExportType, mockReimbursableExpenseGroupingDateOptions, mockReimbursableExpenseGroupingFieldOptions, mockReimbursableExportTypeOptions, replacecontent1, replacecontent2, replacecontent3, workspaceResponse, workspaceResponse1 } from './export-settings.fixture';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
@@ -36,7 +36,12 @@ describe('ExportSettingsComponent', () => {
       postExportSettings: () => of(exportResponse),
       exportSelectionValidator: () => undefined,
       createCreditCardExpenseWatcher: () => undefined,
-      createReimbursableExpenseWatcher: () => undefined
+      createReimbursableExpenseWatcher: () => undefined,
+      getReimbursableExpenseGroupingFieldOptions: () => mockReimbursableExpenseGroupingFieldOptions,
+      getReimbursableExpenseGroupingDateOptions: () => mockReimbursableExpenseGroupingDateOptions,
+      getcreditCardExportTypes: () => undefined,
+      getReimbursableExportTypeOptions: () => undefined,
+      getCCCExpenseStateOptions: () => undefined
     };
     service2 = {
       getGroupedQBODestinationAttributes: () => of(destinationAttribute),
