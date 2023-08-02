@@ -266,22 +266,22 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       }
     });
   }
-  
+
   private setupExportWatchers(): void {
     this.exportSettingsForm?.controls.reimbursableExpense?.setValidators(this.exportSettingService.exportSelectionValidator(this.exportSettingsForm));
     this.exportSettingsForm?.controls.creditCardExpense?.setValidators(this.exportSettingService.exportSelectionValidator(this.exportSettingsForm));
   }
 
   private setCustomValidatorsAndWatchers(): void {
-    
-    this.setupExportWatchers()
+
+    this.setupExportWatchers();
 
     // Date grouping
     this.setCreditCardExpenseGroupingDateOptions(this.exportSettingsForm.controls.creditCardExportGroup.value);
 
     // Toggles
-    this.exportSettingService.createReimbursableExpenseWatcher(this.exportSettingsForm, this.exportSettings)
-    this.exportSettingService.createCreditCardExpenseWatcher(this.exportSettingsForm, this.exportSettings)
+    this.exportSettingService.createReimbursableExpenseWatcher(this.exportSettingsForm, this.exportSettings);
+    this.exportSettingService.createCreditCardExpenseWatcher(this.exportSettingsForm, this.exportSettings);
 
     // Export select fields
     this.createReimbursableExportTypeWatcher();
@@ -326,7 +326,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
 
       this.reimbursableExportTypes = this.exportSettingService.getReimbursableExportTypeOptions(this.employeeFieldMapping);
-      this.cccExpenseStateOptions = this.exportSettingService.getCCCExpenseStateOptions(this.is_simplify_report_closure_enabled)
+      this.cccExpenseStateOptions = this.exportSettingService.getCCCExpenseStateOptions(this.is_simplify_report_closure_enabled);
 
 
       this.setupForm();

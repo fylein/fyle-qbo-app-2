@@ -136,7 +136,7 @@ describe('ExportSettingService', () => {
     }) };
     expect((service as any).exportSelectionValidator()(control1 as AbstractControl)).toEqual({forbiddenOption: { value: 'PAYMENT_PROCESSING' }});
   });
-  
+
   it('createReimbursableExpenseWatcher function check', () => {
     const form = formbuilder.group({
       reimbursableExpense: true,
@@ -145,7 +145,7 @@ describe('ExportSettingService', () => {
     });
     expect((service as any).createReimbursableExpenseWatcher(form, exportResponse)).toBeUndefined();
   });
-  
+
   it('createCreditCardExpenseWatcher function check', () => {
     const form = formbuilder.group({
       creditCardExpense: true,

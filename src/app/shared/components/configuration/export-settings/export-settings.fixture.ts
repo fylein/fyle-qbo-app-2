@@ -187,7 +187,7 @@ export const exportResponse: ExportSettingGet = {
     reimbursable_expense_group_fields: [ExpenseGroupingFieldOption.EXPENSE_ID],
     reimbursable_export_date_type: ExportDateType.APPROVED_AT,
     corporate_credit_card_expense_group_fields: ['sipper'],
-    ccc_export_date_type: ExportDateType.SPENT_AT,
+    ccc_export_date_type: ExportDateType.SPENT_AT
   },
   workspace_general_settings: {
     reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
@@ -282,7 +282,7 @@ export const mockCreditCardExportType = [
     label: 'Debit Card Expense',
     value: CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE
   }
-]
+];
 
 export const mockReimbursableExportTypeOptions = {
   EMPLOYEE: [
@@ -313,7 +313,7 @@ export const mockReimbursableExportTypeOptions = {
       value: ReimbursableExpensesObject.JOURNAL_ENTRY
     }
   ]
-}
+};
 
 export const mockCCCExpenseStateOptions = [
   {
