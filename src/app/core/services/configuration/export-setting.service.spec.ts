@@ -5,6 +5,7 @@ import { ExpenseState, CCCExpenseState, ReimbursableExpensesObject, CorporateCre
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
 import { AbstractControl, FormBuilder } from '@angular/forms';
+import { exportResponse } from 'src/app/shared/components/configuration/export-settings/export-settings.fixture';
 
 describe('ExportSettingService', () => {
   let service: ExportSettingService;
@@ -135,5 +136,22 @@ describe('ExportSettingService', () => {
     }) };
     expect((service as any).exportSelectionValidator()(control1 as AbstractControl)).toEqual({forbiddenOption: { value: 'PAYMENT_PROCESSING' }});
   });
+  
+  it('createReimbursableExpenseWatcher function check', () => {
+    const form = formbuilder.group({
+      reimbursableExpense: true,
+      reimbursableExpenseState: ExpenseState.PAID,
+      reimbursableExportDate: ExportDateType.APPROVED_AT
+    });
+    expect((service as any).createReimbursableExpenseWatcher(form, exportResponse)).toBeUndefined();
+  });
+  
+  it('createCreditCardExpenseWatcher function check', () => {
+    const form = formbuilder.group({
+      creditCardExpense: true,
+      cccExpenseState: ExpenseState.PAID
+    });
+    expect((service as any).createCreditCardExpenseWatcher(form, exportResponse)).toBeUndefined();
 
+  });
 });

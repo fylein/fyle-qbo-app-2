@@ -55,64 +55,13 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   cccExpenseStateOptions: ExportSettingFormOption[];
 
-  expenseGroupingFieldOptions: ExportSettingFormOption[] = [
-    {
-      label: 'Report',
-      value: ExpenseGroupingFieldOption.CLAIM_NUMBER
-    },
-    {
-      label: 'Payment',
-      value: ExpenseGroupingFieldOption.SETTLEMENT_ID
-    },
-    {
-      label: 'Expense',
-      value: ExpenseGroupingFieldOption.EXPENSE_ID
-    }
-  ];
+  expenseGroupingFieldOptions: ExportSettingFormOption[] = this.exportSettingService.getReimbursableExpenseGroupingFieldOptions();
 
-  reimbursableExpenseGroupingDateOptions: ExportSettingFormOption[] = [
-    {
-      label: 'Current Date',
-      value: ExportDateType.CURRENT_DATE
-    },
-    {
-      label: 'Verification Date',
-      value: ExportDateType.VERIFIED_AT
-    },
-    {
-      label: 'Spend Date',
-      value: ExportDateType.SPENT_AT
-    },
-    {
-      label: 'Approval Date',
-      value: ExportDateType.APPROVED_AT
-    },
-    {
-      label: 'Last Spend Date',
-      value: ExportDateType.LAST_SPENT_AT
-    }
-  ];
+  reimbursableExpenseGroupingDateOptions: ExportSettingFormOption[] = this.exportSettingService.getReimbursableExpenseGroupingDateOptions();
 
   cccExpenseGroupingDateOptions: ExportSettingFormOption[];
 
-  creditCardExportTypes: ExportSettingFormOption[] = [
-    {
-      label: 'Bill',
-      value: CorporateCreditCardExpensesObject.BILL
-    },
-    {
-      label: 'Credit Card Purchase',
-      value: CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE
-    },
-    {
-      label: 'Journal Entry',
-      value: CorporateCreditCardExpensesObject.JOURNAL_ENTRY
-    },
-    {
-      label: 'Debit Card Expense',
-      value: CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE
-    }
-  ];
+  creditCardExportTypes: ExportSettingFormOption[] = this.exportSettingService.getcreditCardExportTypes();
 
   reimbursableExportTypes: ExportSettingFormOption[];
 
@@ -160,84 +109,6 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
     return `How should the expense in ${this.getExportType(exportType)} be grouped?`;
   }
 
-  getReimbursableExportTypes(employeeFieldMapping: EmployeeFieldMapping): ExportSettingFormOption[] {
-    return {
-      EMPLOYEE: [
-        {
-          label: 'Check',
-          value: ReimbursableExpensesObject.CHECK
-        },
-        {
-          label: 'Expense',
-          value: ReimbursableExpensesObject.EXPENSE
-        },
-        {
-          label: 'Journal Entry',
-          value: ReimbursableExpensesObject.JOURNAL_ENTRY
-        }
-      ],
-      VENDOR: [
-        {
-          label: 'Bill',
-          value: ReimbursableExpensesObject.BILL
-        },
-        {
-          label: 'Expense',
-          value: ReimbursableExpensesObject.EXPENSE
-        },
-        {
-          label: 'Journal Entry',
-          value: ReimbursableExpensesObject.JOURNAL_ENTRY
-        }
-      ]
-    }[employeeFieldMapping];
-  }
-
-  private createReimbursableExpenseWatcher(): void {
-    this.exportSettingsForm.controls.reimbursableExpense.valueChanges.subscribe((isReimbursableExpenseSelected) => {
-      if (isReimbursableExpenseSelected) {
-        this.exportSettingsForm.controls.expenseState.setValidators(Validators.required);
-        this.exportSettingsForm.controls.expenseState.setValue(this.exportSettings.expense_group_settings?.expense_state ? this.exportSettings.expense_group_settings?.expense_state : ExpenseState.PAYMENT_PROCESSING);
-        this.exportSettingsForm.controls.reimbursableExportType.setValidators(Validators.required);
-        this.exportSettingsForm.controls.reimbursableExportGroup.setValidators(Validators.required);
-        this.exportSettingsForm.controls.reimbursableExportDate.setValidators(Validators.required);
-      } else {
-        this.exportSettingsForm.controls.expenseState.clearValidators();
-        this.exportSettingsForm.controls.reimbursableExportType.clearValidators();
-        this.exportSettingsForm.controls.reimbursableExportGroup.clearValidators();
-        this.exportSettingsForm.controls.reimbursableExportDate.clearValidators();
-        this.exportSettingsForm.controls.expenseState.setValue(null);
-        this.exportSettingsForm.controls.reimbursableExportType.setValue(null);
-        this.exportSettingsForm.controls.reimbursableExportGroup.setValue(null);
-        this.exportSettingsForm.controls.reimbursableExportDate.setValue(null);
-      }
-
-      this.setGeneralMappingsValidator();
-    });
-  }
-
-  private createCreditCardExpenseWatcher(): void {
-    this.exportSettingsForm.controls.creditCardExpense.valueChanges.subscribe((isCreditCardExpenseSelected) => {
-      if (isCreditCardExpenseSelected) {
-        this.exportSettingsForm.controls.cccExpenseState.setValidators(Validators.required);
-        this.exportSettingsForm.controls.cccExpenseState.setValue(this.exportSettings.expense_group_settings?.ccc_expense_state ? this.exportSettings.expense_group_settings?.ccc_expense_state : this.is_simplify_report_closure_enabled ? CCCExpenseState.APPROVED: CCCExpenseState.PAYMENT_PROCESSING);
-        this.exportSettingsForm.controls.creditCardExportType.setValidators(Validators.required);
-        this.exportSettingsForm.controls.creditCardExportGroup.setValidators(Validators.required);
-        this.exportSettingsForm.controls.creditCardExportDate.setValidators(Validators.required);
-      } else {
-        this.exportSettingsForm.controls.cccExpenseState.clearValidators();
-        this.exportSettingsForm.controls.creditCardExportType.clearValidators();
-        this.exportSettingsForm.controls.creditCardExportGroup.clearValidators();
-        this.exportSettingsForm.controls.creditCardExportDate.clearValidators();
-        this.exportSettingsForm.controls.cccExpenseState.setValue(null);
-        this.exportSettingsForm.controls.creditCardExportType.setValue(null);
-        this.exportSettingsForm.controls.creditCardExportGroup.setValue(null);
-        this.exportSettingsForm.controls.creditCardExportDate.setValue(null);
-      }
-
-      this.setGeneralMappingsValidator();
-    });
-  }
 
   private restrictExpenseGroupSetting(creditCardExportType: string | null) : void {
     if (creditCardExportType === CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || creditCardExportType === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE) {
@@ -281,40 +152,6 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       this.setGeneralMappingsValidator();
       this.restrictExpenseGroupSetting(creditCardExportType);
     });
-  }
-
-  private exportSelectionValidator(): ValidatorFn {
-    return (control: AbstractControl): {[key: string]: object} | null => {
-      let forbidden = true;
-      if (this.exportSettingsForm) {
-        if (typeof control.value === 'boolean') {
-          if (control.value) {
-            forbidden = false;
-          } else {
-            if (control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value) {
-              forbidden = false;
-            }
-          }
-        } else if ((control.value === ExpenseState.PAID || control.value === ExpenseState.PAYMENT_PROCESSING || control.value === CCCExpenseState.APPROVED)
-        && (control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value)) {
-          forbidden = false;
-        }
-
-        if (!forbidden) {
-          control.parent?.get('expenseState')?.setErrors(null);
-          control.parent?.get('cccExpenseState')?.setErrors(null);
-          control.parent?.get('reimbursableExpense')?.setErrors(null);
-          control.parent?.get('creditCardExpense')?.setErrors(null);
-          return null;
-        }
-      }
-
-      return {
-        forbiddenOption: {
-          value: control.value
-        }
-      };
-    };
   }
 
   showBankAccountField(): boolean {
@@ -429,15 +266,22 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       }
     });
   }
+  
+  private setupExportWatchers(): void {
+    this.exportSettingsForm?.controls.reimbursableExpense?.setValidators(this.exportSettingService.exportSelectionValidator(this.exportSettingsForm));
+    this.exportSettingsForm?.controls.creditCardExpense?.setValidators(this.exportSettingService.exportSelectionValidator(this.exportSettingsForm));
+  }
 
   private setCustomValidatorsAndWatchers(): void {
+    
+    this.setupExportWatchers()
 
     // Date grouping
     this.setCreditCardExpenseGroupingDateOptions(this.exportSettingsForm.controls.creditCardExportGroup.value);
 
     // Toggles
-    this.createReimbursableExpenseWatcher();
-    this.createCreditCardExpenseWatcher();
+    this.exportSettingService.createReimbursableExpenseWatcher(this.exportSettingsForm, this.exportSettings)
+    this.exportSettingService.createCreditCardExpenseWatcher(this.exportSettingsForm, this.exportSettings)
 
     // Export select fields
     this.createReimbursableExportTypeWatcher();
@@ -471,7 +315,6 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
     ]).subscribe(response => {
       this.exportSettings = response[0];
       this.employeeFieldMapping = response[2].employee_field_mapping;
-      this.reimbursableExportTypes = this.getReimbursableExportTypes(this.employeeFieldMapping);
 
       this.bankAccounts = response[1].BANK_ACCOUNT;
       this.cccAccounts = response[1].CREDIT_CARD_ACCOUNT;
@@ -481,27 +324,10 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       this.is_simplify_report_closure_enabled = response[2].is_simplify_report_closure_enabled;
       this.import_items = response[2].import_items;
 
-      this.cccExpenseStateOptions = [
-        {
-          label: this.is_simplify_report_closure_enabled ? 'Approved' : 'Payment Processing',
-          value: this.is_simplify_report_closure_enabled ? CCCExpenseState.APPROVED: CCCExpenseState.PAYMENT_PROCESSING
-        },
-        {
-          label: this.is_simplify_report_closure_enabled ? 'Closed' : 'Paid',
-          value: CCCExpenseState.PAID
-        }
-      ];
 
-      this.expenseStateOptions = [
-        {
-          label: this.is_simplify_report_closure_enabled ? 'Processing' : 'Payment Processing',
-          value: ExpenseState.PAYMENT_PROCESSING
-        },
-        {
-          label: this.is_simplify_report_closure_enabled ? 'Closed' : 'Paid',
-          value: ExpenseState.PAID
-        }
-      ];
+      this.reimbursableExportTypes = this.exportSettingService.getReimbursableExportTypeOptions(this.employeeFieldMapping);
+      this.cccExpenseStateOptions = this.exportSettingService.getCCCExpenseStateOptions(this.is_simplify_report_closure_enabled)
+
 
       this.setupForm();
     });
@@ -510,12 +336,12 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
   private setupForm(): void {
     this.exportSettingsForm = this.formBuilder.group({
       expenseState: [this.exportSettings.expense_group_settings?.expense_state],
-      reimbursableExpense: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? true : false, this.exportSelectionValidator()],
+      reimbursableExpense: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? true : false],
       reimbursableExportType: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object],
       reimbursableExportGroup: [this.getExportGroup(this.exportSettings.expense_group_settings?.reimbursable_expense_group_fields)],
       reimbursableExportDate: [this.exportSettings.expense_group_settings?.reimbursable_export_date_type],
       cccExpenseState: [this.exportSettings.expense_group_settings?.ccc_expense_state],
-      creditCardExpense: [this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object ? true : false, this.exportSelectionValidator()],
+      creditCardExpense: [this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object ? true : false],
       creditCardExportType: [this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object],
       creditCardExportGroup: [this.getExportGroup(this.exportSettings.expense_group_settings?.corporate_credit_card_expense_group_fields)],
       creditCardExportDate: [this.exportSettings.expense_group_settings?.ccc_export_date_type],

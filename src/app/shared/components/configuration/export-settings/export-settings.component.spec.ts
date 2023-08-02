@@ -33,7 +33,10 @@ describe('ExportSettingsComponent', () => {
   beforeEach(async () => {
     service1 = {
       getExportSettings: () => of(exportResponse),
-      postExportSettings: () => of(exportResponse)
+      postExportSettings: () => of(exportResponse),
+      exportSelectionValidator: () => undefined,
+      createCreditCardExpenseWatcher: () => undefined,
+      createReimbursableExpenseWatcher: () => undefined
     };
     service2 = {
       getGroupedQBODestinationAttributes: () => of(destinationAttribute),
@@ -69,11 +72,11 @@ describe('ExportSettingsComponent', () => {
     component.exportSettings = exportResponse;
     component.exportSettingsForm = formbuilder.group({
       expenseState: [component.exportSettings.expense_group_settings?.expense_state, Validators.required],
-      reimbursableExpense: [component.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? true : false, (component as any).exportSelectionValidator()],
+      reimbursableExpense: [component.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? true : false],
       reimbursableExportType: [component.exportSettings.workspace_general_settings?.reimbursable_expenses_object],
       reimbursableExportGroup: [(component as any).getExportGroup(component.exportSettings.expense_group_settings?.reimbursable_expense_group_fields)],
       reimbursableExportDate: [component.exportSettings.expense_group_settings?.reimbursable_export_date_type],
-      creditCardExpense: [component.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object ? true : false, (component as any).exportSelectionValidator()],
+      creditCardExpense: [component.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object ? true : false],
       creditCardExportType: [component.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object],
       creditCardExportGroup: [(component as any).getExportGroup(component.exportSettings.expense_group_settings?.corporate_credit_card_expense_group_fields)],
       creditCardExportDate: [component.exportSettings.expense_group_settings?.ccc_export_date_type],
@@ -105,9 +108,6 @@ describe('ExportSettingsComponent', () => {
     expect(component.getExportType(ReimbursableExpensesObject.JOURNAL_ENTRY)).toEqual(output);
   });
 
-  it('getReimbursableExportTypes function check', () => {
-    expect(component.getReimbursableExportTypes(EmployeeFieldMapping.EMPLOYEE)).toEqual(export_settings);
-  });
 
   it('navigateToPreviousStep function check', () => {
     expect(component.navigateToPreviousStep()).toBeUndefined();
@@ -126,22 +126,6 @@ describe('ExportSettingsComponent', () => {
     expect(component.generateGroupingLabel('reimbursable')).toEqual('How should the expenses be grouped?');
   });
 
-  it('createReimbursableExpenseWatcher function check', () => {
-    component.ngOnInit();
-    component.exportSettingsForm.controls.reimbursableExpense.patchValue(true);
-    expect((component as any).createReimbursableExpenseWatcher()).toBeUndefined();
-    fixture.detectChanges();
-    component.exportSettingsForm.controls.reimbursableExpense.patchValue(false);
-    expect((component as any).createReimbursableExpenseWatcher()).toBeUndefined();
-  });
-
-  it('createCreditCardExpenseWatcher function check', () => {
-    component.exportSettingsForm.controls.creditCardExpense.patchValue(!component.exportSettingsForm.controls.creditCardExpense.value);
-    expect((component as any).createCreditCardExpenseWatcher()).toBeUndefined();
-    // Fixture.detectChanges();
-    component.exportSettingsForm.controls.creditCardExpense.patchValue(!component.exportSettingsForm.controls.creditCardExpense.value);
-    expect((component as any).createCreditCardExpenseWatcher()).toBeUndefined();
-  });
 
   it('restrictExpenseGroupSetting function check', () => {
     expect((component as any).restrictExpenseGroupSetting('CREDIT CARD PURCHASE')).toBeUndefined();
@@ -271,16 +255,5 @@ describe('ExportSettingsComponent', () => {
     fixture.detectChanges();
     expect(exportSettingService.postExportSettings).toHaveBeenCalled();
     expect(component.isLoading).toBeFalse();
-  });
-
-  it('exportSelectionValidator function check', () => {
-    const control = { value: ExpenseState.PAID, parent: formbuilder.group({
-      reimbursableExpense: ReimbursableExpensesObject.BILL
-    }) };
-    expect((component as any).exportSelectionValidator()(control as AbstractControl)).toBeNull();
-    const control1 = { value: ExpenseState.PAYMENT_PROCESSING, parent: formbuilder.group({
-      creditCardExpense: CorporateCreditCardExpensesObject.BILL
-    }) };
-    expect((component as any).exportSelectionValidator()(control1 as AbstractControl)).toBeNull();
   });
 });
