@@ -1,5 +1,5 @@
 import { UntypedFormGroup } from "@angular/forms";
-import { CorporateCreditCardExpensesObject, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject } from "../enum/enum.model";
+import { CorporateCreditCardExpensesObject, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject, FyleField } from "../enum/enum.model";
 import { ExpenseGroupSettingGet, ExpenseGroupSettingPost } from "../db/expense-group-setting.model";
 import { DefaultDestinationAttribute, GeneralMapping } from "../db/general-mapping.model";
 import { SelectFormOption } from "../misc/select-form-option.model";
@@ -7,6 +7,7 @@ import { SelectFormOption } from "../misc/select-form-option.model";
 export type ExportSettingWorkspaceGeneralSetting = {
   reimbursable_expenses_object: ReimbursableExpensesObject | null,
   corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject | null
+  name_in_journal_entry: FyleField | null;
 }
 
 export type ExportSettingGeneralMapping = {
@@ -49,7 +50,8 @@ export class ExportSettingModel {
       },
       workspace_general_settings: {
         reimbursable_expenses_object: exportSettingsForm.get('reimbursableExportType')?.value,
-        corporate_credit_card_expenses_object: exportSettingsForm.get('creditCardExportType')?.value
+        corporate_credit_card_expenses_object: exportSettingsForm.get('creditCardExportType')?.value,
+        name_in_journal_entry: exportSettingsForm.get('creditCardExportType')?.value === CorporateCreditCardExpensesObject.JOURNAL_ENTRY ? exportSettingsForm.get('nameInJournalEntry')?.value : null
       },
       general_mappings: {
         bank_account: exportSettingsForm.get('bankAccount')?.value ? exportSettingsForm.get('bankAccount')?.value : emptyDestinationAttribute,

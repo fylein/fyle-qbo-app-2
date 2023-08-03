@@ -1,4 +1,4 @@
-import { ExpenseState, CCCExpenseState, ExportDateType } from "../enum/enum.model";
+import { ExpenseState, CCCExpenseState, ExportDateType, FyleField } from "../enum/enum.model";
 
 export type ExpenseGroupSettingPost = {
   expense_state: ExpenseState;

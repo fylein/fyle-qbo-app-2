@@ -104,6 +104,7 @@ export enum ErrorType {
 
 export enum FyleField {
   EMPLOYEE = 'EMPLOYEE',
+  MERCHANT = 'MERCHANT',
   CATEGORY = 'CATEGORY',
   PROJECT = 'PROJECT',
   COST_CENTER = 'COST_CENTER',

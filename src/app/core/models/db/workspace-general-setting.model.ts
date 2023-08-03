@@ -1,4 +1,4 @@
-import { EmployeeFieldMapping, AutoMapEmployee, ReimbursableExpensesObject, CorporateCreditCardExpensesObject } from "../enum/enum.model";
+import { EmployeeFieldMapping, AutoMapEmployee, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, FyleField } from "../enum/enum.model";
 
 export type WorkspaceGeneralSetting = {
   id: number;
@@ -26,5 +26,6 @@ export type WorkspaceGeneralSetting = {
   map_fyle_cards_qbo_account?: boolean;
   map_merchant_to_vendor?: boolean;
   skip_cards_mapping?: boolean;
+  name_in_journal_entry: FyleField;
   is_simplify_report_closure_enabled: boolean;
 };
