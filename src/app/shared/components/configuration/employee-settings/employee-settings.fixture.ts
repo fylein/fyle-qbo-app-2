@@ -1,7 +1,7 @@
 import { EmployeeSettingGet } from "src/app/core/models/configuration/employee-setting.model";
 import { ExportSettingGet } from "src/app/core/models/configuration/export-setting.model";
 import { DestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
-import { EmployeeFieldMapping, AutoMapEmployee, ExpenseState, ExportDateType, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, CCCExpenseState } from "src/app/core/models/enum/enum.model";
+import { EmployeeFieldMapping, AutoMapEmployee, ExpenseState, ExportDateType, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, CCCExpenseState, FyleField } from "src/app/core/models/enum/enum.model";
 
 export const response: EmployeeSettingGet = {
   workspace_general_settings: { employee_field_mapping: EmployeeFieldMapping.EMPLOYEE, auto_map_employees: AutoMapEmployee.EMPLOYEE_CODE },
@@ -18,7 +18,8 @@ export const response1: ExportSettingGet = {
   },
   workspace_general_settings: {
     reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
-    corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL
+    corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL,
+    name_in_journal_entry: FyleField.EMPLOYEE
   },
   general_mappings: {
     bank_account: { id: '1', name: 'Fyle' },

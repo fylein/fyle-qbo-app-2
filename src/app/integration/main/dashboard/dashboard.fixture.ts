@@ -1,5 +1,5 @@
 import { WorkspaceGeneralSetting } from "../../../core/models/db/workspace-general-setting.model";
-import { EmployeeFieldMapping, ErrorType, ExpenseState, CCCExpenseState, ExportDateType, ExportMode, TaskLogState, TaskLogType } from "../../../core/models/enum/enum.model";
+import { EmployeeFieldMapping, ErrorType, ExpenseState, CCCExpenseState, ExportDateType, ExportMode, TaskLogState, TaskLogType, FyleField } from "../../../core/models/enum/enum.model";
 import { ExpenseGroupSetting } from '../../../core/models/db/expense-group-setting.model';
 import { MinimalUser } from "src/app/core/models/db/user.model";
 import { LastExport } from "src/app/core/models/db/last-export.model";
@@ -35,7 +35,8 @@ export const workspaceGeneralSettingResponse:WorkspaceGeneralSetting = {
   sync_fyle_to_qbo_payments: false,
   sync_qbo_to_fyle_payments: false,
   updated_at: new Date("2022-04-28T12:48:39.150177Z"),
-  workspace: 1
+  workspace: 1,
+  name_in_journal_entry: FyleField.EMPLOYEE
 };
 export const expenseGroupSettingResponse:ExpenseGroupSetting = {
   ccc_export_date_type: ExportDateType.CURRENT_DATE,

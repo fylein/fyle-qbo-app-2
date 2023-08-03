@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { CorporateCreditCardExpensesObject, ExpenseState, CCCExpenseState, ReimbursableExpensesObject } from '../enum/enum.model';
+import { CorporateCreditCardExpensesObject, ExpenseState, CCCExpenseState, ReimbursableExpensesObject, FyleField } from '../enum/enum.model';
 import { ExportSettingModel, ExportSettingPost } from "./export-setting.model";
 
 describe('ExportSettingModel', () => {
@@ -31,6 +31,7 @@ describe('ExportSettingModel', () => {
       defaultCreditCardVendor: new UntypedFormControl({id: '1', name: 'Fyle'}),
       qboExpenseAccount: new UntypedFormControl({id: '1', name: 'Fyle'}),
       defaultDebitCardAccount: new UntypedFormControl({id: '1', name: 'Fyle'}),
+      nameInJournalEntry: new UntypedFormControl(FyleField.EMPLOYEE),
       searchOption: new UntypedFormControl([])
     });
     const exportSettingPayload: ExportSettingPost = {
@@ -44,7 +45,8 @@ describe('ExportSettingModel', () => {
       },
       workspace_general_settings: {
         reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
-        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL
+        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL,
+        name_in_journal_entry: null
       },
       general_mappings: {
         bank_account: {id: '1', name: 'Fyle'},

@@ -1,7 +1,7 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
 import { ExportSettingService } from './export-setting.service';
 import { ExportSettingGet, ExportSettingPost } from '../../models/configuration/export-setting.model';
-import { ExpenseState, CCCExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, ExportDateType } from '../../models/enum/enum.model';
+import { ExpenseState, CCCExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, ExportDateType, FyleField } from '../../models/enum/enum.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
 
@@ -39,7 +39,8 @@ describe('ExportSettingService', () => {
       },
       workspace_general_settings: {
         reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
-        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL
+        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL,
+        name_in_journal_entry: null
       },
       general_mappings: {
         bank_account: { id: '1', name: 'Fyle' },
@@ -74,7 +75,8 @@ describe('ExportSettingService', () => {
       },
       workspace_general_settings: {
         reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
-        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL
+        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL,
+        name_in_journal_entry: FyleField.EMPLOYEE
       },
       general_mappings: {
         bank_account: { id: '1', name: 'Fyle' },
@@ -96,7 +98,8 @@ describe('ExportSettingService', () => {
       },
       workspace_general_settings: {
         reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
-        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL
+        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL,
+        name_in_journal_entry: FyleField.MERCHANT
       },
       general_mappings: {
         bank_account: { id: '1', name: 'Fyle' },

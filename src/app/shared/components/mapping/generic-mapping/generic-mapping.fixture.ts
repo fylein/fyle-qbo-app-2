@@ -186,7 +186,8 @@ export const getWorkspaceGeneralSettingsResponse: WorkspaceGeneralSetting = {
   map_fyle_cards_qbo_account: false,
   map_merchant_to_vendor: false,
   skip_cards_mapping: false,
-  is_simplify_report_closure_enabled: false
+  is_simplify_report_closure_enabled: false,
+  name_in_journal_entry: FyleField.EMPLOYEE
 };
 
 export const getMappingStats: MappingStats = {
