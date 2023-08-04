@@ -21,7 +21,7 @@ export class ImportSettingService {
     private apiService: ApiService,
     private workspaceService: WorkspaceService,
     private formBuilder: FormBuilder,
-    private dialog: MatDialog,
+    private dialog: MatDialog
   ) { }
 
   getImportSettings() {
@@ -31,7 +31,7 @@ export class ImportSettingService {
   postImportSettings(exportSettingsPayload: ImportSettingPost){
     return this.apiService.put(`/v2/workspaces/${this.workspaceId}/import_settings/`, exportSettingsPayload);
   }
-  
+
   getQboExpenseFields(xeroAttributes: ExpenseField[], mappingSettings: MappingSetting[], isCloneSettings: boolean = false, fyleFields: string[] = []): ExpenseFieldsFormOption[] {
     return xeroAttributes.map(attribute => {
       const mappingSetting = mappingSettings.filter((mappingSetting: MappingSetting) => {
@@ -55,7 +55,7 @@ export class ImportSettingService {
       };
     });
   }
-  
+
   private importToggleWatcher(): ValidatorFn {
     return (control: AbstractControl): {[key: string]: object} | null => {
       if (control.value) {
@@ -94,7 +94,7 @@ export class ImportSettingService {
         addSourceField: addSourceField
     };
   }
-  
+
   createExpenseField(destinationType: string, mappingSettings: MappingSetting[]): void {
     const existingFields = mappingSettings.map(setting => setting.source_field.split('_').join(' '));
     const dialogRef = this.dialog.open(ExpenseFieldCreationDialogComponent, {

@@ -215,7 +215,7 @@ export class MappingService {
     }
     return undefined;
   }
-  
+
   getQboField(): Observable<ExpenseField[]> {
     return this.apiService.get(`/workspaces/${this.workspaceId}/qbo/qbo_fields/`, {});
   }

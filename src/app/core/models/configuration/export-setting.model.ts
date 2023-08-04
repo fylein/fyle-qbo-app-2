@@ -64,7 +64,6 @@ export class ExportSettingModel {
         default_debit_card_account: exportSettingsForm.get('defaultDebitCardAccount')?.value ? exportSettingsForm.get('defaultDebitCardAccount')?.value : emptyDestinationAttribute
       }
     };
-    console.log('hello', exportSettingPayload);
     return exportSettingPayload;
   }
 }
