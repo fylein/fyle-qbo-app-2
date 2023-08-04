@@ -33,7 +33,9 @@ describe('CloneSettingsComponent', () => {
     service2 = {
       getGroupedQBODestinationAttributes: () => of(mockGroupedDestinationAttribtues),
       getFyleExpenseFields: () => of(expenseFieldresponse),
-      getMappingSettings: () => of(getMappingSettingResponse)
+      getMappingSettings: () => of(getMappingSettingResponse),
+      getQBODestinationAttributes: () => null,
+      getExpenseFieldsFormArray: () => null
     };
     await TestBed.configureTestingModule({
       declarations: [ CloneSettingsComponent ],
