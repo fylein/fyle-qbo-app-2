@@ -32,6 +32,7 @@ export class CloneSettingModel {
         const importSettingPayload = ImportSettingModel.constructPayload(cloneSettingsForm, customMappingSettings);
         const advancedSettingPayload = AdvancedSettingModel.constructPayload(cloneSettingsForm);
         const employeeMappingPayload = EmployeeSettingModel.constructPayload(cloneSettingsForm);
+        console.log('employee mappings', employeeMappingPayload)
 
         const cloneSettingPayload: CloneSettingPost = {
             export_settings: exportSettingPayload,

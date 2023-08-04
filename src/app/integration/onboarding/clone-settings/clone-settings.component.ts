@@ -9,7 +9,7 @@ import { ExportSettingService } from 'src/app/core/services/configuration/export
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 import { HelperService } from 'src/app/core/services/core/helper.service';
-import { EmployeeFieldMapping, ReimbursableExpensesObject, ClickEvent, OnboardingStep, ProgressPhase, ExpenseGroupingFieldOption, CorporateCreditCardExpensesObject, ExportDateType, ExpenseState, CCCExpenseState, MappingDestinationField  } from 'src/app/core/models/enum/enum.model';
+import { EmployeeFieldMapping, ReimbursableExpensesObject, ClickEvent, OnboardingStep, ProgressPhase, ExpenseGroupingFieldOption, CorporateCreditCardExpensesObject, ExportDateType, ExpenseState, CCCExpenseState, MappingDestinationField, SimpleSearchType, SimpleSearchPage  } from 'src/app/core/models/enum/enum.model';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
@@ -76,6 +76,12 @@ export class CloneSettingsComponent implements OnInit {
   qboExpenseFields: ExpenseFieldsFormOption[];
   
   additionalQboExpenseFields: ExpenseFieldsFormOption[];
+  
+  SimpleSearchPage = SimpleSearchPage;
+
+  SimpleSearchType = SimpleSearchType;
+  
+  taxCodes: DestinationAttribute[];
 
   chartOfAccountTypesList: string[] = [
     'Expense', 'Other Expense', 'Fixed Asset', 'Cost of Goods Sold', 'Current Liability', 'Equity',
@@ -301,25 +307,31 @@ export class CloneSettingsComponent implements OnInit {
     this.cloneSettingsForm?.controls.reimbursableExpense?.setValidators((this.exportSettingService.exportSelectionValidator(this.cloneSettingsForm, true)));
     this.cloneSettingsForm?.controls.creditCardExpense?.setValidators(this.exportSettingService.exportSelectionValidator(this.cloneSettingsForm, true));
   }
-  
-  private importToggleWatcher(): ValidatorFn {
-    return (control: AbstractControl): {[key: string]: object} | null => {
-      if (control.value) {
-        // Mark Fyle field as mandatory if toggle is enabled
-        control.parent?.get('source_field')?.setValidators(Validators.required);
-        control.parent?.get('source_field')?.setValidators(RxwebValidators.unique());
-      } else {
-        // Reset Fyle field if toggle is disabled
-        control.parent?.get('source_field')?.clearValidators();
-        control.parent?.get('source_field')?.setValue(null);
-      }
 
-      return null;
-    };
+  private setupExpenseFieldWatcher(): void {
+    this.importSettingService.patchExpenseFieldEmitter.subscribe((expenseField) => {
+      if (expenseField.addSourceField) {
+        this.fyleExpenseFields.push(expenseField.source_field);
+      }
+      this.expenseFields.controls.filter(field => field.value.destination_field === expenseField.destination_field)[0].patchValue(expenseField);
+    });
+  }
+  
+  private setupEmployeeMappingWatcher(): void {
+    this.cloneSettingsForm.controls.employeeMapping.valueChanges.subscribe((employeeMapping: EmployeeFieldMapping) => {
+      console.log('employeeFieldMapping', employeeMapping)
+      this.reimbursableExportOptions = this.exportSettingService.getReimbursableExportTypeOptions(employeeMapping);
+    })
   }
 
   disableImportCoa(): void {
     this.cloneSettingsForm.controls.chartOfAccount.setValue(false);
+  }
+  
+  disableImportTax(): void {
+    this.cloneSettingsForm.controls.taxCode.setValue(false);
+    this.cloneSettingsForm.controls.defaultTaxCode.clearValidators();
+    this.cloneSettingsForm.controls.defaultTaxCode.setValue(null);
   }
   
   enableTaxImport(): void {
@@ -348,6 +360,9 @@ export class CloneSettingsComponent implements OnInit {
 
     this.setCreditCardExpenseGroupingDateOptions(this.cloneSettingsForm.controls.creditCardExportGroup.value);
     this.setGeneralMappingsValidator();
+    
+    this.setupExpenseFieldWatcher();
+    this.setupEmployeeMappingWatcher();
   }
   
   createChartOfAccountField(type: string): UntypedFormGroup {
@@ -365,6 +380,10 @@ export class CloneSettingsComponent implements OnInit {
     return this.cloneSettingsForm.get('expenseFields') as FormArray;
   }
   
+  createExpenseField(destinationType: string): void {
+    this.importSettingService.createExpenseField(destinationType, this.mappingSettings);
+  }
+
   addExpenseField(field: ExpenseFieldsFormOption): void {
     this.expenseFields.push(this.formBuilder.group({
       source_field: [field.source_field, Validators.compose([RxwebValidators.unique(), Validators.required])],
@@ -392,15 +411,8 @@ export class CloneSettingsComponent implements OnInit {
 
   private setupForm(): void {
     const chartOfAccountTypeFormArray = this.chartOfAccountTypesList.map((type) => this.createChartOfAccountField(type));
-    const expenseFieldsFormArray = this.qboExpenseFields.map((field) => {
-      return this.formBuilder.group({
-        source_field: [field.source_field],
-        destination_field: [field.destination_field],
-        import_to_fyle: [field.import_to_fyle, this.importToggleWatcher()],
-        disable_import_to_fyle: [field.disable_import_to_fyle],
-        source_placeholder: ['']
-      });
-    });
+    
+    const expenseFieldsFormArray = this.importSettingService.getExpenseFieldsFormArray(this.qboExpenseFields, false);
 
     this.cloneSettingsForm = this.formBuilder.group({
       // Employee Mapping
@@ -469,27 +481,33 @@ export class CloneSettingsComponent implements OnInit {
     });
   }
   
-  private setImportFields(fyleFields: ExpenseField[], xeroFields: ExpenseField[]): void {
+  private setImportFields(fyleFields: ExpenseField[]): void {
     this.fyleExpenseFields = fyleFields.map(field => field.attribute_type);
       // Remove custom mapped Fyle options
       const customMappedFyleFields = this.mappingSettings.filter(setting => !setting.import_to_fyle).map(setting => setting.source_field);
       const customMappedXeroFields = this.mappingSettings.filter(setting => !setting.import_to_fyle).map(setting => setting.destination_field);
-      const importedXeroFields = this.cloneSettings.import_settings.mapping_settings.filter(setting => setting.import_to_fyle).map(setting => setting.destination_field);
+      const importedQboFields = this.cloneSettings.import_settings.mapping_settings.filter(setting => setting.import_to_fyle).map(setting => setting.destination_field);
 
       if (customMappedFyleFields.length) {
         this.fyleExpenseFields = this.fyleExpenseFields.filter(field => !customMappedFyleFields.includes(field));
       }
+      
+      const qboFields = [
+        {attribute_type: MappingDestinationField.CLASS, display_name: 'Class'},
+        {attribute_type: MappingDestinationField.DEPARTMENT, display_name: 'Department'},
+        {attribute_type: MappingDestinationField.CUSTOMER, display_name: 'Customer'},
+      ]
 
       // Remove custom mapped Xero fields
-      const xeroAttributes = xeroFields.filter(
+      const qboAttributes = qboFields.filter(
         field => !customMappedXeroFields.includes(field.attribute_type)
       );
-
-      this.qboExpenseFields = this.getQboExpenseFields(importedXeroFields, this.cloneSettings.import_settings.mapping_settings, true, this.fyleExpenseFields);
-      const allExpenseFields = this.importSettingService.getQboExpenseFields(xeroAttributes, this.cloneSettings.import_settings.mapping_settings, true, this.fyleExpenseFields);
-
+      
+      this.qboExpenseFields = this.getQboExpenseFields(importedQboFields, this.cloneSettings.import_settings.mapping_settings, true, this.fyleExpenseFields);
+      const allExpenseFields = this.importSettingService.getQboExpenseFields(qboAttributes, this.cloneSettings.import_settings.mapping_settings, true, this.fyleExpenseFields);
+      
       this.additionalQboExpenseFields = allExpenseFields.filter((field) => {
-        return !this.qboExpenseFields.some((xeroField) => xeroField.destination_field.toUpperCase() === field.destination_field.toUpperCase());
+        return !this.qboExpenseFields.some((qboField) => qboField.destination_field.toUpperCase() === field.destination_field.toUpperCase());
       });
   }
 
@@ -502,7 +520,7 @@ export class CloneSettingsComponent implements OnInit {
       this.mappingService.getGroupedQBODestinationAttributes(destinationAttributes),
       this.mappingService.getMappingSettings(),
       this.mappingService.getFyleExpenseFields(),
-      this.mappingService.getQboField()
+      this.mappingService.getQBODestinationAttributes('TAX_CODE')
     ]).subscribe(responses => {
       this.cloneSettings = responses[0];
       this.fyleExpenseFields = responses[3].map(field => field.attribute_type);
@@ -516,9 +534,10 @@ export class CloneSettingsComponent implements OnInit {
       this.expenseAccounts = this.bankAccounts.concat(this.cccAccounts);
       this.reimbursableExpenseStateOptions = this.exportSettingService.getReimbursableExpenseStateOptions(this.cloneSettings.export_settings.workspace_general_settings.is_simplify_report_closure_enabled);
       this.cccExpenseStateOptions = this.exportSettingService.getCCCExpenseStateOptions(this.cloneSettings.export_settings.workspace_general_settings.is_simplify_report_closure_enabled);
-      this.reimbursableExportOptions = this.exportSettingService.getReimbursableExportTypeOptions(EmployeeFieldMapping.EMPLOYEE);
+      this.reimbursableExportOptions = this.exportSettingService.getReimbursableExportTypeOptions(this.cloneSettings.employee_mappings.workspace_general_settings.employee_field_mapping);
       
-      this.setImportFields(responses[3], responses[4]);
+      this.setImportFields(responses[3]);
+      this.taxCodes = responses[4];
   
       this.setupForm();
     });
