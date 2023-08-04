@@ -140,7 +140,6 @@ export class CloneSettingsComponent implements OnInit {
 
   getExportType(exportType: ReimbursableExpensesObject): string {
     const lowerCaseWord = exportType.toLowerCase();
-
     return lowerCaseWord.charAt(0).toUpperCase() + lowerCaseWord.slice(1);
   }
 
