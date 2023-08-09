@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { EmployeeSettingFormOption, EmployeeSettingGet, EmployeeSettingModel } from 'src/app/core/models/configuration/employee-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { AutoMapEmployee, ConfigurationCtaText, EmployeeFieldMapping, OnboardingState, OnboardingStep, ProgressPhase, ReimbursableExpensesObject, UpdateEvent } from 'src/app/core/models/enum/enum.model';
+import { ConfigurationCtaText, EmployeeFieldMapping, OnboardingState, OnboardingStep, ProgressPhase, ReimbursableExpensesObject, UpdateEvent } from 'src/app/core/models/enum/enum.model';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { EmployeeSettingService } from 'src/app/core/services/configuration/employee-setting.service';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
@@ -37,35 +37,9 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
 
   existingEmployeeFieldMapping: EmployeeFieldMapping | undefined;
 
-  employeeMappingOptions: EmployeeSettingFormOption[] = [
-    {
-      value: EmployeeFieldMapping.EMPLOYEE,
-      label: 'Employees'
-    },
-    {
-      value: EmployeeFieldMapping.VENDOR,
-      label: 'Vendors'
-    }
-  ];
+  employeeMappingOptions: EmployeeSettingFormOption[] = this.exportSettingService.getEmployeeFieldMappingOptions();
 
-  autoMapEmployeeOptions: EmployeeSettingFormOption[] = [
-    {
-      value: null,
-      label: 'None'
-    },
-    {
-      value: AutoMapEmployee.NAME,
-      label: 'Fyle Name to QuickBooks Online Display name'
-    },
-    {
-      value: AutoMapEmployee.EMAIL,
-      label: 'Fyle Email to QuickBooks Online Email'
-    },
-    {
-      value: AutoMapEmployee.EMPLOYEE_CODE,
-      label: 'Fyle Employee Code to QuickBooks Online Display name'
-    }
-  ];
+  autoMapEmployeeOptions: EmployeeSettingFormOption[] = this.exportSettingService.getAutoMapEmployeeOptions();
 
   windowReference: Window;
 

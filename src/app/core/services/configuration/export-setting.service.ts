@@ -167,16 +167,20 @@ export class ExportSettingService {
   getAutoMapEmployeeOptions(): EmployeeSettingFormOption[] {
     return [
       {
-        label: 'None',
-        value: null
+        value: null,
+        label: 'None'
       },
       {
-        label: 'Employee name on Fyle to contact name on Quickbooks',
-        value: AutoMapEmployee.NAME
+        value: AutoMapEmployee.NAME,
+        label: 'Fyle Name to QuickBooks Online Display name'
       },
       {
-        label: 'Employee email on Fyle to contact email on Quickbooks',
-        value: AutoMapEmployee.EMAIL
+        value: AutoMapEmployee.EMAIL,
+        label: 'Fyle Email to QuickBooks Online Email'
+      },
+      {
+        value: AutoMapEmployee.EMPLOYEE_CODE,
+        label: 'Fyle Employee Code to QuickBooks Online Display name'
       }
     ];
   }

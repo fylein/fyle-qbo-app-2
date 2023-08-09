@@ -454,6 +454,19 @@ th.mat-header-cell:last-of-type {
   right: 2px !important;
 }
 
+.mat-menu-panel {
+  margin-top: 10px;
+  margin-left: 10px;
+  min-height: 40px !important;
+}
+
+.mat-menu-item {
+  height: 300px !important;
+  font-size: 14px !important;
+  line-height: 0 !important;
+  width: 230px !important;
+}
+
 .selected-value-check-mark {
   width: 15px;
   height: 15px;
@@ -849,25 +862,6 @@ th.mat-header-cell:last-of-type {
     }
   }
 }
-
-.mat-menu-panel-1 {
-  margin-top: 10px;
-  margin-left: 10px;
-  min-height: 40px !important;
-  background-color: #FF3366;
-}
-
-.mat-menu-item {
-  height: 300px !important;
-  font-size: 14px !important;
-  line-height: 0 !important;
-}
-
-.mat-menu-item {
-  width: 230px !important;
-}
-
-
 
 .import-settings {
   &--field-checkbox-contents {
