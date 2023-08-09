@@ -176,7 +176,7 @@ describe('AdvancedSettingsComponent', () => {
   });
 
   it('showAutoCreateMerchantsAsVendorsField function check', () => {
-    expect(component.showAutoCreateMerchantsAsVendorsField()).toBeTrue();
+    expect(component.showAutoCreateMerchantsAsVendorsField()).toBeFalse();
   });
 
   it('navigateToPreviousStep function check', () => {

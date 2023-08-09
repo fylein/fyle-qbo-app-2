@@ -3,7 +3,7 @@ import { EmployeeMapping } from "src/app/core/models/db/employee-mapping.model";
 import { MappingSetting, MappingSettingResponse, MinimalMappingSetting } from "src/app/core/models/db/mapping-setting.model";
 import { MappingList, MappingPost, MappingStats } from "src/app/core/models/db/mapping.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
-import { EmployeeFieldMapping, FyleField, MappingDestinationField, MappingSourceField, MappingState, QBOField } from "src/app/core/models/enum/enum.model";
+import { EmployeeFieldMapping, FyleField, MappingDestinationField, MappingSourceField, MappingState, NameInJournalEntry } from "src/app/core/models/enum/enum.model";
 import { environment } from "src/environments/environment";
 const API_BASE_URL = environment.api_url;
 const workspace_id = environment.tests.workspaceId;
@@ -187,7 +187,7 @@ export const getWorkspaceGeneralSettingsResponse: WorkspaceGeneralSetting = {
   map_merchant_to_vendor: false,
   skip_cards_mapping: false,
   is_simplify_report_closure_enabled: false,
-  name_in_journal_entry: FyleField.EMPLOYEE
+  name_in_journal_entry: NameInJournalEntry.EMPLOYEE
 };
 
 export const getMappingStats: MappingStats = {

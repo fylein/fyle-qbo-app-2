@@ -3,7 +3,7 @@ import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Val
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { ConfigurationCtaText, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, OnboardingState, OnboardingStep, ProgressPhase, ReimbursableExpensesObject, UpdateEvent, FyleField } from 'src/app/core/models/enum/enum.model';
+import { ConfigurationCtaText, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, OnboardingState, OnboardingStep, ProgressPhase, ReimbursableExpensesObject, UpdateEvent, NameInJournalEntry } from 'src/app/core/models/enum/enum.model';
 import { ExportSettingGet, ExportSettingFormOption, ExportSettingModel } from 'src/app/core/models/configuration/export-setting.model';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
@@ -57,12 +57,12 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   nameInJournalOptions = [
     {
-      label: 'Merchant/Vendor Name',
-      value: FyleField.MERCHANT
+      label: 'Merchant Name',
+      value: NameInJournalEntry.MERCHANT
     },
     {
-      label: 'Employee/Vendor Name',
-      value: FyleField.EMPLOYEE
+      label: 'Employee Name',
+      value: NameInJournalEntry.EMPLOYEE
     }
   ];
 
@@ -541,7 +541,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       defaultCreditCardVendor: [this.exportSettings.general_mappings?.default_ccc_vendor?.id ? this.exportSettings.general_mappings.default_ccc_vendor : null],
       qboExpenseAccount: [this.exportSettings.general_mappings?.qbo_expense_account?.id ? this.exportSettings.general_mappings.qbo_expense_account : null],
       defaultDebitCardAccount: [this.exportSettings.general_mappings?.default_debit_card_account?.id ? this.exportSettings.general_mappings.default_debit_card_account : null],
-      nameInJournalEntry: [this.exportSettings.workspace_general_settings.name_in_journal_entry ? this.exportSettings.workspace_general_settings.name_in_journal_entry : null ],
+      nameInJournalEntry: [this.exportSettings.workspace_general_settings.name_in_journal_entry ? this.exportSettings.workspace_general_settings.name_in_journal_entry : NameInJournalEntry.EMPLOYEE ],
       searchOption: []
     });
 

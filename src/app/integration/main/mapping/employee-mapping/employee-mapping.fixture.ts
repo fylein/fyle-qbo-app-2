@@ -2,7 +2,7 @@ import { DestinationAttribute, PaginatedDestinationAttribute } from "src/app/cor
 import { EmployeeMapping, ExtendedEmployeeAttributeResponse } from "src/app/core/models/db/employee-mapping.model";
 import { MappingList, MappingStats } from "src/app/core/models/db/mapping.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
-import { EmployeeFieldMapping, FyleField, MappingState } from "src/app/core/models/enum/enum.model";
+import { EmployeeFieldMapping, NameInJournalEntry, MappingState } from "src/app/core/models/enum/enum.model";
 import { environment } from "src/environments/environment";
 
 const API_BASE_URL = environment.api_url;
@@ -51,7 +51,7 @@ export const workspaceGeneralSettingResponse:WorkspaceGeneralSetting = {
   sync_qbo_to_fyle_payments: false,
   updated_at: new Date("2022-04-28T12:48:39.150177Z"),
   workspace: 1,
-  name_in_journal_entry: FyleField.EMPLOYEE
+  name_in_journal_entry: NameInJournalEntry.EMPLOYEE
 };
 export const MappingStatsResponse:MappingStats= {
   all_attributes_count: 3,

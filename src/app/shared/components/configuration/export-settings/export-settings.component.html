@@ -155,10 +155,10 @@
           <app-configuration-select-field
             [form]="exportSettingsForm"
             [options]="nameInJournalOptions"
-            [isFieldMandatory]="true"
+            [isFieldMandatory]="false"
             [mandatoryErrorListName]="'Name in which Journal Entry should export'"
             [label]="'Name in Journal Entry (CCC)'"
-            [subLabel]="'You can choose whether you want to use the merchant name or the Employee name in the name field for your Journal Entries'"
+            [subLabel]="'You can select either the \'Merchant Name\' or the \'Employee Name\' to appear in the \'Name\' field of your Journal Entries'"
             [placeholder]="'Select a name'"
             [formControllerName]="'nameInJournalEntry'"
             >

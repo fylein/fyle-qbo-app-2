@@ -1,7 +1,7 @@
 import { ExportSettingFormOption, ExportSettingGet } from "src/app/core/models/configuration/export-setting.model";
 import { GroupedDestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
-import { AutoMapEmployee, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject, FyleField } from "src/app/core/models/enum/enum.model";
+import { AutoMapEmployee, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject, NameInJournalEntry } from "src/app/core/models/enum/enum.model";
 
 export const export_settings: ExportSettingFormOption[] = [
   {
@@ -45,7 +45,7 @@ export const workspaceResponse:WorkspaceGeneralSetting = {
   sync_qbo_to_fyle_payments: false,
   updated_at: new Date("2022-04-28T12:48:39.150177Z"),
   workspace: 1,
-  name_in_journal_entry: FyleField.EMPLOYEE
+  name_in_journal_entry: NameInJournalEntry.EMPLOYEE
 };
 export const workspaceResponse1:WorkspaceGeneralSetting = {
   auto_create_destination_entity: true,
@@ -74,7 +74,7 @@ export const workspaceResponse1:WorkspaceGeneralSetting = {
   sync_qbo_to_fyle_payments: false,
   updated_at: new Date("2022-04-28T12:48:39.150177Z"),
   workspace: 1,
-  name_in_journal_entry: FyleField.EMPLOYEE
+  name_in_journal_entry: NameInJournalEntry.EMPLOYEE
 };
 export const destinationAttribute: GroupedDestinationAttribute ={
   ACCOUNTS_PAYABLE: [{
@@ -152,7 +152,7 @@ export const exportResponse1: ExportSettingGet = {
   workspace_general_settings: {
     reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
     corporate_credit_card_expenses_object: null,
-    name_in_journal_entry: null
+    name_in_journal_entry: NameInJournalEntry.EMPLOYEE
   },
   workspace_id: 1,
   general_mappings: {
@@ -194,7 +194,7 @@ export const exportResponse: ExportSettingGet = {
   workspace_general_settings: {
     reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
     corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL,
-    name_in_journal_entry: null
+    name_in_journal_entry: NameInJournalEntry.EMPLOYEE
   },
   general_mappings: {
     bank_account: { id: '1', name: 'Fyle' },

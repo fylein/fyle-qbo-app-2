@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { AdvancedSettingFormOption, AdvancedSettingGet, AdvancedSettingModel } from 'src/app/core/models/configuration/advanced-setting.model';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { AutoMapEmployee, ConfigurationCtaText, CorporateCreditCardExpensesObject, CustomOperatorOption, EmployeeFieldMapping, FyleField, JoinOptions, OnboardingState, OnboardingStep, PaymentSyncDirection, ProgressPhase, ReimbursableExpensesObject, UpdateEvent } from 'src/app/core/models/enum/enum.model';
+import { AutoMapEmployee, ConfigurationCtaText, CorporateCreditCardExpensesObject, CustomOperatorOption, EmployeeFieldMapping, NameInJournalEntry, JoinOptions, OnboardingState, OnboardingStep, PaymentSyncDirection, ProgressPhase, ReimbursableExpensesObject, UpdateEvent } from 'src/app/core/models/enum/enum.model';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
@@ -271,7 +271,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   }
 
   showAutoCreateMerchantsAsVendorsField(): boolean {
-    return !this.workspaceGeneralSettings.import_vendors_as_merchants && (this.workspaceGeneralSettings.corporate_credit_card_expenses_object === CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || this.workspaceGeneralSettings.corporate_credit_card_expenses_object === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE || this.workspaceGeneralSettings.corporate_credit_card_expenses_object === CorporateCreditCardExpensesObject.JOURNAL_ENTRY || this.workspaceGeneralSettings.name_in_journal_entry === FyleField.MERCHANT);
+    return !this.workspaceGeneralSettings.import_vendors_as_merchants && (this.workspaceGeneralSettings.corporate_credit_card_expenses_object === CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || this.workspaceGeneralSettings.corporate_credit_card_expenses_object === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE || this.workspaceGeneralSettings.name_in_journal_entry === NameInJournalEntry.MERCHANT);
   }
 
   private setupForm(): void {

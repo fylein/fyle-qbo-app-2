@@ -1,7 +1,7 @@
 import { ExpenseFieldsFormOption, ImportSettingGet } from "src/app/core/models/configuration/import-setting.model";
 import { GeneralMapping } from "src/app/core/models/db/general-mapping.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
-import { EmployeeFieldMapping, FyleField, MappingDestinationField, MappingSourceField, QBOField } from "src/app/core/models/enum/enum.model";
+import { EmployeeFieldMapping, NameInJournalEntry, MappingDestinationField, MappingSourceField, QBOField } from "src/app/core/models/enum/enum.model";
 import { ExpenseField } from "src/app/core/models/misc/expense-field.model";
 import { MappingSetting } from "src/app/core/models/db/mapping-setting.model";
 import { DestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
@@ -34,7 +34,7 @@ const workspaceresponse:WorkspaceGeneralSetting = {
   sync_qbo_to_fyle_payments: false,
   updated_at: new Date("2022-04-28T12:48:39.150177Z"),
   workspace: 1,
-  name_in_journal_entry: FyleField.EMPLOYEE
+  name_in_journal_entry: NameInJournalEntry.EMPLOYEE
 };
 
 const general_mappings:GeneralMapping = {

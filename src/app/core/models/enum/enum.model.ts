@@ -104,7 +104,6 @@ export enum ErrorType {
 
 export enum FyleField {
   EMPLOYEE = 'EMPLOYEE',
-  MERCHANT = 'MERCHANT',
   CATEGORY = 'CATEGORY',
   PROJECT = 'PROJECT',
   COST_CENTER = 'COST_CENTER',
@@ -271,4 +270,9 @@ export enum CustomOperatorOption {
   Is = "iexact",
   IsEmpty = "is_empty",
   IsNotEmpty = "is_not_empty"
+}
+
+export enum NameInJournalEntry {
+  EMPLOYEE = 'EMPLOYEE',
+  MERCHANT = 'MERCHANT'
 }
