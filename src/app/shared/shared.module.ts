@@ -67,6 +67,7 @@ import { EmailMultiSelectFieldComponent } from './components/configuration/email
 import { SkipExportLogTableComponent } from './components/export-log/skip-export-log-table/skip-export-log-table.component';
 import { ToggleComponent } from './components/core/toggle/toggle.component';
 import { SelectComponent } from './components/core/select/select.component';
+import { EmailMultiSelectComponent } from '../core/email-multi-select/email-multi-select.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import { SelectComponent } from './components/core/select/select.component';
     EmailMultiSelectFieldComponent,
     SkipExportLogTableComponent,
     ToggleComponent,
-    SelectComponent
+    SelectComponent,
+    EmailMultiSelectComponent
   ],
   imports: [
     CommonModule,
@@ -165,7 +167,8 @@ import { SelectComponent } from './components/core/select/select.component';
     MandatoryErrorMessageComponent,
     MatChipsModule,
     ToggleComponent,
-    SelectComponent
+    SelectComponent,
+    EmailMultiSelectComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

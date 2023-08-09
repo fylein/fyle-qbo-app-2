@@ -86,9 +86,7 @@
                         </div>
 
                         <div class="clone-settings--export-type">
-                            <app-toggle 
-                                [isCloneSettings]="true" 
-                                [form]="cloneSettingsForm"
+                            <app-toggle [isCloneSettings]="true" [form]="cloneSettingsForm"
                                 [formControllerName]="'reimbursableExpense'">
                             </app-toggle>
                         </div>
@@ -147,20 +145,18 @@
                             </div>
 
                             <div>
-                                <div *ngIf="showExpenseAccountField()" class="clone-settings--sub-options-text">
-                                    <app-select [form]="cloneSettingsForm" [qboAttributes]="expenseAccounts"
-                                        [isFieldMandatory]="true" [placeholder]="'To which Expense Account'"
-                                        [formControllerName]="'qboExpenseAccount'" [phase]="ProgressPhase.ONBOARDING">
-                                    </app-select>
-                                </div>
-
                                 <div *ngIf="showBankAccountField()" class="clone-settings--sub-options-text">
                                     <app-select [form]="cloneSettingsForm" [qboAttributes]="bankAccounts"
                                         [isFieldMandatory]="true" [placeholder]="'To which Bank Account Account'"
                                         [formControllerName]="'bankAccount'" [phase]="ProgressPhase.ONBOARDING">
                                     </app-select>
                                 </div>
-
+                                <div *ngIf="showExpenseAccountField()" class="clone-settings--sub-options-text">
+                                    <app-select [form]="cloneSettingsForm" [qboAttributes]="expenseAccounts"
+                                        [isFieldMandatory]="true" [placeholder]="'To which Expense Account'"
+                                        [formControllerName]="'qboExpenseAccount'" [phase]="ProgressPhase.ONBOARDING">
+                                    </app-select>
+                                </div>
                                 <div *ngIf="showReimbursableAccountsPayableField()"
                                     class="clone-settings--sub-options-text">
                                     <app-select [form]="cloneSettingsForm" [qboAttributes]="accountsPayables"
@@ -210,13 +206,12 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="clone-settings--configuration-section">
                     <div fxLayout="row">
                         <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
                             <p>Corporate Card Expense</p>
-                            <img class="clone-settings--info-icon"
-                                src="assets/images/svgs/general/info-disabled.svg"
+                            <img class="clone-settings--info-icon" src="assets/images/svgs/general/info-disabled.svg"
                                 matTooltip="This section contains the settings for exporting Out-of pocket expenses from Fyle to Quickbooks"
                                 matTooltipPosition="above" matTooltipClass="clone-settings">
                         </div>
@@ -339,12 +334,11 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div *ngIf="showCCCAccountsPayableField() && !showReimbursableAccountsPayableField()">
                         <div class="clone-settings--configuration-section">
                             <div fxLayout="row">
-                                <div class="clone-settings--field-section" fxLayout="row"
-                                    fxLayoutAlign="start center">
+                                <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
                                     <img class="clone-settings--sub-options-icon"
                                         src="assets/images/svgs/general/calendar-disabled.svg">
                                     <p class="clone-settings--sub-options-text">Select Accounts Payable Account</p>
@@ -389,10 +383,11 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div>
-                    <div *ngIf="cloneSettingsForm.value.chartOfAccount" fxLayoutAlign="space-between center" class="clone-settings--coa-import-section"
-                        (mouseenter)="hoveredIndex.categoryImport= 1" (mouseleave)="hoveredIndex.categoryImport= -1">
+                    <div *ngIf="cloneSettingsForm.value.chartOfAccount" fxLayoutAlign="space-between center"
+                        class="clone-settings--coa-import-section" (mouseenter)="hoveredIndex.categoryImport= 1"
+                        (mouseleave)="hoveredIndex.categoryImport= -1">
                         <div fxLayoutAlign="start center">
                             <div fxLayoutAlign="start center" class="clone-settings--qbo-field">
                                 <p class="clone-settings--qbo-field-text">
@@ -430,7 +425,7 @@
                                 class="clone-settings--delete-icon pointer" (click)="disableImportCoa()">
                         </div>
                     </div>
-                    
+
                     <div formArrayName="expenseFields">
                         <div *ngFor="let expenseField of expenseFields.controls; let i = index" [formGroupName]="i"
                             fxLayoutAlign="space-between center" class="clone-settings--coa-import-section"
@@ -458,9 +453,14 @@
                                                     class="selected-value-check-mark">
                                             </mat-option>
                                         </mat-select>
-                                        <div *ngIf="expenseField.touched && !expenseField.valid && !expenseField.disabled" class="clone-settings--error-message">
-                                            <app-mandatory-error-message *ngIf="expenseField.get('source_field')?.errors?.required" [listName]="'field'"></app-mandatory-error-message>
-                                            <app-mandatory-error-message *ngIf="expenseField.get('source_field')?.errors?.unique" [customErrorMessage]="'Fyle Field should be unique'"></app-mandatory-error-message>
+                                        <div *ngIf="expenseField.touched && !expenseField.valid && !expenseField.disabled"
+                                            class="clone-settings--error-message">
+                                            <app-mandatory-error-message
+                                                *ngIf="expenseField.get('source_field')?.errors?.required"
+                                                [listName]="'field'"></app-mandatory-error-message>
+                                            <app-mandatory-error-message
+                                                *ngIf="expenseField.get('source_field')?.errors?.unique"
+                                                [customErrorMessage]="'Fyle Field should be unique'"></app-mandatory-error-message>
                                         </div>
                                         <div class="mat-select-arrow-closed"></div>
                                     </mat-form-field>
@@ -478,76 +478,296 @@
                             <div *ngIf="i === hoveredIndex.expenseFieldImport">
                                 <img matTooltip="Delete" matTooltipPosition="left" matTooltipClass="left" width="18px"
                                     height="20px" src="assets/images/svgs/actions/delete.svg"
-                                    class="clone-settings--delete-icon pointer" (click)="deleteExpenseField(i, expenseField)">
+                                    class="clone-settings--delete-icon pointer"
+                                    (click)="deleteExpenseField(i, expenseField)">
                             </div>
                         </div>
                     </div>
-                    
-                    <div *ngIf="cloneSettingsForm.value.taxCode" fxLayoutAlign="space-between center" class="clone-settings--coa-import-section"
-                    (mouseenter)="hoveredIndex.taxImport= 1" (mouseleave)="hoveredIndex.taxImport= -1">
-                    <div fxLayoutAlign="start center">
-                        <div fxLayoutAlign="start center" class="clone-settings--qbo-field">
-                            <p class="clone-settings--qbo-field-text">
-                                Tax Code
-                            </p>
-                        </div>
 
-                        <img src="assets/images/svgs/general/connect-arrow.svg">
+                    <div *ngIf="cloneSettingsForm.value.taxCode" fxLayoutAlign="space-between center"
+                        class="clone-settings--coa-import-section" (mouseenter)="hoveredIndex.taxImport= 1"
+                        (mouseleave)="hoveredIndex.taxImport= -1">
+                        <div fxLayoutAlign="start center">
+                            <div fxLayoutAlign="start center" class="clone-settings--qbo-field">
+                                <p class="clone-settings--qbo-field-text">
+                                    Tax Code
+                                </p>
+                            </div>
 
-                        <div fxLayoutAlign="start center" class="clone-settings--qbo-field clone-settings--tax-group-field">
-                            <p class="clone-settings--qbo-field-text">
-                                Tax Group
-                            </p>
-                        </div>
+                            <img src="assets/images/svgs/general/connect-arrow.svg">
 
-                        <mat-form-field floatLabel="always" appearance="outline"
-                            class="import-settings--fyle-field">
-                            <mat-select placeholder="Select Default Tax Code"
-                                formControlName="defaultTaxCode" [compareWith]="helperService.compareObjects">
-                                <app-simple-text-search *ngIf="taxCodes" [page]="SimpleSearchPage.CONFIGURATION"
-                                    [searchType]="SimpleSearchType.SELECT_FIELD" [form]="cloneSettingsForm"></app-simple-text-search>
-                                <div *ngFor="let option of taxCodes | search : cloneSettingsForm.value.searchOption">
-                                    <mat-option [ngClass]="{'search-zero-state': option && option.value === 'No result found'}"
-                                        [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40"
-                                        matTooltipPosition="above" matTooltipClass="above" (click)="helperService.clearSearchText(cloneSettingsForm)"
-                                        [value]="{name: option.value, id: option.destination_id}">
-                                        <p (click)="$event.stopPropagation()" *ngIf="option.value === 'No result found'"
-                                            class="align-center italic">{{ option.value }}</p>
-                                        <p *ngIf="option.value !== 'No result found'">{{ option.value }}</p>
-                                        <img *ngIf="(cloneSettingsForm.value.defaultTaxCode | json) === ({name: option.value, id: option.destination_id} | json)"
-                                            src="assets/images/svgs/general/tick-pink.svg" class="selected-value-check-mark">
-                                    </mat-option>
+                            <div fxLayoutAlign="start center"
+                                class="clone-settings--qbo-field clone-settings--tax-group-field">
+                                <p class="clone-settings--qbo-field-text">
+                                    Tax Group
+                                </p>
+                            </div>
+
+                            <mat-form-field floatLabel="always" appearance="outline"
+                                class="import-settings--fyle-field">
+                                <mat-select placeholder="Select Default Tax Code" formControlName="defaultTaxCode"
+                                    [compareWith]="helperService.compareObjects">
+                                    <app-simple-text-search *ngIf="taxCodes" [page]="SimpleSearchPage.CONFIGURATION"
+                                        [searchType]="SimpleSearchType.SELECT_FIELD"
+                                        [form]="cloneSettingsForm"></app-simple-text-search>
+                                    <div
+                                        *ngFor="let option of taxCodes | search : cloneSettingsForm.value.searchOption">
+                                        <mat-option
+                                            [ngClass]="{'search-zero-state': option && option.value === 'No result found'}"
+                                            [matTooltip]="option.value" [matTooltipDisabled]="option.value.length <= 40"
+                                            matTooltipPosition="above" matTooltipClass="above"
+                                            (click)="helperService.clearSearchText(cloneSettingsForm)"
+                                            [value]="{name: option.value, id: option.destination_id}">
+                                            <p (click)="$event.stopPropagation()"
+                                                *ngIf="option.value === 'No result found'" class="align-center italic">
+                                                {{ option.value }}</p>
+                                            <p *ngIf="option.value !== 'No result found'">{{ option.value }}</p>
+                                            <img *ngIf="(cloneSettingsForm.value.defaultTaxCode | json) === ({name: option.value, id: option.destination_id} | json)"
+                                                src="assets/images/svgs/general/tick-pink.svg"
+                                                class="selected-value-check-mark">
+                                        </mat-option>
+                                    </div>
+                                </mat-select>
+                                <div class="clone-settings--error-message">
+                                    <app-mandatory-error-message
+                                        *ngIf="cloneSettingsForm.controls.defaultTaxCode.touched && !cloneSettingsForm.controls.defaultTaxCode.valid && !cloneSettingsForm.controls.defaultTaxCode.disabled"
+                                        [listName]="'Tax group'"></app-mandatory-error-message>
                                 </div>
-                            </mat-select>
-                            <div class="clone-settings--error-message">
-                                <app-mandatory-error-message *ngIf="cloneSettingsForm.controls.defaultTaxCode.touched && !cloneSettingsForm.controls.defaultTaxCode.valid && !cloneSettingsForm.controls.defaultTaxCode.disabled" [listName]="'Tax group'"></app-mandatory-error-message>
-                            </div>
-                            <div class="mat-select-arrow-closed"></div>
-                        </mat-form-field>
+                                <div class="mat-select-arrow-closed"></div>
+                            </mat-form-field>
+                        </div>
+                        <div *ngIf="hoveredIndex.taxImport === 1">
+                            <img matTooltip="Delete" matTooltipPosition="left" matTooltipClass="left" width="18px"
+                                height="20px" src="assets/images/svgs/actions/delete.svg"
+                                class="clone-settings--delete-icon pointer" (click)="disableImportTax()">
+                        </div>
                     </div>
-                    <div *ngIf="hoveredIndex.taxImport === 1">
-                        <img matTooltip="Delete" matTooltipPosition="left" matTooltipClass="left" width="18px"
-                            height="20px" src="assets/images/svgs/actions/delete.svg"
-                            class="clone-settings--delete-icon pointer" (click)="disableImportTax()">
-                    </div>
-                </div>
-                    
-                    <div *ngIf="additionalQboExpenseFields.length || !cloneSettingsForm.value.chartOfAccount || !cloneSettingsForm.value.taxCode" fxLayoutAlign="start center" class="clone-settings--coa-import-section pointer clone-settings--add-field-section" [matMenuTriggerFor]="qboAdditionalFields">
+
+                    <div *ngIf="additionalQboExpenseFields.length || !cloneSettingsForm.value.chartOfAccount || !cloneSettingsForm.value.taxCode"
+                        fxLayoutAlign="start center"
+                        class="clone-settings--coa-import-section pointer clone-settings--add-field-section"
+                        [matMenuTriggerFor]="qboAdditionalFields">
                         <p class="clone-settings--cta-text clone-settings--add-field">Add Fields</p>
                         <img src="assets/images/svgs/actions/arrow-mark-down-pink.svg">
                     </div>
                     <mat-menu #qboAdditionalFields="matMenu">
-                        <button *ngIf="!cloneSettingsForm.value.chartOfAccount" mat-menu-item (click)="enableAccountImport()">
+                        <button *ngIf="!cloneSettingsForm.value.chartOfAccount" mat-menu-item
+                            (click)="enableAccountImport()">
                             Accounts
                         </button>
-                        <button *ngFor="let qboField of additionalQboExpenseFields; let i = index" mat-menu-item (click)="addExpenseField(qboField)">
+                        <button *ngFor="let qboField of additionalQboExpenseFields; let i = index" mat-menu-item
+                            (click)="addExpenseField(qboField)">
                             {{ qboField.destination_field | titlecase }}
                         </button>
                         <button *ngIf="!cloneSettingsForm.value.taxCode" mat-menu-item (click)="enableTaxImport()">
                             Tax Codes
                         </button>
                     </mat-menu>
-                </div>      
+                </div>
+            </div>
+
+            <!-- Advanced Settings -->
+            <div class="clone-settings--header-advanced-setting">
+                <div fxLayoutAlign="start start" class="clone-settings--header-section"
+                    data-cy="configuration-contents">
+                    <div class="clone-settings--header-icon">
+                        <img src="assets/images/svgs/general/setting.svg">
+                    </div>
+                    <div>
+                        <h3>Advanced Settings</h3>
+                        <h5 class="clone-settings--header-caption sub-text-color">
+                            This section contains settings to automate and customize your expense exports
+                        </h5>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/sync-disabled.svg">
+                                <p class="clone-settings--sub-options-text">Auto - Sync payment between Fyle and Quickbooks online
+                                </p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="When an expense is marked as 'Paid' in Fyle the corresponding transaction will automatically be updated to 'Paid' in QBO and vice versa."
+                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                            </div>
+
+                            <div>
+                                <app-select [form]="cloneSettingsForm" [options]="paymentSyncOptions"
+                                    [isFieldMandatory]="false"
+                                    [placeholder]="'Select how payments should be synced for reimbursable expenses'"
+                                    [formControllerName]="'paymentSync'"
+                                    [phase]="ProgressPhase.ONBOARDING"></app-select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="cloneSettingsForm.value.paymentSync && cloneSettingsForm.value.paymentSync === 'fyle_to_qbo'"
+                        class="clone-settings--configuration-payment-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section clone-settings--configuration-payment-field"
+                                fxLayout="row" fxLayoutAlign="start center">
+                                <p class="clone-settings--sub-options-text">
+                                    To which Payment account should the payment entries be posted?
+                                    <app-mandatory-field></app-mandatory-field>
+                                </p>
+                            </div>
+
+                            <div>
+                                <app-select [form]="cloneSettingsForm" [qboAttributes]="bankAccounts"
+                                    [isFieldMandatory]="true" [mandatoryErrorListName]="'payment account'"
+                                    [placeholder]="'Select a Payment Account'"
+                                    [formControllerName]="'billPaymentAccount'"
+                                    [phase]="ProgressPhase.ONBOARDING"></app-select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/calendar-disabled.svg">
+                                <p class="clone-settings--sub-options-text">Schedule automatic export</p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="Schedule to automate the export of expenses from Fyle to Xero"
+                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                            </div>
+
+                            <div class="clone-settings--sub-options-text clone-settings--export-type">
+                                <app-toggle [isCloneSettings]="true" [form]="cloneSettingsForm"
+                                    [formControllerName]="'exportSchedule'"></app-toggle>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="cloneSettingsForm.value.exportSchedule"
+                        class="clone-settings--configuration-payment-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section clone-settings--configuration-payment-field"
+                                fxLayout="row" fxLayoutAlign="start center">
+                                <p class="clone-settings--sub-options-text">
+                                    Set the frequency of export
+                                    <app-mandatory-field></app-mandatory-field>
+                                </p>
+                            </div>
+
+                            <div>
+                                <app-select [form]="cloneSettingsForm" [options]="frequencyIntervals"
+                                    [isFieldMandatory]="true" [mandatoryErrorListName]="'frequency'"
+                                    [placeholder]="'Select Frequency'" [formControllerName]="'exportScheduleFrequency'"
+                                    [phase]="ProgressPhase.ONBOARDING"></app-select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="cloneSettingsForm.value.exportSchedule"
+                        class="clone-settings--configuration-payment-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section clone-settings--configuration-payment-field"
+                                fxLayout="row" fxLayoutAlign="start center">
+                                <p class="clone-settings--sub-options-text clone-settings--additional-email-text">
+                                    Select an email address to notify upon export failure
+                                </p>
+                            </div>
+
+                            <div>
+                                <app-email-multi-select [form]="cloneSettingsForm" [options]="adminEmails"
+                                    [isFieldMandatory]="false" [placeholder]="'Select Email Address'"
+                                    [formControllerName]="'emails'" [isCloneSettings]="true"></app-email-multi-select>
+                                <div fxLayout="row" class="clone-settings--add-email-text pointer"
+                                    fxLayoutAlign="end center" (click)="openAddemailDialog()">
+                                    <span class="clone-settings--span-or">or</span>
+                                    <img class="clone-settings--add-btn" src="assets/images/svgs/actions/add.svg">
+                                    <span class="clone-settings--span-or">Add new email address</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/calendar-disabled.svg">
+                                <p class="clone-settings--sub-options-text">Post entries in the next open accounting
+                                    period</p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="If the accounting period in Xero is closed for the expenses in Fyle that haven't been exported, the expense will be exported with a date stamp of the first day in the next open accounting period."
+                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                            </div>
+
+                            <div class="clone-settings--sub-options-text clone-settings--export-type">
+                                <app-toggle [isCloneSettings]="true" [form]="cloneSettingsForm"
+                                    [formControllerName]="'changeAccountingPeriod'"></app-toggle>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/document-disabled.svg">
+                                <p class="clone-settings--sub-options-text">Auto Create Vendor</p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="While exporting reimbursable expenses from Fyle, the integration will automatically create a Vendor if a match for an employee in Fyle does not exist in quickbooks online already."
+                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                            </div>
+
+                            <div class="clone-settings--sub-options-text clone-settings--export-type">
+                                <app-toggle [isCloneSettings]="true" [form]="cloneSettingsForm"
+                                    [formControllerName]="'autoCreateVendors'"></app-toggle>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/document-disabled.svg">
+                                <p class="clone-settings--sub-options-text">Auto-Create Merchants as Vendor</p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="While exporting corporate card expenses from Fyle, the integration will auto-create a new vendor in QuickBooks Online if a merchant added by an employee does not have a corresponding match in QuickBooks Online"
+                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                            </div>
+
+                            <div class="clone-settings--sub-options-text clone-settings--export-type">
+                                <app-toggle [isCloneSettings]="true" [form]="cloneSettingsForm"
+                                    [formControllerName]="'autoCreateMerchantsAsVendors'"></app-toggle>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div *ngIf="showSingleCreditLineJEField()" class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/document-disabled.svg">
+                                <p class="clone-settings--sub-options-text">Create a single itemized offset credit entry for Journal</p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="Merge all Credits in a Journal to create a single entry."
+                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                            </div>
+
+                            <div class="clone-settings--sub-options-text clone-settings--export-type">
+                                <app-toggle [isCloneSettings]="true" [form]="cloneSettingsForm"
+                                    [formControllerName]="'singleCreditLineJE'">
+                                </app-toggle>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div>
