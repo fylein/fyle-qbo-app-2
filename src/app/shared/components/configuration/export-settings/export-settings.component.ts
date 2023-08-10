@@ -313,10 +313,9 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       this.is_simplify_report_closure_enabled = response[2].is_simplify_report_closure_enabled;
       this.import_items = response[2].import_items;
 
-
       this.reimbursableExportTypes = this.exportSettingService.getReimbursableExportTypeOptions(this.employeeFieldMapping);
       this.cccExpenseStateOptions = this.exportSettingService.getCCCExpenseStateOptions(this.is_simplify_report_closure_enabled);
-
+      this.expenseStateOptions = this.exportSettingService.getReimbursableExpenseStateOptions(this.is_simplify_report_closure_enabled);
 
       this.setupForm();
     });
