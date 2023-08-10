@@ -177,5 +177,4 @@ describe('ExportSettingService', () => {
     expect((service as any).getExportGroup([ExpenseGroupingFieldOption.EXPENSE_ID])).toEqual('expense_id');
     expect((service as any).getExportGroup(null)).toEqual('');
   });
-
 });
