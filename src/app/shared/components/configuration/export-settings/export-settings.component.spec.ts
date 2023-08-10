@@ -6,7 +6,7 @@ import { ExportSettingsComponent } from './export-settings.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, OnboardingState, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
-import { destinationAttribute, errorResponse, exportResponse, exportResponse1, export_settings, mockCCCExpenseStateOptions, mockCreditCardExportType, mockReimbursableExpenseGroupingDateOptions, mockReimbursableExpenseGroupingFieldOptions, mockReimbursableExportTypeOptions, replacecontent1, replacecontent2, replacecontent3, workspaceResponse, workspaceResponse1 } from './export-settings.fixture';
+import { destinationAttribute, errorResponse, exportResponse, exportResponse1, export_settings, mockCCCExpenseStateOptions, mockCreditCardExportType, mockReimbursableExpenseGroupingDateOptions, mockReimbursableExpenseGroupingFieldOptions, mockReimbursableExpenseStateOptions, mockReimbursableExportTypeOptions, replacecontent1, replacecontent2, replacecontent3, workspaceResponse, workspaceResponse1 } from './export-settings.fixture';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
@@ -41,7 +41,9 @@ describe('ExportSettingsComponent', () => {
       getReimbursableExpenseGroupingDateOptions: () => mockReimbursableExpenseGroupingDateOptions,
       getcreditCardExportTypes: () => undefined,
       getReimbursableExportTypeOptions: () => undefined,
-      getCCCExpenseStateOptions: () => undefined
+      getCCCExpenseStateOptions: () => undefined,
+      getExportGroup: () => undefined,
+      getReimbursableExpenseStateOptions: () => mockReimbursableExpenseStateOptions
     };
     service2 = {
       getGroupedQBODestinationAttributes: () => of(destinationAttribute),
@@ -79,11 +81,11 @@ describe('ExportSettingsComponent', () => {
       expenseState: [component.exportSettings.expense_group_settings?.expense_state, Validators.required],
       reimbursableExpense: [component.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? true : false],
       reimbursableExportType: [component.exportSettings.workspace_general_settings?.reimbursable_expenses_object],
-      reimbursableExportGroup: [(component as any).getExportGroup(component.exportSettings.expense_group_settings?.reimbursable_expense_group_fields)],
+      reimbursableExportGroup: [exportSettingService.getExportGroup(component.exportSettings.expense_group_settings?.reimbursable_expense_group_fields)],
       reimbursableExportDate: [component.exportSettings.expense_group_settings?.reimbursable_export_date_type],
       creditCardExpense: [component.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object ? true : false],
       creditCardExportType: [component.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object],
-      creditCardExportGroup: [(component as any).getExportGroup(component.exportSettings.expense_group_settings?.corporate_credit_card_expense_group_fields)],
+      creditCardExportGroup: [exportSettingService.getExportGroup(component.exportSettings.expense_group_settings?.corporate_credit_card_expense_group_fields)],
       creditCardExportDate: [component.exportSettings.expense_group_settings?.ccc_export_date_type],
       bankAccount: [component.exportSettings.general_mappings?.bank_account?.id ? component.exportSettings.general_mappings.bank_account : null],
       defaultCCCAccount: [component.exportSettings.general_mappings?.default_ccc_account?.id ? component.exportSettings.general_mappings.default_ccc_account : null],
@@ -188,11 +190,6 @@ describe('ExportSettingsComponent', () => {
     fixture.detectChanges();
     component.exportSettingsForm.controls.creditCardExportGroup.patchValue(reimbursable);
     expect((component as any).createCreditCardExportGroupWatcher()).toBeUndefined();
-  });
-
-  it('function check', () => {
-    expect((component as any).getExportGroup([ExpenseGroupingFieldOption.EXPENSE_ID])).toEqual('expense_id');
-    expect((component as any).getExportGroup(null)).toEqual('');
   });
 
   it('advancedSettingAffected function check', () => {

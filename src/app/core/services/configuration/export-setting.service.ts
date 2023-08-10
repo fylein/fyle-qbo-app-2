@@ -177,6 +177,10 @@ export class ExportSettingService {
       {
         label: 'Employee email on Fyle to contact email on Quickbooks',
         value: AutoMapEmployee.EMAIL
+      },
+      {
+        label: 'Fyle Employee Code to QuickBooks Online Display name on Quickbooks',
+        value: AutoMapEmployee.EMPLOYEE_CODE
       }
     ];
   }
