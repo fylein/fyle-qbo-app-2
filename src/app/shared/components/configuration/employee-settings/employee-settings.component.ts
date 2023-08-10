@@ -37,35 +37,9 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
 
   existingEmployeeFieldMapping: EmployeeFieldMapping | undefined;
 
-  employeeMappingOptions: EmployeeSettingFormOption[] = [
-    {
-      value: EmployeeFieldMapping.EMPLOYEE,
-      label: 'Employees'
-    },
-    {
-      value: EmployeeFieldMapping.VENDOR,
-      label: 'Vendors'
-    }
-  ];
+  employeeMappingOptions: EmployeeSettingFormOption[] = this.employeeSettingService.getEmployeeFieldMappingOptions();
 
-  autoMapEmployeeOptions: EmployeeSettingFormOption[] = [
-    {
-      value: null,
-      label: 'None'
-    },
-    {
-      value: AutoMapEmployee.NAME,
-      label: 'Fyle Name to QuickBooks Online Display name'
-    },
-    {
-      value: AutoMapEmployee.EMAIL,
-      label: 'Fyle Email to QuickBooks Online Email'
-    },
-    {
-      value: AutoMapEmployee.EMPLOYEE_CODE,
-      label: 'Fyle Employee Code to QuickBooks Online Display name'
-    }
-  ];
+  autoMapEmployeeOptions: EmployeeSettingFormOption[] = this.employeeSettingService.getAutoMapEmployeeOptions();
 
   windowReference: Window;
 

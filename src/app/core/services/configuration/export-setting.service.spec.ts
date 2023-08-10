@@ -1,7 +1,7 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
 import { ExportSettingService } from './export-setting.service';
 import { ExportSettingGet, ExportSettingPost } from '../../models/configuration/export-setting.model';
-import { ExpenseState, CCCExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, ExportDateType } from '../../models/enum/enum.model';
+import { ExpenseState, CCCExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, ExportDateType, ExpenseGroupingFieldOption } from '../../models/enum/enum.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
 import { AbstractControl, FormBuilder } from '@angular/forms';
@@ -139,19 +139,43 @@ describe('ExportSettingService', () => {
 
   it('createReimbursableExpenseWatcher function check', () => {
     const form = formbuilder.group({
-      reimbursableExpense: true,
-      reimbursableExpenseState: ExpenseState.PAID,
-      reimbursableExportDate: ExportDateType.APPROVED_AT
+      reimbursableExpense: false,
+      expenseState: ExpenseState.PAID,
+      reimbursableExportType: ReimbursableExpensesObject.BILL,
+      reimbursableExportDate: ExportDateType.APPROVED_AT,
+      reimbursableExportGroup: ExpenseGroupingFieldOption.EXPENSE_ID
     });
+
+    expect((service as any).createReimbursableExpenseWatcher(form, exportResponse)).toBeUndefined();
+
+    form.controls.reimbursableExpense.patchValue(true);
+    expect((service as any).createReimbursableExpenseWatcher(form, exportResponse)).toBeUndefined();
+
+    form.controls.reimbursableExpense.patchValue(false);
     expect((service as any).createReimbursableExpenseWatcher(form, exportResponse)).toBeUndefined();
   });
 
   it('createCreditCardExpenseWatcher function check', () => {
     const form = formbuilder.group({
-      creditCardExpense: true,
-      cccExpenseState: ExpenseState.PAID
+      creditCardExpense: false,
+      cccExpenseState: ExpenseState.PAID,
+      creditCardExportType: CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE,
+      creditCardExportGroup: ExpenseGroupingFieldOption.EXPENSE_ID,
+      creditCardExportDate: ExportDateType.POSTED_AT
     });
+
     expect((service as any).createCreditCardExpenseWatcher(form, exportResponse)).toBeUndefined();
 
+    form.controls.creditCardExpense.patchValue(true);
+    expect((service as any).createCreditCardExpenseWatcher(form, exportResponse)).toBeUndefined();
+
+    form.controls.creditCardExpense.patchValue(false);
+    expect((service as any).createCreditCardExpenseWatcher(form, exportResponse)).toBeUndefined();
   });
+
+  it('function check', () => {
+    expect((service as any).getExportGroup([ExpenseGroupingFieldOption.EXPENSE_ID])).toEqual('expense_id');
+    expect((service as any).getExportGroup(null)).toEqual('');
+  });
+
 });

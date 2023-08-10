@@ -46,7 +46,9 @@ describe('EmployeeSettingsComponent', () => {
 
     service1 = {
       getEmployeeSettings: () => of(response),
-      postEmployeeSettings: () => of(response)
+      postEmployeeSettings: () => of(response),
+      getEmployeeFieldMappingOptions: () => null,
+      getAutoMapEmployeeOptions: () => null
     };
 
     service2 = {

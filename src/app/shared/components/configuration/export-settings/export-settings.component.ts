@@ -294,17 +294,6 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
     this.setGeneralMappingsValidator();
   }
 
-  private getExportGroup(exportGroups: string[] | null): string {
-    if (exportGroups) {
-      const exportGroup = exportGroups.find((exportGroup) => {
-        return exportGroup === ExpenseGroupingFieldOption.EXPENSE_ID || exportGroup === ExpenseGroupingFieldOption.CLAIM_NUMBER || exportGroup === ExpenseGroupingFieldOption.SETTLEMENT_ID;
-      });
-      return exportGroup ? exportGroup : ExpenseGroupingFieldOption.CLAIM_NUMBER;
-    }
-
-    return '';
-  }
-
   private getSettingsAndSetupForm(): void {
     this.isOnboarding = this.windowReference.location.pathname.includes('onboarding');
     const destinationAttributes = ['BANK_ACCOUNT', 'CREDIT_CARD_ACCOUNT', 'ACCOUNTS_PAYABLE', 'VENDOR'];
@@ -338,12 +327,12 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       expenseState: [this.exportSettings.expense_group_settings?.expense_state],
       reimbursableExpense: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object ? true : false],
       reimbursableExportType: [this.exportSettings.workspace_general_settings?.reimbursable_expenses_object],
-      reimbursableExportGroup: [this.getExportGroup(this.exportSettings.expense_group_settings?.reimbursable_expense_group_fields)],
+      reimbursableExportGroup: [this.exportSettingService.getExportGroup(this.exportSettings.expense_group_settings?.reimbursable_expense_group_fields)],
       reimbursableExportDate: [this.exportSettings.expense_group_settings?.reimbursable_export_date_type],
       cccExpenseState: [this.exportSettings.expense_group_settings?.ccc_expense_state],
       creditCardExpense: [this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object ? true : false],
       creditCardExportType: [this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object],
-      creditCardExportGroup: [this.getExportGroup(this.exportSettings.expense_group_settings?.corporate_credit_card_expense_group_fields)],
+      creditCardExportGroup: [this.exportSettingService.getExportGroup(this.exportSettings.expense_group_settings?.corporate_credit_card_expense_group_fields)],
       creditCardExportDate: [this.exportSettings.expense_group_settings?.ccc_export_date_type],
       bankAccount: [this.exportSettings.general_mappings?.bank_account?.id ? this.exportSettings.general_mappings.bank_account : null],
       defaultCCCAccount: [this.exportSettings.general_mappings?.default_ccc_account?.id ? this.exportSettings.general_mappings.default_ccc_account : null],
