@@ -103,8 +103,8 @@ describe('CloneSettingsComponent', () => {
       taxCode: [component.cloneSettings.import_settings.workspace_general_settings.import_tax_codes],
       defaultTaxCode: [component.cloneSettings.import_settings.general_mappings?.default_tax_code?.id ? component.cloneSettings.import_settings.general_mappings.default_tax_code : null],
       importVendorsAsMerchants: [component.cloneSettings.import_settings.workspace_general_settings.import_vendors_as_merchants]
-    })
-  
+    });
+
     cloneSettingService = TestBed.inject(CloneSettingService);
     fixture.detectChanges();
   });
@@ -127,7 +127,7 @@ describe('CloneSettingsComponent', () => {
     {
       'label': 'Spend Date',
       'value': ExportDateType.SPENT_AT
-    }]
+    }];
 
     component.cloneSettingsForm.controls.creditCardExportGroup.patchValue(ExpenseGroupingFieldOption.EXPENSE_ID);
     expect((component as any).createCreditCardExportGroupWatcher()).toBeUndefined();
@@ -141,8 +141,8 @@ describe('CloneSettingsComponent', () => {
     component.cloneSettingsForm.controls.reimbursableExportGroup.patchValue(ExpenseGroupingFieldOption.SETTLEMENT_ID);
     expect((component as any).createReimbursableExportGroupWatcher()).toBeUndefined();
   });
-  
-  
+
+
   it('showBankAccountField function check', () => {
     component.employeeFieldMapping = EmployeeFieldMapping.EMPLOYEE;
     component.cloneSettingsForm.controls.reimbursableExportType.patchValue(ReimbursableExpensesObject.BILL);
@@ -156,18 +156,18 @@ describe('CloneSettingsComponent', () => {
     fixture.detectChanges();
     expect(component.showReimbursableAccountsPayableField()).toBeTrue();
   });
-  
+
   it('showCCCAccountsPayableField function check', () => {
     component.cloneSettingsForm.controls.creditCardExportType.patchValue(CorporateCreditCardExpensesObject.BILL);
     fixture.detectChanges();
     expect(component.showCCCAccountsPayableField()).toBeTrue();
-  })
-  
+  });
+
   it('showDefaultCreditCardVendorField function check', () => {
     component.cloneSettingsForm.controls.creditCardExportType.patchValue(CorporateCreditCardExpensesObject.BILL);
     fixture.detectChanges();
     expect(component.showCCCAccountsPayableField()).toBeTrue();
-  })
+  });
 
   it('setGeneralMappingsValidator function check', () => {
     component.cloneSettingsForm.controls.creditCardExportType.patchValue(CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE);
@@ -177,7 +177,7 @@ describe('CloneSettingsComponent', () => {
 
   it('Save Function check', () => {
     component.isSaveInProgress = false;
-    component.mappingSettings = []
+    component.mappingSettings = [];
     component.qboExpenseFields = [
       {
           "source_field": "COST_CENTER",
@@ -186,12 +186,12 @@ describe('CloneSettingsComponent', () => {
           "disable_import_to_fyle": false,
           "source_placeholder": ""
       }
-    ]
+    ];
     component.chartOfAccountTypesList = [
       'Expense', 'Other Expense', 'Fixed Asset', 'Cost of Goods Sold', 'Current Liability', 'Equity',
       'Other Current Asset', 'Other Current Liability', 'Long Term Liability', 'Current Asset', 'Income', 'Other Income'
     ];
-    spyOn(cloneSettingService, 'postCloneSettings').and.callThrough()
+    spyOn(cloneSettingService, 'postCloneSettings').and.callThrough();
     expect(component.save()).toBeUndefined();
     fixture.detectChanges();
     expect(cloneSettingService.postCloneSettings).toHaveBeenCalled();
@@ -200,23 +200,23 @@ describe('CloneSettingsComponent', () => {
   it('navigateToPreviousStep Function check', () => {
     component.navigateToPreviousStep();
     expect(routerSpy.navigate).toHaveBeenCalledWith(([`/workspaces/onboarding/qbo_connector`]));
-  })
+  });
 
   it('enableTaxImport Function check', () => {
     component.enableTaxImport();
     expect(component.cloneSettingsForm.controls.taxCode.value).toBeTrue();
-  })
+  });
 
   it('disableImportTax Function check', () => {
     component.disableImportTax();
     expect(component.cloneSettingsForm.controls.taxCode.value).toBeFalse();
     expect(component.cloneSettingsForm.controls.defaultTaxCode.value).toEqual(null);
-  })
+  });
 
   it('disableImportCoa Function check', () => {
     component.disableImportCoa();
     expect(component.cloneSettingsForm.controls.chartOfAccount.value).toBeFalse();
-  })
+  });
 
   it('restrictExpenseGroupSetting function check', () => {
     expect((component as any).restrictExpenseGroupSetting('CREDIT CARD PURCHASE')).toBeUndefined();

@@ -412,10 +412,6 @@ export class CloneSettingsComponent implements OnInit {
     const chartOfAccountTypeFormArray = this.chartOfAccountTypesList.map((type) => this.createChartOfAccountField(type));
 
     const expenseFieldsFormArray = this.importSettingService.getExpenseFieldsFormArray(this.qboExpenseFields, false);
-    
-    console.log('sdfsdf', this.chartOfAccountTypesList)
-    console.log('sdfsdf', this.qboExpenseFields)
-
     this.cloneSettingsForm = this.formBuilder.group({
       // Employee Mapping
       employeeMapping: [this.cloneSettings.employee_mappings.workspace_general_settings?.employee_field_mapping, Validators.required],
@@ -459,7 +455,7 @@ export class CloneSettingsComponent implements OnInit {
     this.isLoading = false;
   }
 
-  private getQboExpenseFields(qboAttributes: string[], mappingSettings: MappingSetting[], isCloneSettings: boolean = false, fyleFields: string[] = []): ExpenseFieldsFormOption[] {    
+  private getQboExpenseFields(qboAttributes: string[], mappingSettings: MappingSetting[], isCloneSettings: boolean = false, fyleFields: string[] = []): ExpenseFieldsFormOption[] {
     return qboAttributes.map(attribute => {
       const mappingSetting = mappingSettings.filter((mappingSetting: MappingSetting) => {
         if (mappingSetting.destination_field.toUpperCase() === attribute) {
