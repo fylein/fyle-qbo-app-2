@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CloneSettingsComponent } from './clone-settings.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, UntypedFormBuilder, Validators } from '@angular/forms';
@@ -14,8 +14,9 @@ import { AdvancedSettingService } from 'src/app/core/services/configuration/adva
 import { MatMenuModule } from '@angular/material/menu';
 import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
-import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExportDateType, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
+import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
 
 
 describe('CloneSettingsComponent', () => {
@@ -24,6 +25,7 @@ describe('CloneSettingsComponent', () => {
   let router: Router;
   let formbuilder: UntypedFormBuilder;
   let exportSettingService: ExportSettingService;
+  let importSettingService: ImportSettingService;
   let cloneSettingService: CloneSettingService;
   const routerSpy = { navigate: jasmine.createSpy('navigate'), url: '/path' };
   let service1: any;
@@ -46,7 +48,7 @@ describe('CloneSettingsComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ CloneSettingsComponent ],
       imports: [
-        HttpClientModule, MatDialogModule, MatSnackBarModule, MatMenuModule
+        HttpClientModule, MatDialogModule, MatSnackBarModule, MatMenuModule, NoopAnimationsModule
       ],
       providers: [
         FormBuilder,
@@ -65,6 +67,7 @@ describe('CloneSettingsComponent', () => {
     router = TestBed.inject(Router);
     formbuilder = TestBed.inject(UntypedFormBuilder);
     exportSettingService = TestBed.inject(ExportSettingService);
+    importSettingService = TestBed.inject(ImportSettingService);
     component.cloneSettings = mockCloneSettingsGet;
 
     component.cloneSettingsForm = formbuilder.group({
@@ -95,12 +98,14 @@ describe('CloneSettingsComponent', () => {
       // Import Settings
       chartOfAccount: [component.cloneSettings.import_settings.workspace_general_settings.import_categories],
       importItems: [component.cloneSettings.import_settings.workspace_general_settings.import_items],
-      //chartOfAccountTypes: this.formBuilder.array(chartOfAccountTypeFormArray),
-      //expenseFields: this.formBuilder.array(expenseFieldsFormArray),
+      chartOfAccountTypes: formbuilder.array([]),
+      expenseFields: formbuilder.array([]),
       taxCode: [component.cloneSettings.import_settings.workspace_general_settings.import_tax_codes],
       defaultTaxCode: [component.cloneSettings.import_settings.general_mappings?.default_tax_code?.id ? component.cloneSettings.import_settings.general_mappings.default_tax_code : null],
       importVendorsAsMerchants: [component.cloneSettings.import_settings.workspace_general_settings.import_vendors_as_merchants]
     })
+  
+    cloneSettingService = TestBed.inject(CloneSettingService);
     fixture.detectChanges();
   });
 
@@ -115,16 +120,25 @@ describe('CloneSettingsComponent', () => {
   });
 
   it('createCreditCardExportGroupWatcher function check', () => {
-    component.cloneSettingsForm.controls.creditCardExportGroup.patchValue(!component.cloneSettingsForm.controls.creditCardExportGroup.value);
+    component.cccExpenseGroupingDateOptions = [{
+      'label': 'Posted Date',
+      'value': ExportDateType.POSTED_AT
+    },
+    {
+      'label': 'Spend Date',
+      'value': ExportDateType.SPENT_AT
+    }]
+
+    component.cloneSettingsForm.controls.creditCardExportGroup.patchValue(ExpenseGroupingFieldOption.EXPENSE_ID);
     expect((component as any).createCreditCardExportGroupWatcher()).toBeUndefined();
-    component.cloneSettingsForm.controls.creditCardExpense.patchValue(!component.cloneSettingsForm.controls.creditCardExportGroup.value);
+    component.cloneSettingsForm.controls.creditCardExportGroup.patchValue(ExpenseGroupingFieldOption.CLAIM_NUMBER);
     expect((component as any).createCreditCardExportGroupWatcher()).toBeUndefined();
   });
 
   it('createReimbursableExportGroupWatcher function check', () => {
-    component.cloneSettingsForm.controls.reimbursableExportGroup.patchValue(!component.cloneSettingsForm.controls.reimbursableExportGroup.value);
+    component.cloneSettingsForm.controls.reimbursableExportGroup.patchValue(ExpenseGroupingFieldOption.EXPENSE_ID);
     expect((component as any).createReimbursableExportGroupWatcher()).toBeUndefined();
-    component.cloneSettingsForm.controls.reimbursableExportGroup.patchValue(!component.cloneSettingsForm.controls.reimbursableExportGroup.value);
+    component.cloneSettingsForm.controls.reimbursableExportGroup.patchValue(ExpenseGroupingFieldOption.SETTLEMENT_ID);
     expect((component as any).createReimbursableExportGroupWatcher()).toBeUndefined();
   });
   
@@ -160,21 +174,113 @@ describe('CloneSettingsComponent', () => {
     fixture.detectChanges();
     expect((component as any).setGeneralMappingsValidator()).toBeUndefined();
   });
-  
-  it('show')
-  
+
   it('Save Function check', () => {
     component.isSaveInProgress = false;
-    component.mappingSettings = [];
+    component.mappingSettings = []
+    component.qboExpenseFields = [
+      {
+          "source_field": "COST_CENTER",
+          "destination_field": "CUSTOMER",
+          "import_to_fyle": true,
+          "disable_import_to_fyle": false,
+          "source_placeholder": ""
+      }
+    ]
+    component.chartOfAccountTypesList = [
+      'Expense', 'Other Expense', 'Fixed Asset', 'Cost of Goods Sold', 'Current Liability', 'Equity',
+      'Other Current Asset', 'Other Current Liability', 'Long Term Liability', 'Current Asset', 'Income', 'Other Income'
+    ];
     spyOn(cloneSettingService, 'postCloneSettings').and.callThrough()
-
     expect(component.save()).toBeUndefined();
     fixture.detectChanges();
     expect(cloneSettingService.postCloneSettings).toHaveBeenCalled();
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['/workspaces/onboarding/done']);
   });
-  
-  it('should create', () => {
-    expect(component).toBeTruthy();
+
+  it('navigateToPreviousStep Function check', () => {
+    component.navigateToPreviousStep();
+    expect(routerSpy.navigate).toHaveBeenCalledWith(([`/workspaces/onboarding/qbo_connector`]));
+  })
+
+  it('enableTaxImport Function check', () => {
+    component.enableTaxImport();
+    expect(component.cloneSettingsForm.controls.taxCode.value).toBeTrue();
+  })
+
+  it('disableImportTax Function check', () => {
+    component.disableImportTax();
+    expect(component.cloneSettingsForm.controls.taxCode.value).toBeFalse();
+    expect(component.cloneSettingsForm.controls.defaultTaxCode.value).toEqual(null);
+  })
+
+  it('disableImportCoa Function check', () => {
+    component.disableImportCoa();
+    expect(component.cloneSettingsForm.controls.chartOfAccount.value).toBeFalse();
+  })
+
+  it('restrictExpenseGroupSetting function check', () => {
+    expect((component as any).restrictExpenseGroupSetting('CREDIT CARD PURCHASE')).toBeUndefined();
+  });
+
+  it('enableAccountImport function check', () => {
+    component.enableAccountImport();
+    expect(component.cloneSettingsForm.controls.chartOfAccount.value).toBeTrue();
+  });
+
+  it('setImportFields function check', () => {
+    component.enableAccountImport();
+    expect(component.cloneSettingsForm.controls.chartOfAccount.value).toBeTrue();
+  });
+
+  it('getQboExpenseFields function check', () => {
+    const qboAttributes = ['CUSTOMER'];
+    const mappingSettings = [
+      {
+          "source_field": "COST_CENTER",
+          "destination_field": "CUSTOMER",
+          "import_to_fyle": true,
+          "is_custom": false,
+          "source_placeholder": null
+      }
+    ];
+    const fyleFields = ['COST_CENTER', 'PROJECT'];
+
+    expect((component as any).getQboExpenseFields(qboAttributes, mappingSettings, true, fyleFields));
+  });
+
+  it('setImportFields function check', () => {
+    component.mappingSettings = [];
+
+    const fyleFields = ['COST_CENTER', 'PROJECT'];
+    spyOn(importSettingService, 'getQboExpenseFields').and.returnValue([]);
+    expect((component as any).setImportFields(fyleFields));
+  });
+
+  it('setupEmployeeMappingWatcher function check', () => {
+    component.cloneSettingsForm.controls.employeeMapping.patchValue(EmployeeFieldMapping.VENDOR);
+    expect((component as any).setupEmployeeMappingWatcher()).toBeUndefined();
+    fixture.detectChanges();
+    component.cloneSettingsForm.controls.employeeMapping.patchValue(EmployeeFieldMapping.EMPLOYEE);
+    expect((component as any).setupEmployeeMappingWatcher()).toBeUndefined();
+  });
+
+  it('createReimbursableExportTypeWatcher function check', () => {
+    component.cloneSettingsForm.controls.reimbursableExportType.patchValue(ReimbursableExpensesObject.EXPENSE);
+    expect((component as any).createReimbursableExportTypeWatcher()).toBeUndefined();
+    fixture.detectChanges();
+    component.cloneSettingsForm.controls.reimbursableExportType.patchValue(ReimbursableExpensesObject.BILL);
+    expect((component as any).createReimbursableExportTypeWatcher()).toBeUndefined();
+  });
+
+  it('createCreditCardExportTypeWatcher function check', () => {
+    component.cloneSettingsForm.controls.creditCardExportType.patchValue(CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE);
+    expect((component as any).createCreditCardExportTypeWatcher()).toBeUndefined();
+    fixture.detectChanges();
+    component.cloneSettingsForm.controls.employeeMapping.patchValue(CorporateCreditCardExpensesObject.JOURNAL_ENTRY);
+    expect((component as any).createCreditCardExportTypeWatcher()).toBeUndefined();
+  });
+
+  it('setCustomValidatorsAndWatchers function check', () => {
+    expect((component as any).setCustomValidatorsAndWatchers()).toBeUndefined();
   });
 });

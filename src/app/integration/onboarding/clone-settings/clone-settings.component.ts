@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, UntypedFormGroup, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, UntypedFormGroup, FormArray } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { CloneSetting, CloneSettingModel } from 'src/app/core/models/configuration/clone-setting.model';
 import { ExportSettingFormOption } from 'src/app/core/models/configuration/export-setting.model';
@@ -9,7 +9,7 @@ import { ExportSettingService } from 'src/app/core/services/configuration/export
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 import { HelperService } from 'src/app/core/services/core/helper.service';
-import { EmployeeFieldMapping, ReimbursableExpensesObject, ClickEvent, OnboardingStep, ProgressPhase, ExpenseGroupingFieldOption, CorporateCreditCardExpensesObject, ExportDateType, ExpenseState, CCCExpenseState, MappingDestinationField, SimpleSearchType, SimpleSearchPage  } from 'src/app/core/models/enum/enum.model';
+import { EmployeeFieldMapping, ReimbursableExpensesObject, ClickEvent, OnboardingStep, ProgressPhase, ExpenseGroupingFieldOption, CorporateCreditCardExpensesObject, ExportDateType, MappingDestinationField, SimpleSearchType, SimpleSearchPage  } from 'src/app/core/models/enum/enum.model';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
@@ -412,6 +412,9 @@ export class CloneSettingsComponent implements OnInit {
     const chartOfAccountTypeFormArray = this.chartOfAccountTypesList.map((type) => this.createChartOfAccountField(type));
 
     const expenseFieldsFormArray = this.importSettingService.getExpenseFieldsFormArray(this.qboExpenseFields, false);
+    
+    console.log('sdfsdf', this.chartOfAccountTypesList)
+    console.log('sdfsdf', this.qboExpenseFields)
 
     this.cloneSettingsForm = this.formBuilder.group({
       // Employee Mapping
@@ -456,17 +459,15 @@ export class CloneSettingsComponent implements OnInit {
     this.isLoading = false;
   }
 
-  private getQboExpenseFields(qboAttributes: string[], mappingSettings: MappingSetting[], isCloneSettings: boolean = false, fyleFields: string[] = []): ExpenseFieldsFormOption[] {
+  private getQboExpenseFields(qboAttributes: string[], mappingSettings: MappingSetting[], isCloneSettings: boolean = false, fyleFields: string[] = []): ExpenseFieldsFormOption[] {    
     return qboAttributes.map(attribute => {
       const mappingSetting = mappingSettings.filter((mappingSetting: MappingSetting) => {
         if (mappingSetting.destination_field.toUpperCase() === attribute) {
           if (isCloneSettings) {
             return fyleFields.includes(mappingSetting.source_field.toUpperCase()) ? mappingSetting : false;
           }
-
           return mappingSetting;
         }
-
         return false;
       });
 
