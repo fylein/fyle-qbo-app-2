@@ -266,12 +266,6 @@ export class CloneSettingsComponent implements OnInit {
     });
   }
 
-  private setupEmployeeMappingWatcher(): void {
-    this.cloneSettingsForm.controls.employeeMapping.valueChanges.subscribe((employeeMapping: EmployeeFieldMapping) => {
-      this.reimbursableExportOptions = this.exportSettingService.getReimbursableExportTypeOptions(employeeMapping);
-    });
-  }
-
   private createReimbursableExportGroupWatcher(): void {
     this.cloneSettingsForm.controls.reimbursableExportGroup.valueChanges.subscribe((reimbursableExportGroup: ExpenseGroupingFieldOption) => {
       if (reimbursableExportGroup === ExpenseGroupingFieldOption.EXPENSE_ID) {
@@ -368,7 +362,6 @@ export class CloneSettingsComponent implements OnInit {
     this.setGeneralMappingsValidator();
 
     this.setupExpenseFieldWatcher();
-    this.setupEmployeeMappingWatcher();
   }
 
   createChartOfAccountField(type: string): UntypedFormGroup {

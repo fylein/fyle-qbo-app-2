@@ -1,4 +1,4 @@
-import { CloneSetting, CloneSettingExist } from "src/app/core/models/configuration/clone-setting.model";
+import { CloneSetting, CloneSettingExist, CloneSettingPost } from "src/app/core/models/configuration/clone-setting.model";
 import { GroupedDestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
 import {AutoMapEmployee, CCCExpenseState, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseState, ExportDateType, MappingDestinationField, MappingSourceField, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
 
