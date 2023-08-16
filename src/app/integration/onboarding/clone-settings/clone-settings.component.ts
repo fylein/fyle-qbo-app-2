@@ -263,7 +263,7 @@ export class CloneSettingsComponent implements OnInit {
     this.cloneSettingsForm = this.formBuilder.group({
       // Employee Mapping
       employeeMapping: [this.cloneSettings.employee_mappings.workspace_general_settings?.employee_field_mapping, Validators.required],
-      autoMapEmployee: [this.cloneSettings.employee_mappings.workspace_general_settings?.auto_map_employees, Validators.nullValidator],
+      autoMapEmployee: [this.cloneSettings.employee_mappings.workspace_general_settings?.auto_map_employees],
 
       // Export Settings
       reimbursableExpense: [this.cloneSettings.export_settings.workspace_general_settings?.reimbursable_expenses_object ? true : false],

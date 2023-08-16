@@ -182,7 +182,6 @@ describe('ExportSettingService', () => {
       creditCardExportDate: ExportDateType.POSTED_AT
     });
     form.controls.creditCardExportType.patchValue(CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE);
-    fixture.detectChanges();
     expect((service as any).setGeneralMappingsValidator()).toBeUndefined();
   });
 
