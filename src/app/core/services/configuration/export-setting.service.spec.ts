@@ -173,6 +173,19 @@ describe('ExportSettingService', () => {
     expect((service as any).createCreditCardExpenseWatcher(form, exportResponse)).toBeUndefined();
   });
 
+  it('setGeneralMappingsValidator function check', () => {
+    const form = formbuilder.group({
+      creditCardExpense: false,
+      cccExpenseState: ExpenseState.PAID,
+      creditCardExportType: CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE,
+      creditCardExportGroup: ExpenseGroupingFieldOption.EXPENSE_ID,
+      creditCardExportDate: ExportDateType.POSTED_AT
+    });
+    form.controls.creditCardExportType.patchValue(CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE);
+    fixture.detectChanges();
+    expect((service as any).setGeneralMappingsValidator()).toBeUndefined();
+  });
+
   it('function check', () => {
     expect((service as any).getExportGroup([ExpenseGroupingFieldOption.EXPENSE_ID])).toEqual('expense_id');
     expect((service as any).getExportGroup(null)).toEqual('');

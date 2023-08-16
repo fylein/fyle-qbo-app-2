@@ -14,7 +14,7 @@
                     <div>
                         <h3>Employee Mappings</h3>
                         <h5 class="clone-settings--header-caption sub-text-color">
-                            In this section, you can configure how map fyle employees to Quickbooks Vendor / Employee
+                            In this section, you can configure how map fyle employees to QuickBooks Online Vendor / Employee
                         </h5>
                     </div>
                 </div>
@@ -26,14 +26,15 @@
                                 src="assets/images/svgs/general/calendar-disabled.svg">
                             <p class="clone-settings--sub-options-text">Employee Field Mapping</p>
                             <img class="clone-settings--info-icon" src="assets/images/svgs/general/info-disabled.svg"
-                                matTooltip="The selected date will reflect in expenses exported to Quickbooks Online"
+                                matTooltip="The selected date will reflect in expenses exported to QuickBooks Online"
                                 matTooltipPosition="above" matTooltipClass="clone-settings">
                         </div>
 
                         <div class="clone-settings--sub-options-text">
                             <app-select [form]="cloneSettingsForm" [options]="employeeFieldMappingOptions"
-                                [isFieldMandatory]="true" [mandatoryErrorListName]="'Purchase Bill Date'"
-                                [placeholder]="'Select the Purchase Bill date'" [formControllerName]="'employeeMapping'"
+                                [isFieldMandatory]="true" [mandatoryErrorListName]="'option'"
+                                [placeholder]="'Select how you represent your employees in QuickBooks Online. This would help to export the expenses from Fyle to the correct employee/vendor record in QuickBooks Online.'" 
+                                [formControllerName]="'employeeMapping'"
                                 [phase]="ProgressPhase.ONBOARDING"></app-select>
                         </div>
                     </div>
@@ -46,14 +47,14 @@
                                 src="assets/images/svgs/general/employee-disabled.svg">
                             <p class="clone-settings--sub-options-text">Auto Map Employee</p>
                             <img class="clone-settings--info-icon" src="assets/images/svgs/general/info-disabled.svg"
-                                matTooltip="Automatically map the employees in Fyle to their corresponding records in Quickbooks based on a unique parameter."
+                                matTooltip="Automatically map the employees in Fyle to their corresponding records in QuickBooks Online based on a unique parameter."
                                 matTooltipPosition="above" matTooltipClass="clone-settings">
                         </div>
 
                         <div>
                             <div class="clone-settings--sub-options-text">
                                 <app-select [form]="cloneSettingsForm" [options]="autoMapEmployeeTypes"
-                                    [isFieldMandatory]="false" [placeholder]="'Select auto map employee type'"
+                                    [isFieldMandatory]="false" [placeholder]="'Select representation'"
                                     [formControllerName]="'autoMapEmployee'"
                                     [phase]="ProgressPhase.ONBOARDING"></app-select>
                             </div>
@@ -71,7 +72,7 @@
                     <div>
                         <h3>Export Settings</h3>
                         <h5 class="clone-settings--header-caption sub-text-color">In this section, you can configure how
-                            and when expenses from Fyle need to be exported to Quickbooks Online</h5>
+                            and when expenses from Fyle need to be exported to QuickBooks Online</h5>
                     </div>
                 </div>
                 <div class="clone-settings--configuration-section">
@@ -79,7 +80,7 @@
                         <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
                             <p>Reimbursable Expense</p>
                             <img class="clone-settings--info-icon" src="assets/images/svgs/general/info-disabled.svg"
-                                matTooltip="This section contains the settings for exporting Out-of pocket expenses from Fyle to Quickbooks"
+                                matTooltip="This section contains the settings for exporting Out-of pocket expenses from Fyle to QuickBooks Online"
                                 matTooltipPosition="above" matTooltipClass="clone-settings">
                         </div>
 
@@ -117,12 +118,12 @@
                                 <p class="clone-settings--sub-options-text">Mode of Export</p>
                                 <img class="clone-settings--info-icon"
                                     src="assets/images/svgs/general/info-disabled.svg"
-                                    matTooltip="Reimbursable expense in Fyle will be exported to Quickbooks"
+                                    matTooltip="Reimbursable expense in Fyle will be exported to QuickBooks Online"
                                     matTooltipPosition="above" matTooltipClass="clone-settings">
                             </div>
                             <app-select [form]="cloneSettingsForm" [options]="reimbursableExportOptions"
-                                [isFieldMandatory]="true" [mandatoryErrorListName]="'Purchase Bill Date'"
-                                [placeholder]="'Select the Purchase Bill date'"
+                                [isFieldMandatory]="true" [mandatoryErrorListName]="'expense export type'"
+                                [placeholder]="'Select expense export type'"
                                 [formControllerName]="'reimbursableExportType'" [phase]="ProgressPhase.ONBOARDING">
                             </app-select>
                         </div>
@@ -175,12 +176,12 @@
                                 <p class="clone-settings--sub-options-text">Date of export</p>
                                 <img class="clone-settings--info-icon"
                                     src="assets/images/svgs/general/info-disabled.svg"
-                                    matTooltip="The selected date will reflect in expenses exported to Quickbooks Online"
+                                    matTooltip="The selected date will reflect in expenses exported to QuickBooks Online"
                                     matTooltipPosition="above" matTooltipClass="clone-settings">
                             </div>
 
                             <app-select [form]="cloneSettingsForm" [options]="reimbursableExpenseGroupingDateOptions"
-                                [isFieldMandatory]="true" [placeholder]="'Select the Purchase Bill date'"
+                                [isFieldMandatory]="true" [placeholder]="'Select the date of the ' + getExportType(cloneSettingsForm.value.reimbursableExportType)"
                                 [formControllerName]="'reimbursableExportDate'" [phase]="ProgressPhase.ONBOARDING">
                             </app-select>
                         </div>
@@ -194,7 +195,7 @@
                                 <p class="clone-settings--sub-options-text">How should the expenses be grouped?</p>
                                 <img class="clone-settings--info-icon"
                                     src="assets/images/svgs/general/info-disabled.svg"
-                                    matTooltip="You could choose to export expenses when they have been approved and are awaiting payment clearance, OR simply when they have been paid out."
+                                    matTooltip="Grouping reflects how the expense entries are posted in QuickBooks Online. For example, grouping by payment exports all expenses within a Fyle payment queue as one consolidated record."
                                     matTooltipPosition="above" matTooltipClass="clone-settings">
                             </div>
 
@@ -212,7 +213,7 @@
                             <p>Corporate Card Expense</p>
                             <img class="clone-settings--info-icon"
                                 src="assets/images/svgs/general/info-disabled.svg"
-                                matTooltip="This section contains the settings for exporting Out-of pocket expenses from Fyle to Quickbooks"
+                                matTooltip="This section contains the settings for exporting Out-of pocket expenses from Fyle to QuickBooks Online"
                                 matTooltipPosition="above" matTooltipClass="clone-settings">
                         </div>
 
@@ -251,12 +252,12 @@
                                 <p class="clone-settings--sub-options-text">Mode of Export</p>
                                 <img class="clone-settings--info-icon"
                                     src="assets/images/svgs/general/info-disabled.svg"
-                                    matTooltip="Reimbursable expense in Fyle will be exported to Quickbooks"
+                                    matTooltip="Credit Card expense in Fyle will be exported to QuickBooks Online"
                                     matTooltipPosition="above" matTooltipClass="clone-settings">
                             </div>
                             <app-select [form]="cloneSettingsForm" [options]="cccExpenseExportOptions"
-                                [isFieldMandatory]="true" [mandatoryErrorListName]="'Purchase Bill Date'"
-                                [placeholder]="'Select the Purchase Bill date'"
+                                [isFieldMandatory]="true" [mandatoryErrorListName]="'Export Date'"
+                                [placeholder]="'Select the export date'"
                                 [formControllerName]="'creditCardExportType'" [phase]="ProgressPhase.ONBOARDING">
                             </app-select>
                         </div>
@@ -270,7 +271,7 @@
                                 <p class="clone-settings--sub-options-text">How should the expenses be grouped?</p>
                                 <img class="clone-settings--info-icon"
                                     src="assets/images/svgs/general/info-disabled.svg"
-                                    matTooltip="You could choose to export expenses when they have been approved and are awaiting payment clearance, OR simply when they have been paid out."
+                                    matTooltip="Grouping reflects how the expense entries are posted in QuickBooks Online. For example, grouping by payment exports all expenses within a Fyle payment queue as one consolidated record."
                                     matTooltipPosition="above" matTooltipClass="clone-settings">
                             </div>
 
@@ -289,12 +290,12 @@
                                 <p class="clone-settings--sub-options-text">Date of export</p>
                                 <img class="clone-settings--info-icon"
                                     src="assets/images/svgs/general/info-disabled.svg"
-                                    matTooltip="The selected date will reflect in expenses exported to Quickbooks Online"
+                                    matTooltip="The selected date will reflect in expenses exported to QuickBooks Online"
                                     matTooltipPosition="above" matTooltipClass="clone-settings">
                             </div>
 
                             <app-select [form]="cloneSettingsForm" [options]="cccExpenseGroupingDateOptions"
-                                [isFieldMandatory]="true" [placeholder]="'Select the Purchase Bill date'"
+                                [isFieldMandatory]="true" [placeholder]="'Select the date of the ' + getExportType(cloneSettingsForm.value.creditCardExportType)"
                                 [formControllerName]="'creditCardExportDate'" [phase]="ProgressPhase.ONBOARDING">
                             </app-select>
                         </div>
@@ -308,7 +309,7 @@
                                 <p class="clone-settings--sub-options-text">Set Default Credit Card Account as</p>
                                 <img class="clone-settings--info-icon"
                                     src="assets/images/svgs/general/info-disabled.svg"
-                                    matTooltip="The selected date will reflect in expenses exported to Quickbooks Online"
+                                    matTooltip="The selected date will reflect in expenses exported to QuickBooks Online"
                                     matTooltipPosition="above" matTooltipClass="clone-settings">
                             </div>
 
@@ -345,7 +346,7 @@
                                     <p class="clone-settings--sub-options-text">Select Accounts Payable Account</p>
                                     <img class="clone-settings--info-icon"
                                         src="assets/images/svgs/general/info-disabled.svg"
-                                        matTooltip="The selected date will reflect in expenses exported to Quickbooks Online"
+                                        matTooltip="The selected date will reflect in expenses exported to QuickBooks Online"
                                         matTooltipPosition="above" matTooltipClass="clone-settings">
                                 </div>
 
