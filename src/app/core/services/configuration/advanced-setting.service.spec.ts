@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { WorkspaceScheduleEmailOptions } from '../../models/db/workspace-schedule.model';
 import { ExpenseFilterResponse, SkipExport } from '../../models/misc/skip-export.model';
 import { JoinOption, Operator } from '../../models/enum/enum.model';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 
 describe('AdvancedSettingService', () => {
   let service: AdvancedSettingService;
@@ -16,7 +17,7 @@ describe('AdvancedSettingService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, MatDialogModule],
       providers: [AdvancedSettingService]
     });
     injector = getTestBed();

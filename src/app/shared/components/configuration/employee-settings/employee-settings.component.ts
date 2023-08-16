@@ -37,9 +37,9 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
 
   existingEmployeeFieldMapping: EmployeeFieldMapping | undefined;
 
-  employeeMappingOptions: EmployeeSettingFormOption[] = this.exportSettingService.getEmployeeFieldMappingOptions();
+  employeeMappingOptions: EmployeeSettingFormOption[] = this.employeeSettingService.getEmployeeFieldMappingOptions();
 
-  autoMapEmployeeOptions: EmployeeSettingFormOption[] = this.exportSettingService.getAutoMapEmployeeOptions();
+  autoMapEmployeeOptions: EmployeeSettingFormOption[] = this.employeeSettingService.getAutoMapEmployeeOptions();
 
   windowReference: Window;
 

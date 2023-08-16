@@ -1,4 +1,4 @@
-import { CloneSetting, CloneSettingExist } from "src/app/core/models/configuration/clone-setting.model";
+import { CloneSetting, CloneSettingExist, CloneSettingPost } from "src/app/core/models/configuration/clone-setting.model";
 import { GroupedDestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
 import {AutoMapEmployee, CCCExpenseState, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseState, ExportDateType, MappingDestinationField, MappingSourceField, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
 
@@ -97,7 +97,7 @@ export const mockCloneSettingsGet: CloneSetting = {
         },
         workspace_id: 1
     },
-    advanced_settings: {
+    advanced_configurations: {
         workspace_general_settings: {
           sync_fyle_to_qbo_payments: true,
           sync_qbo_to_fyle_payments: false,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, UntypedFormGroup, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, UntypedFormGroup, FormArray } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { CloneSetting, CloneSettingModel } from 'src/app/core/models/configuration/clone-setting.model';
 import { ExportSettingFormOption } from 'src/app/core/models/configuration/export-setting.model';
@@ -9,7 +9,7 @@ import { ExportSettingService } from 'src/app/core/services/configuration/export
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 import { HelperService } from 'src/app/core/services/core/helper.service';
-import { EmployeeFieldMapping, ReimbursableExpensesObject, ClickEvent, OnboardingStep, ProgressPhase, ExpenseGroupingFieldOption, CorporateCreditCardExpensesObject, ExportDateType, ExpenseState, CCCExpenseState, MappingDestinationField, SimpleSearchType, SimpleSearchPage, PaymentSyncDirection  } from 'src/app/core/models/enum/enum.model';
+import { EmployeeFieldMapping, ReimbursableExpensesObject, ClickEvent, OnboardingStep, ProgressPhase, ExpenseGroupingFieldOption, CorporateCreditCardExpensesObject, ExportDateType, MappingDestinationField, SimpleSearchType, SimpleSearchPage, PaymentSyncDirection  } from 'src/app/core/models/enum/enum.model';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
@@ -371,18 +371,19 @@ export class CloneSettingsComponent implements OnInit {
     this.createReimbursableExportTypeWatcher();
     this.createCreditCardExportTypeWatcher();
 
-    // Goruping fields
+    // Grouping fields
     this.createReimbursableExportGroupWatcher();
     this.createCreditCardExportGroupWatcher();
 
     this.setupExportWatchers();
+    this.setupEmployeeMappingWatcher();
 
     this.setCreditCardExpenseGroupingDateOptions(this.cloneSettingsForm.controls.creditCardExportGroup.value);
     this.setGeneralMappingsValidator();
 
     this.setupExpenseFieldWatcher();
     this.setupEmployeeMappingWatcher();
-    
+
     this.setupAdditionalEmailsWatcher();
   }
 
@@ -448,8 +449,8 @@ export class CloneSettingsComponent implements OnInit {
 
     this.cloneSettingsForm = this.formBuilder.group({
       // Employee Mapping
-      employeeMapping: [this.cloneSettings.employee_mappings.workspace_general_settings?.employee_field_mapping],
-      autoMapEmployee: [this.cloneSettings.employee_mappings.workspace_general_settings?.auto_map_employees],
+      employeeMapping: [this.cloneSettings.employee_mappings.workspace_general_settings?.employee_field_mapping, Validators.required],
+      autoMapEmployee: [this.cloneSettings.employee_mappings.workspace_general_settings?.auto_map_employees, Validators.nullValidator],
 
       // Export Settings
       reimbursableExpense: [this.cloneSettings.export_settings.workspace_general_settings?.reimbursable_expenses_object ? true : false],
@@ -510,10 +511,8 @@ export class CloneSettingsComponent implements OnInit {
           if (isCloneSettings) {
             return fyleFields.includes(mappingSetting.source_field.toUpperCase()) ? mappingSetting : false;
           }
-
           return mappingSetting;
         }
-
         return false;
       });
 
@@ -575,12 +574,16 @@ export class CloneSettingsComponent implements OnInit {
       this.adminEmails = this.cloneSettings.advanced_configurations.workspace_schedules?.additional_email_options ? this.cloneSettings.advanced_configurations.workspace_schedules?.additional_email_options.concat(responses[5]) : responses[5];
       this.employeeFieldMapping = this.cloneSettings.employee_mappings.workspace_general_settings.employee_field_mapping;
       this.mappingSettings = responses[2].results;
-      this.cccExpenseExportOptions = this.exportSettingService.getcreditCardExportTypes();
+
       this.bankAccounts = responses[1].BANK_ACCOUNT;
       this.cccAccounts = responses[1].CREDIT_CARD_ACCOUNT;
       this.accountsPayables = responses[1].ACCOUNTS_PAYABLE;
       this.vendors = responses[1].VENDOR;
       this.expenseAccounts = this.bankAccounts.concat(this.cccAccounts);
+
+      this.reimbursableExportOptions = this.exportSettingService.getReimbursableExportTypeOptions(EmployeeFieldMapping.EMPLOYEE);
+      this.cccExpenseExportOptions = this.exportSettingService.getcreditCardExportTypes();
+
       this.reimbursableExpenseStateOptions = this.exportSettingService.getReimbursableExpenseStateOptions(this.cloneSettings.export_settings.workspace_general_settings.is_simplify_report_closure_enabled);
       this.cccExpenseStateOptions = this.exportSettingService.getCCCExpenseStateOptions(this.cloneSettings.export_settings.workspace_general_settings.is_simplify_report_closure_enabled);
       this.reimbursableExportOptions = this.exportSettingService.getReimbursableExportTypeOptions(this.cloneSettings.employee_mappings.workspace_general_settings.employee_field_mapping);

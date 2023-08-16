@@ -373,6 +373,49 @@
                     </div>
                 </div>
 
+                <div class="clone-settings--configuration-section">
+                    <div fxLayout="row">
+                        <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                            <img class="clone-settings--sub-options-icon"
+                                src="assets/images/svgs/general/calendar-disabled.svg">
+                            <p class="clone-settings--sub-options-text">Import Products/Services from QuickBooks Online
+                            </p>
+                            <img class="clone-settings--info-icon" src="assets/images/svgs/general/info-disabled.svg"
+                                matTooltip="Products/services from QuickBooks Online will be imported as Categories in Fyle"
+                                matTooltipPosition="above" matTooltipClass="clone-settings">
+                        </div>
+
+                        <div>
+                            <app-toggle 
+                                [isCloneSettings]="true" 
+                                [form]="cloneSettingsForm"
+                                [formControllerName]="'importItems'">
+                            </app-toggle>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="clone-settings--configuration-section">
+                    <div fxLayout="row">
+                        <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                            <img class="clone-settings--sub-options-icon"
+                                src="assets/images/svgs/general/calendar-disabled.svg">
+                            <p class="clone-settings--sub-options-text">Import Vendors from QuickBooks Online</p>
+                            <img class="clone-settings--info-icon" src="assets/images/svgs/general/info-disabled.svg"
+                                matTooltip="Vendors from QuickBooks Online will be imported as merchants in Fyle and will be a selectable field while creating an expense."
+                                matTooltipPosition="above" matTooltipClass="clone-settings">
+                        </div>
+
+                        <div>
+                            <app-toggle 
+                                [isCloneSettings]="true" 
+                                [form]="cloneSettingsForm"
+                                [formControllerName]="'importItems'">
+                            </app-toggle>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="clone-settings--field-header-section">
                     <div fxLayoutAlign="start center" class="clone-settings--field-header">
                         <div class="clone-settings--qbo-header">

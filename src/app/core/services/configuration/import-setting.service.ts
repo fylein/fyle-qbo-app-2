@@ -32,8 +32,8 @@ export class ImportSettingService {
     return this.apiService.put(`/v2/workspaces/${this.workspaceId}/import_settings/`, exportSettingsPayload);
   }
 
-  getQboExpenseFields(xeroAttributes: ExpenseField[], mappingSettings: MappingSetting[], isCloneSettings: boolean = false, fyleFields: string[] = []): ExpenseFieldsFormOption[] {
-    return xeroAttributes.map(attribute => {
+  getQboExpenseFields(qboAttributes: ExpenseField[], mappingSettings: MappingSetting[], isCloneSettings: boolean = false, fyleFields: string[] = []): ExpenseFieldsFormOption[] {
+    return qboAttributes.map(attribute => {
       const mappingSetting = mappingSettings.filter((mappingSetting: MappingSetting) => {
         if (mappingSetting.destination_field.toUpperCase() === attribute.attribute_type) {
           if (isCloneSettings) {
@@ -42,10 +42,8 @@ export class ImportSettingService {
 
           return mappingSetting;
         }
-
         return false;
       });
-
       return {
         source_field: mappingSetting.length > 0 ? mappingSetting[0].source_field : '',
         destination_field: attribute.display_name,
