@@ -1,5 +1,5 @@
 import { ExportSettingGet } from "src/app/core/models/configuration/export-setting.model";
-import { ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject, CorporateCreditCardExpensesObject } from "src/app/core/models/enum/enum.model";
+import { ExpenseState, CCCExpenseState, ExportDateType, NameInJournalEntry } from "src/app/core/models/enum/enum.model";
 
 export const response = {
   id: 1,
@@ -45,7 +45,8 @@ export const exportResponse: ExportSettingGet = {
   },
   workspace_general_settings: {
     reimbursable_expenses_object: null,
-    corporate_credit_card_expenses_object: null
+    corporate_credit_card_expenses_object: null,
+    name_in_journal_entry: NameInJournalEntry.EMPLOYEE
   },
   general_mappings: {
     bank_account: { id: '1', name: 'Fyle' },
