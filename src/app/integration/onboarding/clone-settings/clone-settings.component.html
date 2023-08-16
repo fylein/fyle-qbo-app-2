@@ -227,7 +227,6 @@
                     </div>
                 </div>
 
-
                 <div *ngIf="cloneSettingsForm.value.creditCardExpense">
                     <div class="clone-settings--configuration-section">
                         <div fxLayout="row">
@@ -373,7 +372,7 @@
                     <div>
                         <h3>Import Settings</h3>
                         <h5 class="clone-settings--header-caption sub-text-color">In this section, you can configure how
-                            the dimensions you import from Quickbooks should be mapped in Fyle</h5>
+                            the dimensions you import from QuickBooks Online should be mapped in Fyle</h5>
                     </div>
                 </div>
 
@@ -414,7 +413,7 @@
                             <app-toggle 
                                 [isCloneSettings]="true" 
                                 [form]="cloneSettingsForm"
-                                [formControllerName]="'importItems'">
+                                [formControllerName]="'importVendorsAsMerchants'">
                             </app-toggle>
                         </div>
                     </div>
@@ -423,7 +422,7 @@
                 <div class="clone-settings--field-header-section">
                     <div fxLayoutAlign="start center" class="clone-settings--field-header">
                         <div class="clone-settings--qbo-header">
-                            Quickbooks Field
+                            QuickBooks Online Field
                         </div>
                         <div>
                             Fyle Field

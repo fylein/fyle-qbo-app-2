@@ -9,7 +9,7 @@ import { ExportSettingService } from 'src/app/core/services/configuration/export
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 import { HelperService } from 'src/app/core/services/core/helper.service';
-import { EmployeeFieldMapping, ReimbursableExpensesObject, ClickEvent, OnboardingStep, ProgressPhase, ExpenseGroupingFieldOption, CorporateCreditCardExpensesObject, ExportDateType, MappingDestinationField, SimpleSearchType, SimpleSearchPage  } from 'src/app/core/models/enum/enum.model';
+import { EmployeeFieldMapping, ReimbursableExpensesObject, ClickEvent, OnboardingStep, ProgressPhase, ExpenseGroupingFieldOption, CorporateCreditCardExpensesObject, ExportDateType, MappingDestinationField, SimpleSearchType, SimpleSearchPage, QBOField  } from 'src/app/core/models/enum/enum.model';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
@@ -316,7 +316,6 @@ export class CloneSettingsComponent implements OnInit {
     this.setupEmployeeMappingWatcher();
 
     this.setCreditCardExpenseGroupingDateOptions(this.cloneSettingsForm.controls.creditCardExportGroup.value);
-
     this.setupExpenseFieldWatcher();
     this.exportSettingService.setGeneralMappingsValidator(this.cloneSettingsForm);
   }
@@ -473,7 +472,7 @@ export class CloneSettingsComponent implements OnInit {
       this.mappingService.getGroupedQBODestinationAttributes(destinationAttributes),
       this.mappingService.getMappingSettings(),
       this.mappingService.getFyleExpenseFields(),
-      this.mappingService.getQBODestinationAttributes('TAX_CODE')
+      this.mappingService.getQBODestinationAttributes(QBOField.TAX_CODE)
     ]).subscribe(responses => {
       this.cloneSettings = responses[0];
       this.fyleExpenseFields = responses[3].map(field => field.attribute_type);
