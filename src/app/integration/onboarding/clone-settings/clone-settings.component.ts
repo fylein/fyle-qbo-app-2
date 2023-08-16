@@ -20,6 +20,7 @@ import { ExpenseFieldsFormOption } from 'src/app/core/models/configuration/impor
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
 import { ExpenseField } from 'src/app/core/models/misc/expense-field.model';
+import { EmployeeSettingService } from 'src/app/core/services/configuration/employee-setting.service';
 
 
 @Component({
@@ -37,13 +38,13 @@ export class CloneSettingsComponent implements OnInit {
 
   cloneSettingsForm: FormGroup;
 
-  autoMapEmployeeTypes: EmployeeSettingFormOption[] = this.exportSettingService.getAutoMapEmployeeOptions();
+  autoMapEmployeeTypes: EmployeeSettingFormOption[] = this.employeeSettingService.getAutoMapEmployeeOptions();
 
   reimbursableExportOptions: ExportSettingFormOption[];
 
   reimbursableExpenseGroupingDateOptions: ExportSettingFormOption[] = this.exportSettingService.getReimbursableExpenseGroupingDateOptions();
 
-  employeeFieldMappingOptions: EmployeeSettingFormOption[] = this.exportSettingService.getEmployeeFieldMappingOptions();
+  employeeFieldMappingOptions: EmployeeSettingFormOption[] = this.employeeSettingService.getEmployeeFieldMappingOptions();
 
   expenseGroupingFieldOptions: ExportSettingFormOption[] = this.exportSettingService.getReimbursableExpenseGroupingFieldOptions();
 
@@ -101,6 +102,7 @@ export class CloneSettingsComponent implements OnInit {
   constructor(
     private exportSettingService: ExportSettingService,
     private importSettingService: ImportSettingService,
+    private employeeSettingService: EmployeeSettingService,
     public helperService: HelperService,
     private formBuilder: FormBuilder,
     private cloneSettingService: CloneSettingService,
@@ -149,7 +151,7 @@ export class CloneSettingsComponent implements OnInit {
     return lowerCaseWord.charAt(0).toUpperCase() + lowerCaseWord.slice(1);
   }
 
-  setCreditCardExpenseGroupingDateOptions(creditCardExportGroup: ExpenseGroupingFieldOption): void {
+  private setCreditCardExpenseGroupingDateOptions(creditCardExportGroup: ExpenseGroupingFieldOption): void {
     if (creditCardExportGroup === ExpenseGroupingFieldOption.EXPENSE_ID) {
       this.cccExpenseGroupingDateOptions = this.reimbursableExpenseGroupingDateOptions.concat([{
         label: 'Posted Date',
@@ -165,11 +167,11 @@ export class CloneSettingsComponent implements OnInit {
   }
 
   showBankAccountField(): boolean {
-    return this.cloneSettingsForm.controls.employeeMapping.value === EmployeeFieldMapping.EMPLOYEE && this.cloneSettingsForm.controls.reimbursableExportType.value && this.cloneSettingsForm.controls.reimbursableExportType.value !== ReimbursableExpensesObject.EXPENSE;
+    return this.cloneSettingsForm.value.employeeMapping === EmployeeFieldMapping.EMPLOYEE && this.cloneSettingsForm.controls.reimbursableExportType.value && this.cloneSettingsForm.controls.reimbursableExportType.value !== ReimbursableExpensesObject.EXPENSE;
   }
 
   showReimbursableAccountsPayableField(): boolean {
-    return (this.cloneSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.BILL) || (this.cloneSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.JOURNAL_ENTRY && this.cloneSettingsForm.controls.employeeMapping.value === EmployeeFieldMapping.VENDOR);
+    return (this.cloneSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.BILL) || (this.cloneSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.JOURNAL_ENTRY && this.cloneSettingsForm.value.employeeMapping === EmployeeFieldMapping.VENDOR);
   }
 
   showCreditCardAccountField(): boolean {
@@ -186,51 +188,6 @@ export class CloneSettingsComponent implements OnInit {
 
   showCCCAccountsPayableField(): boolean {
     return this.cloneSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.BILL;
-  }
-
-  private setGeneralMappingsValidator(): void {
-    if (this.showBankAccountField()) {
-      this.cloneSettingsForm.controls.bankAccount.setValidators(Validators.required);
-    } else {
-      this.cloneSettingsForm.controls.bankAccount.clearValidators();
-      this.cloneSettingsForm.controls.bankAccount.updateValueAndValidity();
-    }
-
-    if (this.showCreditCardAccountField()) {
-      this.cloneSettingsForm.controls.defaultCCCAccount.setValidators(Validators.required);
-    } else {
-      this.cloneSettingsForm.controls.defaultCCCAccount.clearValidators();
-      this.cloneSettingsForm.controls.defaultCCCAccount.updateValueAndValidity();
-    }
-
-    if (this.showDebitCardAccountField()) {
-      this.cloneSettingsForm.controls.defaultDebitCardAccount.setValidators(Validators.required);
-    } else {
-      this.cloneSettingsForm.controls.defaultDebitCardAccount.clearValidators();
-      this.cloneSettingsForm.controls.defaultDebitCardAccount.updateValueAndValidity();
-
-    }
-
-    if (this.showReimbursableAccountsPayableField() || this.showCCCAccountsPayableField()) {
-      this.cloneSettingsForm.controls.accountsPayable.setValidators(Validators.required);
-    } else {
-      this.cloneSettingsForm.controls.accountsPayable.clearValidators();
-      this.cloneSettingsForm.controls.accountsPayable.updateValueAndValidity();
-    }
-
-    if (this.showDefaultCreditCardVendorField()) {
-      this.cloneSettingsForm.controls.defaultCreditCardVendor.setValidators(Validators.required);
-    } else {
-      this.cloneSettingsForm.controls.defaultCreditCardVendor.clearValidators();
-      this.cloneSettingsForm.controls.defaultCreditCardVendor.updateValueAndValidity();
-    }
-
-    if (this.showExpenseAccountField()) {
-      this.cloneSettingsForm.controls.qboExpenseAccount.setValidators(Validators.required);
-    } else {
-      this.cloneSettingsForm.controls.qboExpenseAccount.clearValidators();
-      this.cloneSettingsForm.controls.qboExpenseAccount.updateValueAndValidity();
-    }
   }
 
   private restrictExpenseGroupSetting(creditCardExportType: string | null) : void {
@@ -255,14 +212,14 @@ export class CloneSettingsComponent implements OnInit {
   private createCreditCardExportTypeWatcher(): void {
     this.restrictExpenseGroupSetting(this.cloneSettingsForm.controls.creditCardExpense.value);
     this.cloneSettingsForm.controls.creditCardExportType.valueChanges.subscribe((creditCardExportType: string) => {
-      this.setGeneralMappingsValidator();
+      this.exportSettingService.setGeneralMappingsValidator(this.cloneSettingsForm);
       this.restrictExpenseGroupSetting(creditCardExportType);
     });
   }
 
   private createReimbursableExportTypeWatcher(): void {
     this.cloneSettingsForm.controls.reimbursableExportType.valueChanges.subscribe(() => {
-      this.setGeneralMappingsValidator();
+      this.exportSettingService.setGeneralMappingsValidator(this.cloneSettingsForm);
     });
   }
 
@@ -359,9 +316,9 @@ export class CloneSettingsComponent implements OnInit {
     this.setupEmployeeMappingWatcher();
 
     this.setCreditCardExpenseGroupingDateOptions(this.cloneSettingsForm.controls.creditCardExportGroup.value);
-    this.setGeneralMappingsValidator();
 
     this.setupExpenseFieldWatcher();
+    this.exportSettingService.setGeneralMappingsValidator(this.cloneSettingsForm);
   }
 
   createChartOfAccountField(type: string): UntypedFormGroup {
@@ -415,7 +372,7 @@ export class CloneSettingsComponent implements OnInit {
     this.cloneSettingsForm = this.formBuilder.group({
       // Employee Mapping
       employeeMapping: [this.cloneSettings.employee_mappings.workspace_general_settings?.employee_field_mapping, Validators.required],
-      autoMapEmployee: [this.cloneSettings.employee_mappings.workspace_general_settings?.auto_map_employees, Validators.nullValidator],
+      autoMapEmployee: [this.cloneSettings.employee_mappings.workspace_general_settings?.auto_map_employees],
 
       // Export Settings
       reimbursableExpense: [this.cloneSettings.export_settings.workspace_general_settings?.reimbursable_expenses_object ? true : false],
