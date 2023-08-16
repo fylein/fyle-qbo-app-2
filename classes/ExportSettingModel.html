@@ -134,8 +134,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/app/core/models/configuration/export-setting.model.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/app/core/models/configuration/export-setting.model.ts:40</a></div>
                 </td>
             </tr>
 
@@ -194,7 +194,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UntypedFormGroup } from &quot;@angular/forms&quot;;
-import { CorporateCreditCardExpensesObject, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject } from &quot;../enum/enum.model&quot;;
+import { CorporateCreditCardExpensesObject, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject, FyleField, NameInJournalEntry } from &quot;../enum/enum.model&quot;;
 import { ExpenseGroupSettingGet, ExpenseGroupSettingPost } from &quot;../db/expense-group-setting.model&quot;;
 import { DefaultDestinationAttribute, GeneralMapping } from &quot;../db/general-mapping.model&quot;;
 import { SelectFormOption } from &quot;../misc/select-form-option.model&quot;;
@@ -202,6 +202,7 @@ import { SelectFormOption } from &quot;../misc/select-form-option.model&quot;;
 export type ExportSettingWorkspaceGeneralSetting &#x3D; {
   reimbursable_expenses_object: ReimbursableExpensesObject | null,
   corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject | null
+  name_in_journal_entry: NameInJournalEntry;
 }
 
 export type ExportSettingGeneralMapping &#x3D; {
@@ -244,7 +245,8 @@ export class ExportSettingModel {
       },
       workspace_general_settings: {
         reimbursable_expenses_object: exportSettingsForm.get(&#x27;reimbursableExportType&#x27;)?.value,
-        corporate_credit_card_expenses_object: exportSettingsForm.get(&#x27;creditCardExportType&#x27;)?.value
+        corporate_credit_card_expenses_object: exportSettingsForm.get(&#x27;creditCardExportType&#x27;)?.value,
+        name_in_journal_entry: exportSettingsForm.get(&#x27;creditCardExportType&#x27;)?.value &#x3D;&#x3D;&#x3D; CorporateCreditCardExpensesObject.JOURNAL_ENTRY ? exportSettingsForm.get(&#x27;nameInJournalEntry&#x27;)?.value : NameInJournalEntry.EMPLOYEE
       },
       general_mappings: {
         bank_account: exportSettingsForm.get(&#x27;bankAccount&#x27;)?.value ? exportSettingsForm.get(&#x27;bankAccount&#x27;)?.value : emptyDestinationAttribute,

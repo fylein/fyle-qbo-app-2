@@ -4387,7 +4387,7 @@ import { Router } from &#x27;@angular/router&#x27;;
 import { forkJoin } from &#x27;rxjs&#x27;;
 import { AdvancedSettingFormOption, AdvancedSettingGet, AdvancedSettingModel } from &#x27;src/app/core/models/configuration/advanced-setting.model&#x27;;
 import { DestinationAttribute } from &#x27;src/app/core/models/db/destination-attribute.model&#x27;;
-import { AutoMapEmployee, ConfigurationCtaText, CorporateCreditCardExpensesObject, CustomOperatorOption, EmployeeFieldMapping, JoinOptions, OnboardingState, OnboardingStep, PaymentSyncDirection, ProgressPhase, ReimbursableExpensesObject, UpdateEvent } from &#x27;src/app/core/models/enum/enum.model&#x27;;
+import { AutoMapEmployee, ConfigurationCtaText, CorporateCreditCardExpensesObject, CustomOperatorOption, EmployeeFieldMapping, NameInJournalEntry, JoinOptions, OnboardingState, OnboardingStep, PaymentSyncDirection, ProgressPhase, ReimbursableExpensesObject, UpdateEvent } from &#x27;src/app/core/models/enum/enum.model&#x27;;
 import { WorkspaceService } from &#x27;src/app/core/services/workspace/workspace.service&#x27;;
 import { AdvancedSettingService } from &#x27;src/app/core/services/configuration/advanced-setting.service&#x27;;
 import { MappingService } from &#x27;src/app/core/services/misc/mapping.service&#x27;;
@@ -4653,7 +4653,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
   }
 
   showAutoCreateMerchantsAsVendorsField(): boolean {
-    return !this.workspaceGeneralSettings.import_vendors_as_merchants &amp;&amp; (this.workspaceGeneralSettings.corporate_credit_card_expenses_object &#x3D;&#x3D;&#x3D; CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || this.workspaceGeneralSettings.corporate_credit_card_expenses_object &#x3D;&#x3D;&#x3D; CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE);
+    return !this.workspaceGeneralSettings.import_vendors_as_merchants &amp;&amp; (this.workspaceGeneralSettings.corporate_credit_card_expenses_object &#x3D;&#x3D;&#x3D; CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || this.workspaceGeneralSettings.corporate_credit_card_expenses_object &#x3D;&#x3D;&#x3D; CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE || this.workspaceGeneralSettings.name_in_journal_entry &#x3D;&#x3D;&#x3D; NameInJournalEntry.MERCHANT);
   }
 
   private setupForm(): void {
