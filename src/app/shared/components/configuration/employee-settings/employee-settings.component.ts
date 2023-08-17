@@ -176,7 +176,7 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
       this.setLiveEntityExample(responses[1]);
       this.employeeSettingsForm = this.formBuilder.group({
         employeeMapping: [this.existingEmployeeFieldMapping, Validators.required],
-        autoMapEmployee: [responses[0].workspace_general_settings?.auto_map_employees, Validators.nullValidator]
+        autoMapEmployee: [responses[0].workspace_general_settings?.auto_map_employees]
       });
       this.reimbursableExportType = responses[2].workspace_general_settings?.reimbursable_expenses_object;
       this.isLoading = false;
@@ -192,5 +192,4 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.setupForm();
   }
-
 }

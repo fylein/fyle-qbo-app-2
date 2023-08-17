@@ -43,7 +43,8 @@ describe('ExportSettingsComponent', () => {
       getReimbursableExportTypeOptions: () => undefined,
       getCCCExpenseStateOptions: () => undefined,
       getExportGroup: () => undefined,
-      getReimbursableExpenseStateOptions: () => mockReimbursableExpenseStateOptions
+      getReimbursableExpenseStateOptions: () => mockReimbursableExpenseStateOptions,
+      setGeneralMappingsValidator: () => undefined
     };
     service2 = {
       getGroupedQBODestinationAttributes: () => of(destinationAttribute),
@@ -166,12 +167,6 @@ describe('ExportSettingsComponent', () => {
     component.exportSettingsForm.controls.reimbursableExportType.patchValue(ReimbursableExpensesObject.JOURNAL_ENTRY);
     fixture.detectChanges();
     expect(component.showReimbursableAccountsPayableField()).toBeTrue();
-  });
-
-  it('setGeneralMappingsValidator function check', () => {
-    component.exportSettingsForm.controls.creditCardExportType.patchValue(CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE);
-    fixture.detectChanges();
-    expect((component as any).setGeneralMappingsValidator()).toBeUndefined();
   });
 
   it('createReimbursableExportGroupWatcher function check', () => {

@@ -1,10 +1,10 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
 import { ExportSettingService } from './export-setting.service';
 import { ExportSettingGet, ExportSettingPost } from '../../models/configuration/export-setting.model';
-import { ExpenseState, CCCExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, ExportDateType, ExpenseGroupingFieldOption } from '../../models/enum/enum.model';
+import { ExpenseState, CCCExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, ExportDateType, ExpenseGroupingFieldOption, EmployeeFieldMapping } from '../../models/enum/enum.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
-import { AbstractControl, FormBuilder } from '@angular/forms';
+import { AbstractControl, FormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { exportResponse } from 'src/app/shared/components/configuration/export-settings/export-settings.fixture';
 
 describe('ExportSettingService', () => {
@@ -171,6 +171,50 @@ describe('ExportSettingService', () => {
 
     form.controls.creditCardExpense.patchValue(false);
     expect((service as any).createCreditCardExpenseWatcher(form, exportResponse)).toBeUndefined();
+  });
+
+  it('setGeneralMappingsValidator function check', () => {
+    const form= new UntypedFormGroup({
+      employeeMapping: new UntypedFormControl('EMPLOYEE'),
+      autoMapEmployee: new UntypedFormControl('EMPLOYEE_CODE'),
+      expenseState: new UntypedFormControl('PAID'),
+      cccExpenseState: new UntypedFormControl('PAID'),
+      reimbursableExpense: new UntypedFormControl(true),
+      reimbursableExportType: new UntypedFormControl('BILL'),
+      reimbursableExportGroup: new UntypedFormControl('sample'),
+      reimbursableExportDate: new UntypedFormControl(null),
+      creditCardExpense: new UntypedFormControl(true),
+      creditCardExportType: new UntypedFormControl('BILL'),
+      creditCardExportGroup: new UntypedFormControl('sipper'),
+      creditCardExportDate: new UntypedFormControl(null),
+      bankAccount: new UntypedFormControl({id: '1', name: 'Fyle'}),
+      defaultCCCAccount: new UntypedFormControl({id: '1', name: 'Fyle'}),
+      accountsPayable: new UntypedFormControl({id: '1', name: 'Fyle'}),
+      defaultCreditCardVendor: new UntypedFormControl({id: '1', name: 'Fyle'}),
+      qboExpenseAccount: new UntypedFormControl({id: '1', name: 'Fyle'}),
+      defaultDebitCardAccount: new UntypedFormControl({id: '1', name: 'Fyle'}),
+      searchOption: new UntypedFormControl([]),
+      chartOfAccount: new UntypedFormControl(true),
+      chartOfAccountTypes: new UntypedFormControl([{enabled: true, name: 'expence'}]),
+      importItems: new UntypedFormControl(true),
+      taxCode: new UntypedFormControl(true),
+      defaultTaxCode: new UntypedFormControl({id: '1', name: 'Fyle'}),
+      importVendorsAsMerchants: new UntypedFormControl(true),
+      paymentSync: new UntypedFormControl(true),
+      billPaymentAccount: new UntypedFormControl({id: '1', name: 'Fyle'}),
+      changeAccountingPeriod: new UntypedFormControl(true),
+      singleCreditLineJE: new UntypedFormControl(true),
+      autoCreateVendors: new UntypedFormControl(true),
+      autoCreateMerchantsAsVendors: new UntypedFormControl(true),
+      exportSchedule: new UntypedFormControl(true),
+      exportScheduleFrequency: new UntypedFormControl(10),
+      memoStructure: new UntypedFormControl(['Fyle']),
+      emails: new UntypedFormControl([]),
+      addedEmail: new UntypedFormControl([]),
+      skipExport: new UntypedFormControl(true)
+    });
+    form.controls.creditCardExportType.patchValue(CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE);
+    expect((service as any).setGeneralMappingsValidator(form)).toBeUndefined();
   });
 
   it('function check', () => {

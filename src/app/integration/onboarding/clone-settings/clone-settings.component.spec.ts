@@ -17,6 +17,7 @@ import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/
 import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExportDateType, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
+import { mockReimbursableExpenseGroupingDateOptions, mockReimbursableExpenseGroupingFieldOptions, mockReimbursableExpenseStateOptions } from 'src/app/shared/components/configuration/export-settings/export-settings.fixture';
 
 
 describe('CloneSettingsComponent', () => {
@@ -31,6 +32,7 @@ describe('CloneSettingsComponent', () => {
   let service1: any;
   let service2: any;
   let service3: any;
+  let service4: any;
 
   beforeEach(async () => {
     service1 = {
@@ -45,12 +47,24 @@ describe('CloneSettingsComponent', () => {
       getQBODestinationAttributes: () => null,
       getExpenseFieldsFormArray: () => null
     };
-    
     service3 = {
       getPaymentSyncOptions: () => null,
       getFrequencyIntervals: () => null,
       getWorkspaceAdmins: () => null
     }
+    service4 = {
+      exportSelectionValidator: () => undefined,
+      createCreditCardExpenseWatcher: () => undefined,
+      createReimbursableExpenseWatcher: () => undefined,
+      getReimbursableExpenseGroupingFieldOptions: () => mockReimbursableExpenseGroupingFieldOptions,
+      getReimbursableExpenseGroupingDateOptions: () => mockReimbursableExpenseGroupingDateOptions,
+      getcreditCardExportTypes: () => undefined,
+      getReimbursableExportTypeOptions: () => undefined,
+      getCCCExpenseStateOptions: () => undefined,
+      getExportGroup: () => undefined,
+      getReimbursableExpenseStateOptions: () => mockReimbursableExpenseStateOptions,
+      setGeneralMappingsValidator: () => undefined
+    };
     await TestBed.configureTestingModule({
       declarations: [ CloneSettingsComponent ],
       imports: [
@@ -59,9 +73,11 @@ describe('CloneSettingsComponent', () => {
       providers: [
         FormBuilder,
         { provide: Router, useValue: routerSpy },
+        { provide: ExportSettingService, useValue: service4},
         { provide: CloneSettingService, useValue: service1 },
         { provide: MappingService, useValue: service2 },
-        { provide: AdvancedSettingService, useValue: service3 }
+        { provide: AdvancedSettingService, useValue: service3 },
+        { provide: ExportSettingService, useValue: service4}
       ]
     })
     .compileComponents();
@@ -173,12 +189,6 @@ describe('CloneSettingsComponent', () => {
     component.cloneSettingsForm.controls.creditCardExportType.patchValue(CorporateCreditCardExpensesObject.BILL);
     fixture.detectChanges();
     expect(component.showCCCAccountsPayableField()).toBeTrue();
-  });
-
-  it('setGeneralMappingsValidator function check', () => {
-    component.cloneSettingsForm.controls.creditCardExportType.patchValue(CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE);
-    fixture.detectChanges();
-    expect((component as any).setGeneralMappingsValidator()).toBeUndefined();
   });
 
   it('Save Function check', () => {

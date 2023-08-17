@@ -151,40 +151,6 @@ export class ExportSettingService {
     ];
   }
 
-  getEmployeeFieldMappingOptions(): EmployeeSettingFormOption[] {
-    return [
-      {
-        label: 'Employees',
-        value: EmployeeFieldMapping.EMPLOYEE
-      },
-      {
-        label: 'Vendor',
-        value: EmployeeFieldMapping.VENDOR
-      }
-    ];
-  }
-
-  getAutoMapEmployeeOptions(): EmployeeSettingFormOption[] {
-    return [
-      {
-        value: null,
-        label: 'None'
-      },
-      {
-        value: AutoMapEmployee.NAME,
-        label: 'Fyle Name to QuickBooks Online Display name'
-      },
-      {
-        value: AutoMapEmployee.EMAIL,
-        label: 'Fyle Email to QuickBooks Online Email'
-      },
-      {
-        value: AutoMapEmployee.EMPLOYEE_CODE,
-        label: 'Fyle Employee Code to QuickBooks Online Display name'
-      }
-    ];
-  }
-
   getReimbursableExpenseGroupingDateOptions(): ExportSettingFormOption[] {
     return [
       {
@@ -270,6 +236,79 @@ export class ExportSettingService {
         }
       };
     };
+  }
+
+  showExpenseAccountField(form: FormGroup): boolean {
+    return form.controls.reimbursableExportType.value === ReimbursableExpensesObject.EXPENSE;
+  }
+
+  showBankAccountField(form: FormGroup): boolean {
+    return form.value.employeeMapping === EmployeeFieldMapping.EMPLOYEE && form.controls.reimbursableExportType.value && form.controls.reimbursableExportType.value !== ReimbursableExpensesObject.EXPENSE;
+  }
+
+  showReimbursableAccountsPayableField(form: FormGroup): boolean {
+    return (form.controls.reimbursableExportType.value === ReimbursableExpensesObject.BILL) || (form.controls.reimbursableExportType.value === ReimbursableExpensesObject.JOURNAL_ENTRY && form.value.employeeMapping === EmployeeFieldMapping.VENDOR);
+  }
+
+  showCreditCardAccountField(form: FormGroup): boolean {
+    return form.controls.creditCardExportType.value && form.controls.creditCardExportType.value !== CorporateCreditCardExpensesObject.BILL && form.controls.creditCardExportType.value !== CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE;
+  }
+
+  showDebitCardAccountField(form: FormGroup): boolean {
+    return form.controls.creditCardExportType.value && form.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE;
+  }
+
+  showDefaultCreditCardVendorField(form: FormGroup): boolean {
+    return form.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.BILL;
+  }
+
+  showCCCAccountsPayableField(form: FormGroup): boolean {
+    return form.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.BILL;
+  }
+
+  setGeneralMappingsValidator(form: FormGroup): void {
+    if (this.showBankAccountField(form)) {
+      form.controls.bankAccount.setValidators(Validators.required);
+    } else {
+      form.controls.bankAccount.clearValidators();
+      form.controls.bankAccount.updateValueAndValidity();
+    }
+
+    if (this.showCreditCardAccountField(form)) {
+      form.controls.defaultCCCAccount.setValidators(Validators.required);
+    } else {
+      form.controls.defaultCCCAccount.clearValidators();
+      form.controls.defaultCCCAccount.updateValueAndValidity();
+    }
+
+    if (this.showDebitCardAccountField(form)) {
+      form.controls.defaultDebitCardAccount.setValidators(Validators.required);
+    } else {
+      form.controls.defaultDebitCardAccount.clearValidators();
+      form.controls.defaultDebitCardAccount.updateValueAndValidity();
+
+    }
+
+    if (this.showReimbursableAccountsPayableField(form) || this.showCCCAccountsPayableField(form)) {
+      form.controls.accountsPayable.setValidators(Validators.required);
+    } else {
+      form.controls.accountsPayable.clearValidators();
+      form.controls.accountsPayable.updateValueAndValidity();
+    }
+
+    if (this.showDefaultCreditCardVendorField(form)) {
+      form.controls.defaultCreditCardVendor.setValidators(Validators.required);
+    } else {
+      form.controls.defaultCreditCardVendor.clearValidators();
+      form.controls.defaultCreditCardVendor.updateValueAndValidity();
+    }
+
+    if (this.showExpenseAccountField(form)) {
+      form.controls.qboExpenseAccount.setValidators(Validators.required);
+    } else {
+      form.controls.qboExpenseAccount.clearValidators();
+      form.controls.qboExpenseAccount.updateValueAndValidity();
+    }
   }
 }
 
