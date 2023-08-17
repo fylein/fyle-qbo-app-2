@@ -66,7 +66,7 @@ export class AdvancedSettingService {
   getWorkspaceAdmins(): Observable<[WorkspaceScheduleEmailOptions]> {
     return this.apiService.get(`/workspaces/${this.workspaceService.getWorkspaceId()}/admins/`, {});
   }
-  
+
   getPaymentSyncOptions(): AdvancedSettingFormOption[] {
     return [
       {
@@ -92,7 +92,7 @@ export class AdvancedSettingService {
       };
     });
   }
-  
+
   openAddemailDialog(advancedSettingsForm: FormGroup, adminEmails: WorkspaceScheduleEmailOptions[]): void {
     const dialogRef = this.dialog.open(AddEmailDialogComponent, {
       width: '467px',

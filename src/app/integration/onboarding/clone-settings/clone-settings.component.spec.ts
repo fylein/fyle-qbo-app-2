@@ -51,7 +51,7 @@ describe('CloneSettingsComponent', () => {
       getPaymentSyncOptions: () => null,
       getFrequencyIntervals: () => null,
       getWorkspaceAdmins: () => null
-    }
+    };
     service4 = {
       exportSelectionValidator: () => undefined,
       createCreditCardExpenseWatcher: () => undefined,
@@ -296,7 +296,7 @@ describe('CloneSettingsComponent', () => {
     expect((component as any).createCreditCardExportTypeWatcher()).toBeUndefined();
   });
 
-  // it('setCustomValidatorsAndWatchers function check', () => {
-  //   expect((component as any).setCustomValidatorsAndWatchers()).toBeUndefined();
+  // It('setCustomValidatorsAndWatchers function check', () => {
+  //   Expect((component as any).setCustomValidatorsAndWatchers()).toBeUndefined();
   // });
 });

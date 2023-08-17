@@ -50,11 +50,11 @@ export class CloneSettingsComponent implements OnInit {
   employeeFieldMappingOptions: EmployeeSettingFormOption[] = this.employeeSettingService.getEmployeeFieldMappingOptions();
 
   expenseGroupingFieldOptions: ExportSettingFormOption[] = this.exportSettingService.getReimbursableExpenseGroupingFieldOptions();
-  
+
   paymentSyncOptions: AdvancedSettingFormOption[] = this.advancedSettingService.getPaymentSyncOptions();
 
   frequencyIntervals: AdvancedSettingFormOption[] = this.advancedSettingService.getFrequencyIntervals();
-  
+
   adminEmails: WorkspaceScheduleEmailOptions[];
 
   bankAccounts: DestinationAttribute[];
@@ -199,7 +199,7 @@ export class CloneSettingsComponent implements OnInit {
   showCCCAccountsPayableField(): boolean {
     return this.cloneSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.BILL;
   }
-  
+
   showSingleCreditLineJEField(): boolean {
     return this.cloneSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.JOURNAL_ENTRY || this.cloneSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.JOURNAL_ENTRY;
   }
@@ -287,7 +287,7 @@ export class CloneSettingsComponent implements OnInit {
       this.expenseFields.controls.filter(field => field.value.destination_field === expenseField.destination_field)[0].patchValue(expenseField);
     });
   }
-  
+
   private setupAdditionalEmailsWatcher(): void {
     this.advancedSettingService.patchAdminEmailsEmitter.subscribe((additionalEmails) => {
       this.adminEmails = additionalEmails;
@@ -394,7 +394,7 @@ export class CloneSettingsComponent implements OnInit {
     const chartOfAccountTypeFormArray = this.chartOfAccountTypesList.map((type) => this.createChartOfAccountField(type));
 
     const expenseFieldsFormArray = this.importSettingService.getExpenseFieldsFormArray(this.qboExpenseFields, false);
-    
+
     let paymentSync = '';
     if (this.cloneSettings.advanced_configurations.workspace_general_settings.sync_fyle_to_qbo_payments) {
       paymentSync = PaymentSyncDirection.FYLE_TO_QBO;
@@ -436,7 +436,7 @@ export class CloneSettingsComponent implements OnInit {
       taxCode: [this.cloneSettings.import_settings.workspace_general_settings.import_tax_codes],
       defaultTaxCode: [this.cloneSettings.import_settings.general_mappings?.default_tax_code?.id ? this.cloneSettings.import_settings.general_mappings.default_tax_code : null],
       importVendorsAsMerchants: [this.cloneSettings.import_settings.workspace_general_settings.import_vendors_as_merchants],
-      
+
       // Advanced Settings
       paymentSync: [paymentSync],
       billPaymentAccount: [this.cloneSettings.advanced_configurations.general_mappings?.bill_payment_account],
@@ -448,8 +448,8 @@ export class CloneSettingsComponent implements OnInit {
       autoCreateVendors: [this.cloneSettings.advanced_configurations.workspace_general_settings.auto_create_destination_entity],
       autoCreateMerchantsAsVendors: [this.cloneSettings.advanced_configurations.workspace_general_settings.auto_create_merchants_as_vendors ? this.cloneSettings.advanced_configurations.workspace_general_settings.auto_create_merchants_as_vendors : false],
       singleCreditLineJE: [this.cloneSettings.advanced_configurations.workspace_general_settings.je_single_credit_line],
-      memoStructure: [this.cloneSettings.advanced_configurations.workspace_general_settings.memo_structure],
-      
+      memoStructure: [this.cloneSettings.advanced_configurations.workspace_general_settings.memo_structure]
+
     });
 
     this.setCustomValidatorsAndWatchers();
@@ -525,7 +525,7 @@ export class CloneSettingsComponent implements OnInit {
     ]).subscribe(responses => {
       this.cloneSettings = responses[0];
       this.fyleExpenseFields = responses[3].map(field => field.attribute_type);
-      
+
       this.adminEmails = this.cloneSettings.advanced_configurations.workspace_schedules?.additional_email_options ? this.cloneSettings.advanced_configurations.workspace_schedules?.additional_email_options.concat(responses[4]) : responses[4];
       this.employeeFieldMapping = this.cloneSettings.employee_mappings.workspace_general_settings.employee_field_mapping;
       this.mappingSettings = responses[2].results;
