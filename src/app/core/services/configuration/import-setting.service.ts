@@ -70,8 +70,8 @@ export class ImportSettingService {
     };
   }
 
-  getExpenseFieldsFormArray(xeroExpenseFields: ExpenseFieldsFormOption[], isWatcherRequired: boolean): FormGroup[] {
-    return xeroExpenseFields.map((field) => {
+  getExpenseFieldsFormArray(qboExpenseField: ExpenseFieldsFormOption[], isWatcherRequired: boolean): FormGroup[] {
+    return qboExpenseField.map((field) => {
       return this.formBuilder.group({
         source_field: [field.source_field, Validators.required],
         destination_field: [field.destination_field.toUpperCase()],

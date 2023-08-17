@@ -5,7 +5,7 @@ import { ExpenseState, CCCExpenseState, ReimbursableExpensesObject, CorporateCre
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
 import { AbstractControl, FormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { exportResponse } from 'src/app/shared/components/configuration/export-settings/export-settings.fixture';
+import { exportResponse, mockCCCExpenseStateOptions, mockReimbursableExpenseGroupingFieldOptions, mockReimbursableExportTypeOptions } from 'src/app/shared/components/configuration/export-settings/export-settings.fixture';
 
 describe('ExportSettingService', () => {
   let service: ExportSettingService;
@@ -220,5 +220,12 @@ describe('ExportSettingService', () => {
   it('function check', () => {
     expect((service as any).getExportGroup([ExpenseGroupingFieldOption.EXPENSE_ID])).toEqual('expense_id');
     expect((service as any).getExportGroup(null)).toEqual('');
+
+    expect((service as any).getReimbursableExpenseGroupingFieldOptions());
+    expect((service as any).getReimbursableExportTypeOptions());
+    expect((service as any).getcreditCardExportTypes());
+    expect((service as any).getReimbursableExpenseGroupingDateOptions());
+    expect((service as any).getReimbursableExpenseStateOptions());
+    expect((service as any).getCCCExpenseStateOptions());
   });
 });

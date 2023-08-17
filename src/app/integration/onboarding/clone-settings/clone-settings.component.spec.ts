@@ -12,7 +12,7 @@ import { expenseFieldresponse } from 'src/app/shared/components/configuration/im
 import { getMappingSettingResponse } from 'src/app/shared/components/mapping/generic-mapping/generic-mapping.fixture';
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
+import { MatLegacyDialogModule as MatDialogModule, MatLegacyDialog } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExportDateType, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
@@ -29,6 +29,9 @@ describe('CloneSettingsComponent', () => {
   let importSettingService: ImportSettingService;
   let cloneSettingService: CloneSettingService;
   const routerSpy = { navigate: jasmine.createSpy('navigate'), url: '/path' };
+  let dialogSpy: jasmine.Spy;
+  const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({}), close: '' });
+  dialogRefSpyObj.componentInstance = { body: '' };
   let service1: any;
   let service2: any;
   let service3: any;
@@ -88,6 +91,7 @@ describe('CloneSettingsComponent', () => {
     component = fixture.componentInstance;
     router = TestBed.inject(Router);
     formbuilder = TestBed.inject(UntypedFormBuilder);
+    dialogSpy = spyOn(TestBed.get(MatLegacyDialog), 'open').and.returnValue(dialogRefSpyObj);
     exportSettingService = TestBed.inject(ExportSettingService);
     importSettingService = TestBed.inject(ImportSettingService);
     component.cloneSettings = mockCloneSettingsGet;
@@ -188,7 +192,43 @@ describe('CloneSettingsComponent', () => {
   it('showDefaultCreditCardVendorField function check', () => {
     component.cloneSettingsForm.controls.creditCardExportType.patchValue(CorporateCreditCardExpensesObject.BILL);
     fixture.detectChanges();
-    expect(component.showCCCAccountsPayableField()).toBeTrue();
+    expect(component.showDefaultCreditCardVendorField()).toBeTrue();
+  });
+
+  it('showExpenseAccountField function check', () => {
+    component.cloneSettingsForm.controls.reimbursableExportType.patchValue(ReimbursableExpensesObject.EXPENSE);
+    fixture.detectChanges();
+    expect(component.showExpenseAccountField()).toBeTrue();
+  });
+
+  it('showCreditCardAccountField function check', () => {
+    component.cloneSettingsForm.controls.creditCardExportType.patchValue(CorporateCreditCardExpensesObject.JOURNAL_ENTRY);
+    fixture.detectChanges();
+    expect(component.showCreditCardAccountField()).toBeTrue();
+  });
+
+  it('showDebitCardAccountField function check', () => {
+    component.cloneSettingsForm.controls.creditCardExportType.patchValue(CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE);
+    fixture.detectChanges();
+    expect(component.showDebitCardAccountField()).toBeTrue();
+  });
+
+  it('showSingleCreditLineJEField function check', () => {
+    component.cloneSettingsForm.controls.creditCardExportType.patchValue(CorporateCreditCardExpensesObject.JOURNAL_ENTRY);
+    fixture.detectChanges();
+    expect(component.showSingleCreditLineJEField()).toBeTrue();
+  });
+
+  it('resetConfiguraions function check', () => {
+    expect((component as any).resetConfiguraions()).toBeUndefined();
+    fixture.detectChanges();
+    expect(dialogSpy).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith(['/workspaces/onboarding/employee_settings']);
+  });
+
+  it('function check', () => {
+    expect((component as any).setupExportWatchers()).toBeUndefined();
+    expect((component as any).setupExpenseFieldWatcher()).toBeUndefined();
   });
 
   it('Save Function check', () => {
@@ -295,8 +335,4 @@ describe('CloneSettingsComponent', () => {
     component.cloneSettingsForm.controls.employeeMapping.patchValue(CorporateCreditCardExpensesObject.JOURNAL_ENTRY);
     expect((component as any).createCreditCardExportTypeWatcher()).toBeUndefined();
   });
-
-  // It('setCustomValidatorsAndWatchers function check', () => {
-  //   Expect((component as any).setCustomValidatorsAndWatchers()).toBeUndefined();
-  // });
 });

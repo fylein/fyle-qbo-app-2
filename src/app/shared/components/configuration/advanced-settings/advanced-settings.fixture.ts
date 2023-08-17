@@ -1,8 +1,8 @@
-import { AdvancedSettingGet, AdvancedSettingPost } from "src/app/core/models/configuration/advanced-setting.model";
+import { AdvancedSettingFormOption, AdvancedSettingGet, AdvancedSettingPost } from "src/app/core/models/configuration/advanced-setting.model";
 import { DestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
 import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from "src/app/core/models/db/workspace-schedule.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
-import { AutoMapEmployee, CorporateCreditCardExpensesObject, CustomOperatorOption, EmployeeFieldMapping, JoinOption, Operator, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
+import { AutoMapEmployee, CorporateCreditCardExpensesObject, CustomOperatorOption, EmployeeFieldMapping, JoinOption, Operator, PaymentSyncDirection, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
 import { ConditionField, ExpenseFilterResponse, SkipExport } from "src/app/core/models/misc/skip-export.model";
 
 export const response:WorkspaceGeneralSetting = {
@@ -106,7 +106,20 @@ export const getadvancedSettingResponse:AdvancedSettingGet = {
   },
   workspace_id: 1
 };
-
+export const paymentSyncOptions = [
+  {
+    label: 'None',
+    value: null
+  },
+  {
+    label: 'Export Fyle ACH Payments to Quickbooks Online',
+    value: PaymentSyncDirection.FYLE_TO_QBO
+  },
+  {
+    label: 'Import Quickbooks Payments into Fyle',
+    value: PaymentSyncDirection.QBO_TO_FYLE
+  }
+];
 export const getadvancedSettingResponse2:AdvancedSettingGet = {
   workspace_general_settings: {
     sync_fyle_to_qbo_payments: true,
