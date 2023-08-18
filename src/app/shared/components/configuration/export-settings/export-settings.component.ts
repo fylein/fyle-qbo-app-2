@@ -286,7 +286,6 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       this.reimbursableExportTypes = this.exportSettingService.getReimbursableExportTypeOptions(this.employeeFieldMapping);
       this.cccExpenseStateOptions = this.exportSettingService.getCCCExpenseStateOptions(this.is_simplify_report_closure_enabled);
       this.expenseStateOptions = this.exportSettingService.getReimbursableExpenseStateOptions(this.is_simplify_report_closure_enabled);
-
       this.showNameInJournalOption = this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object === CorporateCreditCardExpensesObject.JOURNAL_ENTRY ? true : false;
 
       this.setupForm();
