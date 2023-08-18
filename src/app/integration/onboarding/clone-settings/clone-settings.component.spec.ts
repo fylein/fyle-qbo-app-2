@@ -146,6 +146,9 @@ describe('CloneSettingsComponent', () => {
   });
 
   it('createCreditCardExportGroupWatcher function check', () => {
+    component.cloneSettingsForm.controls.creditCardExportGroup.patchValue(!component.cloneSettingsForm.controls.creditCardExportGroup.value);
+    expect((component as any).createCreditCardExportGroupWatcher()).toBeUndefined();
+    component.cloneSettingsForm.controls.creditCardExpense.patchValue(!component.cloneSettingsForm.controls.creditCardExportGroup.value);
     component.cccExpenseGroupingDateOptions = [{
       'label': 'Posted Date',
       'value': ExportDateType.POSTED_AT

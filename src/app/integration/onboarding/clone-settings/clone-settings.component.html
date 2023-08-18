@@ -207,7 +207,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="clone-settings--configuration-section">
                     <div fxLayout="row">
                         <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
@@ -224,7 +223,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div *ngIf="cloneSettingsForm.value.creditCardExpense">
                     <div class="clone-settings--configuration-section">
                         <div fxLayout="row">
@@ -753,7 +751,7 @@
                         </div>
                     </div>
 
-                    <div class="clone-settings--configuration-section">
+                    <div *ngIf="showAutoCreateVendorsField()" class="clone-settings--configuration-section">
                         <div fxLayout="row">
                             <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
                                 <img class="clone-settings--sub-options-icon"
@@ -772,7 +770,7 @@
                         </div>
                     </div>
 
-                    <div class="clone-settings--configuration-section">
+                    <div *ngIf="showAutoCreateMerchantsAsVendorsField()" class="clone-settings--configuration-section">
                         <div fxLayout="row">
                             <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
                                 <img class="clone-settings--sub-options-icon"

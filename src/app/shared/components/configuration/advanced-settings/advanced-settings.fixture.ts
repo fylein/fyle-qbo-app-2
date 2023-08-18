@@ -2,7 +2,7 @@ import { AdvancedSettingFormOption, AdvancedSettingGet, AdvancedSettingPost } fr
 import { DestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
 import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from "src/app/core/models/db/workspace-schedule.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
-import { AutoMapEmployee, CorporateCreditCardExpensesObject, CustomOperatorOption, EmployeeFieldMapping, JoinOption, Operator, PaymentSyncDirection, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
+import { AutoMapEmployee, CorporateCreditCardExpensesObject, CustomOperatorOption, EmployeeFieldMapping, JoinOption, Operator, PaymentSyncDirection, ReimbursableExpensesObject, NameInJournalEntry } from "src/app/core/models/enum/enum.model";
 import { ConditionField, ExpenseFilterResponse, SkipExport } from "src/app/core/models/misc/skip-export.model";
 
 export const response:WorkspaceGeneralSetting = {
@@ -31,7 +31,8 @@ export const response:WorkspaceGeneralSetting = {
   sync_qbo_to_fyle_payments: false,
   auto_create_merchants_as_vendors: true,
   updated_at: new Date("2022-04-28T12:48:39.150177Z"),
-  workspace: 1
+  workspace: 1,
+  name_in_journal_entry: NameInJournalEntry.EMPLOYEE
 };
 
 export const advancedSettingResponse:AdvancedSettingGet = {

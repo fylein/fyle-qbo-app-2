@@ -9,7 +9,7 @@ import { ExportSettingService } from 'src/app/core/services/configuration/export
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 import { HelperService } from 'src/app/core/services/core/helper.service';
-import { EmployeeFieldMapping, ReimbursableExpensesObject, ClickEvent, OnboardingStep, ProgressPhase, ExpenseGroupingFieldOption, CorporateCreditCardExpensesObject, ExportDateType, MappingDestinationField, SimpleSearchType, SimpleSearchPage, PaymentSyncDirection, QBOField  } from 'src/app/core/models/enum/enum.model';
+import { EmployeeFieldMapping, ReimbursableExpensesObject, ClickEvent, OnboardingStep, ProgressPhase, ExpenseGroupingFieldOption, CorporateCreditCardExpensesObject, ExportDateType, MappingDestinationField, SimpleSearchType, SimpleSearchPage, PaymentSyncDirection, QBOField, AutoMapEmployee  } from 'src/app/core/models/enum/enum.model';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
@@ -203,6 +203,15 @@ export class CloneSettingsComponent implements OnInit {
   showSingleCreditLineJEField(): boolean {
     return this.cloneSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.JOURNAL_ENTRY || this.cloneSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.JOURNAL_ENTRY;
   }
+  
+  showAutoCreateVendorsField(): boolean {
+    return this.cloneSettingsForm.controls.employeeMapping.value === EmployeeFieldMapping.VENDOR && this.cloneSettingsForm.controls.autoMapEmployee.value !== null && this.cloneSettingsForm.controls.autoMapEmployee.value !== AutoMapEmployee.EMPLOYEE_CODE;
+  }
+
+  showAutoCreateMerchantsAsVendorsField(): boolean {
+    return !this.cloneSettingsForm.controls.importVendorsAsMerchants.value && (this.cloneSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || this.cloneSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE); 
+  }
+
 
   private restrictExpenseGroupSetting(creditCardExportType: string | null) : void {
     if (creditCardExportType === CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || creditCardExportType === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE) {

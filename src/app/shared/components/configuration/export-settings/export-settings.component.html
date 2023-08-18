@@ -151,6 +151,21 @@
           >
         </app-configuration-select-field>
 
+        <div *ngIf="showNameInJournalOption">
+          <app-configuration-select-field
+            [form]="exportSettingsForm"
+            [options]="nameInJournalOptions"
+            [isFieldMandatory]="false"
+            [mandatoryErrorListName]="'Name in which Journal Entry should export'"
+            [label]="'Name in Journal Entry (CCC)'"
+            [subLabel]="'You can select either the \'Merchant Name\' or the \'Employee Name\' to appear in the \'Name\' field of your Journal Entries'"
+            [placeholder]="'Select a name'"
+            [formControllerName]="'nameInJournalEntry'"
+            >
+          </app-configuration-select-field>
+
+        </div>
+
         <div *ngIf="showCreditCardAccountField()">
           <app-configuration-select-field
             [form]="exportSettingsForm"

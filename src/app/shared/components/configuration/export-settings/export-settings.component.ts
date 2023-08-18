@@ -3,7 +3,7 @@ import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Val
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { ConfigurationCtaText, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, OnboardingState, OnboardingStep, ProgressPhase, ReimbursableExpensesObject, UpdateEvent } from 'src/app/core/models/enum/enum.model';
+import { ConfigurationCtaText, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, OnboardingState, OnboardingStep, ProgressPhase, ReimbursableExpensesObject, UpdateEvent, NameInJournalEntry } from 'src/app/core/models/enum/enum.model';
 import { ExportSettingGet, ExportSettingFormOption, ExportSettingModel } from 'src/app/core/models/configuration/export-setting.model';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
@@ -55,6 +55,17 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   cccExpenseStateOptions: ExportSettingFormOption[];
 
+  nameInJournalOptions = [
+    {
+      label: 'Merchant Name',
+      value: NameInJournalEntry.MERCHANT
+    },
+    {
+      label: 'Employee Name',
+      value: NameInJournalEntry.EMPLOYEE
+    }
+  ];
+
   expenseGroupingFieldOptions: ExportSettingFormOption[] = this.exportSettingService.getReimbursableExpenseGroupingFieldOptions();
 
   reimbursableExpenseGroupingDateOptions: ExportSettingFormOption[] = this.exportSettingService.getReimbursableExpenseGroupingDateOptions();
@@ -72,6 +83,8 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
   private readonly sessionStartTime = new Date();
 
   private timeSpentEventRecorded: boolean = false;
+
+  showNameInJournalOption: boolean = false;
 
   constructor(
     private dialog: MatDialog,
@@ -116,7 +129,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       this.exportSettingsForm.controls.creditCardExportGroup.disable();
 
       this.cccExpenseGroupingDateOptions = [{
-          label: 'Posted Date',
+          label: 'Card Transaction Post date',
           value: ExportDateType.POSTED_AT
         },
         {
@@ -132,7 +145,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
   setCreditCardExpenseGroupingDateOptions(creditCardExportGroup: ExpenseGroupingFieldOption): void {
     if (creditCardExportGroup === ExpenseGroupingFieldOption.EXPENSE_ID) {
       this.cccExpenseGroupingDateOptions = this.reimbursableExpenseGroupingDateOptions.concat([{
-        label: 'Posted Date',
+        label: 'Card Transaction Post date',
         value: ExportDateType.POSTED_AT
       }]);
     } else {
@@ -151,6 +164,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
     this.exportSettingsForm.controls.creditCardExportType.valueChanges.subscribe((creditCardExportType: string) => {
       this.exportSettingService.setGeneralMappingsValidator(this.exportSettingsForm);
       this.restrictExpenseGroupSetting(creditCardExportType);
+      this.showNameInJournalOption = creditCardExportType === CorporateCreditCardExpensesObject.JOURNAL_ENTRY ? true : false;
     });
   }
 
@@ -272,6 +286,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       this.reimbursableExportTypes = this.exportSettingService.getReimbursableExportTypeOptions(this.employeeFieldMapping);
       this.cccExpenseStateOptions = this.exportSettingService.getCCCExpenseStateOptions(this.is_simplify_report_closure_enabled);
       this.expenseStateOptions = this.exportSettingService.getReimbursableExpenseStateOptions(this.is_simplify_report_closure_enabled);
+      this.showNameInJournalOption = this.exportSettings.workspace_general_settings?.corporate_credit_card_expenses_object === CorporateCreditCardExpensesObject.JOURNAL_ENTRY ? true : false;
 
       this.setupForm();
     });
@@ -295,6 +310,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
       defaultCreditCardVendor: [this.exportSettings.general_mappings?.default_ccc_vendor?.id ? this.exportSettings.general_mappings.default_ccc_vendor : null],
       qboExpenseAccount: [this.exportSettings.general_mappings?.qbo_expense_account?.id ? this.exportSettings.general_mappings.qbo_expense_account : null],
       defaultDebitCardAccount: [this.exportSettings.general_mappings?.default_debit_card_account?.id ? this.exportSettings.general_mappings.default_debit_card_account : null],
+      nameInJournalEntry: [this.exportSettings.workspace_general_settings.name_in_journal_entry ? this.exportSettings.workspace_general_settings.name_in_journal_entry : NameInJournalEntry.EMPLOYEE ],
       searchOption: []
     });
 
@@ -408,7 +424,6 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
   private constructPayloadAndSave(): void {
     this.saveInProgress = true;
     const exportSettingPayload = ExportSettingModel.constructPayload(this.exportSettingsForm);
-
     this.exportSettingService.postExportSettings(exportSettingPayload).subscribe((response: ExportSettingGet) => {
       if (this.workspaceService.getOnboardingState() === OnboardingState.EXPORT_SETTINGS) {
         this.trackingService.onOnboardingStepCompletion(OnboardingStep.EXPORT_SETTINGS, 3, exportSettingPayload);

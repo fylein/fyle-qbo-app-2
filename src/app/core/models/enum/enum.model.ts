@@ -274,3 +274,8 @@ export enum CustomOperatorOption {
   IsEmpty = "is_empty",
   IsNotEmpty = "is_not_empty"
 }
+
+export enum NameInJournalEntry {
+  EMPLOYEE = 'EMPLOYEE',
+  MERCHANT = 'MERCHANT'
+}
