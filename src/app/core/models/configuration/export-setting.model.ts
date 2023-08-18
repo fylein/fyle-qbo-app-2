@@ -1,9 +1,5 @@
 import { UntypedFormGroup } from "@angular/forms";
-<<<<<<< HEAD
-import { CorporateCreditCardExpensesObject, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject, AutoMapEmployee, EmployeeFieldMapping } from "../enum/enum.model";
-=======
-import { CorporateCreditCardExpensesObject, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject, FyleField, NameInJournalEntry } from "../enum/enum.model";
->>>>>>> 170b61efb196c94831dbcd371e7bd393dcdaa6a9
+import { CorporateCreditCardExpensesObject, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject, NameInJournalEntry } from "../enum/enum.model";
 import { ExpenseGroupSettingGet, ExpenseGroupSettingPost } from "../db/expense-group-setting.model";
 import { DefaultDestinationAttribute, GeneralMapping } from "../db/general-mapping.model";
 import { SelectFormOption } from "../misc/select-form-option.model";
