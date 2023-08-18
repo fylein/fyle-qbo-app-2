@@ -790,8 +790,7 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
+
                     <div *ngIf="showSingleCreditLineJEField()" class="clone-settings--configuration-section">
                         <div fxLayout="row">
                             <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
@@ -809,6 +808,32 @@
                                     [formControllerName]="'singleCreditLineJE'">
                                 </app-toggle>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/calendar-disabled.svg">
+                                <p class="clone-settings--sub-options-text">Set description field in QuickBooks Online</p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="Customize the data set you would like to pass to the description field of QuickBooks Online while exporting expenses from Fyle"
+                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                            </div>
+                            
+                             <!-- <div>
+                                <app-email-multi-select [form]="cloneSettingsForm" [options]="adminEmails"
+                                    [isFieldMandatory]="false" [placeholder]="'Select Email Address'"
+                                    [formControllerName]="'emails'" [isCloneSettings]="true"></app-email-multi-select>
+                                <div fxLayout="row" class="clone-settings--add-email-text pointer"
+                                    fxLayoutAlign="end center" (click)="openAddemailDialog()">
+                                    <span class="clone-settings--span-or">or</span>
+                                    <img class="clone-settings--add-btn" src="assets/images/svgs/actions/add.svg">
+                                    <span class="clone-settings--span-or">Add new email address</span>
+                                </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
