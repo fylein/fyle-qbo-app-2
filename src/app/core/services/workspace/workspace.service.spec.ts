@@ -1,7 +1,7 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
 import { WorkspaceService } from './workspace.service';
 import { Workspace } from '../../models/db/workspace.model';
-import { EmployeeFieldMapping, OnboardingState } from '../../models/enum/enum.model';
+import { EmployeeFieldMapping, NameInJournalEntry, OnboardingState } from '../../models/enum/enum.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { WorkspaceGeneralSetting } from '../../models/db/workspace-general-setting.model';
 import { environment } from 'src/environments/environment';
@@ -125,7 +125,8 @@ describe('WorkspaceService', () => {
       sync_qbo_to_fyle_payments: false,
       updated_at: new Date("2022-04-28T12:48:39.150177Z"),
       workspace: 1,
-      is_simplify_report_closure_enabled: true
+      is_simplify_report_closure_enabled: true,
+      name_in_journal_entry: NameInJournalEntry.EMPLOYEE
     };
     service.getWorkspaceGeneralSettings().subscribe((value) => {
       expect(value).toEqual(response);

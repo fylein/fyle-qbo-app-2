@@ -1,5 +1,9 @@
 import { UntypedFormGroup } from "@angular/forms";
+<<<<<<< HEAD
 import { CorporateCreditCardExpensesObject, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject, AutoMapEmployee, EmployeeFieldMapping } from "../enum/enum.model";
+=======
+import { CorporateCreditCardExpensesObject, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject, FyleField, NameInJournalEntry } from "../enum/enum.model";
+>>>>>>> 170b61efb196c94831dbcd371e7bd393dcdaa6a9
 import { ExpenseGroupSettingGet, ExpenseGroupSettingPost } from "../db/expense-group-setting.model";
 import { DefaultDestinationAttribute, GeneralMapping } from "../db/general-mapping.model";
 import { SelectFormOption } from "../misc/select-form-option.model";
@@ -7,6 +11,7 @@ import { SelectFormOption } from "../misc/select-form-option.model";
 export type ExportSettingWorkspaceGeneralSettingPost = {
   reimbursable_expenses_object: ReimbursableExpensesObject | null,
   corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject | null
+  name_in_journal_entry: NameInJournalEntry;
 }
 
 export interface ExportSettingWorkspaceGeneralSetting extends ExportSettingWorkspaceGeneralSettingPost {
@@ -53,7 +58,8 @@ export class ExportSettingModel {
       },
       workspace_general_settings: {
         reimbursable_expenses_object: exportSettingsForm.get('reimbursableExportType')?.value,
-        corporate_credit_card_expenses_object: exportSettingsForm.get('creditCardExportType')?.value
+        corporate_credit_card_expenses_object: exportSettingsForm.get('creditCardExportType')?.value,
+        name_in_journal_entry: exportSettingsForm.get('creditCardExportType')?.value === CorporateCreditCardExpensesObject.JOURNAL_ENTRY ? exportSettingsForm.get('nameInJournalEntry')?.value : NameInJournalEntry.EMPLOYEE
       },
       general_mappings: {
         bank_account: exportSettingsForm.get('bankAccount')?.value ? exportSettingsForm.get('bankAccount')?.value : emptyDestinationAttribute,

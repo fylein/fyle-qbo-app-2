@@ -1,7 +1,11 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
 import { ExportSettingService } from './export-setting.service';
 import { ExportSettingGet, ExportSettingPost } from '../../models/configuration/export-setting.model';
+<<<<<<< HEAD
 import { ExpenseState, CCCExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, ExportDateType, ExpenseGroupingFieldOption } from '../../models/enum/enum.model';
+=======
+import { ExpenseState, CCCExpenseState, ReimbursableExpensesObject, CorporateCreditCardExpensesObject, ExportDateType, NameInJournalEntry } from '../../models/enum/enum.model';
+>>>>>>> 170b61efb196c94831dbcd371e7bd393dcdaa6a9
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
 import { AbstractControl, FormBuilder } from '@angular/forms';
@@ -45,7 +49,11 @@ describe('ExportSettingService', () => {
       workspace_general_settings: {
         reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
         corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL,
+<<<<<<< HEAD
         is_simplify_report_closure_enabled: true
+=======
+        name_in_journal_entry: NameInJournalEntry.EMPLOYEE
+>>>>>>> 170b61efb196c94831dbcd371e7bd393dcdaa6a9
       },
       general_mappings: {
         bank_account: { id: '1', name: 'Fyle' },
@@ -80,7 +88,8 @@ describe('ExportSettingService', () => {
       },
       workspace_general_settings: {
         reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
-        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL
+        corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL,
+        name_in_journal_entry: NameInJournalEntry.MERCHANT
       },
       general_mappings: {
         bank_account: { id: '1', name: 'Fyle' },
@@ -103,7 +112,11 @@ describe('ExportSettingService', () => {
       workspace_general_settings: {
         reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
         corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL,
+<<<<<<< HEAD
         is_simplify_report_closure_enabled: true
+=======
+        name_in_journal_entry: NameInJournalEntry.MERCHANT
+>>>>>>> 170b61efb196c94831dbcd371e7bd393dcdaa6a9
       },
       general_mappings: {
         bank_account: { id: '1', name: 'Fyle' },

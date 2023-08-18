@@ -4,7 +4,7 @@ import { ExpenseAttribute } from "src/app/core/models/db/expense-attribute.model
 import { ExpenseGroup } from "src/app/core/models/db/expense-group.model";
 import { MappingList, ResolveMappingError } from "src/app/core/models/db/mapping.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
-import { FyleReferenceType, EmployeeFieldMapping, ErrorType, MappingState, QBOField } from "src/app/core/models/enum/enum.model";
+import { FyleReferenceType, EmployeeFieldMapping, ErrorType, MappingState, QBOField, NameInJournalEntry } from "src/app/core/models/enum/enum.model";
 
 export   const expenseAttribute: ExpenseAttribute = {
   id: 1,
@@ -167,5 +167,6 @@ export const getWorkspaceGeneralSettingsResponse: WorkspaceGeneralSetting = {
   map_fyle_cards_qbo_account: false,
   map_merchant_to_vendor: false,
   skip_cards_mapping: false,
-  is_simplify_report_closure_enabled: false
+  is_simplify_report_closure_enabled: false,
+  name_in_journal_entry: NameInJournalEntry.EMPLOYEE
 };
