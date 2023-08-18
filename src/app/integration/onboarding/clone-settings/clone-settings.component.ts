@@ -485,7 +485,7 @@ export class CloneSettingsComponent implements OnInit {
     this.fyleExpenseFields = fyleFields.map(field => field.attribute_type);
       // Remove custom mapped Fyle options
       const customMappedFyleFields = this.mappingSettings.filter(setting => !setting.import_to_fyle).map(setting => setting.source_field);
-      const customMappedXeroFields = this.mappingSettings.filter(setting => !setting.import_to_fyle).map(setting => setting.destination_field);
+      const customMappedQuickbooksFields = this.mappingSettings.filter(setting => !setting.import_to_fyle).map(setting => setting.destination_field);
       const importedQboFields = this.cloneSettings.import_settings.mapping_settings.filter(setting => setting.import_to_fyle).map(setting => setting.destination_field);
 
       if (customMappedFyleFields.length) {
@@ -498,9 +498,9 @@ export class CloneSettingsComponent implements OnInit {
         {attribute_type: MappingDestinationField.CUSTOMER, display_name: 'Customer'}
       ];
 
-      // Remove custom mapped Xero fields
+      // Remove custom mapped Quickbooks fields
       const qboAttributes = qboFields.filter(
-        field => !customMappedXeroFields.includes(field.attribute_type)
+        field => !customMappedQuickbooksFields.includes(field.attribute_type)
       );
 
       this.qboExpenseFields = this.getQboExpenseFields(importedQboFields, this.cloneSettings.import_settings.mapping_settings, true, this.fyleExpenseFields);
