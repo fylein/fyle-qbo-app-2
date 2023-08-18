@@ -15,8 +15,8 @@ export type CloneSetting = {
 
 export type CloneSettingPost = {
     export_settings: ExportSettingPost,
-    Import_settings: ImportSettingPost,
-    Advanced_settings: AdvancedSettingPost,
+    import_settings: ImportSettingPost,
+    advanced_settings: AdvancedSettingPost,
     employee_mappings: EmployeeSettingPost
 }
 
@@ -35,8 +35,8 @@ export class CloneSettingModel {
 
         const cloneSettingPayload: CloneSettingPost = {
             export_settings: exportSettingPayload,
-            Import_settings: importSettingPayload,
-            Advanced_settings: advancedSettingPayload,
+            import_settings: importSettingPayload,
+            advanced_settings: advancedSettingPayload,
             employee_mappings: employeeMappingPayload
         };
 

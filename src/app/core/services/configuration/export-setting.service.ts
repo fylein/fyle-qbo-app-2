@@ -48,6 +48,27 @@ export class ExportSettingService {
     });
   }
 
+  createCreditCardExpenseWatcher(form: FormGroup, exportSettings: ExportSettingGet): void {
+    form.controls.creditCardExpense.valueChanges.subscribe((isCreditCardExpenseSelected) => {
+      if (isCreditCardExpenseSelected) {
+        form.controls.cccExpenseState.setValidators(Validators.required);
+        form.controls.cccExpenseState.setValue(exportSettings.expense_group_settings?.ccc_expense_state ? exportSettings.expense_group_settings?.ccc_expense_state : exportSettings.workspace_general_settings.is_simplify_report_closure_enabled ? CCCExpenseState.APPROVED: CCCExpenseState.PAYMENT_PROCESSING);
+        form.controls.creditCardExportType.setValidators(Validators.required);
+        form.controls.creditCardExportGroup.setValidators(Validators.required);
+        form.controls.creditCardExportDate.setValidators(Validators.required);
+      } else {
+        form.controls.cccExpenseState.clearValidators();
+        form.controls.creditCardExportType.clearValidators();
+        form.controls.creditCardExportGroup.clearValidators();
+        form.controls.creditCardExportDate.clearValidators();
+        form.controls.cccExpenseState.setValue(null);
+        form.controls.creditCardExportType.setValue(null);
+        form.controls.creditCardExportGroup.setValue(null);
+        form.controls.creditCardExportDate.setValue(null);
+      }
+    });
+  }
+
   getExportGroup(exportGroups: string[] | null): string {
     if (exportGroups) {
       const exportGroup = exportGroups.find((exportGroup) => {
@@ -130,36 +151,6 @@ export class ExportSettingService {
     ];
   }
 
-  getEmployeeFieldMappingOptions(): EmployeeSettingFormOption[] {
-    return [
-      {
-        label: 'Employees',
-        value: EmployeeFieldMapping.EMPLOYEE
-      },
-      {
-        label: 'Vendor',
-        value: EmployeeFieldMapping.VENDOR
-      }
-    ];
-  }
-
-  getAutoMapEmployeeOptions(): EmployeeSettingFormOption[] {
-    return [
-      {
-        label: 'None',
-        value: null
-      },
-      {
-        label: 'Employee name on Fyle to contact name on Quickbooks',
-        value: AutoMapEmployee.NAME
-      },
-      {
-        label: 'Employee email on Fyle to contact email on Quickbooks',
-        value: AutoMapEmployee.EMAIL
-      }
-    ];
-  }
-
   getReimbursableExpenseGroupingDateOptions(): ExportSettingFormOption[] {
     return [
       {
@@ -209,6 +200,115 @@ export class ExportSettingService {
         value: CCCExpenseState.PAID
       }
     ];
+  }
+
+  exportSelectionValidator(exportSettingsForm: FormGroup, isCloneSetting: boolean = false): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: object} | null => {
+      let forbidden = true;
+      if (exportSettingsForm) {
+        if (typeof control.value === 'boolean') {
+          if (control.value) {
+            forbidden = false;
+          } else {
+            if (control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value) {
+              forbidden = false;
+            }
+          }
+        } else if ((control.value === ExpenseState.PAID || control.value === ExpenseState.PAYMENT_PROCESSING || control.value === CCCExpenseState.APPROVED)
+        && (control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value)) {
+          forbidden = false;
+        } else if (isCloneSetting && (control.parent?.get('reimbursableExpense')?.value || control.parent?.get('creditCardExpense')?.value)) {
+          forbidden = false;
+        }
+
+        if (!forbidden) {
+          control.parent?.get('expenseState')?.setErrors(null);
+          control.parent?.get('cccExpenseState')?.setErrors(null);
+          control.parent?.get('reimbursableExpense')?.setErrors(null);
+          control.parent?.get('creditCardExpense')?.setErrors(null);
+          return null;
+        }
+      }
+
+      return {
+        forbiddenOption: {
+          value: control.value
+        }
+      };
+    };
+  }
+
+  showExpenseAccountField(form: FormGroup): boolean {
+    return form.controls.reimbursableExportType.value === ReimbursableExpensesObject.EXPENSE;
+  }
+
+  showBankAccountField(form: FormGroup): boolean {
+    return form.value.employeeMapping === EmployeeFieldMapping.EMPLOYEE && form.controls.reimbursableExportType.value && form.controls.reimbursableExportType.value !== ReimbursableExpensesObject.EXPENSE;
+  }
+
+  showReimbursableAccountsPayableField(form: FormGroup): boolean {
+    return (form.controls.reimbursableExportType.value === ReimbursableExpensesObject.BILL) || (form.controls.reimbursableExportType.value === ReimbursableExpensesObject.JOURNAL_ENTRY && form.value.employeeMapping === EmployeeFieldMapping.VENDOR);
+  }
+
+  showCreditCardAccountField(form: FormGroup): boolean {
+    return form.controls.creditCardExportType.value && form.controls.creditCardExportType.value !== CorporateCreditCardExpensesObject.BILL && form.controls.creditCardExportType.value !== CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE;
+  }
+
+  showDebitCardAccountField(form: FormGroup): boolean {
+    return form.controls.creditCardExportType.value && form.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE;
+  }
+
+  showDefaultCreditCardVendorField(form: FormGroup): boolean {
+    return form.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.BILL;
+  }
+
+  showCCCAccountsPayableField(form: FormGroup): boolean {
+    return form.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.BILL;
+  }
+
+  setGeneralMappingsValidator(form: FormGroup): void {
+    if (this.showBankAccountField(form)) {
+      form.controls.bankAccount.setValidators(Validators.required);
+    } else {
+      form.controls.bankAccount.clearValidators();
+      form.controls.bankAccount.updateValueAndValidity();
+    }
+
+    if (this.showCreditCardAccountField(form)) {
+      form.controls.defaultCCCAccount.setValidators(Validators.required);
+    } else {
+      form.controls.defaultCCCAccount.clearValidators();
+      form.controls.defaultCCCAccount.updateValueAndValidity();
+    }
+
+    if (this.showDebitCardAccountField(form)) {
+      form.controls.defaultDebitCardAccount.setValidators(Validators.required);
+    } else {
+      form.controls.defaultDebitCardAccount.clearValidators();
+      form.controls.defaultDebitCardAccount.updateValueAndValidity();
+
+    }
+
+    if (this.showReimbursableAccountsPayableField(form) || this.showCCCAccountsPayableField(form)) {
+      form.controls.accountsPayable.setValidators(Validators.required);
+    } else {
+      form.controls.accountsPayable.clearValidators();
+      form.controls.accountsPayable.updateValueAndValidity();
+    }
+
+    if (this.showDefaultCreditCardVendorField(form)) {
+      form.controls.defaultCreditCardVendor.setValidators(Validators.required);
+    } else {
+      form.controls.defaultCreditCardVendor.clearValidators();
+      form.controls.defaultCreditCardVendor.updateValueAndValidity();
+    }
+
+    if (this.showExpenseAccountField(form)) {
+      form.controls.qboExpenseAccount.setValidators(Validators.required);
+    } else {
+      form.controls.qboExpenseAccount.clearValidators();
+      form.controls.qboExpenseAccount.updateValueAndValidity();
+    }
   }
 }
 

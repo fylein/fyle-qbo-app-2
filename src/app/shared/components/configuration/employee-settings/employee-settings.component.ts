@@ -37,35 +37,9 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
 
   existingEmployeeFieldMapping: EmployeeFieldMapping | undefined;
 
-  employeeMappingOptions: EmployeeSettingFormOption[] = [
-    {
-      value: EmployeeFieldMapping.EMPLOYEE,
-      label: 'Employees'
-    },
-    {
-      value: EmployeeFieldMapping.VENDOR,
-      label: 'Vendors'
-    }
-  ];
+  employeeMappingOptions: EmployeeSettingFormOption[] = this.employeeSettingService.getEmployeeFieldMappingOptions();
 
-  autoMapEmployeeOptions: EmployeeSettingFormOption[] = [
-    {
-      value: null,
-      label: 'None'
-    },
-    {
-      value: AutoMapEmployee.NAME,
-      label: 'Fyle Name to QuickBooks Online Display name'
-    },
-    {
-      value: AutoMapEmployee.EMAIL,
-      label: 'Fyle Email to QuickBooks Online Email'
-    },
-    {
-      value: AutoMapEmployee.EMPLOYEE_CODE,
-      label: 'Fyle Employee Code to QuickBooks Online Display name'
-    }
-  ];
+  autoMapEmployeeOptions: EmployeeSettingFormOption[] = this.employeeSettingService.getAutoMapEmployeeOptions();
 
   windowReference: Window;
 
@@ -202,7 +176,7 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
       this.setLiveEntityExample(responses[1]);
       this.employeeSettingsForm = this.formBuilder.group({
         employeeMapping: [this.existingEmployeeFieldMapping, Validators.required],
-        autoMapEmployee: [responses[0].workspace_general_settings?.auto_map_employees, Validators.nullValidator]
+        autoMapEmployee: [responses[0].workspace_general_settings?.auto_map_employees]
       });
       this.reimbursableExportType = responses[2].workspace_general_settings?.reimbursable_expenses_object;
       this.isLoading = false;
@@ -218,5 +192,4 @@ export class EmployeeSettingsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.setupForm();
   }
-
 }
