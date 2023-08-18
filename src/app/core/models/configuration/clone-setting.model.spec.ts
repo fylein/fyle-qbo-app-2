@@ -62,7 +62,6 @@ describe('CloneSettingModel', () => {
       emails: new UntypedFormControl([]),
       addedEmail: new UntypedFormControl([]),
       skipExport: new UntypedFormControl(true)
-
     });
 
     const cloneSettingPayload: CloneSettingPost= {

@@ -4,6 +4,7 @@ import { ImportSettingPost, ImportSettingModel } from '../../models/configuratio
 import { MappingSourceField, MappingDestinationField } from '../../models/enum/enum.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
+import { MatLegacyDialogModule } from '@angular/material/legacy-dialog';
 
 describe('ImportSettingService', () => {
   let service: ImportSettingService;
@@ -14,7 +15,7 @@ describe('ImportSettingService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, MatLegacyDialogModule],
       providers: [ImportSettingService]
     });
     injector = getTestBed();
