@@ -83,6 +83,8 @@ export class CloneSettingsComponent implements OnInit {
   SimpleSearchType = SimpleSearchType;
 
   taxCodes: DestinationAttribute[];
+  
+  autoCreateMerchantsAsVendors: boolean;
 
   chartOfAccountTypesList: string[] = [
     'Expense', 'Other Expense', 'Fixed Asset', 'Cost of Goods Sold', 'Current Liability', 'Equity',
@@ -161,6 +163,11 @@ export class CloneSettingsComponent implements OnInit {
       this.cccExpenseGroupingDateOptions = this.reimbursableExpenseGroupingDateOptions.concat();
     }
   }
+
+  showImportVendors(): boolean {
+    return !this.autoCreateMerchantsAsVendors;
+  }
+
 
   showExpenseAccountField(): boolean {
     return this.cloneSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.EXPENSE;
@@ -303,6 +310,7 @@ export class CloneSettingsComponent implements OnInit {
 
     this.exportSettingService.createReimbursableExpenseWatcher(this.cloneSettingsForm, this.cloneSettings.export_settings);
     this.exportSettingService.createCreditCardExpenseWatcher(this.cloneSettingsForm, this.cloneSettings.export_settings);
+    this.exportSettingService.setGeneralMappingsValidator(this.cloneSettingsForm);
 
     // Export select fields
     this.createReimbursableExportTypeWatcher();
@@ -317,7 +325,6 @@ export class CloneSettingsComponent implements OnInit {
 
     this.setCreditCardExpenseGroupingDateOptions(this.cloneSettingsForm.controls.creditCardExportGroup.value);
     this.setupExpenseFieldWatcher();
-    this.exportSettingService.setGeneralMappingsValidator(this.cloneSettingsForm);
   }
 
   createChartOfAccountField(type: string): UntypedFormGroup {
@@ -479,6 +486,7 @@ export class CloneSettingsComponent implements OnInit {
       this.employeeFieldMapping = this.cloneSettings.employee_mappings.workspace_general_settings.employee_field_mapping;
       this.mappingSettings = responses[2].results;
 
+      this.autoCreateMerchantsAsVendors = responses[0].advanced_configurations.workspace_general_settings.auto_create_merchants_as_vendors;
       this.bankAccounts = responses[1].BANK_ACCOUNT;
       this.cccAccounts = responses[1].CREDIT_CARD_ACCOUNT;
       this.accountsPayables = responses[1].ACCOUNTS_PAYABLE;

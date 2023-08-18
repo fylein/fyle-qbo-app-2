@@ -15,7 +15,8 @@
                     <div>
                         <h3>Employee Mappings</h3>
                         <h5 class="clone-settings--header-caption sub-text-color">
-                            In this section, you can configure how map fyle employees to QuickBooks Online Vendor / Employee
+                            In this section, you can configure how map fyle employees to QuickBooks Online Vendor /
+                            Employee
                         </h5>
                     </div>
                 </div>
@@ -34,7 +35,7 @@
                         <div class="clone-settings--sub-options-text">
                             <app-select [form]="cloneSettingsForm" [options]="employeeFieldMappingOptions"
                                 [isFieldMandatory]="true" [mandatoryErrorListName]="'option'"
-                                [placeholder]="'Select how you represent your employees in QuickBooks Online. This would help to export the expenses from Fyle to the correct employee/vendor record in QuickBooks Online.'" 
+                                [placeholder]="'Select how you represent your employees in QuickBooks Online. This would help to export the expenses from Fyle to the correct employee/vendor record in QuickBooks Online.'"
                                 [formControllerName]="'employeeMapping'"
                                 [phase]="ProgressPhase.ONBOARDING"></app-select>
                         </div>
@@ -184,7 +185,8 @@
                             </div>
 
                             <app-select [form]="cloneSettingsForm" [options]="reimbursableExpenseGroupingDateOptions"
-                                [isFieldMandatory]="true" [placeholder]="'Select the date of the ' + getExportType(cloneSettingsForm.value.reimbursableExportType)"
+                                [isFieldMandatory]="true"
+                                [placeholder]="'Select the date of the ' + getExportType(cloneSettingsForm.value.reimbursableExportType)"
                                 [formControllerName]="'reimbursableExportDate'" [phase]="ProgressPhase.ONBOARDING">
                             </app-select>
                         </div>
@@ -213,8 +215,7 @@
                     <div fxLayout="row">
                         <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
                             <p>Corporate Card Expense</p>
-                            <img class="clone-settings--info-icon"
-                                src="assets/images/svgs/general/info-disabled.svg"
+                            <img class="clone-settings--info-icon" src="assets/images/svgs/general/info-disabled.svg"
                                 matTooltip="This section contains the settings for exporting Out-of pocket expenses from Fyle to QuickBooks Online"
                                 matTooltipPosition="above" matTooltipClass="clone-settings">
                         </div>
@@ -257,8 +258,8 @@
                             </div>
                             <app-select [form]="cloneSettingsForm" [options]="cccExpenseExportOptions"
                                 [isFieldMandatory]="true" [mandatoryErrorListName]="'Export Date'"
-                                [placeholder]="'Select the export date'"
-                                [formControllerName]="'creditCardExportType'" [phase]="ProgressPhase.ONBOARDING">
+                                [placeholder]="'Select the export date'" [formControllerName]="'creditCardExportType'"
+                                [phase]="ProgressPhase.ONBOARDING">
                             </app-select>
                         </div>
                     </div>
@@ -295,7 +296,8 @@
                             </div>
 
                             <app-select [form]="cloneSettingsForm" [options]="cccExpenseGroupingDateOptions"
-                                [isFieldMandatory]="true" [placeholder]="'Select the date of the ' + getExportType(cloneSettingsForm.value.creditCardExportType)"
+                                [isFieldMandatory]="true"
+                                [placeholder]="'Select the date of the ' + getExportType(cloneSettingsForm.value.creditCardExportType)"
                                 [formControllerName]="'creditCardExportDate'" [phase]="ProgressPhase.ONBOARDING">
                             </app-select>
                         </div>
@@ -374,7 +376,8 @@
                     </div>
                 </div>
 
-                <div class="clone-settings--configuration-section">
+                <div *ngIf="cloneSettings.export_settings.workspace_general_settings.reimbursable_expenses_object !== 'JOURNAL ENTRY' && cloneSettings.export_settings.workspace_general_settings.corporate_credit_card_expenses_object !== 'JOURNAL ENTRY'"
+                    class="clone-settings--configuration-section">
                     <div fxLayout="row">
                         <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
                             <img class="clone-settings--sub-options-icon"
@@ -387,16 +390,14 @@
                         </div>
 
                         <div>
-                            <app-toggle 
-                                [isCloneSettings]="true" 
-                                [form]="cloneSettingsForm"
+                            <app-toggle [isCloneSettings]="true" [form]="cloneSettingsForm"
                                 [formControllerName]="'importItems'">
                             </app-toggle>
                         </div>
                     </div>
                 </div>
-                
-                <div class="clone-settings--configuration-section">
+
+                <div *ngIf="showImportVendors()" class="clone-settings--configuration-section">
                     <div fxLayout="row">
                         <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
                             <img class="clone-settings--sub-options-icon"
@@ -408,9 +409,7 @@
                         </div>
 
                         <div>
-                            <app-toggle 
-                                [isCloneSettings]="true" 
-                                [form]="cloneSettingsForm"
+                            <app-toggle [isCloneSettings]="true" [form]="cloneSettingsForm"
                                 [formControllerName]="'importVendorsAsMerchants'">
                             </app-toggle>
                         </div>

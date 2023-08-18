@@ -1,6 +1,6 @@
 import { CloneSetting, CloneSettingExist, CloneSettingPost } from "src/app/core/models/configuration/clone-setting.model";
 import { GroupedDestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
-import {AutoMapEmployee, CCCExpenseState, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseState, ExportDateType, MappingDestinationField, MappingSourceField, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
+import {AutoMapEmployee, CCCExpenseState, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseState, ExportDateType, MappingDestinationField, MappingSourceField, NameInJournalEntry, ReimbursableExpensesObject } from "src/app/core/models/enum/enum.model";
 
 export const mockCloneSettingExist: CloneSettingExist = {
     is_available: true,
@@ -20,6 +20,7 @@ export const mockCloneSettingsGet: CloneSetting = {
         },
         workspace_general_settings: {
             reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
+            name_in_journal_entry: NameInJournalEntry.EMPLOYEE,
             corporate_credit_card_expenses_object: null,
             is_simplify_report_closure_enabled: false
         },
@@ -92,12 +93,13 @@ export const mockCloneSettingsGet: CloneSetting = {
             workspace: 1,
             reimbursable_expenses_object: null,
             corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE,
+            name_in_journal_entry: NameInJournalEntry.EMPLOYEE,
             auto_map_employees: AutoMapEmployee.EMAIL,
             is_simplify_report_closure_enabled: true
         },
         workspace_id: 1
     },
-    advanced_settings: {
+    advanced_configurations: {
         workspace_general_settings: {
           sync_fyle_to_qbo_payments: true,
           sync_qbo_to_fyle_payments: false,

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { UntypedFormControl, UntypedFormGroup} from '@angular/forms';
-import { AutoMapEmployee, CCCExpenseState, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseState, MappingDestinationField, MappingSourceField, ReimbursableExpensesObject } from '../enum/enum.model';
+import { AutoMapEmployee, CCCExpenseState, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseState, MappingDestinationField, MappingSourceField, NameInJournalEntry, ReimbursableExpensesObject } from '../enum/enum.model';
 import { CloneSettingModel, CloneSettingPost } from './clone-setting.model';
 import { ImportSettingModel } from './import-setting.model';
 import { MappingSetting } from '../db/mapping-setting.model';
@@ -108,7 +108,8 @@ describe('CloneSettingModel', () => {
         },
         workspace_general_settings: {
           reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
-          corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL
+          corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL,
+          name_in_journal_entry: NameInJournalEntry.EMPLOYEE
         },
         general_mappings: {
           bank_account: {id: '1', name: 'Fyle'},
@@ -119,7 +120,7 @@ describe('CloneSettingModel', () => {
           default_debit_card_account: {id: '1', name: 'Fyle'}
         }
       },
-      advanced_settings: {
+      advanced_configurations: {
         workspace_general_settings: {
           sync_fyle_to_qbo_payments: false,
           sync_qbo_to_fyle_payments: false,

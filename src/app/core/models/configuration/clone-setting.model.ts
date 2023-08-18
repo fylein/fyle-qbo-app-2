@@ -9,14 +9,14 @@ export type CloneSetting = {
     workspace_id: number,
     export_settings: ExportSettingGet,
     import_settings: ImportSettingGet,
-    advanced_settings: AdvancedSettingGet,
+    advanced_configurations: AdvancedSettingGet,
     employee_mappings: EmployeeSettingGet
 }
 
 export type CloneSettingPost = {
     export_settings: ExportSettingPost,
     import_settings: ImportSettingPost,
-    advanced_settings: AdvancedSettingPost,
+    advanced_configurations: AdvancedSettingPost,
     employee_mappings: EmployeeSettingPost
 }
 
@@ -36,7 +36,7 @@ export class CloneSettingModel {
         const cloneSettingPayload: CloneSettingPost = {
             export_settings: exportSettingPayload,
             import_settings: importSettingPayload,
-            advanced_settings: advancedSettingPayload,
+            advanced_configurations: advancedSettingPayload,
             employee_mappings: employeeMappingPayload
         };
 
