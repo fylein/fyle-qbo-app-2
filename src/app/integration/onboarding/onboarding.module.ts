@@ -14,6 +14,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatLegacyTooltipModule as MatTooltipModule } from '@angular/material/legacy-tooltip';
 import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 // Components
 import { OnboardingExportSettingsComponent } from './onboarding-export-settings/onboarding-export-settings.component';
@@ -54,7 +55,8 @@ import { CloneSettingsComponent } from './clone-settings/clone-settings.componen
     MatMenuModule,
     MatTooltipModule,
     SharedModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    DragDropModule
   ]
 })
 export class OnboardingModule { }

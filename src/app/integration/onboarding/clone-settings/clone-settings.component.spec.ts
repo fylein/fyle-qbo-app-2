@@ -8,16 +8,17 @@ import { of } from 'rxjs';
 import { mockCloneSettingExist, mockCloneSettingsGet, mockGroupedDestinationAttribtues } from './clone-settings.fixture';
 import { CloneSettingService } from 'src/app/core/services/configuration/clone-setting.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
-import { expenseFieldresponse } from 'src/app/shared/components/configuration/import-settings/import-settings.fixture';
+import { chartOfAccountTypesList, expenseFieldresponse, mockExpenseFieldsFormArray, qboField } from 'src/app/shared/components/configuration/import-settings/import-settings.fixture';
 import { getMappingSettingResponse } from 'src/app/shared/components/mapping/generic-mapping/generic-mapping.fixture';
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatLegacyDialogModule as MatDialogModule, MatLegacyDialog } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
-import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExportDateType, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExportDateType, MappingDestinationField, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
 import { mockReimbursableExpenseGroupingDateOptions, mockReimbursableExpenseGroupingFieldOptions, mockReimbursableExpenseStateOptions } from 'src/app/shared/components/configuration/export-settings/export-settings.fixture';
+import { adminEmails, destinationAttribute, memo, paymentSyncOptions, previewResponse } from 'src/app/shared/components/configuration/advanced-settings/advanced-settings.fixture';
 
 
 describe('CloneSettingsComponent', () => {
@@ -48,12 +49,13 @@ describe('CloneSettingsComponent', () => {
       getFyleExpenseFields: () => of(expenseFieldresponse),
       getMappingSettings: () => of(getMappingSettingResponse),
       getQBODestinationAttributes: () => null,
-      getExpenseFieldsFormArray: () => null
+      getExpenseFieldsFormArray: () => mockExpenseFieldsFormArray
     };
     service3 = {
-      getPaymentSyncOptions: () => null,
+      getPaymentSyncOptions: () => of(paymentSyncOptions),
       getFrequencyIntervals: () => null,
-      getWorkspaceAdmins: () => null
+      getWorkspaceAdmins: () => null,
+      openAddemailDialog: () => null
     };
     service4 = {
       exportSelectionValidator: () => undefined,
@@ -95,6 +97,9 @@ describe('CloneSettingsComponent', () => {
     exportSettingService = TestBed.inject(ExportSettingService);
     importSettingService = TestBed.inject(ImportSettingService);
     component.cloneSettings = mockCloneSettingsGet;
+    component.qboExpenseFields = qboField;
+    component.chartOfAccountTypesList = chartOfAccountTypesList;
+
 
     component.cloneSettingsForm = formbuilder.group({
       employeeMapping: [component.cloneSettings.employee_mappings.workspace_general_settings?.employee_field_mapping, Validators.required],
@@ -337,5 +342,28 @@ describe('CloneSettingsComponent', () => {
     fixture.detectChanges();
     component.cloneSettingsForm.controls.employeeMapping.patchValue(CorporateCreditCardExpensesObject.JOURNAL_ENTRY);
     expect((component as any).createCreditCardExportTypeWatcher()).toBeUndefined();
+  });
+
+  it('openAddemailDialog function check', () => {
+    expect(component.openAddemailDialog()).toBeUndefined();
+  });
+
+  it('showAutoCreateVendorsField function check', () => {
+    expect(component.showAutoCreateVendorsField()).toBeFalse();
+  });
+
+  it('showAutoCreateMerchantsAsVendorsField function check', () => {
+    expect(component.showAutoCreateMerchantsAsVendorsField()).toBeFalse();
+  });
+
+  it('showImportProducts function check', () => {
+    expect(component.showImportProducts()).toBeTrue();
+  });
+
+  it('formatememopreview function check', () => {
+    component.memoStructure = memo;
+    fixture.detectChanges();
+    (component as any).formatMemoPreview();
+    expect(component.memoPreviewText.length).toEqual(previewResponse.length);
   });
 });

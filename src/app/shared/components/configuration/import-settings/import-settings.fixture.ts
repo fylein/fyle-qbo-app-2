@@ -195,6 +195,13 @@ export const mockExpenseFieldsFormArray: FormGroup[] = [
   })
 ];
 
+export const mockAdditionalEmailOptions: FormGroup[] = [
+  new FormBuilder().group({
+    name: ['NILESH'],
+    email: ['nilesh.p@fyle.in']
+  })
+];
+
 export const mockPatchExpenseFieldsFormArray = {
   source_field: 'PROJECT',
   destination_field: 'CUSTOMER',

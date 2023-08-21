@@ -7,6 +7,7 @@ import { DestinationAttribute } from 'src/app/core/models/db/destination-attribu
 import { CloneSettingService } from 'src/app/core/services/configuration/clone-setting.service';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { EmployeeFieldMapping, ReimbursableExpensesObject, ClickEvent, OnboardingStep, ProgressPhase, ExpenseGroupingFieldOption, CorporateCreditCardExpensesObject, ExportDateType, MappingDestinationField, SimpleSearchType, SimpleSearchPage, PaymentSyncDirection, QBOField, AutoMapEmployee  } from 'src/app/core/models/enum/enum.model';
@@ -93,10 +94,14 @@ export class CloneSettingsComponent implements OnInit {
 
   taxCodes: DestinationAttribute[];
 
+  autoCreateMerchantsAsVendors: boolean;
+
   chartOfAccountTypesList: string[] = [
     'Expense', 'Other Expense', 'Fixed Asset', 'Cost of Goods Sold', 'Current Liability', 'Equity',
     'Other Current Asset', 'Other Current Liability', 'Long Term Liability', 'Current Asset', 'Income', 'Other Income'
   ];
+
+  defaultMemoFields: string[] = ['employee_email', 'merchant', 'purpose', 'category', 'spent_on', 'report_number', 'expense_link'];
 
   hoveredIndex: {
     categoryImport: number,
@@ -107,6 +112,10 @@ export class CloneSettingsComponent implements OnInit {
     expenseFieldImport: -1,
     taxImport: -1
   };
+
+  memoStructure: string[] = [];
+
+  memoPreviewText: string = '';
 
   constructor(
     private advancedSettingService: AdvancedSettingService,
@@ -137,6 +146,39 @@ export class CloneSettingsComponent implements OnInit {
   navigateToPreviousStep(): void {
     this.trackingService.onClickEvent(ClickEvent.CLONE_SETTINGS_BACK, {page: OnboardingStep.CLONE_SETTINGS});
     this.router.navigate([`/workspaces/onboarding/qbo_connector`]);
+  }
+
+  private formatMemoPreview(): void {
+    const time = Date.now();
+    const today = new Date(time);
+
+    const previewValues: { [key: string]: string } = {
+      employee_email: 'john.doe@acme.com',
+      category: 'Meals and Entertainment',
+      purpose: 'Client Meeting',
+      merchant: 'Pizza Hut',
+      report_number: 'C/2021/12/R/1',
+      spent_on: today.toLocaleDateString(),
+      expense_link: 'https://app.fylehq.com/app/main/#/enterprise/view_expense/'
+    };
+
+    this.memoPreviewText = '';
+    this.memoStructure.forEach((field, index) => {
+      if (field in previewValues) {
+        this.memoPreviewText += previewValues[field];
+        if (index + 1 !== this.memoStructure.length) {
+          this.memoPreviewText = this.memoPreviewText + ' - ';
+        }
+      }
+    });
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.defaultMemoFields, event.previousIndex, event.currentIndex);
+    const selectedMemoFields = this.defaultMemoFields.filter(memoOption => this.cloneSettingsForm.value.memoStructure.indexOf(memoOption) !== -1);
+    const memoStructure = selectedMemoFields ? selectedMemoFields : this.defaultMemoFields;
+    this.memoStructure = memoStructure;
+    this.formatMemoPreview();
   }
 
   save(): void {
@@ -172,6 +214,14 @@ export class CloneSettingsComponent implements OnInit {
     }
   }
 
+  showImportVendors(): boolean {
+    return !this.cloneSettingsForm.controls.autoCreateMerchantsAsVendors.value;
+  }
+
+  showImportProducts(): boolean {
+    return this.cloneSettingsForm.controls.reimbursableExportType.value !== 'JOURNAL_ENTRY' && this.cloneSettingsForm.controls.creditCardExportType.value !== 'JOURNAL ENTRY';
+  }
+
   showExpenseAccountField(): boolean {
     return this.cloneSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.EXPENSE;
   }
@@ -203,13 +253,13 @@ export class CloneSettingsComponent implements OnInit {
   showSingleCreditLineJEField(): boolean {
     return this.cloneSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.JOURNAL_ENTRY || this.cloneSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.JOURNAL_ENTRY;
   }
-  
+
   showAutoCreateVendorsField(): boolean {
     return this.cloneSettingsForm.controls.employeeMapping.value === EmployeeFieldMapping.VENDOR && this.cloneSettingsForm.controls.autoMapEmployee.value !== null && this.cloneSettingsForm.controls.autoMapEmployee.value !== AutoMapEmployee.EMPLOYEE_CODE;
   }
 
   showAutoCreateMerchantsAsVendorsField(): boolean {
-    return !this.cloneSettingsForm.controls.importVendorsAsMerchants.value && (this.cloneSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || this.cloneSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE); 
+    return !this.cloneSettingsForm.controls.importVendorsAsMerchants.value && (this.cloneSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || this.cloneSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE);
   }
 
 
@@ -230,6 +280,14 @@ export class CloneSettingsComponent implements OnInit {
       this.cloneSettingsForm.controls.creditCardExportGroup.enable();
       this.setCreditCardExpenseGroupingDateOptions(this.cloneSettingsForm.controls.creditCardExportGroup.value);
     }
+  }
+
+  private createMemoStructureWatcher(): void {
+    this.formatMemoPreview();
+    this.cloneSettingsForm.controls.memoStructure.valueChanges.subscribe((memoChanges) => {
+      this.memoStructure = memoChanges;
+      this.formatMemoPreview();
+    });
   }
 
   private createCreditCardExportTypeWatcher(): void {
@@ -330,8 +388,11 @@ export class CloneSettingsComponent implements OnInit {
 
   private setCustomValidatorsAndWatchers(): void {
 
+    this.createMemoStructureWatcher();
+
     this.exportSettingService.createReimbursableExpenseWatcher(this.cloneSettingsForm, this.cloneSettings.export_settings);
     this.exportSettingService.createCreditCardExpenseWatcher(this.cloneSettingsForm, this.cloneSettings.export_settings);
+    this.exportSettingService.setGeneralMappingsValidator(this.cloneSettingsForm);
 
     // Export select fields
     this.createReimbursableExportTypeWatcher();
@@ -348,7 +409,6 @@ export class CloneSettingsComponent implements OnInit {
     this.setupExpenseFieldWatcher();
 
     this.setupAdditionalEmailsWatcher();
-    this.exportSettingService.setGeneralMappingsValidator(this.cloneSettingsForm);
   }
 
   createChartOfAccountField(type: string): UntypedFormGroup {
@@ -410,6 +470,8 @@ export class CloneSettingsComponent implements OnInit {
     } else if (this.cloneSettings.advanced_configurations.workspace_general_settings.sync_qbo_to_fyle_payments) {
       paymentSync = PaymentSyncDirection.QBO_TO_FYLE;
     }
+
+    this.memoStructure = this.cloneSettings.advanced_configurations.workspace_general_settings.memo_structure;
 
     this.cloneSettingsForm = this.formBuilder.group({
       // Employee Mapping
@@ -539,6 +601,7 @@ export class CloneSettingsComponent implements OnInit {
       this.employeeFieldMapping = this.cloneSettings.employee_mappings.workspace_general_settings.employee_field_mapping;
       this.mappingSettings = responses[2].results;
 
+      this.autoCreateMerchantsAsVendors = responses[0].advanced_configurations.workspace_general_settings.auto_create_merchants_as_vendors;
       this.bankAccounts = responses[1].BANK_ACCOUNT;
       this.cccAccounts = responses[1].CREDIT_CARD_ACCOUNT;
       this.accountsPayables = responses[1].ACCOUNTS_PAYABLE;
