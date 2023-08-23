@@ -6,6 +6,9 @@ import { environment } from 'src/environments/environment';
 import { WorkspaceScheduleEmailOptions } from '../../models/db/workspace-schedule.model';
 import { ExpenseFilterResponse, SkipExport } from '../../models/misc/skip-export.model';
 import { JoinOption, Operator } from '../../models/enum/enum.model';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
+import { FormBuilder } from '@angular/forms';
+import { paymentSyncOptions } from 'src/app/shared/components/configuration/advanced-settings/advanced-settings.fixture';
 
 describe('AdvancedSettingService', () => {
   let service: AdvancedSettingService;
@@ -13,13 +16,15 @@ describe('AdvancedSettingService', () => {
   let httpMock: HttpTestingController;
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
+  let formbuilder: FormBuilder;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, MatDialogModule],
       providers: [AdvancedSettingService]
     });
     injector = getTestBed();
+    formbuilder = TestBed.inject(FormBuilder);
     service = injector.inject(AdvancedSettingService);
     httpMock = injector.inject(HttpTestingController);
   });
@@ -199,5 +204,14 @@ describe('AdvancedSettingService', () => {
       url: `${API_BASE_URL}/workspaces/${workspace_id}/fyle/expense_filters/1/`
     });
     req.flush(response);
+  });
+
+  it('getPaymentSyncOptions function check', () => {
+    const value = service.getPaymentSyncOptions();
+    expect(value).toEqual(paymentSyncOptions);
+  });
+
+  it('getFrequencyIntervals function check', () => {
+    service.getFrequencyIntervals();
   });
 });

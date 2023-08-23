@@ -26,7 +26,7 @@ import { GlobalErrorHandler } from './app.errorhandling';
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [
     {

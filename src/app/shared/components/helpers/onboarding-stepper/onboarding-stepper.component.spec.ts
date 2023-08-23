@@ -49,4 +49,9 @@ describe('OnboardingStepperComponent', () => {
     component.navigate(true, '/login');
     expect(component.navigate).toBeTruthy();
   });
+
+  it('updateActiveAndCompletedSteps', () => {
+    component.currentStep = 'Clone Settings';
+    expect((component as any).updateActiveAndCompletedSteps());
+  });
 });

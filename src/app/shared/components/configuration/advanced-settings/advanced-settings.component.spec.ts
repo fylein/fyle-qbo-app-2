@@ -47,7 +47,8 @@ describe('AdvancedSettingsComponent', () => {
       getWorkspaceAdmins: () => of(adminEmails),
       postExpenseFilter: () => of(postExpenseFilterResponse),
       getExpenseFilter: () => of(getExpenseFilterResponse),
-      deleteExpenseFilter: () => of()
+      deleteExpenseFilter: () => of(),
+      openAddemailDialog: () => undefined
     };
 
     service2 = {

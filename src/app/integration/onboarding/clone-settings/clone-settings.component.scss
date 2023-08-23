@@ -173,6 +173,39 @@
         padding-right: 12px;
         font-size: 14px;
     }
+    
+    &--memo-preview-section {
+        padding-top: 24px;
+    }
+    
+    &--memo-preview-text {
+    font-weight: 500;
+    }
+
+    &--memo-preview-area {
+    padding: 12px 12px 0px 0px;
+    }
+
+    &--memo-preview {
+    padding: 8px 0px 8px 8px;
+    background: #F5F5F5;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    }
+    
+    &--memo-preview-select {
+    ::ng-deep .mat-select-panel-wrap {
+        // TODO: check this
+        margin-left: 7% !important;
+        flex-basis: 96% !important;
+    }
+
+    ::ng-deep .cdk-overlay-pane {
+        // TODO: check this
+        margin-left: 1.5% !important;
+    }
+    }
 }
 
 p {

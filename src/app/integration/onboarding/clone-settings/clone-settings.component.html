@@ -147,20 +147,18 @@
                             </div>
 
                             <div>
-                                <div *ngIf="showExpenseAccountField()" class="clone-settings--sub-options-text">
-                                    <app-select [form]="cloneSettingsForm" [qboAttributes]="expenseAccounts"
-                                        [isFieldMandatory]="true" [placeholder]="'To which Expense Account'"
-                                        [formControllerName]="'qboExpenseAccount'" [phase]="ProgressPhase.ONBOARDING">
-                                    </app-select>
-                                </div>
-
                                 <div *ngIf="showBankAccountField()" class="clone-settings--sub-options-text">
                                     <app-select [form]="cloneSettingsForm" [qboAttributes]="bankAccounts"
                                         [isFieldMandatory]="true" [placeholder]="'To which Bank Account Account'"
                                         [formControllerName]="'bankAccount'" [phase]="ProgressPhase.ONBOARDING">
                                     </app-select>
                                 </div>
-
+                                <div *ngIf="showExpenseAccountField()" class="clone-settings--sub-options-text">
+                                    <app-select [form]="cloneSettingsForm" [qboAttributes]="expenseAccounts"
+                                        [isFieldMandatory]="true" [placeholder]="'To which Expense Account'"
+                                        [formControllerName]="'qboExpenseAccount'" [phase]="ProgressPhase.ONBOARDING">
+                                    </app-select>
+                                </div>
                                 <div *ngIf="showReimbursableAccountsPayableField()"
                                     class="clone-settings--sub-options-text">
                                     <app-select [form]="cloneSettingsForm" [qboAttributes]="accountsPayables"
@@ -376,7 +374,7 @@
                     </div>
                 </div>
 
-                <div *ngIf="cloneSettings.export_settings.workspace_general_settings.reimbursable_expenses_object !== 'JOURNAL ENTRY' && cloneSettings.export_settings.workspace_general_settings.corporate_credit_card_expenses_object !== 'JOURNAL ENTRY'"
+                <div *ngIf="showImportProducts()"
                     class="clone-settings--configuration-section">
                     <div fxLayout="row">
                         <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
@@ -606,6 +604,246 @@
                             Tax Codes
                         </button>
                     </mat-menu>
+                </div>
+            </div>
+
+            <!-- Advanced Settings -->
+            <div class="clone-settings--header-advanced-setting">
+                <div fxLayoutAlign="start start" class="clone-settings--header-section"
+                    data-cy="configuration-contents">
+                    <div class="clone-settings--header-icon">
+                        <img src="assets/images/svgs/general/setting.svg">
+                    </div>
+                    <div>
+                        <h3>Advanced Settings</h3>
+                        <h5 class="clone-settings--header-caption sub-text-color">
+                            This section contains settings to automate and customize your expense exports
+                        </h5>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/calendar-disabled.svg">
+                                <p class="clone-settings--sub-options-text">Schedule automatic export</p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="Schedule to automate the export of expenses from Fyle to QuickBooks Online"
+                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                            </div>
+
+                            <div class="clone-settings--sub-options-text clone-settings--export-type">
+                                <app-toggle [isCloneSettings]="true" [form]="cloneSettingsForm"
+                                    [formControllerName]="'exportSchedule'"></app-toggle>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="cloneSettingsForm.value.exportSchedule"
+                        class="clone-settings--configuration-payment-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section clone-settings--configuration-payment-field"
+                                fxLayout="row" fxLayoutAlign="start center">
+                                <p class="clone-settings--sub-options-text">
+                                    Set the frequency of export
+                                    <app-mandatory-field></app-mandatory-field>
+                                </p>
+                            </div>
+
+                            <div>
+                                <app-select [form]="cloneSettingsForm" [options]="frequencyIntervals"
+                                    [isFieldMandatory]="true" [mandatoryErrorListName]="'frequency'"
+                                    [placeholder]="'Select Frequency'" [formControllerName]="'exportScheduleFrequency'"
+                                    [phase]="ProgressPhase.ONBOARDING"></app-select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="cloneSettingsForm.value.exportSchedule"
+                        class="clone-settings--configuration-payment-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section clone-settings--configuration-payment-field"
+                                fxLayout="row" fxLayoutAlign="start center">
+                                <p class="clone-settings--sub-options-text clone-settings--additional-email-text">
+                                    Select an email address to notify upon export failure
+                                </p>
+                            </div>
+
+                            <div>
+                                <app-email-multi-select [form]="cloneSettingsForm" [options]="adminEmails"
+                                    [isFieldMandatory]="false" [placeholder]="'Select Email Address'"
+                                    [formControllerName]="'emails'" [isCloneSettings]="true"></app-email-multi-select>
+                                <div fxLayout="row" class="clone-settings--add-email-text pointer"
+                                    fxLayoutAlign="end center" (click)="openAddemailDialog()">
+                                    <span class="clone-settings--span-or">or</span>
+                                    <img class="clone-settings--add-btn" src="assets/images/svgs/actions/add.svg">
+                                    <span class="clone-settings--span-or">Add new email address</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/calendar-disabled.svg">
+                                <p class="clone-settings--sub-options-text">Post entries in the next open accounting
+                                    period</p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="If the accounting period in QuickBooks Online is closed for the expenses in Fyle that haven't been exported, the expense will be exported with a date stamp of the first day in the next open accounting period."
+                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                            </div>
+
+                            <div class="clone-settings--sub-options-text clone-settings--export-type">
+                                <app-toggle [isCloneSettings]="true" [form]="cloneSettingsForm"
+                                    [formControllerName]="'changeAccountingPeriod'"></app-toggle>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="showAutoCreateVendorsField()" class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/document-disabled.svg">
+                                <p class="clone-settings--sub-options-text">Auto Create Vendor</p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="While exporting reimbursable expenses from Fyle, the integration will automatically create a Vendor if a match for an employee in Fyle does not exist in QuickBooks Online already."
+                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                            </div>
+
+                            <div class="clone-settings--sub-options-text clone-settings--export-type">
+                                <app-toggle [isCloneSettings]="true" [form]="cloneSettingsForm"
+                                    [formControllerName]="'autoCreateVendors'"></app-toggle>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/sync-disabled.svg">
+                                <p class="clone-settings--sub-options-text">Auto - Sync payment between Fyle and QuickBooks online
+                                </p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="When an expense is marked as 'Closed' in Fyle the corresponding transaction will automatically be updated to 'Paid' in QBO and vice versa."
+                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                            </div>
+
+                            <div>
+                                <app-select [form]="cloneSettingsForm" [options]="paymentSyncOptions"
+                                    [isFieldMandatory]="false"
+                                    [placeholder]="'Select how payments should be synced for reimbursable expenses'"
+                                    [formControllerName]="'paymentSync'"
+                                    [phase]="ProgressPhase.ONBOARDING"></app-select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="cloneSettingsForm.value.paymentSync && cloneSettingsForm.value.paymentSync === 'fyle_to_qbo'"
+                        class="clone-settings--configuration-payment-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section clone-settings--configuration-payment-field"
+                                fxLayout="row" fxLayoutAlign="start center">
+                                <p class="clone-settings--sub-options-text">
+                                    To which Payment account should the payment entries be posted?
+                                    <app-mandatory-field></app-mandatory-field>
+                                </p>
+                            </div>
+
+                            <div>
+                                <app-select [form]="cloneSettingsForm" [qboAttributes]="bankAccounts"
+                                    [isFieldMandatory]="true" [mandatoryErrorListName]="'payment account'"
+                                    [placeholder]="'Select a Payment Account'"
+                                    [formControllerName]="'billPaymentAccount'"
+                                    [phase]="ProgressPhase.ONBOARDING"></app-select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="showAutoCreateMerchantsAsVendorsField()" class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/document-disabled.svg">
+                                <p class="clone-settings--sub-options-text">Auto-Create Merchants as Vendor</p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="While exporting corporate card expenses from Fyle, the integration will auto-create a new vendor in QuickBooks Online if a merchant added by an employee does not have a corresponding match in QuickBooks Online"
+                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                            </div>
+
+                            <div class="clone-settings--sub-options-text clone-settings--export-type">
+                                <app-toggle [isCloneSettings]="true" [form]="cloneSettingsForm"
+                                    [formControllerName]="'autoCreateMerchantsAsVendors'"></app-toggle>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="showSingleCreditLineJEField()" class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/document-disabled.svg">
+                                <p class="clone-settings--sub-options-text">Create a single itemized offset credit entry for Journal</p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="Merge all Credits in a Journal to create a single entry."
+                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                            </div>
+
+                            <div class="clone-settings--sub-options-text clone-settings--export-type">
+                                <app-toggle [isCloneSettings]="true" [form]="cloneSettingsForm"
+                                    [formControllerName]="'singleCreditLineJE'">
+                                </app-toggle>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clone-settings--configuration-section">
+                        <div fxLayout="row">
+                            <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
+                                <img class="clone-settings--sub-options-icon"
+                                    src="assets/images/svgs/general/calendar-disabled.svg">
+                                <p class="clone-settings--sub-options-text">Set description field in QuickBooks Online</p>
+                                <img class="clone-settings--info-icon"
+                                    src="assets/images/svgs/general/info-disabled.svg"
+                                    matTooltip="Customize the data set you would like to pass to the description field of QuickBooks Online while exporting expenses from Fyle"
+                                    matTooltipPosition="above" matTooltipClass="clone-settings">
+                            </div>
+                            
+                            <div class="configuration--input-section clone-settings--memo-preview-select">
+                                <mat-form-field floatLabel="always" appearance="outline" class="configuration--form-field">
+                                  <mat-select placeholder="Select and reorder the memo fields" formControlName="memoStructure" multiple>
+                                    <div cdkDropList (cdkDropListDropped)="drop($event)">
+                                      <mat-option *ngFor="let option of defaultMemoFields" [value]="option" cdkDrag>
+                                        {{ option | titlecase | snakeCaseToSpaceCase }}
+                                      </mat-option>
+                                    </div>
+                                  </mat-select>
+                                  <div class="mat-select-arrow-closed"></div>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="clone-settings--memo-preview-section">
+                            <h5 class="clone-settings--memo-preview-text sub-text-color">
+                              Preview in QuickBooks Online
+                            </h5>
+                            <div class="clone-settings--memo-preview-area">
+                              <h5 class="clone-settings--memo-preview paragraph">
+                                {{ memoPreviewText }}
+                              </h5>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
