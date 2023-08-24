@@ -1,5 +1,6 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
 import { AdvancedSettingService } from './advanced-setting.service';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AdvancedSettingGet, AdvancedSettingPost } from '../../models/configuration/advanced-setting.model';
 import { environment } from 'src/environments/environment';
@@ -9,6 +10,7 @@ import { JoinOption, Operator } from '../../models/enum/enum.model';
 import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { FormBuilder } from '@angular/forms';
 import { paymentSyncOptions } from 'src/app/shared/components/configuration/advanced-settings/advanced-settings.fixture';
+import { of } from 'rxjs';
 
 describe('AdvancedSettingService', () => {
   let service: AdvancedSettingService;
@@ -17,10 +19,16 @@ describe('AdvancedSettingService', () => {
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
   let formbuilder: FormBuilder;
+  let dialogSpy: jasmine.Spy;
+  const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({hours: 1,
+    schedule_enabled: true,
+    emails_selected: ["fyle@fyle.in"],
+    email_added: {name: "fyle", email: 'fyle@fyle.in'}}), close: null });
+  dialogRefSpyObj.componentInstance = { body: '' };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MatDialogModule],
+      imports: [HttpClientTestingModule, MatDialogModule, NoopAnimationsModule],
       providers: [AdvancedSettingService]
     });
     injector = getTestBed();
@@ -213,5 +221,15 @@ describe('AdvancedSettingService', () => {
 
   it('getFrequencyIntervals function check', () => {
     service.getFrequencyIntervals();
+  });
+
+  it('openAddemailDialog function check', () => {
+    const form = formbuilder.group({
+      exportScheduleFrequency: 12,
+      emails: ['test@test.com'],
+      exportSchedule: true,
+      addedEmail: []
+    });
+    expect((service as any).openAddemailDialog(form, [])).toBeUndefined();
   });
 });

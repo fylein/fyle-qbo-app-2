@@ -8,16 +8,16 @@ import { of } from 'rxjs';
 import { mockCloneSettingExist, mockCloneSettingsGet, mockGroupedDestinationAttribtues } from './clone-settings.fixture';
 import { CloneSettingService } from 'src/app/core/services/configuration/clone-setting.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
-import { chartOfAccountTypesList, expenseFieldresponse, mockExpenseFieldsFormArray, qboField } from 'src/app/shared/components/configuration/import-settings/import-settings.fixture';
+import { chartOfAccountTypesList, expenseFieldresponse, mockExpenseFieldsFormArray, mockPatchExpenseFieldsFormArray, qboField } from 'src/app/shared/components/configuration/import-settings/import-settings.fixture';
 import { getMappingSettingResponse } from 'src/app/shared/components/mapping/generic-mapping/generic-mapping.fixture';
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatLegacyDialogModule as MatDialogModule, MatLegacyDialog } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
-import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExportDateType, MappingDestinationField, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExportDateType, MappingDestinationField, MappingSourceField, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
-import { mockReimbursableExpenseGroupingDateOptions, mockReimbursableExpenseGroupingFieldOptions, mockReimbursableExpenseStateOptions } from 'src/app/shared/components/configuration/export-settings/export-settings.fixture';
+import { mockNameInJournalEntry, mockReimbursableExpenseGroupingDateOptions, mockReimbursableExpenseGroupingFieldOptions, mockReimbursableExpenseStateOptions } from 'src/app/shared/components/configuration/export-settings/export-settings.fixture';
 import { adminEmails, destinationAttribute, memo, paymentSyncOptions, previewResponse } from 'src/app/shared/components/configuration/advanced-settings/advanced-settings.fixture';
 
 
@@ -55,7 +55,8 @@ describe('CloneSettingsComponent', () => {
       getPaymentSyncOptions: () => of(paymentSyncOptions),
       getFrequencyIntervals: () => null,
       getWorkspaceAdmins: () => null,
-      openAddemailDialog: () => null
+      openAddemailDialog: () => null,
+      patchAdminEmailsEmitter: of(mockPatchExpenseFieldsFormArray)
     };
     service4 = {
       exportSelectionValidator: () => undefined,
@@ -68,7 +69,8 @@ describe('CloneSettingsComponent', () => {
       getCCCExpenseStateOptions: () => undefined,
       getExportGroup: () => undefined,
       getReimbursableExpenseStateOptions: () => mockReimbursableExpenseStateOptions,
-      setGeneralMappingsValidator: () => undefined
+      setGeneralMappingsValidator: () => undefined,
+      nameInJournalOptions: () => mockNameInJournalEntry
     };
     await TestBed.configureTestingModule({
       declarations: [ CloneSettingsComponent ],
@@ -133,7 +135,8 @@ describe('CloneSettingsComponent', () => {
       expenseFields: formbuilder.array([]),
       taxCode: [component.cloneSettings.import_settings.workspace_general_settings.import_tax_codes],
       defaultTaxCode: [component.cloneSettings.import_settings.general_mappings?.default_tax_code?.id ? component.cloneSettings.import_settings.general_mappings.default_tax_code : null],
-      importVendorsAsMerchants: [component.cloneSettings.import_settings.workspace_general_settings.import_vendors_as_merchants]
+      importVendorsAsMerchants: [component.cloneSettings.import_settings.workspace_general_settings.import_vendors_as_merchants],
+      memoStructure: [component.cloneSettings.advanced_configurations.workspace_general_settings.memo_structure]
     });
 
     cloneSettingService = TestBed.inject(CloneSettingService);
@@ -360,10 +363,53 @@ describe('CloneSettingsComponent', () => {
     expect(component.showImportProducts()).toBeTrue();
   });
 
+  it('showImportVendors function check', () => {
+    expect(component.showImportVendors()).toBeTrue();
+  });
+
   it('formatememopreview function check', () => {
     component.memoStructure = memo;
     fixture.detectChanges();
     (component as any).formatMemoPreview();
     expect(component.memoPreviewText.length).toEqual(previewResponse.length);
   });
+
+  it('generateGroupingLabel function check', () => {
+    component.cloneSettingsForm.controls.reimbursableExportType.patchValue(ReimbursableExpensesObject.EXPENSE);
+    fixture.detectChanges();
+    expect(component.generateGroupingLabel('reimbursable')).toEqual('How should the expenses be grouped?');
+  });
+
+  it('createMemoStructureWatcher function check', () => {
+    expect((component as any).createMemoStructureWatcher()).toBeUndefined();
+    component.cloneSettingsForm.controls.memoStructure.patchValue(['Integration']);
+  });
+
+  it('setCustomValidatorsAndWatchers function check', () => {
+    expect((component as any).setCustomValidatorsAndWatchers()).toBeUndefined();
+    expect((component as any).setupForm()).toBeUndefined();
+  });
+
+  it('addExpenseField function check', () => {
+    const formOptions = {
+      source_field: 'SOURCE_FIELD',
+      destination_field: 'DESTINATION_FIELD',
+      import_to_fyle: true,
+      disable_import_to_fyle: false,
+      source_placeholder: 'placeholder'
+    };
+
+    const additionalQboExpenseFields = {
+      source_field: 'SOURCE_FIELD_DUPE',
+      destination_field: 'DESTINATION_FIELD_DUPE',
+      import_to_fyle: true,
+      disable_import_to_fyle: false,
+      source_placeholder: 'placeholder'
+    };
+
+    component.additionalQboExpenseFields = [additionalQboExpenseFields];
+    expect((component as any).addExpenseField(formOptions)).toBeUndefined();
+  });
 });
+
+

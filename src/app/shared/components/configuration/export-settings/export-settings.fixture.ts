@@ -340,3 +340,14 @@ export const mockReimbursableExpenseStateOptions = [
     value: ExpenseState.PAID
   }
 ];
+
+export const mockNameInJournalEntry = [
+  {
+    label: 'Merchant Name',
+    value: NameInJournalEntry.MERCHANT
+  },
+  {
+    label: 'Employee Name',
+    value: NameInJournalEntry.EMPLOYEE
+  }
+];

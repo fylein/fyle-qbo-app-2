@@ -55,16 +55,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   cccExpenseStateOptions: ExportSettingFormOption[];
 
-  nameInJournalOptions = [
-    {
-      label: 'Merchant Name',
-      value: NameInJournalEntry.MERCHANT
-    },
-    {
-      label: 'Employee Name',
-      value: NameInJournalEntry.EMPLOYEE
-    }
-  ];
+  nameInJournalOptions = this.exportSettingService.nameInJournalOptions();
 
   expenseGroupingFieldOptions: ExportSettingFormOption[] = this.exportSettingService.getReimbursableExpenseGroupingFieldOptions();
 
