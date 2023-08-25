@@ -14,7 +14,7 @@ import { AdvancedSettingService } from 'src/app/core/services/configuration/adva
 import { MatMenuModule } from '@angular/material/menu';
 import { MatLegacyDialogModule as MatDialogModule, MatLegacyDialog } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
-import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExportDateType, MappingDestinationField, MappingSourceField, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExportDateType, ExportSource, MappingDestinationField, MappingSourceField, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { ImportSettingService } from 'src/app/core/services/configuration/import-setting.service';
 import { mockNameInJournalEntry, mockReimbursableExpenseGroupingDateOptions, mockReimbursableExpenseGroupingFieldOptions, mockReimbursableExpenseStateOptions } from 'src/app/shared/components/configuration/export-settings/export-settings.fixture';
@@ -377,7 +377,7 @@ describe('CloneSettingsComponent', () => {
   it('generateGroupingLabel function check', () => {
     component.cloneSettingsForm.controls.reimbursableExportType.patchValue(ReimbursableExpensesObject.EXPENSE);
     fixture.detectChanges();
-    expect(component.generateGroupingLabel('reimbursable')).toEqual('How should the expenses be grouped?');
+    expect(component.generateGroupingLabel(ExportSource.REIMBURSABLE)).toEqual('How should the expenses be grouped?');
   });
 
   it('createMemoStructureWatcher function check', () => {
