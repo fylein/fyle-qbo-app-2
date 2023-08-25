@@ -209,7 +209,7 @@
                             <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
                                 <img class="clone-settings--sub-options-icon"
                                     src="assets/images/svgs/general/tabs-disabled.svg">
-                                <p class="clone-settings--sub-options-text">{{generateGroupingLabel("reimbursable")}}</p>
+                                <p class="clone-settings--sub-options-text">{{generateGroupingLabel(exportSource.REIMBURSABLE)}}</p>
                                 <img class="clone-settings--info-icon"
                                     src="assets/images/svgs/general/info-disabled.svg"
                                     matTooltip="{{'Grouping reflects how the expense entries of a ' + getExportType(cloneSettingsForm.value.reimbursableExportType) + ' are posted in QuickBooks Online. For example, grouping by payment exports all expenses within a Fyle payment queue as one record.'}}"
@@ -299,7 +299,7 @@
                             <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
                                 <img class="clone-settings--sub-options-icon"
                                     src="assets/images/svgs/general/tabs-disabled.svg">
-                                <p class="clone-settings--sub-options-text">{{generateGroupingLabel("credit card")}}</p>
+                                <p class="clone-settings--sub-options-text">{{generateGroupingLabel(exportSource.CREDIT_CARD)}}</p>
                                 <img class="clone-settings--info-icon"
                                     src="assets/images/svgs/general/info-disabled.svg"
                                     matTooltip="{{'Grouping reflects how the expense entries of a ' + getExportType(cloneSettingsForm.value.creditCardExportType) + ' are posted in QuickBooks Online. For example, grouping by payment exports all expenses within a Fyle payment queue as one consolidated record.'}}"

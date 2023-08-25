@@ -98,6 +98,8 @@ export class CloneSettingsComponent implements OnInit {
 
   autoCreateMerchantsAsVendors: boolean;
 
+  exportSource = ExportSource;
+
   chartOfAccountTypesList: string[] = [
     'Expense', 'Other Expense', 'Fixed Asset', 'Cost of Goods Sold', 'Current Liability', 'Equity',
     'Other Current Asset', 'Other Current Liability', 'Long Term Liability', 'Current Asset', 'Income', 'Other Income'

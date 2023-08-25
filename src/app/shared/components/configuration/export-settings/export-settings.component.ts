@@ -71,6 +71,8 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   ProgressPhase = ProgressPhase;
 
+  exportSource = ExportSource;
+
   private readonly sessionStartTime = new Date();
 
   private timeSpentEventRecorded: boolean = false;
@@ -98,7 +100,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
     return lowerCaseWord.charAt(0).toUpperCase() + lowerCaseWord.slice(1);
   }
 
-  generateGroupingLabel(exportSource: ExportSource): string {
+  generateGroupingLabel(exportSource: 'credit card' | 'reimbursable'): string {
     let exportType: ReimbursableExpensesObject | CorporateCreditCardExpensesObject;
     if (exportSource === ExportSource.REIMBURSABLE) {
       exportType = this.exportSettingsForm.value.reimbursableExportType;
