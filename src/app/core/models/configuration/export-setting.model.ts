@@ -40,6 +40,10 @@ export interface ExportSettingFormOption extends SelectFormOption {
   value: ExpenseState | CCCExpenseState | ReimbursableExpensesObject | CorporateCreditCardExpensesObject | ExpenseGroupingFieldOption | ExportDateType;
 }
 
+export interface NameInJournalEntryOptions extends SelectFormOption {
+  value: NameInJournalEntry
+}
+
 export class ExportSettingModel {
   static constructPayload(exportSettingsForm: UntypedFormGroup): ExportSettingPost {
     const emptyDestinationAttribute = {id: null, name: null};
