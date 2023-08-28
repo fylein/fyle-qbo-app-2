@@ -5,8 +5,8 @@ import { MatLegacySnackBarModule as MatSnackBarModule} from '@angular/material/l
 import { ExportSettingsComponent } from './export-settings.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, OnboardingState, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
-import { destinationAttribute, errorResponse, exportResponse, exportResponse1, export_settings, mockCCCExpenseStateOptions, mockCreditCardExportType, mockReimbursableExpenseGroupingDateOptions, mockReimbursableExpenseGroupingFieldOptions, mockReimbursableExpenseStateOptions, mockReimbursableExportTypeOptions, replacecontent1, replacecontent2, replacecontent3, workspaceResponse, workspaceResponse1 } from './export-settings.fixture';
+import { CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, ExportSource, OnboardingState, ReimbursableExpensesObject } from 'src/app/core/models/enum/enum.model';
+import { destinationAttribute, errorResponse, exportResponse, exportResponse1, export_settings, mockCCCExpenseStateOptions, mockCreditCardExportType, mockNameInJournalEntry, mockReimbursableExpenseGroupingDateOptions, mockReimbursableExpenseGroupingFieldOptions, mockReimbursableExpenseStateOptions, mockReimbursableExportTypeOptions, replacecontent1, replacecontent2, replacecontent3, workspaceResponse, workspaceResponse1 } from './export-settings.fixture';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
 import { WorkspaceService } from 'src/app/core/services/workspace/workspace.service';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
@@ -44,7 +44,8 @@ describe('ExportSettingsComponent', () => {
       getCCCExpenseStateOptions: () => undefined,
       getExportGroup: () => undefined,
       getReimbursableExpenseStateOptions: () => mockReimbursableExpenseStateOptions,
-      setGeneralMappingsValidator: () => undefined
+      setGeneralMappingsValidator: () => undefined,
+      nameInJournalOptions: () => mockNameInJournalEntry
     };
     service2 = {
       getGroupedQBODestinationAttributes: () => of(destinationAttribute),
@@ -131,7 +132,7 @@ describe('ExportSettingsComponent', () => {
   it('generateGroupingLabel function check', () => {
     component.exportSettingsForm.controls.reimbursableExportType.patchValue(ReimbursableExpensesObject.EXPENSE);
     fixture.detectChanges();
-    expect(component.generateGroupingLabel('reimbursable')).toEqual('How should the expenses be grouped?');
+    expect(component.generateGroupingLabel(ExportSource.REIMBURSABLE)).toEqual('How should the expenses be grouped?');
   });
 
 

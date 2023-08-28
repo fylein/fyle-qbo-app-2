@@ -93,22 +93,22 @@ export class AdvancedSettingService {
     });
   }
 
-  openAddemailDialog(advancedSettingsForm: FormGroup, adminEmails: WorkspaceScheduleEmailOptions[]): void {
+  openAddemailDialog(form: FormGroup, adminEmails: WorkspaceScheduleEmailOptions[]): void {
     const dialogRef = this.dialog.open(AddEmailDialogComponent, {
       width: '467px',
       data: {
         workspaceId: this.workspaceService.getWorkspaceId(),
-        hours: advancedSettingsForm.value.exportScheduleFrequency,
-        schedulEnabled: advancedSettingsForm.value.exportSchedule,
-        selectedEmails: advancedSettingsForm.value.emails
+        hours: form.value.exportScheduleFrequency,
+        schedulEnabled: form.value.exportSchedule,
+        selectedEmails: form.value.emails
       }
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        advancedSettingsForm.controls.exportScheduleFrequency.patchValue(result.hours);
-        advancedSettingsForm.controls.emails.patchValue(result.emails_selected);
-        advancedSettingsForm.controls.addedEmail.patchValue(result.email_added);
+        form.controls.exportScheduleFrequency.patchValue(result.hours);
+        form.controls.emails.patchValue(result.emails_selected);
+        form.controls.addedEmail.patchValue(result.email_added);
 
         const additionalEmails = adminEmails.concat(result.email_added);
         this.patchAdminEmailsEmitter.emit(additionalEmails);

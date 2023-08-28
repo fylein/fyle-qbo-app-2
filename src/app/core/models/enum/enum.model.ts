@@ -36,6 +36,11 @@ export enum ReimbursableExpensesObject {
   EXPENSE = 'EXPENSE'
 }
 
+export enum ExportSource {
+  REIMBURSABLE = 'reimbursable',
+  CREDIT_CARD = 'credit card'
+}
+
 export enum CorporateCreditCardExpensesObject {
   CREDIT_CARD_PURCHASE = 'CREDIT CARD PURCHASE',
   BILL = 'BILL',

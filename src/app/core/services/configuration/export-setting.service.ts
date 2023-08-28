@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ExportSettingGet, ExportSettingPost, ExportSettingFormOption } from '../../models/configuration/export-setting.model';
+import { ExportSettingGet, ExportSettingPost, ExportSettingFormOption, NameInJournalEntryOptions } from '../../models/configuration/export-setting.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
 
-import { AutoMapEmployee, CCCExpenseState, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, ReimbursableExpensesObject } from '../../models/enum/enum.model';
+import { AutoMapEmployee, CCCExpenseState, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, ExportDateType, NameInJournalEntry, ReimbursableExpensesObject } from '../../models/enum/enum.model';
 import { AbstractControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { EmployeeSettingFormOption } from '../../models/configuration/employee-setting.model';
 
@@ -78,6 +78,19 @@ export class ExportSettingService {
     }
 
     return '';
+  }
+
+  nameInJournalOptions(): NameInJournalEntryOptions[] {
+    return [
+      {
+        label: 'Merchant Name',
+        value: NameInJournalEntry.MERCHANT
+      },
+      {
+        label: 'Employee Name',
+        value: NameInJournalEntry.EMPLOYEE
+      }
+    ];
   }
 
   getReimbursableExpenseGroupingFieldOptions() {

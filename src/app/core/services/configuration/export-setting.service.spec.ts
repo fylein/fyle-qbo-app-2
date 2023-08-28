@@ -218,6 +218,8 @@ describe('ExportSettingService', () => {
     });
     form.controls.creditCardExportType.patchValue(CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE);
     expect((service as any).setGeneralMappingsValidator(form)).toBeUndefined();
+    expect((service as any).showCCCAccountsPayableField(form));
+
   });
 
   it('function check', () => {
@@ -230,5 +232,6 @@ describe('ExportSettingService', () => {
     expect((service as any).getReimbursableExpenseGroupingDateOptions());
     expect((service as any).getReimbursableExpenseStateOptions());
     expect((service as any).getCCCExpenseStateOptions());
+    expect((service as any).nameInJournalOptions());
   });
 });

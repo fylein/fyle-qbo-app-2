@@ -8,6 +8,7 @@ import { MatLegacyDialog as MatDialog, MatLegacyDialogModule as MatDialogModule 
 
 import { FormBuilder } from '@angular/forms';
 import { of } from 'rxjs';
+import { mockPatchExpenseFieldsFormArray } from 'src/app/shared/components/configuration/import-settings/import-settings.fixture';
 
 describe('ImportSettingService', () => {
   let service: ImportSettingService;
@@ -17,7 +18,12 @@ describe('ImportSettingService', () => {
   const workspace_id = environment.tests.workspaceId;
   let formbuilder: FormBuilder;
   let dialogSpy: jasmine.Spy;
-  const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({}), close: null });
+  const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({source_field: MappingDestinationField.TAX_CODE,
+    destination_field: MappingDestinationField.CLASS,
+    import_to_fyle: true,
+    name: MappingDestinationField.TAX_CODE,
+    disable_import_to_fyle: true,
+    source_placeholder: 'close'}), close: null });
   dialogRefSpyObj.componentInstance = { body: '' };
 
   beforeEach(() => {
@@ -154,5 +160,19 @@ describe('ImportSettingService', () => {
       url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/import_settings/`
     });
     req.flush(response);
+  });
+
+  it('createExpenceField function check', () => {
+    const mappingSettings = [
+      {
+          "source_field": "COST_CENTER",
+          "destination_field": "CUSTOMER",
+          "import_to_fyle": true,
+          "is_custom": false,
+          "source_placeholder": null
+      }
+    ];
+     expect((service as any).createExpenseField(MappingDestinationField.CLASS, mappingSettings)).toBeUndefined();
+    expect(dialogSpy).toHaveBeenCalled();
   });
 });

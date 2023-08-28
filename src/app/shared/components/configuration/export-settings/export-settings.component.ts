@@ -3,8 +3,8 @@ import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Val
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DestinationAttribute } from 'src/app/core/models/db/destination-attribute.model';
-import { ConfigurationCtaText, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, OnboardingState, OnboardingStep, ProgressPhase, ReimbursableExpensesObject, UpdateEvent, NameInJournalEntry } from 'src/app/core/models/enum/enum.model';
-import { ExportSettingGet, ExportSettingFormOption, ExportSettingModel } from 'src/app/core/models/configuration/export-setting.model';
+import { ConfigurationCtaText, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, OnboardingState, OnboardingStep, ProgressPhase, ReimbursableExpensesObject, UpdateEvent, NameInJournalEntry, ExportSource } from 'src/app/core/models/enum/enum.model';
+import { ExportSettingGet, ExportSettingFormOption, ExportSettingModel, NameInJournalEntryOptions } from 'src/app/core/models/configuration/export-setting.model';
 import { ExportSettingService } from 'src/app/core/services/configuration/export-setting.service';
 import { HelperService } from 'src/app/core/services/core/helper.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
@@ -55,16 +55,7 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
 
   cccExpenseStateOptions: ExportSettingFormOption[];
 
-  nameInJournalOptions = [
-    {
-      label: 'Merchant Name',
-      value: NameInJournalEntry.MERCHANT
-    },
-    {
-      label: 'Employee Name',
-      value: NameInJournalEntry.EMPLOYEE
-    }
-  ];
+  nameInJournalOptions: NameInJournalEntryOptions[] = this.exportSettingService.nameInJournalOptions();
 
   expenseGroupingFieldOptions: ExportSettingFormOption[] = this.exportSettingService.getReimbursableExpenseGroupingFieldOptions();
 
@@ -79,6 +70,8 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
   ConfigurationCtaText = ConfigurationCtaText;
 
   ProgressPhase = ProgressPhase;
+
+  exportSource = ExportSource;
 
   private readonly sessionStartTime = new Date();
 
@@ -107,9 +100,9 @@ export class ExportSettingsComponent implements OnInit, OnDestroy {
     return lowerCaseWord.charAt(0).toUpperCase() + lowerCaseWord.slice(1);
   }
 
-  generateGroupingLabel(exportSource: 'reimbursable' | 'credit card'): string {
+  generateGroupingLabel(exportSource: 'credit card' | 'reimbursable'): string {
     let exportType: ReimbursableExpensesObject | CorporateCreditCardExpensesObject;
-    if (exportSource === 'reimbursable') {
+    if (exportSource === ExportSource.REIMBURSABLE) {
       exportType = this.exportSettingsForm.value.reimbursableExportType;
     } else {
       exportType = this.exportSettingsForm.value.creditCardExportType;
