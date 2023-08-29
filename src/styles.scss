@@ -457,14 +457,14 @@ th.mat-header-cell:last-of-type {
 .mat-menu-panel {
   margin-top: 10px;
   margin-left: 10px;
-  min-height: 40px !important;
+  min-height: 40px!important;
 }
 
-.mat-menu-item {
-  height: 300px !important;
-  font-size: 14px !important;
-  line-height: 0 !important;
-  width: 230px !important;
+.mat-mdc-menu-item {
+  height: 24px!important;
+  font-size: 14px!important;
+  line-height: 0!important;
+  width: 230px!important;
 }
 
 .selected-value-check-mark {

@@ -109,10 +109,14 @@ export class CloneSettingsComponent implements OnInit {
 
   hoveredIndex: {
     categoryImport: number,
+    itemsImport: number,
+    vendorsImport: number,
     expenseFieldImport: number,
     taxImport: number
   } = {
     categoryImport: -1,
+    itemsImport: -1,
+    vendorsImport: -1,
     expenseFieldImport: -1,
     taxImport: -1
   };
@@ -382,6 +386,22 @@ export class CloneSettingsComponent implements OnInit {
 
   disableImportCoa(): void {
     this.cloneSettingsForm.controls.chartOfAccount.setValue(false);
+  }
+
+  disableImportItems(): void {
+    this.cloneSettingsForm.controls.importItems.setValue(false);
+  }
+
+  enableItemsImport(): void {
+    this.cloneSettingsForm.controls.importItems.setValue(true);
+  }
+
+  enableVendorAsMerchantImport(): void {
+    this.cloneSettingsForm.controls.importVendorsAsMerchants.setValue(true);
+  }
+
+  disablVendorAsMerchantImport(): void {
+    this.cloneSettingsForm.controls.importVendorsAsMerchants.setValue(false);
   }
 
   disableImportTax(): void {

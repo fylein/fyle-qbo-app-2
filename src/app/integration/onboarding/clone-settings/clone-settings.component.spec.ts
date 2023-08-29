@@ -274,10 +274,19 @@ describe('CloneSettingsComponent', () => {
     expect(component.cloneSettingsForm.controls.taxCode.value).toBeTrue();
   });
 
-  it('disableImportTax Function check', () => {
-    component.disableImportTax();
-    expect(component.cloneSettingsForm.controls.taxCode.value).toBeFalse();
-    expect(component.cloneSettingsForm.controls.defaultTaxCode.value).toEqual(null);
+  it('enableTaxImport Function check', () => {
+    component.enableTaxImport();
+    expect(component.cloneSettingsForm.controls.taxCode.value).toBeTrue();
+  });
+
+  it('enableVendorAsMerchantImport Function check', () => {
+    component.enableVendorAsMerchantImport();
+    expect(component.cloneSettingsForm.controls.importVendorsAsMerchants.value).toBeTrue();
+  });
+
+  it('disablVendorAsMerchantImport Function check', () => {
+    component.disablVendorAsMerchantImport();
+    expect(component.cloneSettingsForm.controls.importVendorsAsMerchants.value).toBeFalse();
   });
 
   it('disableImportCoa Function check', () => {
