@@ -368,6 +368,10 @@ describe('CloneSettingsComponent', () => {
     expect(component.showAutoCreateMerchantsAsVendorsField()).toBeFalse();
   });
 
+  it('showPaymentSyncField function check', () => {
+    expect(component.showPaymentSyncField()).toBeTrue();
+  });
+
   it('showImportProducts function check', () => {
     expect(component.showImportProducts()).toBeTrue();
   });

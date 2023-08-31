@@ -286,6 +286,9 @@ export class CloneSettingsComponent implements OnInit {
     return !this.cloneSettingsForm.controls.importVendorsAsMerchants.value && (this.cloneSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || this.cloneSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE);
   }
 
+  showPaymentSyncField(): boolean {
+    return this.cloneSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.BILL;
+  }
 
   private restrictExpenseGroupSetting(creditCardExportType: string | null) : void {
     if (creditCardExportType === CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || creditCardExportType === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE) {

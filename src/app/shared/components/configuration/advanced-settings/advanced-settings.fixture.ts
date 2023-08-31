@@ -56,6 +56,7 @@ export const advancedSettingResponse:AdvancedSettingGet = {
   },
   workspace_id: 1
 };
+
 export const destinationAttribute: DestinationAttribute[] = [{
   id: 1,
   attribute_type: 'EMPLOYEE',

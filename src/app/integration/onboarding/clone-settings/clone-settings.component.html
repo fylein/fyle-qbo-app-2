@@ -792,7 +792,7 @@
                         </div>
                     </div>
 
-                    <div class="clone-settings--configuration-section">
+                    <div class="clone-settings--configuration-section" *ngIf="showPaymentSyncField()">
                         <div fxLayout="row">
                             <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
                                 <img class="clone-settings--sub-options-icon"
@@ -816,7 +816,7 @@
                         </div>
                     </div>
 
-                    <div *ngIf="cloneSettingsForm.value.paymentSync && cloneSettingsForm.value.paymentSync === 'fyle_to_qbo'"
+                    <div *ngIf="showPaymentSyncField() && cloneSettingsForm.value.paymentSync && cloneSettingsForm.value.paymentSync === 'fyle_to_qbo'"
                         class="clone-settings--configuration-payment-section">
                         <div fxLayout="row">
                             <div class="clone-settings--field-section clone-settings--configuration-payment-field"
