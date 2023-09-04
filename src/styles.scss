@@ -341,6 +341,7 @@ th.mat-header-cell:last-of-type {
     @extend .mat-tooltip, .above, .align-center;
     white-space: normal !important;
     margin-right: 6px !important;
+    max-width: 600px !important;
   }
 
   &.left {
@@ -465,6 +466,7 @@ th.mat-header-cell:last-of-type {
   font-size: 14px!important;
   line-height: 0!important;
   width: 230px!important;
+  min-height: 40px!important;
 }
 
 .selected-value-check-mark {
