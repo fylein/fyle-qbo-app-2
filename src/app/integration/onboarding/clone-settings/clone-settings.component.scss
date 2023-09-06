@@ -1,4 +1,8 @@
 .clone-settings {
+    &--dropdown-section {
+        padding-top: 30px;
+    }
+
     &--section {
         display: flex;
         justify-content: center;
@@ -13,6 +17,10 @@
         box-sizing: border-box;
         box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
         border-radius: 8px;
+    }
+    
+    &--export-dropdown {
+        margin-top: 50px;
     }
 
     &--header-section {
@@ -32,6 +40,11 @@
 
     &--configuration-section {
         padding: 24px 32px;
+    }
+    
+    &--export-section {
+        padding: 0px 32px;
+        margin: -10px 0px -10px 0px;
     }
 
     &--info-icon {
@@ -64,14 +77,13 @@
     }
 
     &--field-header {
-        width: 608px;
         height: 48px;
         font-size: 14px;
     }
 
     &--qbo-header {
-        padding-left: 14px;
-        padding-right: 280px;
+        padding-left: 13px;
+        padding-right: 202px;
     }
 
     &--coa-import-section {
@@ -208,6 +220,3 @@
     }
 }
 
-p {
-    margin: 0;
-}

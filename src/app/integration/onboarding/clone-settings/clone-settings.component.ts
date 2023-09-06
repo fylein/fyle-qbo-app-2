@@ -109,10 +109,14 @@ export class CloneSettingsComponent implements OnInit {
 
   hoveredIndex: {
     categoryImport: number,
+    itemsImport: number,
+    vendorsImport: number,
     expenseFieldImport: number,
     taxImport: number
   } = {
     categoryImport: -1,
+    itemsImport: -1,
+    vendorsImport: -1,
     expenseFieldImport: -1,
     taxImport: -1
   };
@@ -282,6 +286,9 @@ export class CloneSettingsComponent implements OnInit {
     return !this.cloneSettingsForm.controls.importVendorsAsMerchants.value && (this.cloneSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || this.cloneSettingsForm.controls.creditCardExportType.value === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE);
   }
 
+  showPaymentSyncField(): boolean {
+    return this.cloneSettingsForm.controls.reimbursableExportType.value === ReimbursableExpensesObject.BILL;
+  }
 
   private restrictExpenseGroupSetting(creditCardExportType: string | null) : void {
     if (creditCardExportType === CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE || creditCardExportType === CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE) {
@@ -382,6 +389,22 @@ export class CloneSettingsComponent implements OnInit {
 
   disableImportCoa(): void {
     this.cloneSettingsForm.controls.chartOfAccount.setValue(false);
+  }
+
+  disableImportItems(): void {
+    this.cloneSettingsForm.controls.importItems.setValue(false);
+  }
+
+  enableItemsImport(): void {
+    this.cloneSettingsForm.controls.importItems.setValue(true);
+  }
+
+  enableVendorAsMerchantImport(): void {
+    this.cloneSettingsForm.controls.importVendorsAsMerchants.setValue(true);
+  }
+
+  disablVendorAsMerchantImport(): void {
+    this.cloneSettingsForm.controls.importVendorsAsMerchants.setValue(false);
   }
 
   disableImportTax(): void {

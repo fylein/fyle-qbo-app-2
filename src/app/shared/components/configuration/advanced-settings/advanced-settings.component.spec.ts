@@ -5,7 +5,7 @@ import { UntypedFormBuilder, FormsModule, ReactiveFormsModule, Validators } from
 import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { adminEmails, advancedSettingResponse, customFields, destinationAttribute, emailResponse, errorResponse, postExpenseFilterResponse, getadvancedSettingResponse, getadvancedSettingResponse2, getExpenseFilterResponse, memo, previewResponse, response, conditionMock1, conditionMock2, conditionMock3, customOperatorMock1, customOperatorMock2, customOperatorMock3, customOperatorMock4, claimNumberOperators, spentAtOperators, reportTitleOperators, conditionMock4, conditionFieldOptions, getExpenseFilterResponse2, getExpenseFilterResponse3, getExpenseFilterResponse4 } from './advanced-settings.fixture';
+import { adminEmails, advancedSettingResponse, customFields, destinationAttribute, emailResponse, errorResponse, postExpenseFilterResponse, getadvancedSettingResponse, getadvancedSettingResponse2, getExpenseFilterResponse, memo, previewResponse, response, conditionMock1, conditionMock2, conditionMock3, customOperatorMock1, customOperatorMock2, customOperatorMock3, customOperatorMock4, claimNumberOperators, spentAtOperators, reportTitleOperators, conditionMock4, conditionFieldOptions, getExpenseFilterResponse2, getExpenseFilterResponse3, getExpenseFilterResponse4, paymentSyncOptions } from './advanced-settings.fixture';
 import { Router } from '@angular/router';
 import { AdvancedSettingService } from 'src/app/core/services/configuration/advanced-setting.service';
 import { MappingService } from 'src/app/core/services/misc/mapping.service';
@@ -47,6 +47,7 @@ describe('AdvancedSettingsComponent', () => {
       getWorkspaceAdmins: () => of(adminEmails),
       postExpenseFilter: () => of(postExpenseFilterResponse),
       getExpenseFilter: () => of(getExpenseFilterResponse),
+      getPaymentSyncOptions: () => paymentSyncOptions,
       deleteExpenseFilter: () => of(),
       openAddemailDialog: () => undefined
     };
