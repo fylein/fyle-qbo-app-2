@@ -36,6 +36,11 @@ export enum ReimbursableExpensesObject {
   EXPENSE = 'EXPENSE'
 }
 
+export enum ExportSource {
+  REIMBURSABLE = 'reimbursable',
+  CREDIT_CARD = 'credit card'
+}
+
 export enum CorporateCreditCardExpensesObject {
   CREDIT_CARD_PURCHASE = 'CREDIT CARD PURCHASE',
   BILL = 'BILL',
@@ -182,7 +187,9 @@ export enum ClickEvent {
   UNMAPPED_MAPPINGS_FILTER = 'Unmapped Mappings Filter',
   MAPPED_MAPPINGS_FILTER = 'Mapped Mappings Filter',
   DISCONNECT_QBO = 'Disconnect QBO',
-  SYNC_DIMENSION = 'Sync Dimension'
+  SYNC_DIMENSION = 'Sync Dimension',
+  CLONE_SETTINGS_BACK = 'Clone Settings Back',
+  CLONE_SETTINGS_RESET = 'Clone Settings Reset'
 }
 
 export enum ProgressPhase {
@@ -197,7 +204,8 @@ export enum OnboardingStep {
   EXPORT_SETTINGS = 'Export Settings',
   IMPORT_SETTINGS = 'Import Settings',
   ADVANCED_SETTINGS = 'Advanced Settings',
-  ONBOARDING_DONE = 'Onboarding Done'
+  ONBOARDING_DONE = 'Onboarding Done',
+  CLONE_SETTINGS = 'Clone Settings'
 }
 
 export enum UpdateEvent {

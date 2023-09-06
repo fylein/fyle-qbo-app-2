@@ -4,6 +4,11 @@ import { ImportSettingPost, ImportSettingModel } from '../../models/configuratio
 import { MappingSourceField, MappingDestinationField } from '../../models/enum/enum.model';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
+
+import { FormBuilder } from '@angular/forms';
+import { of } from 'rxjs';
+import { mockPatchExpenseFieldsFormArray } from 'src/app/shared/components/configuration/import-settings/import-settings.fixture';
 
 describe('ImportSettingService', () => {
   let service: ImportSettingService;
@@ -11,17 +16,82 @@ describe('ImportSettingService', () => {
   let httpMock: HttpTestingController;
   const API_BASE_URL = environment.api_url;
   const workspace_id = environment.tests.workspaceId;
+  let formbuilder: FormBuilder;
+  let dialogSpy: jasmine.Spy;
+  const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({source_field: MappingDestinationField.TAX_CODE,
+    destination_field: MappingDestinationField.CLASS,
+    import_to_fyle: true,
+    name: MappingDestinationField.TAX_CODE,
+    disable_import_to_fyle: true,
+    source_placeholder: 'close'}), close: null });
+  dialogRefSpyObj.componentInstance = { body: '' };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, MatDialogModule],
       providers: [ImportSettingService]
     });
+    dialogSpy = spyOn(TestBed.get(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
     injector = getTestBed();
+    formbuilder = TestBed.inject(FormBuilder);
     service = injector.inject(ImportSettingService);
     httpMock = injector.inject(HttpTestingController);
+
   });
 
+  it('getQboExpenseFields function check', () => {
+    const qboAttributes = ['CUSTOMER'];
+    const mappingSettings = [
+      {
+          "source_field": "COST_CENTER",
+          "destination_field": "CUSTOMER",
+          "import_to_fyle": true,
+          "is_custom": false,
+          "source_placeholder": null
+      }
+    ];
+    const fyleFields = ['COST_CENTER', 'PROJECT'];
+    expect((service as any).getQboExpenseFields(qboAttributes, mappingSettings, true, fyleFields));
+  });
+
+  it('getExpenseFieldsFormArray function check', () => {
+    const mappingSettings = [
+      {
+          "source_field": "COST_CENTER",
+          "destination_field": "CUSTOMER",
+          "import_to_fyle": true,
+          "is_custom": false,
+          "source_placeholder": null
+      }
+    ];
+    expect((service as any).getExpenseFieldsFormArray(mappingSettings, false));
+  });
+
+  it('getPatchExpenseFieldValues function check', () => {
+    const mappingSettings =
+      {
+          "source_field": "COST_CENTER",
+          "destination_field": "CUSTOMER",
+          "import_to_fyle": true,
+          "disable_import_to_fyle": true,
+          "source_placeholder": '',
+          "addSourceField": false
+      };
+    expect((service as any).getPatchExpenseFieldValues("CUSTOMER", "COST_CENTER")).toEqual(mappingSettings);
+  });
+
+  it('importToggleWatcher function check', () => {
+    const form = formbuilder.group({
+      source_field: [MappingSourceField.PROJECT],
+      destination_field: [MappingDestinationField.CUSTOMER],
+      disable_import_to_fyle: [false],
+      import_to_fyle: [false, (service as any).importToggleWatcher()],
+      source_placeholder: ['']
+    });
+
+    form.controls.import_to_fyle.patchValue(true);
+    expect((service as any).importToggleWatcher());
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
@@ -90,5 +160,19 @@ describe('ImportSettingService', () => {
       url: `${API_BASE_URL}/v2/workspaces/${workspace_id}/import_settings/`
     });
     req.flush(response);
+  });
+
+  it('createExpenceField function check', () => {
+    const mappingSettings = [
+      {
+          "source_field": "COST_CENTER",
+          "destination_field": "CUSTOMER",
+          "import_to_fyle": true,
+          "is_custom": false,
+          "source_placeholder": null
+      }
+    ];
+     expect((service as any).createExpenseField(MappingDestinationField.CLASS, mappingSettings)).toBeUndefined();
+    expect(dialogSpy).toHaveBeenCalled();
   });
 });

@@ -50,20 +50,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
 
   memoPreviewText: string = '';
 
-  paymentSyncOptions: AdvancedSettingFormOption[] = [
-    {
-      label: 'None',
-      value: null
-    },
-    {
-      label: 'Export Fyle ACH Payments to QuickBooks Online',
-      value: PaymentSyncDirection.FYLE_TO_QBO
-    },
-    {
-      label: 'Import QuickBooks Online Payments into Fyle',
-      value: PaymentSyncDirection.QBO_TO_FYLE
-    }
-  ];
+  paymentSyncOptions: AdvancedSettingFormOption[] = this.advancedSettingService.getPaymentSyncOptions();
 
   frequencyIntervals: AdvancedSettingFormOption[] = [...Array(24).keys()].map(day => {
     return {

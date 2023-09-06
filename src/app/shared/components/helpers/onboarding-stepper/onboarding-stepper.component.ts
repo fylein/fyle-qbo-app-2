@@ -14,6 +14,8 @@ export class OnboardingStepperComponent implements OnInit {
 
   @Input() currentStep: string;
 
+  isCloneSettingsActive: boolean;
+
   onboardingSteps: OnboardingStepper[] = [
     {
       active: false,
@@ -83,25 +85,46 @@ export class OnboardingStepperComponent implements OnInit {
   ) { }
 
   private updateActiveAndCompletedSteps(): void {
-    this.onboardingSteps.forEach(step => {
-      if (step.step === this.currentStep) {
-        step.active = true;
+
+    if (this.currentStep === 'Clone Settings') {
+      this.isCloneSettingsActive = true;
+      this.onboardingSteps[0].completed = true;
+      this.onboardingSteps = [this.onboardingSteps[0]];
+      this.onboardingSteps.push(
+        {
+          active: true,
+          completed: false,
+          number: 6,
+          step: 'Complete the Configurations',
+          icon: 'advanced-setting',
+          route: 'clone_settings',
+          size: {
+            height: '20px',
+            width: '20px'
+          }
+        }
+      );
+    } else {
+      this.onboardingSteps.forEach(step => {
+        if (step.step === this.currentStep) {
+          step.active = true;
+        }
+      });
+
+      const onboardingState: OnboardingState = this.workspaceService.getOnboardingState();
+
+      const onboardingStateStepMap = {
+        [OnboardingState.CONNECTION]: 1,
+        [OnboardingState.MAP_EMPLOYEES]: 2,
+        [OnboardingState.EXPORT_SETTINGS]: 3,
+        [OnboardingState.IMPORT_SETTINGS]: 4,
+        [OnboardingState.ADVANCED_CONFIGURATION]: 5,
+        [OnboardingState.COMPLETE]: 6
+      };
+
+      for (let index = onboardingStateStepMap[onboardingState] - 1; index > 0; index--) {
+        this.onboardingSteps[index - 1].completed = true;
       }
-    });
-
-    const onboardingState: OnboardingState = this.workspaceService.getOnboardingState();
-
-    const onboardingStateStepMap = {
-      [OnboardingState.CONNECTION]: 1,
-      [OnboardingState.MAP_EMPLOYEES]: 2,
-      [OnboardingState.EXPORT_SETTINGS]: 3,
-      [OnboardingState.IMPORT_SETTINGS]: 4,
-      [OnboardingState.ADVANCED_CONFIGURATION]: 5,
-      [OnboardingState.COMPLETE]: 6
-    };
-
-    for (let index = onboardingStateStepMap[onboardingState] - 1; index > 0; index--) {
-      this.onboardingSteps[index - 1].completed = true;
     }
   }
 
@@ -114,5 +137,4 @@ export class OnboardingStepperComponent implements OnInit {
   ngOnInit(): void {
     this.updateActiveAndCompletedSteps();
   }
-
 }

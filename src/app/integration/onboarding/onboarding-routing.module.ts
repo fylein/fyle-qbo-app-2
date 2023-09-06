@@ -9,6 +9,7 @@ import { OnboardingImportSettingsComponent } from './onboarding-import-settings/
 import { OnboardingLandingComponent } from './onboarding-landing/onboarding-landing.component';
 import { OnboardingQboConnectorComponent } from './onboarding-qbo-connector/onboarding-qbo-connector.component';
 import { OnboardingComponent } from './onboarding.component';
+import { CloneSettingsComponent } from './clone-settings/clone-settings.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,11 @@ const routes: Routes = [
     path: '',
     component: OnboardingComponent,
     children: [
+      {
+        path: 'clone_settings',
+        component: CloneSettingsComponent,
+        canActivate: [WorkspacesGuard]
+      },
       {
         path: 'export_settings',
         component: OnboardingExportSettingsComponent,

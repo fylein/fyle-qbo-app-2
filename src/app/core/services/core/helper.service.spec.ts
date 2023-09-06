@@ -1,14 +1,23 @@
 import { TestBed } from '@angular/core/testing';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { DefaultDestinationAttribute } from '../../models/db/general-mapping.model';
 
 import { HelperService } from './helper.service';
+import { Router } from '@angular/router';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 
 describe('HelperService', () => {
   let service: HelperService;
+  const routerSpy = { navigate: jasmine.createSpy('navigate'), url: '/path' };
+  let router: Router;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: Router, useValue: routerSpy }
+      ],
+      imports: [MatDialogModule]
+    });
     service = TestBed.inject(HelperService);
   });
 
@@ -17,8 +26,8 @@ describe('HelperService', () => {
   });
 
   it('clearSearchText service check', () => {
-    const form=new UntypedFormGroup({
-      searchOption: new UntypedFormControl('fyle')
+    const form=new FormGroup({
+      searchOption: new FormControl('fyle')
     });
     service.clearSearchText(form);
     expect(form.controls.searchOption.value).toBeNull();

@@ -15,6 +15,7 @@ import { mappingList } from 'src/app/shared/components/mapping/mapping-table/map
 import { environment } from 'src/environments/environment';
 import { EmployeeMappingComponent } from './employee-mapping.component';
 import { employeeMappingResponse, getEmployeeMappingResponse, getEmployeeMappingResponse1, mappinglist, MappingStatsResponse, qboData, qboData2, workspaceGeneralSettingResponse } from './employee-mapping.fixture';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 
 describe('EmployeeMappingComponent', () => {
   let component: EmployeeMappingComponent;
@@ -44,7 +45,7 @@ describe('EmployeeMappingComponent', () => {
       getPageSize: () => 10
     };
     await TestBed.configureTestingModule({
-      imports: [ FormsModule, ReactiveFormsModule, HttpClientModule, MatSnackBarModule, HttpClientTestingModule, NoopAnimationsModule ],
+      imports: [ FormsModule, ReactiveFormsModule, HttpClientModule, MatSnackBarModule, MatDialogModule, HttpClientTestingModule, NoopAnimationsModule ],
       declarations: [ EmployeeMappingComponent ],
       providers: [
         { provide: WorkspaceService, useValue: service1 },

@@ -24,6 +24,7 @@ import { MatLegacyChipInputEvent as MatChipInputEvent } from '@angular/material/
 import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
+
 // Pipes
 import { TrimCharacterPipe } from './pipes/trim-character.pipe';
 import { SearchPipe } from './pipes/search.pipe';
@@ -64,6 +65,9 @@ import { MandatoryErrorMessageComponent } from './components/helpers/mandatory-e
 import { AddEmailDialogComponent } from './components/configuration/advanced-settings/add-email-dialog/add-email-dialog.component';
 import { EmailMultiSelectFieldComponent } from './components/configuration/email-multi-select-field/email-multi-select-field.component';
 import { SkipExportLogTableComponent } from './components/export-log/skip-export-log-table/skip-export-log-table.component';
+import { ToggleComponent } from './components/core/toggle/toggle.component';
+import { SelectComponent } from './components/core/select/select.component';
+import { EmailMultiSelectComponent } from '../core/email-multi-select/email-multi-select.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +108,10 @@ import { SkipExportLogTableComponent } from './components/export-log/skip-export
     MandatoryErrorMessageComponent,
     AddEmailDialogComponent,
     EmailMultiSelectFieldComponent,
-    SkipExportLogTableComponent
+    SkipExportLogTableComponent,
+    ToggleComponent,
+    SelectComponent,
+    EmailMultiSelectComponent
   ],
   imports: [
     CommonModule,
@@ -158,7 +165,10 @@ import { SkipExportLogTableComponent } from './components/export-log/skip-export
     DashboardResolveMappingErrorDialogComponent,
     ExportLogChildTableComponent,
     MandatoryErrorMessageComponent,
-    MatChipsModule
+    MatChipsModule,
+    ToggleComponent,
+    SelectComponent,
+    EmailMultiSelectComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

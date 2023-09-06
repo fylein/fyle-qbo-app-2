@@ -55,7 +55,7 @@ h3, h4, h5, h6 {
   margin: 0;
 }
 
-h1, h2 {
+h1, h2, ul {
   margin: 0;
 }
 
@@ -336,6 +336,13 @@ th.mat-header-cell:last-of-type {
       transform: rotate(270deg);
     }
   }
+  
+  &.clone-settings {
+    @extend .mat-tooltip, .above, .align-center;
+    white-space: normal !important;
+    margin-right: 6px !important;
+    max-width: 600px !important;
+  }
 
   &.left {
     overflow: initial;
@@ -448,6 +455,20 @@ th.mat-header-cell:last-of-type {
   right: 2px !important;
 }
 
+.mat-mdc-menu-panel {
+  margin-top: 10px !important;
+  margin-left: 10px !important;
+  min-height: 40px!important;
+}
+
+.mat-mdc-menu-item {
+  height: 24px!important;
+  font-size: 14px!important;
+  line-height: 0!important;
+  width: 230px!important;
+  min-height: 30px!important;
+}
+
 .selected-value-check-mark {
   width: 15px;
   height: 15px;
@@ -458,6 +479,11 @@ th.mat-header-cell:last-of-type {
 
 .btn-shadow {
   box-shadow: 0px 4px 4px rgba(44, 48, 78, 0.1);
+}
+
+.cdk-overlay-dark-backdrop {
+  background: #2C304E;
+  opacity: 0.7 !important;
 }
 
 .configuration {
@@ -837,4 +863,120 @@ th.mat-header-cell:last-of-type {
       width: 550px;
     }
   }
+}
+
+.import-settings {
+  &--field-checkbox-contents {
+    padding: 16px 32px 26px;
+  }
+
+  &--chart-of-account-header {
+    padding-right: 8px;
+  }
+
+  &--chart-of-account-list-section {
+    padding-top: 24px;
+  }
+
+  &--chart-of-account-list {
+    padding-right: 81.67px;
+    padding-bottom: 24px;
+  }
+
+  &--mapping-qbo-fyle-section {
+    width: 633.5px;
+  }
+
+  &--qbo-field {
+    background: #F5F5F5;
+    border: 1px solid #DFDFE2;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 280px;
+    height: 36px;
+  }
+
+  &--qbo-field-text {
+    padding: 7px 161px 11px 17px;
+  }
+
+  &--fyle-field {
+    width: 305px;
+    height: 40px;
+    margin-top: -5px;
+  }
+
+  &--preview-text {
+    padding-top: 10px;
+    font-size: 12px;
+  }
+
+  &--preview-btn {
+    color: #0660F6;
+  }
+
+  &--fields-separator {
+    border-top: 1px solid #DFDFE2;
+    align-self: center;
+    width: 48px;
+    height: 26px;
+  }
+
+  &--or-text {
+    padding: 8px 16px;
+  }
+
+  &--field-label-section {
+    width: 650px;
+    padding-right: 46px;
+  }
+
+  &--create-custom-field {
+    padding: 8px 0px;
+  }
+
+  &--tax-section {
+    min-height: 102px;
+  }
+
+  &--default-tax-section {
+    height: 160px;
+  }
+
+  &--default-tax-contents {
+    padding: 16px 32px 40px;
+  }
+
+  &--default-tax-field {
+    padding-right: 729.5px;
+  }
+
+  &--default-tax-input {
+    width: 305px;
+    height: 40px;
+  }
+
+  &--default-tax-header {
+    padding-bottom: 6px;
+  }
+
+  &--default-tax-note {
+    padding-top: 12px;
+  }
+
+  &--field-label-note {
+    padding-top: 18px;
+  }
+
+  &--field {
+    background: #FAFCFF;
+  }
+
+  &--field-toggle-section {
+    padding: 30px 8px 30px 32px;
+    background: #FAFCFF;
+    box-sizing: border-box;
+    border: 1px solid #F5F5F5;
+  }
+
 }

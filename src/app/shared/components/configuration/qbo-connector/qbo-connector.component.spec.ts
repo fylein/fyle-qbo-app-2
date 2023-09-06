@@ -13,6 +13,7 @@ import { WorkspaceService } from 'src/app/core/services/workspace/workspace.serv
 import { ConfirmationDialog } from 'src/app/core/models/misc/confirmation-dialog.model';
 import { MatLegacyDialog as MatDialog, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { AuthService } from 'src/app/core/services/core/auth.service';
+import { environment } from 'src/environments/environment';
 
 describe('QboConnectorComponent', () => {
   let component: QboConnectorComponent;
@@ -49,7 +50,8 @@ describe('QboConnectorComponent', () => {
     };
     service3 = {
       refreshQBODimensions: () => of({}),
-      setOnboardingState: () => undefined
+      setOnboardingState: () => undefined,
+      getWorkspaceId: () => environment.tests.workspaceId
     };
     service4 = {
       logout: () => undefined,
@@ -126,7 +128,6 @@ describe('QboConnectorComponent', () => {
     component.isContinueDisabled = false;
     fixture.detectChanges();
     expect(component.continueToNextStep()).toBeUndefined();
-    expect(router.navigate).toHaveBeenCalledWith([`/workspaces/onboarding/employee_settings`]);
   });
 
   it('continueToNextStep => isContinueDisabled = true function check', () => {

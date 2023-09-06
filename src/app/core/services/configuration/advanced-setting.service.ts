@@ -1,12 +1,16 @@
 import { HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Cacheable, CacheBuster } from 'ts-cacheable';
-import { AdvancedSettingGet, AdvancedSettingPost, AdvancedSettingWorkspaceSchedulePost } from '../../models/configuration/advanced-setting.model';
+import { AdvancedSettingFormOption, AdvancedSettingGet, AdvancedSettingPost, AdvancedSettingWorkspaceSchedulePost } from '../../models/configuration/advanced-setting.model';
 import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from '../../models/db/workspace-schedule.model';
 import { ExpenseFilterResponse, SkipExport } from '../../models/misc/skip-export.model';
 import { ApiService } from '../core/api.service';
 import { WorkspaceService } from '../workspace/workspace.service';
+import { PaymentSyncDirection } from '../../models/enum/enum.model';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { FormGroup } from '@angular/forms';
+import { AddEmailDialogComponent } from 'src/app/shared/components/configuration/advanced-settings/add-email-dialog/add-email-dialog.component';
 
 const advancedSettingsCache$ = new Subject<void>();
 const skipExportCache = new Subject<void>();
@@ -16,9 +20,12 @@ const skipExportCache = new Subject<void>();
 })
 export class AdvancedSettingService {
 
+  @Output() patchAdminEmailsEmitter: EventEmitter<WorkspaceScheduleEmailOptions[]> = new EventEmitter();
+
   constructor(
     private apiService: ApiService,
-    private workspaceService: WorkspaceService
+    private workspaceService: WorkspaceService,
+    private dialog: MatDialog
   ) { }
 
   @Cacheable({
@@ -58,5 +65,54 @@ export class AdvancedSettingService {
 
   getWorkspaceAdmins(): Observable<[WorkspaceScheduleEmailOptions]> {
     return this.apiService.get(`/workspaces/${this.workspaceService.getWorkspaceId()}/admins/`, {});
+  }
+
+  getPaymentSyncOptions(): AdvancedSettingFormOption[] {
+    return [
+      {
+        label: 'None',
+        value: null
+      },
+      {
+        label: 'Export Fyle ACH Payments to Quickbooks Online',
+        value: PaymentSyncDirection.FYLE_TO_QBO
+      },
+      {
+        label: 'Import Quickbooks Payments into Fyle',
+        value: PaymentSyncDirection.QBO_TO_FYLE
+      }
+    ];
+  }
+
+  getFrequencyIntervals(): AdvancedSettingFormOption[] {
+    return  [...Array(24).keys()].map(day => {
+      return {
+        label: (day + 1) === 1 ? (day + 1) + ' Hour' : (day + 1) + ' Hours',
+        value: day + 1
+      };
+    });
+  }
+
+  openAddemailDialog(form: FormGroup, adminEmails: WorkspaceScheduleEmailOptions[]): void {
+    const dialogRef = this.dialog.open(AddEmailDialogComponent, {
+      width: '467px',
+      data: {
+        workspaceId: this.workspaceService.getWorkspaceId(),
+        hours: form.value.exportScheduleFrequency,
+        schedulEnabled: form.value.exportSchedule,
+        selectedEmails: form.value.emails
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        form.controls.exportScheduleFrequency.patchValue(result.hours);
+        form.controls.emails.patchValue(result.emails_selected);
+        form.controls.addedEmail.patchValue(result.email_added);
+
+        const additionalEmails = adminEmails.concat(result.email_added);
+        this.patchAdminEmailsEmitter.emit(additionalEmails);
+      }
+    });
   }
 }

@@ -120,25 +120,19 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
     });
   }
 
-  private setCustomValidatorsAndWatchers(): void {
-    this.updateTaxGroupVisibility();
-    this.createTaxCodeWatcher();
+  private setupExpenseFieldWatcher(): void {
+    this.importSettingService.patchExpenseFieldEmitter.subscribe((expenseField) => {
+      if (expenseField.addSourceField) {
+        this.fyleExpenseFields.push(expenseField.source_field);
+      }
+      this.expenseFields.controls.filter(field => field.value.destination_field === expenseField.destination_field)[0].patchValue(expenseField);
+    });
   }
 
-  private importToggleWatcher(): ValidatorFn {
-    return (control: AbstractControl): {[key: string]: object} | null => {
-      if (control.value) {
-        // Mark Fyle field as mandatory if toggle is enabled
-        control.parent?.get('source_field')?.setValidators(Validators.required);
-        control.parent?.get('source_field')?.setValidators(RxwebValidators.unique());
-      } else {
-        // Reset Fyle field if toggle is disabled
-        control.parent?.get('source_field')?.clearValidators();
-        control.parent?.get('source_field')?.setValue(null);
-      }
-
-      return null;
-    };
+  private setCustomValidatorsAndWatchers(): void {
+    this.setupExpenseFieldWatcher();
+    this.updateTaxGroupVisibility();
+    this.createTaxCodeWatcher();
   }
 
   showImportVendors(): boolean {
@@ -147,15 +141,7 @@ export class ImportSettingsComponent implements OnInit, OnDestroy {
 
   private setupForm(): void {
     const chartOfAccountTypeFormArray = this.chartOfAccountTypesList.map((type) => this.createChartOfAccountField(type));
-    const expenseFieldsFormArray = this.qboExpenseFields.map((field) => {
-      return this.formBuilder.group({
-        source_field: [field.source_field],
-        destination_field: [field.destination_field],
-        import_to_fyle: [field.import_to_fyle, this.importToggleWatcher()],
-        disable_import_to_fyle: [field.disable_import_to_fyle],
-        source_placeholder: ['']
-      });
-    });
+    const expenseFieldsFormArray = this.importSettingService.getExpenseFieldsFormArray(this.qboExpenseFields, true);
 
     this.importSettingsForm = this.formBuilder.group({
       chartOfAccount: [this.importSettings.workspace_general_settings.import_categories],

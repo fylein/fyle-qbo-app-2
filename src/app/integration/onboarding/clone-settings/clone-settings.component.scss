@@ -1,0 +1,222 @@
+.clone-settings {
+    &--dropdown-section {
+        padding-top: 30px;
+    }
+
+    &--section {
+        display: flex;
+        justify-content: center;
+    }
+
+    &--block {
+        margin-top: -140px;
+        margin-bottom: 58px;
+        width: 1098px;
+        background: #FFFFFF;
+        border: 1px solid #F5F5F5;
+        box-sizing: border-box;
+        box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
+        border-radius: 8px;
+    }
+    
+    &--export-dropdown {
+        margin-top: 50px;
+    }
+
+    &--header-section {
+        padding-top: 24px;
+        background: #FAFCFF;
+        border: 1px solid #F5F5F5;
+    }
+
+    &--header-icon {
+        padding: 0px 10px 0px 32px;
+    }
+
+    &--header-caption {
+        padding-top: 10px;
+        padding-bottom: 24px;
+    }
+
+    &--configuration-section {
+        padding: 24px 32px;
+    }
+    
+    &--export-section {
+        padding: 0px 32px;
+        margin: -10px 0px -10px 0px;
+    }
+
+    &--info-icon {
+        padding: 4px 0px 0px 10px;
+    }
+
+    &--sub-options-icon {
+        padding-right: 12px;
+    }
+
+    &--field-section {
+        width: 500px;
+    }
+
+    &--sub-options-text {
+        color: #2C304E;
+        font-size: 14px;
+    }
+
+    &--export-type {
+        padding-left: 10px;
+    }
+
+    &--export-type-text {
+        font-weight: 600;
+    }
+
+    &--field-header-section {
+        padding: 8px 0px 0px 32px;
+    }
+
+    &--field-header {
+        height: 48px;
+        font-size: 14px;
+    }
+
+    &--qbo-header {
+        padding-left: 13px;
+        padding-right: 202px;
+    }
+
+    &--coa-import-section {
+        padding: 20px 0px 12px 32px;
+    }
+
+    &--qbo-field {
+        height: 34px;
+        width: 304px;
+        background: #F5F5F5;
+        border: 1px solid #DFDFE2;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #2C304E;
+    }
+
+    &--qbo-field-text {
+        padding-left: 14px;
+    }
+
+    &--back-btn {
+        margin-right: 12px;
+    }
+
+    &--error-message {
+        padding-top: 10px;
+        margin-left: -22px;
+    }
+
+    &--reset-btn {
+        width: 186px;
+    }
+
+    &--footer-inner-section {
+        height: 84px;
+        padding: 12px 32px;
+    }
+
+    &--coa-list {
+        padding-left: 12px;
+        font-size: 14px;
+    }
+
+    &--cta-text {
+        color: #FF3366;
+    }
+
+    &--coa-list-icon {
+        padding-left: 15px;
+    }
+
+    &--delete-icon {
+        padding-right: 34px;
+    }
+
+    &--tax-group-field {
+        margin-right: 12px;
+    }
+
+    &--header-advanced-setting {
+        padding-top: 24px;
+    }
+
+    &--configuration-payment-section {
+        padding: 0px 32px 24px;
+    }
+
+    &--configuration-payment-field {
+        padding-left: 28px;
+    }
+
+    &--add-email-text {
+        padding-right: 210px;
+        padding-top: 18px;
+    }
+
+    &--add-btn {
+        margin-bottom: 8px;
+        height: 16px;
+        width: 16px;
+    }
+
+    &--span-or {
+        margin: 1px 15px 8px 5px ;
+        font-weight: 500;
+        font-size: 14px;
+        color: #2c304e;
+    }
+
+    &--additional-email-text {
+        margin-top: -40px;
+    }
+
+    &--add-field-section {
+        width: 124px;
+    }
+
+    &--add-field {
+        padding-right: 12px;
+        font-size: 14px;
+    }
+    
+    &--memo-preview-section {
+        padding-top: 24px;
+    }
+    
+    &--memo-preview-text {
+    font-weight: 500;
+    }
+
+    &--memo-preview-area {
+    padding: 12px 12px 0px 0px;
+    }
+
+    &--memo-preview {
+    padding: 8px 0px 8px 8px;
+    background: #F5F5F5;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    }
+    
+    &--memo-preview-select {
+    ::ng-deep .mat-select-panel-wrap {
+        // TODO: check this
+        margin-left: 7% !important;
+        flex-basis: 96% !important;
+    }
+
+    ::ng-deep .cdk-overlay-pane {
+        // TODO: check this
+        margin-left: 1.5% !important;
+    }
+    }
+}
+

@@ -1,7 +1,7 @@
 import { ExportSettingFormOption, ExportSettingGet } from "src/app/core/models/configuration/export-setting.model";
 import { GroupedDestinationAttribute } from "src/app/core/models/db/destination-attribute.model";
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
-import { AutoMapEmployee, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject, NameInJournalEntry } from "src/app/core/models/enum/enum.model";
+import { AutoMapEmployee, CorporateCreditCardExpensesObject, EmployeeFieldMapping, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject, ExpenseGroupingFieldOption, NameInJournalEntry } from "src/app/core/models/enum/enum.model";
 
 export const export_settings: ExportSettingFormOption[] = [
   {
@@ -152,7 +152,8 @@ export const exportResponse1: ExportSettingGet = {
   workspace_general_settings: {
     reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
     corporate_credit_card_expenses_object: null,
-    name_in_journal_entry: NameInJournalEntry.EMPLOYEE
+    name_in_journal_entry: NameInJournalEntry.EMPLOYEE,
+    is_simplify_report_closure_enabled: true
   },
   workspace_id: 1,
   general_mappings: {
@@ -186,7 +187,7 @@ export const exportResponse: ExportSettingGet = {
   expense_group_settings: {
     expense_state: ExpenseState.PAID,
     ccc_expense_state: CCCExpenseState.PAID,
-    reimbursable_expense_group_fields: ['sample'],
+    reimbursable_expense_group_fields: [ExpenseGroupingFieldOption.EXPENSE_ID],
     reimbursable_export_date_type: ExportDateType.APPROVED_AT,
     corporate_credit_card_expense_group_fields: ['sipper'],
     ccc_export_date_type: ExportDateType.SPENT_AT
@@ -194,7 +195,8 @@ export const exportResponse: ExportSettingGet = {
   workspace_general_settings: {
     reimbursable_expenses_object: ReimbursableExpensesObject.BILL,
     corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject.BILL,
-    name_in_journal_entry: NameInJournalEntry.EMPLOYEE
+    name_in_journal_entry: NameInJournalEntry.EMPLOYEE,
+    is_simplify_report_closure_enabled: true
   },
   general_mappings: {
     bank_account: { id: '1', name: 'Fyle' },
@@ -227,3 +229,125 @@ export const errorResponse = {
     company_name: 'QBO'
   }
 };
+
+export const mockReimbursableExpenseGroupingFieldOptions = [
+  {
+    label: 'Report',
+    value: ExpenseGroupingFieldOption.CLAIM_NUMBER
+  },
+  {
+    label: 'Payment',
+    value: ExpenseGroupingFieldOption.SETTLEMENT_ID
+  },
+  {
+    label: 'Expense',
+    value: ExpenseGroupingFieldOption.EXPENSE_ID
+  }
+];
+
+export const mockReimbursableExpenseGroupingDateOptions = [
+
+    {
+      label: 'Current Date',
+      value: ExportDateType.CURRENT_DATE
+    },
+    {
+      label: 'Verification Date',
+      value: ExportDateType.VERIFIED_AT
+    },
+    {
+      label: 'Spend Date',
+      value: ExportDateType.SPENT_AT
+    },
+    {
+      label: 'Approval Date',
+      value: ExportDateType.APPROVED_AT
+    },
+    {
+      label: 'Last Spend Date',
+      value: ExportDateType.LAST_SPENT_AT
+    }
+];
+
+export const mockCreditCardExportType = [
+  {
+    label: 'Bill',
+    value: CorporateCreditCardExpensesObject.BILL
+  },
+  {
+    label: 'Credit Card Purchase',
+    value: CorporateCreditCardExpensesObject.CREDIT_CARD_PURCHASE
+  },
+  {
+    label: 'Journal Entry',
+    value: CorporateCreditCardExpensesObject.JOURNAL_ENTRY
+  },
+  {
+    label: 'Debit Card Expense',
+    value: CorporateCreditCardExpensesObject.DEBIT_CARD_EXPENSE
+  }
+];
+
+export const mockReimbursableExportTypeOptions = {
+  EMPLOYEE: [
+    {
+      label: 'Check',
+      value: ReimbursableExpensesObject.CHECK
+    },
+    {
+      label: 'Expense',
+      value: ReimbursableExpensesObject.EXPENSE
+    },
+    {
+      label: 'Journal Entry',
+      value: ReimbursableExpensesObject.JOURNAL_ENTRY
+    }
+  ],
+  VENDOR: [
+    {
+      label: 'Bill',
+      value: ReimbursableExpensesObject.BILL
+    },
+    {
+      label: 'Expense',
+      value: ReimbursableExpensesObject.EXPENSE
+    },
+    {
+      label: 'Journal Entry',
+      value: ReimbursableExpensesObject.JOURNAL_ENTRY
+    }
+  ]
+};
+
+export const mockCCCExpenseStateOptions = [
+  {
+    label: 'Payment Processing',
+    value: CCCExpenseState.PAYMENT_PROCESSING
+  },
+  {
+    label: 'Paid',
+    value: CCCExpenseState.PAID
+  }
+];
+
+export const mockReimbursableExpenseStateOptions = [
+  {
+    label: 'Processing',
+    value: ExpenseState.PAYMENT_PROCESSING
+  },
+  {
+    label: 'Closed',
+    value: ExpenseState.PAID
+  }
+];
+
+export const mockNameInJournalEntry = [
+  {
+    label: 'Merchant Name',
+    value: NameInJournalEntry.MERCHANT
+  },
+  {
+    label: 'Employee Name',
+    value: NameInJournalEntry.EMPLOYEE
+  }
+];
