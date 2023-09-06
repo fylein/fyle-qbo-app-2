@@ -142,6 +142,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#isCloneSettingsActive" >isCloneSettingsActive</a>
+                            </li>
+                            <li>
                                 <a href="#onboardingSteps" >onboardingSteps</a>
                             </li>
                         </ul>
@@ -203,7 +206,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/shared/components/helpers/onboarding-stepper/onboarding-stepper.component.ts:78</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/shared/components/helpers/onboarding-stepper/onboarding-stepper.component.ts:80</a></div>
                             </td>
                         </tr>
 
@@ -305,8 +308,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">src/app/shared/components/helpers/onboarding-stepper/onboarding-stepper.component.ts:108</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="131"
+                            class="link-to-prism">src/app/shared/components/helpers/onboarding-stepper/onboarding-stepper.component.ts:131</a></div>
                 </td>
             </tr>
 
@@ -386,8 +389,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="114"
-                            class="link-to-prism">src/app/shared/components/helpers/onboarding-stepper/onboarding-stepper.component.ts:114</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="137"
+                            class="link-to-prism">src/app/shared/components/helpers/onboarding-stepper/onboarding-stepper.component.ts:137</a></div>
                 </td>
             </tr>
 
@@ -425,8 +428,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/app/shared/components/helpers/onboarding-stepper/onboarding-stepper.component.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/app/shared/components/helpers/onboarding-stepper/onboarding-stepper.component.ts:87</a></div>
                 </td>
             </tr>
 
@@ -448,6 +451,32 @@
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isCloneSettingsActive"></a>
+                    <span class="name">
+                        <span ><b>isCloneSettingsActive</b></span>
+                        <a href="#isCloneSettingsActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/shared/components/helpers/onboarding-stepper/onboarding-stepper.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -533,7 +562,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/shared/components/helpers/onboarding-stepper/onboarding-stepper.component.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/shared/components/helpers/onboarding-stepper/onboarding-stepper.component.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -561,6 +590,8 @@ import { WorkspaceService } from &#x27;src/app/core/services/workspace/workspace
 export class OnboardingStepperComponent implements OnInit {
 
   @Input() currentStep: string;
+
+  isCloneSettingsActive: boolean;
 
   onboardingSteps: OnboardingStepper[] &#x3D; [
     {
@@ -631,25 +662,46 @@ export class OnboardingStepperComponent implements OnInit {
   ) { }
 
   private updateActiveAndCompletedSteps(): void {
-    this.onboardingSteps.forEach(step &#x3D;&gt; {
-      if (step.step &#x3D;&#x3D;&#x3D; this.currentStep) {
-        step.active &#x3D; true;
+
+    if (this.currentStep &#x3D;&#x3D;&#x3D; &#x27;Clone Settings&#x27;) {
+      this.isCloneSettingsActive &#x3D; true;
+      this.onboardingSteps[0].completed &#x3D; true;
+      this.onboardingSteps &#x3D; [this.onboardingSteps[0]];
+      this.onboardingSteps.push(
+        {
+          active: true,
+          completed: false,
+          number: 6,
+          step: &#x27;Complete the Configurations&#x27;,
+          icon: &#x27;advanced-setting&#x27;,
+          route: &#x27;clone_settings&#x27;,
+          size: {
+            height: &#x27;20px&#x27;,
+            width: &#x27;20px&#x27;
+          }
+        }
+      );
+    } else {
+      this.onboardingSteps.forEach(step &#x3D;&gt; {
+        if (step.step &#x3D;&#x3D;&#x3D; this.currentStep) {
+          step.active &#x3D; true;
+        }
+      });
+
+      const onboardingState: OnboardingState &#x3D; this.workspaceService.getOnboardingState();
+
+      const onboardingStateStepMap &#x3D; {
+        [OnboardingState.CONNECTION]: 1,
+        [OnboardingState.MAP_EMPLOYEES]: 2,
+        [OnboardingState.EXPORT_SETTINGS]: 3,
+        [OnboardingState.IMPORT_SETTINGS]: 4,
+        [OnboardingState.ADVANCED_CONFIGURATION]: 5,
+        [OnboardingState.COMPLETE]: 6
+      };
+
+      for (let index &#x3D; onboardingStateStepMap[onboardingState] - 1; index &gt; 0; index--) {
+        this.onboardingSteps[index - 1].completed &#x3D; true;
       }
-    });
-
-    const onboardingState: OnboardingState &#x3D; this.workspaceService.getOnboardingState();
-
-    const onboardingStateStepMap &#x3D; {
-      [OnboardingState.CONNECTION]: 1,
-      [OnboardingState.MAP_EMPLOYEES]: 2,
-      [OnboardingState.EXPORT_SETTINGS]: 3,
-      [OnboardingState.IMPORT_SETTINGS]: 4,
-      [OnboardingState.ADVANCED_CONFIGURATION]: 5,
-      [OnboardingState.COMPLETE]: 6
-    };
-
-    for (let index &#x3D; onboardingStateStepMap[onboardingState] - 1; index &gt; 0; index--) {
-      this.onboardingSteps[index - 1].completed &#x3D; true;
     }
   }
 
@@ -662,7 +714,6 @@ export class OnboardingStepperComponent implements OnInit {
   ngOnInit(): void {
     this.updateActiveAndCompletedSteps();
   }
-
 }
 </code></pre>
     </div>
@@ -671,8 +722,7 @@ export class OnboardingStepperComponent implements OnInit {
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;stepper&quot;&gt;
   &lt;div class&#x3D;&quot;stepper--header&quot;&gt;
     &lt;p class&#x3D;&quot;stepper--header-text align-center&quot;&gt;
-      Complete the following steps to configure your Integration.
-    &lt;/p&gt;
+      {{ isCloneSettingsActive ? &#x27;Fill in the below fields to complete your integration set up&#x27; : &#x27;Complete the following steps to configure your Integration&#x27;}}    &lt;/p&gt;
   &lt;/div&gt;
 
   &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;center center&quot; class&#x3D;&quot;stepper--steps&quot;&gt;
@@ -684,11 +734,10 @@ export class OnboardingStepperComponent implements OnInit {
             &lt;img *ngIf&#x3D;&quot;!onboardingStep.active &amp;&amp; onboardingStep.completed&quot; src&#x3D;&quot;assets/images/svgs/general/tick.svg&quot; class&#x3D;&quot;stepper--icon&quot; width&#x3D;&quot;20px&quot; height&#x3D;&quot;14px&quot;&gt;
             &lt;img *ngIf&#x3D;&quot;!onboardingStep.active &amp;&amp; !onboardingStep.completed&quot; src&#x3D;&#x27;{{ &quot;assets/images/svgs/stepper/&quot; + onboardingStep.icon + &quot;-inactive.svg&quot; }}&#x27; class&#x3D;&quot;stepper--icon&quot; [height]&#x3D;&quot;onboardingStep.size.height&quot; [width]&#x3D;&quot;onboardingStep.size.width&quot;&gt;
           &lt;/div&gt;
-          &lt;div *ngIf&#x3D;&quot;onboardingStep.step !&#x3D;&#x3D; &#x27;Advanced Settings&#x27;&quot; [ngClass]&#x3D;&quot;[!onboardingStep.active &amp;&amp; onboardingStep.completed ? &#x27;stepper--horizontal-separator-completed&#x27; : &#x27;stepper--horizontal-separator&#x27;, !onboardingStep.active &amp;&amp; !onboardingStep.completed ? &#x27;stepper--horizontal-separator&#x27; : &#x27;&#x27;]&quot;&gt;&lt;/div&gt;
+          &lt;div *ngIf&#x3D;&quot;onboardingStep.step !&#x3D;&#x3D; &#x27;Advanced Settings&#x27; &amp;&amp; onboardingStep.step !&#x3D;&#x3D; &#x27;Complete the Configurations&#x27;&quot; [ngClass]&#x3D;&quot;[!onboardingStep.active &amp;&amp; onboardingStep.completed ? &#x27;stepper--horizontal-separator-completed&#x27; : &#x27;stepper--horizontal-separator&#x27;, !onboardingStep.active &amp;&amp; !onboardingStep.completed ? &#x27;stepper--horizontal-separator&#x27; : &#x27;&#x27;]&quot; data-cy&#x3D;&quot;stepper-horizontal-separator&quot;&gt;&lt;/div&gt;
         &lt;/div&gt;
         &lt;div (click)&#x3D;&quot;navigate(onboardingStep.completed, onboardingStep.route)&quot; class&#x3D;&quot;stepper--step-name&quot; [ngClass]&#x3D;&quot;[!onboardingStep.active &amp;&amp; onboardingStep.completed ? &#x27;pointer&#x27; : &#x27;cursor-disabled&#x27;, !onboardingStep.active &amp;&amp; !onboardingStep.completed ? &#x27;sub-text-color cursor-disabled&#x27; : &#x27;&#x27;]&quot;&gt;
-          &lt;h5 [ngClass]&#x3D;&quot;{&#x27;stepper--step-1-text&#x27;: onboardingStep.number &#x3D;&#x3D;&#x3D; 1, &#x27;stepper--step-2-text&#x27;: onboardingStep.number &#x3D;&#x3D;&#x3D; 2, &#x27;stepper--step-3-4-text&#x27;: onboardingStep.number &#x3D;&#x3D;&#x3D; 3 || onboardingStep.number &#x3D;&#x3D;&#x3D; 4, &#x27;stepper--step-5-text&#x27;: onboardingStep.number &#x3D;&#x3D;&#x3D; 5}&quot;&gt;{{onboardingStep.step}}&lt;/h5&gt;
-        &lt;/div&gt;
+          &lt;h5 [ngClass]&#x3D;&quot;{&#x27;stepper--step-1-2-text&#x27;: onboardingStep.number &#x3D;&#x3D;&#x3D; 1 || onboardingStep.number &#x3D;&#x3D;&#x3D; 2, &#x27;stepper--step-3-4-text&#x27;: onboardingStep.number &#x3D;&#x3D;&#x3D; 3 || onboardingStep.number &#x3D;&#x3D;&#x3D; 4, &#x27;stepper--step-5-text&#x27;: onboardingStep.number &#x3D;&#x3D;&#x3D; 5, &#x27;stepper--step-6-text&#x27;: onboardingStep.number &#x3D;&#x3D;&#x3D; 6}&quot; data-cy&#x3D;&quot;step-number&quot;&gt;{{onboardingStep.step}}&lt;/h5&gt;        &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -760,6 +809,10 @@ export class OnboardingStepperComponent implements OnInit {
     margin-left: -24px;
   }
 
+  &amp;--step-6-text {
+    margin-left: -10px;
+  }
+
   &amp;--icon {
     width: 24px;
     height: 24px;
@@ -810,8 +863,8 @@ p {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="stepper">  <div class="stepper--header">    <p class="stepper--header-text align-center">      Complete the following steps to configure your Integration.    </p>  </div>  <div fxLayout="row" fxLayoutAlign="center center" class="stepper--steps">    <div *ngFor="let onboardingStep of onboardingSteps">      <div fxLayout="column">        <div fxLayout="row">          <div fxLayout="row" fxLayoutAlign="space-between center" class="stepper--step" (click)="navigate(onboardingStep.completed, onboardingStep.route)" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? \'stepper--step-completed pointer\' : \'stepper--step-active cursor-disabled\', !onboardingStep.active && !onboardingStep.completed ? \'stepper--step-inactive cursor-disabled\' : \'\']">            <img *ngIf="onboardingStep.active" src=\'{{ "assets/images/svgs/stepper/" + onboardingStep.icon + ".svg" }}\' class="stepper--icon" [height]="onboardingStep.size.height" [width]="onboardingStep.size.width">            <img *ngIf="!onboardingStep.active && onboardingStep.completed" src="assets/images/svgs/general/tick.svg" class="stepper--icon" width="20px" height="14px">            <img *ngIf="!onboardingStep.active && !onboardingStep.completed" src=\'{{ "assets/images/svgs/stepper/" + onboardingStep.icon + "-inactive.svg" }}\' class="stepper--icon" [height]="onboardingStep.size.height" [width]="onboardingStep.size.width">          </div>          <div *ngIf="onboardingStep.step !== \'Advanced Settings\'" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? \'stepper--horizontal-separator-completed\' : \'stepper--horizontal-separator\', !onboardingStep.active && !onboardingStep.completed ? \'stepper--horizontal-separator\' : \'\']"></div>        </div>        <div (click)="navigate(onboardingStep.completed, onboardingStep.route)" class="stepper--step-name" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? \'pointer\' : \'cursor-disabled\', !onboardingStep.active && !onboardingStep.completed ? \'sub-text-color cursor-disabled\' : \'\']">          <h5 [ngClass]="{\'stepper--step-1-text\': onboardingStep.number === 1, \'stepper--step-2-text\': onboardingStep.number === 2, \'stepper--step-3-4-text\': onboardingStep.number === 3 || onboardingStep.number === 4, \'stepper--step-5-text\': onboardingStep.number === 5}">{{onboardingStep.step}}</h5>        </div>      </div>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AddEmailDialogComponent', 'selector': 'app-add-email-dialog'},{'name': 'AdvancedSettingsComponent', 'selector': 'app-advanced-settings'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'ConfigurationAdvancedSettingsComponent', 'selector': 'app-configuration-advanced-settings'},{'name': 'ConfigurationComponent', 'selector': 'app-configuration'},{'name': 'ConfigurationEmployeeSettingsComponent', 'selector': 'app-configuration-employee-settings'},{'name': 'ConfigurationExportSettingsComponent', 'selector': 'app-configuration-export-settings'},{'name': 'ConfigurationImportSettingsComponent', 'selector': 'app-configuration-import-settings'},{'name': 'ConfigurationSelectFieldComponent', 'selector': 'app-configuration-select-field'},{'name': 'ConfigurationStepFooterSectionComponent', 'selector': 'app-configuration-step-footer-section'},{'name': 'ConfigurationStepHeaderSectionComponent', 'selector': 'app-configuration-step-header-section'},{'name': 'ConfigurationToggleFieldComponent', 'selector': 'app-configuration-toggle-field'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'CustomMappingComponent', 'selector': 'app-custom-mapping'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardExportLogDialogComponent', 'selector': 'app-dashboard-export-log-dialog'},{'name': 'DashboardHeaderSectionComponent', 'selector': 'app-dashboard-header-section'},{'name': 'DashboardQboErrorDialogComponent', 'selector': 'app-dashboard-qbo-error-dialog'},{'name': 'DashboardResolveMappingErrorDialogComponent', 'selector': 'app-dashboard-resolve-mapping-error-dialog'},{'name': 'EmailMultiSelectFieldComponent', 'selector': 'app-email-multi-select-field'},{'name': 'EmployeeMappingComponent', 'selector': 'app-employee-mapping'},{'name': 'EmployeeSettingsComponent', 'selector': 'app-employee-settings'},{'name': 'ExpenseFieldCreationDialogComponent', 'selector': 'app-expense-field-creation-dialog'},{'name': 'ExportLogChildDialogComponent', 'selector': 'app-export-log-child-dialog'},{'name': 'ExportLogChildTableComponent', 'selector': 'app-export-log-child-table'},{'name': 'ExportLogComponent', 'selector': 'app-export-log'},{'name': 'ExportLogTableComponent', 'selector': 'app-export-log-table'},{'name': 'ExportSettingsComponent', 'selector': 'app-export-settings'},{'name': 'FyleCallbackComponent', 'selector': 'app-fyle-callback'},{'name': 'GenericMappingComponent', 'selector': 'app-generic-mapping'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImportSettingsComponent', 'selector': 'app-import-settings'},{'name': 'IntegrationComponent', 'selector': 'app-integration'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'MandatoryErrorMessageComponent', 'selector': 'app-mandatory-error-message'},{'name': 'MandatoryFieldComponent', 'selector': 'app-mandatory-field'},{'name': 'MappingComponent', 'selector': 'app-mapping'},{'name': 'MappingFilterComponent', 'selector': 'app-mapping-filter'},{'name': 'MappingHeaderSectionComponent', 'selector': 'app-mapping-header-section'},{'name': 'MappingTableComponent', 'selector': 'app-mapping-table'},{'name': 'OnboardingAdvancedSettingsComponent', 'selector': 'app-onboarding-advanced-settings'},{'name': 'OnboardingComponent', 'selector': 'app-onboarding'},{'name': 'OnboardingDoneComponent', 'selector': 'app-onboarding-done'},{'name': 'OnboardingEmployeeSettingsComponent', 'selector': 'app-onboarding-employee-settings'},{'name': 'OnboardingExportSettingsComponent', 'selector': 'app-onboarding-export-settings'},{'name': 'OnboardingFooterComponent', 'selector': 'app-onboarding-footer'},{'name': 'OnboardingImportSettingsComponent', 'selector': 'app-onboarding-import-settings'},{'name': 'OnboardingLandingComponent', 'selector': 'app-onboarding-landing'},{'name': 'OnboardingQboConnectorComponent', 'selector': 'app-onboarding-qbo-connector'},{'name': 'OnboardingStepperComponent', 'selector': 'app-onboarding-stepper'},{'name': 'PaginatorComponent', 'selector': 'app-paginator'},{'name': 'PreviewDialogComponent', 'selector': 'app-preview-dialog'},{'name': 'QboCallbackComponent', 'selector': 'app-qbo-callback'},{'name': 'QboConnectorComponent', 'selector': 'app-qbo-connector'},{'name': 'SharedLoginComponent', 'selector': 'app-shared-login'},{'name': 'SimpleTextSearchComponent', 'selector': 'app-simple-text-search'},{'name': 'SkipExportLogTableComponent', 'selector': 'app-skip-export-log-table'},{'name': 'ZeroStateWithIllustrationComponent', 'selector': 'app-zero-state-with-illustration'}];
+        var COMPONENT_TEMPLATE = '<div><div class="stepper">  <div class="stepper--header">    <p class="stepper--header-text align-center">      {{ isCloneSettingsActive ? \'Fill in the below fields to complete your integration set up\' : \'Complete the following steps to configure your Integration\'}}    </p>  </div>  <div fxLayout="row" fxLayoutAlign="center center" class="stepper--steps">    <div *ngFor="let onboardingStep of onboardingSteps">      <div fxLayout="column">        <div fxLayout="row">          <div fxLayout="row" fxLayoutAlign="space-between center" class="stepper--step" (click)="navigate(onboardingStep.completed, onboardingStep.route)" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? \'stepper--step-completed pointer\' : \'stepper--step-active cursor-disabled\', !onboardingStep.active && !onboardingStep.completed ? \'stepper--step-inactive cursor-disabled\' : \'\']">            <img *ngIf="onboardingStep.active" src=\'{{ "assets/images/svgs/stepper/" + onboardingStep.icon + ".svg" }}\' class="stepper--icon" [height]="onboardingStep.size.height" [width]="onboardingStep.size.width">            <img *ngIf="!onboardingStep.active && onboardingStep.completed" src="assets/images/svgs/general/tick.svg" class="stepper--icon" width="20px" height="14px">            <img *ngIf="!onboardingStep.active && !onboardingStep.completed" src=\'{{ "assets/images/svgs/stepper/" + onboardingStep.icon + "-inactive.svg" }}\' class="stepper--icon" [height]="onboardingStep.size.height" [width]="onboardingStep.size.width">          </div>          <div *ngIf="onboardingStep.step !== \'Advanced Settings\' && onboardingStep.step !== \'Complete the Configurations\'" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? \'stepper--horizontal-separator-completed\' : \'stepper--horizontal-separator\', !onboardingStep.active && !onboardingStep.completed ? \'stepper--horizontal-separator\' : \'\']" data-cy="stepper-horizontal-separator"></div>        </div>        <div (click)="navigate(onboardingStep.completed, onboardingStep.route)" class="stepper--step-name" [ngClass]="[!onboardingStep.active && onboardingStep.completed ? \'pointer\' : \'cursor-disabled\', !onboardingStep.active && !onboardingStep.completed ? \'sub-text-color cursor-disabled\' : \'\']">          <h5 [ngClass]="{\'stepper--step-1-2-text\': onboardingStep.number === 1 || onboardingStep.number === 2, \'stepper--step-3-4-text\': onboardingStep.number === 3 || onboardingStep.number === 4, \'stepper--step-5-text\': onboardingStep.number === 5, \'stepper--step-6-text\': onboardingStep.number === 6}" data-cy="step-number">{{onboardingStep.step}}</h5>        </div>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddEmailDialogComponent', 'selector': 'app-add-email-dialog'},{'name': 'AdvancedSettingsComponent', 'selector': 'app-advanced-settings'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'CloneSettingsComponent', 'selector': 'app-clone-settings'},{'name': 'ConfigurationAdvancedSettingsComponent', 'selector': 'app-configuration-advanced-settings'},{'name': 'ConfigurationComponent', 'selector': 'app-configuration'},{'name': 'ConfigurationEmployeeSettingsComponent', 'selector': 'app-configuration-employee-settings'},{'name': 'ConfigurationExportSettingsComponent', 'selector': 'app-configuration-export-settings'},{'name': 'ConfigurationImportSettingsComponent', 'selector': 'app-configuration-import-settings'},{'name': 'ConfigurationSelectFieldComponent', 'selector': 'app-configuration-select-field'},{'name': 'ConfigurationStepFooterSectionComponent', 'selector': 'app-configuration-step-footer-section'},{'name': 'ConfigurationStepHeaderSectionComponent', 'selector': 'app-configuration-step-header-section'},{'name': 'ConfigurationToggleFieldComponent', 'selector': 'app-configuration-toggle-field'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'CustomMappingComponent', 'selector': 'app-custom-mapping'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardExportLogDialogComponent', 'selector': 'app-dashboard-export-log-dialog'},{'name': 'DashboardHeaderSectionComponent', 'selector': 'app-dashboard-header-section'},{'name': 'DashboardQboErrorDialogComponent', 'selector': 'app-dashboard-qbo-error-dialog'},{'name': 'DashboardResolveMappingErrorDialogComponent', 'selector': 'app-dashboard-resolve-mapping-error-dialog'},{'name': 'EmailMultiSelectComponent', 'selector': 'app-email-multi-select'},{'name': 'EmailMultiSelectFieldComponent', 'selector': 'app-email-multi-select-field'},{'name': 'EmployeeMappingComponent', 'selector': 'app-employee-mapping'},{'name': 'EmployeeSettingsComponent', 'selector': 'app-employee-settings'},{'name': 'ExpenseFieldCreationDialogComponent', 'selector': 'app-expense-field-creation-dialog'},{'name': 'ExportLogChildDialogComponent', 'selector': 'app-export-log-child-dialog'},{'name': 'ExportLogChildTableComponent', 'selector': 'app-export-log-child-table'},{'name': 'ExportLogComponent', 'selector': 'app-export-log'},{'name': 'ExportLogTableComponent', 'selector': 'app-export-log-table'},{'name': 'ExportSettingsComponent', 'selector': 'app-export-settings'},{'name': 'FyleCallbackComponent', 'selector': 'app-fyle-callback'},{'name': 'GenericMappingComponent', 'selector': 'app-generic-mapping'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImportSettingsComponent', 'selector': 'app-import-settings'},{'name': 'IntegrationComponent', 'selector': 'app-integration'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'MandatoryErrorMessageComponent', 'selector': 'app-mandatory-error-message'},{'name': 'MandatoryFieldComponent', 'selector': 'app-mandatory-field'},{'name': 'MappingComponent', 'selector': 'app-mapping'},{'name': 'MappingFilterComponent', 'selector': 'app-mapping-filter'},{'name': 'MappingHeaderSectionComponent', 'selector': 'app-mapping-header-section'},{'name': 'MappingTableComponent', 'selector': 'app-mapping-table'},{'name': 'OnboardingAdvancedSettingsComponent', 'selector': 'app-onboarding-advanced-settings'},{'name': 'OnboardingComponent', 'selector': 'app-onboarding'},{'name': 'OnboardingDoneComponent', 'selector': 'app-onboarding-done'},{'name': 'OnboardingEmployeeSettingsComponent', 'selector': 'app-onboarding-employee-settings'},{'name': 'OnboardingExportSettingsComponent', 'selector': 'app-onboarding-export-settings'},{'name': 'OnboardingFooterComponent', 'selector': 'app-onboarding-footer'},{'name': 'OnboardingImportSettingsComponent', 'selector': 'app-onboarding-import-settings'},{'name': 'OnboardingLandingComponent', 'selector': 'app-onboarding-landing'},{'name': 'OnboardingQboConnectorComponent', 'selector': 'app-onboarding-qbo-connector'},{'name': 'OnboardingStepperComponent', 'selector': 'app-onboarding-stepper'},{'name': 'PaginatorComponent', 'selector': 'app-paginator'},{'name': 'PreviewDialogComponent', 'selector': 'app-preview-dialog'},{'name': 'QboCallbackComponent', 'selector': 'app-qbo-callback'},{'name': 'QboConnectorComponent', 'selector': 'app-qbo-connector'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SharedLoginComponent', 'selector': 'app-shared-login'},{'name': 'SimpleTextSearchComponent', 'selector': 'app-simple-text-search'},{'name': 'SkipExportLogTableComponent', 'selector': 'app-skip-export-log-table'},{'name': 'ToggleComponent', 'selector': 'app-toggle'},{'name': 'ZeroStateWithIllustrationComponent', 'selector': 'app-zero-state-with-illustration'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'OnboardingStepperComponent'};
 </script>

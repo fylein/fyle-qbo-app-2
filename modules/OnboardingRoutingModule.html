@@ -89,6 +89,7 @@ import { OnboardingImportSettingsComponent } from &#x27;./onboarding-import-sett
 import { OnboardingLandingComponent } from &#x27;./onboarding-landing/onboarding-landing.component&#x27;;
 import { OnboardingQboConnectorComponent } from &#x27;./onboarding-qbo-connector/onboarding-qbo-connector.component&#x27;;
 import { OnboardingComponent } from &#x27;./onboarding.component&#x27;;
+import { CloneSettingsComponent } from &#x27;./clone-settings/clone-settings.component&#x27;;
 
 
 const routes: Routes &#x3D; [
@@ -100,6 +101,11 @@ const routes: Routes &#x3D; [
     path: &#x27;&#x27;,
     component: OnboardingComponent,
     children: [
+      {
+        path: &#x27;clone_settings&#x27;,
+        component: CloneSettingsComponent,
+        canActivate: [WorkspacesGuard]
+      },
       {
         path: &#x27;export_settings&#x27;,
         component: OnboardingExportSettingsComponent,

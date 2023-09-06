@@ -118,6 +118,9 @@
                                 <a href="#onClickEvent" >onClickEvent</a>
                             </li>
                             <li>
+                                <a href="#onCloneSettingsSave" >onCloneSettingsSave</a>
+                            </li>
+                            <li>
                                 <a href="#onDateFilter" >onDateFilter</a>
                             </li>
                             <li>
@@ -493,6 +496,75 @@
                                     <td>additionalProperties</td>
                                     <td>
                                                 <code><a href="../miscellaneous/typealiases.html#ClickEventAdditionalProperty" target="_self" >Partial&lt;ClickEventAdditionalProperty&gt; | void</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCloneSettingsSave"></a>
+                    <span class="name">
+                        <span ><b>onCloneSettingsSave</b></span>
+                        <a href="#onCloneSettingsSave"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onCloneSettingsSave(properties: <a href="../undefineds/UpdateEventAdditionalProperty.html" target="_self">Partial&lt;UpdateEventAdditionalProperty&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="140"
+                            class="link-to-prism">src/app/core/services/integration/tracking.service.ts:140</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>properties</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#UpdateEventAdditionalProperty" target="_self" >Partial&lt;UpdateEventAdditionalProperty&gt;</a></code>
                                     </td>
 
                                     <td>
@@ -1749,6 +1821,10 @@ export class TrackingService {
 
   onMappingsAlphabeticalFilter(properties: MappingAlphabeticalFilterAdditionalProperty): void {
     this.eventTrack(&#x27;Mappings Alphabetical Filter&#x27;, properties);
+  }
+
+  onCloneSettingsSave(properties: Partial&lt;UpdateEventAdditionalProperty&gt;): void {
+    this.eventTrack(&#x27;Clone Settings Saved&#x27;, properties);
   }
 }
 </code></pre>

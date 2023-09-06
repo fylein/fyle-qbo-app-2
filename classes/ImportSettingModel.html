@@ -225,8 +225,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/app/core/models/configuration/import-setting.model.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/app/core/models/configuration/import-setting.model.ts:74</a></div>
                 </td>
             </tr>
 
@@ -296,8 +296,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/app/core/models/configuration/import-setting.model.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/app/core/models/configuration/import-setting.model.ts:78</a></div>
                 </td>
             </tr>
 
@@ -422,8 +422,9 @@ export interface ImportSettingFormOption extends SelectFormOption {
 
 export class ImportSettingModel {
   static constructPayload(importSettingsForm: UntypedFormGroup, customMappingSettings: MappingSetting[]): ImportSettingPost {
+
     const emptyDestinationAttribute &#x3D; {id: null, name: null};
-    const employeeSettingPayload: ImportSettingPost &#x3D; {
+    const importSettingPayload: ImportSettingPost &#x3D; {
       workspace_general_settings: {
         import_categories: importSettingsForm.get(&#x27;chartOfAccount&#x27;)?.value,
         import_items: importSettingsForm.get(&#x27;importItems&#x27;)?.value,
@@ -436,7 +437,7 @@ export class ImportSettingModel {
       },
       mapping_settings: ImportSettingModel.formatMappingSettings(importSettingsForm.get(&#x27;expenseFields&#x27;)?.value, customMappingSettings)
     };
-    return employeeSettingPayload;
+    return importSettingPayload;
   }
 
   static formatChartOfAccounts(chartOfAccounts: {enabled: boolean, name: string}[]): string[] {

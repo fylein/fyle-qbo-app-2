@@ -85,6 +85,12 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#getAutoMapEmployeeOptions" >getAutoMapEmployeeOptions</a>
+                            </li>
+                            <li>
+                                <a href="#getEmployeeFieldMappingOptions" >getEmployeeFieldMappingOptions</a>
+                            </li>
+                            <li>
                                     <span class="modifier"></span>
                                 <a href="#getEmployeeSettings" >getEmployeeSettings</a>
                             </li>
@@ -115,7 +121,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/core/services/configuration/employee-setting.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/core/services/configuration/employee-setting.service.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -174,6 +180,80 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getAutoMapEmployeeOptions"></a>
+                    <span class="name">
+                        <span ><b>getAutoMapEmployeeOptions</b></span>
+                        <a href="#getAutoMapEmployeeOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAutoMapEmployeeOptions()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/app/core/services/configuration/employee-setting.service.ts:50</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/EmployeeSettingFormOption.html" target="_self" >EmployeeSettingFormOption[]</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEmployeeFieldMappingOptions"></a>
+                    <span class="name">
+                        <span ><b>getEmployeeFieldMappingOptions</b></span>
+                        <a href="#getEmployeeFieldMappingOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getEmployeeFieldMappingOptions()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/app/core/services/configuration/employee-setting.service.ts:37</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/EmployeeSettingFormOption.html" target="_self" >EmployeeSettingFormOption[]</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getEmployeeSettings"></a>
                     <span class="name">
                         <span class="modifier"></span>
@@ -199,8 +279,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/app/core/services/configuration/employee-setting.service.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/app/core/services/configuration/employee-setting.service.ts:26</a></div>
                 </td>
             </tr>
 
@@ -245,8 +325,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/app/core/services/configuration/employee-setting.service.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/app/core/services/configuration/employee-setting.service.ts:33</a></div>
                 </td>
             </tr>
 
@@ -303,9 +383,10 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { Observable, Subject } from &#x27;rxjs&#x27;;
 import { Cacheable, CacheBuster } from &#x27;ts-cacheable&#x27;;
-import { EmployeeSettingGet, EmployeeSettingPost } from &#x27;../../models/configuration/employee-setting.model&#x27;;
+import { EmployeeSettingFormOption, EmployeeSettingGet, EmployeeSettingPost } from &#x27;../../models/configuration/employee-setting.model&#x27;;
 import { ApiService } from &#x27;../core/api.service&#x27;;
 import { WorkspaceService } from &#x27;../workspace/workspace.service&#x27;;
+import { AutoMapEmployee, EmployeeFieldMapping } from &#x27;../../models/enum/enum.model&#x27;;
 
 
 const employeeSettingsCache$ &#x3D; new Subject&lt;void&gt;();
@@ -333,6 +414,40 @@ export class EmployeeSettingService {
   })
   postEmployeeSettings(employeeSettingsPayload: EmployeeSettingPost): Observable&lt;EmployeeSettingGet&gt; {
     return this.apiService.put(&#x60;/v2/workspaces/${this.workspaceService.getWorkspaceId()}/map_employees/&#x60;, employeeSettingsPayload);
+  }
+
+  getEmployeeFieldMappingOptions(): EmployeeSettingFormOption[] {
+    return [
+      {
+        label: &#x27;Employees&#x27;,
+        value: EmployeeFieldMapping.EMPLOYEE
+      },
+      {
+        label: &#x27;Vendor&#x27;,
+        value: EmployeeFieldMapping.VENDOR
+      }
+    ];
+  }
+
+  getAutoMapEmployeeOptions(): EmployeeSettingFormOption[] {
+    return [
+      {
+        value: null,
+        label: &#x27;None&#x27;
+      },
+      {
+        value: AutoMapEmployee.NAME,
+        label: &#x27;Fyle Name to QuickBooks Online Display name&#x27;
+      },
+      {
+        value: AutoMapEmployee.EMAIL,
+        label: &#x27;Fyle Email to QuickBooks Online Email&#x27;
+      },
+      {
+        value: AutoMapEmployee.EMPLOYEE_CODE,
+        label: &#x27;Fyle Employee Code to QuickBooks Online Display name&#x27;
+      }
+    ];
   }
 }
 </code></pre>

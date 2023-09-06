@@ -151,15 +151,19 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UntypedFormGroup } from &quot;@angular/forms&quot;;
-import { CorporateCreditCardExpensesObject, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject, FyleField, NameInJournalEntry } from &quot;../enum/enum.model&quot;;
+import { CorporateCreditCardExpensesObject, ExpenseGroupingFieldOption, ExpenseState, CCCExpenseState, ExportDateType, ReimbursableExpensesObject, NameInJournalEntry } from &quot;../enum/enum.model&quot;;
 import { ExpenseGroupSettingGet, ExpenseGroupSettingPost } from &quot;../db/expense-group-setting.model&quot;;
 import { DefaultDestinationAttribute, GeneralMapping } from &quot;../db/general-mapping.model&quot;;
 import { SelectFormOption } from &quot;../misc/select-form-option.model&quot;;
 
-export type ExportSettingWorkspaceGeneralSetting &#x3D; {
+export type ExportSettingWorkspaceGeneralSettingPost &#x3D; {
   reimbursable_expenses_object: ReimbursableExpensesObject | null,
   corporate_credit_card_expenses_object: CorporateCreditCardExpensesObject | null
   name_in_journal_entry: NameInJournalEntry;
+}
+
+export interface ExportSettingWorkspaceGeneralSetting extends ExportSettingWorkspaceGeneralSettingPost {
+  is_simplify_report_closure_enabled: boolean
 }
 
 export type ExportSettingGeneralMapping &#x3D; {
@@ -173,7 +177,7 @@ export type ExportSettingGeneralMapping &#x3D; {
 
 export type ExportSettingPost &#x3D; {
   expense_group_settings: ExpenseGroupSettingPost,
-  workspace_general_settings: ExportSettingWorkspaceGeneralSetting,
+  workspace_general_settings: ExportSettingWorkspaceGeneralSettingPost,
   general_mappings: ExportSettingGeneralMapping
 }
 
@@ -186,6 +190,10 @@ export type ExportSettingGet &#x3D; {
 
 export interface ExportSettingFormOption extends SelectFormOption {
   value: ExpenseState | CCCExpenseState | ReimbursableExpensesObject | CorporateCreditCardExpensesObject | ExpenseGroupingFieldOption | ExportDateType;
+}
+
+export interface NameInJournalEntryOptions extends SelectFormOption {
+  value: NameInJournalEntry
 }
 
 export class ExportSettingModel {

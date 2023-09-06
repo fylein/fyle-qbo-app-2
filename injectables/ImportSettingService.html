@@ -75,6 +75,20 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#workspaceId" >workspaceId</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -85,7 +99,24 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#createExpenseField" >createExpenseField</a>
+                            </li>
+                            <li>
+                                <a href="#getExpenseFieldsFormArray" >getExpenseFieldsFormArray</a>
+                            </li>
+                            <li>
                                 <a href="#getImportSettings" >getImportSettings</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getPatchExpenseFieldValues" >getPatchExpenseFieldValues</a>
+                            </li>
+                            <li>
+                                <a href="#getQboExpenseFields" >getQboExpenseFields</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#importToggleWatcher" >importToggleWatcher</a>
                             </li>
                             <li>
                                 <a href="#postImportSettings" >postImportSettings</a>
@@ -108,12 +139,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(apiService: <a href="../injectables/ApiService.html" target="_self">ApiService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
+<code>constructor(apiService: <a href="../injectables/ApiService.html" target="_self">ApiService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>, formBuilder: FormBuilder, dialog: MatDialog)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/core/services/configuration/import-setting.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/core/services/configuration/import-setting.service.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -154,6 +185,30 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                    <code>FormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -168,6 +223,168 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createExpenseField"></a>
+                    <span class="name">
+                        <span ><b>createExpenseField</b></span>
+                        <a href="#createExpenseField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createExpenseField(destinationType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, mappingSettings: <a href="../interfaces/Mapping.html" target="_self">MappingSetting[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">src/app/core/services/configuration/import-setting.service.ts:96</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>destinationType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>mappingSettings</td>
+                                    <td>
+                                                <code><a href="../interfaces/Mapping.html" target="_self" >MappingSetting[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getExpenseFieldsFormArray"></a>
+                    <span class="name">
+                        <span ><b>getExpenseFieldsFormArray</b></span>
+                        <a href="#getExpenseFieldsFormArray"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getExpenseFieldsFormArray(qboExpenseField: ExpenseFieldsFormOption[], isWatcherRequired: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/app/core/services/configuration/import-setting.service.ts:73</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>qboExpenseField</td>
+                                    <td>
+                                            <code>ExpenseFieldsFormOption[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>isWatcherRequired</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>FormGroup[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -188,8 +405,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/app/core/services/configuration/import-setting.service.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/app/core/services/configuration/import-setting.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -199,6 +416,280 @@
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPatchExpenseFieldValues"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getPatchExpenseFieldValues</b></span>
+                        <a href="#getPatchExpenseFieldValues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPatchExpenseFieldValues(destinationType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, sourceField: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, source_placeholder: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, addSourceField: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/app/core/services/configuration/import-setting.service.ts:85</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>destinationType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>sourceField</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>&#x27;&#x27;</code>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>source_placeholder</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>&#x27;&#x27;</code>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>addSourceField</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>false</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ExpenseFieldFormArray" target="_self" >ExpenseFieldFormArray</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getQboExpenseFields"></a>
+                    <span class="name">
+                        <span ><b>getQboExpenseFields</b></span>
+                        <a href="#getQboExpenseFields"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getQboExpenseFields(qboAttributes: ExpenseField[], mappingSettings: <a href="../interfaces/Mapping.html" target="_self">MappingSetting[]</a>, isCloneSettings: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, fyleFields: string[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/app/core/services/configuration/import-setting.service.ts:35</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>qboAttributes</td>
+                                    <td>
+                                            <code>ExpenseField[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>mappingSettings</td>
+                                    <td>
+                                                <code><a href="../interfaces/Mapping.html" target="_self" >MappingSetting[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>isCloneSettings</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>false</code>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>fyleFields</td>
+                                    <td>
+                                            <code>string[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>[]</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>ExpenseFieldsFormOption[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="importToggleWatcher"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>importToggleWatcher</b></span>
+                        <a href="#importToggleWatcher"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>importToggleWatcher()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/app/core/services/configuration/import-setting.service.ts:57</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>ValidatorFn</code>
 
                     </div>
                 </td>
@@ -225,8 +716,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/app/core/services/configuration/import-setting.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/app/core/services/configuration/import-setting.service.ts:31</a></div>
                 </td>
             </tr>
 
@@ -275,32 +766,155 @@
         </tbody>
     </table>
 </section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="workspaceId"></a>
+                    <span class="name">
+                        <span ><b>workspaceId</b></span>
+                        <a href="#workspaceId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.workspaceService.getWorkspaceId()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/core/services/configuration/import-setting.service.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { ImportSettingPost } from &#x27;../../models/configuration/import-setting.model&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EventEmitter, Injectable, Output } from &#x27;@angular/core&#x27;;
+import { ExpenseFieldsFormOption, ImportSettingPost } from &#x27;../../models/configuration/import-setting.model&#x27;;
 import { ApiService } from &#x27;../core/api.service&#x27;;
 import { WorkspaceService } from &#x27;../workspace/workspace.service&#x27;;
+import { ExpenseField, ExpenseFieldFormArray } from &#x27;../../models/misc/expense-field.model&#x27;;
+import { MappingSetting } from &#x27;../../models/db/mapping-setting.model&#x27;;
+import { ExpenseFieldCreationDialogComponent } from &#x27;src/app/shared/components/configuration/import-settings/expense-field-creation-dialog/expense-field-creation-dialog.component&#x27;;
+import { MatLegacyDialog as MatDialog } from &#x27;@angular/material/legacy-dialog&#x27;;
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from &#x27;@angular/forms&#x27;;
+import { RxwebValidators } from &#x27;@rxweb/reactive-form-validators&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class ImportSettingService {
+  workspaceId &#x3D; this.workspaceService.getWorkspaceId()
+
+  @Output() patchExpenseFieldEmitter: EventEmitter&lt;ExpenseFieldFormArray&gt; &#x3D; new EventEmitter();
 
   constructor(
     private apiService: ApiService,
-    private workspaceService: WorkspaceService
+    private workspaceService: WorkspaceService,
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog
   ) { }
 
   getImportSettings() {
-    return this.apiService.get(&#x60;/v2/workspaces/${this.workspaceService.getWorkspaceId()}/import_settings/&#x60;, {});
+    return this.apiService.get(&#x60;/v2/workspaces/${this.workspaceId}/import_settings/&#x60;, {});
   }
 
   postImportSettings(exportSettingsPayload: ImportSettingPost){
-    return this.apiService.put(&#x60;/v2/workspaces/${this.workspaceService.getWorkspaceId()}/import_settings/&#x60;, exportSettingsPayload);
+    return this.apiService.put(&#x60;/v2/workspaces/${this.workspaceId}/import_settings/&#x60;, exportSettingsPayload);
+  }
+
+  getQboExpenseFields(qboAttributes: ExpenseField[], mappingSettings: MappingSetting[], isCloneSettings: boolean &#x3D; false, fyleFields: string[] &#x3D; []): ExpenseFieldsFormOption[] {
+    return qboAttributes.map(attribute &#x3D;&gt; {
+      const mappingSetting &#x3D; mappingSettings.filter((mappingSetting: MappingSetting) &#x3D;&gt; {
+        if (mappingSetting.destination_field.toUpperCase() &#x3D;&#x3D;&#x3D; attribute.attribute_type) {
+          if (isCloneSettings) {
+            return fyleFields.includes(mappingSetting.source_field.toUpperCase()) ? mappingSetting : false;
+          }
+
+          return mappingSetting;
+        }
+        return false;
+      });
+      return {
+        source_field: mappingSetting.length &gt; 0 ? mappingSetting[0].source_field : &#x27;&#x27;,
+        destination_field: attribute.display_name,
+        import_to_fyle: mappingSetting.length &gt; 0 ? mappingSetting[0].import_to_fyle : false,
+        disable_import_to_fyle: false,
+        source_placeholder: &#x27;&#x27;
+      };
+    });
+  }
+
+  private importToggleWatcher(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: object} | null &#x3D;&gt; {
+      if (control.value) {
+        // Mark Fyle field as mandatory if toggle is enabled
+        control.parent?.get(&#x27;source_field&#x27;)?.setValidators(Validators.required);
+        control.parent?.get(&#x27;source_field&#x27;)?.setValidators(RxwebValidators.unique());
+      } else {
+        // Reset Fyle field if toggle is disabled
+        control.parent?.get(&#x27;source_field&#x27;)?.clearValidators();
+        control.parent?.get(&#x27;source_field&#x27;)?.setValue(null);
+      }
+
+      return null;
+    };
+  }
+
+  getExpenseFieldsFormArray(qboExpenseField: ExpenseFieldsFormOption[], isWatcherRequired: boolean): FormGroup[] {
+    return qboExpenseField.map((field) &#x3D;&gt; {
+      return this.formBuilder.group({
+        source_field: [field.source_field, Validators.required],
+        destination_field: [field.destination_field.toUpperCase()],
+        disable_import_to_fyle: [field.disable_import_to_fyle],
+        import_to_fyle: [field.import_to_fyle, isWatcherRequired ? this.importToggleWatcher() : &#x27;&#x27;],
+        source_placeholder: [&#x27;&#x27;]
+      });
+    });
+  }
+
+  private getPatchExpenseFieldValues(destinationType: string, sourceField: string &#x3D; &#x27;&#x27;, source_placeholder: string &#x3D; &#x27;&#x27;, addSourceField: boolean &#x3D; false): ExpenseFieldFormArray {
+    return {
+        source_field: sourceField,
+        destination_field: destinationType,
+        import_to_fyle: sourceField ? true : false,
+        disable_import_to_fyle: sourceField ? true : false,
+        source_placeholder: source_placeholder,
+        addSourceField: addSourceField
+    };
+  }
+
+  createExpenseField(destinationType: string, mappingSettings: MappingSetting[]): void {
+    const existingFields &#x3D; mappingSettings.map(setting &#x3D;&gt; setting.source_field.split(&#x27;_&#x27;).join(&#x27; &#x27;));
+    const dialogRef &#x3D; this.dialog.open(ExpenseFieldCreationDialogComponent, {
+      width: &#x27;551px&#x27;,
+      data: existingFields
+    });
+
+    const expenseFieldValue &#x3D; this.getPatchExpenseFieldValues(destinationType);
+    this.patchExpenseFieldEmitter.emit(expenseFieldValue);
+
+    dialogRef.afterClosed().subscribe((expenseField) &#x3D;&gt; {
+      if (expenseField) {
+        const sourceType &#x3D; expenseField.name.split(&#x27; &#x27;).join(&#x27;_&#x27;).toUpperCase();
+
+        const expenseFieldValue &#x3D; this.getPatchExpenseFieldValues(destinationType, sourceType, expenseField.source_placeholder, true);
+        this.patchExpenseFieldEmitter.emit(expenseFieldValue);
+      }
+    });
   }
 }
 </code></pre>

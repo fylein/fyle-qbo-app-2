@@ -240,14 +240,13 @@
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { FlexLayoutModule } from &#x27;@angular/flex-layout&#x27;;
 import { MatLegacyButtonModule as MatButtonModule } from &#x27;@angular/material/legacy-button&#x27;;
-
 import { LoginComponent } from &#x27;./login/login.component&#x27;;
 import { LogoutComponent } from &#x27;./logout/logout.component&#x27;;
 import { FyleCallbackComponent } from &#x27;./fyle-callback/fyle-callback.component&#x27;;
 import { AuthComponent } from &#x27;./auth.component&#x27;;
 import { AuthRoutingModule } from &#x27;./auth-routing.module&#x27;;
-import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from &#x27;@angular/material/legacy-progress-spinner&#x27;;
 import { SharedLoginComponent } from &#x27;./shared-login/shared-login.component&#x27;;
+import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from &#x27;@angular/material/legacy-progress-spinner&#x27;;
 
 
 @NgModule({
@@ -263,7 +262,8 @@ import { SharedLoginComponent } from &#x27;./shared-login/shared-login.component
     AuthRoutingModule,
     FlexLayoutModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatButtonModule
   ]
 })
 export class AuthModule { }

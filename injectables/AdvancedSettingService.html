@@ -97,7 +97,16 @@
                                 <a href="#getExpenseFilter" >getExpenseFilter</a>
                             </li>
                             <li>
+                                <a href="#getFrequencyIntervals" >getFrequencyIntervals</a>
+                            </li>
+                            <li>
+                                <a href="#getPaymentSyncOptions" >getPaymentSyncOptions</a>
+                            </li>
+                            <li>
                                 <a href="#getWorkspaceAdmins" >getWorkspaceAdmins</a>
+                            </li>
+                            <li>
+                                <a href="#openAddemailDialog" >openAddemailDialog</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
@@ -125,12 +134,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(apiService: <a href="../injectables/ApiService.html" target="_self">ApiService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
+<code>constructor(apiService: <a href="../injectables/ApiService.html" target="_self">ApiService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>, dialog: MatDialog)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -164,6 +173,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/WorkspaceService.html" target="_self" >WorkspaceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
                                                         </td>
                                                   
                                                     <td>
@@ -214,8 +235,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:62</a></div>
                 </td>
             </tr>
 
@@ -292,8 +313,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:34</a></div>
                 </td>
             </tr>
 
@@ -338,8 +359,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:48</a></div>
                 </td>
             </tr>
 
@@ -349,6 +370,80 @@
 
                     <div class="io-description">
                         <b>Returns : </b>    <code>Observable&lt;ExpenseFilterResponse&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFrequencyIntervals"></a>
+                    <span class="name">
+                        <span ><b>getFrequencyIntervals</b></span>
+                        <a href="#getFrequencyIntervals"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getFrequencyIntervals()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:87</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/AdvancedSettingFormOption.html" target="_self" >AdvancedSettingFormOption[]</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPaymentSyncOptions"></a>
+                    <span class="name">
+                        <span ><b>getPaymentSyncOptions</b></span>
+                        <a href="#getPaymentSyncOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getPaymentSyncOptions()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:70</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/AdvancedSettingFormOption.html" target="_self" >AdvancedSettingFormOption[]</a></code>
 
                     </div>
                 </td>
@@ -375,8 +470,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:66</a></div>
                 </td>
             </tr>
 
@@ -387,6 +482,87 @@
                     <div class="io-description">
                         <b>Returns : </b>    <code>Observable&lt;&gt;</code>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openAddemailDialog"></a>
+                    <span class="name">
+                        <span ><b>openAddemailDialog</b></span>
+                        <a href="#openAddemailDialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openAddemailDialog(form: FormGroup, adminEmails: WorkspaceScheduleEmailOptions[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:96</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>form</td>
+                                    <td>
+                                            <code>FormGroup</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>adminEmails</td>
+                                    <td>
+                                            <code>WorkspaceScheduleEmailOptions[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -421,8 +597,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:41</a></div>
                 </td>
             </tr>
 
@@ -499,8 +675,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/app/core/services/configuration/advanced-setting.service.ts:55</a></div>
                 </td>
             </tr>
 
@@ -555,14 +731,18 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpParams } from &#x27;@angular/common/http&#x27;;
-import { Injectable } from &#x27;@angular/core&#x27;;
+import { Injectable, Output, EventEmitter } from &#x27;@angular/core&#x27;;
 import { Observable, Subject } from &#x27;rxjs&#x27;;
 import { Cacheable, CacheBuster } from &#x27;ts-cacheable&#x27;;
-import { AdvancedSettingGet, AdvancedSettingPost, AdvancedSettingWorkspaceSchedulePost } from &#x27;../../models/configuration/advanced-setting.model&#x27;;
+import { AdvancedSettingFormOption, AdvancedSettingGet, AdvancedSettingPost, AdvancedSettingWorkspaceSchedulePost } from &#x27;../../models/configuration/advanced-setting.model&#x27;;
 import { WorkspaceSchedule, WorkspaceScheduleEmailOptions } from &#x27;../../models/db/workspace-schedule.model&#x27;;
 import { ExpenseFilterResponse, SkipExport } from &#x27;../../models/misc/skip-export.model&#x27;;
 import { ApiService } from &#x27;../core/api.service&#x27;;
 import { WorkspaceService } from &#x27;../workspace/workspace.service&#x27;;
+import { PaymentSyncDirection } from &#x27;../../models/enum/enum.model&#x27;;
+import { MatLegacyDialog as MatDialog } from &#x27;@angular/material/legacy-dialog&#x27;;
+import { FormGroup } from &#x27;@angular/forms&#x27;;
+import { AddEmailDialogComponent } from &#x27;src/app/shared/components/configuration/advanced-settings/add-email-dialog/add-email-dialog.component&#x27;;
 
 const advancedSettingsCache$ &#x3D; new Subject&lt;void&gt;();
 const skipExportCache &#x3D; new Subject&lt;void&gt;();
@@ -572,9 +752,12 @@ const skipExportCache &#x3D; new Subject&lt;void&gt;();
 })
 export class AdvancedSettingService {
 
+  @Output() patchAdminEmailsEmitter: EventEmitter&lt;WorkspaceScheduleEmailOptions[]&gt; &#x3D; new EventEmitter();
+
   constructor(
     private apiService: ApiService,
-    private workspaceService: WorkspaceService
+    private workspaceService: WorkspaceService,
+    private dialog: MatDialog
   ) { }
 
   @Cacheable({
@@ -614,6 +797,55 @@ export class AdvancedSettingService {
 
   getWorkspaceAdmins(): Observable&lt;[WorkspaceScheduleEmailOptions]&gt; {
     return this.apiService.get(&#x60;/workspaces/${this.workspaceService.getWorkspaceId()}/admins/&#x60;, {});
+  }
+
+  getPaymentSyncOptions(): AdvancedSettingFormOption[] {
+    return [
+      {
+        label: &#x27;None&#x27;,
+        value: null
+      },
+      {
+        label: &#x27;Export Fyle ACH Payments to Quickbooks Online&#x27;,
+        value: PaymentSyncDirection.FYLE_TO_QBO
+      },
+      {
+        label: &#x27;Import Quickbooks Payments into Fyle&#x27;,
+        value: PaymentSyncDirection.QBO_TO_FYLE
+      }
+    ];
+  }
+
+  getFrequencyIntervals(): AdvancedSettingFormOption[] {
+    return  [...Array(24).keys()].map(day &#x3D;&gt; {
+      return {
+        label: (day + 1) &#x3D;&#x3D;&#x3D; 1 ? (day + 1) + &#x27; Hour&#x27; : (day + 1) + &#x27; Hours&#x27;,
+        value: day + 1
+      };
+    });
+  }
+
+  openAddemailDialog(form: FormGroup, adminEmails: WorkspaceScheduleEmailOptions[]): void {
+    const dialogRef &#x3D; this.dialog.open(AddEmailDialogComponent, {
+      width: &#x27;467px&#x27;,
+      data: {
+        workspaceId: this.workspaceService.getWorkspaceId(),
+        hours: form.value.exportScheduleFrequency,
+        schedulEnabled: form.value.exportSchedule,
+        selectedEmails: form.value.emails
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result) &#x3D;&gt; {
+      if (result) {
+        form.controls.exportScheduleFrequency.patchValue(result.hours);
+        form.controls.emails.patchValue(result.emails_selected);
+        form.controls.addedEmail.patchValue(result.email_added);
+
+        const additionalEmails &#x3D; adminEmails.concat(result.email_added);
+        this.patchAdminEmailsEmitter.emit(additionalEmails);
+      }
+    });
   }
 }
 </code></pre>

@@ -109,6 +109,9 @@
                                 <a href="#getSpaceCasedTitleCase" >getSpaceCasedTitleCase</a>
                             </li>
                             <li>
+                                <a href="#openDialogAndSetupRedirection" >openDialogAndSetupRedirection</a>
+                            </li>
+                            <li>
                                 <a href="#openExternalLink" >openExternalLink</a>
                             </li>
                         </ul>
@@ -129,12 +132,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(windowService: <a href="../injectables/WindowService.html" target="_self">WindowService</a>)</code>
+<code>constructor(windowService: <a href="../injectables/WindowService.html" target="_self">WindowService</a>, dialog: MatDialog, router: Router)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/core/services/core/helper.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/core/services/core/helper.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -156,6 +159,30 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/WindowService.html" target="_self" >WindowService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
                                                         </td>
                                                   
                                                     <td>
@@ -197,8 +224,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/app/core/services/core/helper.service.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/app/core/services/core/helper.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -266,8 +293,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/app/core/services/core/helper.service.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/app/core/services/core/helper.service.ts:31</a></div>
                 </td>
             </tr>
 
@@ -347,8 +374,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/app/core/services/core/helper.service.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/app/core/services/core/helper.service.ts:45</a></div>
                 </td>
             </tr>
 
@@ -400,6 +427,87 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="openDialogAndSetupRedirection"></a>
+                    <span class="name">
+                        <span ><b>openDialogAndSetupRedirection</b></span>
+                        <a href="#openDialogAndSetupRedirection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openDialogAndSetupRedirection(data: <a href="../undefineds/ConfirmationDialog.html" target="_self">ConfirmationDialog</a>, url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/app/core/services/core/helper.service.ts:49</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#ConfirmationDialog" target="_self" >ConfirmationDialog</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>url</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="openExternalLink"></a>
                     <span class="name">
                         <span ><b>openExternalLink</b></span>
@@ -416,8 +524,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/app/core/services/core/helper.service.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/app/core/services/core/helper.service.ts:41</a></div>
                 </td>
             </tr>
 
@@ -491,7 +599,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/core/services/core/helper.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/core/services/core/helper.service.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -510,6 +618,10 @@ import { UntypedFormGroup } from &#x27;@angular/forms&#x27;;
 import { SnakeCaseToSpaceCase } from &#x27;src/app/shared/pipes/snake-case-to-space-case.pipe&#x27;;
 import { DefaultDestinationAttribute } from &#x27;../../models/db/general-mapping.model&#x27;;
 import { WindowService } from &#x27;./window.service&#x27;;
+import { ConfirmationDialog } from &#x27;../../models/misc/confirmation-dialog.model&#x27;;
+import { ConfirmationDialogComponent } from &#x27;src/app/shared/components/core/confirmation-dialog/confirmation-dialog.component&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { MatLegacyDialog as MatDialog} from &#x27;@angular/material/legacy-dialog&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;
@@ -518,7 +630,11 @@ export class HelperService {
 
   private windowReference: Window;
 
-  constructor(private windowService: WindowService) {
+  constructor(
+    private windowService: WindowService,
+    private dialog: MatDialog,
+    private router: Router
+  ) {
     this.windowReference &#x3D; this.windowService.nativeWindow;
   }
 
@@ -542,6 +658,19 @@ export class HelperService {
 
   getSpaceCasedTitleCase(word: string): string {
     return new SnakeCaseToSpaceCase().transform((new TitleCasePipe().transform(word)));
+  }
+
+  openDialogAndSetupRedirection(data: ConfirmationDialog, url: string): void {
+    const dialogRef &#x3D; this.dialog.open(ConfirmationDialogComponent, {
+      width: &#x27;551px&#x27;,
+      data: data
+    });
+
+    dialogRef.afterClosed().subscribe((ctaClicked: boolean) &#x3D;&gt; {
+      if (ctaClicked) {
+        this.router.navigate([url]);
+      }
+    });
   }
 }
 </code></pre>
