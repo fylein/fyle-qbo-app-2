@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { MinimalUser } from '../core/models/db/user.model';
 import { Workspace } from '../core/models/db/workspace.model';
 import { OnboardingState } from '../core/models/enum/enum.model';
@@ -9,6 +9,7 @@ import { UserService } from '../core/services/misc/user.service';
 import { WorkspaceService } from '../core/services/workspace/workspace.service';
 import * as Sentry from '@sentry/angular';
 import { TrackingService } from '../core/services/integration/tracking.service';
+import { AppcuesService } from '../core/services/integration/appcues.service';
 
 @Component({
   selector: 'app-integration',
@@ -26,6 +27,7 @@ export class IntegrationComponent implements OnInit {
   windowReference: Window;
 
   constructor(
+    private appcuesService: AppcuesService,
     private router: Router,
     private storageService: StorageService,
     private trackingService: TrackingService,
@@ -67,6 +69,12 @@ export class IntegrationComponent implements OnInit {
   }
 
   private setupWorkspace(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        (window as any).Appcues && (window as any).Appcues.page();
+      }
+    });
+
     this.user = this.userService.getUserProfile();
     this.getOrCreateWorkspace().then((workspace: Workspace) => {
       this.workspace = workspace;
@@ -78,6 +86,7 @@ export class IntegrationComponent implements OnInit {
       this.storageService.set('currency', workspace.fyle_currency);
       this.storageService.set('onboardingState', workspace.onboarding_state);
       this.storageService.set('workspaceCreatedAt', workspace.created_at);
+      this.appcuesService.initialiseAppcues();
       this.workspaceService.syncFyleDimensions().subscribe();
       this.workspaceService.syncQBODimensions().subscribe();
       this.isLoading = false;
