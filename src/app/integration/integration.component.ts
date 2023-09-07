@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { MinimalUser } from '../core/models/db/user.model';
 import { Workspace } from '../core/models/db/workspace.model';
 import { OnboardingState } from '../core/models/enum/enum.model';
@@ -67,6 +67,12 @@ export class IntegrationComponent implements OnInit {
   }
 
   private setupWorkspace(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        (window as any).Appcues && (window as any).Appcues.page();
+      }
+    });
+
     this.user = this.userService.getUserProfile();
     this.getOrCreateWorkspace().then((workspace: Workspace) => {
       this.workspace = workspace;
