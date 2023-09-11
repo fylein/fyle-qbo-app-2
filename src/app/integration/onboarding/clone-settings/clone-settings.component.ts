@@ -127,6 +127,8 @@ export class CloneSettingsComponent implements OnInit {
 
   showNameInJournalOption: boolean = false;
 
+  private readonly sessionStartTime = new Date();
+
   constructor(
     private advancedSettingService: AdvancedSettingService,
     private exportSettingService: ExportSettingService,
@@ -200,7 +202,16 @@ export class CloneSettingsComponent implements OnInit {
       this.cloneSettingService.postCloneSettings(cloneSettingPayload).subscribe((response) => {
         this.isSaveInProgress = false;
         this.snackBar.open('Cloned settings successfully');
-        this.router.navigate([`/workspaces/onboarding/done`]);
+        this.trackingService.onCloneSettingsSave({
+          oldState: this.cloneSettings,
+          newState: response
+        });
+
+        const queryParams = {
+          onboardingFlow: 'cloneSettings'
+        };
+        this.trackSessionTime();
+        this.router.navigate([`/workspaces/onboarding/done`], {queryParams});
       }, () => {
         this.isSaveInProgress = false;
         this.snackBar.open('Failed to clone settings');
@@ -502,6 +513,11 @@ export class CloneSettingsComponent implements OnInit {
     this.additionalQboExpenseFields.push(additionalField);
   }
 
+  private trackSessionTime(): void {
+    const differenceInMs = new Date().getTime() - this.sessionStartTime.getTime();
+
+    this.trackingService.trackTimeSpent(OnboardingStep.CLONE_SETTINGS, { durationInSeconds: Math.floor(differenceInMs / 1000) });
+  }
 
   private setupForm(): void {
     const chartOfAccountTypeFormArray = this.chartOfAccountTypesList.map((type) => this.createChartOfAccountField(type));

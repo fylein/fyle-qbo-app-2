@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClickEvent, OnboardingStep, ProgressPhase, RefinerSurveyType } from 'src/app/core/models/enum/enum.model';
 import { RefinerService } from 'src/app/core/services/integration/refiner.service';
 import { TrackingService } from 'src/app/core/services/integration/tracking.service';
@@ -16,6 +16,7 @@ export class OnboardingDoneComponent implements OnInit {
   constructor(
     private refinerService: RefinerService,
     private router: Router,
+    private route: ActivatedRoute,
     private trackingService: TrackingService
   ) { }
 
@@ -28,6 +29,11 @@ export class OnboardingDoneComponent implements OnInit {
   navigateToDashboard(): void {
     this.trackSessionTime();
     this.trackingService.onClickEvent(ClickEvent.ONBOARDING_DONE);
+
+    const code = this.route.snapshot.queryParams.onboardingFlow;
+    if (code) {
+      this.refinerService.triggerSurvey(RefinerSurveyType.CLONE_SETTINGS);
+    }
     this.refinerService.triggerSurvey(RefinerSurveyType.ONBOARDING_DONE);
     this.router.navigate([`/workspaces/main/dashboard`]);
   }

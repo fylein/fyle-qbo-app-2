@@ -245,7 +245,8 @@ export enum SearchType {
 
 export enum RefinerSurveyType {
   ONBOARDING_DONE = 'Onboarding Done',
-  EXPORT_DONE = 'Export Done'
+  EXPORT_DONE = 'Export Done',
+  CLONE_SETTINGS = 'Clone Settings Saved'
 }
 
 export enum ZeroStatePage {
