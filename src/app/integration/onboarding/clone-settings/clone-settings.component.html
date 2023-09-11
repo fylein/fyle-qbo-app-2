@@ -114,7 +114,7 @@
                         </div>
                     </div>
 
-                    <div class="clone-settings--export-section">
+                    <div class="clone-settings--configuration-section">
                         <div fxLayout="row">
                             <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
                                 <img class="clone-settings--sub-options-icon"
@@ -125,7 +125,7 @@
                                     matTooltip="Choose the type of transaction in QuickBooks Online to export your Fyle expenses."
                                     matTooltipPosition="above" matTooltipClass="clone-settings">
                             </div>
-                            <div class="clone-settings--export-dropdown">
+                            <div>
                                 <app-select [form]="cloneSettingsForm" [options]="reimbursableExportOptions"
                                     [isFieldMandatory]="true" [mandatoryErrorListName]="'expense export type'"
                                     [placeholder]="'Select expense export type'"
@@ -266,7 +266,7 @@
                         </div>
                     </div>
 
-                    <div class="clone-settings--export-section">
+                    <div class="clone-settings--configuration-section">
                         <div fxLayout="row">
                             <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
                                 <img class="clone-settings--sub-options-icon"
@@ -277,7 +277,7 @@
                                     matTooltip="Choose the type of transaction in QuickBooks Online to export your corporate card expense from Fyle."
                                     matTooltipPosition="above" matTooltipClass="clone-settings">
                             </div>
-                            <div class="clone-settings--export-dropdown">
+                            <div>
                                 <app-select [form]="cloneSettingsForm" [options]="cccExpenseExportOptions"
                                     [isFieldMandatory]="true" [mandatoryErrorListName]="'Export Date'"
                                     [placeholder]="'Select the export date'"
@@ -323,8 +323,7 @@
                         </div>
                     </div>
 
-                    <div *ngIf="showCCCAccountsPayableField() && !showReimbursableAccountsPayableField()">
-                        <div class="clone-settings--configuration-section">
+                    <div class="clone-settings--configuration-section" *ngIf="showCCCAccountsPayableField() && !showReimbursableAccountsPayableField()">
                             <div fxLayout="row">
                                 <div class="clone-settings--field-section" fxLayout="row" fxLayoutAlign="start center">
                                     <img class="clone-settings--sub-options-icon"
@@ -342,7 +341,6 @@
                                     [formControllerName]="'accountsPayable'" [phase]="ProgressPhase.ONBOARDING">
                                 </app-select>
                             </div>
-                        </div>
                     </div>
 
                     <div *ngIf="showNameInJournalOption" class="clone-settings--configuration-section">
@@ -411,7 +409,7 @@
             </div>
 
             <!-- Import Settings -->
-            <div>
+            <div class="clone-settings--import-settings">
                 <div fxLayoutAlign="start start" class="clone-settings--header-section"
                     data-cy="configuration-contents">
                     <div class="clone-settings--header-icon">
