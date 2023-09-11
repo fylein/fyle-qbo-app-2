@@ -31,8 +31,12 @@ export class RefinerService {
 
   triggerSurvey(actionName: RefinerSurveyType): void {
     if (this.refiner) {
-      const surveyId = actionName === RefinerSurveyType.ONBOARDING_DONE ? this.onboardingDoneSurveryID
-          : actionName === RefinerSurveyType.CLONE_SETTINGS ? this.cloneSettingsSurveyId : this.exportDoneSurveryID;
+      let surveyId = this.exportDoneSurveryID;
+      if (actionName === RefinerSurveyType.ONBOARDING_DONE) {
+        surveyId = this.onboardingDoneSurveryID;
+      } else if (actionName === RefinerSurveyType.CLONE_SETTINGS) {
+        surveyId = this.cloneSettingsSurveyId;
+      }
 
       const surveyData = {
         id: this.user.org_id,

@@ -30,11 +30,12 @@ export class OnboardingDoneComponent implements OnInit {
     this.trackSessionTime();
     this.trackingService.onClickEvent(ClickEvent.ONBOARDING_DONE);
 
-    const code = this.route.snapshot.queryParams.onboardingFlow;
-    if (code) {
+    const isCloneSettingRedirection = this.route.snapshot.queryParams.onboardingFlow;
+    if (isCloneSettingRedirection) {
       this.refinerService.triggerSurvey(RefinerSurveyType.CLONE_SETTINGS);
+    } else {
+      this.refinerService.triggerSurvey(RefinerSurveyType.ONBOARDING_DONE);
     }
-    this.refinerService.triggerSurvey(RefinerSurveyType.ONBOARDING_DONE);
     this.router.navigate([`/workspaces/main/dashboard`]);
   }
 
