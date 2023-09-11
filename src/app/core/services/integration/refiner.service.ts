@@ -14,7 +14,7 @@ export class RefinerService {
 
   private readonly exportDoneSurveryID: string = environment.refiner_survey.export_done_survery_id;
 
-  private readonly cloneSettingsSurveyId: string = environment.refiner_survey.clone_settings_save_survey_id;
+  private readonly cloneSettingsSurveyId: string = environment.refiner_survey.clone_settings_survey_id;
 
   private readonly user: MinimalUser = this.userService.getUserProfile();
 
@@ -44,7 +44,7 @@ export class RefinerService {
         },
         source: 'Fyle Quickbooks Integration',
         action_name: actionName
-      }
+      };
 
       this.refiner('identifyUser', surveyData);
       this.refiner('showForm', surveyId);

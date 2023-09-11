@@ -21,6 +21,7 @@ const environment = {
   refiner_survey: {
     onboarding_done_survery_id: `${process.env.REFINER_ONBOARDING_DONE_SURVEY_ID ? process.env.REFINER_ONBOARDING_DONE_SURVEY_ID : '{{REFINER_ONBOARDING_DONE_SURVEY_ID}}'}`,
     export_done_survery_id: `${process.env.REFINER_EXPORT_DONE_SURVEY_ID ? process.env.REFINER_EXPORT_DONE_SURVEY_ID : '{{REFINER_EXPORT_DONE_SURVEY_ID}}'}`,
+    clone_settings_survey_id: `${process.env.REFINER_CLONE_SETTINGS_SURVEY_ID ? process.env.REFINER_CLONE_SETTINGS_SURVEY_ID : '{{REFINER_CLONE_SETTINGS_SURVEY_ID}}'}`
   },
   e2e_tests: {
     env: `${process.env.E2E_TESTS_ENV ? process.env.E2E_TESTS_ENV : '{{E2E_TESTS_ENV}}'}`,

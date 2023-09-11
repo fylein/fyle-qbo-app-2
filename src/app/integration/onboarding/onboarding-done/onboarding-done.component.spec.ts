@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { OnboardingDoneComponent } from './onboarding-done.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 describe('OnboardingDoneComponent', () => {
   let component: OnboardingDoneComponent;
@@ -15,7 +15,15 @@ describe('OnboardingDoneComponent', () => {
       imports: [RouterTestingModule, HttpClientModule],
       declarations: [ OnboardingDoneComponent ],
       providers: [
-        { provide: Router, useValue: routerSpy }
+        { provide: Router, useValue: routerSpy },
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              queryParams: { onboardingFlow: 'cloneSettings'}
+            }
+          }
+        }
       ]
     })
     .compileComponents();
