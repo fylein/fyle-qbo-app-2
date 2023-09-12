@@ -417,7 +417,7 @@ export class ConfigurationToggleFieldComponent implements OnInit {
         &lt;h5 class&#x3D;&quot;configuration--field-label sub-text-color paragraph&quot; [innerHTML]&#x3D;&quot;subLabel&quot;&gt;&lt;/h5&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-    &lt;div class&#x3D;&quot;advanced-setting-toggle-section&quot;&gt;
+    &lt;div class&#x3D;&quot;configuration--input-toggle-section&quot;&gt;
       &lt;mat-slide-toggle class&#x3D;&quot;configuration--toggle-form-field&quot; color&#x3D;&quot;accent&quot; [formControlName]&#x3D;&quot;formControllerName&quot;&gt;&lt;/mat-slide-toggle&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -436,6 +436,31 @@ export class ConfigurationToggleFieldComponent implements OnInit {
 .export-schedule-section {
   padding-left: 28px;
   padding-top: 24px;
+}
+
+:host {
+  .mat-slide-toggle {
+    &amp;.mat-checked {
+      ::ng-deep.mat-slide-toggle-bar::after {
+        content: &#x27;Yes&#x27;;
+        font-size: 75%;
+        color: #FFFFFF;
+        position: absolute;
+        left: 8px;
+        top: -1px;
+      }
+    }
+    &amp;:not(.mat-checked) {
+      ::ng-deep.mat-slide-toggle-bar::after {
+        content: &#x27;No&#x27;;
+        font-size: 75%;
+        color: #FFFFFF;
+        position: absolute;
+        left: 25px;
+        top: -2px;
+      }
+    }
+  }
 }
 </code></pre>
     </div>
@@ -465,7 +490,7 @@ export class ConfigurationToggleFieldComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Export and Import Setting Page - without icon, with background --><div *ngIf="!iconPath" [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-toggle-section">  <div>    <div class="configuration--field-label-section">      {{ label }}      <h5 class="configuration--field-label sub-text-color paragraph" [innerHTML]="subLabel"></h5>    </div>  </div>  <div class="configuration--input-toggle-section">    <mat-slide-toggle class="configuration--toggle-form-field" color="accent" [formControlName]="formControllerName">    </mat-slide-toggle>  </div></div><!-- Advanced Setting Page - with icon --><div *ngIf="iconPath" [formGroup]="form" [ngClass]="formControllerName !== \'exportSchedule\' ? \'configuration--field-section\': \'export-schedule-section\'">  <div fxLayout="row" fxLayoutAlign="space-between start">    <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">      <img src="{{ iconPath }}" class="configuration--icon">      <div>        <div class="configuration--field-header">          {{ label }}        </div>        <h5 class="configuration--field-label sub-text-color paragraph" [innerHTML]="subLabel"></h5>      </div>    </div>    <div class="advanced-setting-toggle-section">      <mat-slide-toggle class="configuration--toggle-form-field" color="accent" [formControlName]="formControllerName"></mat-slide-toggle>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- Export and Import Setting Page - without icon, with background --><div *ngIf="!iconPath" [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between center" class="configuration--field-toggle-section">  <div>    <div class="configuration--field-label-section">      {{ label }}      <h5 class="configuration--field-label sub-text-color paragraph" [innerHTML]="subLabel"></h5>    </div>  </div>  <div class="configuration--input-toggle-section">    <mat-slide-toggle class="configuration--toggle-form-field" color="accent" [formControlName]="formControllerName">    </mat-slide-toggle>  </div></div><!-- Advanced Setting Page - with icon --><div *ngIf="iconPath" [formGroup]="form" [ngClass]="formControllerName !== \'exportSchedule\' ? \'configuration--field-section\': \'export-schedule-section\'">  <div fxLayout="row" fxLayoutAlign="space-between start">    <div fxLayout="row" fxLayoutAlign="space-between start" class="configuration--field-label-section">      <img src="{{ iconPath }}" class="configuration--icon">      <div>        <div class="configuration--field-header">          {{ label }}        </div>        <h5 class="configuration--field-label sub-text-color paragraph" [innerHTML]="subLabel"></h5>      </div>    </div>    <div class="configuration--input-toggle-section">      <mat-slide-toggle class="configuration--toggle-form-field" color="accent" [formControlName]="formControllerName"></mat-slide-toggle>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddEmailDialogComponent', 'selector': 'app-add-email-dialog'},{'name': 'AdvancedSettingsComponent', 'selector': 'app-advanced-settings'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'CloneSettingsComponent', 'selector': 'app-clone-settings'},{'name': 'ConfigurationAdvancedSettingsComponent', 'selector': 'app-configuration-advanced-settings'},{'name': 'ConfigurationComponent', 'selector': 'app-configuration'},{'name': 'ConfigurationEmployeeSettingsComponent', 'selector': 'app-configuration-employee-settings'},{'name': 'ConfigurationExportSettingsComponent', 'selector': 'app-configuration-export-settings'},{'name': 'ConfigurationImportSettingsComponent', 'selector': 'app-configuration-import-settings'},{'name': 'ConfigurationSelectFieldComponent', 'selector': 'app-configuration-select-field'},{'name': 'ConfigurationStepFooterSectionComponent', 'selector': 'app-configuration-step-footer-section'},{'name': 'ConfigurationStepHeaderSectionComponent', 'selector': 'app-configuration-step-header-section'},{'name': 'ConfigurationToggleFieldComponent', 'selector': 'app-configuration-toggle-field'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'CustomMappingComponent', 'selector': 'app-custom-mapping'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardExportLogDialogComponent', 'selector': 'app-dashboard-export-log-dialog'},{'name': 'DashboardHeaderSectionComponent', 'selector': 'app-dashboard-header-section'},{'name': 'DashboardQboErrorDialogComponent', 'selector': 'app-dashboard-qbo-error-dialog'},{'name': 'DashboardResolveMappingErrorDialogComponent', 'selector': 'app-dashboard-resolve-mapping-error-dialog'},{'name': 'EmailMultiSelectComponent', 'selector': 'app-email-multi-select'},{'name': 'EmailMultiSelectFieldComponent', 'selector': 'app-email-multi-select-field'},{'name': 'EmployeeMappingComponent', 'selector': 'app-employee-mapping'},{'name': 'EmployeeSettingsComponent', 'selector': 'app-employee-settings'},{'name': 'ExpenseFieldCreationDialogComponent', 'selector': 'app-expense-field-creation-dialog'},{'name': 'ExportLogChildDialogComponent', 'selector': 'app-export-log-child-dialog'},{'name': 'ExportLogChildTableComponent', 'selector': 'app-export-log-child-table'},{'name': 'ExportLogComponent', 'selector': 'app-export-log'},{'name': 'ExportLogTableComponent', 'selector': 'app-export-log-table'},{'name': 'ExportSettingsComponent', 'selector': 'app-export-settings'},{'name': 'FyleCallbackComponent', 'selector': 'app-fyle-callback'},{'name': 'GenericMappingComponent', 'selector': 'app-generic-mapping'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImportSettingsComponent', 'selector': 'app-import-settings'},{'name': 'IntegrationComponent', 'selector': 'app-integration'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'MandatoryErrorMessageComponent', 'selector': 'app-mandatory-error-message'},{'name': 'MandatoryFieldComponent', 'selector': 'app-mandatory-field'},{'name': 'MappingComponent', 'selector': 'app-mapping'},{'name': 'MappingFilterComponent', 'selector': 'app-mapping-filter'},{'name': 'MappingHeaderSectionComponent', 'selector': 'app-mapping-header-section'},{'name': 'MappingTableComponent', 'selector': 'app-mapping-table'},{'name': 'OnboardingAdvancedSettingsComponent', 'selector': 'app-onboarding-advanced-settings'},{'name': 'OnboardingComponent', 'selector': 'app-onboarding'},{'name': 'OnboardingDoneComponent', 'selector': 'app-onboarding-done'},{'name': 'OnboardingEmployeeSettingsComponent', 'selector': 'app-onboarding-employee-settings'},{'name': 'OnboardingExportSettingsComponent', 'selector': 'app-onboarding-export-settings'},{'name': 'OnboardingFooterComponent', 'selector': 'app-onboarding-footer'},{'name': 'OnboardingImportSettingsComponent', 'selector': 'app-onboarding-import-settings'},{'name': 'OnboardingLandingComponent', 'selector': 'app-onboarding-landing'},{'name': 'OnboardingQboConnectorComponent', 'selector': 'app-onboarding-qbo-connector'},{'name': 'OnboardingStepperComponent', 'selector': 'app-onboarding-stepper'},{'name': 'PaginatorComponent', 'selector': 'app-paginator'},{'name': 'PreviewDialogComponent', 'selector': 'app-preview-dialog'},{'name': 'QboCallbackComponent', 'selector': 'app-qbo-callback'},{'name': 'QboConnectorComponent', 'selector': 'app-qbo-connector'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SharedLoginComponent', 'selector': 'app-shared-login'},{'name': 'SimpleTextSearchComponent', 'selector': 'app-simple-text-search'},{'name': 'SkipExportLogTableComponent', 'selector': 'app-skip-export-log-table'},{'name': 'ToggleComponent', 'selector': 'app-toggle'},{'name': 'ZeroStateWithIllustrationComponent', 'selector': 'app-zero-state-with-illustration'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ConfigurationToggleFieldComponent'};

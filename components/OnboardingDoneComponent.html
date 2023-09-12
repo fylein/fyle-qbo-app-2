@@ -186,7 +186,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(refinerService: <a href="../injectables/RefinerService.html" target="_self">RefinerService</a>, router: Router, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>)</code>
+<code>constructor(refinerService: <a href="../injectables/RefinerService.html" target="_self">RefinerService</a>, router: Router, route: ActivatedRoute, trackingService: <a href="../injectables/TrackingService.html" target="_self">TrackingService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -225,6 +225,18 @@
                                                   
                                                         <td>
                                                                     <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
                                                         </td>
                                                   
                                                     <td>
@@ -282,8 +294,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/app/integration/onboarding/onboarding-done/onboarding-done.component.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/app/integration/onboarding/onboarding-done/onboarding-done.component.ts:29</a></div>
                 </td>
             </tr>
 
@@ -319,8 +331,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/app/integration/onboarding/onboarding-done/onboarding-done.component.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/app/integration/onboarding/onboarding-done/onboarding-done.component.ts:42</a></div>
                 </td>
             </tr>
 
@@ -358,8 +370,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/app/integration/onboarding/onboarding-done/onboarding-done.component.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/app/integration/onboarding/onboarding-done/onboarding-done.component.ts:23</a></div>
                 </td>
             </tr>
 
@@ -415,7 +427,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
 import { ClickEvent, OnboardingStep, ProgressPhase, RefinerSurveyType } from &#x27;src/app/core/models/enum/enum.model&#x27;;
 import { RefinerService } from &#x27;src/app/core/services/integration/refiner.service&#x27;;
 import { TrackingService } from &#x27;src/app/core/services/integration/tracking.service&#x27;;
@@ -432,6 +444,7 @@ export class OnboardingDoneComponent implements OnInit {
   constructor(
     private refinerService: RefinerService,
     private router: Router,
+    private route: ActivatedRoute,
     private trackingService: TrackingService
   ) { }
 
@@ -444,7 +457,13 @@ export class OnboardingDoneComponent implements OnInit {
   navigateToDashboard(): void {
     this.trackSessionTime();
     this.trackingService.onClickEvent(ClickEvent.ONBOARDING_DONE);
-    this.refinerService.triggerSurvey(RefinerSurveyType.ONBOARDING_DONE);
+
+    const isCloneSettingRedirection &#x3D; this.route.snapshot.queryParams.onboardingFlow;
+    if (isCloneSettingRedirection) {
+      this.refinerService.triggerSurvey(RefinerSurveyType.CLONE_SETTINGS);
+    } else {
+      this.refinerService.triggerSurvey(RefinerSurveyType.ONBOARDING_DONE);
+    }
     this.router.navigate([&#x60;/workspaces/main/dashboard&#x60;]);
   }
 
