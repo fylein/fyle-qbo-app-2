@@ -147,6 +147,10 @@ describe('CloneSettingsComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('trackSessionTime function check', () => {
+    expect((component as any).trackSessionTime()).toBeUndefined();
+  });
+
   it('getExportType function check', () => {
     const response = ReimbursableExpensesObject.JOURNAL_ENTRY;
     const output = response.toLowerCase().charAt(0).toUpperCase() + response.toLowerCase().slice(1);

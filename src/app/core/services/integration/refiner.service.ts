@@ -14,6 +14,8 @@ export class RefinerService {
 
   private readonly exportDoneSurveryID: string = environment.refiner_survey.export_done_survery_id;
 
+  private readonly cloneSettingsSurveyId: string = environment.refiner_survey.clone_settings_survey_id;
+
   private readonly user: MinimalUser = this.userService.getUserProfile();
 
   private readonly workspaceId: string = this.workspaceService.getWorkspaceId();
@@ -29,7 +31,14 @@ export class RefinerService {
 
   triggerSurvey(actionName: RefinerSurveyType): void {
     if (this.refiner) {
-      this.refiner('identifyUser', {
+      let surveyId = this.exportDoneSurveryID;
+      if (actionName === RefinerSurveyType.ONBOARDING_DONE) {
+        surveyId = this.onboardingDoneSurveryID;
+      } else if (actionName === RefinerSurveyType.CLONE_SETTINGS) {
+        surveyId = this.cloneSettingsSurveyId;
+      }
+
+      const surveyData = {
         id: this.user.org_id,
         email: this.user.email,
         name: this.user.full_name,
@@ -39,8 +48,10 @@ export class RefinerService {
         },
         source: 'Fyle Quickbooks Integration',
         action_name: actionName
-      });
-      this.refiner('showForm', actionName === RefinerSurveyType.ONBOARDING_DONE ? this.onboardingDoneSurveryID : this.exportDoneSurveryID);
+      };
+
+      this.refiner('identifyUser', surveyData);
+      this.refiner('showForm', surveyId);
     }
   }
 }
