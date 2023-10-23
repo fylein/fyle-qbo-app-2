@@ -114,9 +114,21 @@ export class MappingTableComponent implements OnInit {
   }
 
   titleCase(str: string | undefined): string | undefined {
-    return str?.toLowerCase().replace(/(?:^|\s|-)\w/g, (match) => {
-      return match.toUpperCase();
+    var newStr;
+
+    newStr = str?.replace(/_/g, " ");
+
+    return newStr?.toLowerCase().replace(/(?:^|\s|-)\w/g, (match) => {
+      return match;
     });
+  }
+
+  pluralize(str: string | undefined): string | undefined {
+    if ( str === "CLASS"){
+      return "es";
+    }
+
+    return 's';
   }
 
   ngOnInit(): void {
@@ -125,9 +137,9 @@ export class MappingTableComponent implements OnInit {
     this.toolTipContent =
       this.sourceType === FyleField.CATEGORY
         ?
-        'If you are unable to find an Account in the dropdown, please use the search bar to find from your chart of Accounts'
+        'If you are unable to find an account in the dropdown, please use the search bar to find from your chart of accounts'
         :
-        `If you are enable to find a ${this.titleCase(this.destinationType)} in the dropdown please use the search bar to find from your ${this.titleCase(this.destinationType)}s`;
+        `The list below displays a maximum of 50 ${this.titleCase(this.destinationType)}${this.pluralize(this.destinationType)}. If you are unable to find the ${this.titleCase(this.destinationType)} you are looking for, please use the search bar to locate it.` ;
   }
 
 }
