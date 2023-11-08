@@ -1,124 +1,124 @@
-name: Manually Trigger End to End Tests - With environment
+# name: Manually Trigger End to End Tests - With environment
 
-on:
-  workflow_dispatch:
-    inputs:
-      env-name:
-        type: choice
-        required: true
-        description: Environment
-        options: 
-        - End to End Test - Staging
-        - End to End Test - Production
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       env-name:
+#         type: choice
+#         required: true
+#         description: Environment
+#         options: 
+#         - End to End Test - Staging
+#         - End to End Test - Production
 
-jobs:
-  install:
-    runs-on: macos-latest
-    environment:
-      name: ${{ github.event.inputs.env-name }}
-    steps:
-      - id: skip_check
-        uses: fkirc/skip-duplicate-actions@v5
-        with:
-          concurrent_skipping: 'always'
-      - run: echo "Running e2e test on ${{ github.event.inputs.env-name }}!"
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
-      - uses: dorny/paths-filter@v2
-        id: filter
-        with:
-          filters: |
-            src:
-              - 'src/**'
-              - 'cypress/**'
-      - name: Install dependencies
-        if: steps.filter.outputs.src == 'true'
-        run: npm install --prefix cypress
-      - name: Prepare for end to end tests
-        if: steps.filter.outputs.src == 'true'
-        run: npm run setup_e2e_test
-      - name: Cache Dependencies
-        uses: actions/cache@v3
-        id: cache
-        with:
-          path: |
-            ~/.cache/Cypress
-            node_modules
-          key: my-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-      - name: Cypress install
-        if: steps.filter.outputs.src == 'true' && steps.cache.outputs.cache-hit != 'true'
-        uses: cypress-io/github-action@v4
-        with:
-          install: true
-          runTests: false
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-      COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
-      COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
-      APP_URL: ${{ secrets.APP_URL }}
-      API_URL: ${{ secrets.API_URL }}
-      E2E_TESTS_CLIENT_ID: ${{ secrets.E2E_TESTS_CLIENT_ID }}
-      E2E_TESTS_WORKSPACE_ID_1: ${{ secrets.E2E_TESTS_WORKSPACE_ID_1 }}
-      E2E_TESTS_WORKSPACE_ID_2: ${{ secrets.E2E_TESTS_WORKSPACE_ID_2 }}
-      E2E_TESTS_ENV: ${{ secrets.E2E_TESTS_ENV }}
-      E2E_TESTS_REFRESH_TOKEN_1: ${{ secrets.E2E_TESTS_REFRESH_TOKEN_1 }}
-      E2E_TESTS_ORG_ID_1: ${{ secrets.E2E_TESTS_ORG_ID_1 }}
-      E2E_TESTS_REFRESH_TOKEN_2: ${{ secrets.E2E_TESTS_REFRESH_TOKEN_2 }}
-      E2E_TESTS_ORG_ID_2: ${{ secrets.E2E_TESTS_ORG_ID_2 }}
+# jobs:
+#   install:
+#     runs-on: macos-latest
+#     environment:
+#       name: ${{ github.event.inputs.env-name }}
+#     steps:
+#       - id: skip_check
+#         uses: fkirc/skip-duplicate-actions@v5
+#         with:
+#           concurrent_skipping: 'always'
+#       - run: echo "Running e2e test on ${{ github.event.inputs.env-name }}!"
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#       - name: Setup Node
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: 16
+#       - uses: dorny/paths-filter@v2
+#         id: filter
+#         with:
+#           filters: |
+#             src:
+#               - 'src/**'
+#               - 'cypress/**'
+#       - name: Install dependencies
+#         if: steps.filter.outputs.src == 'true'
+#         run: npm install --prefix cypress
+#       - name: Prepare for end to end tests
+#         if: steps.filter.outputs.src == 'true'
+#         run: npm run setup_e2e_test
+#       - name: Cache Dependencies
+#         uses: actions/cache@v3
+#         id: cache
+#         with:
+#           path: |
+#             ~/.cache/Cypress
+#             node_modules
+#           key: my-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+#       - name: Cypress install
+#         if: steps.filter.outputs.src == 'true' && steps.cache.outputs.cache-hit != 'true'
+#         uses: cypress-io/github-action@v4
+#         with:
+#           install: true
+#           runTests: false
+#     env:
+#       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+#       COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
+#       COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
+#       APP_URL: ${{ secrets.APP_URL }}
+#       API_URL: ${{ secrets.API_URL }}
+#       E2E_TESTS_CLIENT_ID: ${{ secrets.E2E_TESTS_CLIENT_ID }}
+#       E2E_TESTS_WORKSPACE_ID_1: ${{ secrets.E2E_TESTS_WORKSPACE_ID_1 }}
+#       E2E_TESTS_WORKSPACE_ID_2: ${{ secrets.E2E_TESTS_WORKSPACE_ID_2 }}
+#       E2E_TESTS_ENV: ${{ secrets.E2E_TESTS_ENV }}
+#       E2E_TESTS_REFRESH_TOKEN_1: ${{ secrets.E2E_TESTS_REFRESH_TOKEN_1 }}
+#       E2E_TESTS_ORG_ID_1: ${{ secrets.E2E_TESTS_ORG_ID_1 }}
+#       E2E_TESTS_REFRESH_TOKEN_2: ${{ secrets.E2E_TESTS_REFRESH_TOKEN_2 }}
+#       E2E_TESTS_ORG_ID_2: ${{ secrets.E2E_TESTS_ORG_ID_2 }}
 
-  end-to-end-test:
-    runs-on: macos-latest
-    environment:
-      name: ${{ github.event.inputs.env-name }}
-    needs: install
-    strategy:
-      fail-fast: false
-      matrix:
-        containers: [1, 2, 3, 4, 5]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14
-      - name: Install dependencies
-        run: npm install --prefix cypress
-      - name: Prepare for end to end tests
-        run: npm run setup_env
-      - name: Cache Dependencies
-        uses: actions/cache@v3
-        id: cache
-        with:
-          path: |
-            ~/.cache/Cypress
-            node_modules
-          key: my-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-      - name: Cypress run
-        uses: cypress-io/github-action@v4
-        with:
-          install: false
-          record: true
-          browser: chrome
-          parallel: true
-          tag: ${{ secrets.E2E_TESTS_ENV }}
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-      COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
-      COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
-      APP_URL: ${{ secrets.APP_URL }}
-      API_URL: ${{ secrets.API_URL }}
-      E2E_TESTS_CLIENT_ID: ${{ secrets.E2E_TESTS_CLIENT_ID }}
-      E2E_TESTS_WORKSPACE_ID_1: ${{ secrets.E2E_TESTS_WORKSPACE_ID_1 }}
-      E2E_TESTS_WORKSPACE_ID_2: ${{ secrets.E2E_TESTS_WORKSPACE_ID_2 }}
-      E2E_TESTS_ENV: ${{ secrets.E2E_TESTS_ENV }}
-      E2E_TESTS_REFRESH_TOKEN_1: ${{ secrets.E2E_TESTS_REFRESH_TOKEN_1 }}
-      E2E_TESTS_ORG_ID_1: ${{ secrets.E2E_TESTS_ORG_ID_1 }}
-      E2E_TESTS_REFRESH_TOKEN_2: ${{ secrets.E2E_TESTS_REFRESH_TOKEN_2 }}
-      E2E_TESTS_ORG_ID_2: ${{ secrets.E2E_TESTS_ORG_ID_2 }}
+#   end-to-end-test:
+#     runs-on: macos-latest
+#     environment:
+#       name: ${{ github.event.inputs.env-name }}
+#     needs: install
+#     strategy:
+#       fail-fast: false
+#       matrix:
+#         containers: [1, 2, 3, 4, 5]
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#       - name: Setup Node
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: 14
+#       - name: Install dependencies
+#         run: npm install --prefix cypress
+#       - name: Prepare for end to end tests
+#         run: npm run setup_env
+#       - name: Cache Dependencies
+#         uses: actions/cache@v3
+#         id: cache
+#         with:
+#           path: |
+#             ~/.cache/Cypress
+#             node_modules
+#           key: my-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+#       - name: Cypress run
+#         uses: cypress-io/github-action@v4
+#         with:
+#           install: false
+#           record: true
+#           browser: chrome
+#           parallel: true
+#           tag: ${{ secrets.E2E_TESTS_ENV }}
+#     env:
+#       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+#       COMMIT_INFO_MESSAGE: ${{github.event.pull_request.title}}
+#       COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
+#       APP_URL: ${{ secrets.APP_URL }}
+#       API_URL: ${{ secrets.API_URL }}
+#       E2E_TESTS_CLIENT_ID: ${{ secrets.E2E_TESTS_CLIENT_ID }}
+#       E2E_TESTS_WORKSPACE_ID_1: ${{ secrets.E2E_TESTS_WORKSPACE_ID_1 }}
+#       E2E_TESTS_WORKSPACE_ID_2: ${{ secrets.E2E_TESTS_WORKSPACE_ID_2 }}
+#       E2E_TESTS_ENV: ${{ secrets.E2E_TESTS_ENV }}
+#       E2E_TESTS_REFRESH_TOKEN_1: ${{ secrets.E2E_TESTS_REFRESH_TOKEN_1 }}
+#       E2E_TESTS_ORG_ID_1: ${{ secrets.E2E_TESTS_ORG_ID_1 }}
+#       E2E_TESTS_REFRESH_TOKEN_2: ${{ secrets.E2E_TESTS_REFRESH_TOKEN_2 }}
+#       E2E_TESTS_ORG_ID_2: ${{ secrets.E2E_TESTS_ORG_ID_2 }}

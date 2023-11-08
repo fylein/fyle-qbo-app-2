@@ -30,8 +30,8 @@ export class MappingService {
     private workspaceService: WorkspaceService
   ) { }
 
-  getQBODestinationAttributes(attributeTypes: string | string[], displayName?:string): Observable<DestinationAttribute[]> {
-    const params: { attribute_type?: string, attribute_type__in?: string[], display_name?:string, active?:boolean} = {};
+  getQBODestinationAttributes(attributeTypes: string | string[], displayName?:string | string[]): Observable<DestinationAttribute[]> {
+    const params: { attribute_type?: string, attribute_type__in?: string[], display_name?:string | string[], display_name__in?: string[], active?:boolean} = {};
     if (Array.isArray(attributeTypes)) {
       params.attribute_type__in = attributeTypes;
     } else {
@@ -39,7 +39,9 @@ export class MappingService {
     }
     params.active = true;
 
-    if (displayName) {
+    if (Array.isArray(displayName)) {
+      params.display_name__in = displayName;
+    } else if (displayName) {
       params.display_name = displayName;
     }
 
@@ -209,10 +211,11 @@ export class MappingService {
     return destinationTypeHeader;
   }
 
-  constructDisplayNameFilter(destinationType: string | undefined, importItems: boolean ): string | undefined {
-    if (destinationType === 'ACCOUNT'){
-      return importItems ? 'Item,Account': 'Account';
+  constructDisplayNameFilter(destinationType: string | undefined, importItems: boolean ): string | string[] {
+    if (destinationType === 'ACCOUNT') {
+      return importItems ? ['Item', 'Account']: 'Account';
     }
-    return undefined;
+
+    return [];
   }
 }
