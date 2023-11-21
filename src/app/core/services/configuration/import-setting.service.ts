@@ -46,7 +46,7 @@ export class ImportSettingService {
       });
       return {
         source_field: mappingSetting.length > 0 ? mappingSetting[0].source_field : '',
-        destination_field: attribute.display_name,
+        destination_field: attribute.attribute_type,
         import_to_fyle: mappingSetting.length > 0 ? mappingSetting[0].import_to_fyle : false,
         disable_import_to_fyle: false,
         source_placeholder: ''
