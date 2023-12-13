@@ -25,12 +25,12 @@ export class ApiService {
     private http: HttpClient
   ) { }
 
-  private handleError(error: HttpErrorResponse, httpMethod: string) {
+  private handleError(error: HttpErrorResponse, httpMethod: string, url: string) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {
       console.error(
-        `Backend returned code ${error.status}, method was: ${httpMethod}, body was: ${JSON.stringify(error.error)}`
+        `Backend returned code ${error.status}, method was: ${httpMethod}, body was: ${JSON.stringify(error.error)}, url was: ${url}`
       );
     }
     return throwError(error);
@@ -39,14 +39,14 @@ export class ApiService {
   // Having any here is ok
   post(endpoint: string, body: {}): Observable<any> {
     return this.http.post(API_BASE_URL + endpoint, body, httpOptions).pipe(catchError(error => {
-      return this.handleError(error, 'POST');
+      return this.handleError(error, 'POST', API_BASE_URL + endpoint);
     }));
   }
 
   // Having any here is ok
   put(endpoint: string, body: {}): Observable<any> {
     return this.http.put(API_BASE_URL + endpoint, body, httpOptions).pipe(catchError(error => {
-      return this.handleError(error, 'PUT');
+      return this.handleError(error, 'PUT', API_BASE_URL + endpoint);
     }));
   }
 
@@ -58,21 +58,21 @@ export class ApiService {
     });
 
     return this.http.get(API_BASE_URL + endpoint, { params }).pipe(catchError(error => {
-      return this.handleError(error, 'GET');
+      return this.handleError(error, 'GET', API_BASE_URL + endpoint);
     }));
   }
 
   // Having any here is ok
   patch(endpoint: string, body: {}): Observable<any> {
     return this.http.patch(API_BASE_URL + endpoint, body, httpOptions).pipe(catchError(error => {
-      return this.handleError(error, 'PATCH');
+      return this.handleError(error, 'PATCH', API_BASE_URL + endpoint);
     }));
   }
 
   // Having any here is ok
   delete(endpoint: string): Observable<any> {
     return this.http.delete(API_BASE_URL + endpoint, httpOptions).pipe(catchError(error => {
-      return this.handleError(error, 'DELETE');
+      return this.handleError(error, 'DELETE', API_BASE_URL + endpoint);
     }));
   }
 }
