@@ -944,7 +944,7 @@ export class ExportLogService {
   generateFyleUrl(expenseGroup: ExpenseGroup, referenceType: FyleReferenceType) : string {
     let url &#x3D; &#x60;${environment.fyle_app_url}/app/&#x60;;
     if (referenceType &#x3D;&#x3D;&#x3D; FyleReferenceType.EXPENSE) {
-      url +&#x3D; &#x60;main/#/view_expense/${expenseGroup.description.expense_id}&#x60;;
+      url +&#x3D; &#x60;admin/#/view_expense/${expenseGroup.description.expense_id}&#x60;;
     } else if (referenceType &#x3D;&#x3D;&#x3D; FyleReferenceType.EXPENSE_REPORT) {
       url +&#x3D; &#x60;admin/#/reports/${expenseGroup.description.report_id}&#x60;;
     } else if (referenceType &#x3D;&#x3D;&#x3D; FyleReferenceType.PAYMENT) {
