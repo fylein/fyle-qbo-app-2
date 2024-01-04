@@ -231,7 +231,7 @@ export class AdvancedSettingsComponent implements OnInit, OnDestroy {
       merchant: 'Pizza Hut',
       report_number: 'C/2021/12/R/1',
       spent_on: today.toLocaleDateString(),
-      expense_link: 'https://app.fylehq.com/app/main/#/enterprise/view_expense/'
+      expense_link: 'https://app.fylehq.com/app/admin/#/enterprise/view_expense/'
     };
 
     this.memoPreviewText = '';

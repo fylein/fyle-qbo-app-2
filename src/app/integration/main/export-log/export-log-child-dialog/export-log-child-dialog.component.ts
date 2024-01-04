@@ -55,7 +55,7 @@ export class ExportLogChildDialogComponent implements OnInit {
 
     expenseList.forEach((expense: Expense) => {
       expenses.push({
-        fyleUrl: `${environment.fyle_app_url}/app/main/#/view_expense/${expense.expense_id}?org_id=${this.org_id}`,
+        fyleUrl: `${environment.fyle_app_url}/app/admin/#/view_expense/${expense.expense_id}?org_id=${this.org_id}`,
         amount: [expense.amount, expense.currency],
         merchant: expense.vendor,
         category: expense.category,
