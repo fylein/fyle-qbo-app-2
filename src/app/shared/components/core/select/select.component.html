@@ -33,12 +33,12 @@
       class="select-field--preview-text sub-text-color">
       <p *ngIf="formControllerName === 'reimbursableExportType' && !exportType ">Click <span
               class="select-field--preview-btn pointer"
-              (click)="showQboExportPreview(form.value.reimbursableExportType, null)">here</span> to Preivew on how
+              (click)="showQboExportPreview(form.value.reimbursableExportType, null)">here</span> to Preview on how
           it
           looks on QuickBooks</p>
       <p *ngIf="formControllerName === 'creditCardExportType'  && !exportType || qboAttributes ">Click <span
               class="select-field--preview-btn pointer"
-              (click)="showQboExportPreview(null, form.value.creditCardExportType)">here</span> to Preivew on how it
+              (click)="showQboExportPreview(null, form.value.creditCardExportType)">here</span> to Preview on how it
           looks on QuickBooks</p>
   </div>
 
