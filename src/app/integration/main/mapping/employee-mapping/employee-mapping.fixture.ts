@@ -5,7 +5,7 @@ import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-genera
 import { EmployeeFieldMapping, NameInJournalEntry, MappingState } from "src/app/core/models/enum/enum.model";
 import { environment } from "src/environments/environment";
 
-const API_BASE_URL = environment.api_url;
+const API_BASE_URL = environment.cluster_domain_api_url;
 const workspace_id = environment.tests.workspaceId;
 
 export const mappinglist: MappingList[] = [{

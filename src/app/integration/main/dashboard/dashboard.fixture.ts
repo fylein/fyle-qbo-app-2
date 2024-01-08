@@ -6,7 +6,7 @@ import { LastExport } from "src/app/core/models/db/last-export.model";
 import { environment } from "src/environments/environment";
 import { ExportableExpenseGroup } from "src/app/core/models/db/expense-group.model";
 
-const API_BASE_URL = environment.api_url;
+const API_BASE_URL = environment.cluster_domain_api_url;
 const workspace_id = environment.tests.workspaceId;
 
 export const workspaceGeneralSettingResponse:WorkspaceGeneralSetting = {

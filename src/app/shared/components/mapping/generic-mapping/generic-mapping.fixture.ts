@@ -5,7 +5,7 @@ import { MappingList, MappingPost, MappingStats } from "src/app/core/models/db/m
 import { WorkspaceGeneralSetting } from "src/app/core/models/db/workspace-general-setting.model";
 import { EmployeeFieldMapping, FyleField, MappingDestinationField, MappingSourceField, MappingState, NameInJournalEntry } from "src/app/core/models/enum/enum.model";
 import { environment } from "src/environments/environment";
-const API_BASE_URL = environment.api_url;
+const API_BASE_URL = environment.cluster_domain_api_url;
 const workspace_id = environment.tests.workspaceId;
 export const mappingSetting:MappingSetting[] = [{
   id: 1,

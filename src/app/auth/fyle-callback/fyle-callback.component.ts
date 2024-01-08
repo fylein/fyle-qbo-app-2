@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MinimalUser } from 'src/app/core/models/db/user.model';
+import { ClusterDomainWithToken } from 'src/app/core/models/misc/token.model';
 import { AuthService } from 'src/app/core/services/core/auth.service';
+import { StorageService } from 'src/app/core/services/core/storage.service';
 import { UserService } from 'src/app/core/services/misc/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-fyle-callback',
@@ -17,6 +20,7 @@ export class FyleCallbackComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar,
+    private storageService: StorageService,
     private userService: UserService
   ) { }
 
@@ -29,22 +33,28 @@ export class FyleCallbackComponent implements OnInit {
   }
 
   private saveUserProfileAndNavigate(code: string): void {
-    this.authService.login(code).subscribe(response => {
-      const user: MinimalUser = {
-        'email': response.user.email,
-        'access_token': response.access_token,
-        'refresh_token': response.refresh_token,
-        'full_name': response.user.full_name,
-        'user_id': response.user.user_id,
-        'org_id': response.user.org_id,
-        'org_name': response.user.org_name
-      };
-      this.userService.storeUserProfile(user);
+    this.authService.getClusterDomainByCode(code).subscribe((clusterDomainWithToken: ClusterDomainWithToken) => {
+      // TODO: rename staging service to quickbooks-api
+      this.storageService.set('cluster-domain', `${clusterDomainWithToken.cluster_domain}/${environment.production ? 'qbo-api': 'api'}`);
+      this.authService.loginWithRefreshToken(clusterDomainWithToken.tokens.refresh_token).subscribe(response => {
+        const user: MinimalUser = {
+          'email': response.user.email,
+          'access_token': response.access_token,
+          'refresh_token': response.refresh_token,
+          'full_name': response.user.full_name,
+          'user_id': response.user.user_id,
+          'org_id': response.user.org_id,
+          'org_name': response.user.org_name
+        };
+        this.userService.storeUserProfile(user);
 
-      this.router.navigate(['/workspaces']);
+        this.router.navigate(['/workspaces']);
 
-      // Store orgs count in background, need not be a sync call
-      this.userService.storeFyleOrgsCount();
+        // Store orgs count in background, need not be a sync call
+        this.userService.storeFyleOrgsCount();
+      }, () => {
+        this.redirectToLogin();
+      });
     }, () => {
       this.redirectToLogin();
     });
