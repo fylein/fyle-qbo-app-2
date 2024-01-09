@@ -44,7 +44,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
   // Certain api's do not require token in headers.
   private isTokenMandatory(url: string): boolean {
-    const endpointWithoutToken = url.includes('/api/auth/');
+    const endpointWithoutToken = url.includes('api/auth/');
     return !endpointWithoutToken;
   }
 
