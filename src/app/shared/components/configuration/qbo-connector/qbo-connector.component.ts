@@ -172,6 +172,14 @@ export class QboConnectorComponent implements OnInit, OnDestroy {
     });
   }
 
+  private setupPostConnectionStates(qboCredentials: QBOCredentials): void {
+    this.trackingService.onOnboardingStepCompletion(OnboardingStep.CONNECT_QBO, 1);
+    this.workspaceService.setOnboardingState(OnboardingState.MAP_EMPLOYEES);
+    this.qboConnectionInProgress = false;
+    this.qboCompanyName = qboCredentials.company_name;
+    this.showOrHideDisconnectQBO();
+  }
+
   private postQboCredentials(code: string, realmId: string): void {
     const qboAuthResponse: QboConnectorPost = {
       code: code,
@@ -181,11 +189,9 @@ export class QboConnectorComponent implements OnInit, OnDestroy {
 
     this.qboConnectorService.connectQBO(qboAuthResponse).subscribe((qboCredentials: QBOCredentials) => {
       this.workspaceService.refreshQBODimensions().subscribe(() => {
-        this.trackingService.onOnboardingStepCompletion(OnboardingStep.CONNECT_QBO, 1);
-        this.workspaceService.setOnboardingState(OnboardingState.MAP_EMPLOYEES);
-        this.qboConnectionInProgress = false;
-        this.qboCompanyName = qboCredentials.company_name;
-        this.showOrHideDisconnectQBO();
+        this.setupPostConnectionStates(qboCredentials);
+      }, () => {
+        this.setupPostConnectionStates(qboCredentials);
       });
     }, (error) => {
       console.error('QBO Connection', JSON.stringify(error));
