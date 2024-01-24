@@ -34,7 +34,6 @@ export class FyleCallbackComponent implements OnInit {
 
   private saveUserProfileAndNavigate(code: string): void {
     this.authService.getClusterDomainByCode(code).subscribe((clusterDomainWithToken: ClusterDomainWithToken) => {
-      // TODO: rename staging service to quickbooks-api
       this.storageService.set('cluster-domain', `${clusterDomainWithToken.cluster_domain}/${environment.production ? 'quickbooks-api/api': 'api'}`);
       this.authService.loginWithRefreshToken(clusterDomainWithToken.tokens.refresh_token).subscribe(response => {
         const user: MinimalUser = {
