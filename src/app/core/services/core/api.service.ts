@@ -26,6 +26,11 @@ export class ApiService {
     private storageService: StorageService
   ) { }
 
+  private logout(): void {
+    this.storageService.remove('user');
+    window.location.href = `${environment.fyle_app_url}/app/developers/#/oauth/authorize?client_id=${environment.fyle_client_id}&redirect_uri=${environment.callback_uri}&response_type=code`;
+  }
+
   private handleError(error: HttpErrorResponse, httpMethod: string, url: string) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
@@ -44,6 +49,9 @@ export class ApiService {
   // Having any here is ok
   post(endpoint: string, body: {}, baseUrl?: string): Observable<any> {
     const apiBaseUrl = baseUrl ? baseUrl : this.apiBaseUrl;
+    if (!apiBaseUrl) {
+      this.logout();
+    }
     return this.http.post(apiBaseUrl + endpoint, body, httpOptions).pipe(catchError(error => {
       return this.handleError(error, 'POST', this.apiBaseUrl + endpoint);
     }));
@@ -51,6 +59,9 @@ export class ApiService {
 
   // Having any here is ok
   put(endpoint: string, body: {}): Observable<any> {
+    if (!this.apiBaseUrl) {
+      this.logout();
+    }
     return this.http.put(this.apiBaseUrl + endpoint, body, httpOptions).pipe(catchError(error => {
       return this.handleError(error, 'PUT', this.apiBaseUrl + endpoint);
     }));
@@ -58,6 +69,9 @@ export class ApiService {
 
   // Having any here is ok
   get(endpoint: string, apiParams: any): Observable<any> {
+    if (!this.apiBaseUrl) {
+      this.logout();
+    }
     let params = new HttpParams();
     Object.keys(apiParams).forEach(key => {
       params = params.set(key, apiParams[key]);
@@ -70,6 +84,9 @@ export class ApiService {
 
   // Having any here is ok
   patch(endpoint: string, body: {}): Observable<any> {
+    if (!this.apiBaseUrl) {
+      this.logout();
+    }
     return this.http.patch(this.apiBaseUrl + endpoint, body, httpOptions).pipe(catchError(error => {
       return this.handleError(error, 'PATCH', this.apiBaseUrl + endpoint);
     }));
@@ -77,6 +94,9 @@ export class ApiService {
 
   // Having any here is ok
   delete(endpoint: string): Observable<any> {
+    if (!this.apiBaseUrl) {
+      this.logout();
+    }
     return this.http.delete(this.apiBaseUrl + endpoint, httpOptions).pipe(catchError(error => {
       return this.handleError(error, 'DELETE', this.apiBaseUrl + endpoint);
     }));
