@@ -6,7 +6,6 @@ import {
   platformBrowserDynamicTesting
 } from '@angular/platform-browser-dynamic/testing';
 import { environment } from 'src/environments/environment';
-const API_BASE_URL = environment.api_url;
 // First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
