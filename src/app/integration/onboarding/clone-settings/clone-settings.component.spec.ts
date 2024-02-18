@@ -259,7 +259,7 @@ describe('CloneSettingsComponent', () => {
       }
     ];
     component.chartOfAccountTypesList = [
-      'Expense', 'Other Expense', 'Fixed Asset', 'Cost of Goods Sold', 'Current Liability', 'Equity',
+      'Expense', 'Other Expense', 'Fixed Asset', 'Cost of Goods Sold', 'Current Liability', 'Equity', 'Other Asset',
       'Other Current Asset', 'Other Current Liability', 'Long Term Liability', 'Current Asset', 'Income', 'Other Income'
     ];
     spyOn(cloneSettingService, 'postCloneSettings').and.callThrough();
